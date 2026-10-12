@@ -1,0 +1,124 @@
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  /*display: none;*/ /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 0; /* Specify a stack order in case you're using a different order for other elements */
+}
+.modaldevis{
+  position: absolute;
+  width: 30%;
+  height: 35%;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  max-width: 580px;
+  max-height: 280px;
+      min-width: 252px;
+}
+.modaldevis .haut{
+  height: 35%;
+  width: 100%;
+}
+.modaldevis .haut img{
+  max-width: 98px;
+  margin: 0 auto;
+  display: block;
+  padding: 13px;
+}
+.modaldevis .txt1{
+  font-weight: 700;
+  font-size: 25px;
+  text-align: center;
+  margin-top: 10px;
+}
+.modaldevis .txt2{
+  text-align: justify;
+  padding: 0px 65px;
+  text-align-last: center;
+  margin-top: 15px;
+  font-size: 13px;
+}
+.modaldevis .btn_bcall input{ 
+  margin: 0 auto;
+  display: block;
+  margin-top: 13px;
+  color: white;
+  border-radius: 5px;
+  border: 0;
+  padding: 5px 10px;
+}
+.modaldevis .btn_bcall_valid input{
+  margin: 0 auto;
+  display: block;
+  margin-top: 13px;
+  color: white;
+  border-radius: 5px;
+  border: 0;
+  padding: 6px 50px;
+}
+
+/****************** 1590 PX ***************************/
+@media (max-width: 1590px) {
+    .modaldevis .btn_bcall input{
+      font-size: 15px;
+      margin-top: 15px;
+    }
+    .modaldevis .txt2{
+      font-size: 12px;
+      margin-top: 9px;
+      padding: 0px 20px;
+    }
+    .modaldevis .txt1{
+      font-size: 18px;
+      margin-top: 9px;
+
+    }
+}
+
+/****************** 1199 PX ***************************/
+@media (max-width: 1199px) {
+  .modaldevis .btn_bcall input{
+    font-size: 13px;
+  }
+  .modaldevis .txt2{
+    margin-top: 5px;
+    font-size: 12px;
+  }
+
+}
+
+/****************** 991 PX ***************************/
+@media (max-width: 991px) {
+
+  .modaldevis .btn_bcall input{
+    font-size: 12px;
+  }
+  .modaldevis .txt2{
+    font-size: 11px;
+    padding: 0px 10px;
+  }
+  .modaldevis .txt1{
+    font-size: 16px;
+  }
+
+}
+
+/****************** 767 PX ***************************/
+@media (max-width: 767px) {
+
+  .modaldevis .txt1{
+    font-size: 14px;
+  }
+  .modaldevis .btn_bcall input{
+    font-size: 11px;
+  }
+
+}

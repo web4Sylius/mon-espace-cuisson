@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Contrats>
+	<Contrat>
+             <LCOSTID>MEC</LCOSTID>
+             <SNUMCO>298369</SNUMCO>
+             <DACHATC>20/04/2023</DACHATC>
+             <SCIVILITE></SCIVILITE>
+             <SNOM>ZANOTTI LESCHELLE</SNOM>
+             <SPRENOM>Ghislaine</SPRENOM>
+             <SADRESSE1>5 AV WAGNER</SADRESSE1>
+             <SADRESSE2></SADRESSE2>
+             <SCP>17570</SCP>
+             <SVILLE>LES MATHES</SVILLE>
+             <STELGSM></STELGSM>
+             <STELDOM></STELDOM>
+             <EMAIL>ghislaineleschelle@orange.fr</EMAIL>
+             <SOBSERVATION></SOBSERVATION>
+	<PRODUIT>
+		<SMARQUE>HOTPOINT</SMARQUE>
+		<SMODEL>EC-LVE418 / AM90</SMODEL>
+		<LIBELLE>Hotte décorative murale 90cm &quot;Majestic&quot; avec éclairage LED ajustable en hauteur</LIBELLE>
+		<NPRIX>2850</NPRIX>
+		<SN></SN>
+		<DACHAT>04/09/2023</DACHAT>
+		<DEFFET>04/09/2023</DEFFET>
+		<TDUREE_GAR>2</TDUREE_GAR>
+		<TDUREE_EXT>0</TDUREE_EXT>
+		<SOBSERVATION></SOBSERVATION><SGARTYPE></SGARTYPE>
+</PRODUIT>
+	</Contrat>
+</Contrats>

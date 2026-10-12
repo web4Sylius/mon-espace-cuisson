@@ -1,0 +1,20 @@
+.calbg { width:100%; height:100%; position:absolute; background:black; top:0; left:0; opacity:0.75; z-index:10 }
+#cccal { background-color:white; border:solid 1px black; width:100%; max-width:400px; margin:auto; top:48px; left:0; font-size:12px; cursor:default; }
+.cal { float:left; background-color:white; width:100%; }
+.cal table { background-color:#cccccc; border-style:solid none solid none; border-width:1px; border-color:black; width:100%; height:100%; }
+.cal table td { height:30px; }
+.cal a { color:black; text-decoration:none; }
+.cal_weekdays { background-color:#dfdfdf; }
+.cal_days { background-color:white; text-align:center; }
+.cal_days a { color:#404040; text-decoration:none; font-size:12px; }
+.cal_days:hover { background-color:#ffaaaa; }
+.cal_days_lock { background-color:#CCC; color:#888; border:solid 1px white; }
+.cal_date { display:block; background-color:#55423D; width:100%; height:30px; line-height:30px; color:white; font-weight:bold; font-size:12px; clear:both;}
+.cal_datelink { color:white; font-weight:bold; text-decoration:none; display:block; float:left; margin:0 5px 0 5px; }
+.cal_datelink:hover { color:#F8B133; }
+.cal_prec:before { display:block; margin:3px 20px 0 14%; width:25px; height:25px; float:left; content: "\f053"; font: 20px FontAwesome; line-height:25px; text-align:center; color:white; }
+.cal_suiv:before { width:25px; height:25px; display:block; float:left; margin:3px 0 0 20px; content: "\f054"; font: 20px FontAwesome; line-height:25px; text-align:center; color:white; }
+.cal_close:before { background:#a88c5c; margin:2px 5px 0 0; display:block; float:right; width:25px; height:25px; border-radius:2px; color:white; text-align:center; line-height:25px; content: "\f00d"; font: 20px FontAwesome; }
+.cal_ok:before { float:right; width:50%; height:30px; background:black; content:"OK \f00c"; font: 20px FontAwesome; text-align:center; line-height:30px; font-weight:bold; color:white; }
+#userdiv select { background-color:white; width:200px; color:black; }
+.cal_datetime { float:left; width:60px; height:30px; color:#9D2E4A; margin:0 0 0 20px; font-weight:bold; font-size:14px; line-height:30px; }

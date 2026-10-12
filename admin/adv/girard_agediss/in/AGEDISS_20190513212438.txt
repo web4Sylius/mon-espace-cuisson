@@ -1,0 +1,3 @@
+2019/04/24|150039|314912844|HACHMI .|06370|70061|RST ANN|Annulation client|2019/05/13|0|erreur EDI / LV2 sur BL 314948865|http://webtracking.girard-agediss.com/tracking-acilyon-314912844.html
+2019/05/13|131249|314948865|HACHMI|06370|70061|AAR CFM|Reception conforme|2019/05/13|0||http://webtracking.girard-agediss.com/tracking-acilyon-314948865.html
+2019/05/13|131249|314948865|HACHMI|06370|70061|INI INF|Arrivee info|2019/05/13|0||http://webtracking.girard-agediss.com/tracking-acilyon-314948865.html

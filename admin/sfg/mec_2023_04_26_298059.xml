@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Contrats>
+	<Contrat>
+             <LCOSTID>MEC</LCOSTID>
+             <SNUMCO>298059</SNUMCO>
+             <DACHATC>25/04/2022</DACHATC>
+             <SCIVILITE></SCIVILITE>
+             <SNOM>MARCHAND</SNOM>
+             <SPRENOM>Emilie</SPRENOM>
+             <SADRESSE1>1288 route des Frasses La Panthiaz</SADRESSE1>
+             <SADRESSE2></SADRESSE2>
+             <SCP>74360</SCP>
+             <SVILLE>LA CHAPELLE D&apos;ABONDANCE</SVILLE>
+             <STELGSM></STELGSM>
+             <STELDOM></STELDOM>
+             <EMAIL>Emy2marchand79@gmail.com</EMAIL>
+             <SOBSERVATION></SOBSERVATION>
+	<PRODUIT>
+		<SMARQUE>HOTPOINT</SMARQUE>
+		<SMODEL>EC-JCI122 / 7414032_3 (E-</SMODEL>
+		<LIBELLE>Piano de cuisson, bois, gaz et électrique 140cm &quot;Prestige&quot; (Ex. Country) avec 2 fours et une plaque de cuisson personnalisable </LIBELLE>
+		<NPRIX>11200</NPRIX>
+		<SN></SN>
+		<DACHAT>23/12/2022</DACHAT>
+		<DEFFET>23/12/2022</DEFFET>
+		<TDUREE_GAR>2</TDUREE_GAR>
+		<TDUREE_EXT>0</TDUREE_EXT>
+		<SOBSERVATION></SOBSERVATION><SGARTYPE></SGARTYPE>
+</PRODUIT>
+	</Contrat>
+</Contrats>

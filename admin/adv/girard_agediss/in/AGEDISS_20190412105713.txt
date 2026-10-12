@@ -1,0 +1,145 @@
+2019/01/09|130685_0146|314685822|SINDJI DAGOBERT|49140|70857|AAR CFM|Reception conforme|2019/02/26|0||http://webtracking.girard-agediss.com/tracking-acilyon-314685822.html
+2019/01/09|130685_0146|314685822|SINDJI DAGOBERT|49140|70857|INI INF|Arrivee info|2019/01/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-314685822.html
+2019/01/09|130685_0146|314685822|SINDJI DAGOBERT|49140|70857|LIV CFM|Livraison conforme|2019/03/01|0||http://webtracking.girard-agediss.com/tracking-acilyon-314685822.html
+2019/01/09|130685_0146|314685822|SINDJI DAGOBERT|49140|70857|POD CFM|BL numérisé|2019/03/04|0||http://webtracking.girard-agediss.com/tracking-acilyon-314685822.html
+2019/01/09|130685_0146|314685822|SINDJI DAGOBERT|49140|70857|RDV CCL|Confirmation Creneaux de Livraison|2019/03/01|0||http://webtracking.girard-agediss.com/tracking-acilyon-314685822.html
+2019/01/09|130685_0146|314685822|SINDJI DAGOBERT|49140|70857|RDV PRI|RDV pris|2019/03/01|0|20190301|http://webtracking.girard-agediss.com/tracking-acilyon-314685822.html
+2019/01/09|130685_0146|314685822|SINDJI DAGOBERT|49140|70857|RST REP|Message Repondeur|2019/02/26|0||http://webtracking.girard-agediss.com/tracking-acilyon-314685822.html
+2019/01/09|130487_0147|314686031|PELLEGRIN Aurelie|81470|70313|AAR CFM|Reception conforme|2019/01/14|0||http://webtracking.girard-agediss.com/tracking-acilyon-314686031.html
+2019/01/09|130487_0147|314686031|PELLEGRIN Aurelie|81470|70313|INI INF|Arrivee info|2019/01/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-314686031.html
+2019/01/09|130487_0147|314686031|PELLEGRIN Aurelie|81470|70313|LIV CFM|Livraison conforme|2019/01/23|0||http://webtracking.girard-agediss.com/tracking-acilyon-314686031.html
+2019/01/09|130487_0147|314686031|PELLEGRIN Aurelie|81470|70313|POD CFM|BL numérisé|2019/01/24|0||http://webtracking.girard-agediss.com/tracking-acilyon-314686031.html
+2019/01/09|130487_0147|314686031|PELLEGRIN Aurelie|81470|70313|RDV CCL|Confirmation Creneaux de Livraison|2019/01/23|0|a la demande du client|http://webtracking.girard-agediss.com/tracking-acilyon-314686031.html
+2019/01/09|130487_0147|314686031|PELLEGRIN Aurelie|81470|70313|RDV PRI|RDV pris|2019/01/23|0|20190123|http://webtracking.girard-agediss.com/tracking-acilyon-314686031.html
+2019/01/14|130958_0148|314697390|PICQUENARD Regis|14520|70501|AAR CFM|Reception conforme|2019/01/16|0||http://webtracking.girard-agediss.com/tracking-acilyon-314697390.html
+2019/01/14|130958_0148|314697390|PICQUENARD Regis|14520|70501|INI INF|Arrivee info|2019/01/14|0||http://webtracking.girard-agediss.com/tracking-acilyon-314697390.html
+2019/01/14|130958_0148|314697390|PICQUENARD Regis|14520|70501|LIV CFM|Livraison conforme|2019/01/18|0||http://webtracking.girard-agediss.com/tracking-acilyon-314697390.html
+2019/01/14|130958_0148|314697390|PICQUENARD Regis|14520|70501|POD CFM|BL numérisé|2019/01/21|0||http://webtracking.girard-agediss.com/tracking-acilyon-314697390.html
+2019/01/14|130958_0148|314697390|PICQUENARD Regis|14520|70501|RDV CCL|Confirmation Creneaux de Livraison|2019/01/18|0||http://webtracking.girard-agediss.com/tracking-acilyon-314697390.html
+2019/01/14|130958_0148|314697390|PICQUENARD Regis|14520|70501|RDV PRI|RDV pris|2019/01/18|0|20190118|http://webtracking.girard-agediss.com/tracking-acilyon-314697390.html
+2019/01/14|130967_0149|314697710|BAIJOT Jean Joseph|84100|70845|AAR CFM|Reception conforme|2019/01/17|0||http://webtracking.girard-agediss.com/tracking-acilyon-314697710.html
+2019/01/14|130967_0149|314697710|BAIJOT Jean Joseph|84100|70845|INI INF|Arrivee info|2019/01/14|0||http://webtracking.girard-agediss.com/tracking-acilyon-314697710.html
+2019/01/14|130967_0149|314697710|BAIJOT Jean Joseph|84100|70845|LIV CFM|Livraison conforme|2019/02/04|0||http://webtracking.girard-agediss.com/tracking-acilyon-314697710.html
+2019/01/14|130967_0149|314697710|BAIJOT Jean Joseph|84100|70845|POD CFM|BL numérisé|2019/02/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-314697710.html
+2019/01/14|130967_0149|314697710|BAIJOT Jean Joseph|84100|70845|RDV CCL|Confirmation Creneaux de Livraison|2019/02/04|0||http://webtracking.girard-agediss.com/tracking-acilyon-314697710.html
+2019/01/14|130967_0149|314697710|BAIJOT Jean Joseph|84100|70845|RDV PRI|RDV pris|2019/02/04|0|20190204|http://webtracking.girard-agediss.com/tracking-acilyon-314697710.html
+2019/01/15|130347_0150|314702427|LEMARIE ANDRE|14800|70501|AAR CFM|Reception conforme|2019/01/29|0||http://webtracking.girard-agediss.com/tracking-acilyon-314702427.html
+2019/01/15|130347_0150|314702427|LEMARIE ANDRE|14800|70501|DIF CAD|PB adr/Tel|2019/01/30|0|messagerie="desolé, mais cette  boite vocale ne peut recevoir de nouveaux messages"|http://webtracking.girard-agediss.com/tracking-acilyon-314702427.html
+2019/01/15|130347_0150|314702427|LEMARIE ANDRE|14800|70501|DIF CLT|RDV differe par le client|2019/02/07|0||http://webtracking.girard-agediss.com/tracking-acilyon-314702427.html
+2019/01/15|130347_0150|314702427|LEMARIE ANDRE|14800|70501|INI INF|Arrivee info|2019/01/15|0||http://webtracking.girard-agediss.com/tracking-acilyon-314702427.html
+2019/01/15|130347_0150|314702427|LEMARIE ANDRE|14800|70501|LIV CFM|Livraison conforme|2019/02/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-314702427.html
+2019/01/15|130347_0150|314702427|LEMARIE ANDRE|14800|70501|POD CFM|BL numérisé|2019/02/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-314702427.html
+2019/01/15|130347_0150|314702427|LEMARIE ANDRE|14800|70501|RDV CCL|Confirmation Creneaux de Livraison|2019/02/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-314702427.html
+2019/01/15|130347_0150|314702427|LEMARIE ANDRE|14800|70501|RDV PRI|RDV pris|2019/02/12|0|20190212|http://webtracking.girard-agediss.com/tracking-acilyon-314702427.html
+2019/01/15|130347_0150|314702427|LEMARIE ANDRE|14800|70501|RST DAF|Envoi mail|2019/01/30|0||http://webtracking.girard-agediss.com/tracking-acilyon-314702427.html
+2019/01/15|130993_0151|314703199|VAGNER JACKY|83230|7013A|AAR CFM|Reception conforme|2019/01/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-314703199.html
+2019/01/15|130993_0151|314703199|VAGNER JACKY|83230|7013A|INI INF|Arrivee info|2019/01/15|0||http://webtracking.girard-agediss.com/tracking-acilyon-314703199.html
+2019/01/15|130993_0151|314703199|VAGNER JACKY|83230|7013A|LIV CFM|Livraison conforme|2019/01/31|0||http://webtracking.girard-agediss.com/tracking-acilyon-314703199.html
+2019/01/15|130993_0151|314703199|VAGNER JACKY|83230|7013A|POD CFM|BL numérisé|2019/02/01|0||http://webtracking.girard-agediss.com/tracking-acilyon-314703199.html
+2019/01/15|130993_0151|314703199|VAGNER JACKY|83230|7013A|RDV CCL|Confirmation Creneaux de Livraison|2019/01/31|0|RDV SMS- Lieu : Maison / Infos : Appeler au 0684515260 pour entrer dans la résidence Il y 6 marches pour accéder .|http://webtracking.girard-agediss.com/tracking-acilyon-314703199.html
+2019/01/15|130993_0151|314703199|VAGNER JACKY|83230|7013A|RDV PRI|RDV pris|2019/01/31|0|20190131|http://webtracking.girard-agediss.com/tracking-acilyon-314703199.html
+2019/01/15|130993_0151|314703199|VAGNER JACKY|83230|7013A|RST REP|Message Repondeur|2019/01/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-314703199.html
+2019/01/21|131074_0152|314717202|Cecile OVIZE|37540|70372|AAR CFM|Reception conforme|2019/01/22|0||http://webtracking.girard-agediss.com/tracking-acilyon-314717202.html
+2019/01/21|131074_0152|314717202|Cecile OVIZE|37540|70372|INI INF|Arrivee info|2019/01/21|0||http://webtracking.girard-agediss.com/tracking-acilyon-314717202.html
+2019/01/21|131074_0152|314717202|Cecile OVIZE|37540|70372|LIV CFM|Livraison conforme|2019/01/30|0||http://webtracking.girard-agediss.com/tracking-acilyon-314717202.html
+2019/01/21|131074_0152|314717202|Cecile OVIZE|37540|70372|POD CFM|BL numérisé|2019/01/31|0||http://webtracking.girard-agediss.com/tracking-acilyon-314717202.html
+2019/01/21|131074_0152|314717202|Cecile OVIZE|37540|70372|RDV CCL|Confirmation Creneaux de Livraison|2019/01/30|0||http://webtracking.girard-agediss.com/tracking-acilyon-314717202.html
+2019/01/21|131074_0152|314717202|Cecile OVIZE|37540|70372|RDV PRI|RDV pris|2019/01/30|0|20190130|http://webtracking.girard-agediss.com/tracking-acilyon-314717202.html
+2019/01/23|131034_0153|314723854|WASNIEWSKI Sebastien|02000|70512|AAR AVA|Reception avec reserves|2019/01/30|0|Emballage abimé|http://webtracking.girard-agediss.com/tracking-acilyon-314723854.html
+2019/01/23|131034_0153|314723854|WASNIEWSKI Sebastien|02000|70512|INI INF|Arrivee info|2019/01/23|0||http://webtracking.girard-agediss.com/tracking-acilyon-314723854.html
+2019/01/23|131034_0153|314723854|WASNIEWSKI Sebastien|02000|70512|LIV CFM|Livraison conforme|2019/02/06|0||http://webtracking.girard-agediss.com/tracking-acilyon-314723854.html
+2019/01/23|131034_0153|314723854|WASNIEWSKI Sebastien|02000|70512|POD CFM|BL numérisé|2019/02/07|0||http://webtracking.girard-agediss.com/tracking-acilyon-314723854.html
+2019/01/23|131034_0153|314723854|WASNIEWSKI Sebastien|02000|70512|RDV CCL|Confirmation Creneaux de Livraison|2019/02/06|0||http://webtracking.girard-agediss.com/tracking-acilyon-314723854.html
+2019/01/23|131034_0153|314723854|WASNIEWSKI Sebastien|02000|70512|RDV PRI|RDV pris|2019/02/06|0|20190206|http://webtracking.girard-agediss.com/tracking-acilyon-314723854.html
+2019/01/31|131246_0154|314742008|RIBELLO Nicolas|01550|70015|AAR CFM|Reception conforme|2019/02/08|0||http://webtracking.girard-agediss.com/tracking-acilyon-314742008.html
+2019/01/31|131246_0154|314742008|RIBELLO Nicolas|01550|70015|INI INF|Arrivee info|2019/01/31|0||http://webtracking.girard-agediss.com/tracking-acilyon-314742008.html
+2019/01/31|131246_0154|314742008|RIBELLO Nicolas|01550|70015|LIV CFM|Livraison conforme|2019/02/11|0|enfoncement sur la porte coté charniere sous emballage intact|http://webtracking.girard-agediss.com/tracking-acilyon-314742008.html
+2019/01/31|131246_0154|314742008|RIBELLO Nicolas|01550|70015|POD CFM|BL numérisé|2019/02/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-314742008.html
+2019/01/31|131246_0154|314742008|RIBELLO Nicolas|01550|70015|RDV CCL|Confirmation Creneaux de Livraison|2019/02/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-314742008.html
+2019/01/31|131246_0154|314742008|RIBELLO Nicolas|01550|70015|RDV PRI|RDV pris|2019/02/11|0|20190211|http://webtracking.girard-agediss.com/tracking-acilyon-314742008.html
+2019/02/07|131427_0155|314760092|JEANCLOS Philippe|36100|70372|AAR AVA|Reception avec reserves|2019/02/21|0|emballages abimés|http://webtracking.girard-agediss.com/tracking-acilyon-314760092.html
+2019/02/07|131427_0155|314760092|JEANCLOS Philippe|36100|70372|INI INF|Arrivee info|2019/02/07|0||http://webtracking.girard-agediss.com/tracking-acilyon-314760092.html
+2019/02/07|131427_0155|314760092|JEANCLOS Philippe|36100|70372|LIV CFM|Livraison conforme|2019/03/06|0||http://webtracking.girard-agediss.com/tracking-acilyon-314760092.html
+2019/02/07|131427_0155|314760092|JEANCLOS Philippe|36100|70372|POD CFM|BL numérisé|2019/03/06|0||http://webtracking.girard-agediss.com/tracking-acilyon-314760092.html
+2019/02/07|131427_0155|314760092|JEANCLOS Philippe|36100|70372|RDV CCL|Confirmation Creneaux de Livraison|2019/03/06|0||http://webtracking.girard-agediss.com/tracking-acilyon-314760092.html
+2019/02/07|131427_0155|314760092|JEANCLOS Philippe|36100|70372|RDV PRI|RDV pris|2019/03/06|0|20190306|http://webtracking.girard-agediss.com/tracking-acilyon-314760092.html
+2019/02/08|131806_0156|314761817|BUERAU JEAN CLAUDE|06600|70061|AAR CFM|Reception conforme|2019/03/15|0||http://webtracking.girard-agediss.com/tracking-acilyon-314761817.html
+2019/02/08|131806_0156|314761817|BUERAU JEAN CLAUDE|06600|70061|INI INF|Arrivee info|2019/02/08|0||http://webtracking.girard-agediss.com/tracking-acilyon-314761817.html
+2019/02/08|131806_0156|314761817|BUERAU JEAN CLAUDE|06600|70061|LIV CFM|Livraison conforme|2019/03/22|0||http://webtracking.girard-agediss.com/tracking-acilyon-314761817.html
+2019/02/08|131806_0156|314761817|BUERAU JEAN CLAUDE|06600|70061|POD CFM|BL numérisé|2019/03/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-314761817.html
+2019/02/08|131806_0156|314761817|BUERAU JEAN CLAUDE|06600|70061|RDV PRI|RDV pris|2019/03/22|0|20190322|http://webtracking.girard-agediss.com/tracking-acilyon-314761817.html
+2019/02/11|131122_0157|314765901|FROSSARD Isabelle|52000|70544|AAR CFM|Reception conforme|2019/02/14|0||http://webtracking.girard-agediss.com/tracking-acilyon-314765901.html
+2019/02/11|131122_0157|314765901|FROSSARD Isabelle|52000|70544|INI INF|Arrivee info|2019/02/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-314765901.html
+2019/02/11|131122_0157|314765901|FROSSARD Isabelle|52000|70544|LIV CFM|Livraison conforme|2019/02/16|0||http://webtracking.girard-agediss.com/tracking-acilyon-314765901.html
+2019/02/11|131122_0157|314765901|FROSSARD Isabelle|52000|70544|POD CFM|BL numérisé|2019/02/18|0||http://webtracking.girard-agediss.com/tracking-acilyon-314765901.html
+2019/02/11|131122_0157|314765901|FROSSARD Isabelle|52000|70544|RDV CCL|Confirmation Creneaux de Livraison|2019/02/16|0||http://webtracking.girard-agediss.com/tracking-acilyon-314765901.html
+2019/02/11|131122_0157|314765901|FROSSARD Isabelle|52000|70544|RDV PRI|RDV pris|2019/02/16|0|20190216|http://webtracking.girard-agediss.com/tracking-acilyon-314765901.html
+2019/02/11|131800_0158|314766458|DUBERNARD MARINE|74160|70735|AAR AVA|Reception avec reserves|2019/02/20|0||http://webtracking.girard-agediss.com/tracking-acilyon-314766458.html
+2019/02/11|131800_0158|314766458|DUBERNARD MARINE|74160|70735|INI INF|Arrivee info|2019/02/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-314766458.html
+2019/02/11|131800_0158|314766458|DUBERNARD MARINE|74160|70735|LIV CFM|Livraison conforme|2019/02/26|0||http://webtracking.girard-agediss.com/tracking-acilyon-314766458.html
+2019/02/11|131800_0158|314766458|DUBERNARD MARINE|74160|70735|POD CFM|BL numérisé|2019/02/27|0||http://webtracking.girard-agediss.com/tracking-acilyon-314766458.html
+2019/02/11|131800_0158|314766458|DUBERNARD MARINE|74160|70735|RDV PRI|RDV pris|2019/02/26|0|20190226|http://webtracking.girard-agediss.com/tracking-acilyon-314766458.html
+2019/02/12|130329_0142repRVS|314768622|Nicolas LASVERGNAS|69800|7001A|INI INF|Arrivee info|2019/02/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-314768622.html
+2019/02/12|131802_0159|314770470|CHARTIER VINCENT|45430|70452|INI INF|Arrivee info|2019/02/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-314770470.html
+2019/02/12|131802_0159|314770470|CHARTIER VINCENT|45430|70452|RST ANN|Annulation client|2019/02/15|0|à la demande du DO|http://webtracking.girard-agediss.com/tracking-acilyon-314770470.html
+2019/02/13|131815_0160|314771566|DANDOIT THIERRY|89170|70891|INI INF|Arrivee info|2019/02/13|0||http://webtracking.girard-agediss.com/tracking-acilyon-314771566.html
+2019/02/13|131815_0160|314771566|DANDOIT THIERRY|89170|70891|RST ANN|Annulation client|2019/02/20|0|à la demande du DO|http://webtracking.girard-agediss.com/tracking-acilyon-314771566.html
+2019/02/25|130814_0161|314798813|PELLOUX VINCENT|74000|70015|AAR CFM|Reception conforme|2019/03/04|0||http://webtracking.girard-agediss.com/tracking-acilyon-314798813.html
+2019/02/25|130814_0161|314798813|PELLOUX VINCENT|74000|70015|INI INF|Arrivee info|2019/02/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-314798813.html
+2019/02/25|130814_0161|314798813|PELLOUX VINCENT|74000|70015|LIV CFM|Livraison conforme|2019/03/13|0||http://webtracking.girard-agediss.com/tracking-acilyon-314798813.html
+2019/02/25|130814_0161|314798813|PELLOUX VINCENT|74000|70015|POD CFM|BL numérisé|2019/03/14|0||http://webtracking.girard-agediss.com/tracking-acilyon-314798813.html
+2019/02/25|130814_0161|314798813|PELLOUX VINCENT|74000|70015|RDV CCL|Confirmation Creneaux de Livraison|2019/03/13|0||http://webtracking.girard-agediss.com/tracking-acilyon-314798813.html
+2019/02/25|130814_0161|314798813|PELLOUX VINCENT|74000|70015|RDV PRI|RDV pris|2019/03/13|0|20190313|http://webtracking.girard-agediss.com/tracking-acilyon-314798813.html
+2019/02/25|132341_0162|314799487|PIERONI JANOTTA|06220|70061|INI INF|Arrivee info|2019/02/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-314799487.html
+2019/02/25|132341_0162|314799487|PIERONI JANOTTA|06220|70061|RST ANN|Annulation client|2019/03/07|0|à la demande du DO|http://webtracking.girard-agediss.com/tracking-acilyon-314799487.html
+2019/02/25|131859_0163|314799955|LAINE ERIC|51000|70512|AAR AVA|Reception avec reserves|2019/02/28|0|Emballage abimé.|http://webtracking.girard-agediss.com/tracking-acilyon-314799955.html
+2019/02/25|131859_0163|314799955|LAINE ERIC|51000|70512|INI INF|Arrivee info|2019/02/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-314799955.html
+2019/02/25|131859_0163|314799955|LAINE ERIC|51000|70512|LIV CFM|Livraison conforme|2019/03/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-314799955.html
+2019/02/25|131859_0163|314799955|LAINE ERIC|51000|70512|POD CFM|BL numérisé|2019/03/06|0||http://webtracking.girard-agediss.com/tracking-acilyon-314799955.html
+2019/02/25|131859_0163|314799955|LAINE ERIC|51000|70512|RDV CCL|Confirmation Creneaux de Livraison|2019/03/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-314799955.html
+2019/02/25|131859_0163|314799955|LAINE ERIC|51000|70512|RDV PRI|RDV pris|2019/03/05|0|20190305|http://webtracking.girard-agediss.com/tracking-acilyon-314799955.html
+2019/03/06|131034_0164|314816320|WASNIEWSKI Sebastien|02000|70512|AAR AVA|Reception avec reserves|2019/03/13|0|Emballage abimé.|http://webtracking.girard-agediss.com/tracking-acilyon-314816320.html
+2019/03/06|131034_0164|314816320|WASNIEWSKI Sebastien|02000|70512|INI INF|Arrivee info|2019/03/06|0||http://webtracking.girard-agediss.com/tracking-acilyon-314816320.html
+2019/03/06|131034_0164|314816320|WASNIEWSKI Sebastien|02000|70512|LIV CFM|Livraison conforme|2019/03/20|0||http://webtracking.girard-agediss.com/tracking-acilyon-314816320.html
+2019/03/06|131034_0164|314816320|WASNIEWSKI Sebastien|02000|70512|POD CFM|BL numérisé|2019/03/21|0||http://webtracking.girard-agediss.com/tracking-acilyon-314816320.html
+2019/03/06|131034_0164|314816320|WASNIEWSKI Sebastien|02000|70512|RDV CCL|Confirmation Creneaux de Livraison|2019/03/20|0||http://webtracking.girard-agediss.com/tracking-acilyon-314816320.html
+2019/03/06|131034_0164|314816320|WASNIEWSKI Sebastien|02000|70512|RDV PRI|RDV pris|2019/03/20|0|20190320|http://webtracking.girard-agediss.com/tracking-acilyon-314816320.html
+2019/03/08|132772_0165|314822576|CREVECOEUR ANDRE|83420|7013A|AAR CFM|Reception conforme|2019/03/18|0||http://webtracking.girard-agediss.com/tracking-acilyon-314822576.html
+2019/03/08|132772_0165|314822576|CREVECOEUR ANDRE|83420|7013A|AAR MQP|Reception partielle|2019/03/18|0||http://webtracking.girard-agediss.com/tracking-acilyon-314822576.html
+2019/03/08|132772_0165|314822576|CREVECOEUR ANDRE|83420|7013A|DIF CAD|PB adr/Tel|2019/03/20|0|pas attribué|http://webtracking.girard-agediss.com/tracking-acilyon-314822576.html
+2019/03/08|132772_0165|314822576|CREVECOEUR ANDRE|83420|7013A|INI INF|Arrivee info|2019/03/08|0||http://webtracking.girard-agediss.com/tracking-acilyon-314822576.html
+2019/03/08|132772_0165|314822576|CREVECOEUR ANDRE|83420|7013A|LIV MQP|Livraison partielle|2019/03/21|0||http://webtracking.girard-agediss.com/tracking-acilyon-314822576.html
+2019/03/08|132772_0165|314822576|CREVECOEUR ANDRE|83420|7013A|POD CFM|BL numérisé|2019/03/22|0||http://webtracking.girard-agediss.com/tracking-acilyon-314822576.html
+2019/03/08|132772_0165|314822576|CREVECOEUR ANDRE|83420|7013A|RDV CCL|Confirmation Creneaux de Livraison|2019/03/21|0||http://webtracking.girard-agediss.com/tracking-acilyon-314822576.html
+2019/03/08|132772_0165|314822576|CREVECOEUR ANDRE|83420|7013A|RDV PRI|RDV pris|2019/03/21|0|20190321|http://webtracking.girard-agediss.com/tracking-acilyon-314822576.html
+2019/03/11|132615_0166|314826923|BROUANT Serge|83120|7013A|INI INF|Arrivee info|2019/03/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-314826923.html
+2019/03/12|132341_0167|314830049|PIERONI JANOTTA Jean Luc|06220|70061|AAR CFM|Reception conforme|2019/04/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-314830049.html
+2019/03/12|132341_0167|314830049|PIERONI JANOTTA Jean Luc|06220|70061|INI INF|Arrivee info|2019/03/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-314830049.html
+2019/03/12|132341_0167|314830049|PIERONI JANOTTA Jean Luc|06220|70061|RDV PRI|RDV pris|2019/04/11|0|20190411|http://webtracking.girard-agediss.com/tracking-acilyon-314830049.html
+2019/03/14|132792_0168|314834940|HERNANDEZ Nicolas|31530|70313|AAR AVA|Reception avec reserves|2019/03/14|0|emballages abîmes|http://webtracking.girard-agediss.com/tracking-acilyon-314834940.html
+2019/03/14|132792_0168|314834940|HERNANDEZ Nicolas|31530|70313|INI INF|Arrivee info|2019/03/14|0||http://webtracking.girard-agediss.com/tracking-acilyon-314834940.html
+2019/03/14|132792_0168|314834940|HERNANDEZ Nicolas|31530|70313|LIV CFM|Livraison conforme|2019/03/19|0||http://webtracking.girard-agediss.com/tracking-acilyon-314834940.html
+2019/03/14|132792_0168|314834940|HERNANDEZ Nicolas|31530|70313|POD CFM|BL numérisé|2019/03/20|0||http://webtracking.girard-agediss.com/tracking-acilyon-314834940.html
+2019/03/14|132792_0168|314834940|HERNANDEZ Nicolas|31530|70313|RDV CCL|Confirmation Creneaux de Livraison|2019/03/19|0|RDV SMS- Lieu : Maison|http://webtracking.girard-agediss.com/tracking-acilyon-314834940.html
+2019/03/14|132792_0168|314834940|HERNANDEZ Nicolas|31530|70313|RDV PRI|RDV pris|2019/03/19|0|20190319|http://webtracking.girard-agediss.com/tracking-acilyon-314834940.html
+2019/03/14|132792_0168|314834940|HERNANDEZ Nicolas|31530|70313|RST REP|Message Repondeur|2019/03/14|0||http://webtracking.girard-agediss.com/tracking-acilyon-314834940.html
+2019/03/20|133078_0169|314853189|CAPE Marie Line|62162|70621|AAR CFM|Reception conforme|2019/04/02|0||http://webtracking.girard-agediss.com/tracking-acilyon-314853189.html
+2019/03/20|133078_0169|314853189|CAPE Marie Line|62162|70621|INI INF|Arrivee info|2019/03/20|0||http://webtracking.girard-agediss.com/tracking-acilyon-314853189.html
+2019/03/20|133078_0169|314853189|CAPE Marie Line|62162|70621|LIV CFM|Livraison conforme|2019/04/04|0||http://webtracking.girard-agediss.com/tracking-acilyon-314853189.html
+2019/03/20|133078_0169|314853189|CAPE Marie Line|62162|70621|POD CFM|BL numérisé|2019/04/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-314853189.html
+2019/03/20|133078_0169|314853189|CAPE Marie Line|62162|70621|RDV CCL|Confirmation Creneaux de Livraison|2019/04/04|0||http://webtracking.girard-agediss.com/tracking-acilyon-314853189.html
+2019/03/20|133078_0169|314853189|CAPE Marie Line|62162|70621|RDV PRI|RDV pris|2019/04/04|0|20190404|http://webtracking.girard-agediss.com/tracking-acilyon-314853189.html
+2019/03/20|133028_0170|314853308|UCCELLI Clementine|20128|70205|INI INF|Arrivee info|2019/03/20|0||http://webtracking.girard-agediss.com/tracking-acilyon-314853308.html
+2019/03/27|133218_0171|314865133|BENARD THOMAS|49070|70857|AAR CFM|Reception conforme|2019/04/02|0||http://webtracking.girard-agediss.com/tracking-acilyon-314865133.html
+2019/03/27|133218_0171|314865133|BENARD THOMAS|49070|70857|INI INF|Arrivee info|2019/03/27|0||http://webtracking.girard-agediss.com/tracking-acilyon-314865133.html
+2019/03/27|133218_0171|314865133|BENARD THOMAS|49070|70857|LIV CFM|Livraison conforme|2019/04/04|0||http://webtracking.girard-agediss.com/tracking-acilyon-314865133.html
+2019/03/27|133218_0171|314865133|BENARD THOMAS|49070|70857|POD CFM|BL numérisé|2019/04/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-314865133.html
+2019/03/27|133218_0171|314865133|BENARD THOMAS|49070|70857|RDV CCL|Confirmation Creneaux de Livraison|2019/04/04|0||http://webtracking.girard-agediss.com/tracking-acilyon-314865133.html
+2019/03/27|133218_0171|314865133|BENARD THOMAS|49070|70857|RDV PRI|RDV pris|2019/04/04|0|20190404|http://webtracking.girard-agediss.com/tracking-acilyon-314865133.html
+2019/04/01|131241_0172|314871240|DELATRE JACQUES|45200|70452|AAR CFM|Reception conforme|2019/04/08|0||http://webtracking.girard-agediss.com/tracking-acilyon-314871240.html
+2019/04/01|131241_0172|314871240|DELATRE JACQUES|45200|70452|INI INF|Arrivee info|2019/04/01|0||http://webtracking.girard-agediss.com/tracking-acilyon-314871240.html
+2019/04/01|131241_0172|314871240|DELATRE JACQUES|45200|70452|RDV PRI|RDV pris|2019/04/15|0|20190415|http://webtracking.girard-agediss.com/tracking-acilyon-314871240.html
+2019/04/01|131241_0172|314871240|DELATRE JACQUES|45200|70452|RST REP|Message Repondeur|2019/04/08|0||http://webtracking.girard-agediss.com/tracking-acilyon-314871240.html
+2019/04/11|133428_0174|314894689|BOUDEHEN Erwan|22430|70561|INI INF|Arrivee info|2019/04/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-314894689.html
+2019/04/12|149702|314895367|BOUDEHEN Erwan|22430|70561|INI INF|Arrivee info|2019/04/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-314895367.html
+2019/04/12|149702|314895367|BOUDEHEN Erwan|22430|70561|RST ANN|Annulation client|2019/04/12|0|erreur saisie DO|http://webtracking.girard-agediss.com/tracking-acilyon-314895367.html

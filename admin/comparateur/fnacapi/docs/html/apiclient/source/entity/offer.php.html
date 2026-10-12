@@ -1,0 +1,488 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 07 Aug 2015 08:19:12 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>Entity/Offer.php (Fnac Marketplace PHP Client API Documentation)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/entity/offer.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>Entity/Offer.php</h1>
+<hr>
+
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #666666; font-style: italic;">/*
+<a name="line3"></a> * This file is part of the fnacMarketPlace APi Client.
+<a name="line4"></a> * (c) 2011 Fnac
+<a name="line5"></a> *
+<a name="line6"></a> * For the full copyright and license information, please view the LICENSE
+<a name="line7"></a> * file that was distributed with this source code.
+<a name="line8"></a> */</span>
+<a name="line9"></a>&nbsp;
+<a name="line10"></a><span style="color: #000000; font-weight: bold;">namespace</span> FnacApiClient\Entity<span style="color: #339933;">;</span>
+<a name="line11"></a>&nbsp;
+<a name="line12"></a><span style="color: #000000; font-weight: bold;">use</span> Symfony\Component\Serializer\Normalizer\NormalizerInterface<span style="color: #339933;">;</span>
+<a name="line13"></a><span style="color: #000000; font-weight: bold;">use</span> Symfony\Component\Serializer\Normalizer\NormalizableInterface<span style="color: #339933;">;</span>
+<a name="line14"></a>&nbsp;
+<a name="line15"></a><span style="color: #000000; font-weight: bold;">use</span> FnacApiClient\Type\ProductType<span style="color: #339933;">;</span>
+<a name="line16"></a>&nbsp;
+<a name="line17"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line18"></a> * Offer definition.
+<a name="line19"></a> *
+<a name="line20"></a> * @author     Fnac
+<a name="line21"></a> * @version    1.0.0
+<a name="line22"></a> */</span>
+<a name="line23"></a>&nbsp;
+<a name="line24"></a><span style="color: #000000; font-weight: bold;">class</span> Offer <span style="color: #000000; font-weight: bold;">extends</span> Entity
+<a name="line25"></a><span style="color: #009900;">&#123;</span>
+<a name="line26"></a>    <span style="color: #009933; font-style: italic;">/** Send variable **/</span>
+<a name="line27"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$product_reference</span><span style="color: #339933;">;</span>
+<a name="line28"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$product_reference_type</span><span style="color: #339933;">;</span>
+<a name="line29"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$offer_reference</span><span style="color: #339933;">;</span>
+<a name="line30"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$offer_reference_type</span><span style="color: #339933;">;</span>
+<a name="line31"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$treatment</span><span style="color: #339933;">;</span>
+<a name="line32"></a>&nbsp;
+<a name="line33"></a>    <span style="color: #009933; font-style: italic;">/** Get Variable **/</span>
+<a name="line34"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$product_name</span><span style="color: #339933;">;</span>
+<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$product_fnac_id</span><span style="color: #339933;">;</span>
+<a name="line36"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$offer_fnac_id</span><span style="color: #339933;">;</span>
+<a name="line37"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$offer_seller_id</span><span style="color: #339933;">;</span>
+<a name="line38"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$product_url</span><span style="color: #339933;">;</span>
+<a name="line39"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$image</span><span style="color: #339933;">;</span>
+<a name="line40"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$nb_messages</span><span style="color: #339933;">;</span>
+<a name="line41"></a>&nbsp;
+<a name="line42"></a>    <span style="color: #009933; font-style: italic;">/** Both **/</span>
+<a name="line43"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$product_state</span><span style="color: #339933;">;</span>
+<a name="line44"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$price</span><span style="color: #339933;">;</span>    
+<a name="line45"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$adherent_price</span><span style="color: #339933;">;</span>
+<a name="line46"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$quantity</span><span style="color: #339933;">;</span>
+<a name="line47"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$description</span><span style="color: #339933;">;</span>
+<a name="line48"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$internal_comment</span><span style="color: #339933;">;</span>
+<a name="line49"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$showcase</span><span style="color: #339933;">;</span>
+<a name="line50"></a>&nbsp;
+<a name="line51"></a>    <span style="color: #000000; font-weight: bold;">const</span> STATE_NEW             <span style="color: #339933;">=</span> <span style="color: #cc66cc;">11</span><span style="color: #339933;">;</span>    
+<a name="line52"></a>    <span style="color: #000000; font-weight: bold;">const</span> STATE_USED_AS_NEW     <span style="color: #339933;">=</span> <span style="color: #cc66cc;">1</span><span style="color: #339933;">;</span>
+<a name="line53"></a>    <span style="color: #000000; font-weight: bold;">const</span> STATE_USED_VERY_GOOD  <span style="color: #339933;">=</span> <span style="color: #cc66cc;">2</span><span style="color: #339933;">;</span>
+<a name="line54"></a>    <span style="color: #000000; font-weight: bold;">const</span> STATE_USED_GOOD       <span style="color: #339933;">=</span> <span style="color: #cc66cc;">3</span><span style="color: #339933;">;</span>
+<a name="line55"></a>    <span style="color: #000000; font-weight: bold;">const</span> STATE_USED_CORRECT    <span style="color: #339933;">=</span> <span style="color: #cc66cc;">4</span><span style="color: #339933;">;</span>
+<a name="line56"></a>    <span style="color: #000000; font-weight: bold;">const</span> STATE_REFURBISHED     <span style="color: #339933;">=</span> <span style="color: #cc66cc;">10</span><span style="color: #339933;">;</span>
+<a name="line57"></a>&nbsp;
+<a name="line58"></a>    <span style="color: #000000; font-weight: bold;">public</span> static <span style="color: #000088;">$product_state_names</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line59"></a>        <span style="color: #000000; font-weight: bold;">self</span><span style="color: #339933;">::</span><span style="color: #004000;">STATE_NEW</span>             <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">&quot;New&quot;</span><span style="color: #339933;">,</span>
+<a name="line60"></a>        <span style="color: #000000; font-weight: bold;">self</span><span style="color: #339933;">::</span><span style="color: #004000;">STATE_USED_AS_NEW</span>     <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">&quot;Used, as new&quot;</span><span style="color: #339933;">,</span>
+<a name="line61"></a>        <span style="color: #000000; font-weight: bold;">self</span><span style="color: #339933;">::</span><span style="color: #004000;">STATE_USED_VERY_GOOD</span>  <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">&quot;Used, very good state&quot;</span><span style="color: #339933;">,</span>
+<a name="line62"></a>        <span style="color: #000000; font-weight: bold;">self</span><span style="color: #339933;">::</span><span style="color: #004000;">STATE_USED_GOOD</span>       <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">&quot;Used, good state&quot;</span><span style="color: #339933;">,</span>
+<a name="line63"></a>        <span style="color: #000000; font-weight: bold;">self</span><span style="color: #339933;">::</span><span style="color: #004000;">STATE_USED_CORRECT</span>    <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">&quot;Used, correct state&quot;</span><span style="color: #339933;">,</span>
+<a name="line64"></a>        <span style="color: #000000; font-weight: bold;">self</span><span style="color: #339933;">::</span><span style="color: #004000;">STATE_REFURBISHED</span>     <span style="color: #339933;">=&gt;</span> <span style="color: #0000ff;">&quot;Refurbished&quot;</span>
+<a name="line65"></a>    <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line66"></a>&nbsp;
+<a name="line67"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line68"></a>     * {@inheritDoc}
+<a name="line69"></a>     */</span>
+<a name="line70"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> normalize<span style="color: #009900;">&#40;</span>NormalizerInterface <span style="color: #000088;">$normalizer</span><span style="color: #339933;">,</span> <span style="color: #000088;">$format</span><span style="color: #339933;">,</span> <span style="color: #000088;">$properties</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line71"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line72"></a>        <span style="color: #000088;">$data</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line73"></a>&nbsp;
+<a name="line74"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_reference</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line75"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'product_reference'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line76"></a>                <span style="color: #0000ff;">'@type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_reference_type</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'#'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_reference</span>
+<a name="line77"></a>            <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line78"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line79"></a>&nbsp;
+<a name="line80"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">offer_reference</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line81"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'offer_reference'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+<a name="line82"></a>                <span style="color: #0000ff;">'@type'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">offer_reference_type</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'#'</span> <span style="color: #339933;">=&gt;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">offer_reference</span>
+<a name="line83"></a>            <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line84"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line85"></a>&nbsp;
+<a name="line86"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">price</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line87"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'price'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">price</span><span style="color: #339933;">;</span>
+<a name="line88"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line89"></a>&nbsp;
+<a name="line90"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">adherent_price</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line91"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'adherent_price'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">adherent_price</span><span style="color: #339933;">;</span>
+<a name="line92"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line93"></a>&nbsp;
+<a name="line94"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_state</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line95"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'product_state'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_state</span><span style="color: #339933;">;</span>
+<a name="line96"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line97"></a>&nbsp;
+<a name="line98"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">quantity</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line99"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'quantity'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">quantity</span><span style="color: #339933;">;</span>
+<a name="line100"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line101"></a>&nbsp;
+<a name="line102"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">description</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line103"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'description'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">description</span><span style="color: #339933;">;</span>
+<a name="line104"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line105"></a>&nbsp;
+<a name="line106"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">internal_comment</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line107"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'internal_comment'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">internal_comment</span><span style="color: #339933;">;</span>
+<a name="line108"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line109"></a>&nbsp;
+<a name="line110"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">showcase</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line111"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'showcase'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">showcase</span><span style="color: #339933;">;</span>
+<a name="line112"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line113"></a>&nbsp;
+<a name="line114"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">treatment</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line115"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'treatment'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">treatment</span><span style="color: #339933;">;</span>
+<a name="line116"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line117"></a>&nbsp;
+<a name="line118"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$data</span><span style="color: #339933;">;</span>
+<a name="line119"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line120"></a>&nbsp;
+<a name="line121"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line122"></a>     * {@inheritDoc}
+<a name="line123"></a>     */</span>
+<a name="line124"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> denormalize<span style="color: #009900;">&#40;</span>NormalizerInterface <span style="color: #000088;">$normalizer</span><span style="color: #339933;">,</span> <span style="color: #000088;">$data</span><span style="color: #339933;">,</span> <span style="color: #000088;">$format</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line125"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line126"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_name</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'product_name'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line127"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_fnac_id</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'product_fnac_id'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line128"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">offer_fnac_id</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'offer_fnac_id'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line129"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">offer_seller_id</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'offer_seller_id'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line130"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_state</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>int<span style="color: #009900;">&#41;</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'product_state'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line131"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">price</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>float<span style="color: #009900;">&#41;</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'price'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line132"></a>        <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'adherent_price'</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
+<a name="line133"></a>        <span style="color: #009900;">&#123;</span>
+<a name="line134"></a>          <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">adherent_price</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>float<span style="color: #009900;">&#41;</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'adherent_price'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>          
+<a name="line135"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line136"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">quantity</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>int<span style="color: #009900;">&#41;</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'quantity'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line137"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">description</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'description'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line138"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">internal_comment</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'internal_comment'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line139"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_url</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'product_url'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line140"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">image</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'image'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line141"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nb_messages</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'nb_messages'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line142"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">showcase</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>integer<span style="color: #009900;">&#41;</span> <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'showcase'</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line143"></a>&nbsp;
+<a name="line144"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">offer_reference</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">offer_fnac_id</span><span style="color: #339933;">;</span>
+<a name="line145"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">offer_reference_type</span> <span style="color: #339933;">=</span> ProductType<span style="color: #339933;">::</span><span style="color: #004000;">ITEM_ID</span><span style="color: #339933;">;</span>
+<a name="line146"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line147"></a>&nbsp;
+<a name="line148"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line149"></a>     * Set product's reference type
+<a name="line150"></a>     *
+<a name="line151"></a>     * @see FnacApiClient\Type\ProductType
+<a name="line152"></a>     *
+<a name="line153"></a>     * @param string $product_reference_type : Type of product reference
+<a name="line154"></a>     */</span>
+<a name="line155"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setProductReferenceType<span style="color: #009900;">&#40;</span><span style="color: #000088;">$product_reference_type</span><span style="color: #009900;">&#41;</span>
+<a name="line156"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line157"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_reference_type</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$product_reference_type</span><span style="color: #339933;">;</span>
+<a name="line158"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line159"></a>&nbsp;
+<a name="line160"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line161"></a>     * Set product's reference value depending on type
+<a name="line162"></a>     *
+<a name="line163"></a>     * @param string $product_reference : Reference of product to set
+<a name="line164"></a>     */</span>
+<a name="line165"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setProductReference<span style="color: #009900;">&#40;</span><span style="color: #000088;">$product_reference</span><span style="color: #009900;">&#41;</span>
+<a name="line166"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line167"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_reference</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$product_reference</span><span style="color: #339933;">;</span>
+<a name="line168"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line169"></a>&nbsp;
+<a name="line170"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line171"></a>     * Set offer's reference type
+<a name="line172"></a>     *
+<a name="line173"></a>     * @see FnacApiClient\Type\OfferReferenceType
+<a name="line174"></a>     *
+<a name="line175"></a>     * @param string $offer_reference_type : Type of offer reference
+<a name="line176"></a>     */</span>
+<a name="line177"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setOfferReferenceType<span style="color: #009900;">&#40;</span><span style="color: #000088;">$offer_reference_type</span><span style="color: #009900;">&#41;</span>
+<a name="line178"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line179"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">offer_reference_type</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$offer_reference_type</span><span style="color: #339933;">;</span>
+<a name="line180"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line181"></a>&nbsp;
+<a name="line182"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line183"></a>     * Set offer's reference value depending on type
+<a name="line184"></a>     *
+<a name="line185"></a>     * @param string $offer_reference : Offer reference to update
+<a name="line186"></a>     */</span>
+<a name="line187"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setOfferReference<span style="color: #009900;">&#40;</span><span style="color: #000088;">$offer_reference</span><span style="color: #009900;">&#41;</span>
+<a name="line188"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line189"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">offer_reference</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$offer_reference</span><span style="color: #339933;">;</span>
+<a name="line190"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line191"></a>&nbsp;
+<a name="line192"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line193"></a>     * Set offer's price
+<a name="line194"></a>     *
+<a name="line195"></a>     * @param float $price : Price to set for this offer
+<a name="line196"></a>     */</span>
+<a name="line197"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setPrice<span style="color: #009900;">&#40;</span><span style="color: #000088;">$price</span><span style="color: #009900;">&#41;</span>
+<a name="line198"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line199"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">price</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$price</span><span style="color: #339933;">;</span>
+<a name="line200"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line201"></a>&nbsp;
+<a name="line202"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line203"></a>     * Set offer's &quot;adherent&quot; price
+<a name="line204"></a>     *
+<a name="line205"></a>     * @param float $adherent_price : Adherent price to set for this offer. This price can be set only by eligible sellers
+<a name="line206"></a>     */</span>
+<a name="line207"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setAdherentPrice<span style="color: #009900;">&#40;</span><span style="color: #000088;">$adherent_price</span><span style="color: #009900;">&#41;</span>
+<a name="line208"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line209"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">adherent_price</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$adherent_price</span><span style="color: #339933;">;</span>
+<a name="line210"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line211"></a>&nbsp;
+<a name="line212"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line213"></a>     * Set product's state of offer : Only when adding an offer
+<a name="line214"></a>     *
+<a name="line215"></a>     * @param string $product_state Product state to se for this offer
+<a name="line216"></a>     */</span>
+<a name="line217"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setProductState<span style="color: #009900;">&#40;</span><span style="color: #000088;">$product_state</span><span style="color: #009900;">&#41;</span>
+<a name="line218"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line219"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_state</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$product_state</span><span style="color: #339933;">;</span>
+<a name="line220"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line221"></a>&nbsp;
+<a name="line222"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line223"></a>     * Set offer's quantity
+<a name="line224"></a>     *
+<a name="line225"></a>     * @param integer $quantity Quantity to set
+<a name="line226"></a>     */</span>
+<a name="line227"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setQuantity<span style="color: #009900;">&#40;</span><span style="color: #000088;">$quantity</span><span style="color: #009900;">&#41;</span>
+<a name="line228"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line229"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">quantity</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$quantity</span><span style="color: #339933;">;</span>
+<a name="line230"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line231"></a>&nbsp;
+<a name="line232"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line233"></a>     * Set product's description
+<a name="line234"></a>     *
+<a name="line235"></a>     * @param string $description Description of offer
+<a name="line236"></a>     */</span>
+<a name="line237"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setDescription<span style="color: #009900;">&#40;</span><span style="color: #000088;">$description</span><span style="color: #009900;">&#41;</span>
+<a name="line238"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line239"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">description</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$description</span><span style="color: #339933;">;</span>
+<a name="line240"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line241"></a>&nbsp;
+<a name="line242"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line243"></a>     * Set offer's internal comment for personal use
+<a name="line244"></a>     *
+<a name="line245"></a>     * @param string $internal_comment A personal comment for this offer
+<a name="line246"></a>     */</span>
+<a name="line247"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setInternalComment<span style="color: #009900;">&#40;</span><span style="color: #000088;">$internal_comment</span><span style="color: #009900;">&#41;</span>
+<a name="line248"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line249"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">internal_comment</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$internal_comment</span><span style="color: #339933;">;</span>
+<a name="line250"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line251"></a>&nbsp;
+<a name="line252"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line253"></a>     * Set offer's position in shop's showcase
+<a name="line254"></a>     *
+<a name="line255"></a>     * @param unsigned integer $showcase Offer's position in shop's showcase
+<a name="line256"></a>     */</span>
+<a name="line257"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setShowcase<span style="color: #009900;">&#40;</span><span style="color: #000088;">$showcase</span><span style="color: #009900;">&#41;</span>
+<a name="line258"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line259"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">showcase</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$showcase</span><span style="color: #339933;">;</span>
+<a name="line260"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line261"></a>&nbsp;
+<a name="line262"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line263"></a>     * Set treatment to do on offer
+<a name="line264"></a>     *
+<a name="line265"></a>     * @see FnacApiClient\Type\OfferTreatmentType
+<a name="line266"></a>     *
+<a name="line267"></a>     * @param string $treatment
+<a name="line268"></a>     */</span>
+<a name="line269"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setTreatment<span style="color: #009900;">&#40;</span><span style="color: #000088;">$treatment</span><span style="color: #009900;">&#41;</span>
+<a name="line270"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line271"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">treatment</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$treatment</span><span style="color: #339933;">;</span>
+<a name="line272"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line273"></a>&nbsp;
+<a name="line274"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line275"></a>     * Name, category and a short description of product if available
+<a name="line276"></a>     *
+<a name="line277"></a>     * @return string
+<a name="line278"></a>     */</span>
+<a name="line279"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getProductName<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line280"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line281"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_name</span><span style="color: #339933;">;</span>
+<a name="line282"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line283"></a>&nbsp;
+<a name="line284"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line285"></a>     * Product unique identifier from fnac
+<a name="line286"></a>     *
+<a name="line287"></a>     * @return string
+<a name="line288"></a>     */</span>
+<a name="line289"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getProductFnacId<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line290"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line291"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_fnac_id</span><span style="color: #339933;">;</span>
+<a name="line292"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line293"></a>&nbsp;
+<a name="line294"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line295"></a>     * Offer's unique identifier from fnac
+<a name="line296"></a>     *
+<a name="line297"></a>     * @return string
+<a name="line298"></a>     */</span>
+<a name="line299"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getOfferFnacId<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line300"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line301"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">offer_fnac_id</span><span style="color: #339933;">;</span>
+<a name="line302"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line303"></a>&nbsp;
+<a name="line304"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line305"></a>     * Offer's unique identifier from seller
+<a name="line306"></a>     *
+<a name="line307"></a>     * @return string
+<a name="line308"></a>     */</span>
+<a name="line309"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getOfferSellerId<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line310"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line311"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">offer_seller_id</span><span style="color: #339933;">;</span>
+<a name="line312"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line313"></a>&nbsp;
+<a name="line314"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line315"></a>     * Product url on fnac.com
+<a name="line316"></a>     *
+<a name="line317"></a>     * @return string
+<a name="line318"></a>     */</span>
+<a name="line319"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getProductUrl<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line320"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line321"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_url</span><span style="color: #339933;">;</span>
+<a name="line322"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line323"></a>&nbsp;
+<a name="line324"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line325"></a>     * Product image url on fnac.com
+<a name="line326"></a>     *
+<a name="line327"></a>     * @return string
+<a name="line328"></a>     */</span>
+<a name="line329"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getImage<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line330"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line331"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">image</span><span style="color: #339933;">;</span>
+<a name="line332"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line333"></a>&nbsp;
+<a name="line334"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line335"></a>     * Number of messages related to this offer
+<a name="line336"></a>     *
+<a name="line337"></a>     * @return integer
+<a name="line338"></a>     */</span>
+<a name="line339"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getNbMessages<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line340"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line341"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">nb_messages</span><span style="color: #339933;">;</span>
+<a name="line342"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line343"></a>&nbsp;
+<a name="line344"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line345"></a>     * Product state in this offer
+<a name="line346"></a>     *
+<a name="line347"></a>     * @see FnacApiClient\Type\ProductStateType
+<a name="line348"></a>     *
+<a name="line349"></a>     * @return integer
+<a name="line350"></a>     */</span>
+<a name="line351"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getProductState<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line352"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line353"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_state</span><span style="color: #339933;">;</span>
+<a name="line354"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line355"></a>&nbsp;
+<a name="line356"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line357"></a>     * Product state label
+<a name="line358"></a>     *
+<a name="line359"></a>     * @see FnacApiClient\Type\ProductStateType
+<a name="line360"></a>     *
+<a name="line361"></a>     * @return string
+<a name="line362"></a>     */</span>
+<a name="line363"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getProductStateLabel<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line364"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line365"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000000; font-weight: bold;">self</span><span style="color: #339933;">::</span><span style="color: #000088;">$product_state_names</span><span style="color: #009900;">&#91;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">product_state</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line366"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line367"></a>&nbsp;
+<a name="line368"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line369"></a>     * Product price for this offer
+<a name="line370"></a>     *
+<a name="line371"></a>     * @return float
+<a name="line372"></a>     */</span>
+<a name="line373"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getPrice<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line374"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line375"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">price</span><span style="color: #339933;">;</span>
+<a name="line376"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line377"></a>&nbsp;
+<a name="line378"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line379"></a>     * Product adherent price for this offer
+<a name="line380"></a>     *
+<a name="line381"></a>     * @return float
+<a name="line382"></a>     */</span>
+<a name="line383"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getAdherentPrice<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line384"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line385"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">adherent_price</span><span style="color: #339933;">;</span>
+<a name="line386"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line387"></a>&nbsp;
+<a name="line388"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line389"></a>     * Product's quantity in offer
+<a name="line390"></a>     *
+<a name="line391"></a>     * @return integer
+<a name="line392"></a>     */</span>
+<a name="line393"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getQuantity<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line394"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line395"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">quantity</span><span style="color: #339933;">;</span>
+<a name="line396"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line397"></a>&nbsp;
+<a name="line398"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line399"></a>     * Product's description
+<a name="line400"></a>     *
+<a name="line401"></a>     * @return string
+<a name="line402"></a>     */</span>
+<a name="line403"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getDescription<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line404"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line405"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">description</span><span style="color: #339933;">;</span>
+<a name="line406"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line407"></a>&nbsp;
+<a name="line408"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line409"></a>     * Offer's internal comment for personal use only
+<a name="line410"></a>     *
+<a name="line411"></a>     * @return string
+<a name="line412"></a>     */</span>
+<a name="line413"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getInternalComment<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line414"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line415"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">internal_comment</span><span style="color: #339933;">;</span>
+<a name="line416"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line417"></a>&nbsp;
+<a name="line418"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line419"></a>     * Offer's position in shop's showcase
+<a name="line420"></a>     *
+<a name="line421"></a>     * @return integer
+<a name="line422"></a>     */</span>
+<a name="line423"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getShowcase<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line424"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line425"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">showcase</span><span style="color: #339933;">;</span>
+<a name="line426"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line427"></a><span style="color: #009900;">&#125;</span>
+<a name="line428"></a>&nbsp;</pre>
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/entity/offer.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

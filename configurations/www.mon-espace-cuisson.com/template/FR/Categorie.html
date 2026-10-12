@@ -1,0 +1,85 @@
+<div class="fil_ariane" vocab="https://schema.org/" typeof="BreadcrumbList">
+	<span property="itemListElement" typeof="ListItem">
+		<a property="item" typeof="WebPage" href="/" >
+			<span property="name">Accueil</span>
+		</a>
+		<meta property="position" content="1">
+	</span>
+	[?fil_ariane]
+</div>
+<div class="wait hidden">
+	<div class="bg"></div>
+	<div class="msg">
+		<img src="/images/templates/ajax-loader.gif" alt="">
+		Veuillez patienter ...
+	</div>
+</div>
+<div class="first_bloc categorie_desc">
+	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+		[?categorie_visuel]
+	</div>
+	<div class="description col-lg-9 col-md-9 col-sm-9 col-xs-12">
+		<div class="col-lg-6 col-md-7 col-sm-6 col-xs-12 no-padding"><h1>[?catlibelle]</h1></div>
+		<div class="col-lg-4 col-md-5 col-sm-6 hidden-xs">
+			<div class="reassurance slide">
+				<span class="sep hidden-xs"></span>
+				<div style="display: inline-block;"><img src="/images/templates/base/FR/reassu.jpg" alt="assurance"></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		[?description]
+		<div style="margin-top: 15px;"></div>
+	</div>
+	
+<div class="clear"></div>
+[?liste_filtres]
+<div class="clear"></div>
+[?filtre_liste]
+<div class="clear" ></div>
+</div>
+<div class="barre_filtre" style="">
+        <form rel="nofollow"style="float: left; width: 100%;">
+        <p class="filtration [?hidefiltration]">
+                <span>Trier par </span>
+                <select class="tri_page">
+                        [?select_tri]
+                </select>
+                [?tri_nb_resultats]
+        </p>
+        </form>
+        <h2 class="titre_result"><span class="hidden-xs">[?catlibelle]</span> <span class="count_prod">[?articlecount] produit(s)</span></h2>
+        <div class="page page_search">
+                <ul class="pagination">
+                        [?precedent]
+                        [?pagesnav]
+                        [?suivant]
+                </ul>
+        </div>
+</div>
+<div class="clear"></div>
+<div class="list_articles block-justify">
+	[?articles]
+	[?archives]
+</div>
+<div class="clear"></div>
+<form rel="nofollow">
+<p class="filtration [?hidefiltration]">
+        <span>Trier par </span>
+        <select class="tri_page">
+                [?select_tri]
+        </select>
+        [?tri_nb_resultats]
+</p>
+</form>
+<div class="page">
+	<ul class="pagination">
+		[?precedent]
+		[?pagesnav]
+		[?suivant]
+	</ul>
+</div>
+<div class="trait"></div>
+<div class="clear"></div>
+<div class="encarts col-xs-12">[?encarts]</div>
+<div class="marge_bas"></div>
+<div class="clear"></div>

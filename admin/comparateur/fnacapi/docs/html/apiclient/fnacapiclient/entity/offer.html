@@ -1,0 +1,637 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 07 Aug 2015 08:19:07 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>Offer (Fnac Marketplace PHP Client API Documentation)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../fnacapiclient/entity/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../fnacapiclient/entity/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../fnacapiclient/entity/offer.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">FnacApiClient\Entity\Offer</div>
+<a href="../../source/entity/offer.php.html#line24" class="location">Entity/Offer.php at line 24</a>
+
+<h1>Class Offer</h1>
+
+<pre class="tree"><a href="../../fnacapiclient/entity/entity.html">Entity</a><br>    └─<strong>Offer</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>Offer</strong><br>extends <a href="../../fnacapiclient/entity/entity.html">Entity</a>
+
+</p>
+
+<div class="comment" id="overview_description"><p>Offer definition.</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>Fnac</dd>
+<dt>Version:</dt>
+<dd>1.0.0</dd>
+</dl>
+<hr>
+
+<table id="summary_field">
+<tr><th colspan="2">Constant Summary</th></tr>
+<tr>
+<td class="type">final static  int</td>
+<td class="description"><p class="name"><a href="#STATE_NEW">STATE_NEW</a></p></td>
+</tr>
+<tr>
+<td class="type">final static  int</td>
+<td class="description"><p class="name"><a href="#STATE_REFURBISHED">STATE_REFURBISHED</a></p></td>
+</tr>
+<tr>
+<td class="type">final static  int</td>
+<td class="description"><p class="name"><a href="#STATE_USED_AS_NEW">STATE_USED_AS_NEW</a></p></td>
+</tr>
+<tr>
+<td class="type">final static  int</td>
+<td class="description"><p class="name"><a href="#STATE_USED_CORRECT">STATE_USED_CORRECT</a></p></td>
+</tr>
+<tr>
+<td class="type">final static  int</td>
+<td class="description"><p class="name"><a href="#STATE_USED_GOOD">STATE_USED_GOOD</a></p></td>
+</tr>
+<tr>
+<td class="type">final static  int</td>
+<td class="description"><p class="name"><a href="#STATE_USED_VERY_GOOD">STATE_USED_VERY_GOOD</a></p></td>
+</tr>
+</table>
+
+<table id="summary_field">
+<tr><th colspan="2">Field Summary</th></tr>
+<tr>
+<td class="type">static  mixed</td>
+<td class="description"><p class="name"><a href="#product_state_names">$product_state_names</a></p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#denormalize()">denormalize</a>(NormalizerInterface normalizer, mixed data, mixed format)</p><p class="description"></p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getAdherentPrice()">getAdherentPrice</a>()</p><p class="description">Product adherent price for this offer</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getDescription()">getDescription</a>()</p><p class="description">Product's description</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getImage()">getImage</a>()</p><p class="description">Product image url on fnac.com</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getInternalComment()">getInternalComment</a>()</p><p class="description">Offer's internal comment for personal use only</p></td>
+</tr>
+<tr>
+<td class="type"> integer</td>
+<td class="description"><p class="name"><a href="#getNbMessages()">getNbMessages</a>()</p><p class="description">Number of messages related to this offer</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getOfferFnacId()">getOfferFnacId</a>()</p><p class="description">Offer's unique identifier from fnac</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getOfferSellerId()">getOfferSellerId</a>()</p><p class="description">Offer's unique identifier from seller</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getPrice()">getPrice</a>()</p><p class="description">Product price for this offer</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getProductFnacId()">getProductFnacId</a>()</p><p class="description">Product unique identifier from fnac</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getProductName()">getProductName</a>()</p><p class="description">Name, category and a short description of product if available</p></td>
+</tr>
+<tr>
+<td class="type"> integer</td>
+<td class="description"><p class="name"><a href="#getProductState()">getProductState</a>()</p><p class="description">Product state in this offer</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getProductStateLabel()">getProductStateLabel</a>()</p><p class="description">Product state label</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getProductUrl()">getProductUrl</a>()</p><p class="description">Product url on fnac.com</p></td>
+</tr>
+<tr>
+<td class="type"> integer</td>
+<td class="description"><p class="name"><a href="#getQuantity()">getQuantity</a>()</p><p class="description">Product's quantity in offer</p></td>
+</tr>
+<tr>
+<td class="type"> integer</td>
+<td class="description"><p class="name"><a href="#getShowcase()">getShowcase</a>()</p><p class="description">Offer's position in shop's showcase</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#normalize()">normalize</a>(NormalizerInterface normalizer, mixed format, mixed properties)</p><p class="description"></p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setAdherentPrice()">setAdherentPrice</a>(float adherent_price)</p><p class="description">Set offer's "adherent" price</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setDescription()">setDescription</a>(string description)</p><p class="description">Set product's description</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setInternalComment()">setInternalComment</a>(string internal_comment)</p><p class="description">Set offer's internal comment for personal use</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setOfferReference()">setOfferReference</a>(string offer_reference)</p><p class="description">Set offer's reference value depending on type</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setOfferReferenceType()">setOfferReferenceType</a>(string offer_reference_type)</p><p class="description">Set offer's reference type</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setPrice()">setPrice</a>(float price)</p><p class="description">Set offer's price</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setProductReference()">setProductReference</a>(string product_reference)</p><p class="description">Set product's reference value depending on type</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setProductReferenceType()">setProductReferenceType</a>(string product_reference_type)</p><p class="description">Set product's reference type</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setProductState()">setProductState</a>(string product_state)</p><p class="description">Set product's state of offer : Only when adding an offer</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setQuantity()">setQuantity</a>(integer quantity)</p><p class="description">Set offer's quantity</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setShowcase()">setShowcase</a>(mixed showcase, unsigned integer)</p><p class="description">Set offer's position in shop's showcase</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setTreatment()">setTreatment</a>(string treatment)</p><p class="description">Set treatment to do on offer</p></td>
+</tr>
+</table>
+
+<h2 id="detail_field">Constant Detail</h2>
+<a href="../../source/entity/offer.php.html#line51" class="location">Entity/Offer.php at line 51</a>
+
+<h3 id="STATE_NEW">STATE_NEW</h3>
+<code class="signature">public final static  int <strong>STATE_NEW</strong> = 11</code>
+<div class="details">
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line56" class="location">Entity/Offer.php at line 56</a>
+
+<h3 id="STATE_REFURBISHED">STATE_REFURBISHED</h3>
+<code class="signature">public final static  int <strong>STATE_REFURBISHED</strong> = 10</code>
+<div class="details">
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line52" class="location">Entity/Offer.php at line 52</a>
+
+<h3 id="STATE_USED_AS_NEW">STATE_USED_AS_NEW</h3>
+<code class="signature">public final static  int <strong>STATE_USED_AS_NEW</strong> = 1</code>
+<div class="details">
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line55" class="location">Entity/Offer.php at line 55</a>
+
+<h3 id="STATE_USED_CORRECT">STATE_USED_CORRECT</h3>
+<code class="signature">public final static  int <strong>STATE_USED_CORRECT</strong> = 4</code>
+<div class="details">
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line54" class="location">Entity/Offer.php at line 54</a>
+
+<h3 id="STATE_USED_GOOD">STATE_USED_GOOD</h3>
+<code class="signature">public final static  int <strong>STATE_USED_GOOD</strong> = 3</code>
+<div class="details">
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line53" class="location">Entity/Offer.php at line 53</a>
+
+<h3 id="STATE_USED_VERY_GOOD">STATE_USED_VERY_GOOD</h3>
+<code class="signature">public final static  int <strong>STATE_USED_VERY_GOOD</strong> = 2</code>
+<div class="details">
+</div>
+
+<hr>
+
+<h2 id="detail_field">Field Detail</h2>
+<a href="../../source/entity/offer.php.html#line58" class="location">Entity/Offer.php at line 58</a>
+
+<h3 id="product_state_names">product_state_names</h3>
+<code class="signature">public static  mixed <strong>$product_state_names</strong> = array(...)</code>
+<div class="details">
+</div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../source/entity/offer.php.html#line117" class="location">Entity/Offer.php at line 117</a>
+
+<h3 id="denormalize()">denormalize</h3>
+<code class="signature">public  void <strong>denormalize</strong>(NormalizerInterface normalizer, mixed data, mixed format)</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line376" class="location">Entity/Offer.php at line 376</a>
+
+<h3 id="getAdherentPrice()">getAdherentPrice</h3>
+<code class="signature">public  float <strong>getAdherentPrice</strong>()</code>
+<div class="details">
+<p>Product adherent price for this offer</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line396" class="location">Entity/Offer.php at line 396</a>
+
+<h3 id="getDescription()">getDescription</h3>
+<code class="signature">public  string <strong>getDescription</strong>()</code>
+<div class="details">
+<p>Product's description</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line322" class="location">Entity/Offer.php at line 322</a>
+
+<h3 id="getImage()">getImage</h3>
+<code class="signature">public  string <strong>getImage</strong>()</code>
+<div class="details">
+<p>Product image url on fnac.com</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line406" class="location">Entity/Offer.php at line 406</a>
+
+<h3 id="getInternalComment()">getInternalComment</h3>
+<code class="signature">public  string <strong>getInternalComment</strong>()</code>
+<div class="details">
+<p>Offer's internal comment for personal use only</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line332" class="location">Entity/Offer.php at line 332</a>
+
+<h3 id="getNbMessages()">getNbMessages</h3>
+<code class="signature">public  integer <strong>getNbMessages</strong>()</code>
+<div class="details">
+<p>Number of messages related to this offer</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line292" class="location">Entity/Offer.php at line 292</a>
+
+<h3 id="getOfferFnacId()">getOfferFnacId</h3>
+<code class="signature">public  string <strong>getOfferFnacId</strong>()</code>
+<div class="details">
+<p>Offer's unique identifier from fnac</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line302" class="location">Entity/Offer.php at line 302</a>
+
+<h3 id="getOfferSellerId()">getOfferSellerId</h3>
+<code class="signature">public  string <strong>getOfferSellerId</strong>()</code>
+<div class="details">
+<p>Offer's unique identifier from seller</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line366" class="location">Entity/Offer.php at line 366</a>
+
+<h3 id="getPrice()">getPrice</h3>
+<code class="signature">public  float <strong>getPrice</strong>()</code>
+<div class="details">
+<p>Product price for this offer</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line282" class="location">Entity/Offer.php at line 282</a>
+
+<h3 id="getProductFnacId()">getProductFnacId</h3>
+<code class="signature">public  string <strong>getProductFnacId</strong>()</code>
+<div class="details">
+<p>Product unique identifier from fnac</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line272" class="location">Entity/Offer.php at line 272</a>
+
+<h3 id="getProductName()">getProductName</h3>
+<code class="signature">public  string <strong>getProductName</strong>()</code>
+<div class="details">
+<p>Name, category and a short description of product if available</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line344" class="location">Entity/Offer.php at line 344</a>
+
+<h3 id="getProductState()">getProductState</h3>
+<code class="signature">public  integer <strong>getProductState</strong>()</code>
+<div class="details">
+<p>Product state in this offer</p><dl>
+<dt>See Also:</dt>
+<dd><a href="../../fnacapiclient/type/productstatetype.html">FnacApiClient\Type\ProductStateType</a></dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line356" class="location">Entity/Offer.php at line 356</a>
+
+<h3 id="getProductStateLabel()">getProductStateLabel</h3>
+<code class="signature">public  string <strong>getProductStateLabel</strong>()</code>
+<div class="details">
+<p>Product state label</p><dl>
+<dt>See Also:</dt>
+<dd><a href="../../fnacapiclient/type/productstatetype.html">FnacApiClient\Type\ProductStateType</a></dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line312" class="location">Entity/Offer.php at line 312</a>
+
+<h3 id="getProductUrl()">getProductUrl</h3>
+<code class="signature">public  string <strong>getProductUrl</strong>()</code>
+<div class="details">
+<p>Product url on fnac.com</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line386" class="location">Entity/Offer.php at line 386</a>
+
+<h3 id="getQuantity()">getQuantity</h3>
+<code class="signature">public  integer <strong>getQuantity</strong>()</code>
+<div class="details">
+<p>Product's quantity in offer</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line416" class="location">Entity/Offer.php at line 416</a>
+
+<h3 id="getShowcase()">getShowcase</h3>
+<code class="signature">public  integer <strong>getShowcase</strong>()</code>
+<div class="details">
+<p>Offer's position in shop's showcase</p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line63" class="location">Entity/Offer.php at line 63</a>
+
+<h3 id="normalize()">normalize</h3>
+<code class="signature">public  void <strong>normalize</strong>(NormalizerInterface normalizer, mixed format, mixed properties)</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line200" class="location">Entity/Offer.php at line 200</a>
+
+<h3 id="setAdherentPrice()">setAdherentPrice</h3>
+<code class="signature">public  void <strong>setAdherentPrice</strong>(float adherent_price)</code>
+<div class="details">
+<p>Set offer's "adherent" price</p><dl>
+<dt>Parameters:</dt>
+<dd>adherent_price - : Adherent price to set for this offer. This price can be set only by eligible sellers</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line230" class="location">Entity/Offer.php at line 230</a>
+
+<h3 id="setDescription()">setDescription</h3>
+<code class="signature">public  void <strong>setDescription</strong>(string description)</code>
+<div class="details">
+<p>Set product's description</p><dl>
+<dt>Parameters:</dt>
+<dd>description - Description of offer</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line240" class="location">Entity/Offer.php at line 240</a>
+
+<h3 id="setInternalComment()">setInternalComment</h3>
+<code class="signature">public  void <strong>setInternalComment</strong>(string internal_comment)</code>
+<div class="details">
+<p>Set offer's internal comment for personal use</p><dl>
+<dt>Parameters:</dt>
+<dd>internal_comment - A personal comment for this offer</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line180" class="location">Entity/Offer.php at line 180</a>
+
+<h3 id="setOfferReference()">setOfferReference</h3>
+<code class="signature">public  void <strong>setOfferReference</strong>(string offer_reference)</code>
+<div class="details">
+<p>Set offer's reference value depending on type</p><dl>
+<dt>Parameters:</dt>
+<dd>offer_reference - : Offer reference to update</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line170" class="location">Entity/Offer.php at line 170</a>
+
+<h3 id="setOfferReferenceType()">setOfferReferenceType</h3>
+<code class="signature">public  void <strong>setOfferReferenceType</strong>(string offer_reference_type)</code>
+<div class="details">
+<p>Set offer's reference type</p><dl>
+<dt>See Also:</dt>
+<dd><a href="../../fnacapiclient/type/offerreferencetype.html">FnacApiClient\Type\OfferReferenceType</a></dd>
+<dt>Parameters:</dt>
+<dd>offer_reference_type - : Type of offer reference</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line190" class="location">Entity/Offer.php at line 190</a>
+
+<h3 id="setPrice()">setPrice</h3>
+<code class="signature">public  void <strong>setPrice</strong>(float price)</code>
+<div class="details">
+<p>Set offer's price</p><dl>
+<dt>Parameters:</dt>
+<dd>price - : Price to set for this offer</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line158" class="location">Entity/Offer.php at line 158</a>
+
+<h3 id="setProductReference()">setProductReference</h3>
+<code class="signature">public  void <strong>setProductReference</strong>(string product_reference)</code>
+<div class="details">
+<p>Set product's reference value depending on type</p><dl>
+<dt>Parameters:</dt>
+<dd>product_reference - : Reference of product to set</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line148" class="location">Entity/Offer.php at line 148</a>
+
+<h3 id="setProductReferenceType()">setProductReferenceType</h3>
+<code class="signature">public  void <strong>setProductReferenceType</strong>(string product_reference_type)</code>
+<div class="details">
+<p>Set product's reference type</p><dl>
+<dt>See Also:</dt>
+<dd><a href="../../fnacapiclient/type/producttype.html">FnacApiClient\Type\ProductType</a></dd>
+<dt>Parameters:</dt>
+<dd>product_reference_type - : Type of product reference</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line210" class="location">Entity/Offer.php at line 210</a>
+
+<h3 id="setProductState()">setProductState</h3>
+<code class="signature">public  void <strong>setProductState</strong>(string product_state)</code>
+<div class="details">
+<p>Set product's state of offer : Only when adding an offer</p><dl>
+<dt>Parameters:</dt>
+<dd>product_state - Product state to se for this offer</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line220" class="location">Entity/Offer.php at line 220</a>
+
+<h3 id="setQuantity()">setQuantity</h3>
+<code class="signature">public  void <strong>setQuantity</strong>(integer quantity)</code>
+<div class="details">
+<p>Set offer's quantity</p><dl>
+<dt>Parameters:</dt>
+<dd>quantity - Quantity to set</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line250" class="location">Entity/Offer.php at line 250</a>
+
+<h3 id="setShowcase()">setShowcase</h3>
+<code class="signature">public  void <strong>setShowcase</strong>(mixed showcase, unsigned integer)</code>
+<div class="details">
+<p>Set offer's position in shop's showcase</p><dl>
+<dt>Parameters:</dt>
+<dd>integer - $showcase Offer's position in shop's showcase</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/offer.php.html#line262" class="location">Entity/Offer.php at line 262</a>
+
+<h3 id="setTreatment()">setTreatment</h3>
+<code class="signature">public  void <strong>setTreatment</strong>(string treatment)</code>
+<div class="details">
+<p>Set treatment to do on offer</p><dl>
+<dt>See Also:</dt>
+<dd><a href="../../fnacapiclient/type/offertreatmenttype.html">FnacApiClient\Type\OfferTreatmentType</a></dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../fnacapiclient/entity/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../fnacapiclient/entity/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../fnacapiclient/entity/offer.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

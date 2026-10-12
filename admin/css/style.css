@@ -1,0 +1,72 @@
+/* Hacks pour rentre l'admin "responsive" */
+.headmid { float: none !important; display: inline-block; position: absolute; left: 0; top: 0; width: 100%; }
+.main { width:100% !important; text-align: center; margin: 0 !important; }
+.mainpage { float: none !important; width: 100% !important; margin: 0 10px; text-align: left; }
+div.flex_responsive { display: flex; flex-direction: row; }
+div.help_button { margin: 0 !important; right: 50px; }
+div.help_button2 { margin: 0 !important; right: 50px; }
+
+/* CSS */
+p.titre_page { display: block; color: black; font: 20px "Open Sans",Helvetica,Arial,sans-serif; margin: 5px 0 25px; }
+p.filariane_page { display: block; font: 12px "Open Sans",Helvetica,Arial,sans-serif; color: #363E42; }
+p.filariane_page a { font: 12px "Open Sans",Helvetica,Arial,sans-serif; color: #363E42;  }
+table.formate_results { width: 100%; border-collapse: collapse; text-align: center; margin: 5px 0; position: relative; }
+table.formate_results td { padding: 8px 5px; font: 12px "Open Sans",Helvetica,Arial,sans-serif; }
+table.formate_results td a { color: #0393C2; font: 12px "Open Sans",Helvetica,Arial,sans-serif; }
+table.formate_results td img.icon { cursor: pointer; width: 22px; }
+table.formate_results td i { cursor: pointer; }
+table.formate_results td.entete { background-color: #A88D5C; border: 1px solid #A88D5C; padding: 5px; max-width: 200px; }
+table.formate_results td.entete a { color: white; font: 14px "Open Sans",Helvetica,Arial,sans-serif; text-decoration: none; }
+table.formate_results td.recherche { background-color: #feeecf; padding: 5px 2px !important; }
+table.formate_results td.recherche input, table.formate_results td.recherche select { font: 12px 'Open Sans',Helvetica,Arial,sans-serif; height: 30px; border-radius: 3px; border: 1px solid #C7D6DB; }
+table.formate_results td.recherche input[type="text"] { width: 120px; }
+table.formate_results td.recherche input.minmax { width: 50px; }
+table.formate_results td.recherche select { width: 80px; }
+table.formate_results td.recherche button { font: 11px 'Open Sans',Helvetica,Arial,sans-serif; background-color: #A88D5C; color: white; padding: 4px 6px; border-radius: 5px; cursor: pointer; border: none; }
+table.formate_results td.recherche button:hover { opacity: 0.8; }
+table.formate_results td.recherche a.reinit { font: 11px 'Open Sans',Helvetica,Arial,sans-serif; background-color: #e20101; color: white; padding: 5px 6px; border-radius: 5px; cursor: pointer; border: none; text-decoration: none; margin-left: 5px; }
+table.formate_results td.recherche a.reinit:hover { opacity: 0.5; }
+table.formate_results td.bggris1 { background-color: #E6E6E6; }
+table.formate_results td.bggris2 { background-color: #D0D0D0; }
+table.formate_results td.icons { width: 75px; }
+table.formate_results td.icons_pt { width: 20px; }
+table.formate_results td.bggris1 input[type="checkbox"] { cursor: pointer; }
+table.formate_results td.bggris2 input[type="checkbox"] { cursor: pointer; }
+table.formate_results td a.manage_button_simple { font: 11px 'Open Sans',Helvetica,Arial,sans-serif; background-color: #A88D5C; color: white; padding: 4px 6px; text-decoration: none; text-align: center; border-radius: 5px; cursor: pointer; margin: 3px 0; }
+table.formate_results td a.manage_button_simple:hover { opacity: 0.8; }
+table.formate_results td a.manage_button { font: 11px 'Open Sans',Helvetica,Arial,sans-serif; background-color: #A88D5C; color: white; padding: 4px 6px; text-decoration: none; text-align: center; cursor: pointer; }
+table.formate_results td a.manage_button:hover { opacity: 0.8; }
+div.cadre_resultats { display: flex; flex-direction: row; justify-content: space-between; width: 100%; }
+div.cadre_resultats p.nb_results { margin: 40px 0 0 0; padding: 0; }
+div.cadre_resultats p.pagination_liste { text-align: center; margin: 10px 0 0 0; padding: 0; }
+div.cadre_resultats p.pagination_liste a { color: #A88D5C; border-top: 1px solid #A88D5C; border-right: 1px solid #A88D5C; border-bottom: 1px solid #A88D5C; background-color: white; width: 35px; height: 35px; cursor: pointer; display: inline-block; text-decoration: none; vertical-align: middle; }
+div.cadre_resultats p.pagination_liste a i { margin-top: 5px; }
+div.cadre_resultats p.pagination_liste a.num { font: 14px "Open Sans",Helvetica,Arial,sans-serif; line-height: 35px; }
+div.cadre_resultats p.pagination_liste a:hover, div.cadre_resultats p.pagination_liste a.selected { color: white; background-color: #A88D5C; }
+div.cadre_resultats p.pagination_liste a.premier { border-left: 1px solid #A88D5C; border-radius: 5px 0 0 5px; }
+div.cadre_resultats p.pagination_liste a.dernier { border-radius: 0 5px 5px 0; }
+div.cadre_resultats a.new_enr { background-color: #A88D5C; color: white; padding: 5px 10px; font: 14px "Open Sans",Helvetica,Arial,sans-serif; text-decoration: none; text-align: center; border-radius: 5px; display: inline-block; }
+div.cadre_resultats a.new_enr:hover { opacity: 0.8; }
+div.cadre_resultats a:hover { opacity: 0.8; }
+div.cadre_resultats div.block_align { width: 200px; }
+p.validemsg_page { text-align: center; color: green; font: 14px "Open Sans",Helvetica,Arial,sans-serif; padding: 5px; font-weight: bold; }
+p.erreur_form { text-align: center; color: red; font: 14px "Open Sans",Helvetica,Arial,sans-serif; padding: 5px; }
+div.cadre_form { width: 100%; display: block; background-color: #EFF1F2; border: 1px solid grey; border-radius: 5px; padding: 10px 0; margin: 0 5px; }
+div.cadre_form table { width: 100%; }
+div.cadre_form table td.libelle { width: 40%; text-align: right; font: 13px 'Open Sans',Helvetica,Arial,sans-serif; padding: 5px; }
+div.cadre_form table td.champs { width: 60%; text-align: left; font: 12px 'Open Sans',Helvetica,Arial,sans-serif; padding: 5px; }
+div.action_buttons { width: 100%; display: block; display: flex; flex-direction: row; justify-content: space-between; margin-top: 5px; }
+div.action_buttons button, div.action_buttons a { background-color: #A88D5C; color: white; padding: 5px 10px; font: 14px 'Open Sans',Helvetica,Arial,sans-serif; text-decoration: none; border: none; cursor: pointer; border-radius: 5px; text-align: center; }
+div.action_buttons button:hover, div.action_buttons a:hover { opacity: 0.8; }
+div.cadre_form select:not([multiple]), div.cadre_form input { font: 12px "Open Sans",Helvetica,Arial,sans-serif; height: 30px; border-radius: 3px; border: 1px solid #C7D6DB; }
+div.cadre_form textarea { font: 12px "Open Sans",Helvetica,Arial,sans-serif; height: 80px; width: 300px; border-radius: 3px; border: 1px solid #C7D6DB; }
+div.cadre_form select[multiple] { font: 12px "Open Sans",Helvetica,Arial,sans-serif; height: 150px; border-radius: 3px; border: 1px solid #C7D6DB; }
+div.actions_group { width: 200px; margin: 5px 0 0; position: relative; }
+div.actions_group a.bouton { font: 13px 'Open Sans',Helvetica,Arial,sans-serif; background-color: #A88D5C; color: white; padding: 5px 10px; text-decoration: none; text-align: center; border-radius: 5px; cursor: pointer; }
+div.actions_group a.bouton:hover { opacity: 0.8; }
+div.actions_bouton { position: absolute; top: 25px; left: 0; border: 1px solid #D0D0D0; border-radius: 5px; width: 180px; box-shadow: 3px 3px 6px #D0D0D0; padding: 10px 0; display: none; background-color: white; z-index: 1; }
+div.actions_bouton a { font: 13px 'Open Sans',Helvetica,Arial,sans-serif !important; color: black !important; text-decoration: none; display: block; padding: 5px 10px; }
+div.actions_bouton a:hover { background-color: #A88D5C; color: white !important; }
+div.actions_bouton p { margin: 0; padding: 0; text-align: left; }
+div.actions_bouton p.separation { margin: 10px 0; display: block; background-color: #D0D0D0; height: 1px; }
+div.cadre_form span.note { font-size: 10px; font-style: italic; }

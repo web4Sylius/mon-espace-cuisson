@@ -1,0 +1,7 @@
+api etransactions_500_PLUGIN_linux-2.2.16.tar créée le 30/10/02 à 15:30:30
+
+type d'api = PLUGIN
+offre = CA
+OS = linux 2.2.16
+version = v5.00
+processeur = i686

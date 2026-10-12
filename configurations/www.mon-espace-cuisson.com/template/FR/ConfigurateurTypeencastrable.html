@@ -1,0 +1,50 @@
+<div class="question col-xs-12" onclick="show_question('typeencastrable')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Type d'encastrement ?</h2>
+      <div class="reponse" id="reptypeencastrable"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btntypeencastrable" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnresptypeencastrable" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <ul class="prop">
+  <li class="li5 [?encasrep1class]" onclick="clickli(this,'typeencastrable1')">
+    <h3><span>Sous plan</span></h3>
+    <p>La cave à vin sera posée sous un plan de travail</p>
+    <img src="/images/configurateur/typeencastrable1.jpg" alt="" class="hidden-xs" width="156">
+    <input type="radio" id="typeencastrable1" name="typeencastrable" onclick="next('typeencastrable','[?encasrep1]')" [?checkencasrep1] class="hidden-xs">
+  </li>
+  <li class="li5 [?encasrep2class]" onclick="clickli(this,'typeencastrable2')">
+    <h3><span>En colonne</span></h3>
+    <p>La cave à vin sera encastrée dans un meuble en colonne</p>
+    <img src="/images/configurateur/typeencastrable2.jpg" alt="" class="hidden-xs" width="156">
+    <input type="radio" id="typeencastrable2" name="typeencastrable" onclick="next('typeencastrable','[?encasrep2]')" [?checkencasrep2] class="hidden-xs">
+  </li>
+  <li class="li5 [?encasrep3class]" onclick="clickli(this,'typeencastrable3')">
+    <h3><span>A tiroir</span></h3>
+    <p>La cave à vin &laquo;&nbsp;à tiroir&nbsp;&raquo; sera encastrée sous un plan de travail</p>
+    <img src="/images/configurateur/typeencastrable3.jpg" alt="" class="hidden-xs">
+    <input type="radio" id="typeencastrable3" name="typeencastrable" onclick="next('typeencastrable','[?encasrep3]')" [?checkencasrep3] class="hidden-xs">
+  </li>
+  <li class="li5 [?encasrep4class]" onclick="clickli(this,'typeencastrable4')">
+    <h3><span>enchassable entre 2 meubles</span></h3>
+    <p>Une cave à vin posée au sol, encastrée dans une niche ou entre deux meubles</p>
+    <img src="/images/configurateur/typeencastrable4.jpg" alt="" class="hidden-xs" width="156">
+    <input type="radio" id="typeencastrable4" name="typeencastrable" onclick="next('typeencastrable','[?encasrep4]')" [?checkencasrep4] class="hidden-xs">
+  </li>
+  <li class="li5 [?encasrep5class]" onclick="clickli(this,'typeencastrable5')">
+    <h3><span>Tout intégrable</span></h3>
+    <p class="hidden-xs">La cave à vin non visible et intégrée dans un meuble</p>
+    <img src="/images/configurateur/typeencastrable5.jpg" alt="" class="hidden-xs" width="156">
+    <input type="radio" id="typeencastrable5" name="typeencastrable" onclick="next('typeencastrable','[?encasrep5]')" [?checkencasrep5] class="hidden-xs">
+  </li>
+  </ul>
+</div>  

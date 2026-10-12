@@ -1,0 +1,6 @@
+2019/07/01|151742|315038849|BOURGAUD David|38750|70263|RDV CCL|Confirmation Creneaux de Livraison|2019/07/26|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038849.html
+2019/07/11|151592bis|315063726|BEYER JEREMY|74140|70015|RDV CCL|Confirmation Creneaux de Livraison|2019/07/26|0||http://webtracking.girard-agediss.com/tracking-acilyon-315063726.html
+2019/07/12|152162|315065762|GUIONNET Baptiste|8277-|70544|LIV CFM|Livraison conforme|2019/07/24|0||http://webtracking.girard-agediss.com/tracking-acilyon-315065762.html
+2019/07/12|152162|315065762|GUIONNET Baptiste|8277-|70544|POD CFM|BL numérisé|2019/07/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-315065762.html
+2019/07/18|152298|315077644|LENTI - PUSTOZYOROVA Inna|06110|70061|RDV CCL|Confirmation Creneaux de Livraison|2019/07/26|0||http://webtracking.girard-agediss.com/tracking-acilyon-315077644.html
+2019/07/25|152478|315089576|CESARI Christian|20166|70205|INI INF|Arrivee info|2019/07/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-315089576.html

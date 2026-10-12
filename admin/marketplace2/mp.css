@@ -1,0 +1,101 @@
+body {
+    background-color: white;  font-size:10px;  text-align:center; font-family:arial;
+}
+
+table { font-family:arial; font-size:11px; }
+.main {
+    background-color: #ffffff;
+    border: solid 1px #660066;
+    font-size:10px;
+}
+
+a {
+  font-family: Verdana;
+  color: #5F718A;
+  text-decoration: underline;
+}
+a:hover {
+  font-family: Verdana;
+  color: #5F718A;
+  text-decoration: none;
+}
+
+.menu{ border:solid thin #990000; font-size:11px; }
+
+.frame { border:solid thin #990000; font-size:11px; width:800px; margin:10px auto auto auto; }
+.frametitle { color:#363E42; font-weight:bold; text-align:center; }
+
+.order_status_1 {
+    color: #a0a0a0;
+}
+.order_status_3 {
+    color: #902020;
+}
+.order_status_5 {
+    color: #204090;
+}
+.order_status_6 {
+    color: #40A0B0;
+}
+.order_status_7 {
+    color: #209040;
+}
+.row_title {
+    vertical-align: middle;
+    text-align:center;
+    font-family:Verdana;
+    font-size: 10px;
+    color: #000000; 
+    border-width:0px;
+}
+.row0 {
+    background-color: #E6E6E6; vertical-align: middle;  text-align:left;  font-family:Verdana; font-size: 10px;  color: #000000; border-width:0px;
+}
+.row1 {
+   background-color: #EEEEEE; vertical-align: middle;  text-align:left;  font-family:Verdana; font-size: 10px;  color: #000000; border-width:0px;
+}
+.row_selected {
+    background-color: #d0e0f0;
+    cursor: hand;
+}
+.remaining_items {
+    background-color: #e8f0f8;
+}
+.shipped_items {
+    background-color: #e8f8f0;
+}
+.cancelled_items {
+    background-color: #f0f0f0;
+}
+.faded {
+    color: #90a0b0;
+}
+.full_delivery {
+    color: #40a0C0;
+}
+.half_delivery {
+    color: #C060a0;
+}
+.div_title {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+.highlight {
+    color: #990066;
+}
+.highlight_more {
+    color: #F06000;
+}
+button {
+    background-color: #f0f0f0;
+    color: #606060;
+}
+.list{
+     width : 100%;
+     font-family:Verdana;
+     font-size: 11px;
+     color: #000044;
+     border-width:1px;
+     border-style:solid;
+     border-color:#990000;
+}

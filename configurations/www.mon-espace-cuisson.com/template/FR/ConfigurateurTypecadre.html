@@ -1,0 +1,44 @@
+<div class="question col-xs-12" onclick="show_question('typecadre')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Un cadre à fixer au mur pour :</h2>
+      <div class="reponse" id="reptypecadre"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btntypecadre" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnresptypecadre" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <ul class="prop">
+    <li class="li4 [?typecadre1class]" onclick="clickli(this,'typecadre1')">
+      <h3><span>5 bouteilles de vin<br>avec structure blanche</span></h3>
+      <p class="hidden-xs">&nbsp;</p>
+  	<img src="/images/configurateur/typecadre1.jpg" alt="" class="hidden-xs">
+      <input type="radio" id="typecadre1" name="typecadre" onclick="next('typecadre','[?typecadre1]')" [?checktypecadre1] class="hidden-xs">
+    </li>
+    <li class="li4 [?typecadre2class]" onclick="clickli(this,'typecadre2')">
+      <h3><span>5 bouteilles de vin<br>avec structure noire</span></h3>
+      <p class="hidden-xs">&nbsp;</p>
+  	<img src="/images/configurateur/typecadre2.jpg" alt="" class="hidden-xs">
+      <input type="radio" id="typecadre2" name="typecadre" onclick="next('typecadre','[?typecadre2]')" [?checktypecadre2] class="hidden-xs">
+    </li>
+    <li class="li4 [?typecadre3class]" onclick="clickli(this,'typecadre3')">
+      <h3><span>1 bouteille de champagne<br>avec structure blanche</span></h3>
+      <p class="hidden-xs">&nbsp;</p>
+  	<img src="/images/configurateur/typecadre3.jpg" alt="" class="hidden-xs">
+      <input type="radio" id="typecadre3" name="typecadre" onclick="next('typecadre','[?typecadre3]')" [?checktypecadre3] class="hidden-xs">
+    </li>
+    <li class="li4 [?typecadre4class]" onclick="clickli(this,'typecadre4')">
+      <h3><span>1 bouteille de champagne<br>avec structure noire</span></h3>
+      <p class="hidden-xs">&nbsp;</p>
+  	<img src="/images/configurateur/typecadre4.jpg" alt="" class="hidden-xs">
+      <input type="radio" id="typecadre4" name="typecadre" onclick="next('typecadre','[?typecadre4]')" [?checktypecadre4] class="hidden-xs">
+    </li>
+  </ul>
+</div>

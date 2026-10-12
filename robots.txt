@@ -1,0 +1,33 @@
+User-agent: *
+
+User-agent: *
+Disallow: /ajax/
+
+User-agent: *
+Disallow: /admin/
+
+User-agent: *
+Disallow: /images/mail/fiche_energetique.php 
+
+User-agent: *
+Disallow: /devisrapide.php 
+
+User-agent: *
+Disallow: /financement_sofinco.php
+
+User-agent: TurnitinBot
+Disallow: / 
+
+User-agent: ConveraCrawler
+Disallow: /
+
+User-agent: QuepasaCreep 
+Disallow: / 
+
+User-agent: Jetbot 
+Disallow: /
+
+User-agent: AhrefsBot 
+Disallow: /
+
+Sitemap: https://www.mon-espace-cuisson.com/sitemap.php

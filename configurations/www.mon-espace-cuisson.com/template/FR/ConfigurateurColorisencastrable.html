@@ -1,0 +1,91 @@
+<div class="choix_affine [?ulcolorisencastrableclasse]">
+        <ul class="prop [?ulcolorisencastrableclasse]">
+
+     <li class="li5 [?colorisencastrable3class]" onclick="clicklichoix('colorisencastrable3');show_next('colorisencastrable')">
+<input type="checkbox" id="colorisencastrable3" name="colorisencastrable" value="3" onclick="clicklichoix('colorisencastrable3');show_next('colorisencastrable')" [?checkcolorisencastrable3] style="display: inline">
+        <span style="vertical-align: baseline">Noir</span>
+      </li>
+
+             <li class="li5 [?colorisencastrable2class]" onclick="clicklichoix('colorisencastrable2');show_next('colorisencastrable')">
+  <input type="checkbox" id="colorisencastrable2" name="colorisencastrable" value="2" onclick="clicklichoix('colorisencastrable2');show_next('colorisencastrable')" [?checkcolorisencastrable2] style="display: inline">
+        <span style="vertical-align: baseline">Inox</span>
+      </li>
+
+           <li class="li5 [?colorisencastrable4class]" onclick="clicklichoix('colorisencastrable4');show_next('colorisencastrable')">
+ <input type="checkbox" id="colorisencastrable4" name="colorisencastrable" value="4" onclick="clicklichoix('colorisencastrable4');show_next('colorisencastrable')" [?checkcolorisencastrable4] style="display: inline">
+        <span style="vertical-align: baseline">Bois</span>
+      </li>
+
+          <li class="li5 [?colorisencastrable5class]" onclick="clicklichoix('colorisencastrable5');show_next('colorisencastrable')">
+ <input type="checkbox" id="colorisencastrable5" name="colorisencastrable" value="5" onclick="clicklichoix('colorisencastrable5');show_next('colorisencastrable')" [?checkcolorisencastrable5] style="display: inline">
+        <span style="vertical-align: baseline">Blanc</span>
+      </li>
+
+            <li class="li5 [?colorisencastrable1class]" onclick="clicklichoix('colorisencastrable1');show_next('colorisencastrable')">
+ <input type="checkbox" id="colorisencastrable1" name="colorisencastrable" value="1" onclick="clicklichoix('colorisencastrable1');show_next('colorisencastrable')" [?checkcolorisencastrable1] style="display: inline">
+        <span style="vertical-align: baseline">Autre couleur</span>
+      </li>
+
+                   <li class="li5 [?colorisencastrable0class]" onclick="uncheck('colorisencastrable',this);clicklichoix('colorisencastrable0');show_next('colorisencastrable')" id="colorisencastrable_all">
+  <input type="checkbox" name="colorisencastrable" id="colorisencastrable0" onclick="uncheck('colorisencastrable',this);clicklichoix('colorisencastrable0');show_next('colorisencastrable');" [?checkcolorisencastrable0] style="display: inline">
+        <span style="vertical-align: baseline">Je ne sais pas ou peu importe</span>
+      </li>
+
+        </ul>
+ <div id="nextcolorisencastrable" class="nextbtn" onclick="clickbtn(this,'colorisencastrable',return_checkboxes('colorisencastrable'))">Valider <i class="fas fa-chevron-right"></i></div>
+</div>
+<div class="clear"></div>
+
+
+
+
+
+<!--<div class="question col-xs-12" onclick="show_question('colorisencastrable')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Coloris de la porte ? <small>(Plusieurs choix possibles)</small></h2>
+      <div class="reponse" id="repcolorisencastrable"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btncolorisencastrable" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnrespcolorisencastrable" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>    
+</div>
+<div class="col-xs-12">
+  <ul class="prop">
+    <li class="li5 [?coloris3class]" onclick="clickli(this,'colorisencastrable3',false)">
+      <h3><span>Noir</span></h3>
+      <p >Une cave à vin de coloris noir en totalité ou en majorité</p>
+      <img src="/images/configurateur/colorisencastrable3.jpg" alt="" class="hidden-xs">
+      <div class="checkbox hidden-xs"></div>
+      <input type="checkbox" id="colorisencastrable3" name="colorisencastrable" value="3" onclick="clickli(this,'colorisencastrable3',false);show_next('colorisencastrable')" [?checkcoloris3] class="hidden-xs">
+    </li>
+    <li class="li5 [?coloris2class]" onclick="clickli(this,'colorisencastrable2',false)">
+      <h3><span>Inox</span></h3>
+      <p>Une cave à vin avec revêtement extérieur en inox</p>
+      <img src="/images/configurateur/colorisencastrable2.jpg" alt="" class="hidden-xs">
+      <div class="checkbox hidden-xs"></div>
+      <input type="checkbox" id="colorisencastrable2" name="colorisencastrable" value="2" onclick="clickli(this,'colorisencastrable2',false);show_next('colorisencastrable')" [?checkcoloris2] class="hidden-xs">
+    </li>
+    <li class="li5 [?coloris1class]" onclick="clickli(this,'colorisencastrable1',false)">
+      <h3><span>Autre couleur</span></h3>
+      <p>Une cave à vin autre que noir, inox ou en bois</p>
+      <img src="/images/configurateur/colorisencastrable1.jpg" alt="" class="hidden-xs">
+      <div class="checkbox hidden-xs"></div>
+      <input type="checkbox" id="colorisencastrable1" name="colorisencastrable" value="1" onclick="clickli(this,'colorisencastrable1',false);show_next('colorisencastrable')" [?checkcoloris1] class="hidden-xs">
+    </li>
+    <li class="li5 [?coloris0class]" onclick="clickli(this,'colorisencastrable0',false)">
+      <h3><span>Je ne sais pas ou peu importe</span></h3>
+      <p>&nbsp;</p>
+      <img src="/images/configurateur/coloris0.jpg" alt="" class="hidden-xs" width="137">
+      <div class="checkbox hidden-xs"></div>
+      <input type="checkbox" name="colorisencastrable" id="colorisencastrable0" onclick="clickli(this,'colorisencastrable0',false);uncheck('colorisencastrable',this);show_next('colorisencastrable');" [?checkcoloris0] class="hidden-xs">
+    </li>
+  </ul>
+<div id="nextcolorisencastrable" class="nextbtn" onclick="clickbtn(this,'colorisencastrable',return_checkboxes('colorisencastrable'))">Étape suivante <i class="fas fa-chevron-right"></i></div>
+</div>-->

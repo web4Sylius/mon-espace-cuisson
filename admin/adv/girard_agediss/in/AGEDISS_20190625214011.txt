@@ -1,0 +1,5 @@
+2019/05/09|150401|314942902|BRANCA Andria|20200|70201|LIV CFM|Livraison conforme|2019/06/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-314942902.html
+2019/05/28|150894|314981438|MORAND Nicolas|38920|70263|AAR CFM|Reception conforme|2019/06/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-314981438.html
+2019/05/28|150894|314981438|MORAND Nicolas|38920|70263|DIF CLT|RDV differe par le client|2019/06/25|0|Dispo le 03/07 A-Midi|http://webtracking.girard-agediss.com/tracking-acilyon-314981438.html
+2019/05/28|150894|314981438|MORAND Nicolas|38920|70263|RST REP|Message Repondeur|2019/06/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-314981438.html
+2019/06/17|151357|315012503|CHIQUET Antoine|06230|70061|RDV CCL|Confirmation Creneaux de Livraison|2019/06/26|0||http://webtracking.girard-agediss.com/tracking-acilyon-315012503.html

@@ -1,0 +1,12 @@
+<div class="choix_affine [?ulmarqueclasse]">
+        <ul class="prop [?ulmarqueclasse]">
+    [?listemarques]
+    <li class="[?li] marque [?marque0class]" onclick="uncheck('marque',this);clicklichoix('marque0');show_next('marque');" id="marque_all">
+      <div class="checkbox hidden-xs"></div>
+      <input type="checkbox" name="marque" id="marque0" onclick="uncheck('marque',this);clicklichoix('marque0');show_next('marque');" [?checkmarque0] style="display: inline">
+      <span style="vertical-align: baseline">Peu importe la marque</span>
+    </li>
+</ul>
+<div class="clear"></div>
+<div id="nextmarque" class="nextbtn" onclick="clickbtn(this,'marque',return_checkboxes('marque'))">Valider <i class="fas fa-chevron-right"></i></div>
+</div>

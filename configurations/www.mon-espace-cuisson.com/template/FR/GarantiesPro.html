@@ -1,0 +1,29 @@
+<div class="infopro">
+    <div class="selectionnez">
+	  Vous nous passez commande en temps que <b>client professionnel :</b>
+	  <br>Merci de nous indiquer le <b>type de garantie souhaitée</b> pour cette commande suivant l'usage envisagé (Usage privé ou professionnel)
+    </div>
+    <div class="destinataire selected" id="dg0" onclick="select_destinataire_garantie([?facturid], 0);">
+      <div class="icon"><div><b>Garantie Pièces</b></div></div>
+      <input type="radio" name="destinataire_garantie" value="0" checked>
+      <div class="txt">Garantie pièces uniquement</div>
+      <div class="clear"></div>
+    </div>
+    <div id="liste_garanties0">[?liste_garanties0]</div>
+    
+    <div class="destinataire" id="dg1" onclick="select_destinataire_garantie([?facturid], 1);">
+      <div class="icon"><div><b>Garantie privée</b></div></div>
+      <input type="radio" name="destinataire_garantie" value="1">
+      <div class="txt">Garantie pour usage privé (Domestique)</div>
+      <div class="clear"></div>
+    </div>
+    <div id="liste_garanties1"></div>
+    
+    <div class="destinataire" id="dg2" onclick="select_destinataire_garantie([?facturid], 2);">
+      <div class="icon"><div><b>Garantie PRO</b></div></div>
+      <input type="radio" name="destinataire_garantie" value="2">
+      <div class="txt">Garantie pour usage professionnel</div>
+      <div class="clear"></div>
+    </div>
+    <div id="liste_garanties2"></div>
+</div>

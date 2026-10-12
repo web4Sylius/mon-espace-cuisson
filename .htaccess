@@ -1,0 +1,403 @@
+
+#RewriteCond %{REQUEST_URI} !/maintenance.html$ [NC]
+#RewriteCond %{REQUEST_URI} !\.(jpe?g?|png|gif) [NC]
+#RewriteCond %{REMOTE_ADDR} !^80.12.82.212$
+#RewriteCond %{REMOTE_ADDR} !^2a01:e0a:559:eac0:b1a5:6dc5:2e7d:fea5$
+#RewriteCond %{REMOTE_ADDR} !^88.125.103.171$
+#RewriteCond %{REMOTE_ADDR} !^90.63.245.184$
+#RewriteCond %{REMOTE_ADDR} !^5.51.101.229$
+
+
+ExpiresActive On
+ExpiresByType image/jpg A2592000
+ExpiresByType image/jpeg A2592000
+ExpiresByType image/png A2592000
+ExpiresByType image/svg A2592000
+ExpiresByType image/x-icon A86400
+ExpiresByType image/gif A2592000
+ExpiresByType application/javascript A2592000
+ExpiresByType text/css A2592000
+ExpiresByType application/x-font-opentype A2592000
+ExpiresByType font/opentype A2592000
+
+
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE application/x-font-opentype
+
+#php_flag register_globals on 
+#php_value max_input_vars 3000
+SetEnv SESSION_USE_TRANS_SID 0
+ErrorDocument  404  /error_document/404.htm
+ErrorDocument  403  /error_document/403.htm
+RewriteEngine on
+
+RewriteRule ^css/css.css$ css/css.php [QSA,L]
+
+RewriteRule ^error_document/([0-9]+).htm$ erreur.php?erreur=$1 [QSA,L]
+
+RewriteRule ^admin/ - [L]
+RewriteRule ^blog/ - [L]
+RewriteRule ^vad/ - [L]
+RewriteRule ^ckeditor/ - [L]
+RewriteRule ^configurations/ - [L]
+RewriteRule ^css/ - [L]
+RewriteRule ^fichiers/ - [L]
+RewriteRule ^javascript/ - [L]
+RewriteRule ^phpMyAdmin/ - [L]
+RewriteRule ^webmail/ - [L]
+
+
+RewriteCond %{HTTP_HOST} ^monespacecuisson.com [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^my-cooking-zone.eu [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^mon-espace-cuisson.eu [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^my-cooking-zone.us [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^mon-espace-cuisson.ch [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^mon-espace-cuisson.fr [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^mon-espace-cuisson.be [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^my-cooking-zone.co.uk [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^mon-espace-cuisson.lu [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+
+
+
+RewriteCond %{HTTP_HOST} ^www.monespacecuisson.com [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www.my-cooking-zone.eu [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www.mon-espace-cuisson.eu [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www.my-cooking-zone.us [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www.mon-espace-cuisson.ch [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www.mon-espace-cuisson.fr [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www.mon-espace-cuisson.be [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www.my-cooking-zone.co.uk [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www.mon-espace-cuisson.lu [NC]
+RewriteRule ^(.*)$ https://www.mon-espace-cuisson.com/$1 [R=301,L]
+
+
+
+
+#RewriteRule ^cde2.php$ /maintenance.html [R=302,L]
+# RewriteRule ^FR/(.*)$ /$1 [R=301,L]
+RewriteRule ^index.ht(.*)$ / [R=301,L]
+RewriteRule ^index.php$ / [R=301,L]
+
+## Redirections urls ##
+RewriteRule ^pianos-de-cuisson-cat,32.htm$ /piano-de-cuisson.htm [R=301,L]
+RewriteRule ^accessoires-pour-pianos-de-cuisson-et-cuisinieres-cat,107.htm$ /cuisiniere-piano-cuisson/accessoires-piano-cuisiniere.htm [R=301,L]
+RewriteRule ^tables-de-cuisson-a-induction-cat,28.htm$ /plaque-de-cuisson/plaque-induction.htm [R=301,L]
+RewriteRule ^tables-de-cuisson-mixtes-cat,30.htm$ /plaque-de-cuisson/plaque-mixte.htm [R=301,L]
+RewriteRule ^dominos-table-de-cuisson-cat,48.htm$ /plaque-de-cuisson/domino.htm [R=301,L]
+RewriteRule ^dominos-friteuses-cat,49.htm$ /plaque-de-cuisson/domino/domino-friteuse.htm [R=301,L]
+RewriteRule ^dominos-inductions-wok-cat,83.htm$ /plaque-de-cuisson/domino/domino-induction-wok.htm [R=301,L]
+RewriteRule ^dominos-teppanyaki-cat,84.htm$ /plaque-de-cuisson/domino/domino-induction-teppanyaki.htm [R=301,L]
+RewriteRule ^tiroirs-chauffants-cat,50.htm$ /four-et-micro-ondes/tiroir-chauffant.htm [R=301,L]
+RewriteRule ^accessoires-pour-four-cat,46.htm$ /four-et-micro-ondes/accessoires-four-et-micro-ondes.htm [R=301,L]
+RewriteRule ^hottes-murales-cat,36.htm$ /hotte-cuisine/hotte-murale.htm [R=301,L]
+RewriteRule ^hottes-ilot-central-cat,37.htm$ /hotte-cuisine/hotte-ilot-central.htm [R=301,L]
+RewriteRule ^hottes-tiroirs-cat,41.htm$ /hotte-cuisine/hotte-tiroir.htm [R=301,L]
+RewriteRule ^hottes-de-plafond-cat,44.htm$ /hotte-cuisine/hotte-de-plafond.htm [R=301,L]
+RewriteRule ^hottes-de-plan-de-travail-cat,52.htm$ /hotte-cuisine/hotte-de-plan-de-travail.htm [R=301,L]
+RewriteRule ^groupes-encastrable-cat,56.htm$ /hotte-cuisine/groupe-encastrable.htm [R=301,L]
+RewriteRule ^hottes-visiere-cat,129.htm$ /hotte-cuisine/hotte-visiere.htm [R=301,L]
+RewriteRule ^hottes-d-angle-cat,134.htm$ /hotte-cuisine/hotte-d-angle.htm [R=301,L]
+RewriteRule ^accessoires-hotte/filtre-hotte-produit-entretien-cuisson.html$ /hotte-cuisine/accessoires-hotte-aspirante.htm [R=301,L]
+RewriteRule ^filtres-pour-hottes-novy-cat,71.htm$ /hotte-cuisine/accessoires-hotte-aspirante/accessoires-hotte-recyclage-NOVY.htm [R=301,L]
+RewriteRule ^filtres-pour-hottes-airlux-cat,97.htm$ /hotte-cuisine/accessoires-hotte-aspirante/accessoires-hotte-recyclage-AIRLUX.htm [R=301,L]
+RewriteRule ^filtres-pour-hottes-steel-cat,100.htm$ /hotte-cuisine/accessoires-hotte-aspirante/accessoires-hotte-recyclage-STEEL.htm [R=301,L]
+RewriteRule ^filtres-pour-hottes-ilve-cat,118.htm$ /hotte-cuisine/accessoires-hotte-aspirante/accessoires-hotte-recyclage-ILVE.htm [R=301,L]
+RewriteRule ^prolongateurs-de-cheminee-cat,38.htm$ /hotte-cuisine/accessoires-hotte-aspirante.htm [R=301,L]
+RewriteRule ^prolongateurs-de-cheminee-novy-cat,75.htm$ /hotte-cuisine/accessoires-hotte-aspirante/accessoires-hotte-installation-NOVY.htm [R=301,L]
+RewriteRule ^prolongateurs-de-cheminee-airlux-cat,94.htm$ /hotte-cuisine/accessoires-hotte-aspirante/accessoires-hotte-installation-AIRLUX.htm [R=301,L]
+RewriteRule ^prolongateurs-de-cheminee-ilve-cat,125.htm$ /hotte-cuisine/accessoires-hotte-aspirante/accessoires-hotte-installation-ILVE.htm [R=301,L]
+RewriteRule ^credences-cat,39.htm$ /hotte-cuisine/credence.htm [R=301,L]
+RewriteRule ^telecommandes-pour-hotte-cat,42.htm$ /hotte-cuisine/accessoires-hotte-aspirante.htm [R=301,L]
+RewriteRule ^tuyaux-d-evacuation-pour-hotte-novy-cat,53.htm /hotte-cuisine/accessoires-hotte-aspirante.htm [R=301,L]
+RewriteRule ^kits-recyclage-pour-hotte-cat,54.htm /hotte-cuisine/accessoires-hotte-aspirante.htm [R=301,L]
+RewriteRule ^kits-de-recyclage-pour-hotte-novy-cat,79.htm$ /hotte-cuisine/accessoires-hotte-aspirante/accessoires-hotte-recyclage-NOVY.htm [R=301,L]
+RewriteRule ^produits-d-entretien-cat,59.htm$ / [R=301,L]
+
+RewriteRule ^combines-americains-cat,101.htm$ /froid/combine-froid.htm [R=301,L]
+RewriteRule ^combines-froids-cat,108.htm$ /froid/combine-froid.htm [R=301,L]
+RewriteRule ^refrigerateurs-cat,130.htm$ /froid/refrigerateur-simple-porte.htm [R=301,L]
+RewriteRule ^lave-vaisselles-cat,102.htm$ /lavage/lave-vaisselle.htm [R=301,L]
+RewriteRule ^eviers-robinets-et-accessoires-pour-meubles-cat,89.htm$ /ameublement/evier-et-robinet.htm [R=301,L]
+RewriteRule ^pieces-detachees-novy-cat,119.htm$ /hotte-cuisine/pieces-detachees-hotte-aspirante/pieces-detachees-hotte-NOVY.htm [R=301,L]
+RewriteRule ^pieces-detachees-steel-cat,128.htm$ /four-et-micro-ondes/piece-detachees-four-et-micro-ondes/pieces-detachees-fours-STEEL.htm [R=301,L]
+RewriteRule ^rotissoires-cat,135.htm$ /four-et-micro-ondes/rotissoire.htm [R=301,L]
+RewriteRule ^barbecues-cat,103.htm$ /cuisine-exterieure/barbecue.htm [R=301,L]
+RewriteRule ^barbecues-gaz-cat,104.htm$ /cuisine-exterieure/barbecue.htm [R=301,L]
+RewriteRule ^accessoires-pour-barbecues-et-planchas-cat,114.htm$ /cuisine-exterieure/accessoires-barbecue-et-plancha.htm [R=301,L]
+RewriteRule ^accessoires-pour-barbecues-cat,115.htm$ /cuisine-exterieure/accessoires-barbecue-et-plancha.htm [R=301,L]
+RewriteRule ^plaque-de-cuisson/table-de-cuisson.html$ /plaque-de-cuisson.htm [R=301,L]
+RewriteRule ^tables-de-cuisson-gaz-cat,25.htm$ /plaque-de-cuisson.htm [R=301,L]
+RewriteRule ^four-encastrable/four-multifonction-four-micro-onde.html$ /four-micro-ondes.htm [R=301,L]
+RewriteRule ^fours-cat,33.htm$ /four-micro-ondes.htm [R=301,L]
+RewriteRule ^hotte-aspirante/hotte-cuisine.html$ /hotte.htm [R=301,L]
+RewriteRule ^hottes-sans-moteur-cat,136.htm$ /hotte.htm [R=301,L]
+RewriteRule ^frigo-lave-vaisselle/frigo-americain-lave-vaisselle.html$ /froid.htm [R=301,L]
+RewriteRule ^froid-cat,60.htm$ /froid.htm [R=301,L]
+RewriteRule ^lavage-cat,90.htm$ /lavage.htm [R=301,L]
+RewriteRule ^modules-et-meubles-de-cuisine-cat,85.htm$ /ameublement.htm [R=301,L]
+RewriteRule ^ligne-steel-genesi-cat,86.htm$ /ameublement.htm [R=301,L]
+RewriteRule ^ligne-steel-ascot-cat,87.htm$ /ameublement.htm [R=301,L]
+RewriteRule ^barbecue-electrique-plancha-gaz/barbecue-gaz-plancha-electrique.html$ /cuisine-exterieure.htm [R=301,L]
+RewriteRule ^cuisiniere-piano-cuisson/gaziniere-cuisiniere.html$ /cuisiniere-piano-cuisson.htm [R=301,L]
+RewriteRule ^cuisinieres-cat,31.htm$ /cuisiniere-piano-cuisson/gaziniere-cuisiniere.htm [R=301,L]
+RewriteRule ^cat,31,cuisinieres.htm /cuisiniere-piano-cuisson/gaziniere-cuisiniere.htm [R=301,L]
+
+####      TSI Ajout de regles pour corrections d'erreurs google webmaster tools.
+RewriteRule ^apple-app-site-association$ / [R=301,L]
+RewriteRule ^.well-known/assetlinks.json$ / [R=301,L]
+RewriteRule ^verify_trustscam_com_5eb7959ff94ee337dbfc46d080409522.html$ / [R=301,L]
+RewriteRule ^int,0,Espace-liens.html$ / [R=301,L]
+RewriteRule ^art,1186,cave-avin-$ / [R=301,L]
+RewriteRule ^-cat,.htm$ / [R=301,L] 
+####
+
+
+#### benoit : correction erreurs de duplicate content
+RewriteRule ^contacter.htm$ /contacter.html [R=301,L]
+RewriteRule ^marques-mon-espace-cuisson.html$ /toutes-nos-marques.html [R=301,L]
+RewriteRule ^hotte-cuisine/accessoires-hotte-aspirante/accessoires-hotte-JCORRADI.htm$ /hotte-cuisine/accessoires-hotte-aspirante/archambaud-m.htm  [R=301,L]
+
+
+
+
+
+
+RewriteRule ^ascreen.jpg/(.*)$ ascreen.php [L]
+
+RewriteRule ^presse?/?$ presse.php [QSA,L]
+RewriteRule ^presse/(.*)\.htm?$ presse.php?url=$1 [QSA,L]
+
+RewriteRule ^(.*)-cat,([0-9]+).htm$ /categorie.php?catid=$2 [QSA,L]
+RewriteRule ^cat,([0-9]+),(.*).htm$ /$2-cat,$1.htm [R=301,L]
+
+# redirection ancienne URL idees cadeaux sur nouvelle URL
+RewriteRule ^idees_cadeaux.html$ /idees-cadeaux.php [R=301,L]
+RewriteRule ^gift_ideas.html$ /gift-ideas.php [R=301,L]
+
+RewriteRule ^conseil.htm$ /conseil,1,quel-usage-choisir.htm [R=301,L] 
+RewriteRule ^faq.htm$ /faq,2,comment-trouver-le-produit-que-je-recherche.htm [R=301,L] 
+
+RewriteRule ^faq,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ faq.php?id=$1 [QSA,L]
+RewriteRule ^faq,([0-9]+),\.html?$ faq.php?id=$1 [QSA,L]
+RewriteRule ^((EN|FR)/)?faq,([0-9]+),\.html?$ faq.php?changelangue=$2&id=$3 [QSA,L]
+RewriteRule ^faq.html?$ faq.php [QSA,L]
+
+
+RewriteRule ^((SP|EN|FR|IT|DE)/)?op\-([0-9]+)\-.*\.html?$ opti.php?changelangue=$2&page=$3 [QSA,L] 
+RewriteRule ^((SP|EN|FR|IT|DE)/)?stats.php?$ stats.php [QSA,L] 
+RewriteRule ^((SP|EN|FR|IT|DE)/)?backtothehtml.js?$ backtothehtml.js [QSA,L] 
+RewriteRule ^((SP|EN|FR|IT|DE)/)?addProduct.php?$ addProduct.php [QSA,L]
+
+
+RewriteRule ^configurations/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/factures/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/factures_affilies/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/articles/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/bannieres/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/boutons/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/cadre_extremite/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/cadres_divers/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/categories/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/categories/DE/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/categories/EN/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/categories/FR/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/categories/IT/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/categories/SP/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/docs/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/emails_clients/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/footer/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/header/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/importcsv/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/institutionnel/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/conseil/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/langues/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/liens/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/mailing/?$ redirect.php [L]
+#RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/marques/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/news/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/newsletter/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/parts/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/player/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/player/pieces_jointes/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produits/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produits/article/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produits/br/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produits/categorie/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produits/cdc_categ/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produits/cdc_index/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produits/nouveautes_categ/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produits/nouveautes_index/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produits/promos_categ/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produits/promos_index/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produits/topventes_categ/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produits/topventes_index/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/produitsdescription/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/stocks/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/template/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/template2/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/templates/?$ redirect.php [L]
+RewriteRule ^configurations/([0-9,a-z,A-Z,-,\.]+)/images/uploads/?$ redirect.php [L]
+
+RewriteRule ^images-gallery?/?$ gallery.php [QSA,L]
+RewriteRule ^images-gallery/([0-9]+)_([0-9]+)_([0-9]+).jpg$ gallery_photo.php?id=$1&dstWidth=$2&dstHeight=$3 [QSA,L]
+RewriteRule ^images-gallery/(.*)\.htm?$ gallery.php?url=$1 [QSA,L]
+
+RewriteRule ^caviste-([0-9]+)\.html?$ /partenaires/cavistes/$1.html [R=301,L]
+RewriteRule ^partenaires-([^/]+)-([0-9]+)\.html?$ caviste.php?id=$2&type=$1 [QSA,L]
+RewriteRule ^partenaires$ categ_partenaires.php [QSA,L]
+RewriteRule ^partenaires/([^/]+)/$ caviste.php?type=$1 [QSA,L]
+RewriteRule ^partenaires/([^/]+)/([AB0-9]+)\.html?$ /partenaires/$2.html [R=301,L]
+RewriteRule ^partenaires/([AB0-9]+)\.html?$ /partenaires [R=301,L]
+RewriteRule ^marque,([0-9]+),([0-9,a-z,A-Z,\-,\ ,']+)\.html?$ marque.php?marqueid=$1 [QSA,L]
+RewriteRule ^([0-9a-zA-Z\-]+)-([0-9]+)\.html?$ marque.php?marqueid=$2 [QSA,L]
+RewriteRule ^cat,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ categorie.php?catid=$1 [QSA,L]
+RewriteRule ^((SP|EN|FR|IT|DE)/)?int,0,([0-9,a-z,A-Z,-]+)\.html?$ espace-liens.php [QSA,L]
+RewriteRule ^int,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ institutionnel.php?id=$1 [QSA,L]
+RewriteRule ^int_old,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ institutionnel_old.php?id=$1 [QSA,L]
+RewriteRule ^conseil,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ conseil.php?id=$1 [QSA,L]
+RewriteRule ^conseil_old,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ conseil_old.php?id=$1 [QSA,L]
+RewriteRule ^int,([0-9]+),\.html?$ institutionnel_old.php?id=$1 [QSA,L]
+RewriteRule ^conseil,([0-9]+),\.html?$ conseil.php?id=$1 [QSA,L]
+
+RewriteRule ^([0-9a-z\-]+)-archive\.html?$ archives.php?url=$1 [QSA,L]
+
+RewriteRule ^((SP|EN|FR|IT|DE)/)?int,([0-9]+),\.html?$ institutionnel.php?changelangue=$2&id=$3 [QSA,L] 
+RewriteRule ^((SP|EN|FR|IT|DE)/)?conseil,([0-9]+),\.html?$ conseil.php?changelangue=$2&id=$3 [QSA,L]
+RewriteRule ^((SP|EN|FR|IT|DE)/)?caviste-([0-9]+)\.html?$ caviste.php?changelangue=$2&id=$3 [QSA,L] 
+
+RewriteRule ^for,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ formu.php?formu=$1 [QSA,L]
+RewriteRule ^par,([0-9]+)\.html?$ article.php?artid=$1 [QSA,L]
+RewriteRule ^pan,([0-9]+)\.html?$ article.php?artid=$1&action=addpanier [QSA,L]
+RewriteRule ^pan,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ article.php?artid=$1&action=addpanier [QSA,L]
+RewriteRule ^art,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ article.php?artid=$1 [QSA,L]
+RewriteRule ^([0-9,a-z,A-Z,-\/]+)-art([0-9]+)\.htm$ article.php?artid=$2 [QSA,L]
+RewriteRule ^acc,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ accessoires.php?artid=$1 [QSA,L]
+RewriteRule ^(accessoires|accessories)\/([0-9,a-z,A-Z,-]+)-art([0-9]+)\.html?$ accessoires.php?artid=$3&ref=$2 [QSA,L]
+RewriteRule ^(accessoires|accessories)\/([0-9,a-z,A-Z,-]+)-([0-9]+)\.html?$ accessoires_marque.php?mid=$3 [QSA,L]
+RewriteRule ^(accessoires|accessories)\/?$ accessoires_index.php [QSA,L]
+RewriteRule ^pho,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ photo.php?artid=$1 [QSA,L]
+RewriteRule ^upl,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ upload.php?artid=$1 [QSA,L]
+RewriteRule ^art,([0-9]+)\.html?$ article.php?artid=$1&prov=admin [QSA,L]
+RewriteRule ^art,([0-9]+),\.html?$ article.php?artid=$1 [QSA,L]
+RewriteRule ^sel,([0-9]+),([0-9,.]+),([0-9,a-z,A-Z,-]+)\.html?$ article.php?artid=$1&caractvalsel=$2 [QSA,L]
+RewriteRule ^tri,([0-9]+),([0-9,a-z,A-Z,-]+),([0-9]+),([libelleFR|libelleDE|libelleEN|libelleIT|libelleSP|DESC|ASC|appro|ventes]+)\.html?$ categorie.php?catid=$1&sensorder=$4&start=$3 [QSA,L]
+RewriteRule ^tri,([0-9]+),([0-9,a-z,A-Z,-]+),([libelleFR|libelleDE|libelleEN|libelleIT|libelleSP|prix|capacite_bouteilles]+),([DESC|ASC]+)\.html?$ categorie.php?catid=$1&order=$3&sensorder=$4 [QSA,L]
+RewriteRule ^trf,([0-9]+),([0-9,a-z,A-Z,-]+),([0-9]+),([libelleFR|libelleDE|libelleEN|libelleIT|libelleSP|prix]+),([DESC|ASC]+),([0-9,=,&]+)\.html?$ categorie.php?catid=$1&order=$4&sensorder=$5&filtresup=$6&pagenumber=$3 [QSA,L]
+RewriteRule ^rec,([0-9]+),([0-9,a-z,A-Z,-]+),([0-9]+)\.html?$ rechercher.php?recherchetypeid=$1&position=$3 [QSA,L]
+RewriteRule ^register.html?$ register.php [QSA,L]
+RewriteRule ^affilier.html?$ affilier.php [QSA,L]
+RewriteRule ^affiliation.html?$ affiliation.php [QSA,L]
+RewriteRule ^index.html?$ index.php [QSA,L]
+RewriteRule ^client.html?$ client.php [QSA,L]
+RewriteRule ^contacter.html?$ contacter.php [QSA,L]
+RewriteRule ^contact.html?$ contacter.php [QSA,L]
+RewriteRule ^contact_partenaire.html?$ contacter.php?type=partenaire [QSA,L]
+RewriteRule ^contact_configurateur.html?$ contacter.php?type=configurateur [QSA,L]
+RewriteRule ^rechercher.html?$ rechercher.php [QSA,L]
+RewriteRule ^institutionnel.html?$ institutionnel.php [QSA,L]
+RewriteRule ^conseil.html?$ conseil.php [QSA,L]
+RewriteRule ^sitemap.xml?$ sitemap.php [QSA,L]
+RewriteRule ^plan_site.php?$ plan_site.php [QSA,L]
+RewriteRule ^inscriptionnewsletter.php?$ inscriptionnewsletter.php [QSA,L]
+RewriteRule ^telecharg.php?$ telecharg.php [QSA,L]
+RewriteRule ^top,([0-9]+),([0-9,a-z,A-Z,-]+)\.html?$ recapitulatifs_tops.php?top=$1 [QSA,L]
+RewriteRule ^garantie([0-9]+).pdf?$ garantiepdf.php?c=$1 [QSA,L]
+RewriteRule ^([^/]+)/categorie.php([^/]+)?$ /categorie.php$2 [R=301,L]
+RewriteRule ^([^/]+)/([^/.]+)?(\.htm|\.html)?$ switch.php?url=$0 [QSA,L]
+RewriteCond %{REQUEST_URI} !(.*)/mailing/(.*)\.html$
+RewriteCond %{REQUEST_URI} !InfoGarantie\.html
+
+RewriteRule ^promotions-electromenager-cuisine.html$ promotions.php [QSA,L]
+RewriteRule ^idees_cadeaux.html$ kdos.php?kdopage=idkdos [QSA,L]
+RewriteRule ^gift_ideas.html$ kdos.php?kdopage=idkdos [QSA,L]
+RewriteRule ^gift-ideas.php$ idees-cadeaux.php [QSA,L]
+RewriteRule ^vente_flash.html$ vente_flash.php [QSA,L]
+RewriteRule ^flash_sale.html$ vente_flash.php [QSA,L]
+RewriteRule ^venta_flash.html$ vente_flash.php [QSA,L]
+RewriteRule ^vente_privee.html$ vente_privee.php [QSA,L]
+RewriteRule ^private_sale.html$ vente_privee.php [QSA,L]
+RewriteRule ^made-in-france.html$ france.php [QSA,L]
+RewriteRule ^recherches-sur-ma-cave-a-vin$ /recherches.php?id=131 [QSA,L]
+RewriteRule ^toutes-nos-marques.html$ marques.php [QSA,L]
+RewriteRule ^marques-mon-espace-cuisson.html?$ marques.php [QSA,L]
+
+##CATEGORIES MERES#
+RewriteRule ^hotte.htm$ categorie_mere.php?catid=4 [QSA,L]
+RewriteRule ^plaque-de-cuisson.htm$ categorie_mere.php?catid=2 [QSA,L]
+RewriteRule ^four-micro-ondes.htm$ categorie_mere.php?catid=3 [QSA,L]
+RewriteRule ^cuisiniere-piano-cuisson.htm$ categorie_mere.php?catid=1 [QSA,L]
+RewriteRule ^cuisine-exterieure.htm$ categorie_mere.php?catid=5 [QSA,L]
+RewriteRule ^lavage.htm$ categorie_mere.php?catid=7 [QSA,L]
+RewriteRule ^froid.htm$ categorie_mere.php?catid=6 [QSA,L]
+RewriteRule ^ameublement.htm$ categorie_mere.php?catid=8 [QSA,L]
+
+RewriteRule ^marques-mon-espace-cuisson.html?$ marques.php [QSA,L]
+
+
+RewriteRule ^([^/]+)(\/[^/.]+)+([\/0-9]+)?(\.htm|\.html)?$ switch.php?url=$0 [QSA,L]
+
+RewriteRule ^nouveautes\.xml?$ nouveautes\.php [QSA,L]
+
+RewriteRule ^((SP|EN|FR|IT|DE)/)?plan-du-site.html?$ plan_site.php?changelangue=$2 [QSA,L] 
+
+RewriteRule ^recapitulatif.html$ cde2.php [QSA,L]
+RewriteRule ^livraison.html$ cde2.php [QSA,L]
+RewriteRule ^inscription.html$ cde2.php [QSA,L]
+
+
+RewriteRule ^images/icons/FR/([0-9]+).png$ images/icons/FR/$1.png [L]
+
+RewriteRule ^images/([0-9]+)_([0-9]+)_([0-9]+).jpg$ image.php?artid=$1&dstWidth=$2&dstHeight=$3 [QSA,L]
+RewriteRule ^images/([0-9]+)_([0-9]+)_([0-9]+)_([0-9]+).jpg$ image.php?artid=$1_$2&dstWidth=$3&dstHeight=$4 [QSA,L]
+RewriteRule ^images/(.*)$ redirect.php?param=$1 [QSA,L]
+RewriteRule ^marques/([0-9]+)_([0-9]+)_([0-9]+).jpg$ logom.php?marqueid=$1&dstWidth=$2&dstHeight=$3&test=ariel [QSA,L]
+RewriteRule ^clients/([0-9]+)_([0-9]+)_([0-9]+).jpg$ logoc.php?mcid=$1&dstWidth=$2&dstHeight=$3 [QSA,L]
+RewriteRule ^categorie/([0-9]+)_([0-9]+)_([0-9]+).jpg$ catimage.php?catid=$1&dstWidth=$2&dstHeight=$3 [QSA,L]
+
+# RewriteRule ^cave-vin.html?$ index.php [L]
+
+

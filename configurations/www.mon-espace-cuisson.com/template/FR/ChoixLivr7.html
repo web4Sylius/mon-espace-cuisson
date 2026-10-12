@@ -1,0 +1,50 @@
+<div id="livrtype7" class="frame" onclick="selectChoix(7,[?facturid])">
+
+    <div class="col-sm-2 col-md-2 hidden-xs">
+	  <img src="/images/templates/confortmes.jpg" style="max-width: 126px;">
+    </div>
+
+    <input type="radio" name="rlivrtype" id="rlivrtype7" class="col-sm-2 col-md-2 col-xs-4">
+
+    <div class="visible-xs col-sm-2 col-md-2 col-xs-4">
+	  <img src="/images/templates/confortmes.jpg" style="max-width: 150px;">
+    </div>
+
+    <div class="checkbox hidden-xs col-sm-1 col-md-1 col-lg-1" style="text-align:right;"><i class="far fa-circle"></i></div>
+    <div class="righttext col-md-9 col-sm-9 col-xs-12 no-padding">
+      <div class="frametitle">
+	<div class="text">
+	  Livraison <b>«Confort & Mise en service»</b>
+	  <div class="clear"></div>
+	  <div class="livraison">Livraison prévue aux environs du <input type="text" id="datelivr7" name="datelivr7" class="datelivr" onclick="mints=[?mints7];calendrier_show(this.id,this.value);" value="[?datelivraison7]" readonly><input type="hidden" name="datelivrorigin1" value="[?datelivraison7]"></div>
+	  <div class="clear"></div>
+		<p class="text_livr" style="font-size:16px;">Vous êtes absent ?
+	 	 <a href="javascript:void(0);" onclick="mints=[?mints2];calendrier_show('datelivr7',document.getElementById('datelivr7').value);" class="autredate"><i class="fa fa-calendar"></i>Choisir une autre date</a>
+	 	</p>
+	</div>
+
+	<div class="prix">
+	    <span class="prixlivr">[?choix7prix] TTC</span>
+	</div>
+	<div class="clear"></div>
+	<div class="text_livr">
+		- Livraison sur rendez-vous en semaine (hors week-end et jours fériés) entre 8H00 et 18H00, comprenant : transport, manutention, montée à l’étage, mise en place dans la pièce de votre choix, déballage, récupération des emballages pour destruction. Prestation recommandée pour produits lourds, passage réduit, étages, marches, escaliers, nécessité de manutention à plusieurs, récupération ancien produit,…)
+		<br>
+		Cette prestation inclus la mise en service des produits*.
+		<br><br>
+		[?typearticle_texte]
+		<i>*Sont exclus de la mise en service : tous travaux d’électricité, plomberie, gaz, maçonnerie, menuiserie, etc... soumis à responsabilité décennale ainsi que les raccords et accessoires. Attention : l’arrivée électrique et de gaz, les conduits de cheminées, les meubles de cuisine doivent être installés et adaptés et/ou opérationnels à proximité avant l’arrivée du technicien.</i>
+
+
+	</div>
+      </div>
+      
+      <div id="opts7" class="opts">
+	  <div class="opt" onclick="selectChoix(7,[?facturid]);loadform('[?langue]',1,2,'choix71',[?load_options],[?facturid],'71');"><input id="optchoix71" type="radio" onclick="selectChoix(7,[?facturid]);loadform('[?langue]',1,2,'choix71');" style="width: inherit;" value="1" name="choixlivr" class="hidden-xs"> Livraison à l'adresse de facturation</div>
+	  <div id="choix71"></div>
+	  <div class="opt" onclick="selectChoix(7,[?facturid]);loadform('[?langue]',2,2,'choix72');"><input id="optchoix72" type="radio" onclick="selectChoix(7,[?facturid]);loadform('[?langue]',2,2,'choix72');" style="width: inherit;" value="1" name="choixlivr" class="hidden-xs"> Livraison à une autre adresse (travail, voisin, ami, famille ...)</div>
+	  <div id="choix72"></div>
+      </div>
+    </div>
+    <div class="clear"></div>
+</div>

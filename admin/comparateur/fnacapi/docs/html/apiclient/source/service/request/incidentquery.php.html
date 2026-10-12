@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 07 Aug 2015 08:19:16 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
+<link rel="start" href="../../../overview-summary.html">
+
+<title>Service/Request/IncidentQuery.php (Fnac Marketplace PHP Client API Documentation)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../todo-list.html">Todo</a></li>
+<li><a href="../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../index.html" target="_top">Frames</a>
+<a href="../../../source/service/request/incidentquery.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>Service/Request/IncidentQuery.php</h1>
+<hr>
+
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #666666; font-style: italic;">/*
+<a name="line3"></a> * This file is part of the fnacMarketPlace APi Client.
+<a name="line4"></a> * (c) 2011 Fnac
+<a name="line5"></a> *
+<a name="line6"></a> * For the full copyright and license information, please view the LICENSE
+<a name="line7"></a> * file that was distributed with this source code.
+<a name="line8"></a> */</span>
+<a name="line9"></a>&nbsp;
+<a name="line10"></a><span style="color: #000000; font-weight: bold;">namespace</span> FnacApiClient\Service\Request<span style="color: #339933;">;</span>
+<a name="line11"></a>&nbsp;
+<a name="line12"></a><span style="color: #000000; font-weight: bold;">use</span> Symfony\Component\Serializer\Normalizer\NormalizerInterface<span style="color: #339933;">;</span>
+<a name="line13"></a>&nbsp;
+<a name="line14"></a><span style="color: #000000; font-weight: bold;">use</span> FnacApiClient\Type\SortOrderType<span style="color: #339933;">;</span>
+<a name="line15"></a><span style="color: #000000; font-weight: bold;">use</span> FnacApiClient\Type\StatusType<span style="color: #339933;">;</span>
+<a name="line16"></a><span style="color: #000000; font-weight: bold;">use</span> FnacApiClient\Type\BoolType<span style="color: #339933;">;</span>
+<a name="line17"></a><span style="color: #000000; font-weight: bold;">use</span> FnacApiClient\Type\UserType<span style="color: #339933;">;</span>
+<a name="line18"></a><span style="color: #000000; font-weight: bold;">use</span> FnacApiClient\Type\IncidentCloseStatusType<span style="color: #339933;">;</span>
+<a name="line19"></a><span style="color: #000000; font-weight: bold;">use</span> FnacApiClient\Type\IncidentOpenStatusType<span style="color: #339933;">;</span>
+<a name="line20"></a>&nbsp;
+<a name="line21"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line22"></a> * IncidentQuery Service's definition.
+<a name="line23"></a> *
+<a name="line24"></a> * @author     Fnac
+<a name="line25"></a> * @version    1.0.0
+<a name="line26"></a> */</span>
+<a name="line27"></a>&nbsp;
+<a name="line28"></a><span style="color: #000000; font-weight: bold;">class</span> IncidentQuery <span style="color: #000000; font-weight: bold;">extends</span> Query
+<a name="line29"></a><span style="color: #009900;">&#123;</span>
+<a name="line30"></a>    <span style="color: #000000; font-weight: bold;">const</span> ROOT_NAME <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;incidents_query&quot;</span><span style="color: #339933;">;</span>
+<a name="line31"></a>    <span style="color: #000000; font-weight: bold;">const</span> XSD_FILE <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;IncidentsQueryService.xsd&quot;</span><span style="color: #339933;">;</span>
+<a name="line32"></a>    <span style="color: #000000; font-weight: bold;">const</span> CLASS_RESPONSE <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;FnacApiClient\Service<span style="color: #000099; font-weight: bold;">\R</span>esponse\IncidentQueryResponse&quot;</span><span style="color: #339933;">;</span>
+<a name="line33"></a>&nbsp;
+<a name="line34"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$sort_by</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line35"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$status</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line36"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$orders</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line37"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$types</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line38"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$incidents_id</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line39"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$opened_by</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line40"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$closed_by</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line41"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$waiting_for_seller_answer</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line42"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$closed_statuses</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line43"></a>&nbsp;
+<a name="line44"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> normalize<span style="color: #009900;">&#40;</span>NormalizerInterface <span style="color: #000088;">$normalizer</span><span style="color: #339933;">,</span> <span style="color: #000088;">$format</span><span style="color: #339933;">,</span> <span style="color: #000088;">$properties</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span>
+<a name="line45"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line46"></a>        <span style="color: #000088;">$data</span> <span style="color: #339933;">=</span> parent<span style="color: #339933;">::</span><span style="color: #004000;">normalize</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$normalizer</span><span style="color: #339933;">,</span> <span style="color: #000088;">$format</span><span style="color: #339933;">,</span> <span style="color: #000088;">$properties</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line47"></a>&nbsp;
+<a name="line48"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">sort_by</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line49"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'sort_by'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">sort_by</span><span style="color: #339933;">;</span>
+<a name="line50"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line51"></a>&nbsp;
+<a name="line52"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">status</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line53"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'status'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">status</span><span style="color: #339933;">;</span>
+<a name="line54"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line55"></a>&nbsp;
+<a name="line56"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">opened_by</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line57"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'opened_by'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">opened_by</span><span style="color: #339933;">;</span>
+<a name="line58"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line59"></a>&nbsp;
+<a name="line60"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">closed_by</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line61"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'closed_by'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">closed_by</span><span style="color: #339933;">;</span>
+<a name="line62"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line63"></a>&nbsp;
+<a name="line64"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">waiting_for_seller_answer</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line65"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'waiting_for_seller_answer'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">waiting_for_seller_answer</span><span style="color: #339933;">;</span>
+<a name="line66"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line67"></a>&nbsp;
+<a name="line68"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">orders</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line69"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'orders'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">orders</span><span style="color: #339933;">;</span>
+<a name="line70"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line71"></a>&nbsp;
+<a name="line72"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">types</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line73"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'types'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">types</span><span style="color: #339933;">;</span>
+<a name="line74"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line75"></a>&nbsp;
+<a name="line76"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">closed_statuses</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line77"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'closed_statuses'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">closed_statuses</span><span style="color: #339933;">;</span>
+<a name="line78"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line79"></a>&nbsp;
+<a name="line80"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><a href="http://www.php.net/is_null"><span style="color: #990000;">is_null</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">incidents_id</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line81"></a>            <span style="color: #000088;">$data</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'incidents_id'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">incidents_id</span><span style="color: #339933;">;</span>
+<a name="line82"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line83"></a>&nbsp;
+<a name="line84"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$data</span><span style="color: #339933;">;</span>
+<a name="line85"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line86"></a>&nbsp;
+<a name="line87"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line88"></a>     * @param string $sort_by : In which order you want to sort your result
+<a name="line89"></a>     */</span>
+<a name="line90"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setSortBy<span style="color: #009900;">&#40;</span><span style="color: #000088;">$sort_by</span><span style="color: #009900;">&#41;</span>
+<a name="line91"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line92"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">sort_by</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$sort_by</span><span style="color: #339933;">;</span>
+<a name="line93"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line94"></a>&nbsp;
+<a name="line95"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line96"></a>     * @see FnacApiClient\Type\StatusType
+<a name="line97"></a>     *
+<a name="line98"></a>     * @param string $status : Status of incident
+<a name="line99"></a>     */</span>
+<a name="line100"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setStatus<span style="color: #009900;">&#40;</span><span style="color: #000088;">$status</span><span style="color: #009900;">&#41;</span>
+<a name="line101"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line102"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">status</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$status</span><span style="color: #339933;">;</span>
+<a name="line103"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line104"></a>&nbsp;
+<a name="line105"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line106"></a>     * @param string $opened_by : Who have create this incident
+<a name="line107"></a>     */</span>
+<a name="line108"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setOpenedBy<span style="color: #009900;">&#40;</span><span style="color: #000088;">$opened_by</span><span style="color: #009900;">&#41;</span>
+<a name="line109"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line110"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">opened_by</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$opened_by</span><span style="color: #339933;">;</span>
+<a name="line111"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line112"></a>&nbsp;
+<a name="line113"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line114"></a>     * @param string $closed_by : Who have closed this incident
+<a name="line115"></a>     */</span>
+<a name="line116"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setClosedBy<span style="color: #009900;">&#40;</span><span style="color: #000088;">$closed_by</span><span style="color: #009900;">&#41;</span>
+<a name="line117"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line118"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">closed_by</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$closed_by</span><span style="color: #339933;">;</span>
+<a name="line119"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line120"></a>&nbsp;
+<a name="line121"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line122"></a>     * @param string $waiting_for_seller_answer : Filter incident where i didn't give an answer
+<a name="line123"></a>     */</span>
+<a name="line124"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setWaitingForSellerAnswer<span style="color: #009900;">&#40;</span><span style="color: #000088;">$waiting_for_seller_answer</span><span style="color: #009900;">&#41;</span>
+<a name="line125"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line126"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">waiting_for_seller_answer</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$waiting_for_seller_answer</span><span style="color: #339933;">;</span>
+<a name="line127"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line128"></a>&nbsp;
+<a name="line129"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line130"></a>     * @param array $orders : Order columns
+<a name="line131"></a>     */</span>
+<a name="line132"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setOrders<span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a> <span style="color: #000088;">$orders</span><span style="color: #009900;">&#41;</span>
+<a name="line133"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line134"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">orders</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$orders</span><span style="color: #339933;">;</span>
+<a name="line135"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line136"></a>&nbsp;
+<a name="line137"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line138"></a>     * @param array $types : Types of incidents
+<a name="line139"></a>     */</span>
+<a name="line140"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setTypes<span style="color: #009900;">&#40;</span><span style="color: #000088;">$types</span><span style="color: #009900;">&#41;</span>
+<a name="line141"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line142"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">types</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$types</span><span style="color: #339933;">;</span>
+<a name="line143"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line144"></a>&nbsp;
+<a name="line145"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line146"></a>     * @param array $closed_statuses : Closed types of incidents
+<a name="line147"></a>     */</span>
+<a name="line148"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setClosedStatuses<span style="color: #009900;">&#40;</span><span style="color: #000088;">$closed_statuses</span><span style="color: #009900;">&#41;</span>
+<a name="line149"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line150"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">closed_statuses</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$closed_statuses</span><span style="color: #339933;">;</span>
+<a name="line151"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line152"></a>&nbsp;
+<a name="line153"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line154"></a>     * @param array $incidents_id : List of incident id to get
+<a name="line155"></a>     */</span>
+<a name="line156"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> setIncidentsId<span style="color: #009900;">&#40;</span><span style="color: #000088;">$incidents_id</span><span style="color: #009900;">&#41;</span>
+<a name="line157"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line158"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">incidents_id</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$incidents_id</span><span style="color: #339933;">;</span>
+<a name="line159"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line160"></a>&nbsp;
+<a name="line161"></a><span style="color: #009900;">&#125;</span>
+<a name="line162"></a>&nbsp;</pre>
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../../overview-files.html">Files</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../todo-list.html">Todo</a></li>
+<li><a href="../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../index.html" target="_top">Frames</a>
+<a href="../../../source/service/request/incidentquery.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

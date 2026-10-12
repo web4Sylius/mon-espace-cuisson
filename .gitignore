@@ -1,0 +1,41 @@
+# IDE
+.idea/
+
+# Logs et dumps d'erreurs
+*.log
+dberror*.txt
+dbslow*.txt
+dbdelete.txt
+
+# Dumps SQL
+*.sql
+!workshop/**/*.sql
+
+# Fichiers de config contenant des identifiants (mots de passe BDD, mail, API)
+configurations/*/config.php
+configurations/*/config_mysql.php
+configurations/*/config_mail.php
+configurations/*/config_save.php
+
+# Contenus uploadés / générés
+configurations/*/articlefiles/
+configurations/*/cache/
+admin/userfiles/
+admin/fournfiles/
+admin/csv/
+admin/mail/
+
+# Dépendances
+vendor/
+node_modules/
+admin/sav/[0-9][0-9][0-9][0-9]/
+
+# Polices lourdes
+images/*.TTF
+images/*.ttf
+
+# Secrets centralisés (voir secrets.example.php)
+/secrets.php
+
+# Exports de données (commandes / clients)
+admin/export/**/*.csv

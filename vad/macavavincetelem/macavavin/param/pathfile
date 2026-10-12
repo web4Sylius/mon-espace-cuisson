@@ -1,0 +1,35 @@
+#########################################################################
+#
+#	Pathfile 
+#
+#	Liste des fichiers parametres utilises par le module de paiement
+#
+#########################################################################
+
+# ------------------------------------------------------------------------
+# Chemin vers le répertoire des logos depuis le web alias  
+# Exemple pour le répertoire www.e-transactions.com/e-transactions/payment/logo/
+# indiquer:
+# ------------------------------------------------------------------------
+#
+D_LOGO!/vad/macavavin/logo/!
+#
+# --------------------------------------------------------------------------
+#  Fichiers paramètres liés a l'api mercanet paiement	
+# --------------------------------------------------------------------------
+#
+# fichier des  paramètres e-transactions
+#
+F_DEFAULT!/var/www/vhosts/ma-cave-a-vin.fr/vad/param/parmcom.e-transactions!
+#
+# fichier paramètre commercant
+#
+F_PARAM!/var/www/vhosts/ma-cave-a-vin.fr/vad/param/parmcom!
+#
+# certificat du commercant
+#
+F_CERTIFICATE!/var/www/vhosts/ma-cave-a-vin.fr/vad/param/certif!
+#
+# --------------------------------------------------------------------------
+# 	end of file
+# --------------------------------------------------------------------------

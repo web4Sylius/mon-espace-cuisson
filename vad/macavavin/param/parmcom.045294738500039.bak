@@ -1,0 +1,25 @@
+###############################################################################
+#
+#	Fichier des parametres du commercant
+#
+#	Remarque :	Ce fichier parametre est sous la responsabilite du
+#				commercant
+#
+###############################################################################
+
+
+# URL de retour automatique de la reponse du paiement
+
+AUTO_RESPONSE_URL!https://www.ma-cave-a-vin.fr/VAD/macavavin/call_autoresponse.php!
+
+# URL de retour suite a paiement refuse
+
+CANCEL_URL!https://www.ma-cave-a-vin.fr/?action=delpanier_complet!
+
+# URL de retour suite a paiement accepte
+
+RETURN_URL!https://www.ma-cave-a-vin.fr/?action=delpanier_complet!
+
+# END OF FILE
+
+

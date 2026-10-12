@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !index.php
+RewriteRule ^(\d{1,4})/?(.*)$ index.php?file=$2&year=$1 [L]
+#RewriteRule (.*) index.php?file=$1 [L]

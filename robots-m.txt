@@ -1,0 +1,19 @@
+User-agent: *
+Crawl-delay: 10
+
+User-agent: *
+Disallow:
+
+User-agent: TurnitinBot
+Disallow: / 
+
+User-agent: ConveraCrawler
+Disallow: /
+
+User-agent: QuepasaCreep 
+Disallow: / 
+
+User-agent: Jetbot 
+Disallow: /
+
+Sitemap: http://m.ma-cave-a-vin.fr/sitemap.xml

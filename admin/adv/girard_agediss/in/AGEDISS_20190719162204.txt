@@ -1,0 +1,6 @@
+2019/07/05|150890bis|315050112|FOURNIER Julien|33000|70333|LIV CFM|Livraison conforme|2019/07/18|0||http://webtracking.girard-agediss.com/tracking-acilyon-315050112.html
+2019/07/05|150890bis|315050112|FOURNIER Julien|33000|70333|POD CFM|BL numérisé|2019/07/19|0||http://webtracking.girard-agediss.com/tracking-acilyon-315050112.html
+2019/07/12|152162|315065762|GUIONNET Baptiste|8277-|70544|AAR CFM|Reception conforme|2019/07/19|0||http://webtracking.girard-agediss.com/tracking-acilyon-315065762.html
+2019/07/16|152247|315072756|SIMONNET corinne|83700|7013A|AAR AVA|Reception avec reserves|2019/07/19|0|de nombreux coups sur le colis qui génèrent un emballage très abîmé. difficile de voir l'état du produit a lintérieur.|http://webtracking.girard-agediss.com/tracking-acilyon-315072756.html
+2019/07/19|152334|315078702|ENTZ LAURE|17000|70791|INI INF|Arrivee info|2019/07/19|0||http://webtracking.girard-agediss.com/tracking-acilyon-315078702.html
+2019/07/19|RETOURACILYON|315078768|MR MORAND|69800|70015|INI INF|Arrivee info|2019/07/19|0||http://webtracking.girard-agediss.com/tracking-acilyon-315078768.html

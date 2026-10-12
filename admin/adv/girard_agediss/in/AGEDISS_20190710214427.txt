@@ -1,0 +1,3 @@
+2019/07/01|151706|315038245|HALET Eric|85570|70791|RDV CCL|Confirmation Creneaux de Livraison|2019/07/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038245.html
+2019/07/01|151700|315038246|RATAJCZAK HORST|17590|70791|RDV PRI|RDV pris|2019/07/12|0|20190712|http://webtracking.girard-agediss.com/tracking-acilyon-315038246.html
+2019/07/01|151673|315038408|RIBADEAU-DUMAS Corentin|49460|70441|RDV PRI|RDV pris|2019/07/12|0|20190712|http://webtracking.girard-agediss.com/tracking-acilyon-315038408.html

@@ -1,0 +1,55 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://fpcs.gls-group.eu/v1/ShipmentProcessing/types" xmlns:com="http://fpcs.gls-group.eu/v1/Common">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <typ:ShipmentRequestData>
+            <typ:Shipment>
+                <typ:ShippingDate>2024-06-19</typ:ShippingDate>
+                
+                <typ:Product>Parcel</typ:Product>
+                <typ:Consignee>
+                    <com:Address>
+                        <com:Name1>PLATTEEUW Elodie</com:Name1>
+                        <com:CountryCode>FR</com:CountryCode>
+                        <com:ZIPCode>59840</com:ZIPCode>
+                        <com:City>PREMESQUES</com:City>
+                        <com:Street>3 rue du Leinster</com:Street>
+                        <com:eMail>E.achin59@gmail.com</com:eMail>
+                        
+                        <com:MobilePhoneNumber>0671985437</com:MobilePhoneNumber>
+                    </com:Address>
+                </typ:Consignee>
+                <typ:Shipper>
+                    <com:ContactID>250aaamgYm</com:ContactID>
+                    <com:AlternativeShipperAddress>
+                        <com:Name1>AJD - Mon Espace Cuisson</com:Name1>
+                        <com:CountryCode>FR</com:CountryCode>
+                        <com:ZIPCode>69009</com:ZIPCode>
+                        <com:City>Lyon</com:City>
+                        <com:Street>18, rue des deux amants</com:Street>
+                    </com:AlternativeShipperAddress>
+                </typ:Shipper>
+                <typ:ShipmentUnit>
+                    <typ:ShipmentUnitReference>298937</typ:ShipmentUnitReference>
+                    <typ:Weight>4.00</typ:Weight>
+                    <typ:Note1>Nouveau lotissement ecrire 143 rue Gabriel PÃ©ri Ã</typ:Note1>
+                    <typ:Note2>  Premesques sur GPS puis 3eme maison sur la gauch</typ:Note2>
+                </typ:ShipmentUnit>
+                <typ:Service>
+                    <com:Service>
+                        <com:ServiceName>service_flexdelivery</com:ServiceName>
+                    </com:Service>
+                </typ:Service>
+            </typ:Shipment>
+            <typ:PrintingOptions>
+                <typ:ReturnLabels>
+                    <typ:TemplateSet>NONE</typ:TemplateSet>
+                    <typ:LabelFormat>PDF</typ:LabelFormat>
+                </typ:ReturnLabels>
+            </typ:PrintingOptions>
+            <typ:ReturnOptions>
+                <typ:ReturnPrintData>true</typ:ReturnPrintData>
+                <typ:ReturnRoutingInfo>true</typ:ReturnRoutingInfo>
+            </typ:ReturnOptions>
+        </typ:ShipmentRequestData>
+    </soapenv:Body>
+</soapenv:Envelope>

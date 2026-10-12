@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /$
+Allow: /conseil
+Disallow: /
+
+Sitemap: https://pro.ma-cave-a-vin.fr/sitemap.php

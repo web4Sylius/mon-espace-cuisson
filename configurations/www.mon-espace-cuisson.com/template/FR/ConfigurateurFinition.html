@@ -1,0 +1,49 @@
+<div class="question col-xs-11" onclick="show_question('finition')">
+<div class="col-xs-12">
+    <div class="col-sm-8 col-xs-12">
+      <h2>Quel niveau de gamme souhaitez-vous pour votre cave à vin ?</h2>
+      <div class="reponse" id="repfinition"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btnfinition" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnrespfinition" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+	<ul class="prop">
+		<li class="li5 [?finition1class]" onclick="clickli(this,'finition1')">
+		  <h3><span>Classique</span></h3>
+		  <p>Une cave simple, fonctionnelle et peu coûteuse</p>
+		  <img src="[?finitionimg1]" alt="" class="hidden-xs">
+		  <div class="checkbox hidden-xs"></div>
+		  <input type="checkbox" id="finition1" name="finition" value="1" onclick="clickli(this,'finition1');show_next('finition')" [?checkfinition1] class="hidden-xs">
+		</li>
+		<li class="li5 [?finition2class]" onclick="clickli(this,'finition2')">
+		  <h3><span>Grand Public</span></h3>
+		  <p>Une cave de milieu de gamme avec un rapport qualité/prix intéressant</p>
+		  <img src="[?finitionimg2]" alt="" class="hidden-xs">
+		  <div class="checkbox hidden-xs"></div>
+		  <input type="checkbox" id="finition2" name="finition" value="2" onclick="clickli(this,'finition2');show_next('finition')" [?checkfinition2] class="hidden-xs">
+		</li>
+		<li class="li5 [?finition3class]" onclick="clickli(this,'finition3')">
+		  <h3><span>Haut de gamme-prestige</span></h3>
+		  <p>Une cave haut de gamme, à la pointe de la technologie et aux finitions soignées</p>
+		  <img src="[?finitionimg3]" alt="" class="hidden-xs">
+		  <div class="checkbox hidden-xs"></div>
+		  <input type="checkbox" id="finition3" name="finition" value="3" onclick="clickli(this,'finition3');show_next('finition')" [?checkfinition3] class="hidden-xs">
+		</li>
+		<li class="li5 [?finition5class]" onclick="clickli(this,'finition5')">
+		  <h3><span>Je ne sais pas ou peu importe</span></h3>
+		  <p class="hidden-xs">&nbsp;</p>
+		  <img src="/images/configurateur/finition5.jpg" alt="" class="hidden-xs">
+		  <div class="checkbox hidden-xs"></div>
+		  <input type="checkbox" id="finition5" name="finition" value="0" onclick="clickli(this,'finition5');uncheck('finition',this);show_next('finition')" [?checkfinition5] class="hidden-xs">
+		</li>
+	</ul>
+	<div id="nextfinition" class="nextbtn" onclick="clickbtn(this,'finition',return_checkboxes('finition'))">Étape suivante <i class="fas fa-chevron-right"></i></div>
+</div>

@@ -1,0 +1,60 @@
+<div class="fil_ariane" vocab="https://schema.org/" typeof="BreadcrumbList">
+    <span property="itemListElement" typeof="ListItem">
+        <a property="item" typeof="WebPage" href="/" >
+            <span property="name">Accueil</span>
+        </a>
+        <meta property="position" content="1">
+    </span>
+    [?fil_ariane]
+</div>
+<div class="first_bloc categorie_desc col-xs-12 no-padding">
+	<div class="description_promo">
+		<h1 style="padding-left: 15px;">Plan du site</h1>
+		[?description]
+	</div>
+</div>
+<div class="clear"></div>
+<div class="col-xs-12"> <h2>Toutes les catégories</h2></div>
+<div class="sitemap_bloc categ_sitemap col-xs-12 no-padding">
+    [?categories]
+    <div class="clear"></div>
+    <div class="bloclink">
+      <a href="[?promourl]">Promotions</a>
+      <br><a href="idees_cadeaux.html">Idées cadeaux</a>
+      <br><a href="made-in-france.html">Made in France</a>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="sitemap_bloc col-xs-12">
+    <h2><a href="toutes-nos-marques.html">Nos marques</a></h2>
+    [?marques]
+    <div class="clear"></div>
+</div>
+
+<div class="sitemap_bloc col-xs-12">
+    <h2>Tous nos services</h2>
+    [?institutionnelles1]
+    <div class="clear"></div>
+</div>
+
+<div class="sitemap_bloc col-xs-12">
+    <h2>Nos experts vous conseillent</h2>
+    [?conseil2]
+    <div class="clear"></div>
+</div>
+
+<!--<div class="sitemap_bloc col-xs-12">
+    <h2>On parle de Mon Espace Cuisson</h2>
+    [?presse2]
+    <div class="clear"></div>
+</div>-->
+<script type="text/javascript" async>
+    $( document ).ready(function() {
+        $('.categ_sitemap').masonry({
+            itemSelector: '.bloclink',
+            columnWidth: '.bloclink',
+            percentPosition: true
+        });
+    });
+</script>

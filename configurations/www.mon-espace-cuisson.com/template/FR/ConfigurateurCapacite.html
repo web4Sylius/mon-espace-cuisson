@@ -1,0 +1,22 @@
+<div class="question col-xs-12" onclick="show_question('capacite')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Capacité ? <small>(Plusieurs choix possibles)</small></h2>
+      <div class="reponse" id="repcapacite"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btncapacite" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnrespcapacite" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<ul class="prop">
+	[?listecapacite]
+	<div class="clear"></div>
+</ul>
+<div class="clear"></div>
+<div id="nextcapacite" class="nextbtn" onclick="clickbtn(this,'capacite',return_checkboxes('capacite'));">Étape suivante <i class="fas fa-chevron-right"></i></div>

@@ -1,0 +1,19 @@
+</div><div class="bloc_filtres">
+	<div id="affinage_xs" class="affinage visible-xs" onclick="display_criteres()"><p>AFFINER VOTRE RECHERCHE <i class="fa fa-chevron-down"></i></p></div>
+[?filtre_selection]
+
+<div id="affinage" class="affinage hidden-xs" onclick="display_affinage()"><p>AFFINER VOTRE RECHERCHE <i class="fa fa-chevron-down"></i></p></div>
+
+<div class="ligne">
+	[?les_filtres]
+</div>
+<script type="text/javascript">
+		function afficheCrit(){
+		$('.categorie_desc .selection').toggleClass('afficheCrit');
+		$('.categorie_desc .ligne').toggleClass('afficheCrit');
+		$('.affinage.visible-xs p').toggleClass('filtre-hover');
+		$('.affinage.visible-xs p i').toggleClass('fa-chevron-down');
+		$('.affinage.visible-xs p i').toggleClass('fa-chevron-up');
+	}
+</script>
+[?titre_promo_gamme]

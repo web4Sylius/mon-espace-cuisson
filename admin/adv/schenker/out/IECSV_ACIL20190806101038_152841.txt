@@ -1,0 +1,2 @@
+S;20190807;0169;01;697474;ACILYON;;LABROSSE-POPULO Sylvain;Grande Pharmacie de la Vallée;;125 Route Nationale 7;;;FR;38150;SALAISE SUR SANNE;LABROSSE-POPULO Sylvain;0626477664;15436941;137129;P;1;1;;;63;;;0.514;;;;;;;Cave à vin;SAS de livraison sur face latérale gauche du CC quand livreur face au CC;;;;;;;
+UM;PCI;;;*3826221900269747400152841001300;63;;;;;;;

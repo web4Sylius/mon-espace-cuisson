@@ -1,0 +1,4 @@
+2019/07/25|152478|315089576|CESARI Christian|20166|70205|RDV PRI|RDV pris|2019/09/17|0|20190917|http://webtracking.girard-agediss.com/tracking-acilyon-315089576.html
+2019/08/20|153181|315136809|VELLE Edouard|57100|70544|LIV CFM|Livraison conforme|2019/09/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-315136809.html
+2019/08/20|153181|315136809|VELLE Edouard|57100|70544|POD CFM|BL numérisé|2019/09/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-315136809.html
+2019/08/23|153321|315143829|AMIEL David|11560|70313|AAR CFM|Reception conforme|2019/09/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-315143829.html

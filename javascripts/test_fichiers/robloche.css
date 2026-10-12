@@ -1,0 +1,482 @@
+/*
+	Feuille de style faite par Rodolphe Breton
+	(c) 2004-2005
+*/
+
+body {
+	margin:           5px;
+	padding:          0px;
+	background-color: #FFFFF5;
+	background-color: #CCCCCC;
+	color:            #000000;
+	font-family:      Verdana, Geneva, Helvetica, Arial, sans-serif;
+	font-size:        12px;
+	text-align:       justify;
+}
+
+img {
+	border:           none;
+	vertical-align:   middle;
+}
+
+img.error {
+	border:           2px black dashed;
+}
+
+.Spacer {
+	clear:            both;
+}
+
+.Header {
+	text-indent:      1em;
+	width:            60%;
+	margin:           0px auto 5px auto;
+	padding:          5px;
+	background-color: #F5FAFF;
+	border:           2px solid #000088;
+}
+
+.PageIE {
+	text-align:       center;
+}
+
+.Page {
+	width:            80%;
+	margin:           0px auto;
+	text-align:       left;
+}
+
+.VisiblePage {
+	width:            80%;
+	margin:           0px auto;
+	text-align:       left;
+	padding:          5px;
+	background-color: #F5FAFF;
+	border:           2px solid #000088;
+}
+
+div.Navi {
+	border-left:      1px solid #EEEEF1;
+	border-top:       1px solid #EEEEF1;
+	border-right:     1px solid #111114;
+	border-bottom:    1px solid #111114;
+	background-color: #54609E;
+	color:            #F5FAFF;
+	font-weight:      bold;
+	height:           16px;
+	margin:           1px 0px 1px 0px;
+	padding:          2px;
+}
+
+div.BigRow0 {
+	border-left:      1px solid #EEEEF1;
+	border-top:       1px solid #EEEEF1;
+	border-right:     1px solid #111114;
+	border-bottom:    1px solid #111114;
+	background-color: #54609E;
+	color:            #F5FAFF;
+	font-weight:      bold;
+	width:            90%;
+	text-align:       center;
+	margin:           1px auto;
+	padding:          0px;
+}
+
+div.BigRow1 {
+	width:            90%;
+	text-align:       center;
+	margin:           1px auto;
+	padding:          0px;
+	background-color: #F5FAFF;
+	border-top:       1px solid #F5FAFF;
+	border-bottom:    1px solid #F5FAFF;
+}
+
+div.BigRow2 {
+	width:            90%;
+	text-align:       center;
+	margin:           1px auto;
+	padding:          0px;
+	background-color: #BFDDFF;
+	border-top:       1px solid #BFDDFF;
+	border-bottom:    1px solid #BFDDFF;
+}
+
+div.Row {
+	clear:            both;
+}
+
+div.Row .Left {
+	float:            left;
+	text-align:       left;
+}
+
+div.Row .Right {
+	float:            right;
+	text-align:       right;
+}
+
+.ScriptLink {
+	float:            left;
+	width:            10%;
+	margin:           0px 0px 1px 0px;
+	padding:          1px;
+	text-align:       center;
+}
+
+.ScriptDescription {
+	float:            left;
+	width:            70%;
+	margin:           0px 0px 1px 0px;
+	padding:          1px;
+	text-align:       left;
+}
+
+.ScriptCompatibility {
+	float:            right;
+	width:            15%;
+	margin:           0px 0px 1px 0px;
+	padding:          1px;
+	text-align:       center;
+}
+
+.CompAll {
+	width:            60px;
+	text-align:       center;
+	margin:           0px auto;
+}
+
+.CompIE {
+	float:            left;
+	width:            20px;
+}
+
+.CompMozilla {
+	float:            left;
+	width:            20px;
+}
+
+.CompOpera {
+	float:            left;
+	width:            20px;
+}
+
+.Centered {
+	text-align:       center;
+}
+
+.Canard {
+	text-align:       center;
+	margin:           5px auto 5px auto;
+}
+
+.Validators {
+	margin-top:       5px;
+	text-align:       center;
+}
+
+.CanardText {
+	float:            right;
+	text-align:       right;
+	font-size:        9px;
+}
+
+.Hint {
+	cursor:           help;
+}
+
+acronym {
+	border-bottom:    1px dashed;
+	cursor:           help;
+}
+
+.Left {
+	text-align:       left;
+}
+
+.Right {
+	text-align:       right;
+}
+
+p {
+	margin:           5px 0px;
+	padding:          0px;
+	color:            #000000;
+	font-family:      Verdana, Geneva, Helvetica, Arial, sans-serif;
+	font-size:        12px;
+	text-align:       justify;
+	text-indent:      0em;
+	line-height:      17px;
+}
+
+p.Left {
+	text-align:       left;
+	text-indent:      0em;
+}
+
+p.Right {
+	text-align:       right;
+	text-indent:      0em;
+}
+
+p.Center {
+	text-align:       center;
+	text-indent:      0em;
+}
+
+.Small {
+	font-size:        10px;
+}
+
+.Warning {
+	border:           1px solid #FF0000;
+	color:            #FF0000;
+	background:       #FFEEEE;
+	width:            50%;
+	margin:           8px auto;
+	padding:          5px;
+	text-indent:      1em;
+}
+
+.Section {
+	font-size:        14px;
+	font-weight:      bold;
+	background:       #BFDDFF;
+	border:           0px solid #000099;
+	border-width:     1px 0px;
+	padding:          1px 2px;
+	margin:           20px 0px 5px 0px;
+}
+
+.SubSection {
+	font-size:        14px;
+	font-weight:      bold;
+	text-indent:      0em;
+	margin:           15px 0px 5px 1em;
+}
+
+.CodeLine {
+	font-family:       "Courier New", courier, monospace;
+	font-size:         11px;
+	font-weight:       bold;
+	color:             gray;
+}
+
+.CodeScriptInside {
+	font-family:      "Courier New", courier, monospace;
+	font-size:        11px;
+	color:            #880000;
+	background-color: #FFEAEA;
+	padding:          0px 1px;
+}
+
+.FileName {
+	font-family:      "Courier New", courier, monospace;
+	font-size:        12px;
+	font-weight:      normal;
+	color:            #666666;
+}
+
+.HighlightGreen {
+	font-weight:      bold;
+	color:            #008800;
+}
+
+.ButtonS {
+	width:            50px;
+}
+
+.ButtonL {
+	width:            100px;
+}
+
+.ButtonXL {
+	width:            150px;
+}
+
+a.Basic:link, a.Basic:visited {
+	color:            #000088;
+	text-decoration:  none;
+	text-indent:      0em;
+	font-weight:      bold;
+	margin:           0px;
+	padding:          0px;
+}
+
+a.Basic:hover, a.Basic:active {
+	background-color: #BFDDFF;
+	text-decoration:  none;
+}
+
+a.Toggle:link, a.Toggle:visited {
+	background-color: #EEEEEE;
+	color:            #000088;
+	font-family:      "Courier New", courier, monospace;
+	font-weight:      bold;
+	text-align:       left;
+	text-decoration:  none;
+	text-indent:      0em;
+	margin:           0px;
+	padding:          0px;
+}
+
+a.Toggle:hover, a.Toggle:active {
+	text-decoration:  none;
+	color:            #FFC258;
+}
+
+div.Navi a:link, div.Navi a:visited {
+	color:            #FFFFFF;
+	text-decoration:  none;
+	text-indent:      0em;
+	font-weight:      bold;
+	margin:           0px;
+}
+
+div.Navi a:hover, div.Navi a:active {
+	color:            #FFC258;
+	text-decoration:  none;
+}
+
+span.ScriptLink a:link, span.ScriptLink a:visited {
+	color:            #000088;
+	text-decoration:  none;
+	text-indent:      0em;
+	font-weight:      bold;
+	margin:           0px;
+}
+
+span.ScriptLink a:hover, span.ScriptLink a:active {
+	color:            #FFC258;
+	text-decoration:  none;
+}
+
+ul {
+	margin:               0px 0px 10px 50px;
+	padding:              0px;
+	list-style-type:      disc;
+	list-style-position : outside;
+}
+
+li {
+	line-height:      17px;
+	text-align:       justify;
+}
+
+ul#contact li {
+	margin:           15px 0px 15px 0px;
+}
+
+.Note {
+	font-weight:      bold;
+	text-decoration:  underline;
+}
+
+.Asterisk {
+	font-weight:      bold;
+	font-size:        10px;
+}
+
+.bToggle {
+	margin:           0px;
+	width:            130px;
+	font-family:      "Courier New", Courier, monospace;
+	font-size:        12px;
+	text-align:       center;
+}
+
+span.New {
+	margin-left:      10px;
+	font-weight:      bold;
+	color:            #FF0000;
+}
+
+div.TopLinks {
+	position:         absolute;
+	right:            5px;
+	top:              5px;
+	text-align:       center;
+	/*font-weight:      bold;*/
+	font-size:        11px;
+	margin:           0px;
+	padding:          2px;
+	border:           1px dashed #000088;
+	background:       #F5FAFF;
+}
+
+div.LinkHover {
+	background:       #BFDDFF;
+	cursor:           pointer;
+}
+
+table.SmallTable {
+	width:            50%;
+	margin:           5px auto;
+	border:           1px solid #AAAAAA;
+	border-collapse:  collapse;
+	border-spacing:   1px;
+	font-family:      Verdana, Geneva, Helvetica, Arial, sans-serif;
+	font-size:        11px;
+}
+
+table.SmallTable th {
+	background-color: #DDDDDD;
+	border:           1px solid #AAAAAA;
+	padding:          2px;
+	font-weight:      bold;
+	text-align:       left;
+}
+
+table.SmallTable td {
+	text-align:       left;
+	border:           1px solid #AAAAAA;
+	padding:          2px;
+}
+
+form.CenteredForm {
+	width:            60%;
+	margin:           5px auto;
+}
+
+p.QuickMenu {
+	text-align:       center;
+	font-weight:      bold;
+	margin:           20px auto 5px auto;
+	padding:          2px 0px 2px 0px;
+	border-bottom:    1px solid #000000;
+	border-top:       1px solid #000000;
+	width:            30%;
+}
+
+ul.QuickMenu {
+	margin:           0px;
+	padding:          0px;
+}
+
+ul.Top {
+	margin-top:       20px;
+}
+
+ul.Bottom {
+	margin-bottom:    20px;
+}
+
+ul.QuickMenu li {
+	display:          inline;
+	text-align:       center;
+	margin:           0px;
+	padding:          0px 0px 0px 3px;
+	border-right:     2px solid #000000;
+}
+html>body ul.QuickMenu li {
+	padding:          0px 5px 0px 0px;
+}
+
+ul.QuickMenu li.Last {
+	border-right:     none;
+	padding-right:    0px;
+}
+
+ul.Spaced li {
+	margin:           10px 0px;
+}

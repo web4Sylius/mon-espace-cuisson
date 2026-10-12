@@ -1,0 +1,48 @@
+.filebox { position:absolute; width:520px; height:400px; border-style:solid; border-width:2px; border-color:#CCC #888 #888 #CCC; background:white; display:none; z-index:9999; }
+.fileboxtitle { float:left; width:495px; height:20px; line-height:20px; background-color:#CCC; }
+.fileboxclose { float:right; width:20px; }
+.fileboxlist { height:320px; border-style:solid; border-width:1px; border-color:#888 #CCC #CCC #888; padding:4px; overflow:auto; }
+.fileboxlist .loader { display:block; margin:100px auto; }
+.fileboxupload { float:left; width:350px; height:60px; border:none; overflow:none; }
+.fileboxselect { margin:10px 0 0 10px; }
+.folder { width:100px; text-align:center; cursor:pointer; background:url('images/icon/folder.png') no-repeat; background-size:110px 130px; }
+.folderup { float:left; width:115px; margin:4px; text-align:center; cursor:pointer; background:url('images/icon/up.png') no-repeat;  background-size:110px 130px; }
+.newfolder { float:left; width:30px; height:30px; margin-left:4px; cursor:pointer; background:url('images/icon/new_folder.png') no-repeat; }
+.file { float:left; width:110px; margin:4px; text-align:center; cursor:pointer; position:relative; font-size: 10px;}
+.file div { height:130px; background-repeat: no-repeat; text-align:center;  }
+.file .thumb { width:90px; }
+.foldericon { width:30px; margin-top:50px; }
+.filejpg,.filejpeg { background-image:url('images/icon/jpg.png'); }
+.filepng { background-image:url('images/icon/png.png'); }
+.filegif { background-image:url('images/icon/gif.png'); }
+.filebmp { background-image:url('images/icon/bmp.png'); }
+.fileavi, .filemp4 { background-image:url('images/icon/avi.png'); }
+.filemov { background-image:url('images/icon/mov.png'); }
+.filewmv { background-image:url('images/icon/wmv.png'); }
+.filemp3 { background-image:url('images/icon/mp3.png'); }
+.filepdf { background-image:url('images/icon/pdf.png'); }
+.filehtml { background-image:url('images/icon/html.png'); }
+.filedoc, .filedocx, .fileodt { background-image:url('images/icon/doc.png'); }
+.filexls, .filexlsx, .fileods, .filecsv { background-image:url('images/icon/xls.png'); }
+.filetxt { background-image:url('images/icon/txt.png'); }
+.filezip { background-image:url('images/icon/zip.png'); }
+.filexml { background-image:url('images/icon/xml.png'); }
+.fileppt, .filepptx { background-image:url('images/icon/ppt.png'); }
+.file .fileimg { display:table-cell; vertical-align:middle; width:100px; height:125px; border:solid 1px #555; border-radius:10px; }
+.file .infos { display:block; font-size:11px; color:#5F718A; }
+.filedel { position:absolute; width:100px; height:22px; background-color:white; z-index:5; display:none; box-shadow:#aaa 1px 1px 2px; opacity:0.9; top:10px; }
+.filedel img { margin-right:4px; }
+.fileboxbutton { display:inline-block; width:150px; background-color:#EAEAEA; border:solid thin #AAA; padding:2px; cursor:pointer; }
+.fileboxbutton img { height:40px; vertical-align:middle; float:left; }
+.fileinfo { position:absolute; background:white; border:solid 1px #888; display:none; z-index:10; }
+.filemoveto { position:absolute; background:white; display:none; z-index:11; border-style:solid; border-width:1px; border-color:#888 #CCC #CCC #888; padding:4px; }
+.movetofolder { margin:0; padding:0 0 0 10px; list-style: none; }
+.movetofolder li { vertical-align:center; cursor:pointer; white-space:nowrap; vertical-align:middle; }
+.movetofolder li:hover { background:#ccc; }
+.movetofolder img { width:20px; vertical-align:middle; }
+.context { position:absolute; background:white; border:solid 1px #CCC; padding:5px; font-size:11px; }
+.context p { margin:0; padding:5px 5px 5px 20px; font-size:12px; cursor:pointer; }
+.context p:hover { background:#EFEFEF; }
+.context p.del { background-image:url('images/supprimer.gif'); background-repeat:no-repeat; background-position:2px 5px; }
+.context p.rename { background-image:url('images/editer.gif'); background-repeat:no-repeat; background-position:2px 5px; }
+.context p.move { background-image:url('images/move.png'); background-repeat:no-repeat; background-position:2px 5px; background-size:18px 18px; }

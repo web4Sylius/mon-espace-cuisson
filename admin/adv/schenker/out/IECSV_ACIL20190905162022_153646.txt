@@ -1,0 +1,2 @@
+S;20190906;0169;01;697474;ACILYON;;AUDOUX Gilles;;;Résidence Ivory Square, Bâtiment C, 3 avenue de Tourville;;;FR;13008;MARSEILLE;AUDOUX Gilles;0650726047;15518246;137926;P;1;1;;;55;;;0.384;;;;;;;Cave à vin;Interphone:C304,Tel pour la réception;;;;;;;
+UM;PCI;;;*1313121900269747415518246001300;55;;;;;;;

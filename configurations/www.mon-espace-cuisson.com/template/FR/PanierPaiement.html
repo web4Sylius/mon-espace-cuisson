@@ -1,0 +1,363 @@
+<script language="javascript" src="javascripts/cde2.js"></script>
+<script language="javascript">
+function submitcde2(){
+      var modechecked=false;
+      var err=false;
+      var radios=document.getElementsByName("choixlivr");
+      for(i=0;i<radios.length;i++){
+	if(radios[i].checked) modechecked=true;
+      }
+      if(document.getElementsByName('telephone')[0].value.length<6){
+	  err=true;
+	  document.getElementById('errtel').className="error";
+	  document.getElementsByName('telephone')[0].style.borderColor='red';
+      }
+      if(document.getElementsByName('mail')[0].value.length<6){
+	  err=true;
+	  document.getElementById('errmail').className="error";
+	  document.getElementsByName('mail')[0].style.borderColor='red';
+      }
+      if(modechecked && !err)
+	document.forms.cde2form.submit();
+      else
+	document.getElementById('errmodelivr').style.display="block";
+}
+
+function moyen_description(id){
+      var iWindowW=$(document).width();
+      if(iWindowW > 751){
+      var tbl=document.getElementById('paytbl');
+      var tr=tbl.getElementsByClassName('moypm');
+      for(i=0;i<tr.length;i++)
+	  tr[i].className=tr[i].className.replace(" selected","");
+      document.getElementById('moyen'+id).className+=" selected";
+      document.getElementById('paydesc').innerHTML=document.getElementById('moyendesc'+id).innerHTML;
+    }
+}
+
+function select_moyen(id){
+      var tr=document.getElementById('moyen'+id);
+      var input=tr.getElementsByTagName('input')[0];
+      input.checked=true;
+}
+
+function addfacilite(){
+      var tbl=document.getElementById('facilites');
+      var nbpaiements=parseInt(document.getElementsByName('nbpaiements')[0].value);
+      var totalpaiements=0;
+      var totalcommande=parseFloat(document.getElementById('totalttc').value);
+      for(i=0;i<nbpaiements;i++) totalpaiements+=parseFloat(document.getElementsByName("paiement["+i+"]")[0].value);
+      var reste=totalcommande-totalpaiements;
+      if(reste==0){
+	  alert("Le montant total de la commande est déjà atteint");
+	  return;
+      }
+
+      document.getElementById('newfacmontant').value=reste;
+      document.getElementById('newfacdate').value="";
+      
+      document.getElementById('addfacilite').style.display="none";
+      document.getElementById('newfacilite').style.display="block";
+      document.getElementById('newfactitle').innerHTML="Ajout paiement n°"+(nbpaiements+1);
+      document.getElementById('newfacreste').innerHTML=" (Reste "+Math.round(100*(reste))/100+" &euro;)";
+}
+
+//Validation du paiement "Facilités de paiement"
+function addfacilite2(){
+     
+     //Montant du paiement partiel
+     var montant = parseFloat(document.getElementById('newfacmontant').value);
+     if(isNaN(montant) || montant == 0){
+          alert("Ce montant n'est pas valide");
+          return;
+     }
+     
+     //Date d'effet du paiement partiel
+     var date = document.getElementById('newfacdate').value;
+     if(date == ""){
+          alert("Vous n'avez pas mis de date de paiement");
+          return;
+     }
+     
+     //Création du tableau récapitulatif des paiements partiels sélectionnés par l'administrateur
+     var tbl         = document.getElementById('facilites');
+     var tr          = document.createElement('tr');
+     var nbpaiements = parseInt(document.getElementsByName('nbpaiements')[0].value);
+     var trtotal = document.getElementById('trtotal');
+     
+     tr.id           = "trpaie"+nbpaiements;
+     
+     if(!trtotal){
+          
+          var trtotal = document.createElement('tr');
+          trtotal.id  = "trtotal";
+          
+          var td1       = document.createElement('td');
+          td1.innerHTML = "Total";
+          trtotal.appendChild(td1);
+          
+          var td2 = document.createElement('td');
+          td2.id  = "tdtotal";
+          trtotal.appendChild(td2);
+     } else {
+          
+          tbl.removeChild(trtotal);
+     }
+      
+     //Case numéro du paiement
+     var td1 = document.createElement('td');
+     td1.innerHTML = "Paiement "+(nbpaiements+1);
+     tr.appendChild(td1);
+     
+     //Case montant paiement
+     var td2 = document.createElement('td');
+     var inp = document.createElement('input');
+     
+     td2.innerHTML = (Math.round(100*montant)/100)+" &euro;";
+     inp.type      = "hidden";
+     inp.name      = "paiement["+nbpaiements+"]";
+     inp.value     = montant;
+     
+     td2.appendChild(inp);
+     tr.appendChild(td2);
+     
+     //Case moyen de paiement
+     var td3          = document.createElement('td');
+     var index        = document.getElementById('newfacmoyen').selectedIndex;
+     var moyenid      = document.getElementById('newfacmoyen').options[index].value;
+     var moyenlibelle = document.getElementById('newfacmoyen').options[index].text;
+     var inp          = document.createElement("input");
+     
+     td3.innerHTML = moyenlibelle;
+     inp.type      = "hidden";
+     inp.name      = "moyens["+nbpaiements+"]";
+     inp.value     = moyenid;
+     
+     td3.appendChild(inp);
+     tr.appendChild(td3);
+     
+     //Case délai pour paiement
+     var td4           = document.createElement('td');
+     var index         = document.getElementById('newfacdelais').selectedIndex;
+     var delaisid      = document.getElementById('newfacdelais').options[index].value;
+     var delaislibelle = document.getElementById('newfacdelais').options[index].text;
+     var inp           = document.createElement("input");
+     
+     td4.innerHTML = delaislibelle;
+     inp.type      = "hidden";
+     inp.name      = "delais["+nbpaiements+"]";
+     inp.value     = delaisid;
+     
+     td4.appendChild(inp);
+     tr.appendChild(td4);
+     
+     //Case date d'effet du paiement
+     var td5 = document.createElement('td');
+     var inp = document.createElement("input");
+     
+     td5.innerHTML = document.getElementById('newfacdate').value;
+     inp.name      = "date["+nbpaiements+"]";
+     inp.type      = "hidden";
+     inp.value     = document.getElementById('newfacdate').value;
+     
+     td5.appendChild(inp);
+     tr.appendChild(td5);
+     
+     //Case suppression du paiement
+     var td6 = document.createElement('td');
+     var a   = document.createElement('a');
+     
+     a.href      = "javascript:rmfacilite("+nbpaiements+")";
+     a.innerHTML = "X";
+     a.title     = "Supprimer";
+     
+     td6.appendChild(a);
+     tr.appendChild(td6);
+     tbl.appendChild(tr);
+     tbl.appendChild(trtotal);
+      
+     
+     var totalpaiements = 0;
+     var totalcommande  = parseFloat(document.getElementById('totalttc').value);
+     for(i=0;i<nbpaiements;i++) totalpaiements += parseFloat(document.getElementsByName("paiement["+i+"]")[0].value);
+     totalpaiements += montant;
+     var reste = totalcommande-totalpaiements;
+     document.getElementById('tdtotal').innerHTML       = totalpaiements.toFixed(2)+" &euro;";
+     document.getElementById('tdtotal').style.color     = (reste==0?"green":"red");
+     document.getElementById('totalpaiement').value     = totalpaiements;
+     document.getElementsByName('nbpaiements')[0].value = nbpaiements+1;
+
+     document.getElementById('newfacilite').style.display = "none";
+     document.getElementById('addfacilite').style.display = "block";
+}
+
+function rmfacilite(id){
+      var tbl=document.getElementById('facilites');
+      var tr=document.getElementById('trpaie'+id);
+      tbl.removeChild(tr);
+      
+      var nbpaiements=parseInt(document.getElementsByName('nbpaiements')[0].value);
+      nbpaiements=nbpaiements-1;
+      document.getElementsByName('nbpaiements')[0].value=nbpaiements;
+      
+      var totalpaiements=0;
+      var totalcommande=parseFloat(document.getElementById('totalttc').value);
+      var trs=tbl.getElementsByTagName('tr');
+      for(i=0;i<trs.length;i++){
+	  if(trs[i].id.substr(0,6)=="trpaie"){
+	      var trid=trs[i].id.substr(6);
+	      totalpaiements+=parseFloat(document.getElementsByName('paiement['+trid+']')[0].value);
+	      if(trid!=i){
+		  trs[i].id="trpaie"+i;
+		  var td1=trs[i].getElementsByTagName('td')[0];
+		  td1.innerHTML="Paiement "+(i+1);
+		  document.getElementsByName('paiement['+trid+']')[0].name="paiement["+i+"]";
+		  document.getElementsByName('moyen['+trid+']')[0].name="moyens["+i+"]";
+		  document.getElementsByName('date['+trid+']')[0].name="date["+i+"]";
+		  var a=trs[i].getElementsByTagName('a')[0];
+		  a.href="javascript:rmfacilite("+i+")";
+	      }
+	  }
+      }
+      
+      var reste=totalcommande-totalpaiements;
+      document.getElementById('tdtotal').innerHTML=totalpaiements.toFixed(2)+" &euro;";
+      document.getElementById('tdtotal').style.color=(reste==0?"green":"red");
+      document.getElementById('totalpaiement').value=totalpaiements;
+}
+
+function showfacilite(state){
+      document.getElementById('faclist').style.display=(state?"table-row":"none");
+}
+
+function etape4(){
+      var form=document.createElement("form");
+      form.action="/cde225.php";
+      form.method="post";
+      var inp=document.createElement("input");
+      inp.type="hidden";
+      inp.name="factureid";
+      inp.value="[?facturid]";
+      var inp2=document.createElement("input");
+      inp2.type="hidden";
+      inp2.name="retourEtape";
+      inp2.value="1";
+      form.appendChild(inp);
+      form.appendChild(inp2);
+      document.body.appendChild(form);
+      form.submit();
+}
+
+</script>
+
+<h1>Récapitulatif de votre commande :</h1>
+
+<div class="contenupanier">
+<div class="header hidden-xs row">
+  <div class="col-lg-8 col-sm-6">
+    <div class="col-lg-4 col-sm-6">Vos articles</div>
+    <div class="col-lg-8 col-sm-6">Vos options</div>
+  </div>
+  <div class="col-lg-4 col-sm-6">
+    <div class="col-md-4 col-sm-4">P.U. [?taxtxt]</div>
+    <div class="col-md-2 col-sm-2">Qté</div>
+    <div class="col-md-6 col-sm-6" style="text-align:right" >Total [?taxtxt]</div>
+  </div>
+</div>
+[?lignes]
+</div>
+<div class="total col-sm-6 col-md-6 col-xs-12">
+    <table>
+  <tr class="port">
+    <td style="white-space: nowrap;">[?txtport]&nbsp;<span class="fa fa-pencil-square-o" title="Modifier" onclick="document.location='/cde2.php';"></span>&nbsp;:</td>
+    <td>[?prixport]</td>
+  </tr>
+  <tr class="ht">
+    <td>Sous-total HT :</td>
+    <td>[?prixtotalht]</td>
+  </tr>
+  <tr class="tva">
+    <td>Total TVA :</td>
+    <td>[?prixtva]</td>
+  </tr>
+  <tr class="ttc">
+    <td>MONTANT TOTAL TTC :</td>
+    <td>[?prixtotalpanier]</td>
+  </tr>
+    </table>
+    
+    <div class="livraison">
+  Livraison de votre commande prévue aux environs du :<b>[?datelivraison]</b>
+    </div>
+</div>
+<div class="lefttotal col-sm-6 col-md-6 col-xs-12">
+    <form name="codepromo" method="post">
+    <input type="hidden" name="action2" value="cadeau">
+    <input type="hidden" name="factureid" value="[?facturid]">
+    <div class="error">[?errorpromo]</div>
+    <div class="codepromo">
+	<span>Si vous possédez un code promotionnel, saisissez-le ici: </span>
+	<input type="text" name="txt_code">
+	<a href="javascript:void(0)" onclick="document.forms.codepromo.submit();" class="ok">OK</a>
+	<div class="clear"></div>
+    </div>
+    </form>
+    [?texte_colisage]
+    
+    <div class="col-md-6 col-xs-12">
+      <div class="adresse">
+        <div class="title">Adresse de facturation<span class="fa fa-pencil-square-o" title="Modifier" onclick="document.location='/client.htm';"></span></div>
+        <div class="txt">
+  	     [?adressefact]
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <div class="adresse">
+        <div class="title">Adresse de livraison<span class="fa fa-pencil-square-o" title="Modifier" onclick="document.location='/cde2.php';"></span></div>
+        <div class="txt">
+  	     [?adresselivr]
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<div class="clear"></div>
+<div class="row">
+  <div class="col-xs-12"><h1>Mode de paiement</h1></div>
+  <div class="col-xs-12"><div class="selectionnez">Sélectionnez votre mode de paiement dans la liste ci-dessous afin de régler votre commande :</div></div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="moyens">
+      <form action="cde3.php" name="cde25form" method="post">
+      <input type="hidden" name="factureid" value="[?facturid]">
+      <input type="hidden" id="gclid" name="gclid" value="">
+      <div class="paydesc hidden-xs col-sm-4">
+        <b>Informations complémentaires sur le mode de paiement sélectionné :</b>
+        <div id="paydesc"></div>
+      </div>
+      [?paytbl]
+      <div class="cgv col-xs-12 col-sm-offset-4 col-sm-8">
+        <input type="checkbox" value="1" name="acceptecgv"> J'ai lu et j'accepte sans réserve <a target="_blank" title="CGV" href="/int,20,conditions-generales-de-vente-france-et-etranger.htm">les conditions générales de vente de mon-espace-cuisson.com</a>
+        <div id="errmoy" class="herror">Vous n'avez pas sélectionné de moyen de paiement</div>
+        <div id="errcgv" class="herror">Vous devez accepter les conditions générales de vente</div>
+      </div>
+      <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+[?texte_colisage]
+
+<div class="btns row">
+   <a href="javascript:popdevis([?facturid][?client]);" class="envoidevis col-xs-12 col-sm-5 col-md-4 col-lg-3" style="margin-bottom: 10px;"><i class="fa fa-envelope-o"></i>Recevoir un devis par email</a>
+   <a href="javascript:void(0)" onclick="submitcde25()" class="valide col-xs-12 col-sm-offset-2 col-sm-5 col-md-offset-4 col-md-4 col-lg-offset-6 col-lg-3">Valider ma commande<i class="fa fa-chevron-right"></i></a>
+   <div class="clear"></div>
+</div>
+<script type="text/javascript">
+  document.getElementById('gclid').value = document.getElementById('gclid_field').value;
+</script>

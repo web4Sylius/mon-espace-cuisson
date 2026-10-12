@@ -1,0 +1,477 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 07 Aug 2015 08:19:07 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>PricingProduct (Fnac Marketplace PHP Client API Documentation)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../fnacapiclient/entity/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../fnacapiclient/entity/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../fnacapiclient/entity/pricingproduct.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">FnacApiClient\Entity\PricingProduct</div>
+<a href="../../source/entity/pricingproduct.php.html#line22" class="location">Entity/PricingProduct.php at line 22</a>
+
+<h1>Class PricingProduct</h1>
+
+<pre class="tree"><a href="../../fnacapiclient/entity/entity.html">Entity</a><br>    └─<strong>PricingProduct</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>PricingProduct</strong><br>extends <a href="../../fnacapiclient/entity/entity.html">Entity</a>
+
+</p>
+
+<div class="comment" id="overview_description"><p>PricingProduct definition.</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>Fnac</dd>
+<dt>Version:</dt>
+<dd>1.0.0</dd>
+</dl>
+<hr>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#denormalize()">denormalize</a>(NormalizerInterface normalizer, mixed data, mixed format)</p><p class="description"></p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getImageUrl()">getImageUrl</a>()</p><p class="description">Product image url</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getNewAdherentPrice()">getNewAdherentPrice</a>()</p><p class="description">Best adherent price for the product, in new state</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getNewAdherentShipping()">getNewAdherentShipping</a>()</p><p class="description">Shipping costs related to best new product adherent price</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getNewPrice()">getNewPrice</a>()</p><p class="description">Best price for the product, in new state</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getNewShipping()">getNewShipping</a>()</p><p class="description">Shipping costs related to best new product price</p></td>
+</tr>
+<tr>
+<td class="type"> int</td>
+<td class="description"><p class="name"><a href="#getOfferStatus()">getOfferStatus</a>()</p><p class="description">Returns product state</p></td>
+</tr>
+<tr>
+<td class="type"> ArrayObject<Pricing></td>
+<td class="description"><p class="name"><a href="#getPricings()">getPricings</a>()</p><p class="description">Product pricing list</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getProductName()">getProductName</a>()</p><p class="description">Product's name</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getProductReference()">getProductReference</a>()</p><p class="description">Pricing product reference value</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getProductReferenceType()">getProductReferenceType</a>()</p><p class="description">Pricing product reference type (ie: EAN, ISBN)</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getRefurbishedAdherentPrice()">getRefurbishedAdherentPrice</a>()</p><p class="description">Best adherent price for the product, in refurbished state</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getRefurbishedAdherentShipping()">getRefurbishedAdherentShipping</a>()</p><p class="description">Shipping costs related to best refurbished product adherent price</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getRefurbishedPrice()">getRefurbishedPrice</a>()</p><p class="description">Best price for the product, in refurbished state</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getRefurbishedShipping()">getRefurbishedShipping</a>()</p><p class="description">Shipping costs related to best refurbished product price</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getSellerAdherentOfferSku()">getSellerAdherentOfferSku</a>()</p><p class="description">Seller's own offer sku for adherent</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getSellerAdherentOfferState()">getSellerAdherentOfferState</a>()</p><p class="description">Seller's own offer adherent product state</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getSellerAdherentPrice()">getSellerAdherentPrice</a>()</p><p class="description">Seller's own offer adherent price</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getSellerAdherentShipping()">getSellerAdherentShipping</a>()</p><p class="description">Seller's own offer adherent shipping cost</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getSellerOfferSku()">getSellerOfferSku</a>()</p><p class="description">Seller's own offer SKU</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getSellerOfferState()">getSellerOfferState</a>()</p><p class="description">Seller's own offer product state</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getSellerPrice()">getSellerPrice</a>()</p><p class="description">Seller's own offer price</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getSellerShipping()">getSellerShipping</a>()</p><p class="description">Seller's own offer shipping cost</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getUsedAdherentPrice()">getUsedAdherentPrice</a>()</p><p class="description">Best adherent price for the product, in used state</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getUsedAdherentShipping()">getUsedAdherentShipping</a>()</p><p class="description">Shipping costs related to best used product adherent price</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getUsedPrice()">getUsedPrice</a>()</p><p class="description">Best price for the product, in used state</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getUsedShipping()">getUsedShipping</a>()</p><p class="description">Shipping costs related to best used product price</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#normalize()">normalize</a>(NormalizerInterface normalizer, mixed format, mixed properties)</p><p class="description"></p></td>
+</tr>
+</table>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../source/entity/pricingproduct.php.html#line61" class="location">Entity/PricingProduct.php at line 61</a>
+
+<h3 id="denormalize()">denormalize</h3>
+<code class="signature">public  void <strong>denormalize</strong>(NormalizerInterface normalizer, mixed data, mixed format)</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line151" class="location">Entity/PricingProduct.php at line 151</a>
+
+<h3 id="getImageUrl()">getImageUrl</h3>
+<code class="signature">public  string <strong>getImageUrl</strong>()</code>
+<div class="details">
+<p>Product image url</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line323" class="location">Entity/PricingProduct.php at line 323</a>
+
+<h3 id="getNewAdherentPrice()">getNewAdherentPrice</h3>
+<code class="signature">public  float <strong>getNewAdherentPrice</strong>()</code>
+<div class="details">
+<p>Best adherent price for the product, in new state</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line333" class="location">Entity/PricingProduct.php at line 333</a>
+
+<h3 id="getNewAdherentShipping()">getNewAdherentShipping</h3>
+<code class="signature">public  float <strong>getNewAdherentShipping</strong>()</code>
+<div class="details">
+<p>Shipping costs related to best new product adherent price</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line263" class="location">Entity/PricingProduct.php at line 263</a>
+
+<h3 id="getNewPrice()">getNewPrice</h3>
+<code class="signature">public  float <strong>getNewPrice</strong>()</code>
+<div class="details">
+<p>Best price for the product, in new state</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line273" class="location">Entity/PricingProduct.php at line 273</a>
+
+<h3 id="getNewShipping()">getNewShipping</h3>
+<code class="signature">public  float <strong>getNewShipping</strong>()</code>
+<div class="details">
+<p>Shipping costs related to best new product price</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line161" class="location">Entity/PricingProduct.php at line 161</a>
+
+<h3 id="getOfferStatus()">getOfferStatus</h3>
+<code class="signature">public  int <strong>getOfferStatus</strong>()</code>
+<div class="details">
+<p>Returns product state</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line173" class="location">Entity/PricingProduct.php at line 173</a>
+
+<h3 id="getPricings()">getPricings</h3>
+<code class="signature">public  ArrayObject<Pricing> <strong>getPricings</strong>()</code>
+<div class="details">
+<p>Product pricing list</p><dl>
+<dt>See Also:</dt>
+<dd><a href="../../fnacapiclient/entity/pricing.html">Pricing</a></dd>
+<dt>Returns:</dt>
+<dd>The list of pricing for this product</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line141" class="location">Entity/PricingProduct.php at line 141</a>
+
+<h3 id="getProductName()">getProductName</h3>
+<code class="signature">public  string <strong>getProductName</strong>()</code>
+<div class="details">
+<p>Product's name</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line131" class="location">Entity/PricingProduct.php at line 131</a>
+
+<h3 id="getProductReference()">getProductReference</h3>
+<code class="signature">public  string <strong>getProductReference</strong>()</code>
+<div class="details">
+<p>Pricing product reference value</p><dl>
+<dt>See Also:</dt>
+<dd><a href="../../fnacapiclient/entity/productreference.html">ProductReference</a></dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line119" class="location">Entity/PricingProduct.php at line 119</a>
+
+<h3 id="getProductReferenceType()">getProductReferenceType</h3>
+<code class="signature">public  string <strong>getProductReferenceType</strong>()</code>
+<div class="details">
+<p>Pricing product reference type (ie: EAN, ISBN)</p><dl>
+<dt>See Also:</dt>
+<dd><a href="../../fnacapiclient/entity/productreference.html">ProductReference</a></dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line343" class="location">Entity/PricingProduct.php at line 343</a>
+
+<h3 id="getRefurbishedAdherentPrice()">getRefurbishedAdherentPrice</h3>
+<code class="signature">public  float <strong>getRefurbishedAdherentPrice</strong>()</code>
+<div class="details">
+<p>Best adherent price for the product, in refurbished state</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line353" class="location">Entity/PricingProduct.php at line 353</a>
+
+<h3 id="getRefurbishedAdherentShipping()">getRefurbishedAdherentShipping</h3>
+<code class="signature">public  float <strong>getRefurbishedAdherentShipping</strong>()</code>
+<div class="details">
+<p>Shipping costs related to best refurbished product adherent price</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line283" class="location">Entity/PricingProduct.php at line 283</a>
+
+<h3 id="getRefurbishedPrice()">getRefurbishedPrice</h3>
+<code class="signature">public  float <strong>getRefurbishedPrice</strong>()</code>
+<div class="details">
+<p>Best price for the product, in refurbished state</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line293" class="location">Entity/PricingProduct.php at line 293</a>
+
+<h3 id="getRefurbishedShipping()">getRefurbishedShipping</h3>
+<code class="signature">public  float <strong>getRefurbishedShipping</strong>()</code>
+<div class="details">
+<p>Shipping costs related to best refurbished product price</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line253" class="location">Entity/PricingProduct.php at line 253</a>
+
+<h3 id="getSellerAdherentOfferSku()">getSellerAdherentOfferSku</h3>
+<code class="signature">public  float <strong>getSellerAdherentOfferSku</strong>()</code>
+<div class="details">
+<p>Seller's own offer sku for adherent</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line243" class="location">Entity/PricingProduct.php at line 243</a>
+
+<h3 id="getSellerAdherentOfferState()">getSellerAdherentOfferState</h3>
+<code class="signature">public  float <strong>getSellerAdherentOfferState</strong>()</code>
+<div class="details">
+<p>Seller's own offer adherent product state</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line223" class="location">Entity/PricingProduct.php at line 223</a>
+
+<h3 id="getSellerAdherentPrice()">getSellerAdherentPrice</h3>
+<code class="signature">public  float <strong>getSellerAdherentPrice</strong>()</code>
+<div class="details">
+<p>Seller's own offer adherent price</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line233" class="location">Entity/PricingProduct.php at line 233</a>
+
+<h3 id="getSellerAdherentShipping()">getSellerAdherentShipping</h3>
+<code class="signature">public  float <strong>getSellerAdherentShipping</strong>()</code>
+<div class="details">
+<p>Seller's own offer adherent shipping cost</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line203" class="location">Entity/PricingProduct.php at line 203</a>
+
+<h3 id="getSellerOfferSku()">getSellerOfferSku</h3>
+<code class="signature">public  float <strong>getSellerOfferSku</strong>()</code>
+<div class="details">
+<p>Seller's own offer SKU</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line213" class="location">Entity/PricingProduct.php at line 213</a>
+
+<h3 id="getSellerOfferState()">getSellerOfferState</h3>
+<code class="signature">public  float <strong>getSellerOfferState</strong>()</code>
+<div class="details">
+<p>Seller's own offer product state</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line183" class="location">Entity/PricingProduct.php at line 183</a>
+
+<h3 id="getSellerPrice()">getSellerPrice</h3>
+<code class="signature">public  float <strong>getSellerPrice</strong>()</code>
+<div class="details">
+<p>Seller's own offer price</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line193" class="location">Entity/PricingProduct.php at line 193</a>
+
+<h3 id="getSellerShipping()">getSellerShipping</h3>
+<code class="signature">public  float <strong>getSellerShipping</strong>()</code>
+<div class="details">
+<p>Seller's own offer shipping cost</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line363" class="location">Entity/PricingProduct.php at line 363</a>
+
+<h3 id="getUsedAdherentPrice()">getUsedAdherentPrice</h3>
+<code class="signature">public  float <strong>getUsedAdherentPrice</strong>()</code>
+<div class="details">
+<p>Best adherent price for the product, in used state</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line373" class="location">Entity/PricingProduct.php at line 373</a>
+
+<h3 id="getUsedAdherentShipping()">getUsedAdherentShipping</h3>
+<code class="signature">public  float <strong>getUsedAdherentShipping</strong>()</code>
+<div class="details">
+<p>Shipping costs related to best used product adherent price</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line303" class="location">Entity/PricingProduct.php at line 303</a>
+
+<h3 id="getUsedPrice()">getUsedPrice</h3>
+<code class="signature">public  float <strong>getUsedPrice</strong>()</code>
+<div class="details">
+<p>Best price for the product, in used state</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line313" class="location">Entity/PricingProduct.php at line 313</a>
+
+<h3 id="getUsedShipping()">getUsedShipping</h3>
+<code class="signature">public  float <strong>getUsedShipping</strong>()</code>
+<div class="details">
+<p>Shipping costs related to best used product price</p></div>
+
+<hr>
+
+<a href="../../source/entity/pricingproduct.php.html#line53" class="location">Entity/PricingProduct.php at line 53</a>
+
+<h3 id="normalize()">normalize</h3>
+<code class="signature">public  void <strong>normalize</strong>(NormalizerInterface normalizer, mixed format, mixed properties)</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../fnacapiclient/entity/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../fnacapiclient/entity/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../fnacapiclient/entity/pricingproduct.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

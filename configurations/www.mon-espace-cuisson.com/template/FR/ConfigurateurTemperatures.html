@@ -1,0 +1,55 @@
+<div class="question col-xs-12" onclick="show_question('temperatures')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Nombre de températures recherchées pour les vins ?</h2>
+      <div class="reponse" id="reptemperatures"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btntemperatures" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnresptemperatures" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <ul class="prop">
+    <li class="li6 [?temprep1class]" onclick="clickli(this,'temp1')">
+      <h3><span>1 température</span></h3>
+      <p class="hidden-xs">Pour mettre 1 type de vin (blanc, rosé, rouge ou champagne) à température de service</p>
+      <input type="radio" id="temp1" name="temperatures" onclick="next('temperatures','1')" [?checktemp1] class="hidden-xs">
+    </li>
+    <li class="li6 [?temprep2class]" onclick="clickli(this,'temp2')">
+      <h3><span>2 températures</span></h3>
+      <p class="hidden-xs">Pour mettre 2 types de vin (blanc, rosé, rouge ou champagne) à température de service</p>
+      <input type="radio" id="temp2" name="temperatures" onclick="next('temperatures','2')" [?checktemp2] class="hidden-xs">
+    </li>
+    <li class="li6 [?temprep3class]" onclick="clickli(this,'temp3')">
+      <h3><span>3 températures</span></h3>
+      <p class="hidden-xs">Pour mettre 3 types de vin (blanc, rosé, rouge ou champagne) à température de service</p>
+      <input type="radio" id="temp3" name="temperatures" onclick="next('temperatures','3')" [?checktemp3] class="hidden-xs">
+    </li>
+    <li class="li6 [?temprep4class]" onclick="clickli(this,'temp4')">
+      <h3><span>4 températures</span></h3>
+      <p class="hidden-xs">Pour mettre 4 types de vin (blanc, rosé, rouge ou champagne) à température de service</p>
+      <input type="radio" id="temp4" name="temperatures" onclick="next('temperatures','4')" [?checktemp4] class="hidden-xs">
+    </li>
+    <li class="li6 [?temprep5class]" onclick="clickli(this,'temp5')">
+      <h3><span>Plus de 5 températures</span></h3>
+      <p class="hidden-xs">Pour mettre plusieurs types de vin (blanc, rosé, rouge ou champagne) à température de service</p>
+      <input type="radio" id="temp5" name="temperatures" onclick="next('temperatures','5')" [?checktemp5] class="hidden-xs">
+    </li>
+    <li class="li6 [?temprep1000class]" onclick="clickli(this,'temp1000')">
+      <h3><span>Multi-températures étagées</span></h3>
+      <p class="hidden-xs">Pour avoir une température progressive de 6/8°C en bas jusqu'à 18/20°C en haut</p>
+      <input type="radio" id="temp1000" name="temperatures" onclick="next('temperatures','1000')" [?checktemp1000] class="hidden-xs">
+    </li>
+    <li class="li6 [?temprep0class]" onclick="clickli(this,'temp6')">
+      <h3><span>Je ne sais pas ou peu importe</span></h3>
+      <p class="hidden-xs"><img src="/images/configurateur/temperatures6.jpg" alt="" width="80" height="84"></p>
+      <input type="radio" id="temp6" name="temperatures" onclick="next('temperatures','0')" [?checktemp0] class="hidden-xs">
+    </li>
+  </ul>
+</div>

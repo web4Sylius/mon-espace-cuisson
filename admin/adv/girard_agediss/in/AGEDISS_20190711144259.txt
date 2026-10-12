@@ -1,0 +1,7 @@
+2019/06/26|151592|315029209|BEYER Jeremy|74140|70735|AAR CFM|Reception conforme|2019/07/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-315029209.html
+2019/06/27|151619|315031218|TAUVEL jean-louis|54000|70544|LIV CFM|Livraison conforme|2019/07/10|0||http://webtracking.girard-agediss.com/tracking-acilyon-315031218.html
+2019/06/27|151619|315031218|TAUVEL jean-louis|54000|70544|POD CFM|BL numérisé|2019/07/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-315031218.html
+2019/07/01|151700|315038246|RATAJCZAK HORST|17590|70791|RDV CCL|Confirmation Creneaux de Livraison|2019/07/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038246.html
+2019/07/01|151673|315038408|RIBADEAU-DUMAS Corentin|49460|70441|RDV CCL|Confirmation Creneaux de Livraison|2019/07/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038408.html
+2019/07/03|151834|315045835|SIMONNET corinne|83700|7013A|LIV RCA|Refuse/avarie car.|2019/07/10|0|bas marqué non nettoyable|http://webtracking.girard-agediss.com/tracking-acilyon-315045835.html
+2019/07/03|151834|315045835|SIMONNET corinne|83700|7013A|POD CFM|BL numérisé|2019/07/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-315045835.html

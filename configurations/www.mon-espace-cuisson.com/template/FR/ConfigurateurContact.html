@@ -1,0 +1,82 @@
+<div class="contact">
+    <h2>Contactez-nous</h2>
+    <p>Besoin d'une ou plusieurs caves à vin, spéciales ou sur mesure, contactez nos experts...</p>
+    <p>Exposez-nous précisément votre besoin</p>
+    <p>Nous vous répondrons sous 24 heures ou vous appellerons quand vous le désirez.</p>
+
+    <div id="contact_error">Certains champs obligatoires ne sont pas remplis</div>
+    <div id="contact_ok">Le message a été envoyé.<br>Nous y répondrons dans les plus brefs délais.</div>
+    <br>
+    <div id="tbl_contact">
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">Nom, Prénom* : </div>
+        <div class="col-sm-9 col-xs-12"><input type="text" maxlength="40" value="[?nom]" name="nom"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">E-mail expéditeur* : </div>
+        <div class="col-sm-9 col-xs-12"><input type="text" maxlength="60" value="[?expediteur]" name="expediteur"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">Société / Raison Sociale : </div>
+        <div class="col-sm-9 col-xs-12"><input type="text" maxlength="40" value="[?societe]" name="societe"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">Adresse : </div>
+        <div class="col-sm-9 col-xs-12"><textarea rows="2" cols="40" name="adresse">[?adresse]</textarea></div>$
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">Code postal &nbsp;+ Ville : </div>
+        <div class="col-sm-9 col-xs-12"><input type="text" maxlength="100" value="[?code]" name="code"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">Pays : </div>
+        <div class="col-sm-9 col-xs-12"><input type="text" maxlength="100" value="[?pays]" name="pays"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">Comment nous avez vous connu ?* : </div>
+        <div class="col-sm-9 col-xs-12">
+          <select name="connaissance">
+            <option value=""></option>
+            <option value="Moteur de recherche">Moteur de recherche</option>
+            <option value="La presse">La presse</option>
+            <option value="Comparateur de prix">Comparateur de prix</option>
+            <option value="Lien sur un autre site">Lien sur un autre site</option>
+            <option value="Un ami">Un ami</option>
+            <option value="E-mailing">E-mailing</option>
+            <option value="Autre">Autre</option>
+            <option value="Un partenaire de Ma Cave à Vin">Un partenaire de Ma cave à Vin</option>
+            <option value="Notoriété">Notoriété</option>
+            <option value="Un client de Ma Cave à Vin">Un client de Ma Cave à Vin</option>
+            <option value="Revues spécialisées">Revues spécialisées</option>
+            <option value="Pub TV">Pub TV</option>
+            <option value="Pub radio">Pub radio</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">Téléphone* : </div>
+        <div class="col-sm-9 col-xs-12"><input type="text" maxlength="40" value="[?telephone]" name="telephone"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">Sujet : </div>
+        <div class="col-sm-9 col-xs-12"><input type="text" maxlength="150" value="[?sujet]" name="sujet"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">Date de rappel souhaité : </div>
+        <div class="col-sm-9 col-xs-12"><input type="text" maxlength="100" value="[?date_rappel]" name="date_rappel"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">Heure de rappel souhaité : </div>
+        <div class="col-sm-9 col-xs-12"><input type="text" maxlength="100" value="[?heure_rappel]" name="heure_rappel"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">Message* : </div>
+        <div class="col-sm-9 col-xs-12"><textarea rows="10" cols="60" name="message">[?message]</textarea></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3 col-xs-12"></div>
+        <div class="col-sm-9 col-xs-12"><a href="javascript:void(0);" onclick="configurateur_contact()" class="nextbtn">Nous contacter</a></div>
+      </div>
+    </div>
+    <small>*champs obligatoires</small>
+</div>

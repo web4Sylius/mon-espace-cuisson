@@ -1,0 +1,38 @@
+<div class="blocs-contact-site-ext">
+	<div class="bloc-contact-site-ext">
+		<p>Depuis <b>2004</b>, <b>Ma Cave à Vin</b> est <b>spécialiste</b> en vieillissement, conservation, service, dégustation, climatisation et rangement du vin, fromage, charcuterie, viande, cigares et chocolat.</p>
+		<p>Nos <b>experts</b> offrent des <b>conseils personnalisés</b> pour vous aider à trouver le produit le plus <b>adapté à vos besoins</b>.</p>
+		<div class="liseret"></div>
+		<p>Réalisez dès maintenant une <b>demande de devis gratuite</b> et <b>sans engagement</b></p>
+
+		<form id="contact_site_ext_form" name="contact_site_ext" method="post">
+			<span class="errChamp" [?errorChamp]>Veuillez remplir/cocher tous les champs</span>
+			<span class="validChamp" [?validChamp]>Le message a été envoyé.<br>Nous y répondrons dans les plus brefs délais.</span>
+        	<span style="margin-right: 118px; [?styleStatut]"><input type="radio" name="statut" value="pro">Professionnel</span>
+        	<span style="margin-right: 24px; [?styleStatut]"><input type="radio" name="statut" value="part">Particulier</span>
+        	<div class="flex-form">
+        		<div><label for="contact_nom">Nom*</label>
+        		<input type="text" name="nom" id="contact_nom" [?styleNom]></div>
+        		<div><label for="contact_prenom">Prénom*</label>
+        		<input type="text" name="prenom" id="contact_prenom" [?stylePrenom]></div>
+        		<div><label for="contact_email">Adresse email*</label>
+        		<input type="email" name="email" id="contact_email" [?styleEmail]></div>
+        		<div><label for="contact_tel">Numéro de téléphone*</label>
+        		<input type="text" name="tel" id="contact_tel" [?styleTel]></div>
+        		<div class="commentaire-site-ext"><span>Commentaire*</span>
+        		<textarea name="message" [?styleMess]>Décrivez-nous votre projet ici.</textarea></div>
+        	</div>
+        	<div style="font-size: 15px;text-align: left;margin-left: 33px; [?styleAccept]"><input type="radio" name="accept_contact"> En communiquant mes coordonnées, j'accepte d'être contacté.e par Ma Cave à Vin*</div>
+        	<a href="javascript:void(0);" class="envoyer" onclick="contact_form_submit();" >ENVOYER</a>
+			<span class="champ_oblig">*Champs obligatoires</span>
+		</form>
+	</div>
+	<img class="img-contact-site-ext" src="/images/landing/landing_image.png"/>
+</div>
+
+<script>
+    function contact_form_submit(){
+    	$('#contact_site_ext_form').prepend('<input type="hidden" name="action" value="contact_leads">');
+        $('#contact_site_ext_form').unbind('submit').submit();
+    }
+</script>

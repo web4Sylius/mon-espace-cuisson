@@ -1,0 +1,3 @@
+<ListOrderItemsResponse xmlns="https://mws.amazonservices.com/Orders/2013-09-01"><ListOrderItemsResult><AmazonOrderId>408-3481560-7551509</AmazonOrderId><OrderItems><OrderItem><ASIN>B00RVBHP9A</ASIN><SellerSKU>3124</SellerSKU><OrderItemId>18172119879379</OrderItemId><Title>CLIMADIFF Coffret du Sommelier 6 Accessoires - ACI-CLI101</Title><QuantityOrdered>1</QuantityOrdered><QuantityShipped>0</QuantityShipped><PromotionIds></PromotionIds><GiftMessageText>Profitez de votre cadeau !
+
+De la part de Mititelu Andrei</GiftMessageText></OrderItem></OrderItems></ListOrderItemsResult><ResponseMetadata><RequestId>32223f28-ada0-401b-a4b6-adf1a7c15543</RequestId></ResponseMetadata></ListOrderItemsResponse>

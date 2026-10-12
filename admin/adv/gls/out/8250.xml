@@ -1,0 +1,55 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://fpcs.gls-group.eu/v1/ShipmentProcessing/types" xmlns:com="http://fpcs.gls-group.eu/v1/Common">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <typ:ShipmentRequestData>
+            <typ:Shipment>
+                <typ:ShippingDate>2024-10-07</typ:ShippingDate>
+                
+                <typ:Product>Parcel</typ:Product>
+                <typ:Consignee>
+                    <com:Address>
+                        <com:Name1>NOUGE Frédéric</com:Name1>
+                        <com:CountryCode>FR</com:CountryCode>
+                        <com:ZIPCode>17240</com:ZIPCode>
+                        <com:City>Saint Genis de Saintonge</com:City>
+                        <com:Street>19 rue des Brunettes </com:Street>
+                        <com:eMail>frederic.nouge@hotmail.com</com:eMail>
+                        
+                        <com:MobilePhoneNumber>0660615193</com:MobilePhoneNumber>
+                    </com:Address>
+                </typ:Consignee>
+                <typ:Shipper>
+                    <com:ContactID>250aaamgYm</com:ContactID>
+                    <com:AlternativeShipperAddress>
+                        <com:Name1>AJD - Mon Espace Cuisson</com:Name1>
+                        <com:CountryCode>FR</com:CountryCode>
+                        <com:ZIPCode>69009</com:ZIPCode>
+                        <com:City>Lyon</com:City>
+                        <com:Street>18, rue des deux amants</com:Street>
+                    </com:AlternativeShipperAddress>
+                </typ:Shipper>
+                <typ:ShipmentUnit>
+                    <typ:ShipmentUnitReference>299207</typ:ShipmentUnitReference>
+                    <typ:Weight>0.00</typ:Weight>
+                    <typ:Note1></typ:Note1>
+                    <typ:Note2></typ:Note2>
+                </typ:ShipmentUnit>
+                <typ:Service>
+                    <com:Service>
+                        <com:ServiceName>service_flexdelivery</com:ServiceName>
+                    </com:Service>
+                </typ:Service>
+            </typ:Shipment>
+            <typ:PrintingOptions>
+                <typ:ReturnLabels>
+                    <typ:TemplateSet>NONE</typ:TemplateSet>
+                    <typ:LabelFormat>PDF</typ:LabelFormat>
+                </typ:ReturnLabels>
+            </typ:PrintingOptions>
+            <typ:ReturnOptions>
+                <typ:ReturnPrintData>true</typ:ReturnPrintData>
+                <typ:ReturnRoutingInfo>true</typ:ReturnRoutingInfo>
+            </typ:ReturnOptions>
+        </typ:ShipmentRequestData>
+    </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,15 @@
+<div class="choix_affine [?ulserrureclasse]">
+        <ul class="prop [?ulserrureclasse]">
+    <li class="li6 serrure [?serrure1class]" onclick="clicklichoix('serrure1');show_next('serrure');">
+      <input type="radio" name="serrure" value="[?serrure1]" id="serrure1" onclick="clicklichoix('serrure1');show_next('serrure');" [?checkserrure1] style="display: inline">
+              <span style="vertical-align: baseline">Oui</span>
+    </li>
+    <li class="li6 serrure [?serrure0class]" onclick="clicklichoix('serrure0');show_next('serrure');">
+      <input type="radio" name="serrure" value="[?serrure0]" id="serrure0" onclick="clicklichoix('serrure0');show_next('serrure');" [?checkserrure0] style="display: inline">
+              <span style="vertical-align: baseline">Non</span>
+    </li>
+    <div class="clear"></div>
+</ul>
+<div id="nextserrure" class="nextbtn" onclick="clickbtn(this,'serrure',return_checkboxes('serrure'))">Valider <i class="fas fa-chevron-right"></i></div>
+</div>
+<div class="clear"></div>

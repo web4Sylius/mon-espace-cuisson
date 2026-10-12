@@ -1,0 +1,3 @@
+2019/08/19|153135|315134914|CUILLI Rodolphe|71100|70213|LIV CFM|Livraison conforme|2019/08/28|0||http://webtracking.girard-agediss.com/tracking-acilyon-315134914.html
+2019/08/20|152298RVS|315136390|LENTI - PUSTOZYOROVA Inna|69800|70061|MLR CFM|Réception conforme (HUB)|2019/08/30|0|MLRCFM - Réception HUB conforme|http://webtracking.girard-agediss.com/tracking-acilyon-315136390.html
+2019/08/20|152298RVS|315136390|LENTI - PUSTOZYOROVA Inna|69800|70061|MLR CFM|Reception partielle (HUB)|2019/08/30|0|MLRMQP - Réception HUB manquante|http://webtracking.girard-agediss.com/tracking-acilyon-315136390.html

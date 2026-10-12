@@ -1,0 +1,64 @@
+<script type="text/javascript">
+$( document ).ready(function() {
+	var slider = document.getElementById('slider-[?filtre_shortname]');
+
+	noUiSlider.create(slider, {
+		start: [ [?slider_debut], [?slider_fin] ],
+		[?slider_step]
+		connect: true,
+		range: {
+		  'min': [?slider_min],
+		  [?ranges_sup]
+		  'max': [?slider_max]
+		}
+	});
+
+	var tipHandles = slider.getElementsByClassName('noUi-handle'),
+		tooltips = [];
+
+	// Add divs to the slider handles.
+	for ( var i = 0; i < tipHandles.length; i++ ){
+		tooltips[i] = document.createElement('p');
+		tipHandles[i].appendChild(tooltips[i]);
+
+		// Add a class for styling
+		tooltips[i].className += 'tooltip';
+		// Add additional markup
+		//tooltips[i].innerHTML = '<span></span>';
+		// Replace the tooltip reference with the span we just added
+		//tooltips[i] = tooltips[i].getElementsByTagName('span')[0];
+	}
+
+	// When the slider changes, write the value to the tooltips.
+	slider.noUiSlider.on('update', function( values, handle ){
+		var theValue = Math.round(values[handle]);
+		var aMarginLeft = new Array();
+		aMarginLeft[1] = '0';
+		aMarginLeft[2] = '-2';
+		aMarginLeft[3] = '-6';
+		aMarginLeft[4] = '-10';
+		aMarginLeft[5] = '-12';
+
+		tooltips[handle].innerHTML = theValue;
+		tooltips[handle].style.marginLeft = aMarginLeft[theValue.toString().length]+'px';
+	});
+
+	slider.noUiSlider.on('set', function(value){
+		value = value.toString();
+		var aTemp = value.split(',');
+		var returned_value = '';
+
+		for(i=0;i<aTemp.length;i++){
+			if(i > 0) returned_value += ',';
+			returned_value += Math.round(aTemp[i]);
+		}
+
+		var urlReturn = "[?filtre_url]";
+		location.href = urlReturn.replace("%5B%3Ffiltre_values%5D",returned_value); //url encodée : %5B : [ et %3F : ?
+	});
+});
+</script>
+<div class="filtre [?premier]">
+	<p>[?filtre_nom] :</p>
+	<div class="slider" id="slider-[?filtre_shortname]"></div>
+</div>

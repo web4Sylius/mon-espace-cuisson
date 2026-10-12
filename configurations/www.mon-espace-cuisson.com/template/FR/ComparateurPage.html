@@ -1,0 +1,65 @@
+<div id="comparateur">
+     <div class="bloc_information">
+          <div class="texte">
+               <p>Un doute ?</p>
+               <p>Une question ?</p>
+               <p class="pt">N’hésitez pas à contacter nos experts au</p>
+               <span>[?contact_telephone]</span>
+               <a href="javascript:void(0);" class="btn_vider" onclick="vider_comparateur([?typearticleid]);"><i class="fa fa-trash"></i>
+ VIDER LE COMPARATEUR</a>
+          </div>
+          
+     </div>
+    <div id="bloc_produits" class="bloc_produits">
+	<table id="table_produits">
+	  <tr>[?blocproduits]</tr>
+	</table>
+    </div>
+    
+    <div class="clear"></div>
+    <div id="bloc_bas" class="bloc_bas">
+	<div class="bloc_criteres">
+	  [?bloccriteres]
+	</div>
+	
+	<div id="bloc_grille" class="bloc_grille">
+	  [?blocgrille]
+	</div>
+    </div>
+
+</div>
+
+<script language="javascript">
+//Ajuste la hauteur des intitul?s de lignes dans la grilles du comparatif
+     function ajusteAffichage(){
+          var tbl_crit=document.getElementById('tbl_critere');
+	  var tr_crit=tbl_crit.getElementsByTagName('tr');
+	  var tbl_grille=document.getElementById('tbl_grille');
+	  var tr_grille=tbl_grille.getElementsByTagName('tr');
+	  for(i=0;i<tr_crit.length;i++){
+	      var td_crit=tr_crit[i].getElementsByTagName('td')[0];
+	      var td_grille=tr_grille[i].getElementsByTagName('td')[0];
+	      if(td_grille.innerHTML=="") td_grille.innerHTML="&nbsp;";
+	      var h=Math.max(td_crit.offsetHeight,td_grille.offsetHeight);
+	      td_crit.style.height=h+"px";
+	      td_grille.style.height=h+"px";
+	      if(i%2==0){
+		  tr_crit[i].className="gris";
+		  tr_grille[i].className="gris";
+	      }
+	  }
+	   
+	  var win_height=window_size()['height'];
+	  document.getElementById('bloc_bas').style.height=(win_height-350)+'px';
+	  document.getElementById('TB_ajaxContent').style.height=document.getElementById('comparateur').offsetHeight+'px';
+	  document.getElementById('TB_window').style.marginTop=-Math.round(win_height-document.getElementById('TB_window').offsetHeight/2-20)+'px';
+      }
+      
+      function scrollproduits(){
+	  
+	  document.getElementById('table_produits').style.marginLeft=(-document.getElementById('bloc_grille').scrollLeft)+'px';
+      }
+     
+      setTimeout(ajusteAffichage,100);
+      setTimeout(ajusteAffichage,1000);
+</script>

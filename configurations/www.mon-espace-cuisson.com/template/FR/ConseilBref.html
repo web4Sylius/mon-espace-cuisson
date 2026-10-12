@@ -1,0 +1,36 @@
+<div class="bref col-xs-12 no-padding">
+	<div id="bref_1" class="col-sm-2 col-md-2 col-lg-2 hidden-xs"><img src="/images/templates/bref.png" alt="bref"></div>
+	<div id="bref_2" class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+		<h3>[?ref_question]</h3>
+		<p>[?ref_reponse]</p>
+	</div>
+</div>
+<div class="clear"></div>
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "QAPage",
+	"mainEntity": {
+		"@type": "Question",
+		"name": "[?ref_question]",
+        "text": "[?ref_question]",
+        "answerCount": 1,
+		"acceptedAnswer": {
+			"@type": "Answer",
+			"text": "[?ref_reponse]",
+			"dateCreated": "2019-04-02T15:00Z",
+	        "upvoteCount": 1000,
+	        "url": "[?ref_url]",
+	        "author": {
+	          "@type": "Organization",
+	          "name": "Acilyon"
+	        }
+		},
+		"dateCreated": "2019-04-01T16:00Z",
+      	"author": {
+        "@type": "Organization",
+        "name": "Acilyon"
+      	}
+	}
+}
+</script>

@@ -1,0 +1,38 @@
+<div class="question col-xs-12" onclick="show_question('pose')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Type d'installation ?</h2>
+      <div class="reponse" id="reppose"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btnpose" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnresppose" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <ul class="prop">
+    <li class="li3 pose [?poserep1class]" onclick="clickli(this,'pose1')">
+      <h3><span>Pose libre</span></h3>
+      <p >La cave à vin sera installée contre un mur, avec de l'espace libre tout autour</p>
+      <img src="/images/configurateur/pose1.jpg" alt="" class="hidden-xs" width="269">
+      <input type="radio" id="pose1" name="pose" onclick="next('pose','[?poserep1]')" [?checkposerep1] class="hidden-xs">
+    </li>
+    <li class="li3 pose [?poserep3class]" onclick="clickli(this,'pose3')">
+      <h3><span>En îlot central</span></h3>
+      <p>La cave à vin sera posée au centre d'une pièce, permettant un accès aux bouteilles par l'avant et l'arrière</p>
+      <img src="/images/configurateur/pose2.jpg" alt="" class="hidden-xs">
+      <input type="radio" id="pose3" name="pose" onclick="next('pose','[?poserep3]')" [?checkposerep3] class="hidden-xs">
+    </li>
+    <li class="li3 pose [?poserep2class]" onclick="clickli(this,'pose2')">
+      <h3><span>Encastrable ou intégrable</span></h3>
+      <p>La cave à vin sera installée dans une niche, un meuble, en colonne ou sous un plan de travail</p>
+      <img src="/images/configurateur/pose3.jpg" alt="" class="hidden-xs" width="269">
+      <input type="radio" id="pose2" name="pose" onclick="next('pose','[?poserep2]')" [?checkposerep2] class="hidden-xs">
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,18 @@
+<td class="produit" title="[?libelle]">
+    <a class="fermer" onclick="toggleCompare([?artid], 'reaffiche');" href="#"><span>Supprimer</span> <span></span></a>
+    <div class="clear"></div>
+    <p class="title">
+      [?libelle]
+    </p>
+    <p class="ref"><strong>Réf. :</strong>[?ref]</p>
+    <img id="visuel_produit_[?artid]" class="img" src="/images/[?artid]_80_80.jpg">
+    <div style="height: 25px;">
+      [?logomarque]
+    </div>
+    <p class="prix">
+      [?prix]
+    </p>
+    <a class="detail_produit" href="[?url]">Voir la fiche produit</a>
+    <a class="commander" href="javascript:void(0)" onclick="ajaxAddProduct2('[?artid]'); return false;">AJOUTER AU PANIER</a>
+    <input id="qte[?artid]" type="hidden" value="1">
+</td>

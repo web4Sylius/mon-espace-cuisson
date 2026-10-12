@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 07 Aug 2015 08:19:22 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>Toolbox/String.php (Fnac Marketplace PHP Client API Documentation)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/toolbox/string.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>Toolbox/String.php</h1>
+<hr>
+
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #666666; font-style: italic;">/*
+<a name="line3"></a> * This file is part of the FnacApiClient.
+<a name="line4"></a> * (c) 2011 Fnac
+<a name="line5"></a> *
+<a name="line6"></a> * For the full copyright and license information, please view the LICENSE
+<a name="line7"></a> * file that was distributed with this source code.
+<a name="line8"></a> */</span>
+<a name="line9"></a>&nbsp;
+<a name="line10"></a><span style="color: #000000; font-weight: bold;">namespace</span> FnacApiClient\Toolbox<span style="color: #339933;">;</span>
+<a name="line11"></a>&nbsp;
+<a name="line12"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line13"></a> * Class to handle some string functions
+<a name="line14"></a> *
+<a name="line15"></a> * @author     Fnac
+<a name="line16"></a> * @version    1.0.0
+<a name="line17"></a> */</span>
+<a name="line18"></a><span style="color: #000000; font-weight: bold;">class</span> String
+<a name="line19"></a><span style="color: #009900;">&#123;</span>
+<a name="line20"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line21"></a>     * Translates a camel case string into a string with underscores (e.g. firstName -&amp;gt; first_name)
+<a name="line22"></a>     * @param    string   $str    String in camel case format
+<a name="line23"></a>     * @return   string   String translated into underscore format
+<a name="line24"></a>     */</span>
+<a name="line25"></a>    <span style="color: #000000; font-weight: bold;">public</span> static <span style="color: #000000; font-weight: bold;">function</span> fromCamelCase<span style="color: #009900;">&#40;</span><span style="color: #000088;">$str</span><span style="color: #009900;">&#41;</span>
+<a name="line26"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line27"></a>        <span style="color: #000088;">$str</span><span style="color: #009900;">&#91;</span><span style="color: #cc66cc;">0</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/strtolower"><span style="color: #990000;">strtolower</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$str</span><span style="color: #009900;">&#91;</span><span style="color: #cc66cc;">0</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line28"></a>        <span style="color: #000088;">$func</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/create_function"><span style="color: #990000;">create_function</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'$c'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'return &quot;_&quot; . strtolower($c[1]);'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line29"></a>&nbsp;
+<a name="line30"></a>        <span style="color: #b1b100;">return</span> <a href="http://www.php.net/preg_replace_callback"><span style="color: #990000;">preg_replace_callback</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'/([A-Z])/'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$func</span><span style="color: #339933;">,</span> <span style="color: #000088;">$str</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line31"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line32"></a>&nbsp;
+<a name="line33"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line34"></a>     * Translates a string with underscores into camel case (e.g. first_name -&amp;gt; firstName)
+<a name="line35"></a>     * @param    string   $str                     String in underscore format
+<a name="line36"></a>     * @param    bool     $capitalise_first_char   If true, capitalise the first char in $str
+<a name="line37"></a>     * @return   string                            String translated into camel caps
+<a name="line38"></a>     */</span>
+<a name="line39"></a>    <span style="color: #000000; font-weight: bold;">public</span> static <span style="color: #000000; font-weight: bold;">function</span> toCamelCase<span style="color: #009900;">&#40;</span><span style="color: #000088;">$str</span><span style="color: #339933;">,</span> <span style="color: #000088;">$capitalise_first_char</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #009900;">&#41;</span>
+<a name="line40"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line41"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$capitalise_first_char</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line42"></a>            <span style="color: #000088;">$str</span><span style="color: #009900;">&#91;</span><span style="color: #cc66cc;">0</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/strtoupper"><span style="color: #990000;">strtoupper</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$str</span><span style="color: #009900;">&#91;</span><span style="color: #cc66cc;">0</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line43"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line44"></a>        <span style="color: #000088;">$func</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/create_function"><span style="color: #990000;">create_function</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'$c'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'return strtoupper($c[1]);'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line45"></a>&nbsp;
+<a name="line46"></a>        <span style="color: #b1b100;">return</span> <a href="http://www.php.net/preg_replace_callback"><span style="color: #990000;">preg_replace_callback</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'/_([a-z])/'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$func</span><span style="color: #339933;">,</span> <span style="color: #000088;">$str</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line47"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line48"></a>&nbsp;
+<a name="line49"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line50"></a>     * Transform xml raw text into a pretty xml formatter
+<a name="line51"></a>     *
+<a name="line52"></a>     * @param string $xml
+<a name="line53"></a>     * @return string
+<a name="line54"></a>     * @author gperier
+<a name="line55"></a>     */</span>
+<a name="line56"></a>    <span style="color: #000000; font-weight: bold;">public</span> static <span style="color: #000000; font-weight: bold;">function</span> prettyXml<span style="color: #009900;">&#40;</span><span style="color: #000088;">$xml</span><span style="color: #009900;">&#41;</span>
+<a name="line57"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line58"></a>        <span style="color: #000088;">$dom</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> \DomDocument<span style="color: #339933;">;</span>
+<a name="line59"></a>        <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">preserveWhiteSpace</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
+<a name="line60"></a>        <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">formatOutput</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">;</span>
+<a name="line61"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!@</span><span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">loadXML</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$xml</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line62"></a>            <span style="color: #b1b100;">return</span> <span style="color: #000088;">$xml</span><span style="color: #339933;">;</span>
+<a name="line63"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line64"></a>&nbsp;
+<a name="line65"></a>        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$dom</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">saveXML</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line66"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line67"></a>&nbsp;
+<a name="line68"></a><span style="color: #009900;">&#125;</span>
+<a name="line69"></a>&nbsp;</pre>
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/toolbox/string.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

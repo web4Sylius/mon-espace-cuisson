@@ -1,0 +1,3 @@
+echo "exec referents" > /home/macavavin/www/scripts/logs.txt
+/usr/bin/lynx -dump http://www.ma-cave-a-vin.fr/scripts/google.php  > /home/macavavin/www/scripts/logs.txt
+echo " - termine pour aujourhui" > /home/macavavin/www/scripts/logs.txt

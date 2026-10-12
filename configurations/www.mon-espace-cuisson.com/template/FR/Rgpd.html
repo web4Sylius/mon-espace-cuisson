@@ -1,0 +1,32 @@
+<div class="c_title_1">
+	<p>Paramétrer mes cookies</p>
+</div>
+<div class="c_bloc">
+	<h3 class="c_n">COOKIES NÉCESSAIRES</h3>
+	<div class="c_choice_1"><span>Toujours actifs</span></div>
+	<p>Cookies nécessaires au bon fonctionnement du site. Ils vous permettent d'utiliser les principales fonctionnalités comme l'accès à votre compte. Ils ne peuvent pas être désactivés</p>
+</div>
+<div class="c_bloc">
+	<h3>COOKIES ANALYTIQUES</h3>
+	<div class="c_bloc_switch">
+		<label class="switch">
+		  <input type="checkbox" id="cookies_analytiques">
+		  <span class="sliderbtn round"></span>
+		</label>
+	</div>
+	<p>Cookies permettant de connaître l'utilisation, les volumes de fréquentation ainsi que les performances de notre site. Ces cookies sont nécessaires à l'amélioration de l'ergonomie et du fonctionnement des services propposés sur notre site.</p>
+</div>
+<div class="c_bloc">
+	<h3>COOKIES RÉSEAUX SOCIAUX</h3>
+	<div class="c_bloc_switch">
+		<label class="switch">
+		  <input type="checkbox" id="cookies_rs">
+		  <span class="sliderbtn round"></span>
+		</label>
+	</div>
+	<p>Ces cookies vous permettent de réagir ou de partager du contenu sur les réseaux sociaux disponibles sur notre site.</p>
+</div>
+<button class="btn btn-light btn-param" type="submit" onclick="cookie_saveparam();setTimeout(overlayDisplay,1000);">Enregistrer les paramètres</button>
+<button class="btn btn-primary btn-accept" type="submit" onclick="cookie_choice('yes');setTimeout(overlayDisplay,1000);">Tout autoriser</button>
+
+<!--<p class="btn-back-err" id="btn-back-err" onclick="overlayDisplay();">Retour <span class="fa fa-chevron-right"></span></p>-->

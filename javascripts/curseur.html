@@ -1,0 +1,25 @@
+<html>
+<head>
+<script language="javascript" src="prototype.js"></script>
+<script language="javascript" src="curseur.js"></script>
+<style>
+.curseur { float:left; position:relative; background-color:black; width:250px; height:30px; font-size:12px; }
+.curseur .cmin { position:absolute; background-color:red; width:25px; height:15px; cursor:pointer; padding-top:15px; text-align:center; }
+.curseur .cmax { position:absolute; background-color:yellow; width:25px; height:15px; cursor:pointer; padding-top:15px; text-align:center; }
+#conteneur { margin:40px 0 0 40px; }
+</style>
+</head>
+<body id="body">
+<div id="conteneur"></div>
+<div id="c_vmin"></div>
+<div id="c_vmax"></div>
+<script language="javascript">
+var c=new dbcurseur('conteneur','c');
+c.callback=curseurcb;
+c.setmin(10);
+c.setmax(100);
+function curseurcb(field,value){
+  document.getElementById(field).innerHTML=value;
+}
+</script>
+</body>

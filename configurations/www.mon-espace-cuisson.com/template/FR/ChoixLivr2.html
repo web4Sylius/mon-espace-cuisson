@@ -1,0 +1,44 @@
+<div id="livrtype1" class="frame" onclick="selectChoix(1,[?facturid])">
+    <div class="col-sm-2 col-md-2 hidden-xs">
+	  <img src="/images/templates/confort.jpg" style="max-width: 126px;">
+    </div>
+
+    <input type="radio" name="rlivrtype" id="rlivrtype1" class="col-sm-2 col-md-2 col-xs-4">
+
+    <div class="visible-xs col-sm-2 col-md-2 col-xs-4">
+	  <img src="/images/templates/confort.jpg" style="max-width: 150px;">
+    </div>
+
+    <div class="checkbox hidden-xs col-sm-1 col-md-1 col-lg-1" style="text-align:right;"><i class="far fa-circle"></i></div>
+    <div class="righttext col-md-9 col-sm-9 col-xs-12 no-padding">
+  <div class="frametitle">
+		<div class="text">
+		  Livraison <b>«Confort»</b> dans la pièce de votre <span style="white-space: nowrap;">choix </span>
+		  <div class="clear"></div>
+		  <div class="livraison">Livraison prévue aux environs du <input type="text" id="datelivr2" name="datelivr1" class="datelivr" onclick="mints=[?mints2];calendrier_show(this.id,this.value);" value="[?datelivraison2]" readonly><input type="hidden" name="datelivrorigin1" value="[?datelivraison2]"></div>
+		  <div class="clear"></div>
+		  <p class="text_livr" style="font-size:16px;">Vous êtes absent ?
+		  <a href="javascript:void(0);" onclick="mints=[?mints2];calendrier_show('datelivr2',document.getElementById('datelivr2').value);" class="autredate"><i class="fa fa-calendar"></i>Choisir une autre date</a>
+			</p>
+		</div>
+		<div class="prix">
+		    <span class="prixlivr">[?choix2prix]</span>
+		</div>
+		<div class="clear"></div>
+		<div class="text_livr">
+			- Livraison sur rendez-vous en semaine (hors week-end et jours fériés) entre 8H00 et 18H00, comprenant : transport, manutention, montée à l’étage, mise en place dans la pièce de votre choix, déballage, récupération des emballages pour destruction. Prestation recommandée pour produits lourds, passage réduit, étages, marches, escaliers, nécessité de manutention à plusieurs, récupération ancien produit,…)
+			<br><br>
+			<i>*Sont exclus de la livraison : la mise en service des produits.</i>
+
+		</div>
+  </div>
+      
+      <div id="opts1" class="opts">
+	  <div class="opt" onclick="selectChoix(1,[?facturid]);loadform('[?langue]',1,2,'choix21',[?load_options],[?facturid],'21');"><input id="optchoix21" type="radio" onclick="selectChoix(1,[?facturid]);loadform('[?langue]',1,2,'choix21');" style="width: inherit;" value="1" name="choixlivr" class="hidden-xs"> Livraison à l'adresse de facturation</div>
+	  <div id="choix21"></div>
+	  <div class="opt" onclick="selectChoix(1,[?facturid]);loadform('[?langue]',2,2,'choix22');"><input id="optchoix22" type="radio" onclick="selectChoix(1,[?facturid]);loadform('[?langue]',2,2,'choix22');" style="width: inherit;" value="1" name="choixlivr" class="hidden-xs"> Livraison à une autre adresse (travail, voisin, ami, famille ...)</div>
+	  <div id="choix22"></div>
+      </div>
+    </div>
+    <div class="clear"></div>
+</div>

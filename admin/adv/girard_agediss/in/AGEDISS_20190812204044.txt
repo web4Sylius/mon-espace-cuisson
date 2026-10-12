@@ -1,0 +1,6 @@
+2019/07/31|152713|315101216|TRANVANLOC Alphonse|33000|70333|RDV PRI|RDV pris|2019/08/15|0|20190815|http://webtracking.girard-agediss.com/tracking-acilyon-315101216.html
+2019/08/07|152875|315114221|BEAUTRU Jean|44730|70441|RDV CCL|Confirmation Creneaux de Livraison|2019/08/13|0||http://webtracking.girard-agediss.com/tracking-acilyon-315114221.html
+2019/08/12|152442MES|315121251|DEVOS Lucie|59710|70598|RST REP|Message Repondeur|2019/08/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-315121251.html
+2019/08/12|152045RVS|315122684|BARTHELEMY Pierre-Antoine|69003|70791|AAR CFM|Reception conforme|2019/08/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-315122684.html
+2019/08/12|152045RVS|315122684|BARTHELEMY Pierre-Antoine|69003|70791|INI INF|Arrivee info|2019/08/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-315122684.html
+2019/08/12|152045RVSB|315122685|BARTHELEMY Pierre-Antoine|69003|70387|INI INF|Arrivee info|2019/08/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-315122685.html

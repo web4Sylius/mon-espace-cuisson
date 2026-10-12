@@ -1,0 +1,64 @@
+<script language="javascript" src="javascripts/cde2.js"></script>
+
+<form name="cde2form" action="cde225.php" method="post">
+  <input type="hidden" name="factureid" value="[?facturid]">
+
+  <div id="errmodelivr">Merci de sélectionner un moyen de livraison ci-dessous</div>
+  <div class="top">
+    <div class="col-md-6 col-sm-6 col-xs-12 left">Sélectionnez parmi les modes de livraison en fonction<br class="hidden-xs">de votre budget, de votre besoin et de votre disponibilité :</div>
+    <div class="col-md-6 col-sm-6 col-xs-12 right">Poids total de votre commande : <b>[?poidstotal] kg</b></div>
+    <div class="clear"></div>
+  </div>
+
+  <div id="err_client" style="display:none;">Votre <a href="/client.php?action=modify">adresse de facturation</a> est incomplète, veuillez rajouter les informations manquantes afin de finaliser votre commande en <a href="/client.php?action=modify">cliquant ici</a></div>
+
+  <div id="livrtype0" class="frame" onclick="selectChoix(0,[?facturid])">
+      <div class="col-sm-2 col-md-2 hidden-xs">
+	  		<img src="/images/templates/eco.jpg" style="max-width: 126px;">
+      </div>
+      
+      <input type="radio" name="rlivrtype" id="rlivrtype0" class="col-sm-2 col-md-2 col-xs-4">
+
+      <div class="visible-xs col-xs-4">
+	  		<img src="/images/templates/eco.jpg" style="max-width: 150px;">
+      </div>
+      
+      <div class="checkbox hidden-xs col-sm-1 col-md-1 col-lg-1" style="text-align:right;"><i class="far fa-circle"></i></div>
+      <div class="righttext col-md-9 col-sm-9 col-xs-12 no-padding">
+	  <div class="frametitle">
+	    <div class="text">
+	      Livraison <b>«Économique»</b>
+	      <div class="clear"></div>
+	      <div class="livraison">Livraison prévue aux environs du <input type="text" id="datelivr1" name="datelivr0" class="datelivr" onclick="mints=[?mints1];calendrier_show(this.id,this.value);" value="[?datelivraison1]" readonly><input type="hidden" name="datelivrorigin0" value="[?datelivraison1]"></div>
+	      <p class="text_livr" style="font-size:16px;">Vous êtes absent ? 
+	      <a href="javascript:void(0);" onclick="mints=[?mints1];calendrier_show('datelivr1',document.getElementById('datelivr1').value);" class="autredate"><i class="fa fa-calendar"></i>Choisir une autre date</a>
+	    	</p>
+	    </div>
+	    <div class="prix">
+	      <span class="prixbarre">[?choix1prixbarre]</span>
+	      <span class="prixlivr">[?choix1prix]</span>
+	    </div>
+	    <div class="clear"></div>
+	    <div class="text_livr">
+	    	- Livraison sur rendez-vous (pour les colis supérieurs à 25kg) et sans rendez-vous (pour les colis inférieurs à 25kg) en semaine (hors week-end et jours fériés) entre 8H00 et 18H00, de plain-pied à l’entrée de votre maison ou de votre entreprise ou au pied de votre immeuble.<br><br>
+	    	<i>*Sont exclus de la livraison : la montée des marches, la livraison en étage, le déballage, la mise en place et la mise en service des produits ainsi que la reprise des emballages et/ou de votre ancien produit pour recyclage.</i>
+	    </div>
+	  </div>
+	  
+	  <div id="opts0" class="opts">
+	      <div class="opt" onclick="selectChoix(0,[?facturid]);loadform('[?langue]',1,1,'choix11');"><input id="optchoix11" type="radio" onclick="selectChoix(0,[?facturid]);loadform('[?langue]',1,1,'choix11');" style="width: inherit;" value="0" name="choixlivr" class="hidden-xs"> Livraison à l'adresse de facturation</div>
+	      <div id="choix11"></div>
+	      <div class="opt" onclick="selectChoix(0,[?facturid]);loadform('[?langue]',2,1,'choix12');"><input id="optchoix12" type="radio" onclick="selectChoix(0,[?facturid]);loadform('[?langue]',2,1,'choix12');" style="width: inherit;" value="0" name="choixlivr" class="hidden-xs"> Livraison à une autre adresse (travail, voisin, ami, famille ...)</div>
+	      <div id="choix12"></div>
+	  </div>
+      </div>
+      <div class="clear"></div>
+  </div>
+
+ [?choix3livr]
+ [?choix2livr]
+ [?choix7livr]
+ [?choix4livr]
+ [?choix5livr]
+
+</form>

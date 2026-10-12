@@ -1,0 +1,83 @@
+<input type="hidden" value="[?rueadresse]" name="fac_adr">
+<input type="hidden" value="[?codepostal]" name="fac_cp">
+<input type="hidden" value="[?ville]" name="fac_ville">
+<div>
+<div class="row" style="margin-top: 0px">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Civilit&eacute;* : </div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><select name="civilite"><option>--Choisissez--</option><option selected="" value="0">Monsieur</option><option value="1">Madame</option></select></div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Nom* : </div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><input type="text" value="" name="nom"></div>
+  <div class="col-md-4 herror" id="errnom" ><i class="fa fa-chevron-left"></i>Veuillez indiquer un nom</div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Pr&eacute;nom* : </div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><input type="text" value="" name="prenom"></div>
+  <div class="col-md-4 herror" id="errprenom"><i class="fa fa-chevron-left"></i>Veuillez indiquer un prénom</div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Soci&eacute;t&eacute; / Raison sociale :</div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><input type="text" value="" name="raisonsociale"></div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Adresse* : </div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><input type="text" value="" name="adresse"></div>
+  <div class="col-md-4 herror" id="erradresse"><i class="fa fa-chevron-left"></i>Veuillez indiquer une adresse</div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Code postal* : </div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><input type="text" value="" name="codepostal"></div>
+  <div class="col-md-4 herror" id="errcp"><i class="fa fa-chevron-left"></i>Veuillez indiquer un code postal</div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Ville* : </div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><input type="text" value="" name="ville"></div>
+  <div class="col-md-4 herror" id="errville"><i class="fa fa-chevron-left"></i>Veuillez indiquer une ville</div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Téléphone* :<br><small>Portable souhaité</small></div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><input type="text" value="" name="telephone"></div>
+  <div class="col-md-4 herror" id="errtel"><i class="fa fa-chevron-left"></i>Veuillez indiquer un téléphone</div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Pays* : </div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><select name="monpays">[?optionspays]</select></div>
+  <div class="col-md-4 herror" id="errpays"><i class="fa fa-chevron-left"></i>Veuillez indiquer un pays</div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Adresse email de livraison* : </div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><input type="text" name="mail" value="[?mail]"></div>
+  <div class="col-md-4 herror" id="errmail"><i class="fa fa-chevron-left"></i>Merci de donner une adresse email pour la livraison</div>
+</div>
+<div class="row">
+  <b>IMPORTANT : Informations n&eacute;cessaires au transporteur pour vous livrer efficacement :</b>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Digicode</div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><input type="text" value="" name="shipdetail1"></div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Interphone</div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><input type="text" value="" name="shipdetail6"></div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Etage</div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><input type="text" value="" name="shipdetail2"></div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Code ascenseur</div>
+  <div class="col-md-8 col-sm-4 col-xs-12 no-padding"><input type="text" value="" name="shipdetail3"></div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Autres informations importantes</div>
+  <div class="col-md-8 col-sm-8 col-xs-12 no-padding"><input type="text" value="" name="shipdetail4"></div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12 no-padding">Horaire d'ouverture</div>
+  <div class="col-md-8 col-sm-8 col-xs-12 no-padding"><input type="text" value="" name="shipdetail5"></div>
+</div>
+</div>
+[?recup]
+<a href="javascript:void(0);" onclick="veriflivr(2)" class="valide col-xs-12 col-sm-offset-4 col-sm-8 col-md-offset-4 col-md-6 col-lg-offset-4 col-lg-5">Valider et passer à l'étape suivante<i class="fa fa-chevron-right"></i></a>
+<div class="clear"></div>

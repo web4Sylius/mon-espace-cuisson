@@ -1,0 +1,5 @@
+fnac_api_client:
+  partner_id: 4820E092-435F-2436-660B-BAB29DEF6DCB
+  shop_id: 3FC7F057-39E9-BF80-3D5A-1460E538DCA7
+  key: 51D0182F-2B0E-91B5-B289-5F1D4C72E1E2
+  host: https://mp.rec7.fnac.dev/api.php

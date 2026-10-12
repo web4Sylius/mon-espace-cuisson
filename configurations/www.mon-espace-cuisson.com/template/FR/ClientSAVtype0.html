@@ -1,0 +1,44 @@
+<div id="sav_form">
+  <input type="hidden" name="uniq" value="[?uniq]">
+  <div class="sav_title">UNE AVARIE DE TRANSPORT / INSTALLATION</div>
+
+  <p><b>IMPORTANT : pour que votre demande soit recevable, cette déclaration doit être faite dans les 48h au plus tard.</b></p>
+
+  <div class="sav_ligne" style="display:block">
+    Date de livraison (dd/mm/aaaa) : <input type="text" name="sav_datelivr" size="10" onkeyup="showligne('l1',this.value.length>=6)">
+  </div>
+
+  <div id="l1" class="sav_ligne">
+    Numéro du bon de transport : <input type="text" name="sav_nbon" onkeyup="showligne('l2',this.value.length>3)">
+    <br><input type="checkbox" onclick="showligne('l2',this.checked);document.getElementsByName('sav_nbon')[0].value='';document.getElementsByName('sav_nbon')[0].disabled=this.checked;"> Je ne sais pas
+  </div>
+
+  <div id="l2" class="sav_ligne">
+    Nom du transporteur : <input type="text" name="sav_nomtrspt" onkeyup="showligne('l3',this.value.length>2)">
+    <br><input type="checkbox" onclick="showligne('l3',this.checked);document.getElementsByName('sav_nomtrspt')[0].value='';document.getElementsByName('sav_nomtrspt')[0].disabled=this.checked;"> Je ne sais pas
+  </div>
+
+  <div id="l3" class="sav_ligne">Avez-vous conservé la marchandise* ? <input type="radio" name="sav_marchandise" value="0" onclick="showligne('l5',this.checked);document.getElementById('nbserie').style.display='none';"> Non &nbsp; <input type="radio" name="sav_marchandise" value="1" onclick="document.getElementById('nbserie').style.display='inline';"> Oui &nbsp;
+  <br><br><span id="nbserie" style="display:none;">N° de série de l'appareil <input type="text" name="sav_nbserie"><br><input type="checkbox" onclick="document.getElementsByName('sav_nbserie')[0].value='';document.getElementsByName('sav_nbserie')[0].disabled=this.checked;"> Je ne sais pas
+  <br><br>Avez-vous conservé l'emballage* ? <input type="radio" name="sav_emballage" value="0" onclick="showligne('l5',this.checked);"> Non &nbsp; <input type="radio" name="sav_emballage" value="1" onclick="showligne('l5',this.checked);"> Oui</span></div>
+
+  <div id="l5" class="sav_ligne">Avez-vous émis des réserves sur le bon de transport récupéré par le livreur* ? <input type="radio" name="sav_reserve" value="0" onclick="showligne('l6',false);showligne('l7',true);"> Non &nbsp; <input type="radio" name="sav_reserve" value="1" onclick="showligne('l6',true);showligne('l7',false);"> Oui</div>
+
+  <div id="l6" class="sav_ligne">Si oui, lesquelles (indiquez précisément les réserves que vous avez écrites sur le document du transporteur) :
+  <br><textarea name="sav_reserves" onkeyup="showligne('l7',this.value!='')"></textarea></div>
+
+  <div id="l7" class="sav_ligne">Détails précis de votre demande (les dommages précis subis par la marchandise, l'état de l'emballage, l'attitude du chauffeur, délais non respectés, ...)* :
+  <br><textarea name="sav_demande" onkeyup="showligne('l9',this.value!='');showligne('l8',document.getElementsByName('sav_marchandise')[1].checked&&this.value!='');"></textarea></div>
+
+  <div id="l8" class="sav_ligne">Pour finaliser votre dossier, nous vous remercions de nous faire parvenir des photos de l'emballage et de la marchandise en les envoyant directement en cliquant-ici :<br><small>(formats acceptés JPEG, PNG, &lt; 2Mo par photo)</small>
+    <br><iframe src="sav_ul.php?savid=[?uniq]" style="width:400px;height:70px;border:none;" scrolling="no"></iframe>
+  </div>
+
+  <div id="l9" class="sav_ligne">
+    <input type="checkbox" name="mail" value="1"> Recevoir une copie de ma demande par mail
+    <div class="btns">
+	<div class="valide" onclick="document.forms.sav1.submit();">Etape suivante<i class="fa fa-chevron-right"></i></div>
+	<div class="clear"></div>
+    </div>
+  </div>
+</div>

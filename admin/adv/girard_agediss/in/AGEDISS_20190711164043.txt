@@ -1,0 +1,3 @@
+2019/06/26|151592|315029209|BEYER Jeremy|74140|70735|RST ANN|Annulation client|2019/07/11|0|erreur saisie / à livrer sous le BL 315063726|http://webtracking.girard-agediss.com/tracking-acilyon-315029209.html
+2019/07/01|151637|315036802|PERRARD Olivier|39210|70213|DIF CLT|RDV differe par le client|2019/07/11|0|rdv annulé à la demande du client / n'est pas prêt / à recontacter|http://webtracking.girard-agediss.com/tracking-acilyon-315036802.html
+2019/07/11|151592bis|315063726|BEYER JEREMY|74140|70735|INI INF|Arrivee info|2019/07/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-315063726.html

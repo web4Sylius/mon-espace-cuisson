@@ -1,0 +1,4 @@
+2019/07/01|151637|315036802|PERRARD Olivier|39210|70213|RDV PRI|RDV pris|2019/09/18|0|20190918|http://webtracking.girard-agediss.com/tracking-acilyon-315036802.html
+2019/08/22|153280|315141297|MARTIN Pierre-Yves|44000|70441|RDV CCL|Confirmation Creneaux de Livraison|2019/09/05|0|code d'entrée 1948 // appeler une demi heure avant|http://webtracking.girard-agediss.com/tracking-acilyon-315141297.html
+2019/08/27|153415|315148142|LENTI - PUSTOZYOROVA Inna|06110|70061|AAR CFM|Reception conforme|2019/09/04|0||http://webtracking.girard-agediss.com/tracking-acilyon-315148142.html
+2019/08/27|153418|315148213|GAUTIER myrtille|06600|70061|RDV CCL|Confirmation Creneaux de Livraison|2019/09/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-315148213.html

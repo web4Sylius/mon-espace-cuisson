@@ -1,0 +1,145 @@
+/* CSS Général */
+#sliderwait { display:none; float: left; position: relative; width: 100%; height:425px; margin: 5px 0 0 0; background:url('/images/templates/ajax-loader.gif') white no-repeat center; }
+.jssort11 p.thumbnail { margin: 0; padding: 0; vertical-align: middle; line-height: normal; display: inline-block;background-color: transparent;border:none; }
+
+#slider1_container { overflow:hidden; white-space: nowrap; font-size:0; }
+#slider1_container > div { display:inline-block; font-size:12px; }
+#slider1_container > div > div { display:none; }
+#slider1_container > div img { width:100%; max-width:700px; }
+
+.jssora03l, .jssora03r {
+    display: block;
+    position: absolute;
+    /* size of arrow element */
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    background: url(/images/templates/css_sprites.png) no-repeat;
+    overflow: hidden;
+}
+.jssora03l { top: 92%;margin-top:-25px; left: 15px; position:absolute; background-position: 0% 6%; }
+.jssora03r { top: 92%;margin-top:-25px; right: 15px; position:absolute; background-position: 12% 6%; }
+.jssora03l:hover { background-position: 21.5% 6%; }
+.jssora03r:hover { background-position: 54.3% 6%; }
+.jssora03l.jssora03ldn { background-position: -246px -33px; }
+.jssora03r.jssora03rdn { background-position: -300px -33px; }
+.jssort11 {
+    
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    left: 50%;
+    margin-left: -25px; 
+    bottom:0;
+    margin-top: 50px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#slider1_container .jssort11:first-child{border-top:solid 5px #E6E2E0;}
+#slider1_container{margin: 0 auto;float: none;margin-top: 5px;}
+.jssort11 .slides { cursor: pointer; }
+/* .jssort11 .slides > div { border-left:solid 1px #E6E2E0; } */
+.jssort11 .p {position: absolute;width: 176px;height: 50px;top: 0;left: 0;}
+.jssort11 .tp {position: absolute;top: 0;left: 0;width: 175px; height: 100%; border: none;}
+.jssort11 .i, .jssort11 .pav:hover .i {position: absolute;top: 3px;left: 3px;width: 60px;height: 30px;border: white 1px dashed;}
+
+* html .jssort11 .i {width /**/: 62px;height /**/: 32px;}
+.jssort11 .pav .i {
+    border: white 1px solid;
+}
+
+.jssort11 .t, .jssort11 .pav:hover .t {
+    position: absolute;
+    top: 3px;
+    left: 68px;
+    width: 129px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #fc9835;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.jssort11 .pav .t {
+    background:#A88D5C;
+    color: #fff;
+}
+
+.pro .jssort11 .pav .t {
+    background:#0393C2;
+}
+
+.jssort11 .c {
+    position: relative;
+    width: 171px;
+    text-align: center;
+    color: #000;
+    font-size: 12px;
+    overflow: hidden;
+    background-color: white;                
+    height: 45px;
+    line-height: 45px;
+    border-bottom:solid 5px white;
+}
+
+.jssort11 .p .c:hover {
+    border-bottom:solid 5px #A88D5C!important;
+}
+
+.pro .jssort11 .p .c:hover {
+    border-bottom:solid 5px #0393C2!important;
+}
+
+.jssort11 .pav .c {
+    width:170px;
+    height: 46px;
+    font-weight: 700;
+    color:white;
+    background:#A88D5C;
+    border-bottom:solid 5px #A88D5C;
+}
+
+.pro .jssort11 .pav .c {
+    background:#0393C2;
+    border-bottom:solid 5px #0393C2;
+}
+
+.jssort11 .p:hover .t, .jssort11 .pav:hover .t, .jssort11 .p:hover .c, .jssort11 .pav:hover .c {
+    transition: none;
+    -moz-transition: none;
+    -webkit-transition: none;
+    -o-transition: none;
+}
+
+
+
+/* SLIDER MARQUES */
+#marques_index { margin:0; overflow:hidden; white-space: nowrap; font-size:0; }
+#marques_index > div { display:inline-block; width:calc(100% / 8 - 20px); margin:0 10px; background:white; text-align:center; font-size:12px; }
+@media (max-width: 940px) {
+    #marques_index > div { width:calc(100% / 4 - 20px); }
+}
+@media (max-width: 450px) {
+    #marques_index > div { width:calc(100% / 2 - 20px); }
+}
+#marques_index > div img { }
+
+div#clients_index { position: relative; top: 0px; left: 0px; width: 950px; height: 125px; margin: 10px 0 50px 26px; }
+div#clients_index div.slider { cursor: move; position: absolute; left: 0px; top: 0px; width: 100%; height: 125px; overflow: hidden; }
+div#clients_index div.slider div.slide { width: 150px; background-color: white; }
+div#clients_index .left, div#clients_index .right { display: block; position: absolute; width: 20px; height: 24px; cursor: pointer; background: url(/img/a05spec.png) no-repeat; overflow: hidden; }
+div#clients_index .left { background-position: 0 -2px; top: 50px; left: -20px; }
+div#clients_index .right { background-position: -21px -2px; top: 50px; right: -20px; }
+div#clients_index .left:hover { background-position: -45px -2px; top: 50px; left: -22px; }
+div#clients_index .right:hover { background-position: -69px -2px; top: 50px; right: -22px; }
+div#clients_index .left.leftldn { background-position: -89px -2px; top: 50px; left: -30px; }
+div#clients_index .right.rightrdn { background-position: -109px -2px; top: 50px; right: -30px; }
+
+@media (max-width: 547px) {
+    .jssora03l, .jssora03r{top: 85%;}
+}

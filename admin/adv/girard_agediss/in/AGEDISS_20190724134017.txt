@@ -1,0 +1,3 @@
+2019/07/01|151742|315038849|BOURGAUD David|38750|70263|RDV PRI|RDV pris|2019/07/26|0|20190726|http://webtracking.girard-agediss.com/tracking-acilyon-315038849.html
+2019/07/19|152343|315079611|TERNON Ludovic|76210|70762|AAR AVA|Reception avec reserves|2019/07/24|0|emballage abimè|http://webtracking.girard-agediss.com/tracking-acilyon-315079611.html
+2019/07/19|152343|315079611|TERNON Ludovic|76210|70762|RST REP|Message Repondeur|2019/07/24|0|DESSUS LILLEBONNE|http://webtracking.girard-agediss.com/tracking-acilyon-315079611.html

@@ -1,0 +1,76 @@
+<p class="contact_intitule">Besoin d'aide ou de conseils ?</p>
+<h1 class="titre_intitule">Contactez nos experts en utilisant ce formulaire.</h1>
+<p class="contact_sous_intitule">Exposez-nous précisément votre besoin.<br>Nous vous répondrons sous 24 heures ou vous appellerons quand vous le désirez.</p>
+<div class="contact_encart">
+    <form id="contact_form" name="contact" method="post">
+        <input type="hidden" id="gclidc" name="gclid" value="">
+        <p class="[?error]">Certains champs obligatoires ne sont pas remplis</p>
+        <p class="[?msgok]" id="formulaire_contact_valide">Le message a été envoyé.<br>Nous y répondrons dans les plus brefs délais.</p>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12"><input [?styleNom] type="text" value="[?nom]" name="nom" placeholder="Nom *"></div>
+                <div class="col-sm-6 col-xs-12"><input [?stylePrenom] type="text" value="[?prenom]" name="prenom" placeholder="Prénom *"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12"><input [?styleExp] type="text" value="[?expediteur]" name="expediteur" placeholder="Email *"></div>
+                <div class="col-sm-6 col-xs-12"><input type="text" value="[?societe]" name="societe" placeholder="Société"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12"><input type="text" class="long" value="[?adresse]" name="adresse" placeholder="Adresse"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12"><input type="text" value="[?code]" name="code" placeholder="Code postal"></div>
+                <div class="col-sm-6 col-xs-12"><input [?styleVille] type="text" value="[?ville]" name="ville" placeholder="Ville *"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12"><select [?stylePays] name="pays">[?optspays]</select></div>
+            
+                <div class="col-sm-6 col-xs-12">
+                    <select name="connaissance">
+                        <option value="">Comment nous avez-vous connu ?</option>
+                        <option value="Ami / Client">Ami / Client</option>
+                        <option value="Publicité sur moteur de recherche">Publicité sur moteur de recherche</option>
+                        <option value="TV / Radio">TV / Radio</option>
+                        <option value="Emailing">Emailing</option>
+                        <option value="Lien sur un autre site">Lien sur un autre site</option>
+                        <option value="Moteur de recherche (Google, Yahoo, Bing...)">Moteur de recherche (Google, Yahoo, Bing...)</option>
+                        <option value="Partenaire / Fournisseur">Partenaire / Fournisseur</option>
+                        <option value="Presse et média">Presse et média</option>
+                        <option value="Salon">Salon</option>
+                        <option value="Ne sais pas">Ne sais pas</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12"><input [?styleTel] type="text" class="long" value="[?telephone]" name="telephone" placeholder="Téléphone *"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12"><input type="text" class="long" value="[?sujet]" name="sujet" placeholder="Sujet"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12"><textarea [?styleMessage] name="message" placeholder="Message *">[?message]</textarea></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" style="font-size:12px;font-weight:bold;[?styleCGV]"><input type="checkbox" name="cgv" value="1" style="height:13px;width:13px;"> J'ai lu et j'accepte les <a href="/int,20,conditions-generales-de-vente-france-et-etranger.htm" target="_blank">conditions générales de vente</a></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12"><span style="font-size: 12px; color: #727272;">* Champs obligatoires</span></div>
+                <div class="col-sm-6 col-xs-12"><a href="javascript:void(0);" onclick="contact_form_submit();" class="etapesuivante" style="float:right;">ENVOYER <i class="fa fa-chevron-right"></i></a></div>
+            </div>
+    </form>
+</div>
+<div class="clear"></div>
+<script>
+    function contact_form_submit(){
+        event.preventDefault();
+        // needs for recaptacha ready
+        grecaptcha.ready(function() {
+            // do request for recaptcha token
+            // response is promise with passed token
+            grecaptcha.execute('6Lfr2fUiAAAAAKYKxFs7R0mRQYMXFzEmBDN03kn5', {action: 'perso'}).then(function(token) {
+                $('#contact_form').prepend('<input type="hidden" name="token" value="' + token + '">');
+                $('#contact_form').prepend('<input type="hidden" name="action" value="perso">');
+                $('#contact_form').unbind('submit').submit();
+            });
+        });
+    }
+</script>

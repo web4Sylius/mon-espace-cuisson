@@ -1,0 +1,50 @@
+<div class="question col-xs-12" onclick="show_question('typeporte')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Type de porte ?</h2>
+      <div class="reponse" id="reptypeporte"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btntypeporte" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnresptypeporte" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <ul class="prop">
+    <li class="li4 [?typeporte1class]" onclick="clickli(this,'typeporte1')">
+      <h3><span>Porte pleine</span></h3>
+      <p>Tous les vins sont dans l'obscurité totale et la consommation électrique est minimale</p>
+      <img src="/images/configurateur/typeporte1.jpg" alt="" class="hidden-xs" width="179" height="191">
+      <input type="radio" id="typeporte1" name="typeporte" onclick="next('typeporte',1)" [?checktypeporte1] class="hidden-xs">
+    </li>
+    <li class="li4 [?typeporte2class]" onclick="clickli(this,'typeporte2')">
+      <h3><span>Porte vitrée</span></h3>
+      <p>Toutes les bouteilles sont visibles. La vitre anti-UV permet de combiner un design élégant et une protection optimale des bouteilles</p>
+      <img src="/images/configurateur/typeporte2.jpg" alt="" class="hidden-xs" width="179" height="191">
+      <input type="radio" id="typeporte2" name="typeporte" onclick="next('typeporte',2)" [?checktypeporte2] class="hidden-xs">
+    </li>
+    <li class="li4 [?typeporte3class]" onclick="clickli(this,'typeporte3')">
+      <h3><span>Portes coulissantes</span></h3>
+      <p>Les portes vitrées sont coulissantes horizontalement, ce qui permet de réduire l'encombrement au maximum</p>
+      <img src="/images/configurateur/typeporte3.jpg" alt="" class="hidden-xs">
+      <input type="radio" id="typeporte3" name="typeporte" onclick="next('typeporte',3)" [?checktypeporte3] class="hidden-xs">
+    </li>
+    <li class="li4 [?typeporte4class]" onclick="clickli(this,'typeporte4')">
+      <h3><span>Porte à façade habillable</span></h3>
+      <p>Les portes avec une façade habillable vous permettront d'intégrer parfaitement votre cave à vin dans votre pièce.</p>
+      <img src="/images/configurateur/typeporte4.jpg" alt="" class="hidden-xs">
+      <input type="radio" id="typeporte4" name="typeporte" onclick="next('typeporte',4)" [?checktypeporte4] class="hidden-xs">
+    </li>
+    <li class="li4 [?typeporte0class]" onclick="clickli(this,'typeporte0')">
+      <h3><span>Je ne sais pas ou peu importe</span></h3>
+      <p>&nbsp;</p>
+      <img src="/images/configurateur/typeporte0.jpg" alt="" class="hidden-xs" width="179" height="191">
+      <input type="radio" name="typeporte" id="typeporte0" onclick="next('typeporte','0')" [?checktypeporte0] class="hidden-xs">
+    </li>
+  </ul>
+</div>

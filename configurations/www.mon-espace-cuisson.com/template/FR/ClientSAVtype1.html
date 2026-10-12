@@ -1,0 +1,38 @@
+<div id="sav_form">
+  <input type="hidden" name="uniq" value="[?uniq]">
+  <div class="sav_title">PANNE PRODUIT (SOUS OU HORS GARANTIE)</div>
+
+  <div class="sav_ligne" style="display:block">
+    Date de livraison (dd/mm/aaaa) : <input type="text" name="sav_datelivr" size="10" onkeyup="showligne('l1',this.value.length>=6)"> 
+    <br><input type="checkbox" onclick="document.getElementsByName('sav_datelivr')[0].value='';document.getElementsByName('sav_datelivr')[0].disabled=this.checked;showligne('l1',this.checked);"> Je ne sais pas
+  </div>
+
+  <div id="l1" class="sav_ligne">Date de constatation de la panne* : <input type="text" name="sav_datelitige" size="10" onkeyup="showligne('l2',this.value.length>=6)"></div>
+
+  <div id="l2" class="sav_ligne">
+    N° de série de l'appareil (si existant)* : <input type="text" name="sav_nbserie" onkeyup="showligne('l3',this.value.length>3)">
+    <br><input type="checkbox" onclick="document.getElementsByName('sav_nbserie')[0].value='';document.getElementsByName('sav_nbserie')[0].disabled=this.checked;showligne('l3',this.checked)"> Je ne sais pas
+  </div>
+
+  <div id="l3" class="sav_ligne">Avez-vous conservé l'emballage* ? <input type="radio" name="sav_emballage" value="0" onclick="showligne('l4',true);"> Non &nbsp; <input type="radio" name="sav_emballage" value="1" onclick="showligne('l4',true);"> Oui</div>
+
+  <div id="l4" class="sav_ligne">Pays dans lequel est situé le produit* : <select name="sav_paysproduit" onchange="showligne('l5',this.value!='');">[?optpays]</select></div>
+
+  <div id="l5" class="sav_ligne">Détails précis de la panne* :
+  <br><textarea name="sav_detail1" onkeyup="showligne('l6',this.value!='');"></textarea></div>
+
+  <div id="l6" class="sav_ligne">Autres informations importantes :
+  <br><textarea name="sav_detail2" onkeyup="showligne('17',this.value!=''); showligne('18',this.value!='');"></textarea></div>
+
+  <div id="17" class="sav_ligne">Pour finaliser votre dossier, nous vous remercions de nous faire parvenir des photos de l'emballage et de la marchandise en les envoyant directement en cliquant-ici (formats acceptés JPEG, PNG, &lt; 2Mo par photo) :
+    <br><iframe src="sav_ul.php?savid=[?uniq]" style="width:400px;height:70px;border:none;" scrolling="no"></iframe>
+  </div>
+
+  <div id="18" class="sav_ligne">
+    <br><input type="checkbox" name="mail" value="1"> Recevoir une copie de ma demande par mail
+    <div class="btns">
+      <div class="valide" onclick="document.forms.sav1.submit();">Etape suivante</div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div id="articlebar">
+  <div class="center hidden-xs container container-main" style="display:block;">
+      <!--<p id="popup_comparerbtn" class="button hidden-xs hidden-sm col-lg-2" onclick="showbarform('popup_comparer');">
+            <a href="javascript:void(0);"><span id="nb_pdts_comparateur"></span> COMPARATEUR</a>
+      </p>
+      <p id="articlevusbarbtn" class="button hidden-xs hidden-sm col-lg-2" onclick="showbarform('articlevusbar');"></p>
+      <p id="popup_configbtn" class="button btnconfigurateur hidden-xs hidden-sm col-lg-2" onclick="showbarform('popup_config');">
+            <a href="javascript:void(0);"><span id="nb_configs"></span> CONFIGURATEUR</a>
+      </p>-->
+      <div class="visible-sm">[?barre_vf]</div>
+      <div class="hidden-xs hidden-sm">[?barre_vf]</div>
+      <div class="visible-sm">[?barre_vp]</div>
+      <div class="hidden-xs hidden-sm">[?barre_vp]</div>
+      <div class="pull-right col-sm-6 col-md-4 col-lg-4 no-padding popup_contact" >
+		  <p class="button aide block-justified" onclick="toggleaide();">
+				<a href="javascript:void(0);">BESOIN D'AIDE ?</a>
+		  </p>
+		  <p class="telephone block-justified">
+			<img src="/images/templates/telephone-.png" alt="telephone" width="19" height="24" />
+			<span>[?contact_telephone]
+			<span class="hidden-xs horaires">Lundi - Vendredi :<br> 9h-13h / 14h-18h</span>
+		</span>
+		  </p>
+	  </div>
+      <div id="bulle_aide">
+      	<div onclick="toggleaide()" style="position: relative; margin-right: 10px;"><img src="/images/templates/croix.png" alt="fermer" class="croix-bar"></div>
+		<div id="rappelinst" onclick="donthideform(event)">
+		    <p class="titre">Rappel immédiat gratuit</p>
+		    <p id="rappelinst_error" class="msg_error">Veuillez renseigner tous les champs obligatoires</p>
+		    <div id="rappelinst_msg">
+			<input type="text" id="rappelinst_nom" class="first" value="[?nomprenom]" placeholder="Nom, prénom *">
+			<input type="text" id="rappelinst_tel" onkeypress="nbonly(event,false,this)" value="[?telephone]" placeholder="Téléphone *">
+			<input type="text" id="rappelinst_societe" value="[?societe]" placeholder="Société">
+			<input type="text" id="rappelinst_adresse" value="[?adresse]" placeholder="Adresse">
+			<input type="text" id="rappelinst_cp" value="[?cp]" placeholder="Code postal ">
+			<input type="text" id="rappelinst_ville" value="[?ville]" placeholder="ville *">
+			<input type="text" id="rappelinst_pays" value="[?pays]" placeholder="Pays *">
+			<input type="text" id="rappelinst_mail" value="[?email]" placeholder="Email *">
+		    </div>
+		    <div id="rappelinst_cgv" >
+                <input type="checkbox" value="1" style="height:10px;width:10px;"> J'accepte les <a href="/int,20,conditions-generales-de-vente-france-et-etranger.htm" target="_blank" style="text-decoration: underline;">conditions générales de vente</a>
+            </div>
+		    <p>Lundi - vendredi : 9h-13h / 14h-18h<br>ou Appelez nous au <strong>[?contact_telephone]</strong></p>
+		    <p style="font-style: italic;font-weight: 500;">En dehors de ces horaires, vous serez contacté<br>dès notre retour.</p>
+		    <a href="javascript:void(0)" class="ok" onclick="submitbarrappel();">ENVOYER</a>
+		    <div class="clear"></div>
+		</div>
+		
+		
+		
+		<div class="right">
+		    <p class="titre">Besoin d’aide ?</p>
+		    <p>Contactez-nous au</p>
+		    <p class="tel">[?contact_telephone]</p>
+		    <p style="margin-top: 0;">(prix d'un appel local)</p>
+		    <p><span class="barre"></span> OU <span class="barre"></span></p>
+		    <a href="javascript:void(0);" onclick="showhelpform('rappelinst');" class="ok">SE FAIRE RAPPELER</a>
+		    <p><span class="barre"></span> OU <span class="barre"></span></p>
+		    <a href="/contacter.htm" class="ok" style="width:max-content;">NOUS &Eacute;CRIRE</a>
+		    <p><span class="barre"></span> OU <span class="barre"></span></p>
+		    <a href="/faq.htm" class="ok" style="width:max-content;">CONSULTER NOTRE FAQ</a>
+		</div>
+		<!--<div id="pieds_bulle"></div>-->
+	  </div>
+   </div>
+</div>
+</div>
+</div>

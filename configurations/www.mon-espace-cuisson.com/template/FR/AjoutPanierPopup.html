@@ -1,0 +1,23 @@
+<div class="quick_view">
+    <div class="bloc_left">
+	[?bloc_left]
+    </div>
+    <div class="bloc_right">
+	<div class="bloc_prix">
+	    <div class="fleche"></div>
+	    [?prices]
+	    <div class="stock">
+		    <p class="[?stock_class]"><i class="fa fa-check fa-lg"></i> [?stock_libelle]</p>
+	    </div>
+	    [?article_livraison]
+	    <div class="sep"></div>
+	    <a href="/cde1.php" class="passercommande">Passer commande<i class="fa fa-chevron-right"></i></a>
+	    <a href="#" onclick="tb_remove()" class="continuer"><i class="fa fa-chevron-left"></i>Continuer mes achats</a>
+	</div>
+    </div>
+    <div class="clear"></div>
+</div>
+<script language="javascript">
+    document.getElementById('TB_ajaxWindowTitle').innerHTML="Vous venez d'ajouter ce produit à votre panier :";
+    $('.popup_panier').remove();
+</script>

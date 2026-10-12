@@ -1,0 +1,10 @@
+2015/07/21|89855|311819985|DJELID Akim|13007|70137|RST REP|Message Repondeur|2015/08/10|0||http://webtracking.girard-agediss.com/tracking-acilyon-311819985.html
+2017/09/07|113516_0022|313319136|MAINGUET Pierre|44000|70441|RST REP|Message Repondeur|2017/10/11|0|17/10/2017-18/10/2017|http://webtracking.girard-agediss.com/tracking-acilyon-313319136.html
+2017/09/19|115288_0026|313342974|BOULIN Francois|56450|70561|RDV PRI|RDV pris|2017/10/07|0|20171007|http://webtracking.girard-agediss.com/tracking-acilyon-313342974.html
+2018/01/30|120304_0056|313769098|LEBEAU Thomas|01480|70019|RST REP|Message Repondeur|2018/03/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-313769098.html
+2018/03/13|119648_0067|313923197|DU PUY Gilles|13810|70137|RST REP|Message Repondeur|2018/03/13|0||http://webtracking.girard-agediss.com/tracking-acilyon-313923197.html
+2018/03/19|121136_0068|313942794|ASSELIN RICHARD|17200|70175|RST REP|Message Repondeur|2018/04/03|0||http://webtracking.girard-agediss.com/tracking-acilyon-313942794.html
+2018/04/16|122202_0077|314024757|TOUATI Suzanne|17110|70175|POD CFM|BL numérisé|2018/05/18|0||http://webtracking.girard-agediss.com/tracking-acilyon-314024757.html
+2018/10/23|127663_0121|314515073|KREBS Matthieu|56100|70561|RDV PRI|RDV pris|2018/11/07|0|20181107|http://webtracking.girard-agediss.com/tracking-acilyon-314515073.html
+2018/12/07|129479_0135|314627083|BARRE PASCAL|02200|70512|RDV PRI|RDV pris|2019/01/03|0|20190103|http://webtracking.girard-agediss.com/tracking-acilyon-314627083.html
+2019/04/01|131241_0172|314871240|DELATRE JACQUES|45200|70452|RDV CCL|Confirmation Creneaux de Livraison|2019/04/15|0|RDV SMS- Lieu : Maison / Infos : Par porte de garage maison de ville La date est trop tardive j avais demandé pour vendredi au plus tard|http://webtracking.girard-agediss.com/tracking-acilyon-314871240.html

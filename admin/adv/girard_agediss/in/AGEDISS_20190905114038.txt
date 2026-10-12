@@ -1,0 +1,3 @@
+2019/07/02|151768|315040598|DUQUESNE sebastien|06400|70061|LIV CFM|Livraison conforme|2019/09/04|0||http://webtracking.girard-agediss.com/tracking-acilyon-315040598.html
+2019/08/12|152442MES|315121251|DEVOS Lucie|59710|70598|RST REP|Message Repondeur|2019/09/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-315121251.html
+2019/08/28|153446|315150045|OROZCO Maria|06500|70061|AAR CFM|Reception conforme|2019/09/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-315150045.html

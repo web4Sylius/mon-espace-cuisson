@@ -1,0 +1,2 @@
+S;;0169;01;697474;ACILYON;;BENHAMOU TEST Ariel;;;150 rue Paul Bert;;;FR;69003;LYON;BENHAMOU TEST Ariel;0614128428;15300894;135531;P;1;1;;;120;;;1.114;;;;;;;Cave à vin,Accessoire;;;;;;;;
+UM;PCI;;;;120;;;;;;;

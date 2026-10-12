@@ -1,0 +1,2 @@
+S;20190909;0169;01;697474;ACILYON;;lhopital fabrice;;;le grand champ;;;FR;69510;THURINS;lhopital fabrice;0663557746;15522387;137963;P;1;1;;;38;;;0.305;;;;;;;Cave à vin;maison;;;;;;;
+UM;PCI;;;*6969121900269747415522387001300;38;;;;;;;

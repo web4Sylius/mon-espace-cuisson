@@ -1,0 +1,51 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://fpcs.gls-group.eu/v1/ShipmentProcessing/types" xmlns:com="http://fpcs.gls-group.eu/v1/Common">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <typ:ShipmentRequestData>
+            <typ:Shipment>
+                <typ:ShippingDate>2024-09-16</typ:ShippingDate>
+                
+                <typ:Product>Parcel</typ:Product>
+                <typ:Consignee>
+                    <com:Address>
+                        <com:Name1>LA CENTRALE DES SCPI </com:Name1>
+                        <com:CountryCode>FR</com:CountryCode>
+                        <com:ZIPCode>75001</com:ZIPCode>
+                        <com:City>PARIS</com:City>
+                        <com:Street>15 RUE SAINT ROCH </com:Street>
+                        <com:eMail>vero.baron@free.fr</com:eMail>
+                        <com:ContactPerson>BARON VERONIQUE</com:ContactPerson>
+                        <com:MobilePhoneNumber>0645688580</com:MobilePhoneNumber>
+                    </com:Address>
+                </typ:Consignee>
+                <typ:Shipper>
+                    <com:ContactID>250aaamgYm</com:ContactID>
+                    <com:AlternativeShipperAddress>
+                        <com:Name1>AJD - Mon Espace Cuisson</com:Name1>
+                        <com:CountryCode>FR</com:CountryCode>
+                        <com:ZIPCode>69009</com:ZIPCode>
+                        <com:City>Lyon</com:City>
+                        <com:Street>18, rue des deux amants</com:Street>
+                    </com:AlternativeShipperAddress>
+                </typ:Shipper>
+                <typ:ShipmentUnit>
+                    <typ:ShipmentUnitReference>299163</typ:ShipmentUnitReference>
+                    <typ:Weight>4.00</typ:Weight>
+                    <typ:Note1>AGENCE RDC,11 H A 18 H SAUF WE</typ:Note1>
+                    <typ:Note2></typ:Note2>
+                </typ:ShipmentUnit>
+                
+            </typ:Shipment>
+            <typ:PrintingOptions>
+                <typ:ReturnLabels>
+                    <typ:TemplateSet>NONE</typ:TemplateSet>
+                    <typ:LabelFormat>PDF</typ:LabelFormat>
+                </typ:ReturnLabels>
+            </typ:PrintingOptions>
+            <typ:ReturnOptions>
+                <typ:ReturnPrintData>true</typ:ReturnPrintData>
+                <typ:ReturnRoutingInfo>true</typ:ReturnRoutingInfo>
+            </typ:ReturnOptions>
+        </typ:ShipmentRequestData>
+    </soapenv:Body>
+</soapenv:Envelope>

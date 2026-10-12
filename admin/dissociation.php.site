@@ -1,0 +1,87 @@
+<?php
+
+class dissociation{
+
+  private $DB;
+  public $facturid;
+
+  function __construct($DB,$facturid){
+      $this->facturid=$facturid;
+      $this->DB=$DB;
+      $lignes=$this->DB->query("SELECT * FROM lignefacture WHERE factureid=".$facturid);
+      while($ligne=$this->DB->fetch_array($lignes)) $this->dissligne($ligne);
+  }
+
+  function dissligne($ligne){
+	  $artlot=$this->DB->query("SELECT * FROM article_lot WHERE lotid=".$ligne['artid']);
+	  $datecmd=$this->DB->query_first("SELECT heurefacture,userid FROM facture WHERE facturid=".$ligne['factureid']);
+	  $user=$this->DB->query_first("SELECT * FROM utilisateur WHERE userid=".intval($datecmd['userid']));
+	  $langue=$user['langue'];
+	  $tscmd=mktime(0,0,0,date("n",$datecmd[0]),date("j",$datecmd[0]),date("Y",$datecmd[0]));
+	  $totallot=0;
+	  if($this->DB->num_rows($artlot)>0){
+	      $this->DB->query("INSERT INTO lignefacturediss SELECT * FROM lignefacture WHERE lignefactureid=".$ligne['lignefactureid']);
+	      $lfdid=$this->DB->insert_id();
+
+	      while($art=$this->DB->fetch_array($artlot)){
+		  $artcaract=array();
+		  if($art['caractvalids']!="") $artcaract=explode(",",$art['caractvalids']);
+		  $tp=$this->DB->query_first("SELECT tpl.* FROM temp_price_lot tpl INNER JOIN temp_price tp ON (tp.id=tpl.tpid) WHERE tp.artid=$ligne[artid] AND tpl.alid=$art[id] AND $tscmd BETWEEN tp.du AND (tp.au+86399)");
+		  if($tp['alid']==$art['id']){
+		      $art['prix']=$tp['prix'];
+		      $art['paht']=$tp['paht'];
+		  }
+		  $tvafrance=$this->DB->query_first("select TVAtauxnormal AS taux1,TVAtauxreduit AS taux2 from pays where paysid = '57'");
+		  $article=$this->DB->query_first("SELECT artcode,catid,tauxchoisi,libelle".$langue." AS libelle FROM article WHERE artid=".$art['artid']);
+		  $art['prix']=$art['prix']/(1+$tvafrance['taux'.$article['tauxchoisi']]/100);
+		  $art['prix']=$art['prix']*(1+$ligne['tva']/100);
+		  $totallot+=($art['prix']*$art['qte']*$ligne['qte']);
+		  
+		  $this->DB->query("INSERT INTO lignefacture SET factureid=".$ligne['factureid'].", artid=".intval($art['artid']).", catid=".intval($article['catid']).", artcode='".$article['artcode']."', qte=".($art['qte']*$ligne['qte']).", libelle='".mysqli_real_escape_string($this->DB->link_id,$article['libelle'])."', prix=".$art['prix'].", tva=".$ligne['tva'].", paht=".$art['paht'].", lignefacturedissid=".intval($lfdid));
+		  $newlineid=$this->DB->insert_id();
+
+		  foreach($artcaract as $caractvalid){
+			$dbcaract=$this->DB->query_first("SELECT cv.libelle".$langue." AS caractvalname,c.libelle".$langue." AS caractname,ac.differenceprix,ac.achat FROM caracteristiquevaleur cv INNER JOIN caracteristique c USING(caractid) INNER JOIN article_caractval ac USING(caractvalid) WHERE caractvalid=".intval($caractvalid)." AND ac.artid=".$art['artid']);
+			$dbcaract['differenceprix']=$dbcaract['differenceprix']/(1+$tvafrance['taux'.$article['tauxchoisi']]/100);
+			$dbcaract['differenceprix']=$dbcaract['differenceprix']*(1+$ligne['tva']/100);
+			$this->DB->query("INSERT INTO lignefacturecaracteristique SET lignefactureid=".$newlineid.", caractvalid=".intval($caractvalid).", libelle_caract='".$dbcaract['caractname']."', libelle_caractval='".$dbcaract['caractvalname']."', differenceprix=".floatval($dbcaract['differenceprix']).", paht=".floatval($dbcaract['achat']));
+		  }
+		  $caracts=$this->DB->query("SELECT * FROM lignefacturecaracteristique WHERE lignefactureid=".$ligne['lignefactureid']);
+		  while($caract=$this->DB->fetch_array($caracts)){
+			$dbcaract=$this->DB->query_first("SELECT cv.libelle".$langue." AS caractvalname,c.libelle".$langue." AS caractname,ac.differenceprix,ac.achat FROM caracteristiquevaleur cv INNER JOIN caracteristique c USING(caractid) INNER JOIN article_caractval ac USING(caractvalid) WHERE caractvalid=".intval($caract['caractvalid'])." AND ac.artid=".$art['artid']);
+			$dbcaract['differenceprix']=$dbcaract['differenceprix']/(1+$tvafrance['taux'.$article['tauxchoisi']]/100);
+			$dbcaract['differenceprix']=$dbcaract['differenceprix']*(1+$ligne['tva']/100);
+
+			if(!in_array($caract['caractvalid'],$artcaract) && $dbcaract[0]!=""){
+			    $this->DB->query("INSERT INTO lignefacturecaracteristique SET lignefactureid=".$newlineid.", caractvalid=".intval($caract['caractvalid']).", libelle_caract='".$dbcaract['caractname']."', libelle_caractval='".$dbcaract['caractvalname']."', differenceprix=".floatval($dbcaract['differenceprix']).", paht=".floatval($dbcaract['achat']));
+			    if($dbcaract['differenceprix']>0) $this->DB->query("UPDATE lignefacture SET prix=prix+".floatval($dbcaract['differenceprix'])." WHERE lignefactureid=".$newlineid);
+			}
+		  }
+	      }
+	      
+
+	      $vfarticle=$this->DB->query_first("SELECT * FROM vente_flash_article vfa INNER JOIN vente_flash vf ON (vf.id=vfa.vfid) WHERE (".$datecmd[0]." BETWEEN vf.du AND vf.au) AND vfa.artcode='$ligne[artcode]'");
+	      if($vfarticle['id']!=""){
+		$article=$this->DB->query_first("SELECT artcode,catid,tauxchoisi,libelle".$langue." AS libelle FROM article WHERE artid=".$ligne['artid']);
+		$vfarticle['prix']=$vfarticle['prix']/(1+$tvafrance['taux'.$article['tauxchoisi']]/100);
+		$vfarticle['prix']=$vfarticle['prix']*(1+$ligne['tva']/100);
+		$vfdiff=-$totallot+$vfarticle['prix'];var_dump($totallot);var_dump($vfarticle['prix']);
+		$this->DB->query("INSERT INTO lignefacture SET factureid=".$ligne['factureid'].", artid=0, catid=0, artcode='', qte=".$ligne['qte'].", libelle='Réduction vente flash', prix=".floatval($vfdiff).", tva=".$ligne['tva'].", paht=0, lignefacturedissid=".intval($lfdid));
+	      }
+
+	      $this->DB->query("DELETE FROM lignefacture WHERE lignefactureid=".$ligne['lignefactureid']);
+	      
+	  }
+	  
+  }
+
+  function log($txt){
+	  $f=fopen("diss.log","a");
+	  fputs($f,$txt);
+	  fclose($f);
+  }
+
+}
+	 
+    
+?>

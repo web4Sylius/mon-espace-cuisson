@@ -1,0 +1,3 @@
+/usr/bin/lynx -dump http://surmesure.tentationshop.com/scripts/old/script_surmesure.php >> "/home/boutique/www/scripts/logs.txt"
+/usr/bin/lynx -dump http://demimesure.tentationshop.com/scripts/old/script_demimesure.php  >> "/home/boutique/www/scripts/logs.txt"
+/usr/bin/lynx -dump http://pretaporter.tentationshop.com/scripts/old/script_pretaporter.php  >> "/home/boutique/www/scripts/logs.txt"

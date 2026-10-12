@@ -1,0 +1,25 @@
+<div class="conteneur_loader">
+     <div id="encart_options">
+          <div id="libelle_encart">
+               <p class="texte_gauche">Les options de votre article :</p>
+          </div>
+          [?article_options_new]
+          [?input_options]
+	  <div class="addtobasket [?hide_options]">
+	  	<div class="row">
+	  		<div class="col-xs-offset-4 col-sm-offset-4 col-md-offset-5 col-md-4" >
+				<div class="qte">Quantité : <select id="qte2[?artid]" name="qte2[?artid]" onchange="copy_qte_option([?artid])">[?ajoutSelect]</select></div>
+			</div>
+		</div>
+		<div class="ajout_panier hidden-xs hidden-sm col-md-offset-4 col-md-4">
+			<a onclick="ajaxAddProduct2('[?artid]'); return false;" href="javascript:void(0);">AJOUTER AU PANIER</a>
+		</div>
+		<div class="ajout_panier col-xs-12 col-sm-offset-3 col-sm-6 hidden-md hidden-lg">
+			<a onclick="ajaxAddProduct2Mobile('[?artid]'); return false;" href="javascript:void(0);">AJOUTER AU PANIER</a>
+		</div>
+		<div class="clear"></div>
+	  </div>
+     </div>
+</div>
+<div class="clear"></div>
+

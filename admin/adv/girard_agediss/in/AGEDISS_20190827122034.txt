@@ -1,0 +1,5 @@
+2019/08/06|152871|315112574|HILHORST Wilhelmus|30200|70343|LIV CFM|Livraison conforme|2019/08/26|0||http://webtracking.girard-agediss.com/tracking-acilyon-315112574.html
+2019/08/06|152871|315112574|HILHORST Wilhelmus|30200|70343|POD CFM|BL numérisé|2019/08/27|0||http://webtracking.girard-agediss.com/tracking-acilyon-315112574.html
+2019/08/07|152899|315115837|CEDOZ Didier|69001|70387|2PR ---|Avis de passage|2019/08/26|0||http://webtracking.girard-agediss.com/tracking-acilyon-315115837.html
+2019/08/07|152899|315115837|CEDOZ Didier|69001|70387|RDV PRI|RDV pris|2019/08/31|0|20190831|http://webtracking.girard-agediss.com/tracking-acilyon-315115837.html
+2019/08/19|153135|315134914|CUILLI Rodolphe|71100|70213|RDV CCL|Confirmation Creneaux de Livraison|2019/08/28|0|RDV SMS- Lieu : Appartement / Ascenseur : N / Interphone : N / Infos : 1er etages.|http://webtracking.girard-agediss.com/tracking-acilyon-315134914.html

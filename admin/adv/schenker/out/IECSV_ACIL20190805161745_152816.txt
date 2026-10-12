@@ -1,0 +1,2 @@
+S;20190806;0169;01;697474;ACILYON;;BUTTEX Cédric;;;Chemin Neuf 17;;;FR;30700;ST MAXIMIN;BUTTEX Cédric;0614081235;15434416;137092;P;1;1;;;53;;;0.379;;;;;;;Cave à vin;Me prévenir sur mon portable de votre venue;;;;;;;
+UM;PCI;;;*3084921900269747400152816001300;53;;;;;;;

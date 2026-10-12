@@ -1,0 +1,40 @@
+<div class="question col-xs-12" onclick="show_question('hauteurniche')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Pour quelle hauteur de la niche ?</h2>
+      <div class="reponse" id="rephauteurniche"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btnhauteurniche" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnresphauteurniche" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <ul class="prop">
+    <li class="li6 [?hautnicherep1class]" onclick="clickli(this,'hautniche1')">
+      <h3><span>45 centimètres</span></h3>
+      <input type="radio" id="hautniche1" name="hauteurniche" onclick="next('hauteurniche','[?hauteurniche1]')" [?checkhautniche1] class="hidden-xs">
+    </li>
+    <li class="li6 [?hautnicherep2class]" onclick="clickli(this,'hautniche2')">
+      <h3><span>60 centimètres</span></h3>
+      <input type="radio" id="hautniche2" name="hauteurniche" onclick="next('hauteurniche','[?hauteurniche2]')" [?checkhautniche2] class="hidden-xs">
+    </li>
+    <li class="li6 [?hautnicherep3class]" onclick="clickli(this,'hautniche3')">
+      <h3><span>88 centimètres</span></h3>
+      <input type="radio" id="hautniche3" name="hauteurniche" onclick="next('hauteurniche','[?hauteurniche3]')" [?checkhautniche3] class="hidden-xs">
+    </li>
+    <li class="li6 [?hautnicherep4class]" onclick="clickli(this,'hautniche4')">
+      <h3><span>123 centimètres</span></h3>
+      <input type="radio" id="hautniche4" name="hauteurniche" onclick="next('hauteurniche','[?hauteurniche4]')" [?checkhautniche4] class="hidden-xs">
+    </li>
+    <li class="li6 [?hautnicherep5class]" onclick="clickli(this,'hautniche5')">
+      <h3><span>178 centimètres</span></h3>
+      <input type="radio" id="hautniche5" name="hauteurniche" onclick="next('hauteurniche','[?hauteurniche5]')" [?checkhautniche5] class="hidden-xs">
+    </li>
+  </ul>
+</div>

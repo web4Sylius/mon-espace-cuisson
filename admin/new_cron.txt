@@ -1,0 +1,54 @@
+MAILTO="cron@ma-cave-a-vin.fr"
+SHELL="/bin/bash"
+        0       1       *       *       *       /var/www/vhosts/ma-cave-a-vin.fr/backup/backupsite.sh
+        11      1       *       *       *       /var/www/vhosts/ma-cave-a-vin.fr/backup/backupmysql2.sh
+SHELL="/bin/sh"
+        30      9       *       *       *       /opt/plesk/php/7.0/bin/php -f '/var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/script_spy.php'
+#       *       *       *       *       *       /opt/plesk/php/7.0/bin/php -f '/var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/script_spy_pdf.php'
+        0       10      *       *       1-5     /opt/plesk/php/7.0/bin/php -f '/var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/script_spy_adcom.php'
+        0       11      *       *       1       /opt/plesk/php/7.0/bin/php -f '/var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/script_spy_climadiff.php'
+        20      7,13    *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/script_suivi.php
+        0       5       *       *       *       curl http://www.ma-cave-a-vin.fr/admin/script_garanties.php
+        10      5       *       *       *       curl http://www.ma-cave-a-vin.fr/admin/script_partenaire.php
+#       12      5       *       *       *       curl -s http://www.ma-cave-a-vin.fr/admin/script_stat.php
+        22      5       *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/script_commercial.php
+        2       *       *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/script_fourn.php
+        15      0       *       *       *       curl http://www.ma-cave-a-vin.fr/admin/comparateur/fnac_update.php
+        0       9       *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/comparateur/laredoute/laredoute_autourduvin.php
+        30      13      *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/comparateur/laredoute/laredoute_caves.php
+        30      17      *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/comparateur/laredoute/laredoute_refrigerateur.php
+        0       1       *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/comparateur/laredoute/laredoute_offers.php
+        0       13      *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/comparateur/fnac/fnac_gem.php
+        15      13      *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/comparateur/fnac/fnac_pem.php
+        0       15      *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/comparateur/rueducommerce_mirakl.php
+        30      9       *       *       1       curl http://www.ma-cave-a-vin.fr/admin/comparateur/amazon/amazon_prix.php
+#       0       10      *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/comparateur/delamaison/delamaison-produits.php
+#       30      17      *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/comparateur/delamaison/delamaison-offres.php
+#       10      10      *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/comparateur/conforama/conforama-produits.php
+#       40      17      *       *       1-5     curl http://www.ma-cave-a-vin.fr/admin/comparateur/conforama/conforama-offres.php
+        0       8       *       *       *       curl -s http://www.ma-cave-a-vin.fr/admin/script_adcom.php
+        10      19      *       *       *       curl -s http://www.ma-cave-a-vin.fr/admin/script_coubes.php
+        5       0       *       *       *       curl -s http://www.ma-cave-a-vin.fr/admin/script_appro.php
+        24      5       1       *       *       curl -s http://www.ma-cave-a-vin.fr/admin/script_stock_valeur.php
+        8       *       *       *       1-5     curl -s http://www.ma-cave-a-vin.fr/admin/script_stock.php
+        2       8       *       *       2       curl -s http://www.ma-cave-a-vin.fr/admin/script_task.php
+        11      0       *       *       *       curl -s http://www.ma-cave-a-vin.fr/admin/admin/script_av.php
+        5       *       *       *       *       curl -s http://www.ma-cave-a-vin.fr/admin/script_inscription.php
+        0       6       *       *       1       curl -s http://www.ma-cave-a-vin.fr/admin/script_sav.php
+MAILTO="cron@ma-cave-a-vin.fr"
+SHELL="/bin/sh"
+        0       2       1,15    *       *       /opt/plesk/php/7.0/bin/php -f '/var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/script_seuil_stats.php'
+MAILTO="cron@ma-cave-a-vin.fr"
+SHELL="/bin/sh"
+        40      4       *       *       *       /opt/plesk/php/7.0/bin/php -f '/var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/script_archive_stat.php'
+        50      8       *       *       *       /opt/plesk/php/7.0/bin/php -f '/var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/script_archive_spy.php'
+        */10    *       *       *       *       /opt/plesk/php/7.0/bin/php -f '/var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/marketplace/amazon_synchro.php'
+        12      8-18    *       *       1-5     curl -s http://www.ma-cave-a-vin.fr/admin/adv/trackingauto.php
+        5       23      *       *       1       /opt/plesk/php/7.0/bin/php -f '/var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/clearcache.php'
+        30      1       *       *       *       /opt/plesk/php/7.0/bin/php -f '/var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/del_mail.php'
+SHELL="/bin/bash"
+        */10    *       *       *       *       /opt/plesk/php/7.0/bin/php /var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/rcvmail.php > /dev/null 2>&1
+12      *       *       *       *               /opt/plesk/php/7.0/bin/php /var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/tel/appels.php
+2       7,13    *       *       1-5             /opt/plesk/php/7.0/bin/php /var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/tel/annuaire.php
+0       6       *       *       1-5             /opt/plesk/php/7.0/bin/php /var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/adv/update_ptschenker.php
+0       8       *       *       1-5             /opt/plesk/php/7.0/bin/php /var/www/vhosts/ma-cave-a-vin.fr/httpdocs/admin/mail_objectifs.php

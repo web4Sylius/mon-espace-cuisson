@@ -1,0 +1,149 @@
+<?php
+	include("../../configurations/www.ma-cave-a-vin.fr/config_mysql.php");
+	include("../../class/mysql.php");
+	include("../../class/facture.class.php");
+	include("../../mailconfirmation.php");
+	include_once("../../class/email.php");
+	require_once("../../class/template.class.php");
+	include_once("../../admin/dissociation.php");
+
+	$DB_site=new DB_Sql;
+	$DB_site->appname='boutique';
+	$DB_site->appshortname='boutique';
+	$DB_site->database=$DBname;
+	$DB_site->server=$db_server;
+	$DB_site->user=$DBusername;
+	$DB_site->password=$DBpassword;
+	$DB_site->connect();
+	$DBpassword="";
+
+	$host = "www.ma-cave-a-fin.fr" ;
+
+	$logfile="autoresponseRP.log";
+	$fp=fopen($logfile, "a");
+  	fwrite($fp, "\n///// PAIEMENT RECEIVE AND PAY ///// \n");
+
+	fwrite($fp, "Date => ".date('d-m-Y H:i:s')."\n");
+	foreach ($_POST as $key => $value)
+		{
+		fwrite($fp, "$key => $value\n");
+		}
+
+	/*Date => 03-10-2007 15:34:30
+	RefID => 866
+	TransactionID => 5558
+	ExternalID => 5558
+	Montant => 5000
+	Tag => 1
+	HControl => a672c176b50597e8d802386e544149e9
+	HashControl => d8452c3754e8246926f5e8f36d2ea430*/
+	switch ($_POST[Tag])
+		{
+		case '0': //Commande Avortée
+			$facture=$DB_site->query_first("SELECT * FROM facture WHERE facturid = '".$_POST[RefID]."' ");
+			if ($facture['valide'] == 0){
+				$DB_site->query("UPDATE facture SET valide = '3' WHERE facturid = '".$_POST[RefID]."'");
+			}
+			break;
+		case '1': //Commande acceptée validée
+			$DB_site->query("UPDATE facture SET valide = '1' WHERE facturid = '".$_POST[RefID]."'");
+			$mail_contact=$DB_site->query_first("SELECT mail_contact FROM parametresgeneraux");
+			$client=$DB_site->query_first("select u.*,f.facturid from utilisateur u INNER JOIN facture f USING(userid) WHERE f.facturid = '".$_POST[RefID]."'");
+			$htmlmess = "Bonjour,<br>";
+			$htmlmess .= "Vous avez reçu une nouvelle <b>commande par Receive and Pay</b><br>Numero de facture : $client[facturid]<br>";
+			$htmlmess .= "Connectez vous a votre espace d'administration arobases pour plus d informations.<br>";
+			$htmlmess .= "Cette transaction est déjà notée <font color=blue>Validée</font> Libre à vous de l expedier ou de la refuser.<br>";
+			$htmlmess .= "Si vous la refusez, n oubliez pas de vous connecter à l espace d'administration de votre banque et de rembourser votre client.";
+			$subject="Reception d'une commande par Receive and Pay";
+// 			email($email_marchand, $subject, stripslashes($htmlmess), $email_marchand);
+			
+			$message="ma-cave-a-vin.fr : Validation de la transaction $transaction_id\n";
+			$htmlmess = "Bonjour,<br>";
+			$htmlmess .= "Votre <b>commande par Receive and Pay</b> sur ma-cave-a-vin.fr a été validée par votre établissement bancaire.<br>
+			Vous recevrez un e-mail dès qu'elle sera expédiée.
+			<br>Cordialement,<br><br>
+			L'équipe ma-cave-a-vin.fr.";
+			$subject="Commande par Receive and Pay validée sur ma-cave-a-vin.fr";
+// 			email($client[0], $subject, stripslashes($htmlmess), $email_marchand);
+			$facture=new facture($DB_site,$_POST[RefID]);
+			$template=new template($facture->utilisateur->langue,$DB_site);
+			$template->path="../../templates/".$facture->utilisateur->langue;
+			mailconfirmation(8,$facture,null);
+			$diss=new dissociation($DB_site,$_POST[RefID]);
+			break;
+		case '2': //Ko Commande refusée
+			$DB_site->query("UPDATE facture SET valide = '3' WHERE facturid = '".$_POST[RefID]."'");
+			break;
+		case '3': //U Commande sous surveillance FIA-NET
+			$DB_site->query("UPDATE facture SET valide = '0' WHERE facturid = '".$_POST[RefID]."'");
+			break;
+		case '10': //Surveillance OK, la commande est libérée
+			$etatactuelbase=$DB_site->query_first("select valide from facture WHERE facturid = '".$_POST[RefID]."'");
+			if ($etatactuelbase[valide] != 5) {
+				$DB_site->query("UPDATE facture SET valide = '1' WHERE facturid = '".$_POST[RefID]."'");
+				$mail_contact=$DB_site->query_first("SELECT mail_contact FROM parametresgeneraux");
+				$client=$DB_site->query_first("select * from facture WHERE facturid = '".$_POST[RefID]."'");
+				$htmlmess = "Bonjour,<br>";
+				$htmlmess .= "Vous avez reçu une nouvelle <b>commande par Receive and Pay</b><br>Numero de facture : $client[facturid]<br>";
+				$htmlmess .= "Connectez vous a votre espace d'administration arobases pour plus d informations.<br>";
+				$htmlmess .= "Cette transaction est déjà notée <font color=blue>Validée</font> Libre à vous de l expedier ou de la refuser.<br>";
+				$htmlmess .= "Si vous la refusez, n oubliez pas de vous connecter à l espace d'administration de votre banque et de rembourser votre client.";
+				$subject="Reception d'une commande par Receive and Pay";
+// 				email($email_marchand, $subject, stripslashes($htmlmess), $email_marchand);
+				
+				$message="ma-cave-a-vin.fr : Validation de la transaction $transaction_id\n";
+				$htmlmess = "Bonjour,<br>";
+				$htmlmess .= "Votre <b>commande par Receive and Pay</b> sur ma-cave-a-vin.fr a été validée par votre établissement bancaire.<br>
+				Vous recevrez un e-mail dès qu'elle sera expédiée.
+				<br>Cordialement,<br><br>
+				L'équipe ma-cave-a-vin.fr.";
+				$subject="Commande par Receive and Pay validée sur ma-cave-a-vin.fr";
+// 				email($client[0], $subject, stripslashes($htmlmess), $email_marchand);
+				$facture=new facture($DB_site,$_POST[RefID]);
+				$template=new template($facture->utilisateur->langue,$DB_site);
+				$template->path="../../templates/".$facture->utilisateur->langue;
+				mailconfirmation(8,$facture,null);
+				$diss=new dissociation($DB_site,$_POST[RefID]);
+			}
+			break;
+		case '11': //Surveillance KO, la commande est annulée
+			$DB_site->query("UPDATE facture SET valide = '3' WHERE facturid = '".$_POST[RefID]."'");
+			break;
+		case '100': //OK Cloture de la transaction
+			$etatactuelbase=$DB_site->query_first("select valide from facture WHERE facturid = '".$_POST[RefID]."'");
+			if ($etatactuelbase[valide] != 5) {
+				$DB_site->query("UPDATE facture SET valide = '1' WHERE facturid = '".$_POST[RefID]."'");
+				$mail_contact=$DB_site->query_first("SELECT mail_contact FROM parametresgeneraux");
+				$client=$DB_site->query_first("select * from facture WHERE facturid = '".$_POST[RefID]."'");
+				$htmlmess = "Bonjour,<br>";
+				$htmlmess .= "Vous avez reçu une nouvelle <b>commande par Receive and Pay</b><br>Numero de facture : $client[facturid]<br>";
+				$htmlmess .= "Connectez vous a votre espace d'administration arobases pour plus d informations.<br>";
+				$htmlmess .= "Cette transaction est déjà notée <font color=blue>Validée</font> Libre à vous de l expedier ou de la refuser.<br>";
+				$htmlmess .= "Si vous la refusez, n oubliez pas de vous connecter à l espace d'administration de votre banque et de rembourser votre client.";
+				$subject="Reception d'une commande par Receive and Pay";
+// 				email($email_marchand, $subject, stripslashes($htmlmess), $email_marchand);
+				
+				$message="ma-cave-a-vin.fr : Validation de la transaction $transaction_id\n";
+				$htmlmess = "Bonjour,<br>";
+				$htmlmess .= "Votre <b>commande par Receive and Pay</b> sur ma-cave-a-vin.fr a été validée par votre établissement bancaire.<br>
+				Vous recevrez un e-mail dès qu'elle sera expédiée.
+				<br>Cordialement,<br><br>
+				L'équipe ma-cave-a-vin.fr.";
+				$subject="Commande par Receive and Pay validée sur ma-cave-a-vin.fr";
+// 				email($client[0], $subject, stripslashes($htmlmess), $email_marchand);
+				$facture=new facture($DB_site,$_POST[RefID]);
+				$template=new template($facture->utilisateur->langue,$DB_site);
+				$template->path="../../templates/".$facture->utilisateur->langue;
+				mailconfirmation(8,$facture,null);
+				$diss=new dissociation($DB_site,$_POST[RefID]);
+			}
+			break;
+		case '101': //KO Annulation de la transaction
+			$DB_site->query("UPDATE facture SET valide = '3' WHERE facturid = '".$_POST[RefID]."'");
+			break;
+		}
+	
+  	fwrite($fp, "///// PAIEMENT RECEIVE AND PAY ///// \n\n");
+	fclose ($fp);
+
+?>

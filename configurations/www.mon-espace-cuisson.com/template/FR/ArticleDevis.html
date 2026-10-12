@@ -1,0 +1,20 @@
+<!--<p class="devis_gratuit hidden-xs hidden-sm">ou <a href="#" onclick="opendevisrapide([?artid])">un devis immédiat gratuit</a></p>-->
+<p class="hidden-xs hidden-sm" style="color:#a68d5d;font-size:12px;text-align:center;">ou <a id="devisrap" href="#test-popup" class="open-popup-link" >un devis immédiat gratuit</a><p>
+<input type="hidden" id="devisrapartid" value="[?artid]"> 
+<div id="test-popup" class="white-popup mfp-hide">
+  <div id="waiticon"><img src="/configurations/www.mon-espace-cuisson.com/images/templates/ajax_wait.gif" align="absmiddle">Merci de patienter ...</div>
+</div>
+<script type="text/javascript">
+	$( document ).ready(function() {
+		var align = false;
+		var largeur = $(document).width();
+		if(largeur < 1183) align = true;
+		$('.open-popup-link').magnificPopup({
+  		type:'inline',
+  		alignTop:align,
+  		midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+		});
+		[?jsconnectdevis]
+	});
+	
+</script>

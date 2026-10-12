@@ -1,0 +1,20 @@
+.modal-devis { display: none; padding: 10px; color: #333333; position: absolute; text-align: center; width: 15%; height: 11%; top: 34%; left: 72%; background-color: white;
+	transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); max-width: 580px; max-height: 280px; min-width: 252px; cursor: pointer; border-top-right-radius: 0px !important; border-radius: 5px;
+	z-index: 1; padding-top: 10px; border: 1px solid rgba(91, 123, 172, 0.3);
+}
+a.btn-devis {  display: inline-block;margin-bottom: 5px;background: rgba(0, 0, 0, 0) linear-gradient(#32669a, #363e42) repeat scroll 0 0; border: medium none; border-radius: 15px; box-shadow: 1px 1px 1px #000; color: white; font-weight: bold;
+text-decoration: none; padding: 3px 10px 3px 7px; font-size: 11px;}
+.boutons-devis {margin-top: 25px;}
+.close-modal {position: absolute; right: 0; text-align: center; background-color: #C6C6C6; border-radius: 50%; width: 17px; height: 17px; margin-right: 15px; font-size: 10px; color: white; transition-duration: 0.7s;}
+.close-modal:hover { background-color: white; color: #C6C6C6; border: 1px solid #C6C6C6;}
+
+table.table_infosproduit td { margin-top: 10px; padding: 10px 0;}
+
+table.tbl_lot_energ {  background-color: #DEDEDE; border-collapse: collapse; margin-left: 57px;}
+table.tbl_lot_energ td { border: solid thin white; padding: 2px; }
+div.tabl_lot_energ { display: flex; flex-wrap: nowrap;  justify-content: center; text-align: center;}
+
+#popup_devis_projet,#popup_devis_projet_delie,#popup_cmd_projet,#popup_projet_cmd_delie { display:none; position:absolute; border-radius: 20px; padding: 10px;width: 500px; height:  120px; border: 1px solid #9d9a9a; text-align: center; background-color:white;top: 50%; left: 43%;margin-top: -50px; margin-left: -50px; }
+
+.conf_projet { border:none; background-color: transparent; text-decoration: underline; color:#5F718A; }
+.conf_projet:hover { text-decoration: none; }

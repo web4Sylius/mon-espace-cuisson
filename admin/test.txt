@@ -1,0 +1,32 @@
+POST /cgi-bin/glsboxGI.cgi HTTP/1.1
+Host: www.gls-france.com
+Content-Length: 385
+Connection: close
+
+\\\\\GLS\\\\\
+|T540:20190524
+|T859:134707
+|T860:BENHAMOU TEST Ariel
+|T8914:2503574001
+|T8975:0200001242770000FR
+|T530:0.35
+|T8973:1
+|T8904:1
+|T8702:1
+|T8905:1
+|T863:150 rue Paul Bert
+|T100:FR
+|T330:69003
+|T864:LYON
+|T082:UNIQUENO
+|T871:0614128428
+|T1229:webmaster3@ma-cave-a-vin.fr
+|T090:NOSAVE
+|T8700:FR0069
+|T8915:2500026953
+|T810:Acilyon
+|T820:150 Rue Paul Bert
+|T821:FR
+|T822:69003
+|T823:Lyon
+|/////GLS/////

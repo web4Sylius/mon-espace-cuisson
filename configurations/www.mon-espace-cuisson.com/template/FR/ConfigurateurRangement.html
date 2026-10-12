@@ -1,0 +1,57 @@
+<div class="question col-xs-12" onclick="show_question('rangement')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Aménagement interieur ? <small>(Plusieurs possibilités)</small></h2>
+      <div class="reponse" id="reprangement"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btnrangement" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnrangement" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <ul class="prop">
+    <li class="li5 rangement [?rangement1class]" onclick="clickli(this,'rangement1',false)">
+      <h3><span>Pack Stockage</span></h3>
+      <p>Un nombre limité de clayettes fixes permettant de stocker un maximum de bouteilles empilées sur plusieurs niveaux</p>
+      <img src="/images/configurateur/rangement1.jpg" alt="" class="hidden-xs">
+      <div class="checkbox hidden-xs"></div>
+      <input type="checkbox" name="rangement" id="rangement1" value="1" onclick="clickli(this,'rangement1',false);show_next('rangement')" [?checkrangement1] class="hidden-xs">
+    </li>
+    <li class="li5 rangement [?rangement2class]" onclick="clickli(this,'rangement2',false)">
+      <h3><span>Pack Coulissant</span></h3>
+      <p>Une cave entièrement équipée de clayettes coulissantes n'accueillant qu'une seule rangée de bouteilles, permettant un accès direct et rapide à 100% des bouteilles</p>
+      <img src="/images/configurateur/rangement2.jpg" alt="" class="hidden-xs">
+      <div class="checkbox hidden-xs"></div>
+      <input type="checkbox" name="rangement" id="rangement2" value="2" onclick="clickli(this,'rangement2',false);show_next('rangement')" [?checkrangement2] class="hidden-xs">
+    </li>
+    <li class="li5 rangement [?rangement3class]" onclick="clickli(this,'rangement3',false)">
+      <h3><span>Pack Mixte</span></h3>
+      <p>Une combinaison astucieuse de clayettes fixes et de clayettes coulissantes, permettant d'optimiser la capacité de la cave, tant en disposant d'une sélection de bouteilles directement accessibles</p>
+      <img src="/images/configurateur/rangement3.jpg" alt="" class="hidden-xs">
+      <div class="checkbox hidden-xs"></div>
+      <input type="checkbox" name="rangement" id="rangement3" value="3" onclick="clickli(this,'rangement3',false);show_next('rangement')" [?checkrangement3] class="hidden-xs">
+    </li>
+    <li class="li5 rangement [?rangement4class]" onclick="clickli(this,'rangement4',false)">
+      <h3><span>Pack Présentation</span></h3>
+      <p>Les bouteilles situées sur l'avant sont installées debouts ou légèrement inclinées pour une visibilité parfaite des étiquettes</p>
+      <img src="/images/configurateur/rangement4.jpg" alt="" class="hidden-xs">
+      <div class="checkbox hidden-xs"></div>
+      <input type="checkbox" name="rangement" id="rangement4" value="4" onclick="clickli(this,'rangement4',false);show_next('rangement')" [?checkrangement4] class="hidden-xs">
+    </li>
+    <li class="li5 rangement [?rangement0class]" onclick="clickli(this,'rangement0',false)">
+      <h3><span>Je ne sais pas ou peu importe</span></h3>
+      <p class="hidden-xs">&nbsp;</p>
+      <img src="/images/configurateur/rangement0.jpg" alt="" class="hidden-xs" width="140" height="191">
+      <div class="checkbox hidden-xs"></div>
+      <input type="checkbox" name="rangement" id="rangement0" onclick="clickli(this,'rangement0',false);uncheck('rangement',this);show_next('rangement');" [?checkrangement0] class="hidden-xs">
+    </li>
+  </ul>
+  <div class="clear"></div>
+  <div id="nextrangement" class="nextbtn" onclick="clickbtn(this,'rangement',return_checkboxes('rangement'))">Étape suivante <i class="fas fa-chevron-right"></i></div>
+</div>

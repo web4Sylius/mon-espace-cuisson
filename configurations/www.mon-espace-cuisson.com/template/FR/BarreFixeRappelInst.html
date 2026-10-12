@@ -1,0 +1,15 @@
+<div class="btn_barre_fix" id="rappelinst" onclick="donthideform(event)">
+    <p class="titre">Rappel immédiat gratuit</p>
+    <p>Un expert vous rappelle dans les délais les plus brefs...</p>
+    <p id="rappelinst_error" class="msg_error">Veuillez renseigner tous les champs obligatoires</p>
+    <div id="rappelinst_msg">
+        <input type="text" id="rappelinst_nom" class="first" placeholder="Nom, prénom">
+        <input type="text" id="rappelinst_tel" onkeypress="nbonly(event,false,this)" placeholder="Téléphone *">
+        <input type="text" id="rappelinst_pays" placeholder="Pays *">
+        <input type="text" id="rappelinst_mail" placeholder="Email *">
+    </div>
+    <p>Lundi au vendredi : 9h-19h<br>ou Appelez nous au <strong>[?contact_telephone]</strong></p>
+    <p>En dehors de ces horaires, vous serez contacté<br>dès notre retour.</p>
+    <a href="javascript:void(0)" class="ok" onclick="submitbarrappel();">ENVOYER <i id="chvr-rappel" class="fa fa-chevron-right"></i></a>
+    <div class="clear"></div>
+</div>

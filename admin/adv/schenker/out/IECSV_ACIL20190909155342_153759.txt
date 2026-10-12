@@ -1,0 +1,2 @@
+S;20190910;0169;01;697474;ACILYON;;BAURAIN Christophe;SAS LE NAUTIC;;11 avenue  de Toulouse;;;FR;82000;MONTAUBAN;BAURAIN Christophe;0611723193;15529659;138017;P;1;1;;;51;;;0.423;;;;;;;Cave à vin;jeudi et vendredi de 8 h à 15 h sur RV;;;;;;;
+UM;PCI;;;*8282221900269747415529659001300;51;;;;;;;

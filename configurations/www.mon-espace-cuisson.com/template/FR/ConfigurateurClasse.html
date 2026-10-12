@@ -1,0 +1,21 @@
+
+  <div class="choix_affine [?ulclasseclasse]">
+        <ul class="prop [?ulclasseclasse]">
+
+    <li class="li6 classe [?classerep1class]" onclick="clicklichoix('classe1');show_next('classe');">
+      <input type="radio" name="classe" value="[?classerep1]" id="classe1" onclick="clicklichoix('classe1');show_next('classe');" [?checkclasserep1] style="display: inline">
+        <span style="vertical-align: baseline">Classe A ou A+</span>
+    </li>
+    <li class="li6 classe [?classerep2class]" onclick="clicklichoix('classe2');show_next('classe');">
+      <input type="radio" name="classe" value="[?classerep2]" id="classe2" onclick="clicklichoix('classe2');show_next('classe');" [?checkclasserep2] style="display: inline">
+      <span style="vertical-align: baseline">Classe A ou B</span>
+    </li>
+    <li class="li6 classe" onclick="clicklichoix('classe0');show_next('classe');">
+      <input type="radio" name="classe" value="0" id="classe0" onclick="clicklichoix('classe0');show_next('classe');" [?checkclasserep0] style="display: inline">
+       <span style="vertical-align: baseline">Peu importe la classe énergétique</span>
+    </li>
+    <div class="clear"></div>
+</ul>
+<div id="nextclasse" class="nextbtn" onclick="clickbtn(this,'classe',return_checkboxes('classe'))">VALIDER <i class="fas fa-chevron-right"></i></div>
+</div>
+<div class="clear"></div>

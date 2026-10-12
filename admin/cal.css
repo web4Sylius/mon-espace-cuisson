@@ -1,0 +1,36 @@
+/*  MODIFIER 07/04/2016  */
+#cccal { background-color:white; border:solid thin #2E373F; }
+.cal { float:left; background-color:white; width:200px; }
+.cal table { background-color:#cccccc; border:solid thin black; width:200px; height:180px; }
+.cal_weekdays { background-color:#dfdfdf; font-weight:bold; }
+.cal_days { background-color:white; }
+.cal_days a { color:#404040; text-decoration:none; }
+.cal_days:hover { background-color:#ffaaaa; }
+.cal_date { display:block; background-color:#2E373F; width:100%; height:21px; font-size:11px; clear:both; text-align:center; color:#FFF}
+.cal_date a:hover { color:#888888; }
+.cal_arrow { display:inline-block; background-color:#5D6F7F !important; color:#FFF !important; text-decoration:none !important; border-radius:10px; width:15px; margin:2px; }
+.cal_title { color:#FFF !important; text-decoration:none !important; }
+.cal_close { text-decoration:none !important; background-color:red; color:#FFF !important; float:right; padding:3px; }
+.cal_close:hover, .cal_title:hover, .cal_arrow:hover { font-weight:bold; }
+.cal_ok { background-color:white; color:black; border:2px solid #4CAF50; font-weight:bold; text-align:center; cursor:pointer; padding:3px; }
+.cal_ok:hover { background-color:#4CAF50; color:white; }
+.cal_ok span{ cursor:pointer; display:inline-block; position:relative; transition:0.5s; }
+.cal_ok span:after { content: '✔'; position: absolute; opacity: 0; top: 0; right: -20px; transition: 0.5s; }
+.cal_ok:hover span {padding-right: 15px;}
+.cal_ok:hover span:after { opacity:1; right:0; }
+#userdiv select { background-color:white; width:200px; color:black; }
+.cal_datetime { color:black; margin:5px; text-align:center;}
+.cal_planning { float:right; background-color:#DDDDDD; width:190px; height:300px; overflow:auto; }
+.cal_planning table { width:100%; border-collapse:collapse; }
+.cal_planning td { border:solid thin #CCCCCC; }
+.cal_planning tr { height:12px; }
+.cal_planning_select { cursor:pointer; }
+.cal_planning_select:hover { background-color:white; }
+.cal_planning_item { background-color:#FFDDDD; cursor:default; }
+.cal_planning_lock { background-color:#AAAAAA; cursor:default; }
+.input-euro { position: relative; }
+.input-euro.left input { padding-left:18px; }
+.input-euro.right input { padding-right:18px; }
+.input-euro:before { position: absolute; top: 0; content:"€"; }
+.input-euro.left:before { left: 5px; }
+.input-euro.right:before { right: 5px; }

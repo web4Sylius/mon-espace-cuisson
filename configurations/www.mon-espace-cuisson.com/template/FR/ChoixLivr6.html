@@ -1,0 +1,37 @@
+<div id="livrtype6" class="frame" onclick="selectChoix(6,[?facturid])">
+    <div class="iconcont col-sm-2 col-md-2 col-xs-2">
+	  <div class="icon2" style="font-size: 16px;"><b>Incoterms</b></div>
+    </div>
+    <input type="radio" name="rlivrtype" id="rlivrtype6" class="col-sm-2 col-md-2 col-xs-12">
+    <div class="checkbox hidden-xs col-sm-1 col-md-1 col-lg-1"><i class="far fa-circle"></i></div>
+    <div class="righttext col-md-9 col-sm-9 col-xs-12">
+      <div class="frametitle">
+	<div class="text">
+	  Livraison <b>«export sous incoterms»</b> 
+	  <div class="clear"></div>
+	  <div class="livraison">Livraison prévue aux environs du <input type="text" id="datelivr6" name="datelivr6" class="datelivr" onclick="mints=[?mints2];calendrier_show(this.id,this.value);" value="[?datelivraison6]" readonly><input type="hidden" name="datelivrorigin1" value="[?datelivraison6]"></div>
+	  <a href="javascript:void(0);" onclick="mints=[?mints2];calendrier_show('datelivr6',document.getElementById('datelivr6').value);" class="autredate"><i class="fa fa-calendar"></i>Choisir une autre date</a>
+	</div>
+	<div class="prix">
+	    <input type="text" name="prixlivr6" size="6">€ HT
+	</div>
+	<div class="clear"></div>
+      </div>
+      <div id="txtlivr6">
+	  	<p><b>TEXTE POUR LA LIVRAISON INCOTERMS</b></p>
+	  	<p><textarea id="txt6" name="txtlivr" style="width: 100%;"></textarea></p>
+	  	<div >
+	  		<b>1 - </b><a id="txtlivr6-1" onclick="edittxtlivr(this.id);">(poids total [?poidstotal]kg sur rendez-vous. Sont inclus le transport, les frais de déplacement, la manutention, l'installation à l'endroit souhaité et la mise en route.</a><br>
+	  		<b>2 - </b><a id="txtlivr6-2" onclick="edittxtlivr(this.id);">(poids total [?poidstotal]kg sur rendez-vous. Sont inclus le suivi de projet, le démontage, l'emballage, le transport, les frais de déplacement, la manutention, l'installation à l'endroit souhaité et la mise en route.</a>
+	  	</div>
+	  </div>
+      <div id="opts6" class="opts">
+	  <div class="opt" onclick="selectChoix(6,[?facturid]);loadform('[?langue]',1,6,'choix61');"><input id="optchoix61" type="radio" onclick="selectChoix(6,[?facturid]);loadform('[?langue]',1,6,'choix61');" style="width: inherit;" value="1" name="choixlivr" class="hidden-xs"> Livraison à l'adresse de facturation</div>
+	  <div id="choix61"></div>
+	  <div class="opt" onclick="selectChoix(6,[?facturid]);loadform('[?langue]',2,6,'choix62');"><input id="optchoix62" type="radio" onclick="selectChoix(6,[?facturid]);loadform('[?langue]',2,6,'choix62');" style="width: inherit;" value="1" name="choixlivr" class="hidden-xs"> Livraison à une autre adresse (travail, voisin, ami, famille ...)</div>
+	  <div id="choix62"></div>
+	 
+      </div>
+    </div>
+    <div class="clear"></div>
+</div>

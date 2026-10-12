@@ -1,0 +1,8 @@
+2019/05/28|150894|314981438|MORAND Nicolas|38920|70263|RDV CCL|Confirmation Creneaux de Livraison|2019/07/03|0||http://webtracking.girard-agediss.com/tracking-acilyon-314981438.html
+2019/05/28|150894|314981438|MORAND Nicolas|38920|70263|RDV PRI|RDV pris|2019/07/03|0|20190703|http://webtracking.girard-agediss.com/tracking-acilyon-314981438.html
+2019/06/21|151450|315021462|HUGON / GAUTTIER Eric / Denis|28500|70452|RDV PRI|RDV pris|2019/07/04|0|20190704|http://webtracking.girard-agediss.com/tracking-acilyon-315021462.html
+2019/07/01|151637|315036802|PERRARD Olivier|39210|70213|INI INF|Arrivee info|2019/07/01|0||http://webtracking.girard-agediss.com/tracking-acilyon-315036802.html
+2019/07/01|151706|315038245|HALET Eric|85570|70791|INI INF|Arrivee info|2019/07/01|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038245.html
+2019/07/01|151700|315038246|RATAJCZAK HORST|17590|70791|INI INF|Arrivee info|2019/07/01|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038246.html
+2019/07/01|151673|315038408|RIBADEAU-DUMAS Corentin|49460|70857|INI INF|Arrivee info|2019/07/01|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038408.html
+2019/07/01|151738|315038618|DEBOST Matthieu|27230|70762|INI INF|Arrivee info|2019/07/01|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038618.html

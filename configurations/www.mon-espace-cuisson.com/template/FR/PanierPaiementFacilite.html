@@ -1,0 +1,19 @@
+<div id="moyen99" onclick="select_moyen(99)" class="[?faciliteclass] col-xs-12">
+     <div class="moyenimg col-xs-5 col-sm-4 col-md-4 col-lg-3"></div>
+     <div class="moyenopt col-xs-1 col-sm-1 col-md-1 col-lg-1"><input type="radio" value="99" name="moyen" onclick="showfacilite(true);"></div>
+     <div class="moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding" onclick="showfacilite(true);">Facilités de paiement<span id="moyendesc99"></span></div>
+</div>
+<div class="[?faciliteclass] moypm col-xs-12" id="faclist">
+     <div id="facilites"></div>
+          <input type="hidden" name="nbpaiements" value="0">
+          <div class="col-xs-offset-3 col-xs-9 col-sm-offset-4 col-sm-8 col-md-offset-5 col-md-7 col-lg-12 no-padding"><a href="javascript:addfacilite()" id="addfacilite">+ Ajouter</a></div>
+          <div id="newfacilite">
+               <input type="hidden" id="totalttc" value="[?prixtotalpanierfacilite]">
+               <input type="hidden" id="totalpaiement" value="0">
+               <p id="newfactitle"></p>
+               <p>Montant : <input type="text" id="newfacmontant"> &euro; TTC <span id="newfacreste"></span></p>
+               <p>Moyen de paiement : <select id="newfacmoyen">[?optmoyensfac]</select> <select id="newfacdelais">[?optdelaisfac]</select></p>
+               <p>Date d'échéance : <input type="text" id="newfacdate" onclick="calendrier_show(this.id,this.value)" readonly></p>
+               <input type="button" value="Ajouter" onclick="addfacilite2()">
+          </div>
+</div>

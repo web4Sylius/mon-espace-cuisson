@@ -1,0 +1,53 @@
+<div id="livrtype5" class="frame" onclick="selectChoix(5,[?facturid])">
+    <div class="iconcont col-sm-2 col-md-2 col-xs-2">
+	  <div class="icon2" style="font-size: 16px;"><b>Spécialisée</b></div>
+    </div>
+    <input type="radio" name="rlivrtype" id="rlivrtype5" class="col-sm-2 col-md-2 col-xs-12">
+    <div class="checkbox hidden-xs col-sm-1 col-md-1 col-lg-1"><i class="far fa-circle"></i></div>
+    <div class="righttext col-md-9 col-sm-9 col-xs-12 no-padding">
+      <div class="frametitle">
+		<div class="text">
+		  Livraison <b>«Spécialisée»</b> 
+		  <div class="clear"></div>
+		  <div class="livraison">Livraison prévue aux environs du <input type="text" id="datelivr5" name="datelivr5" class="datelivr" onclick="mints=[?mints2];calendrier_show(this.id,this.value);" value="[?datelivraison5]" readonly><input type="hidden" name="datelivrorigin1" value="[?datelivraison5]"></div>
+		  <a href="javascript:void(0);" onclick="mints=[?mints2];calendrier_show('datelivr5',document.getElementById('datelivr5').value);" class="autredate"><i class="fa fa-calendar"></i>Choisir une autre date</a>
+		</div>
+		<div class="prix">
+		    <input type="text" name="prixlivr5" size="6">€ HT
+		</div>
+		<div class="clear"></div>
+      </div>
+      <div id="txtlivr5">
+	  	<p style="display: inline; margin-right: 20px;"><b>TEXTE POUR LA LIVRAISON SPECIALISEE</b></p>
+	  	<p style="display: inline-block;">
+	  		<select name="incoterms-sp" onchange="txtincoterms(this.value,5);">
+	  			<option value="">Incoterms</option>
+	  			<option value="CIF">CIF : Coût, assurance et fret</option>
+	  			<option value="EXW">EXW : A l’usine</option>
+	  			<option value="FCA">FCA : Franco transporteur</option>
+	  			<option value="DAP">DAP : Rendu au lieu de destination convenu</option>
+	  		</select>
+	  	</p>
+	  	<p><textarea id="txt5" name="txtlivr" style="width: 100%;"></textarea></p>
+	  	<div >
+	  		<b>1 - </b><a id="txtlivr5-1" onclick="edittxtlivr(this.id);">(poids total [?poidstotal]kg sur rendez-vous. Sont inclus le transport, les frais de déplacement, la manutention, l'installation à l'endroit souhaité et la mise en route.</a><br>
+	  		<b>2 - </b><a id="txtlivr5-2" onclick="edittxtlivr(this.id);">(poids total [?poidstotal]kg sur rendez-vous. Sont inclus le suivi de projet, le démontage, l'emballage, le transport, les frais de déplacement, la manutention, l'installation à l'endroit souhaité et la mise en route.</a><br>
+	  		<b>3 - </b><a id="txtlivr5-3" onclick="edittxtlivr(this.id);">(poids total [?poidstotal]kg . Sont inclus le suivi de projet, l'étude, la fabrication, le montage en atelier, le démontage, l'emballage, le transport, les frais de déplacement, l'installation à l'endroit souhaité et la mise en route.</a>
+	  	</div>
+	  	<div style="display: none;">
+	  		<p id="CIF">Coût, assurance et fret - Sont inclus : le transport jusqu'au port d'embarquement, le chargement à bord du navire, le transport jusqu'au port de destination, les formalités d'exportation et l’assurance du transport. Sont exclus : le déchargement et le transport du port de destination jusqu'au lieu d'activité, les formalités d’importation</p>
+	  		<p id="EXW">Départ usine - Sont inclus : l’emballage et la mise à disposition de la marchandise à l’usine ou l’entrepôt, à une date fixée. Sont exclus : L’organisation et l’assurance du transport, les formalités d’exportation et d’importation.</p>
+	  		<p id="FCA">Franco transporteur - Sont inclus : la remise de la marchandise au transporteur choisi par le client et les formalités d’exportation. Sont exclus : L’organisation et l’assurance du transport, les formalités d’importation.</p>
+	  		<p id="DAP">Rendu au lieu de destination convenu - Sont inclus : le transport de la marchandise jusqu’au lieu d'activité du client (ou tout autre point de livraison choisi par le client), les formalités d’exportation. Sont exclus : l’assurance du transport, les formalités d'importation, le déchargement de la marchandise sur son lieu d'activité (ou tout autre point de livraison choisi par le client).</p>
+	  	</div>
+	  </div>
+      <div id="opts5" class="opts">
+	  <div class="opt" onclick="selectChoix(5,[?facturid]);loadform('[?langue]',1,5,'choix51');"><input id="optchoix51" type="radio" onclick="selectChoix(5,[?facturid]);loadform('[?langue]',1,5,'choix51');" style="width: inherit;" value="1" name="choixlivr" class="hidden-xs"> Livraison à l'adresse de facturation</div>
+	  <div id="choix51"></div>
+	  <div class="opt" onclick="selectChoix(5,[?facturid]);loadform('[?langue]',2,5,'choix52');"><input id="optchoix52" type="radio" onclick="selectChoix(5,[?facturid]);loadform('[?langue]',2,5,'choix52');" style="width: inherit;" value="1" name="choixlivr" class="hidden-xs"> Livraison à une autre adresse (travail, voisin, ami, famille ...)</div>
+	  <div id="choix52"></div>
+	 
+      </div>
+    </div>
+    <div class="clear"></div>
+</div>

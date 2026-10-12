@@ -1,0 +1,487 @@
+<?php
+$mttfianet = $reglement_total ;
+
+if($reglement['reglement_moyen'] == 13 || $reglement['reglement_moyen'] == 6){ // paypal american express
+     
+	$aLogo = array(
+		'mcav'   => 'https://static.e-junkie.com/sslpic/162140.b0bb18e967d6049462c2a22a9faa6929.jpg',
+		'mwccom' => 'https://static.e-junkie.com/sslpic/162141.506619231ce2409dfbf0dc3052a1b7fe.jpg',
+		'mwcuk'  => 'https://static.e-junkie.com/sslpic/162142.74907bcc5609119439c48b0dd1b1e163.jpg'
+	);
+	 
+	 switch($facture->site_code){
+		case 'base':
+			if($facture->utilisateur->langue == 'EN'){
+				$provenance = 'mwccom';
+			} else {
+				$provenance = 'mcav';
+			}
+			break;
+		case 'uk':
+			$provenance = 'mwcuk';
+			break;
+	}
+	 
+     $orderid = rawurlencode("0".$reglement_id);
+     
+     if($facture->diminutif=="MC") $facture->diminutif="FR";
+     
+     $returnURL = urlencode('https://'.$_SERVER['HTTP_HOST'].'/payer-en-ligne.php?currencyCodeType=EUR&paymentType='.$moyen.'&paymentAmount='.round($reglement_total,2)."&order=".$orderid);
+     $cancelURL = $returnURL;
+             
+     $nvpstr    = "&AMT=".round($reglement_total,2)."&PAYMENTACTION=sale&RETURNURL=".$returnURL."&CANCELURL=".$cancelURL."&HDRIMG=".$aLogo[$provenance]."&CURRENCYCODE=".$template->devise()."&INVNUM=".$orderid."&SHIPTONAME=".urlencode($facture->prenom." ".$facture->nom)."&SHIPTOSTREET=".urlencode($facture->adresse)."&SHIPTOCITY=".urlencode($facture->ville)."&SHIPTOCOUNTRYCODE=".$facture->diminutif."&SHIPTOZIP=".$facture->codepostal."&ADDROVERRIDE=1&SOLUTIONTYPE=Sole";
+
+     $resArray            = hash_call("SetExpressCheckout",$nvpstr);
+     $_SESSION['reshash'] = $resArray;
+     $ack                 = strtoupper($resArray["ACK"]);
+
+     if($ack == "SUCCESS"){
+          
+          $token     = urldecode($resArray["TOKEN"]);
+          $lienfinal = PAYPAL_URL.$token;
+          
+          $pagepaiementpaypal = "<a href=".$lienfinal."><img border=\"0\" width=\"91\" alt=\"Marque d'acceptation\" src=\"https://www.paypal.com/fr_FR/FR/i/logo/PayPal_mark_180x113.gif\"></a>";
+          
+          header("location:".PAYPAL_URL.$token);
+          
+     }else{
+		 $pagepaiementpaypal=$resArray['L_LONGMESSAGE0'];
+    //    var_dump($reglement_total);
+ 	 //   var_dump($resArray);
+     }
+}
+
+if ($reglement['reglement_moyen'] == 1) {
+	/**************************************************************************/
+	/****************PAIEMENT SECURISE VIA CREDIT AGRICOLE*********************/
+	/**************************************************************************/
+	/**************************************************************************/
+	/*****$reglement_total = montant en euros de la transaction*******************/
+	/*****$facturid = num de transaction unique********************************/
+	/**************************************************************************/
+	/**************************************************************************/
+	/**************************************************************************/
+	
+	$reglement_total = number_format($reglement_total, 2, '.', '')*100;
+	$pagepaiementcb="";
+	$montant=$reglement_total;
+	$lg = strtolower($langue) ;
+	if ($lg == "de")
+		{
+		$lg = "ge" ;
+		}
+          
+         $transaction_id = "0".$reglement_id;
+                
+// 	$parm="merchant_id=045294738500039";
+	$parm="merchant_id=045294738500039";
+	$parm="$parm amount=$montant";
+	$parm="$parm automatic_response_url=http://".$_SERVER['SERVER_NAME']."/vad/macavavin/call_autoresponse_bis.php";
+	$parm="$parm cancel_return_url=http://".$_SERVER['SERVER_NAME']."/index.php";
+	$parm="$parm currency_code=978";
+	$parm="$parm language=$lg";
+	$parm="$parm normal_return_url=http://".$_SERVER['SERVER_NAME']."/checkout_paiement.php";
+	$parm="$parm payment_means=CB,1,VISA,1,MASTERCARD,1,AMEX,2";
+	$parm="$parm transaction_id=".$transaction_id;
+	$parm="$parm merchant_country=fr";
+	$parm="$parm logo_id=commercant.gif";
+	$parm="$parm pathfile=".$_SERVER['DOCUMENT_ROOT']."/vad/macavavin/param/pathfile";
+	
+	$path_bin = $_SERVER['DOCUMENT_ROOT']."/vad/macavavin/bin/request";
+	$result=exec("$path_bin $parm");
+	$tableau = explode ("!", "$result");
+	$code = $tableau[1];
+	$error = $tableau[2];
+	$message = $tableau[3];
+	if (( $code == "" ) && ( $error == "" ) ){
+		$pagepaiementcb.= "<CENTER>erreur appel request</CENTER><BR>";
+		$pagepaiementcb.= "executable request non trouve $path_bin<br>";
+		$pagepaiementcb.= "Result : $result";
+	}
+	else if ($code != 0){
+		$pagepaiementcb.= "<center><b><h2>Erreur appel API de paiement.</h2></center></b>";
+		$pagepaiementcb.= "<br><br><br>";
+		$pagepaiementcb.= " message erreur : $error (code : $code)";
+	}
+	else {
+		$pagepaiementcb.= $message;
+	}
+	/**************************************************************************/
+	/****************PAIEMENT SECURISE VIA CREDIT AGRICOLE*********************/
+	/**************************************************************************/
+	}
+/*elseif ($reglement['reglement_moyen'] == 8)
+	{
+
+	// receive and pay
+	$infosxml=$DB_site->query_first("select u.mail umail, u.civilite ucivilite, u.nom unom, u.prenom uprenom, u.codepostal ucodepostal, 
+	u.adresse uadresse, u.ville uville, u.telephone utelephone, u.raisonsociale uraisonsociale, p1.libelle upays, p1.paysid AS upaysid, u.portable uportable, f.facturid, 
+	f.prixport, f.tvaport, f.civilite, f.nom, f.prenom, f.codepostal, f.adresse, f.ville, f.telephone, f.raisonsociale, p2.libelle, p2.paysid AS paysid, f.mail, 
+	f.montantremise, f.montantcadeau, f.ip, f.timestamp from facture f inner join utilisateur u on (f.userid = u.userid), pays p1, pays p2 
+	WHERE f.facturid = '$reglement_facturid' and p1.paysid = u.paysid and p2.paysid = f.paysid");
+	$xml = "<?xml version='1.0' encoding='ISO-8859-1'?>" ;
+	$xml .= "<control>" ;
+	$xml .= "<utilisateur type='facturation' qualite='2'>" ;
+	switch ($infosxml[ucivilite])
+		{
+		case 0:
+			$infosxml[ucivilite] = "monsieur" ;
+			break;
+		case 1:
+			$infosxml[ucivilite] = "madame" ;
+			break;
+		case 2:
+			$infosxml[ucivilite] = "mademoiselle" ;
+			break;
+		}
+		
+		
+		
+		
+	if ($infosxml[upaysid]==57 || $infosxml[upaysid]==181)
+		$infosxml[upays]="France";
+		
+	if ($infosxml[paysid]==57 || $infosxml[paysid]==181)
+		$infosxml[libelle]="France";	
+		
+		
+	$xml .= "<nom titre='".$infosxml[ucivilite]."'>$infosxml[unom]</nom>" ;
+	$xml .= "<prenom>$infosxml[uprenom]</prenom>" ;
+	$xml .= "<societe>$infosxml[uraisonsociale]</societe>" ;
+	$xml .= "<telhome>$infosxml[utelephone]</telhome>" ;
+	$xml .= "<teloffice></teloffice>" ;
+	$xml .= "<telmobile>$infosxml[uportable]</telmobile>" ;
+	$xml .= "<telfax></telfax>" ;
+	$xml .= "<email>$infosxml[umail]</email>" ;
+	$xml .= "</utilisateur>" ;
+	$xml .= "<adresse type='facturation' format='1'>" ;
+	$xml .= "<rue1>$infosxml[uadresse]</rue1>" ;
+	$xml .= "<rue2></rue2>" ;
+	$xml .= "<cpostal>$infosxml[ucodepostal]</cpostal>" ;
+	$xml .= "<ville>$infosxml[uville]</ville>" ;
+	$xml .= "<pays>$infosxml[upays]</pays>" ;
+	$xml .= "<appartement>" ;
+	$xml .= "<digicode1></digicode1>" ;
+	$xml .= "<digicode2></digicode2>" ;
+	$xml .= "<escalier></escalier>" ;
+	$xml .= "<etage></etage>" ;
+	$xml .= "<nporte></nporte>" ;
+	$xml .= "<batiment></batiment>" ;
+	$xml .= "</appartement>" ;
+	$xml .= "</adresse>" ;
+	$xml .= "<utilisateur type='livraison' qualite='2'>" ;
+	switch ($infosxml[civilite])
+		{
+		case 0:
+			$infosxml[civilite] = "monsieur" ;
+			break;
+		case 1:
+			$infosxml[civilite] = "madame" ;
+			break;
+		case 2:
+			$infosxml[civilite] = "mademoiselle" ;
+			break;
+		}
+		
+		
+	
+		
+	
+	$xml .= "<nom titre='".$infosxml[civilite]."'>$infosxml[nom]</nom>" ;
+	$xml .= "<prenom>$infosxml[prenom]</prenom>" ;
+	$xml .= "<societe>$infosxml[raisonsociale]</societe>" ;
+	$xml .= "<telhome>$infosxml[telephone]</telhome>" ;
+	$xml .= "<teloffice></teloffice>" ;
+	$xml .= "<telmobile></telmobile>" ;
+	$xml .= "<telfax></telfax>" ;
+	$xml .= "<email>$infosxml[mail]</email>" ;
+	$xml .= "</utilisateur>" ;
+	$xml .= "<adresse type='livraison' format='1'>" ;
+	$xml .= "<rue1>$infosxml[adresse]</rue1>" ;
+	$xml .= "<rue2></rue2>" ;
+	$xml .= "<cpostal>$infosxml[codepostal]</cpostal>" ;
+	$xml .= "<ville>$infosxml[ville]</ville>" ;
+	$xml .= "<pays>$infosxml[libelle]</pays>" ;
+	$xml .= "<appartement>" ;
+	$xml .= "<digicode1></digicode1>" ;
+	$xml .= "<digicode2></digicode2>" ;
+	$xml .= "<escalier></escalier>" ;
+	$xml .= "<etage></etage>" ;
+	$xml .= "<nporte></nporte>" ;
+	$xml .= "<batiment></batiment>" ;
+	$xml .= "</appartement>" ;
+	$xml .= "</adresse>" ;
+	$xml .= "<infocommande>" ;
+	$xml .= "<refid>$reglement_facturid</refid>" ;
+	//$SiteID = 6903 ;
+	$xml .= "<siteid>$fianetsiteid</siteid>" ;
+	$mttfianet = str_replace(" ", "", $mttfianet) ;
+	$mttfianet = str_replace(",", ".", $mttfianet) ;
+	//echo "totalmontant = $reglement_total,  mttfianet = $mttfianet" ;
+	$xml .= "<montant devise='EUR'>$mttfianet</montant>" ;
+	$xml .= "<ip timestamp='".$infosxml[timestamp]."'>$infosxml[ip]</ip>" ;
+	$xml .= "<transport>" ;
+	$xml .= "<type>4</type>" ;
+	$xml .= "<rapidite>2</rapidite>" ;
+	$lignesfactures=$DB_site->query("select artcode, qte, libelle, artid from lignefacture WHERE factureid = '$reglement_facturid'");
+	$nb=$DB_site->num_rows($lignesfactures);
+	$transporteur = "MORY";
+	if ($nb == 1)
+		{
+		$article = $DB_site->query_first("SELECT sowine FROM article a INNER JOIN lignefacture lf ON (lf.artid = a.artid) WHERE lf.factureid = '$reglement_facturid'");
+		if ($article[sowine] == '1')
+			$transporteur = "TNT";
+		}
+	$xml .= "<nom>$transporteur</nom>" ;
+	$xml .= "</transport>" ;
+	$xml .= "<list nbproduit='".$nb."'>" ;
+	$lstartid=array();
+	while ($lignefacture=$DB_site->fetch_array($lignesfactures))
+		{
+		$lignefacture[libelle] = str_replace("\"", " ", $lignefacture[libelle]) ;
+		$lignefacture[libelle] = str_replace("'", " ", $lignefacture[libelle]) ;
+		$xml .= "<produit type='5' ref='".$lignefacture[artcode]."' nb='".$lignefacture[qte]."'>".$lignefacture[libelle]."</produit>" ;
+		$lstartid[]=$lignefacture['artid'];
+		}
+	$xml .= "</list>" ;
+	$xml .= "</infocommande>" ;
+	
+	$xml = str_replace("&", "et", $xml);
+	
+	$datecom = date("Y-m-d H:i:s");
+	
+	require("fianet_key_64bits.php");
+
+	$datecom = date("Y-m-d H:i:s");
+	$datelivr = date("Y-m-d",datelivraison($reglement_facturid)) ;
+
+	$Sample = new EncodingKey();
+	$key = $Sample->giveHashCode2("f07dbc36eabcbc55de7df04adda5e5fd", substr($datecom, -2, 2), "$infosxml[mail]", "$reglement_facturid", "$mttfianet", "$infosxml[nom]");
+	
+	$xml .= "<wallet version='1.0'>" ;
+	$xml .= "<datelivr>$datelivr</datelivr>" ;
+	$xml .= "<datecom>$datecom</datecom>" ;
+	$xml .= "<crypt version='2.0'>$key</crypt>";
+	$xml .= "</wallet>";
+	$xml .= "</control>";
+	
+	$xml = trim($xml);
+	$xml = str_replace("\\'","'",$xml);
+	$xml = str_replace("\\\"","\"",$xml);
+	$xml = str_replace("\\\\","\\",$xml);
+	$xml = str_replace("\t","",$xml);
+	$xml = str_replace("\n","",$xml);
+	$xml = str_replace("\r","",$xml);
+	/*
+	$TypeIHM = "" ;
+	if ($mttfianet > 4000)
+		$TypeIHM = "<input type=\"hidden\" name=\"TypeIHM\" value=\"1\">" ;
+	*/
+	// wallet/engine/frontline.cgi
+	// walter
+	/*if ($mttfianet > 6000)
+		$pagepaiementreceiveandpay =  "Ce moyen de paiement n'est pas disponible pour des commandes supérieures à 6000 euros." ;
+	else
+		{
+		$pagepaiementreceiveandpay =  "<form name=\"formulaire\" method=\"post\" action=\"$receiveandpayurl\">
+		<input type=\"hidden\" name=\"MerchID\" value=\"$fianetsiteid\">
+		<input type=\"hidden\" name=\"XMLInfo\" value=\"$xml\">
+		<input type=\"hidden\" name=\"URLCall\" value=\"http://www.ma-cave-a-vin.fr/index.php\">
+		<input type=\"hidden\" name=\"URLSys\" value=\"www.ma-cave-a-vin.fr/vad/macavavin/call_autoresponse3.php\">
+		<input type=\"hidden\" name=\"CheckSum\" value=\"$BonCheckSum\">
+		<input type=\"hidden\" name=\"XMLParam\" value=\"$XMLParam\">
+		<input type=\"hidden\" name=\"TypeIHM\" value=\"1\">
+		<p align=\"center\"><img src=\"configurations/www.ma-cave-a-vin.fr/images/templates/kwixo.png\"></p>
+		<p>Vous allez être automatiquement redirigé vers Kwixo dans quelques secondes, si cela ne fonctionne pas, cliquez sur le bouton ci dessous<br></p>
+		<p align=\"center\"><input type=\"submit\" value=\"Continuer\"></p>
+		</form>
+		<script language=\"javascript\">
+		window.onload=function(){
+ 		  document.forms.formulaire.submit();
+		}
+		</script>" ;
+		}
+
+	}*/
+/*elseif ($reglement['reglement_moyen'] == 9)
+	{
+	// receive and pay
+	$infosxml=$DB_site->query_first("select u.mail umail, u.civilite ucivilite, u.nom unom, u.prenom uprenom, u.codepostal ucodepostal, 
+	u.adresse uadresse, u.ville uville, u.telephone utelephone, u.raisonsociale uraisonsociale, p1.libelle upays, p1.paysid AS upaysid, u.portable uportable, f.facturid, 
+	f.prixport, f.tvaport, f.civilite, f.nom, f.prenom, f.codepostal, f.adresse, f.ville, f.telephone, f.raisonsociale, p2.libelle, p2.paysid AS paysid, f.mail, 
+	f.montantremise, f.montantcadeau, f.ip, f.timestamp from facture f inner join utilisateur u on (f.userid = u.userid), pays p1, pays p2 
+	WHERE f.facturid = '$reglement_facturid' and p1.paysid = u.paysid and p2.paysid = f.paysid");
+	$xml = "<?xml version='1.0' encoding='ISO-8859-1'?>" ;
+	$xml .= "<control>" ;
+	$xml .= "<utilisateur type='facturation' qualite='2'>" ;
+	switch ($infosxml[ucivilite])
+		{
+		case 0:
+			$infosxml[ucivilite] = "monsieur" ;
+			break;
+		case 1:
+			$infosxml[ucivilite] = "madame" ;
+			break;
+		case 2:
+			$infosxml[ucivilite] = "mademoiselle" ;
+			break;
+		}
+		
+		
+	if ($infosxml[upaysid]==57 || $infosxml[upaysid]==181)
+		$infosxml[upays]="France";
+		
+	if ($infosxml[paysid]==57 || $infosxml[paysid]==181)
+		$infosxml[libelle]="France";	
+		
+		
+	
+	$xml .= "<nom titre='".$infosxml[ucivilite]."'>$infosxml[unom]</nom>" ;
+	$xml .= "<prenom>$infosxml[uprenom]</prenom>" ;
+	$xml .= "<societe>$infosxml[uraisonsociale]</societe>" ;
+	$xml .= "<telhome>$infosxml[utelephone]</telhome>" ;
+	$xml .= "<teloffice></teloffice>" ;
+	$xml .= "<telmobile>$infosxml[uportable]</telmobile>" ;
+	$xml .= "<telfax></telfax>" ;
+	$xml .= "<email>$infosxml[umail]</email>" ;
+	$xml .= "</utilisateur>" ;
+	$xml .= "<adresse type='facturation' format='1'>" ;
+	$xml .= "<rue1>$infosxml[uadresse]</rue1>" ;
+	$xml .= "<rue2></rue2>" ;
+	$xml .= "<cpostal>$infosxml[ucodepostal]</cpostal>" ;
+	$xml .= "<ville>$infosxml[uville]</ville>" ;
+	$xml .= "<pays>$infosxml[upays]</pays>" ;
+	$xml .= "<appartement>" ;
+	$xml .= "<digicode1></digicode1>" ;
+	$xml .= "<digicode2></digicode2>" ;
+	$xml .= "<escalier></escalier>" ;
+	$xml .= "<etage></etage>" ;
+	$xml .= "<nporte></nporte>" ;
+	$xml .= "<batiment></batiment>" ;
+	$xml .= "</appartement>" ;
+	$xml .= "</adresse>" ;
+	$xml .= "<utilisateur type='livraison' qualite='2'>" ;
+	switch ($infosxml[civilite])
+		{
+		case 0:
+			$infosxml[civilite] = "monsieur" ;
+			break;
+		case 1:
+			$infosxml[civilite] = "madame" ;
+			break;
+		case 2:
+			$infosxml[civilite] = "mademoiselle" ;
+			break;
+		}
+	$xml .= "<nom titre='".$infosxml[civilite]."'>$infosxml[nom]</nom>" ;
+	$xml .= "<prenom>$infosxml[prenom]</prenom>" ;
+	$xml .= "<societe>$infosxml[raisonsociale]</societe>" ;
+	$xml .= "<telhome>$infosxml[telephone]</telhome>" ;
+	$xml .= "<teloffice></teloffice>" ;
+	$xml .= "<telmobile></telmobile>" ;
+	$xml .= "<telfax></telfax>" ;
+	$xml .= "<email>$infosxml[mail]</email>" ;
+	$xml .= "</utilisateur>" ;
+	$xml .= "<adresse type='livraison' format='1'>" ;
+	$xml .= "<rue1>$infosxml[adresse]</rue1>" ;
+	$xml .= "<rue2></rue2>" ;
+	$xml .= "<cpostal>$infosxml[codepostal]</cpostal>" ;
+	$xml .= "<ville>$infosxml[ville]</ville>" ;
+	$xml .= "<pays>$infosxml[libelle]</pays>" ;
+	$xml .= "<appartement>" ;
+	$xml .= "<digicode1></digicode1>" ;
+	$xml .= "<digicode2></digicode2>" ;
+	$xml .= "<escalier></escalier>" ;
+	$xml .= "<etage></etage>" ;
+	$xml .= "<nporte></nporte>" ;
+	$xml .= "<batiment></batiment>" ;
+	$xml .= "</appartement>" ;
+	$xml .= "</adresse>" ;
+	$xml .= "<infocommande>" ;
+	$xml .= "<refid>$reglement_facturid</refid>" ;
+	//$SiteID = 6903 ;
+	$xml .= "<siteid>$fianetsiteid</siteid>" ;
+	$mttfianet = str_replace(" ", "", $mttfianet) ;
+	$mttfianet = str_replace(",", ".", $mttfianet) ;
+	//echo "totalmontant = $reglement_total,  mttfianet = $mttfianet" ;
+	$xml .= "<montant devise='EUR'>$mttfianet</montant>" ;
+	$xml .= "<ip timestamp='".$infosxml[timestamp]."'>$infosxml[ip]</ip>" ;
+	$xml .= "<transport>" ;
+	$xml .= "<type>4</type>" ;
+	$xml .= "<rapidite>2</rapidite>" ;
+// 	$lstartid=array();
+	$lignesfactures=$DB_site->query("select artcode, qte, libelle, artid from lignefacture WHERE factureid = '$reglement_facturid'");
+	$nb=$DB_site->num_rows($lignesfactures);
+	$transporteur = "MORY";
+	if ($nb == 1)
+		{
+		$article = $DB_site->query_first("SELECT sowine FROM article a INNER JOIN lignefacture lf ON (lf.artid = a.artid) WHERE lf.factureid = '$reglement_facturid'");
+		if ($article[sowine] == '1')
+			$transporteur = "TNT";
+		}
+	$xml .= "<nom>$transporteur</nom>" ;	
+	$xml .= "</transport>" ;
+	$xml .= "<list nbproduit='".$nb."'>" ;
+	while ($lignefacture=$DB_site->fetch_array($lignesfactures))
+		{
+		$lignefacture[libelle] = str_replace("\"", " ", $lignefacture[libelle]) ;
+		$lignefacture[libelle] = str_replace("'", " ", $lignefacture[libelle]) ;
+		$xml .= "<produit type='5' ref='".$lignefacture[artcode]."' nb='".$lignefacture[qte]."'>".$lignefacture[libelle]."</produit>" ;
+		$lstartid[]=$lignefacture['artid'];
+		}
+	$xml .= "</list>" ;
+	$xml .= "</infocommande>" ;
+	
+	$xml = str_replace("&", "et", $xml);
+	
+	$datecom = date("Y-m-d H:i:s");
+	
+	require("fianet_key_64bits.php");
+
+	$datecom = date("Y-m-d H:i:s");
+	$datelivr = date("Y-m-d", datelivraison($reglement_facturid)) ;
+
+	$Sample = new EncodingKey();
+	$key = $Sample->giveHashCode2("f07dbc36eabcbc55de7df04adda5e5fd", substr($datecom, -2, 2), "$infosxml[mail]", "$reglement_facturid", "$mttfianet", "$infosxml[nom]");
+
+	$xml .= "<wallet version='1.0'>" ;
+	$xml .= "<datelivr>$datelivr</datelivr>" ;
+	$xml .= "<datecom>$datecom</datecom>" ;
+	$xml .= "<crypt version='2.0'>$key</crypt>";
+	$xml .= "</wallet>";
+	$xml .= "</control>";
+	
+	$xml = trim($xml);
+	$xml = str_replace("\\'","'",$xml);
+	$xml = str_replace("\\\"","\"",$xml);
+	$xml = str_replace("\\\\","\\",$xml);
+	$xml = str_replace("\t","",$xml);
+	$xml = str_replace("\n","",$xml);
+	$xml = str_replace("\r","",$xml);
+	
+	$TypeIHM = "" ;
+	if ($mttfianet > 4000)
+		$TypeIHM = "<input type=\"hidden\" name=\"TypeIHM\" value=\"1\">" ;
+
+	// wallet/engine/frontline.cgi
+	// walter
+	$pagepaiementreceiveandpayplusieursfois =  "<form name=\"formulaire\" method=\"post\" action=\"$receiveandpayurl\">
+	<input type=\"hidden\" name=\"MerchID\" value=\"$fianetsiteid\">
+	<input type=\"hidden\" name=\"XMLInfo\" value=\"$xml\">
+	<input type=\"hidden\" name=\"URLCall\" value=\"http://www.ma-cave-a-vin.fr/index.php\">
+	<input type=\"hidden\" name=\"URLSys\" value=\"www.ma-cave-a-vin.fr/vad/macavavin/call_autoresponse3.php\">
+	<input type=\"hidden\" name=\"CheckSum\" value=\"$BonCheckSum\">
+	<input type=\"hidden\" name=\"XMLParam\" value=\"$XMLParam\">
+	<input type=\"hidden\" name=\"TypeIHM\" value=\"2\">
+	$TypeIHM
+	<p align=\"center\"><img src=\"configurations/$host/images/templates/kwixo.png\"></p>
+	<p>Vous allez être automatiquement redirigé vers Kwixo dans quelques secondes, si cela ne fonctionne pas, cliquez sur le bouton ci dessous</p>
+	<p align=\"center\"><input type=\"submit\" value=\"Continuer\"></p>
+	</form>
+	<script language=\"javascript\">
+	window.onload=function(){
+		  document.forms.formulaire.submit();
+	}
+	</script>" ;
+	}*/
+?>

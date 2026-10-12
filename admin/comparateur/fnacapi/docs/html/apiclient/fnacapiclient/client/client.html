@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 07 Aug 2015 08:19:07 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>Client (Fnac Marketplace PHP Client API Documentation)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../fnacapiclient/client/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../fnacapiclient/client/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../fnacapiclient/client/client.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">FnacApiClient\Client\Client</div>
+<a href="../../source/client/client.php.html#line34" class="location">Client/Client.php at line 34</a>
+
+<h1>Class Client</h1>
+
+<pre class="tree"><strong>Client</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>Client</strong></p>
+
+<div class="comment" id="overview_description"><p>Client connect to Fnac API Services.</p><p>This Client is useful if you want to use your own serializer, client or logger</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>Fnac</dd>
+<dt>Version:</dt>
+<dd>1.0.0</dd>
+</dl>
+<hr>
+
+<table id="summary_field">
+<tr><th colspan="2">Field Summary</th></tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#xml_request">$xml_request</a></p><p class="description">REST WebService sent request</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#xml_response">$xml_response</a></p><p class="description">REST WebService response</p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>(Serializer serializer, ZendClient streamClient, Logger logger, Serializer seriliazer)</p><p class="description">Create a new Client</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../fnacapiclient/service/response/responseservice.html">ResponseService</a></td>
+<td class="description"><p class="name"><a href="#callService()">callService</a>(<a href="../../fnacapiclient/service/request/requestservice.html">RequestService</a> service, bool checkXML)</p><p class="description">Call a service on Fnac REST WebServices</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#getClient()">getClient</a>()</p></td>
+</tr>
+<tr>
+<td class="type"> $uri</td>
+<td class="description"><p class="name"><a href="#getUri()">getUri</a>()</p><p class="description">Return the rest webservice uri currently use</p></td>
+</tr>
+<tr>
+<td class="type"> $xml_request</td>
+<td class="description"><p class="name"><a href="#getXmlRequest()">getXmlRequest</a>()</p><p class="description">Return the rest webservice request that has been sent</p></td>
+</tr>
+<tr>
+<td class="type"> $xml_response</td>
+<td class="description"><p class="name"><a href="#getXmlResponse()">getXmlResponse</a>()</p><p class="description">Return the rest webservice response</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#log()">log</a>(string message, string level)</p><p class="description">Wrapper for log</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setLogger()">setLogger</a>(Logger logger, Logger loger)</p><p class="description">Set logger to client</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setUri()">setUri</a>(string uri)</p><p class="description">Set the uri of the rest webservice</p></td>
+</tr>
+</table>
+
+<h2 id="detail_field">Field Detail</h2>
+<a href="../../source/client/client.php.html#line69" class="location">Client/Client.php at line 69</a>
+
+<h3 id="xml_request">xml_request</h3>
+<code class="signature">public  string <strong>$xml_request</strong></code>
+<div class="details">
+<p>REST WebService sent request</p></div>
+
+<hr>
+
+<a href="../../source/client/client.php.html#line76" class="location">Client/Client.php at line 76</a>
+
+<h3 id="xml_response">xml_response</h3>
+<code class="signature">public  string <strong>$xml_response</strong></code>
+<div class="details">
+<p>REST WebService response</p></div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../source/client/client.php.html#line85" class="location">Client/Client.php at line 85</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  void <strong>__construct</strong>(Serializer serializer, ZendClient streamClient, Logger logger, Serializer seriliazer)</code>
+<div class="details">
+<p>Create a new Client</p><dl>
+<dt>Parameters:</dt>
+<dd>seriliazer - : Serializer to convert xml to object or object to xml</dd>
+<dd>streamClient - : A client to send and receive from a rest webservice</dd>
+<dd>logger - : A logger to log request and response, useful for debugging</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/client/client.php.html#line167" class="location">Client/Client.php at line 167</a>
+
+<h3 id="callService()">callService</h3>
+<code class="signature">public  <a href="../../fnacapiclient/service/response/responseservice.html">ResponseService</a> <strong>callService</strong>(<a href="../../fnacapiclient/service/request/requestservice.html">RequestService</a> service, bool checkXML)</code>
+<div class="details">
+<p>Call a service on Fnac REST WebServices</p><dl>
+<dt>Parameters:</dt>
+<dd>service - The service to call</dd>
+<dt>Returns:</dt>
+<dd>The service we expect to receive</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/client/client.php.html#line92" class="location">Client/Client.php at line 92</a>
+
+<h3 id="getClient()">getClient</h3>
+<code class="signature">public  void <strong>getClient</strong>()</code>
+<div class="details">
+</div>
+
+<hr>
+
+<a href="../../source/client/client.php.html#line112" class="location">Client/Client.php at line 112</a>
+
+<h3 id="getUri()">getUri</h3>
+<code class="signature">public  $uri <strong>getUri</strong>()</code>
+<div class="details">
+<p>Return the rest webservice uri currently use</p><dl>
+<dt>Returns:</dt>
+<dd>Rest webservice uri</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/client/client.php.html#line122" class="location">Client/Client.php at line 122</a>
+
+<h3 id="getXmlRequest()">getXmlRequest</h3>
+<code class="signature">public  $xml_request <strong>getXmlRequest</strong>()</code>
+<div class="details">
+<p>Return the rest webservice request that has been sent</p></div>
+
+<hr>
+
+<a href="../../source/client/client.php.html#line132" class="location">Client/Client.php at line 132</a>
+
+<h3 id="getXmlResponse()">getXmlResponse</h3>
+<code class="signature">public  $xml_response <strong>getXmlResponse</strong>()</code>
+<div class="details">
+<p>Return the rest webservice response</p></div>
+
+<hr>
+
+<a href="../../source/client/client.php.html#line144" class="location">Client/Client.php at line 144</a>
+
+<h3 id="log()">log</h3>
+<code class="signature">public  void <strong>log</strong>(string message, string level)</code>
+<div class="details">
+<p>Wrapper for log</p><dl>
+<dt>Parameters:</dt>
+<dd>level - Level of message (Warning, Information, Error, etc...)</dd>
+<dd>message - Content of message</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/client/client.php.html#line156" class="location">Client/Client.php at line 156</a>
+
+<h3 id="setLogger()">setLogger</h3>
+<code class="signature">public  void <strong>setLogger</strong>(Logger logger, Logger loger)</code>
+<div class="details">
+<p>Set logger to client</p><dl>
+<dt>Parameters:</dt>
+<dd>loger - A logger to log request and response, useful for debugging</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/client/client.php.html#line102" class="location">Client/Client.php at line 102</a>
+
+<h3 id="setUri()">setUri</h3>
+<code class="signature">public  void <strong>setUri</strong>(string uri)</code>
+<div class="details">
+<p>Set the uri of the rest webservice</p><dl>
+<dt>Parameters:</dt>
+<dd>uri - : Uri of rest webservice</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../fnacapiclient/client/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../fnacapiclient/client/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../fnacapiclient/client/client.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

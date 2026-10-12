@@ -1,0 +1,88 @@
+.taskmenu {background-color:#eee; border:1px solid #ddd; padding:2px}
+.taskmenu form {display:inline; margin:0px}
+.taskmenu select {margin:0px}
+.taskmenu a {color:black; text-decoration:none; padding:1 5 1 5; margin-left:3px}
+.taskmenu input, .taskmenu select, .taskmenu a {background-color:#fff; border:2px solid #ddd}
+.tasklocation {height:30px}
+.tasklocation ul {margin:3px; padding-left:0px; list-style-image:url('images/arrow.jpg')}
+.tasklocation li {float:left; color:#666; margin-left:20px}
+.tasklocation a {text-decoration:none}
+.notif {margin:3px; padding-left:20px; font-family:monospace}
+.showtask {width:80%; margin:auto}
+.showtask h2 {font:bold 18px serif; color: #446; margin:3px}
+.showtask h3 {font:italic 13px serif; color:#444; margin:3px 3px 15px 3px}
+.showtask .date {font:italic 11px; margin:3px}
+.showtask .status {float:right; text-align:right; width:90px; margin:3px; margin-top:0px; padding:5px; background-color:#eee; border:1px solid gray; border-radius:5px; cursor:pointer;}
+.showtask .status.toplan {border-color:#79a; color:#7C4604; background: #FFF86E url('taskmanager/icons/pause-icon.png') no-repeat scroll 1px 1px;}
+.showtask .status.planned {border-color:#ba7; color:#531; background: #fdb url('taskmanager/icons/warning-icon.png') no-repeat scroll 1px 1px}
+.showtask .status.working {border-color:#79a; color:#153; background: #bdf url('taskmanager/icons/clock-icon.png') no-repeat scroll 1px 1px}
+.showtask .status.waiting {border-color:#79a; color:#5B3307; background: #FFB91D url('taskmanager/icons/waiting-icon.png') no-repeat scroll 1px 1px}
+.showtask .status.tocheck {border-color:#79a; color:#5B3307; background: #D2F3D8 no-repeat scroll 1px 1px}
+.showtask .status.finished {border-color:#8a6; color:#230; background: #cfa url('taskmanager/icons/ok-icon.png') no-repeat scroll 1px 1px}
+.showtask .status.closed {border-color:#a77; color:#511; background: #fbb url('taskmanager/icons/cancel-icon.png') no-repeat scroll 1px 1px}
+.showtask .statuslist { display:none; position:absolute; width:70px; background:white; }
+.showtask .statuslist .status:hover { border-color:black; }
+.showtask .wrap {overflow:hidden; margin:5px; padding:5px; background-color:#eee; border:1px solid #ddd}
+.showtask .wrap div {border:1px solid #ddd; background-color:white; padding:5px}
+.showtask .wrap .members {float:left; width:16%}
+.showtask .wrap .members ul {padding-left:10px}
+.showtask .wrap .desc {float:right; width:80%;}
+.showtask form {margin:5px}
+.showtask .tasklink h3 {font: normal bold 14px serif; margin-top:15px; margin-bottom:3px}
+.showtask .tasklink img {height:60px; float:left; margin:10px}
+.showtask .tasklink p {font-style:italic; margin:3px}
+.showtask .tasklog h3 {font: normal bold 14px serif; margin-top:15px}
+/*.showtask .tasklog table {width:100%}
+.showtask .tasklog th {font: normal bold 11px serif}
+.showtask .tasklog tr {border: 1px solid #ddd}*/
+.showtask .tasklog .tasklog_log {font-style:italic}
+.showtask .tasklog .tasklog_log:nth-child(even) {background-color:#ded}
+.showtask .tasklog .tasklog_log:nth-child(odd) {background-color:#efe}
+.showtask .tasklog .tasklog_client td { background-color:#EEDDFF;}
+.showtask .tasklog .tasklog_pro td { background-color:#DDEEFF;}
+/* .showtask .tasklog input[type="text"] {width: 70%} */
+.notask {text-align:center;}
+#taskadd p {margin:1px}
+#taskadd label {display:inline-block; width:15%; text-align:right}
+#taskadd label[for="taskcd"] {float:left; margin-right:3px}
+#taskadd #editor {float:left}
+#taskadd #editor,#tasksd {width:70%}
+#taskadd #taskmbrslist {margin-left:15%; margin-top:0px; padding-left:3px; list-style:none}
+#taskadd #taskmbrslist li {overflow:hidden; padding:1px; width:150px; border:1px solid #ddd; background-color:#eee; font-family:sans-serif}
+#taskadd #taskmbrslist li p {float:left; margin:0px}
+#taskadd #taskmbrslist li:hover {border:1px solid #f00; background:#fdd}
+#taskadd #taskmbrslist li span {display:none; float:right}
+#taskadd #taskmbrslist li:hover span {display:inline-block}
+#taskadd input,textarea,select { margin-bottom:3px}
+#taskadd input[type="submit"] {float:right; margin-right:15%}
+#tski { display: inline; }
+#tskb { display: none; }
+.mainpage /*#tasklist*/ a {text-decoration:none}
+/*#tasklist*/ table {width:100%}
+/*#tasklist*/ tr:nth-child(even) {background-color:#dde}
+/*#tasklist*/ tr:nth-child(odd) {background-color:#eee}
+/*#tasklist*/ tr:hover {background-color:#edd}
+/*#tasklist*/ th {font:bold 12px sans-serif; background-color:white; cursor:pointer}
+#tasklist .short_desc, #taskownlist .short_desc {width:55%}
+#tasklist .members p, #taskownlist .members p {margin:0px}
+#tasklist .members .incharge, #taskownlist .members .incharge, #taskstudentlist .members .incharge {color:#d00; font-weight:bold}
+#tasklist .status.planned, #taskownlist .status.planned { color:#531; background: #FFF86E}
+#tasklist .status.toplan, #taskownlist .status.toplan { color:#531; background: #fdb}
+#tasklist .status.working, #taskownlist .status.working { color:#153; background: #bdf}
+#tasklist .status.waiting, #taskownlist .status.waiting { color:#531; background: #FFB91D}
+#tasklist .status.finished, #taskownlist .status.finished { color:#230; background: #cfa}
+#tasklist .status.closed, #taskownlist .status.closed { color:#511; background: #fbb}
+#taskerrors {border:1px solid #fdd; color:#d00; list-style:none; background:#fee url('taskmanager/icons/cancel-icon.png') no-repeat; background-size:1em}
+#tasksuccess {border:1px solid #dfd; color:#0d0; list-style:none;  background:#efe url('taskmanager/icons/ok-icon.png') no-repeat; background-size:1em}
+#taskhidden {display:none}
+#suividiv { display:none; }
+#suividiv textarea { width:600px; height:100px; }
+#srcfournisseur {background: none repeat scroll 0 0 white;border: thin solid black;display: none;height: 300px;overflow: auto;position: absolute;}
+#suivititle { color:#000044; font-size:14px; }
+.fileboxbutton { float:right; }
+.priority_normale{ background-color: #ffd373; text-align: center; min-width: 75px; }
+.priority_urgente{ background-color: #faa6a6; text-align: center; min-width: 75px; }
+#taskmenuaction select{ margin: 0 7px; }
+#onglet_task { float:left; background-color: #363e42; border-radius: 5px 5px 0 0; color: white; font-weight: bold; float: left; padding: 10px; cursor: pointer; }
+#onglet_task_own { float:left; background-color: #cccccc; border-radius: 5px 5px 0 0; color: #363e42; font-weight: bold; float: left; padding: 10px; cursor: pointer; }
+#onglet_task_student { float:left; background-color: #cccccc; border-radius: 5px 5px 0 0; color: #363e42; font-weight: bold; float: left; padding: 10px; cursor: pointer; }

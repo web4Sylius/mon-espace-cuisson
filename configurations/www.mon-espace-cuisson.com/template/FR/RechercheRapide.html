@@ -1,0 +1,63 @@
+<div class="fil_ariane" vocab="https://schema.org/" typeof="BreadcrumbList">
+	<span property="itemListElement" typeof="ListItem">
+		<a property="item" typeof="WebPage" href="/" >
+			<span property="name">Accueil</span>
+		</a>
+		<meta property="position" content="1">
+	</span>
+	[?fil_ariane]
+</div>
+<div class="wait hidden">
+    <div class="bg"></div>
+    <div class="msg">
+	<img src="/images/templates/ajax-loader.gif" alt="">
+	Veuillez patienter ...
+    </div>
+</div>
+<div class="first_bloc bloc-search" [?backgroundcolorpro]>
+	<div class="description col-12">
+            <div class="col-12 no-padding">
+            	<h1 class="libelle-result">[?catlibelle]</h1>
+            	<span class="nbr-result">[?articlecount] produit(s)</span>
+            	</div>
+            <div class="clear"></div>
+            <div class="flex-choix-result">
+            	<div id="choix_marques" onclick="redirection_choix('marques')">Marques ([?nbmarque])</div>
+            	<div id="choix_cat" onclick="redirection_choix('cats')">Catégories ([?nbcategorie])</div>
+            	<div id="choix_produits" onclick="redirection_choix('produits')">Produits ([?articlecount])</div>
+            </div>
+	</div>
+	<div class="clear"></div>
+	[?liste_filtres]
+	<div class="clear"></div>
+	[?filtre_liste]
+	<div style="margin-top: 15px;"></div>
+</div>
+<div class="clear" ></div>
+<div class="barre_filtre">
+<p class="filtration filtration_search [?hidefiltration]">
+	<select class="tri_page">
+		[?select_tri]
+	</select>
+	[?tri_nb_resultats]
+</p>
+<div class="page page_search">
+	<ul class="pagination">
+		[?precedent]
+		[?pagesnav]
+		[?suivant]
+	</ul>
+</div>
+</div>
+<div class="clear"></div>
+<div class="resultats_par_marques block-justify">[?marqueslist]</div>
+<div class="resultats_par_cats block-justify">[?catselection]</div>
+<div class="resultats_par_articles block-justify">
+	[?articles]
+	[?archives]
+</div>
+<div class="clear"></div>
+<div class="clear"></div>
+<div class="encarts col-xs-12">[?encarts]</div>
+<div class="marge_bas"></div>
+<div class="clear"></div>

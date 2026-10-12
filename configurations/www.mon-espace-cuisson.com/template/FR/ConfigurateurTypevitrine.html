@@ -1,0 +1,68 @@
+<div class="question col-xs-12" onclick="show_question('typevitrine')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Quel type de vitrine souhaitez-vous ?</h2>
+      <div class="reponse" id="reptypevitrine"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btntypevitrine" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnresptypevitrine" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <ul class="prop">
+    <li class="li4 [?typevitrine1class]" onclick="clickli(this,'typevitrine1')">
+      <h3><span>Faible profondeur</span></h3>
+      <p>&nbsp;</p>
+  	<img src="/images/configurateur/typevitrine1.jpg" alt="" class="hidden-xs" style="max-width: 200px;">
+      <input type="radio" id="typevitrine1" name="typevitrine" onclick="next('typevitrine','[?typevitrine1]')" [?checktypevitrine1] class="hidden-xs">
+    </li>
+    <li class="li4 [?typevitrine5class]" onclick="clickli(this,'typevitrine5')">
+      <h3><span>Faible profondeur encastrable</span></h3>
+      <p>&nbsp;</p>
+    <img src="/images/configurateur/typevitrine5.jpg" alt="" class="hidden-xs" style="max-width: 200px;">
+      <input type="radio" id="typevitrine5" name="typevitrine" onclick="next('typevitrine','[?typevitrine5]')" [?checktypevitrine5] class="hidden-xs">
+    </li>
+    <li class="li4 [?typevitrine6class]" onclick="clickli(this,'typevitrine6')">
+      <h3><span>1 face vitrée encastrable</span></h3>
+      <p>&nbsp;</p>
+    <img src="/images/configurateur/typevitrine6.jpg" alt="" class="hidden-xs" style="max-width: 200px;">
+      <input type="radio" id="typevitrine6" name="typevitrine" onclick="next('typevitrine','[?typevitrine6]')" [?checktypevitrine6] class="hidden-xs">
+    </li>
+    <li class="li4 [?typevitrine2class]" onclick="clickli(this,'typevitrine2')">
+      <h3><span>Traversante<br> 2 faces vitrées</span></h3>
+      <p>&nbsp;</p>
+  	<img src="/images/configurateur/typevitrine2.jpg" alt="" class="hidden-xs" style="max-width: 200px;">
+      <input type="radio" id="typevitrine2" name="typevitrine" onclick="next('typevitrine','[?typevitrine2]')" [?checktypevitrine2] class="hidden-xs">
+    </li>
+    <li class="li4 [?typevitrine3class]" onclick="clickli(this,'typevitrine3')">
+      <h3><span>3 faces vitrées</span></h3>
+      <p>&nbsp;</p>
+  	<img src="/images/configurateur/typevitrine3.jpg" alt="" class="hidden-xs" style="max-width: 200px;">
+      <input type="radio" id="typevitrine3" name="typevitrine" onclick="next('typevitrine','[?typevitrine3]')" [?checktypevitrine3] class="hidden-xs">
+    </li>
+    <li class="li4 [?typevitrine7class]" onclick="clickli(this,'typevitrine7')">
+      <h3><span>3 faces vitrées faible profondeur</span></h3>
+      <p>&nbsp;</p>
+    <img src="/images/configurateur/typevitrine7.jpg" alt="" class="hidden-xs" style="max-width: 200px;">
+      <input type="radio" id="typevitrine7" name="typevitrine" onclick="next('typevitrine','[?typevitrine7]')" [?checktypevitrine7] class="hidden-xs">
+    </li>
+    <li class="li4 [?typevitrine4class]" onclick="clickli(this,'typevitrine4')">
+      <h3><span>4 faces vitrées</span></h3>
+      <p>&nbsp;</p>
+    <img src="/images/configurateur/typevitrine4.jpg" alt="" class="hidden-xs" style="max-width: 200px;">
+      <input type="radio" id="typevitrine4" name="typevitrine" onclick="next('typevitrine','[?typevitrine4]')" [?checktypevitrine4] class="hidden-xs">
+    </li>
+    <li class="li4 [?typevitrine8class]" onclick="clickli(this,'typevitrine8')">
+      <h3><span>Traversante<br> 2 faces vitrées encastrable</span></h3>
+      <p>&nbsp;</p>
+    <img src="/images/configurateur/typevitrine8.jpg" alt="" class="hidden-xs" style="max-width: 200px;">
+      <input type="radio" id="typevitrine8" name="typevitrine" onclick="next('typevitrine','[?typevitrine8]')" [?checktypevitrine8] class="hidden-xs">
+    </li>
+  </ul>
+</div>

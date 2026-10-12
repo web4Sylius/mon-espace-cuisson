@@ -1,0 +1,19 @@
+
+<div class="choix_affine [?ulsensporteclasse]">
+        <ul class="prop [?ulsensporteclasse]">
+
+      <li class="li6 [?sensporte0class]" onclick="clicklichoix('sensporte0');show_next('sensporte');">
+        <input type="radio" name="sensporte" value="[?sensporte0]" id="sensporte0" onclick="clicklichoix('sensporte0');next('sensporte','0,2')" [?checksensporte0] style="display: inline">
+              <span style="vertical-align: baseline">Porte avec charnière à droite</span>
+      </li>
+      <li class="li6 [?sensporte1class]" onclick="clicklichoix('sensporte1');show_next('sensporte');">
+        <input type="radio" name="sensporte" value="[?sensporte1]" id="sensporte1" onclick="clicklichoix('sensporte1');next('sensporte','[?sensporte1]')" [?checksensporte1] style="display: inline">
+              <span style="vertical-align: baseline">Porte avec charnière à gauche</span>
+      </li>
+      <li class="li6 [?sensporte1000class]" onclick="clicklichoix('sensporte1000');show_next('sensporte');">
+        <input type="radio" name="sensporte" value="1000" id="sensporte1000" onclick="clicklichoix('sensporte1000');next('sensporte','1000')" [?checksensporte1000] style="display: inline">
+              <span style="vertical-align: baseline">Je ne sais pas ou peu importe</span>
+      </li>
+  </ul>
+  <div id="nextsensporte" class="nextbtn" onclick="clickbtn(this,'sensporte',return_checkboxes('sensporte'))">Valider <i class="fas fa-chevron-right"></i></div>
+</div>

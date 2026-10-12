@@ -1,0 +1,50 @@
+<div class="question col-xs-12" onclick="show_question('dim')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Contrainte de dimension ?</h2>
+      <div class="reponse" id="repdim"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btndim" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnrespdim" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-12">
+  <ul class="prop">
+    <li class="li5 [?dim1class]" onclick="clickli(this,'dim1')">
+      <h3><span>Non</span></h3>
+      <p>Non, je n'ai pas de contrainte</p>
+      <input type="radio" id="dim1" name="dim" onclick="showdim(false);next('dimensions',',,,,,,')" [?dim1check] class="hidden-xs">
+    </li>
+    <li class="li5 [?dim2class]" onclick="clickli(this,'dim2',false)">
+      <h3><span>Oui</span></h3>
+      <p>Oui, j'ai une contrainte de dimension en hauteur, en largeur ou en profondeur</p>
+      <input type="radio" id="dim2" name="dim" onclick="showdim(true)" [?dim2check] class="hidden-xs">
+    </li>
+    <li id="lilarg" class="li5 clicked [?largclass]">
+      <h3><span>En hauteur (H)</span></h3>
+      <p><input type="checkbox" id="haut0" onclick="selectdim(this)"> Pas de contrainte</p>
+      <p>Minimum <input type="text" id="hautminval" value="[?hauteurmin]"> mm</p>
+      <p>Maximum <input type="text" id="hautmaxval" value="[?hauteurmax]"> mm</p>
+    </li>
+    <li id="lihaut" class="li5 clicked [?hautclass]">
+      <h3><span>En largeur (L)</span></h3>
+      <p><input type="checkbox" id="larg0" onclick="selectdim(this)"> Pas de contrainte</p>
+      <p>Minimum <input type="text" id="largminval" value="[?largeurmin]"> mm</p>
+      <p>Maximum <input type="text" id="largmaxval" value="[?largeurmax]"> mm</p>
+    </li>
+    <li id="liprof" class="li5 clicked [?profclass]">
+      <h3><span>En profondeur (P)</span></h3>
+      <p><input type="checkbox" id="prof0" onclick="selectdim(this)"> Pas de contrainte</p>
+      <p>Minimum <input type="text" id="profminval" value="[?profondeurmin]"> mm</p>
+      <p>Maximum <input type="text" id="profmaxval" value="[?profondeurmax]"> mm</p>
+    </li>
+  </ul>
+  <div id="nextdim" class="nextbtn" onclick="clickbtn(this,'dimensions',returndim())">Étape suivante <i class="fas fa-chevron-right"></i></div>
+</div>

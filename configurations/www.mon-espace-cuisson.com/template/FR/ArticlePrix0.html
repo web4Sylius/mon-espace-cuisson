@@ -1,0 +1,26 @@
+<p class="prix_demande">Prix sur demande</p>
+<div class="ajout_panier" id="prix_sur_demande">
+	<div class="contact" onclick="javascript:document.getElementById('minicontact').style.display='block';">NOUS CONTACTER</div>
+	<div id="minicontact">
+		<p class="titre"><b>Demande de devis</b></p>
+		<p id="minicontact_txt">Exposez-nous précisément votre besoin :</p>
+		<p id="minicontact_error" class="msg_error" style="display:none">Veuillez renseigner tous les champs obligatoires</p>
+		<div id="minicontact_form">
+			<input type="text" id="minicontact_nom" class="first" value="[?nomprenom]" placeholder="Nom, prénom">
+			<input type="text" id="minicontact_mail" value="[?email]" placeholder="Email">
+			<input type="text" id="minicontact_societe" value="[?societe]" placeholder="Société">
+			<input type="text" id="minicontact_adresse" value="[?adresse]" placeholder="Adresse">
+			<input type="text" id="minicontact_cp" value="[?cp]" placeholder="Code postal">
+			<input type="text" id="minicontact_ville" value="[?ville]" placeholder="Ville *">
+			<input type="text" id="minicontact_pays" value="[?pays]" placeholder="Pays *">
+			<input type="text" id="minicontact_telephone" value="[?telephone]" onkeypress="nbonly(event,false,this)" placeholder="Téléphone *">
+			<textarea id="minicontact_message" placeholder="Message *" rows="10"></textarea>
+		</div>
+		<div id="minicontact_cgv">
+			<input type="checkbox" value="1" style="height:10px;width:10px;"> J'accepte les <a href="/int,20,conditions-generales-de-vente-france-et-etranger.htm" target="_blank" style="text-decoration: underline;">conditions générales de vente</a>
+		</div>
+		<a href="javascript:void(0)" class="ok" onclick="submitbarcontact();">ENVOYER <i class="fa fa-chevron-right"></i></a>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+</div>

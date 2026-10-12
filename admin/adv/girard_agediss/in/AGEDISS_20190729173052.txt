@@ -1,0 +1,9 @@
+2019/07/16|152247|315072756|SIMONNET corinne|83700|7013A|LIV CFM|Livraison conforme|2019/07/26|0||http://webtracking.girard-agediss.com/tracking-acilyon-315072756.html
+2019/07/16|152247|315072756|SIMONNET corinne|83700|7013A|POD CFM|BL numérisé|2019/07/29|0||http://webtracking.girard-agediss.com/tracking-acilyon-315072756.html
+2019/07/18|152298|315077644|LENTI - PUSTOZYOROVA Inna|06110|70061|LIV RCA|Refuse/avarie car.|2019/07/26|0|1 coup sur le côté (emballage intact) + clayettes voilées|http://webtracking.girard-agediss.com/tracking-acilyon-315077644.html
+2019/07/18|152298|315077644|LENTI - PUSTOZYOROVA Inna|06110|70061|POD CFM|BL numérisé|2019/07/29|0||http://webtracking.girard-agediss.com/tracking-acilyon-315077644.html
+2019/07/19|152334|315078702|ENTZ LAURE|17000|70791|AAR AVA|Reception avec reserves|2019/07/29|0|emballage abimé|http://webtracking.girard-agediss.com/tracking-acilyon-315078702.html
+2019/07/19|152334|315078702|ENTZ LAURE|17000|70791|RDV PRI|RDV pris|2019/07/31|0|20190731|http://webtracking.girard-agediss.com/tracking-acilyon-315078702.html
+2019/07/23|152454|315086614|BARTHELEMY Pierre-Antoine|17740|70791|AAR AVA|Reception avec reserves|2019/07/29|0|emballage abimé|http://webtracking.girard-agediss.com/tracking-acilyon-315086614.html
+2019/07/23|152454|315086614|BARTHELEMY Pierre-Antoine|17740|70791|DIF CAD|PB adr/Tel|2019/07/29|0||http://webtracking.girard-agediss.com/tracking-acilyon-315086614.html
+2019/07/23|152454|315086614|BARTHELEMY Pierre-Antoine|17740|70791|RDV PRI|RDV pris|2019/07/31|0|20190731|http://webtracking.girard-agediss.com/tracking-acilyon-315086614.html

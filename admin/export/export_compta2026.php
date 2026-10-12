@@ -1,0 +1,401 @@
+<?php
+// display_errors doit rester off : le script emet un fichier telecharge,
+// tout avertissement PHP serait ecrit au milieu des lignes de l'export
+ini_set('display_errors', 'off');
+/**
+ * Export comptable des factures clients de mon-espace-cuisson.com.
+ *
+ * Portage de l'export MCAV admin/export/export_compta2026.php sur la base MEC.
+ * Les includes sont relatifs (le fichier est en <racine>/admin/export/, comme
+ * cote MCAV) et non bases sur DOCUMENT_ROOT : filter_input(INPUT_SERVER,
+ * 'DOCUMENT_ROOT') renvoie une chaine vide sous plusieurs SAPI, ce qui faisait
+ * echouer les require_once sans aucun message.
+ */
+$host = 'www.mon-espace-cuisson.com';
+include_once('../../configurations/' . $host . '/config_mysql.php');
+include('../../class/mysql.php');
+include('../../class/facture.class.php');
+include('../../class/stock.class.php');
+include_once('zip.lib.php');
+$DB_site = new DB_Sql;
+$DB_site->appname = 'boutique';
+$DB_site->appshortname = 'boutique';
+$DB_site->database = $DBname;
+$DB_site->server = $db_server;
+$DB_site->user = $DBusername;
+$DB_site->password = $DBpassword;
+$DB_site->connect();
+/**
+ * Plan comptable MEC : il est distinct de celui de MCAV. Ne jamais y recopier un
+ * code MCAV.
+ */
+$nomFichier = 'acilyondev-clients';
+$provenance = 'monespacecuisson';
+$tabColonnes = ['Date facture', 'Facture', 'Nom client', 'Libelle piece', 'Commande', 'Code journal', 'Compte', 'Code TVA', 'Debit', 'Credit', 'Code analytique'];
+$tabCodesAnalytiques = [
+    'compensation' => '708516',
+    'port'         => '707610', //Montage mon espace cuisson
+    'port_reel'    => '707510', //Port mon espace cuisson
+    'avoir'        => '707190',
+    'tva755'       => '707170',
+    'eco'          => '707160', //Eco part mon espace cuisson
+    'garantie'     => '707150', //Garantie mon espace cuisson
+    'default'      => '707100', //Vente mon espace cuisson
+];
+$tabCodesTVA = [
+    '20'   => ['code_tva' => '4457718', 'code_v' => 'V8'],
+    '19.6' => ['code_tva' => '445710',  'code_v' => 'V2'],
+    '7'    => ['code_tva' => '445712',  'code_v' => 'V1'],
+    '5.5'  => ['code_tva' => '445712',  'code_v' => 'V1'],
+    '0'    => ['code_tva' => '445710',  'code_v' => 'V4'],
+];
+$tabCodesCEE = [
+    'france'    => '3000',
+    'cee_tva'   => '3009',
+    'cee_notva' => '3099',
+    'hors_cee'  => '3999',
+];
+if (isset($_GET['admin_username'])) {
+    $admin_username = $_GET['admin_username'];
+} else {
+    $admin_username = null;
+}
+if (isset($admin_username) && $admin_username != '') {
+    if ($admin_username != '9d3bb895f22bf0afa958d68c2a58ded7') {
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $acces = $DB_site->query_first("
+            SELECT *
+            FROM acces_admin
+            WHERE ip = '{$ip}'
+              AND user = '{$admin_username}'
+              AND connecte = 1
+            ORDER BY timestamp DESC
+            LIMIT 0,1
+        ");
+        if ($acces['timestamp'] == false || $acces['timestamp'] < time() - 3600) {
+            exit;
+        } else {
+            $user_info = $DB_site->query_first("SELECT * FROM parametresgeneraux WHERE username = '{$admin_username}'");
+            if ($user_info['username'] != $admin_username) {
+                exit;
+            }
+        }
+    }
+} else {
+    exit;
+}
+include('xlexport.php');
+if (!isset($_GET['du']) || !isset($_GET['au'])) {
+    exit;
+}
+$sp = explode('/', $_GET['du']);
+$du = mktime(0, 0, 0, $sp[1], $sp[0], $sp[2]);
+$sp = explode('/', $_GET['au']);
+$au = mktime(23, 59, 59, $sp[1], $sp[0], $sp[2]);
+$xl = new xlexport('csv');
+// xlexport n'a qu'un constructeur a l'ancienne (function xlexport()), supprime
+// en PHP 8 : on repositionne explicitement le mode CSV, sinon l'export sort en
+// tableau HTML dans un fichier nomme .csv.
+$xl->csv = true;
+$xl->name = $nomFichier . '_' . date('Ymd', $du) . '-' . date('Ymd', $au);
+$xl->addrow($tabColonnes);
+$requete = $DB_site->query("
+    SELECT *,
+           UNIX_TIMESTAMP(f.datefacture) AS datecde,
+           UNIX_TIMESTAMP(f.dateexpedition) AS datef
+    FROM facture f
+    WHERE f.valide IN (5, 8)
+      AND UNIX_TIMESTAMP(f.dateexpedition) BETWEEN " . intval($du) . " AND " . intval($au) . "
+    ORDER BY f.dateexpedition
+");
+while ($facture = $DB_site->fetch_array($requete)) {
+    $f = new facture($DB_site, $facture);
+    $totalttc = 0;
+    $ecritures = [];
+    $mpfacturid = '';
+    $totaltx = [];
+    $nom = $f->utilisateur->nom . ' ' . $f->utilisateur->diminutif . $f->utilisateur->codepostal;
+    // le nom du client vient de la fiche utilisateur (f.userid) ; la raison sociale prime sur nom/prenom
+    if (!empty($f->utilisateur->raisonsociale)) {
+        $name2026 = $f->utilisateur->raisonsociale;
+    } else {
+        $name2026 = $f->utilisateur->nom . ' ' . $f->utilisateur->prenom;
+    }
+    // fiche utilisateur introuvable ou vide : on retombe sur les informations figees de la facture
+    if (trim($name2026) == '') {
+        if (!empty($facture['raisonsociale'])) {
+            $name2026 = $facture['raisonsociale'];
+        } else {
+            $name2026 = $facture['nom'] . ' ' . $facture['prenom'];
+        }
+    }
+    $name2026 = str_replace(["\r", "\n", ';', '"'], ' ', $name2026);
+    $name2026 = trim(preg_replace('/\s+/', ' ', $name2026));
+    $num = $f->numerofacture;
+    if ($f->provenance == 'mp') {
+        $num = $f->numerofacture . '/' . $f->mp_facturid;
+    }
+    $codecee = codecee($f->utilisateur);
+    if ($facture['provenance'] == 'mp') {
+        $compte_ana = compte_analytique($facture['provenanceid'], $f->utilisateur->paysid);
+    } else {
+        $compte_ana = compte_analytique($provenance, $f->utilisateur->paysid);
+    }
+    foreach ($f->lignes as $ligne) {
+        switch ($ligne->artcode) {
+            case 'port':
+            case 'compensation':
+            case 'avoir':
+                $code700art = $tabCodesAnalytiques[$ligne->artcode];
+                break;
+            default:
+                if ($f->utilisateur->code411 != '' && $f->provenance == 'sav') {
+                    $code700art = $tabCodesAnalytiques['port'];
+                } else {
+                    $code700art = $tabCodesAnalytiques['default'];
+                }
+                break;
+        }
+        $code700eco = $tabCodesAnalytiques['eco'];
+        $code700gar = $tabCodesAnalytiques['garantie'];
+        switch ($ligne->tva) {
+            case '20':
+            case '19.6':
+            case '0':
+                $codetva = $tabCodesTVA[$ligne->tva]['code_tva'];
+                $codev = $tabCodesTVA[$ligne->tva]['code_v'];
+                break;
+            case '7':
+            case '5.5':
+                $code700art = $tabCodesAnalytiques['tva755'];
+                $codetva = $tabCodesTVA[$ligne->tva]['code_tva'];
+                $codev = $tabCodesTVA[$ligne->tva]['code_v'];
+                break;
+        }
+        // Il y a des fois ou la garantie passe en option et est enregistree dans la table
+        // lignefacturecaracteristique et d'autres fois ou elle est enregistree comme une
+        // garantie dans la table lignefacturegarantie. On additionne les deux valeurs pour
+        // prendre les deux cas en compte.
+        $options = $DB_site->fetch_array($DB_site->query("
+            SELECT SUM(differenceprix)
+            FROM lignefacturecaracteristique
+            WHERE lignefactureid = " . intval($ligne->lignefactureid) . "
+              AND libelle_caract LIKE '%Garantie%'
+        "));
+        $gar = $DB_site->fetch_array($DB_site->query("
+            SELECT SUM(differenceprix)
+            FROM lignefacturegarantie
+            WHERE lignefactureid = " . intval($ligne->lignefactureid) . "
+        "));
+        $txtva = $ligne->tva / 100;
+        // eco-part figee sur la ligne de facture, et non celle en cours sur la fiche article
+        $ecopart = $ligne->qte * $ligne->ecopartht;
+        $garantie = $ligne->qte * (($gar[0] + $options[0]) / (1 + $txtva));
+        $totalht = $ligne->qte * ($ligne->prix / (1 + $txtva)) - $ecopart - $garantie;
+        $totaltx[$ligne->tva] += $ligne->prix * $ligne->qte;
+        if ($totalht != 0) {
+            $ecritures[] = [date('d/m/Y', $f->dateexpedition), $f->numerofacture, $name2026, $num, $f->facturid . ' - ' . $name2026, 'VE', $code700art . $codecee, $codev, '', round($totalht, 2), $compte_ana];
+            if ($txtva > 0) {
+                $ecritures[] = [date('d/m/Y', $f->dateexpedition), $f->numerofacture, $name2026, $num, $f->facturid . ' - ' . $name2026, 'VE', $codetva, $codev, '', round($totalht * $txtva, 2), $compte_ana];
+            }
+        }
+        if ($ecopart != 0) {
+            $ecritures[] = [date('d/m/Y', $f->dateexpedition), $f->numerofacture, $name2026, $num, $f->facturid . ' - ' . $name2026, 'VE', $code700eco . $codecee, $codev, '', round($ecopart, 2), $compte_ana];
+            $ecritures[] = [date('d/m/Y', $f->dateexpedition), $f->numerofacture, $name2026, $num, $f->facturid . ' - ' . $name2026, 'VE', $codetva, $codev, '', round($ecopart * $txtva, 2), $compte_ana];
+        }
+        if ($garantie != 0) {
+            $ecritures[] = [date('d/m/Y', $f->dateexpedition), $f->numerofacture, $name2026, $num, $f->facturid . ' - ' . $name2026, 'VE', $code700gar . $codecee, $codev, '', round($garantie, 2), $compte_ana];
+            $ecritures[] = [date('d/m/Y', $f->dateexpedition), $f->numerofacture, $name2026, $num, $f->facturid . ' - ' . $name2026, 'VE', $codetva, $codev, '', round($garantie * $txtva, 2), $compte_ana];
+        }
+    }
+    if ($f->cadeauht != 0) {
+        foreach ($f->partcadeau as $tx => $ttc) {
+            $cadeauht = round($ttc / (1 + $tx / 100), 2);
+            $tvaremise = $ttc - $cadeauht;
+            $codev = $tabCodesTVA[$tx]['code_v'];
+            $ecritures[] = [date('d/m/Y', $f->dateexpedition), $f->numerofacture, $name2026, $num, $f->facturid . ' - ' . $name2026, 'VE', $code700art . $codecee, $codev, '', -round($cadeauht, 2), $compte_ana];
+            $ecritures[] = [date('d/m/Y', $f->dateexpedition), $f->numerofacture, $name2026, $num, $f->facturid . ' - ' . $name2026, 'VE', '4457718', $codev, '', -round($tvaremise, 2), $compte_ana];
+        }
+    }
+    $code700port = $tabCodesAnalytiques['port_reel'];
+    if ($f->portht != 0) {
+        $ecritures[] = [date('d/m/Y', $f->dateexpedition), $f->numerofacture, $name2026, $num, $f->facturid . ' - ' . $name2026, 'VE', $code700port . $codecee, $codev, '', round($f->portht, 2), $compte_ana];
+        if ($f->porttva > 0) {
+            $ecritures[] = [date('d/m/Y', $f->dateexpedition), $f->numerofacture, $name2026, $num, $f->facturid . ' - ' . $name2026, 'VE', '4457718', $codev, '', round($f->portttc - $f->portht, 2), $compte_ana];
+        }
+    }
+    if ($f->moyenid == 99) {
+        $reglements = $f->getReglements();
+        foreach ($reglements as $reglement) {
+            $ecritures[] = [date('d/m/Y', $f->dateexpedition), $f->numerofacture, $name2026, $num, $f->facturid . ' - ' . $name2026, 'VE', code411($f, $reglement['reglement_moyen']), $codev, $reglement['reglement_montant'], '', ''];
+        }
+    } else {
+        $ecritures[] = [date('d/m/Y', $f->dateexpedition), $f->numerofacture, $name2026, $num, $f->facturid . ' - ' . $name2026, 'VE', code411($f), $codev, $f->totalttc, '', ''];
+    }
+
+    // somme de la colonne Debit (lignes 411) avant retournement : negative = avoir
+    $totaldebit = 0;
+    foreach ($ecritures as $ecriture) {
+        if ($ecriture[8] !== '') {
+            $totaldebit += $ecriture[8];
+        }
+    }
+    $avoir = (round($totaldebit, 2) < 0);
+
+    foreach ($ecritures as $ecriture) {
+        $ecriture = sens_debit_credit($ecriture);
+        if ($avoir) {
+            $ecriture[4] = $f->facturid . ' - AVOIR - ' . $name2026;
+        }
+        $xl->addrow(array_map('vers_windows1252', $ecriture));
+    }
+}
+$xl->export();
+/**
+ * Excel ouvre le CSV en Windows-1252 : les noms clients lus en UTF-8
+ * (« GuÃ©rin ») sont convertis, les valeurs deja en latin1 restent telles quelles.
+ */
+function vers_windows1252($valeur)
+{
+    if (!is_string($valeur) || !preg_match('/[\x80-\xFF]/', $valeur) || !preg_match('//u', $valeur)) {
+        return $valeur;
+    }
+    $converti = iconv('UTF-8', 'Windows-1252//TRANSLIT', $valeur);
+    if ($converti === false) {
+        return utf8_decode($valeur);
+    }
+    return $converti;
+}
+/**
+ * Pas de montant negatif dans l'export :
+ * - Credit negatif (article, TVA, port, remise...) : passe en positif au debit.
+ * - Debit negatif (total 411 d'un avoir) : passe en positif au credit.
+ * Colonnes : 8 = Debit, 9 = Credit.
+ */
+function sens_debit_credit($ligne)
+{
+    if ($ligne[8] !== '' && $ligne[8] < 0) {
+        $ligne[9] = -$ligne[8];
+        $ligne[8] = '';
+    } elseif ($ligne[9] !== '' && $ligne[9] < 0) {
+        $ligne[8] = -$ligne[9];
+        $ligne[9] = '';
+    }
+    return $ligne;
+}
+function compte_analytique($prov, $paysid)
+{
+    global $DB_site;
+    if ($paysid == '') {
+        return '';
+    }
+    $requete = $DB_site->query("
+        SELECT *
+        FROM compte_analytique
+        WHERE site = '{$prov}'
+          AND paysid = " . intval($paysid) . "
+    ");
+    $row = $DB_site->fetch_array($requete);
+    return $row['code'];
+}
+function compte_analytique_mp($mpid, $paysid)
+{
+    global $DB_site;
+    $requete = $DB_site->query("
+        SELECT *
+        FROM compte_analytique
+        WHERE site = '{$mpid}'
+          AND paysid = " . intval($paysid) . "
+    ");
+    $row = $DB_site->fetch_array($requete);
+    return $row['code'];
+}
+function code411($facture, $moyenid = null)
+{
+    if ($facture->utilisateur->code411 != null) {
+        return $facture->utilisateur->code411;
+    }
+    if ($facture->provenance == 'mp') {
+        return code411_mp($facture->provenanceid);
+    }
+    if (is_null($moyenid)) {
+        $moyenid = $facture->moyenid;
+    }
+    switch ($moyenid) {
+        case 1: // CB
+            return '4119000200';
+        case 2: // Cheque
+            return '4119000300';
+        case 3: // Contre remboursement
+        case 4: // Mandat cash
+            return '4119000900';
+        case 5: // Virement
+            return '4119000800';
+        case 6: // Paypal
+            return '4119000600';
+        case 7: // Espece
+        case 8: // Receiveandpay
+        case 9: // Receiveandpay en plusieurs fois
+            return '411MECRAP';
+        case 10: // CB 3 fois
+        case 11:
+        case 12: // Carte aurore
+            return '411MECAUR';
+        case 13:
+            return '4119000100';
+        case 14:
+        case 15:
+            return '411MECLOC';
+        case 16:
+        case 17:
+            return '4119000700';
+    }
+    return '';
+}
+function code411_mp($mpid)
+{
+    switch ($mpid) {
+        case '01': //Amazon
+            return '4119005000';
+        case '04': //Price Minister
+            return '4119005700';
+        case '05': //Pixmania
+            return '4119005600';
+        case '06': //Windill
+            return '411CVWIN';
+        case '07': //Rue du Commerce
+            return '4119005800';
+        case '08': //Edengo
+        case '09': //Ebuyclub
+            return '';
+        case '10': //Ebay
+            return '411CVEB';
+        case '11': //Guide de la maison
+            return '411CVGM';
+        case '12': //Fnac
+            return '4119005300';
+        case '13': //Cdiscount
+            return '4119005100';
+    }
+    return '';
+}
+function codecee($utilisateur)
+{
+    global $DB_site, $tabCodesCEE;
+    $requete = $DB_site->query("SELECT * FROM pays WHERE paysid = " . intval($utilisateur->paysid));
+    $pays = $DB_site->fetch_array($requete);
+    if ($pays['tvaintracom'] == 0 && $pays['cee'] == 1) {
+        return $tabCodesCEE['france']; // france
+    }
+    if ($pays['tvaintracom'] == 1 && $pays['cee'] == 1) {
+        if (trim($utilisateur->tvaintracom) != '') {
+            return $tabCodesCEE['cee_notva']; // cee sans tva
+        } else {
+            return $tabCodesCEE['cee_tva']; // cee avec tva
+        }
+    }
+    if ($pays['cee'] == 0) {
+        return $tabCodesCEE['hors_cee']; // hors cee
+    }
+    return '';
+}

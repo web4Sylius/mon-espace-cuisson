@@ -1,0 +1,3 @@
+2019/07/25|152478|315089576|CESARI Christian|20166|70205|DIF CLT|RDV differe par le client|2019/08/28|0|LE CLIENT SOUHAITE FINALEMENT ETRE LIVRE UN AUTRE JOUR APPEL DU CLIENT LE 28/08|http://webtracking.girard-agediss.com/tracking-acilyon-315089576.html
+2019/07/31|152713|315101216|TRANVANLOC Alphonse|33000|70333|LIV MQP|Livraison partielle|2019/08/16|0||http://webtracking.girard-agediss.com/tracking-acilyon-315101216.html
+2019/08/28|153446|315150045|OROZCO Maria|06500|70061|INI INF|Arrivee info|2019/08/28|0||http://webtracking.girard-agediss.com/tracking-acilyon-315150045.html

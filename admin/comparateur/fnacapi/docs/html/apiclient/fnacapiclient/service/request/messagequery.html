@@ -1,0 +1,335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 07 Aug 2015 08:19:07 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
+<link rel="start" href="../../../overview-summary.html">
+
+<title>MessageQuery (Fnac Marketplace PHP Client API Documentation)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../fnacapiclient/service/request/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../../fnacapiclient/service/request/package-tree.html">Tree</a></li>
+<li><a href="../../../overview-files.html">Files</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../todo-list.html">Todo</a></li>
+<li><a href="../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../index.html" target="_top">Frames</a>
+<a href="../../../fnacapiclient/service/request/messagequery.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">FnacApiClient\Service\Request\MessageQuery</div>
+<a href="../../../source/service/request/messagequery.php.html#line21" class="location">Service/Request/MessageQuery.php at line 21</a>
+
+<h1>Class MessageQuery</h1>
+
+<pre class="tree"><a href="../../../fnacapiclient/service/abstractservice.html">AbstractService</a><br>    └─<a href="../../../fnacapiclient/service/request/requestservice.html">RequestService</a><br>       └─<a href="../../../fnacapiclient/service/request/authentified.html">Authentified</a><br>          └─<a href="../../../fnacapiclient/service/request/query.html">Query</a><br>             └─<strong>MessageQuery</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>MessageQuery</strong><br>extends <a href="../../../fnacapiclient/service/request/query.html">Query</a>
+
+</p>
+
+<div class="comment" id="overview_description"><p>MessageQuery Service's definition.</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>Fnac</dd>
+<dt>Version:</dt>
+<dd>1.0.0</dd>
+</dl>
+<hr>
+
+<table id="summary_field">
+<tr><th colspan="2">Constant Summary</th></tr>
+<tr>
+<td class="type">final static  str</td>
+<td class="description"><p class="name"><a href="#CLASS_RESPONSE">CLASS_RESPONSE</a></p></td>
+</tr>
+<tr>
+<td class="type">final static  str</td>
+<td class="description"><p class="name"><a href="#ROOT_NAME">ROOT_NAME</a></p></td>
+</tr>
+<tr>
+<td class="type">final static  str</td>
+<td class="description"><p class="name"><a href="#XSD_FILE">XSD_FILE</a></p></td>
+</tr>
+</table>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#normalize()">normalize</a>(NormalizerInterface normalizer, mixed format, mixed properties)</p><p class="description"></p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setMessageArchived()">setMessageArchived</a>(string message_archived)</p><p class="description">Set if message is archived or not</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setMessageId()">setMessageId</a>(string message_id)</p><p class="description">Set message's unique identifier from fnac</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setMessageState()">setMessageState</a>(string message_state)</p><p class="description">Set message's state</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setMessageType()">setMessageType</a>(string message_type)</p><p class="description">Set message's type</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setOfferFnacId()">setOfferFnacId</a>(string offer_fnac_id)</p><p class="description">Set offer unique identifier from fnac</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setOfferId()">setOfferId</a>(string offer_seller_id)</p><p class="description">Set offer unique identifier from seller</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setOrderFnacId()">setOrderFnacId</a>(string order_fnac_id)</p><p class="description">Set order unique identifier from fnac</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setSortBy()">setSortBy</a>(string sort_by)</p><p class="description">Set field on which we want the sort</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setSortByType()">setSortByType</a>(string sort_by_type)</p><p class="description">Set the sort order</p></td>
+</tr>
+</table>
+
+<table class="inherit">
+<tr><th colspan="2">Methods inherited from FnacApiClient\Service\Request\Query</th></tr>
+<tr><td><a href="../../../fnacapiclient/service/request/query.html#normalize()">normalize</a>, <a href="../../../fnacapiclient/service/request/query.html#setDate()">setDate</a>, <a href="../../../fnacapiclient/service/request/query.html#setPaging()">setPaging</a>, <a href="../../../fnacapiclient/service/request/query.html#setResultsCount()">setResultsCount</a></td></tr></table>
+
+<table class="inherit">
+<tr><th colspan="2">Methods inherited from FnacApiClient\Service\Request\Authentified</th></tr>
+<tr><td><a href="../../../fnacapiclient/service/request/authentified.html#getPartnerId()">getPartnerId</a>, <a href="../../../fnacapiclient/service/request/authentified.html#getShopId()">getShopId</a>, <a href="../../../fnacapiclient/service/request/authentified.html#getToken()">getToken</a>, <a href="../../../fnacapiclient/service/request/authentified.html#initAuth()">initAuth</a>, <a href="../../../fnacapiclient/service/request/authentified.html#normalize()">normalize</a>, <a href="../../../fnacapiclient/service/request/authentified.html#setPartnerId()">setPartnerId</a>, <a href="../../../fnacapiclient/service/request/authentified.html#setShopId()">setShopId</a>, <a href="../../../fnacapiclient/service/request/authentified.html#setToken()">setToken</a></td></tr></table>
+
+<table class="inherit">
+<tr><th colspan="2">Methods inherited from FnacApiClient\Service\Request\RequestService</th></tr>
+<tr><td><a href="../../../fnacapiclient/service/request/requestservice.html#__construct()">__construct</a>, <a href="../../../fnacapiclient/service/request/requestservice.html#checkXML()">checkXML</a>, <a href="../../../fnacapiclient/service/request/requestservice.html#denormalize()">denormalize</a>, <a href="../../../fnacapiclient/service/request/requestservice.html#getClassResponse()">getClassResponse</a>, <a href="../../../fnacapiclient/service/request/requestservice.html#initParameters()">initParameters</a>, <a href="../../../fnacapiclient/service/request/requestservice.html#normalize()">normalize</a></td></tr></table>
+
+<table class="inherit">
+<tr><th colspan="2">Methods inherited from FnacApiClient\Service\AbstractService</th></tr>
+<tr><td><a href="../../../fnacapiclient/service/abstractservice.html#getServiceName()">getServiceName</a></td></tr></table>
+
+<h2 id="detail_field">Constant Detail</h2>
+<a href="../../../source/service/request/messagequery.php.html#line25" class="location">Service/Request/MessageQuery.php at line 25</a>
+
+<h3 id="CLASS_RESPONSE">CLASS_RESPONSE</h3>
+<code class="signature">public final static  str <strong>CLASS_RESPONSE</strong> = &quot;FnacApiClient\Service\Response\MessageQueryResponse&quot;</code>
+<div class="details">
+</div>
+
+<hr>
+
+<a href="../../../source/service/request/messagequery.php.html#line23" class="location">Service/Request/MessageQuery.php at line 23</a>
+
+<h3 id="ROOT_NAME">ROOT_NAME</h3>
+<code class="signature">public final static  str <strong>ROOT_NAME</strong> = &quot;messages_query&quot;</code>
+<div class="details">
+</div>
+
+<hr>
+
+<a href="../../../source/service/request/messagequery.php.html#line24" class="location">Service/Request/MessageQuery.php at line 24</a>
+
+<h3 id="XSD_FILE">XSD_FILE</h3>
+<code class="signature">public final static  str <strong>XSD_FILE</strong> = &quot;MessagesQueryService.xsd&quot;</code>
+<div class="details">
+</div>
+
+<hr>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../../source/service/request/messagequery.php.html#line40" class="location">Service/Request/MessageQuery.php at line 40</a>
+
+<h3 id="normalize()">normalize</h3>
+<code class="signature">public  void <strong>normalize</strong>(NormalizerInterface normalizer, mixed format, mixed properties)</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<a href="../../../source/service/request/messagequery.php.html#line108" class="location">Service/Request/MessageQuery.php at line 108</a>
+
+<h3 id="setMessageArchived()">setMessageArchived</h3>
+<code class="signature">public  void <strong>setMessageArchived</strong>(string message_archived)</code>
+<div class="details">
+<p>Set if message is archived or not</p><dl>
+<dt>Parameters:</dt>
+<dd>message_archived - : Is message archived or not ?</dd>
+<dt>See Also:</dt>
+<dd>FnacApicClient\Type\BoolType</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../source/service/request/messagequery.php.html#line118" class="location">Service/Request/MessageQuery.php at line 118</a>
+
+<h3 id="setMessageId()">setMessageId</h3>
+<code class="signature">public  void <strong>setMessageId</strong>(string message_id)</code>
+<div class="details">
+<p>Set message's unique identifier from fnac</p><dl>
+<dt>Parameters:</dt>
+<dd>message_id - : Uid of message</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../source/service/request/messagequery.php.html#line97" class="location">Service/Request/MessageQuery.php at line 97</a>
+
+<h3 id="setMessageState()">setMessageState</h3>
+<code class="signature">public  void <strong>setMessageState</strong>(string message_state)</code>
+<div class="details">
+<p>Set message's state</p><dl>
+<dt>Parameters:</dt>
+<dd>message_state - : State of message</dd>
+<dt>See Also:</dt>
+<dd>FnacApicClient\Type\MessageStateType</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../source/service/request/messagequery.php.html#line86" class="location">Service/Request/MessageQuery.php at line 86</a>
+
+<h3 id="setMessageType()">setMessageType</h3>
+<code class="signature">public  void <strong>setMessageType</strong>(string message_type)</code>
+<div class="details">
+<p>Set message's type</p><dl>
+<dt>Parameters:</dt>
+<dd>message_type - : Type of message</dd>
+<dt>See Also:</dt>
+<dd>FnacApicClient\Type\MessageType</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../source/service/request/messagequery.php.html#line138" class="location">Service/Request/MessageQuery.php at line 138</a>
+
+<h3 id="setOfferFnacId()">setOfferFnacId</h3>
+<code class="signature">public  void <strong>setOfferFnacId</strong>(string offer_fnac_id)</code>
+<div class="details">
+<p>Set offer unique identifier from fnac</p><dl>
+<dt>Parameters:</dt>
+<dd>offer_fnac_id - : Offer fnac uid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../source/service/request/messagequery.php.html#line148" class="location">Service/Request/MessageQuery.php at line 148</a>
+
+<h3 id="setOfferId()">setOfferId</h3>
+<code class="signature">public  void <strong>setOfferId</strong>(string offer_seller_id)</code>
+<div class="details">
+<p>Set offer unique identifier from seller</p><dl>
+<dt>Parameters:</dt>
+<dd>offer_seller_id - : Offer seller uid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../source/service/request/messagequery.php.html#line128" class="location">Service/Request/MessageQuery.php at line 128</a>
+
+<h3 id="setOrderFnacId()">setOrderFnacId</h3>
+<code class="signature">public  void <strong>setOrderFnacId</strong>(string order_fnac_id)</code>
+<div class="details">
+<p>Set order unique identifier from fnac</p><dl>
+<dt>Parameters:</dt>
+<dd>order_fnac_id - : Order fnac uid</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../source/service/request/messagequery.php.html#line159" class="location">Service/Request/MessageQuery.php at line 159</a>
+
+<h3 id="setSortBy()">setSortBy</h3>
+<code class="signature">public  void <strong>setSortBy</strong>(string sort_by)</code>
+<div class="details">
+<p>Set field on which we want the sort</p><dl>
+<dt>Parameters:</dt>
+<dd>sort_by - : Field to sort by</dd>
+<dt>See Also:</dt>
+<dd>FnacApicClient\Type\SortType</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../../source/service/request/messagequery.php.html#line170" class="location">Service/Request/MessageQuery.php at line 170</a>
+
+<h3 id="setSortByType()">setSortByType</h3>
+<code class="signature">public  void <strong>setSortByType</strong>(string sort_by_type)</code>
+<div class="details">
+<p>Set the sort order</p><dl>
+<dt>Parameters:</dt>
+<dd>sort_by_type - : Order to sort (ASC or DESC)</dd>
+<dt>See Also:</dt>
+<dd>FnacApicClient\Type\SortOrderType</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../fnacapiclient/service/request/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../../fnacapiclient/service/request/package-tree.html">Tree</a></li>
+<li><a href="../../../overview-files.html">Files</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../todo-list.html">Todo</a></li>
+<li><a href="../../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../../index.html" target="_top">Frames</a>
+<a href="../../../fnacapiclient/service/request/messagequery.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

@@ -1,0 +1,331 @@
+<div id="barresults_ident" class="col-xs-12 no-padding">
+  <div><span class="resultats_nb_conf">?</span> Résultats correspondent à vos critères</div>
+</div>
+<div id="ident_page" class="col-xs-12 no-padding">  
+  <p id="introIdent">Pour voir les résultats et accéder à tous nos services,  
+      <br><b>il est nécessaire de vous identifier ou de créer un compte utilisateur :</b>
+  </p>
+  <div class="register" id="register1" style="display:[?hide_register];">
+      <div class="bloc nouveau col-md-offset-1 col-md-4 col-sm-12 col-xs-12">
+        <div class="title col-xs-12 no-padding">Créez votre compte</div>
+        <div class="subtitle col-xs-12 no-padding subtitle-register"><strong>gratuitement</strong> en quelques secondes !</div>
+        <input type="text" id="email" placeholder="Votre e-mail" autocomplete="anyrandomstring">
+        <div id="register_error" class="error col-xs-10"></div>
+        <div class="col-xs-10 btn-register"><a href="javascript:void(0);" onclick="showsubscribeConf();visiteur(document.getElementById('email').value,'configurateur');" class="button">Je crée mon compte<i class="fa fa-chevron-right"></i></a></div>
+      </div>
+      
+      <div class="ou col-md-2 col-sm-12 col-xs-12">ou</div>
+      
+      <div class="bloc deja  col-md-4 col-sm-12 col-xs-12">
+        <div class="subtitle">Connectez-vous !</div>
+        <div class="title">Déjà client ?</div>
+        <div id="ident_error">ERREUR</div><br>
+        <div class="errormsg"></div>
+        <form name="logging" method="post" style="margin-top: -25px;">
+          <input type="hidden" value="logging" name="action">
+          <input type="hidden" id="gclid1" name="gclid1" value="">
+          <input type="hidden" id="redirection" name="redirection" value="0">
+          <input type="hidden" id="errormail" name="errormail" value="Veuillez indiquer un mail valide">
+          <input type="hidden" id="errorpassword" name="errorpassword" value="Veuillez indiquer un mot de passe valide">
+          <input type="text" id="email_log" name="mail_logging" placeholder="Votre e-mail" onclick="Gclid();">
+          <input type="text" id="pass_logging" name="pass_logging" placeholder="Mot de passe" onfocus="this.setAttribute('type','password');">
+          <a href="passwordrecover.php" class="perdu">Mot de passe oublié ?</a>
+          <div class="col-xs-10 btn-register"><a href="javascript:void(0);" onclick="verifPassword();" class="button">Je me connecte<i class="fa fa-chevron-right"></i></a></div>
+        </form>
+      </div>
+
+      <div class="clear"></div>
+  </div>
+
+  <div class="register" id="register2" style="display:[?display_register];">
+      <h1>Créez votre compte en quelques secondes :</h1>
+      <div class="infos">Pour créer un compte (rapidement et sans engagement), merci de compléter les champs ci-dessous</div>
+      <div id="ident_form">
+        <input name="fuseau_horaire" type="hidden" value="">
+        <input type="hidden" name="propart" id="propart" value="0">
+        <input type="hidden" id="gclid" name="gclid" value="">
+        <input type="hidden" id="provenance" name="provenance" value="configurateur">
+      
+        <div class="error">[?errormessage]</div>
+      
+        <div class="subscribe">
+        <div class="row"><h2>Mes identifiants</h2></div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Votre e-mail*</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_mail">Veuillez indiquer un mail valide</span>
+            <input type="text" name="mail" id="mail" onclick="heureLocale()" onblur="saveform(this.name,this.value);" autocomplete="anyrandomstring">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Mot de passe *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_mdp1">Veuillez indiquer un mot de passe</span>
+            <span class="error" id="err_mdp2">Veuillez indiquer un mot de passe d'au moins 6 caractères</span>
+            <span class="error" id="err_mdp3">Erreur dans la confirmation du mot de passe</span>
+            <input type="password" name="passwordinscr" id="passwordinscr" onblur="saveform('password',MD5(this.value));">
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12" >Confirmation du mot de passe *</div>
+            <div class="col-md-9 col-sm-9 col-xs-12" ><input type="password" name="passwordinscrconfirm" id="passwordinscrconfirm"></div>
+          </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-offset-6 col-sm-6 col-md-offset-8 col-md-4"><p id="register_next_btn1" class="register_next" onclick="next_part();">Suivant</p></div>
+        </div>
+      </div>
+      <div class="subscribe" id="register_part_pro">
+        <div class="row">
+          <div class="col-xs-12"><h2>Êtes-vous ?</h2></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-sm-offset-2 col-sm-4 col-md-offset-3 col-md-3 col-lg-offset-3 col-lg-2 btnstatut"><p class="part" onclick="nextpart();">Un particulier</p></div>
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-offset-2 col-lg-2 btnstatut"><p class="pro" onclick="nextpro();">Un professionnel</p></div>
+        </div>
+      </div>
+
+      <!--- FORMULAIRE PRO------------->
+      <div class="subscribe" id="register_coordonnees_pro">
+        <div class="row"><h2>Coordonnées de facturation</h2></div>
+        <div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" ></div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_civilitepro">Veuillez indiquer une civilité</span>
+            <input name="civilitepro" id="civilite1pro" value="0" type="radio" [?selectmr] onclick="saveform('civilite',this.value);"> M.
+            &nbsp; <input name="civilitepro" id="civilite2pro" value="1" type="radio" [?selectmme] onclick="saveform('civilite',this.value);"> Mme
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Nom *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_nompro">Veuillez indiquer un nom</span>
+            <input type="text" name="nompro" id="nompro" value="[?nom]" onblur="this.value=this.value.toUpperCase();saveform('nom',this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Prénom *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_prenompro">Veuillez indiquer un prénom</span>
+            <input type="text" name="prenompro" id="prenompro" value="[?prenom]" onblur="saveform('prenom',this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Raison sociale *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_tva">Veuillez indiquer une raison sociale</span>
+            <input type="text" name="raisonsociale" id="raisonsociale" value="[?raisonsociale]" onblur="saveform(this.name,this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >N° TVA intracommunautaire </div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_tva2">Veuillez indiquer un n° de TVA correct</span>
+            <span class="error" id="err_tva3">Veuillez indiquer un n° de TVA</span>
+            <input type="text" name="tvaintracom" id="tvaintracom" onblur="this.value=this.value.toUpperCase();saveform(this.name,this.value);" placeholder="si société dans l'Union Européenne">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Adresse *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_adressepro">Veuillez indiquer une adresse</span>
+            <input type="text" name="adressepro" id="adressepro" value="[?adresse]" onblur="saveform('adresse',this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Code postal *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_cpro">Veuillez indiquer un code postal</span>
+            <input type="text" name="codepostalpro" id="codepostalpro" value="[?codepostal]" onblur="saveform('codepostal',this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Ville *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_villepro">Veuillez indiquer une ville</span>
+            <input type="text" name="villepro" id="villepro" value="[?ville]" onblur="saveform('ville',this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Pays *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <select name="paysidpro" id="paysidpro" onchange="saveform('paysid',this.value);">[?zonedeliste_pays]</select>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Téléphone *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_telpro">Veuillez indiquer un téléphone</span>
+            <input type="text" name="telephonepro" id="telephonepro" value="[?telephone]" onblur="saveform('telephone',this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Mobile</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" ><input type="text" name="pordivpro" id="pordivpro" value="[?pordiv]" onblur="saveform('portable',this.value);"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12" >Comment avez-vous connu le site ?</div>
+            <div class="col-md-9 col-sm-9 col-xs-12" >
+              <select name="connupro" id="connupro" onchange="saveform('connu',this.value);">
+                      <option value="">Sélectionnez une option</option>
+                      <option value="Ami / Client">Ami / Client</option>
+                      <option value="Publicité sur moteur de recherche">Publicité sur moteur de recherche</option>
+                      <option value="TV / Radio">TV / Radio</option>
+                      <option value="Emailing">Emailing</option>
+                      <option value="Lien sur un autre site">Lien sur un autre site</option>
+                      <option value="Moteur de recherche (Google, Yahoo, Bing...)">Moteur de recherche (Google, Yahoo, Bing...)</option>
+                      <option value="Partenaire / Fournisseur">Partenaire / Fournisseur</option>
+                      <option value="Presse et média">Presse et média</option>
+                      <option value="Salon">Salon</option>
+                      <option value="Linkedin">Linkedin</option>
+                      <option value="Facebook">Facebook</option>
+                      <option value="Ne sais pas">Ne sais pas</option>
+                    </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!---- FORMULAIRE PARTICULIERS-------------->
+      <div class="subscribe" id="register_coordonnees_part">
+        <div class="row"><h2>Coordonnées de facturation</h2></div>
+        <div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" ></div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_civilite">Veuillez indiquer une civilité</span>
+            <input name="civilite" id="civilite1" value="0" type="radio" [?selectmr] onclick="saveform(this.name,this.value);"> M.
+            &nbsp; <input name="civilite" id="civilite2" value="1" type="radio" [?selectmme] onclick="saveform(this.name,this.value);"> Mme
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Nom *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_nom">Veuillez indiquer un nom</span>
+            <input type="text" name="nom" id="nom" value="[?nom]" onblur="this.value=this.value.toUpperCase();saveform(this.name,this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Prénom *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_prenom">Veuillez indiquer un prénom</span>
+            <input type="text" name="prenom" id="prenom" value="[?prenom]" onblur="saveform(this.name,this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Adresse *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_adresse">Veuillez indiquer une adresse</span>
+            <input type="text" name="adresse" id="adresse" value="[?adresse]" onblur="saveform(this.name,this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Code postal *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_cp">Veuillez indiquer un code postal</span>
+            <input type="text" name="codepostal" id="codepostal" value="[?codepostal]" onblur="saveform(this.name,this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Ville *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_ville">Veuillez indiquer une ville</span>
+            <input type="text" name="ville" id="ville" value="[?ville]" onblur="saveform(this.name,this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Pays *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <select name="paysid" id="paysid" onchange="saveform(this.name,this.value);">[?zonedeliste_pays]</select>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Téléphone *</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" >
+            <span class="error" id="err_tel">Veuillez indiquer un téléphone</span>
+            <input type="text" name="telephone" id="telephone" value="[?telephone]" onblur="saveform(this.name,this.value);">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-3 col-sm-3 col-xs-12" >Mobile</div>
+          <div class="col-md-9 col-sm-9 col-xs-12" ><input type="text" name="pordiv" id="pordiv" value="[?pordiv]" onblur="saveform('portable',this.value);"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12" >Comment avez-vous connu le site ?*</div>
+            <div class="col-md-9 col-sm-9 col-xs-12" >
+              <span class="error" id="err_connu" style="display: none;">Veuillez sélectionner une option</span>
+              <select id="connu" name="connu" onchange="saveform(this.name,this.value);">
+                      <option value="">Sélectionnez une option</option>
+                      <option value="Ami / Client">Ami / Client</option>
+                      <option value="Publicité sur moteur de recherche">Publicité sur moteur de recherche</option>
+                      <option value="TV / Radio">TV / Radio</option>
+                      <option value="Emailing">Emailing</option>
+                      <option value="Lien sur un autre site">Lien sur un autre site</option>
+                      <option value="Moteur de recherche (Google, Yahoo, Bing...)">Moteur de recherche (Google, Yahoo, Bing...)</option>
+                      <option value="Partenaire / Fournisseur">Partenaire / Fournisseur</option>
+                      <option value="Presse et média">Presse et média</option>
+                      <option value="Salon">Salon</option>
+                      <option value="Linkedin">Linkedin</option>
+                      <option value="Facebook">Facebook</option>
+                      <option value="Ne sais pas">Ne sais pas</option>
+                    </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subscribe" id="register_conseils">
+        <div class="row"><h2 style="margin-bottom: 5px;">CONSEILS PERSONNALISÉS</h2></div>
+        <span class="error" id="err_conseils" style="text-align:center;display:none;">Veuillez indiquer votre choix</span>
+        <div class="row">
+          <div>
+            <div class="col-xs-12 col-md-9 txtconseils" style="font-weight: 600;">Je souhaite bénéficier gratuitement de conseils d'experts pour m'accompagner dans mon <span style="white-space: nowrap;">achat :</span></div>
+            <div class="radioconseils"><input type="radio" name="conseils" value="1" id="conseils1" onclick="saveform(this.name,this.value);"> Oui, je suis intéressé(e).<br></div>
+          </div>
+          <div style="margin-top: 7px;" class="conseilsnon">
+            <!--<div class="col-md-9 txtconseils hidden-xs hidden-sm" style="font-weight:600;font-size:12px;color:#A88D5C;">* conseils offerts</div>-->
+            <div class="col-md-9"></div>
+            <div class="radioconseils"><input type="radio" name="conseils" value="0" id="conseils0" onclick="saveform(this.name,this.value);"> Non, merci.</div>
+            <!--<div class="col-xs-12 txtconseils visible-xs visible-sm" style="font-weight:600;font-size:12px;color:#A88D5C;">* conseils offerts</div>-->
+          </div>
+        </div>  
+      </div>
+      <div class="subscribe" id="register_newsletter">
+        <div class="row" style="margin-bottom: 3px;"><h2>Newsletter</h2></div>
+        <span class="error" id="err_news" style="text-align:right;display:none;">Veuillez indiquer votre choix</span>
+        <div>
+          <div class="row">
+            <div class="col-xs-12 col-md-9 textnews" >J'accepte de recevoir les nouveautés et les offres promotionnelles par <strong>E-mail</strong></div>
+            <div class="err_mnews col-md-3">
+              <input class="radioconseils" name="news_mail" value="1" type="radio" id="m1" checked onclick="saveform(this.name,this.value);"> Oui 
+              &nbsp; <input class="radioconseils" name="news_mail" value="0" type="radio" id="m0" onclick="saveform(this.name,this.value);"> Non
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-md-9 textnews" >J'accepte de recevoir les nouveautés et les offres promotionnelles par <strong>SMS</strong></div>
+            <div class="err_snews col-md-3">
+              <input class="radioconseils" name="news_sms" value="1" type="radio" id="s1" checked onclick="saveform(this.name,this.value);"> Oui 
+              &nbsp; <input class="radioconseils" name="news_sms" value="0" type="radio" id="s0" onclick="saveform(this.name,this.value);"> Non
+            </div>
+          </div>
+        </div>
+        <br>
+        <span class="error" id="err_cgv" style="display: none;">Vous devez accepter les conditions générales de vente</span>
+        <div class="row" style="margin:0;">
+          <div id="register_cgv">
+          J'ai lu et j'accepte sans réserve les <a href="/int,1,conditions-generales-de-vente-france-et-etranger.htm" target="_blank" style="text-decoration: underline;">conditions générales de vente de mon-espace-cuisson.com</a>
+                      <input type="checkbox" id="cgv_sub" value="1" style="height:15px;width:15px;display:inline-block;margin-left:10px;" checked>
+                </div>
+            </div>
+              <br>
+              <div class="row">
+          <div class="mentions">
+            * Champs obligatoires
+            <br><span class="mentions_pro">** Obligatoire pour les entreprises dans l'Union Européenne</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      </form>
+      <a href="javascript:void(0)" onclick="verif();" class="valide" id="register_btn_valide" >Je valide la création de mon compte<i class="fa fa-chevron-right"></i></a>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+#########################################################################
+#
+#	Pathfile 
+#
+#	Liste des fichiers parametres utilises par le module de paiement
+#
+#########################################################################
+
+# ------------------------------------------------------------------------
+# Chemin vers le répertoire des logos depuis le web alias  
+# Exemple pour le répertoire www.e-transactions.com/e-transactions/payment/logo/
+# indiquer:
+# ------------------------------------------------------------------------
+#
+D_LOGO!/VAD/macavavin/logo/!
+#
+# --------------------------------------------------------------------------
+#  Fichiers paramètres liés a l'api mercanet paiement	
+# --------------------------------------------------------------------------
+#
+# fichier des  paramètres e-transactions
+#
+F_DEFAULT!/homez.368/macaveav/www/VAD/macavavin/param/parmcom.e-transactions!
+#
+# fichier paramètre commercant
+#
+F_PARAM!/homez.368/macaveav/www/VAD/macavavin/param/parmcom!
+#
+# certificat du commercant
+#
+F_CERTIFICATE!/homez.368/macaveav/www/VAD/macavavin/param/certif!
+#
+# --------------------------------------------------------------------------
+# 	end of file
+# --------------------------------------------------------------------------

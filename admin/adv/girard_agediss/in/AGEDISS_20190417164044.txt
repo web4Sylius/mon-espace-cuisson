@@ -1,0 +1,6 @@
+2019/03/11|132615_0166|314826923|BROUANT Serge|83120|7013A|AAR CFM|Reception conforme|2019/04/17|0||http://webtracking.girard-agediss.com/tracking-acilyon-314826923.html
+2019/03/11|132615_0166|314826923|BROUANT Serge|83120|7013A|RDV PRI|RDV pris|2019/04/19|0|20190419|http://webtracking.girard-agediss.com/tracking-acilyon-314826923.html
+2019/03/11|132615_0166|314826923|BROUANT Serge|83120|7013A|RST REP|Message Repondeur|2019/04/17|0||http://webtracking.girard-agediss.com/tracking-acilyon-314826923.html
+2019/04/11|133428_0174|314894689|BOUDEHEN Erwan|22430|70561|RDV CCL|Confirmation Creneaux de Livraison|2019/04/18|0||http://webtracking.girard-agediss.com/tracking-acilyon-314894689.html
+2019/04/11|133428_0174|314894689|BOUDEHEN Erwan|22430|70561|RDV PRI|RDV pris|2019/04/18|0|20190418|http://webtracking.girard-agediss.com/tracking-acilyon-314894689.html
+2019/04/17|149872|314904214|DAVIDOVICS Tania|98000|70061|INI INF|Arrivee info|2019/04/17|0||http://webtracking.girard-agediss.com/tracking-acilyon-314904214.html

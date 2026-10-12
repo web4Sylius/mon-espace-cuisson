@@ -1,0 +1,214 @@
+<div class="register" id="register1" style="display:[?hide_register];">
+	<div class="bloc nouveau col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-1 col-md-4">
+		<div class="title col-xs-12 no-padding">Créez votre compte</div>
+		<div class="subtitle col-xs-12 no-padding subtitle-register"><strong>gratuitement</strong> en quelques secondes !</div>
+		<input type="text" id="email" placeholder="Votre e-mail" autocomplete="anyrandomstring">
+		<div id="register_error" class="error"></div>
+		<div class="col-xs-10 btn-register"><a href="javascript:void(0);" onclick="showsubscribe();visiteur(document.getElementById('email').value,document.getElementById('provenance').value);" class="button">Je crée mon compte<i class="fa fa-chevron-right"></i></a></div>
+	</div>
+
+	<div class="ou col-md-2 col-sm-12 col-xs-12">ou</div>
+
+	<div class="bloc deja col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-0 col-md-4">
+		<div class="title">Déjà client ?</div>
+		<div class="subtitle">Connectez-vous !</div>
+		<div class="error">[?raison]</div>
+		<form name="logging" method="post">
+			<input type="hidden" value="logging" name="action">
+			<input type="hidden" id="gclidlog" name="gclidlog" value="">
+			<input type="text" id="email_log" name="mail_logging" placeholder="Votre e-mail">
+			<input type="text" name="pass_logging" onfocus="this.setAttribute('type','password');" placeholder="Mot de passe">
+			<a href="passwordrecover.php" class="perdu">Mot de passe oublié ?</a>
+			<div class="col-xs-10 btn-register"><a href="javascript:void(0);" onclick="document.forms.logging.submit();" class="button">Je me connecte<i class="fa fa-chevron-right"></i></a></div>
+		</form>
+	</div>
+
+	<div class="clear"></div>
+</div>
+
+<div class="register" id="register2" style="display:[?display_register];">
+	<h1>Créez votre compte en quelques secondes :</h1>
+	<div class="infos">Pour créer un compte (rapidement et sans engagement), merci de compléter les champs ci-dessous</div>
+	<form name="nouveau1" method="post">
+		<!--<span class="error" id="err_fuseau_horaire">Veuillez actualiser la page et activer la prise en charge de Javascript</span>-->
+		<input name="fuseau_horaire" type="hidden" value="">
+		<input type="hidden" name="action0" value="register">
+		<input type="hidden" name="dest" value="">
+		<input type="hidden" name="actionpanier" value="">
+		<input type="hidden" name="mail_log" value="">
+		<input type="hidden" name="propart" id="propart" value="0">
+		<input type="hidden" id="gclid" name="gclid" value="">
+		<input type="hidden" id="provenance" name="provenance" value="[?provenance]">
+
+		<div class="error">[?errormessage]</div>
+
+		<div class="subscribe">
+			<div class="row"><h2>Mes identifiants</h2></div>
+			<div class="row">
+				<div class="col-md-3 col-sm-3 col-xs-12" >Votre e-mail*</div>
+				<div class="col-md-9 col-sm-9 col-xs-12" >
+					<span class="error" id="err_mail">Veuillez indiquer un mail valide</span>
+					<span class="error" id="err_mail2">Cet e-mail est déjà associé à un compte</span>
+					<input type="text" name="mail" value="[?defaultmail]" onclick="heureLocale()" onblur="saveform(this.name,this.value);" autocomplete="anyrandomstring">
+				</div>
+			</div>
+		</div>
+		<div class="subscribe" id="register_part_pro">
+			<div class="row">
+				<div class="col-xs-12"><h2>Êtes-vous ?</h2></div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 col-sm-offset-2 col-sm-4 col-md-offset-3 col-md-3 col-lg-offset-3 col-lg-2 btnstatut"><p class="part" onclick="verifEmail('part');">Un particulier</p></div>
+				<div class="col-xs-6 col-sm-4 col-md-3 col-lg-offset-2 col-lg-2 btnstatut"><p class="pro" onclick="verifEmail('pro');">Un professionnel</p></div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script language="javascript">
+	function heureLocale(){
+		var d = new Date();
+		var utc = parseInt(d.getTimezoneOffset() / 60);
+		document.getElementsByName('fuseau_horaire')[0].value = utc;
+	}
+	
+	function showsubscribe() {
+		var email = document.getElementById('email').value;
+		$.get( "/ajax/panier/checkEmail.php", { email: email }, function( data ) {
+			if(data !== 'no') {
+				document.querySelector('#register_error').innerHTML = 'Cet e-mail est déjà associé à un compte'
+				document.getElementById('email_log').value = email;
+			}else {
+				document.getElementById('register1').style.display="none";
+				document.getElementById('register2').style.display="block";
+				if(location.pathname + location.search === '/client.html' || location.pathname + location.search === '/client.htm' || location.pathname + location.search === '/client.php'){
+					document.getElementsByName('dest')[0].value='header';
+				}
+				else{
+					document.getElementsByName('dest')[0].value='panier';
+				}
+				if(document.getElementById('email').value.match(/@/)) { ///si un mail n'est pas rentré, ça enlève "votre email"
+					document.getElementsByName('mail')[0].value=document.getElementById('email').value;
+					////tache 7093 : mise en place du Datalayer
+					if(location.pathname + location.search === '/client.htm'){
+						window.dataLayer = window.dataLayer || [];
+						window.dataLayer.push({
+							'event': 'compte_creation_start',
+							'compte_creation_origine': 'header'
+						});
+					}
+					else{
+						window.dataLayer = window.dataLayer || [];
+						window.dataLayer.push({
+							'event': 'compte_creation_start',
+							'compte_creation_origine': 'panier'
+						});
+					}
+					////fin
+				}
+			//document.getElementsByName('newsletter')[0].checked=document.getElementById('nl').checked;
+		}
+	});
+	}
+
+	function gopro(){
+    	////tache 7093 : mise en place du Datalayer
+    	if(location.pathname + location.search === '/client.html' || location.pathname + location.search === '/client.htm' || location.pathname + location.search === '/client.php'){
+    		window.dataLayer = window.dataLayer || [];
+    		window.dataLayer.push({
+    			'event': 'compte_creation_adresse',
+    			'compte_type': 'professionnel',
+    			'compte_creation_origine': 'header',
+    		});
+    		document.getElementsByName('propart')[0].value=2;
+    		document.forms.nouveau1.action='/client.php';
+    		document.getElementsByName('mail_log')[0].value=document.getElementsByName('mail')[0].value;
+    		document.getElementById('gclid').value = document.getElementById('gclid_field').value;//gestion du gclid
+    		document.forms.nouveau1.submit();
+    	}
+    	else{
+    		window.dataLayer = window.dataLayer || [];
+    		window.dataLayer.push({
+    			'event': 'compte_creation_adresse',
+    			'compte_type': 'professionnel',
+    			'compte_creation_origine': 'panier',
+    		});
+    		
+    		document.getElementsByName('actionpanier')[0].value='panier';
+    		document.getElementsByName('propart')[0].value=2;
+    		document.forms.nouveau1.action='/recapitulatif.html';
+    		document.getElementsByName('mail_log')[0].value=document.getElementsByName('mail')[0].value;
+    		document.getElementById('gclid').value = document.getElementById('gclid_field').value;//gestion du gclid
+    		document.forms.nouveau1.submit();
+    	}
+    	////fin
+    }
+    function gopart(){
+    	////tache 7093 : mise en place du Datalayer
+    	if(document.getElementsByName('dest')[0].value === 'header'){
+    		window.dataLayer = window.dataLayer || [];
+    		window.dataLayer.push({
+    			'event': 'compte_creation_adresse',
+    			'compte_type': 'particulier',
+    			'compte_creation_origine': 'header',
+    		});
+    		document.getElementsByName('propart')[0].value=1;
+    		document.forms.nouveau1.action='/client.php';
+    		document.getElementsByName('mail_log')[0].value=document.getElementsByName('mail')[0].value;
+    		document.getElementById('gclid').value = document.getElementById('gclid_field').value;//gestion du gclid
+    		document.forms.nouveau1.submit();
+    	}
+    	else{
+    		window.dataLayer = window.dataLayer || [];
+    		window.dataLayer.push({
+    			'event': 'compte_creation_adresse',
+    			'compte_type': 'particulier',
+    			'compte_creation_origine': 'panier',
+    		});
+    		document.getElementsByName('actionpanier')[0].value='panier';
+    		document.getElementsByName('propart')[0].value=1;
+    		document.forms.nouveau1.action='/recapitulatif.html';
+    		document.getElementsByName('mail_log')[0].value=document.getElementsByName('mail')[0].value;
+    		document.getElementById('gclid').value = document.getElementById('gclid_field').value;//gestion du gclid
+    		document.forms.nouveau1.submit();
+    	}
+    	////fin
+    }
+
+  	///vérifie si le mail est déjà pris avant de continuer l'inscription
+  	function verifEmail(type){
+  		var email = document.getElementsByName('mail')[0].value;
+  		$.ajax({
+  			url : '/ajax/panier/checkEmail.php',
+  			type : 'GET',
+  			data : 'email='+email,
+		       dataType : 'html', // On désire recevoir du HTML
+		       success : function(code_html, statut){ // code_html contient le HTML renvoyé
+		       	if(code_html !== 'no'){
+		       		$('#err_mail2').show();
+		       		$('input[name=mail]').css('border','solid 1px red');
+		       	}else{
+		       			if(type=='part'){
+		       				gopart();
+		       			}
+		       		else{
+		       			gopro();
+		       		}
+		       	}
+		       }
+		     });
+  	}
+
+  	//empêche la touche "entrer" de fonctionner, sinon ça fait buger l'affichage du formulaire
+  	$(document).ready(function() {
+  		$(window).keydown(function(event){
+  			if(event.keyCode == 13) {
+  				event.preventDefault();
+  				return false;
+  			}
+  		});
+  	});
+
+
+  	[?jsinscription]
+  </script>

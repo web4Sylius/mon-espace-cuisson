@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteRule ^([A-Z]{2})/univers-([0-9]+).jpg$ univers.php?id=$2&langue=$1 [L]
+RewriteRule ^([A-Z]{2})/univers-([0-9]+)R.jpg$ univers.php?id=$2&langue=$1&right=1 [L]
+
+RewriteRule ^([A-Z]{2})/vignette-([0-9]+).jpg$ vignette_mail.php?artid=$2&langue=$1 [L]
+RewriteRule ^([A-Z]{2})/vignette-([0-9]+)S.jpg$ vignette_mail.php?artid=$2&langue=$1&short=1 [L]

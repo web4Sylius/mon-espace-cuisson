@@ -1,0 +1,2 @@
+S;20190827;0169;01;697474;ACILYON;;LABADIE Elodie;;;11 avenue du baou de 4 heures .le clos des oliviers;;;FR;83160;LA VALETTE DU VAR;LABADIE Elodie;0613832303;15490673;137416;P;1;1;;;52;;;0.395;;;;;;;Cave à vin;;;;;;;;
+UM;PCI;;;*8383421900269747415490673001300;52;;;;;;;

@@ -1,0 +1,3 @@
+2019/05/10|150450|314944997|PELLEGRIN Jean-pierre|83330|7013A|RDV PRI|RDV pris|2019/05/31|0|20190531|http://webtracking.girard-agediss.com/tracking-acilyon-314944997.html
+2019/05/10|150450|314944997|PELLEGRIN Jean-pierre|83330|7013A|RST REP|Message Repondeur|2019/05/27|0||http://webtracking.girard-agediss.com/tracking-acilyon-314944997.html
+2019/05/27|150867|314977697|DE CHAISEMARTIN Jean-Baptiste|44000|70722|INI INF|Arrivee info|2019/05/27|0||http://webtracking.girard-agediss.com/tracking-acilyon-314977697.html

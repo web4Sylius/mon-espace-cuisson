@@ -1,0 +1,70 @@
+2015/07/21|89855|311819985|DJELID Akim|13007|70137|RDV PRI|RDV pris|2015/08/18|0|20150818|http://webtracking.girard-agediss.com/tracking-acilyon-311819985.html
+2015/07/21|89855|311819985|DJELID Akim|13007|70137|RST REP|Message Repondeur|2015/08/07|0|client ne repond pas à nos messages|http://webtracking.girard-agediss.com/tracking-acilyon-311819985.html
+2016/12/19|107606|312687547|tetard nathalie|58130|70891|RST REP|Message Repondeur|2016/12/29|0|DOIT CONFIRMER AVANT 14H AUJOURD'HUI|http://webtracking.girard-agediss.com/tracking-acilyon-312687547.html
+2017/01/10|107916|312717602|SALPIETRO Antoine|38000|70263|RST REP|Message Repondeur|2017/01/24|0|pour rdv le 26/01|http://webtracking.girard-agediss.com/tracking-acilyon-312717602.html
+2017/01/18|108654|312743314|MORICE Mickaelle|56870|70561|RDV PRI|RDV pris|2017/01/26|0|20170126|http://webtracking.girard-agediss.com/tracking-acilyon-312743314.html
+2017/01/20|108771|312748943|dherret julien|18000|70891|RST REP|Message Repondeur|2017/01/24|0||http://webtracking.girard-agediss.com/tracking-acilyon-312748943.html
+2017/02/02|109160|312789255|PAPILLON Frederic|21000|70213|RDV CCL|Confirmation Creneaux de Livraison|2017/02/10|0||http://webtracking.girard-agediss.com/tracking-acilyon-312789255.html
+2017/02/02|109160|312789255|PAPILLON Frederic|21000|70213|RDV PRI|RDV pris|2017/02/10|0|20170210|http://webtracking.girard-agediss.com/tracking-acilyon-312789255.html
+2017/02/02|109160|312789255|PAPILLON Frederic|21000|70213|RST REP|Message Repondeur|2017/02/09|0|Tenu informé qu'il ne sera pas livré le 09/02/17 (Camion plein).|http://webtracking.girard-agediss.com/tracking-acilyon-312789255.html
+2017/05/24|111314|313041348|sci Marie et|33950|70333|RDV PRI|RDV pris|2017/06/16|0|20170616|http://webtracking.girard-agediss.com/tracking-acilyon-313041348.html
+2017/07/21|113464_0009|313196160|RIERA MANUEL|74240|70742|RDV PRI|RDV pris|2017/08/01|0|20170801|http://webtracking.girard-agediss.com/tracking-acilyon-313196160.html
+2017/08/23|114328_0016|313284226|PEDERSEN Soren|98000|70061|RDV PRI|RDV pris|2017/09/05|0|20170905|http://webtracking.girard-agediss.com/tracking-acilyon-313284226.html
+2017/09/07|113516_0022|313319136|MAINGUET Pierre|44000|70441|RDV CCL|Confirmation Creneaux de Livraison|2017/10/30|0||http://webtracking.girard-agediss.com/tracking-acilyon-313319136.html
+2017/09/07|113516_0022|313319136|MAINGUET Pierre|44000|70441|RDV PRI|RDV pris|2017/10/30|0|20171030|http://webtracking.girard-agediss.com/tracking-acilyon-313319136.html
+2017/09/07|113516_0022|313319136|MAINGUET Pierre|44000|70441|RST REP|Message Repondeur|2017/09/13|0|18/09/2017-19/09/2017|http://webtracking.girard-agediss.com/tracking-acilyon-313319136.html
+2017/09/19|115288_0026|313342974|BOULIN Francois|56450|70561|RDV PRI|RDV pris|2017/10/07|0|20171007|http://webtracking.girard-agediss.com/tracking-acilyon-313342974.html
+2017/09/21|114713_0028|313348201|CHAIGNEAU SYLVAIN|79300|70791|RST REP|Message Repondeur|2017/10/03|0||http://webtracking.girard-agediss.com/tracking-acilyon-313348201.html
+2018/01/15|119817_0050|313707729|GALLO Stephane|66000|70663|RDV PRI|RDV pris|2018/01/23|0|20180123|http://webtracking.girard-agediss.com/tracking-acilyon-313707729.html
+2018/01/23|118796_0051|313740891|PRESSAC CYRIL|17310|70175|RDV PRI|RDV pris|2018/02/15|0|20180215|http://webtracking.girard-agediss.com/tracking-acilyon-313740891.html
+2018/01/30|120304_0056|313769098|LEBEAU Thomas|01480|70019|POD CFM|BL numérisé|2018/04/10|0||http://webtracking.girard-agediss.com/tracking-acilyon-313769098.html
+2018/01/30|120304_0056|313769098|LEBEAU Thomas|01480|70019|RDV CCL|Confirmation Creneaux de Livraison|2018/03/10|0||http://webtracking.girard-agediss.com/tracking-acilyon-313769098.html
+2018/01/30|120304_0056|313769098|LEBEAU Thomas|01480|70019|RDV PRI|RDV pris|2018/03/10|0|20180310|http://webtracking.girard-agediss.com/tracking-acilyon-313769098.html
+2018/01/30|120304_0056|313769098|LEBEAU Thomas|01480|70019|RST REP|Message Repondeur|2018/02/07|0||http://webtracking.girard-agediss.com/tracking-acilyon-313769098.html
+2018/01/31|DUVERNErep|313773404|DUVERNE Brigitte|75016|70913|AAR CFM|Reception conforme|2018/02/13|0||http://webtracking.girard-agediss.com/tracking-acilyon-313773404.html
+2018/01/31|DUVERNErep|313773404|DUVERNE Brigitte|75016|70913|DIF CAD|PB adr/Tel|2018/02/05|0|injoignable|http://webtracking.girard-agediss.com/tracking-acilyon-313773404.html
+2018/02/12|117521_0058|313818136|JACQUES PAULINE|33400|70333|RST REP|Message Repondeur|2018/02/17|0||http://webtracking.girard-agediss.com/tracking-acilyon-313818136.html
+2018/02/16|120075_0054REP|313839652|Jean-Pierre GIMOND|84740|70845|AAR CFM|Reception conforme|2018/03/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-313839652.html
+2018/02/16|120075_0054REP|313839652|Jean-Pierre GIMOND|84740|70845|RST REP|Message Repondeur|2018/03/09|0|1er appel avec message sur répondeur|http://webtracking.girard-agediss.com/tracking-acilyon-313839652.html
+2018/02/22|121019_0061|313862390|Eric COCHENNEC|30300|70305|RDV PRI|RDV pris|2018/03/08|0|20180308|http://webtracking.girard-agediss.com/tracking-acilyon-313862390.html
+2018/03/13|119648_0067|313923197|DU PUY Gilles|13810|70137|POD CFM|BL numérisé|2018/03/20|0||http://webtracking.girard-agediss.com/tracking-acilyon-313923197.html
+2018/03/13|119648_0067|313923197|DU PUY Gilles|13810|70137|RDV PRI|RDV pris|2018/03/19|0|20180319|http://webtracking.girard-agediss.com/tracking-acilyon-313923197.html
+2018/03/13|119648_0067|313923197|DU PUY Gilles|13810|70137|RST REP|Message Repondeur|2018/03/13|0||http://webtracking.girard-agediss.com/tracking-acilyon-313923197.html
+2018/03/19|121136_0068|313942794|ASSELIN RICHARD|17200|70175|POD CFM|BL numérisé|2018/04/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-313942794.html
+2018/03/19|121136_0068|313942794|ASSELIN RICHARD|17200|70175|RST REP|Message Repondeur|2018/03/28|0||http://webtracking.girard-agediss.com/tracking-acilyon-313942794.html
+2018/03/21|121049_0069|313953872|TIERS PATRICIA|65700|70313|RST REP|Message Repondeur|2018/03/22|0||http://webtracking.girard-agediss.com/tracking-acilyon-313953872.html
+2018/03/21|121684_0070|313954119|BARRIER GERARD|88000|70544|POD CFM|BL numérisé|2018/04/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-313954119.html
+2018/04/16|122202_0077|314024757|TOUATI Suzanne|17110|70175|POD CFM|BL numérisé|2018/05/18|0||http://webtracking.girard-agediss.com/tracking-acilyon-314024757.html
+2018/04/16|122202_0077|314024757|TOUATI Suzanne|17110|70175|RST REP|Message Repondeur|2018/05/03|0||http://webtracking.girard-agediss.com/tracking-acilyon-314024757.html
+2018/05/17|122836_0082|314116695|SEGUIER FRANCK|41600|70452|RDV PRI|RDV pris|2018/06/12|0|20180612|http://webtracking.girard-agediss.com/tracking-acilyon-314116695.html
+2018/05/21|123025_0083|314123458|DANGEL Thomas|30200|70305|POD CFM|BL numérisé|2018/06/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-314123458.html
+2018/06/15|123147_0087|314197818|RESTAURANT LES JARDINS|46140|70191|POD CFM|BL numérisé|2018/10/08|0||http://webtracking.girard-agediss.com/tracking-acilyon-314197818.html
+2018/06/15|123767_0088|314197819|Damien LEBRUN|38200|70263|RDV PRI|RDV pris|2018/06/25|0|20180625|http://webtracking.girard-agediss.com/tracking-acilyon-314197819.html
+2018/06/29|124164_0091|314244733|REINIERS JEAN PHILIPPE|22730|70561|RDV PRI|RDV pris|2018/07/11|0|20180711|http://webtracking.girard-agediss.com/tracking-acilyon-314244733.html
+2018/08/09|125439_0099|314356456|HOUEL LAURENT|27150|70762|RST REP|Message Repondeur|2018/09/03|0||http://webtracking.girard-agediss.com/tracking-acilyon-314356456.html
+2018/08/13|125593_0100|314362158|YHUEL YANN|44600|70441|RDV CCL|Confirmation Creneaux de Livraison|2018/09/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-314362158.html
+2018/08/13|125593_0100|314362158|YHUEL YANN|44600|70441|RDV PRI|RDV pris|2018/09/05|0|20180905|http://webtracking.girard-agediss.com/tracking-acilyon-314362158.html
+2018/08/20|125753_0102|314374631|ROUe Clement|80000|70621|POD CFM|BL numérisé|2018/09/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-314374631.html
+2018/09/13|126513_0108|314428975|DUMONT MARIE|83000|70835|AAR MQP|Reception partielle|2018/09/27|0|Reçu 1 cols cave à vins ( Manque clayettes )|http://webtracking.girard-agediss.com/tracking-acilyon-314428975.html
+2018/09/13|126513_0108|314428975|DUMONT MARIE|83000|70835|RDV PRI|RDV pris|2018/10/06|0|20181006|http://webtracking.girard-agediss.com/tracking-acilyon-314428975.html
+2018/09/17|126560_0110|314437006|SCHOLLER MARIE AUDE|39600|70257|POD CFM|BL numérisé|2018/09/27|0||http://webtracking.girard-agediss.com/tracking-acilyon-314437006.html
+2018/09/18|124971_0112|314442048|REMIGEREAU ARNAUD|86000|70791|POD CFM|BL numérisé|2018/10/03|0||http://webtracking.girard-agediss.com/tracking-acilyon-314442048.html
+2018/10/19|127555_0119|314509535|MERLET JEAN FRANCOIS|45430|70452|POD CFM|BL numérisé|2018/10/31|0||http://webtracking.girard-agediss.com/tracking-acilyon-314509535.html
+2018/10/19|127555_0119|314509535|MERLET JEAN FRANCOIS|45430|70452|RDV PRI|RDV pris|2018/10/30|0|20181030|http://webtracking.girard-agediss.com/tracking-acilyon-314509535.html
+2018/10/23|127663_0121|314515073|KREBS Matthieu|56100|70561|RDV CCL|Confirmation Creneaux de Livraison|2018/11/07|0||http://webtracking.girard-agediss.com/tracking-acilyon-314515073.html
+2018/10/23|127663_0121|314515073|KREBS Matthieu|56100|70561|RDV PRI|RDV pris|2018/10/31|0|20181031|http://webtracking.girard-agediss.com/tracking-acilyon-314515073.html
+2018/10/23|127663_0121|314515073|KREBS Matthieu|56100|70561|RST REP|Message Repondeur|2018/10/29|0||http://webtracking.girard-agediss.com/tracking-acilyon-314515073.html
+2018/11/05|127830_0123|314536541|MESGUEN GUIREC|66000|70663|POD CFM|BL numérisé|2018/11/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-314536541.html
+2018/11/05|127830_0123|314536541|MESGUEN GUIREC|66000|70663|RDV PRI|RDV pris|2018/11/10|0|20181110|http://webtracking.girard-agediss.com/tracking-acilyon-314536541.html
+2018/11/20|128614_0127|314582441|CRISTOFANI Manuel|01630|70015|RDV PRI|RDV pris|2018/11/26|0|20181126|http://webtracking.girard-agediss.com/tracking-acilyon-314582441.html
+2018/11/28|128941_0131|314606976|LONKA GILLES|74170|70015|RDV PRI|RDV pris|2018/12/21|0|20181221|http://webtracking.girard-agediss.com/tracking-acilyon-314606976.html
+2018/12/07|129479_0135|314627083|BARRE PASCAL|02200|70512|RDV CCL|Confirmation Creneaux de Livraison|2019/01/03|0||http://webtracking.girard-agediss.com/tracking-acilyon-314627083.html
+2018/12/07|129479_0135|314627083|BARRE PASCAL|02200|70512|RDV PRI|RDV pris|2018/12/27|0|20181227|http://webtracking.girard-agediss.com/tracking-acilyon-314627083.html
+2018/12/17|130173_0141|314646303|OVIZE Cecile|37540|70372|POD CFM|BL numérisé|2018/12/24|0||http://webtracking.girard-agediss.com/tracking-acilyon-314646303.html
+2019/01/23|131034_0153|314723854|WASNIEWSKI Sebastien|02000|70512|RDV PRI|RDV pris|2019/02/08|0|20190208|http://webtracking.girard-agediss.com/tracking-acilyon-314723854.html
+2019/01/31|131246_0154|314742008|RIBELLO Nicolas|01550|70015|POD CFM|BL numérisé|2019/02/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-314742008.html
+2019/03/12|132341_0167|314830049|PIERONI JANOTTA Jean Luc|06220|70061|LIV CFM|Livraison conforme|2019/04/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-314830049.html
+2019/03/12|132341_0167|314830049|PIERONI JANOTTA Jean Luc|06220|70061|POD CFM|BL numérisé|2019/04/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-314830049.html
+2019/03/20|133078_0169|314853189|CAPE Marie Line|62162|70621|POD CFM|BL numérisé|2019/04/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-314853189.html
+2019/04/12|149702|314895367|BOUDEHEN Erwan|22430|70561|INI INF|Arrivee info|2019/04/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-314895367.html
+2019/04/12|149702|314895367|BOUDEHEN Erwan|22430|70561|RST ANN|Annulation client|2019/04/12|0|doublon|http://webtracking.girard-agediss.com/tracking-acilyon-314895367.html

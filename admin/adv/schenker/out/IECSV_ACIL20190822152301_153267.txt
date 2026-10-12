@@ -1,0 +1,2 @@
+S;20190823;0169;01;697474;ACILYON;;NIANG Malick;;;37 Bis Rue Alexis Capelle;;;FR;33110;LE BOUSCAT;NIANG Malick;33761413605;15479967;137438;P;1;1;;;31;;;0.177;;;;;;;Cave à vin;Ne pas livrer chez les voisins SVP;;;;;;;
+UM;PCI;;;*3333121900269747415479967001300;31;;;;;;;

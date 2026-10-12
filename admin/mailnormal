@@ -1,0 +1,40 @@
+Received: (qmail 15830 invoked from network); 5 Feb 2014 15:29:30 +0100
+Received: from smtp1-g21.free.fr (212.27.42.1)
+  by acilyon.com with SMTP; 5 Feb 2014 15:29:30 +0100
+Received: from [10.64.68.242] (unknown [37.162.58.121])
+	by smtp1-g21.free.fr (Postfix) with ESMTP id 968419400AF
+	for <webmaster@ma-cave-a-vin.fr>; Wed,  5 Feb 2014 15:29:22 +0100 (CET)
+From: Cyril Charvier <mr.cc@free.fr>
+Reply-To: Cyril Charvier <mr.cc@free.fr>
+To: webmaster@ma-cave-a-vin.fr
+Subject: test
+X-Mailer: Modest 3.2
+Content-Type: multipart/alternative; boundary="=-Gks3IZTlDrQEDTLCi4CW"
+Date: Wed, 05 Feb 2014 15:29:10 +0100
+Message-Id: <1391610550.2933.8.camel@Nokia-N900>
+Mime-Version: 1.0
+
+
+--=-Gks3IZTlDrQEDTLCi4CW
+Content-Type: text/plain; charset=utf-8
+Content-ID: <1391610550.2933.5.camel@Nokia-N900>
+Content-Transfer-Encoding: 8bit
+
+test avec téléphone
+--=-Gks3IZTlDrQEDTLCi4CW
+Content-Type: text/html; charset=utf-8
+Content-ID: <1391610550.2933.7.camel@Nokia-N900>
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="generator" content="Osso Notes">
+    <title></title></head>
+<body>
+<p>test avec téléphone</p>
+</body>
+</html>
+
+--=-Gks3IZTlDrQEDTLCi4CW--
+

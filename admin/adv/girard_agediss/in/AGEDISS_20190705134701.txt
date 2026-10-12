@@ -1,0 +1,6 @@
+2019/06/21|151450|315021462|HUGON / GAUTTIER Eric / Denis|28500|70452|LIV CFM|Livraison conforme|2019/07/04|0||http://webtracking.girard-agediss.com/tracking-acilyon-315021462.html
+2019/06/21|151450|315021462|HUGON / GAUTTIER Eric / Denis|28500|70452|POD CFM|BL numérisé|2019/07/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-315021462.html
+2019/07/01|151738|315038618|DEBOST Matthieu|27230|70762|RDV PRI|RDV pris|2019/07/08|0|20190708|http://webtracking.girard-agediss.com/tracking-acilyon-315038618.html
+2019/07/03|151834|315045835|SIMONNET corinne|83700|7013A|AAR CFM|Reception conforme|2019/07/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-315045835.html
+2019/07/05|150890bis|315050112|FOURNIER Julien|33000|70333|AAR CFM|Reception conforme|2019/07/03|0||http://webtracking.girard-agediss.com/tracking-acilyon-315050112.html
+2019/07/05|150890bis|315050112|FOURNIER Julien|33000|70333|INI INF|Arrivee info|2019/07/05|0||http://webtracking.girard-agediss.com/tracking-acilyon-315050112.html

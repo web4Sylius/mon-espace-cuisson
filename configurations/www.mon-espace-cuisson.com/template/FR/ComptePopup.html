@@ -1,0 +1,18 @@
+<div class="popup_compte">
+    <div class="fleche"></div>
+    <div class="titre">D&eacute;j&agrave; inscrit ?</div>
+    <form method="post" name="popuplogging">
+      <input value="logging" name="action" type="hidden">
+      <input type="hidden" id="gclidlogpop" name="gclidlogpop" value="[?gclid1]">
+      <input type="text" id="popup_email_log" name="mail_logging" placeholder="Votre e-mail">
+      <input type="text" name="pass_logging" value="Mot de passe" onfocus="javascript:this.value='';this.setAttribute('type','password');">
+      <a href="#" onclick="document.forms.popuplogging.submit();" class="submit">Connexion<i class="fa fa-chevron-right"></i></a>
+    </form>
+    <a href="/passwordrecover.php" class="perdu">Mot de passe oubli&eacute; ?</a>
+    <div class="sep"></div>
+    
+    <div class="titre">Pas encore inscrit ?</div>
+    Je cr&eacute;e mon compte en 30 secondes :
+    <a href="#" onclick="document.location.href='/client.html'" class="submit">Je cr&eacute;e mon compte<i class="fa fa-chevron-right"></i></a>
+    
+</div>

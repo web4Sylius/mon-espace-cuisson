@@ -1,0 +1,46 @@
+.filebox { width:800px; border-style:solid; border-width:2px; border-color:#CCC #888 #888 #CCC; background:white; display:none; z-index:1000; }
+.fileboxtitle { float:left; width:calc(100% - 20px); height:20px; line-height:20px; background-color:#CCC; }
+.fileboxclose { float:right; width:20px; }
+.fileboxlist { clear:both; height:180px; border-style:solid; border-width:1px; border-color:#888 #CCC #CCC #888; padding:4px; overflow:auto; }
+.fileboxlist .loader { display:block; margin:auto; }
+.fileboxupload { float:left; width:350px; height:60px; border:none; overflow:none; }
+.fileboxselect { margin:10px 0 0 10px; }
+.folder { width:115px; margin:4px; text-align:center; cursor:pointer; background:url('images/icon/folder.png') no-repeat; }
+.folderup { float:left; width:115px; margin:4px; text-align:center; cursor:pointer; background:url('images/icon/up.png') no-repeat; }
+.newfolder { float:left; width:30px; height:30px; margin-left:4px; cursor:pointer; background:url('images/icon/new_folder.png') no-repeat; }
+.file { float:left; width:115px; margin:4px; text-align:center; cursor:pointer; }
+.file div { height:130px; background-repeat: no-repeat; text-align:center;  }
+.file .thumb { width:110px; }
+.foldericon { width:30px; margin-top:50px; }
+.filejpg,.filejpeg { background-image:url('images/icon/jpg.png'); }
+.filepng { background-image:url('images/icon/png.png'); }
+.filegif { background-image:url('images/icon/gif.png'); }
+.filebmp { background-image:url('images/icon/bmp.png'); }
+.fileavi, .filemp4 { background-image:url('images/icon/avi.png'); }
+.filemov { background-image:url('images/icon/mov.png'); }
+.filewmv { background-image:url('images/icon/wmv.png'); }
+.filemp3 { background-image:url('images/icon/mp3.png'); }
+.filepdf { background-image:url('images/icon/pdf.png'); }
+.filehtml { background-image:url('images/icon/html.png'); }
+.filedoc, .filedocx, .fileodt { background-image:url('images/icon/doc.png'); }
+.filexls, .filexlsx, .fileods { background-image:url('images/icon/xls.png'); }
+.filetxt { background-image:url('images/icon/txt.png'); }
+.filezip { background-image:url('images/icon/zip.png'); }
+.fileppt, .filepptx { background-image:url('images/icon/ppt.png'); }
+.fileimg { display:table-cell; vertical-align:middle; border:solid 2px black; border-radius:10px; }
+.filedel { position:absolute; width:80px; height:20px; background-color:white; z-index:5; display:none; }
+.filedel img:hover { background:#ccc; }
+.fileboxbutton { display:inline-block; width:150px; background-color:#EAEAEA; border:solid thin #AAA; padding:2px; cursor:pointer; }
+.fileboxbutton img { height:40px; vertical-align:middle; float:left; }
+.fileinfo { position:absolute; background:white; border:solid 1px #888; display:none; z-index:10; }
+.filemoveto { position:absolute; background:white; display:none; z-index:11; border-style:solid; border-width:1px; border-color:#888 #CCC #CCC #888; padding:4px; }
+.movetofolder { margin:0; padding:0 0 0 10px; list-style: none; }
+.movetofolder li { vertical-align:center; cursor:pointer; }
+.movetofolder li:hover { background:#ccc; }
+.movetofolder img { width:20px; }
+.context { position:absolute; background:white; border:solid 1px #CCC; padding:5px; font-size:11px; }
+.context p { margin:0; padding:5px 5px 5px 20px; font-size:12px; cursor:pointer; }
+.context p:hover { background:#EFEFEF; }
+.context p.del { background-image:url('images/supprimer.gif'); background-repeat:no-repeat; background-position:2px 5px; }
+.context p.rename { background-image:url('images/editer.gif'); background-repeat:no-repeat; background-position:2px 5px; }
+.context p.move { background-image:url('images/move.png'); background-repeat:no-repeat; background-position:2px 5px; background-size:18px 18px; }

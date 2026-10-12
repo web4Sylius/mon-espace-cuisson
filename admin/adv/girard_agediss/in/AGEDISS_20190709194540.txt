@@ -1,0 +1,12 @@
+2019/07/01|151706|315038245|HALET Eric|85570|70791|AAR CFM|Reception conforme|2019/07/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038245.html
+2019/07/01|151706|315038245|HALET Eric|85570|70791|RST REP|Message Repondeur|2019/07/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038245.html
+2019/07/01|151700|315038246|RATAJCZAK HORST|17590|70791|AAR CFM|Reception conforme|2019/07/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038246.html
+2019/07/01|151700|315038246|RATAJCZAK HORST|17590|70791|RST REP|Message Repondeur|2019/07/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038246.html
+2019/07/01|151673|315038408|RIBADEAU-DUMAS Corentin|49460|70441|AAR CFM|Reception conforme|2019/07/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038408.html
+2019/07/01|151673|315038408|RIBADEAU-DUMAS Corentin|49460|70441|RST REP|Message Repondeur|2019/07/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038408.html
+2019/07/03|151834|315045835|SIMONNET corinne|83700|7013A|RDV CCL|Confirmation Creneaux de Livraison|2019/07/10|0||http://webtracking.girard-agediss.com/tracking-acilyon-315045835.html
+2019/07/04|151893|315047829|MARENGHI Walter|33260|70333|AAR CFM|Reception conforme|2019/07/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-315047829.html
+2019/07/04|151893|315047829|MARENGHI Walter|33260|70333|RDV PRI|RDV pris|2019/07/15|0|20190715|http://webtracking.girard-agediss.com/tracking-acilyon-315047829.html
+2019/07/04|151893|315047829|MARENGHI Walter|33260|70333|RST REP|Message Repondeur|2019/07/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-315047829.html
+2019/07/05|150890bis|315050112|FOURNIER Julien|33000|70333|RDV CCL|Confirmation Creneaux de Livraison|2019/07/10|0||http://webtracking.girard-agediss.com/tracking-acilyon-315050112.html
+2019/07/09|152045|315058924|BARTHELEMY Pierre-Antoine|17740|70791|INI INF|Arrivee info|2019/07/09|0||http://webtracking.girard-agediss.com/tracking-acilyon-315058924.html

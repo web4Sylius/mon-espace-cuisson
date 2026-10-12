@@ -1,0 +1,42 @@
+<div class="question col-xs-12" onclick="show_question('largeur')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Largeur de la niche ?</h2>
+      <div class="reponse" id="replargeur"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btnlargeur" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnresplargeur" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <ul class="prop">
+    <li class="li6 [?largrep1class]" onclick="clickli(this,'larg1')">
+      <h3><span>15 centimètres</span></h3>
+      <input type="radio" id="larg1" name="largeur" onclick="next('largeur','[?largrep1]')" [?checklarg1] class="hidden-xs">
+    </li>
+    <li class="li6 [?largrep2class]" onclick="clickli(this,'larg2')">
+      <h3><span>30 centimètres</span></h3>
+      <input type="radio" id="larg2" name="largeur" onclick="next('largeur','[?largrep2]')" [?checklarg2] class="hidden-xs">
+    </li>
+    <li class="li6 [?largrep3class]" onclick="clickli(this,'larg3')">
+      <h3><span>40 centimètres</span></h3>
+      <input type="radio" id="larg3" name="largeur" onclick="next('largeur','[?largrep3]')" [?checklarg3] class="hidden-xs">
+    </li>
+    <li class="li6 [?largrep4class]" onclick="clickli(this,'larg4')">
+      <h3><span>60 centimètres</span></h3>
+      <input type="radio" id="larg4" name="largeur" onclick="next('largeur','[?largrep4]')" [?checklarg4] class="hidden-xs">
+    </li>
+    <li class="li6 [?largrep5class]" onclick="clickli(this,'larg5')">
+      <h3><span>120 centimètres</span></h3>
+      <input type="radio" id="larg5" name="largeur" onclick="next('largeur','[?largrep5]')" [?checklarg5] class="hidden-xs">
+    </li>
+    <div class="clear"></div>
+  </ul>
+  <div class="clear"></div>
+</div>

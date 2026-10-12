@@ -1,0 +1,41 @@
+<style type="text/css">
+	.formu{background-color: white;padding-bottom: 10px;}
+	.landing_form input{width: 65%;display: block;margin: 0 auto;background-color: #e4e1dd;font-size: 12px;color: #333;border: none;height: 25px;margin-top: 2px;
+    margin-bottom: 8px;}
+    .landing_contact{margin-top: 10px;margin-bottom: 10px;padding-top: 10px;padding-bottom: 10px;}
+    .landing_form label{margin: 0 auto;display: block;width: 65%;}
+    .landing_contact .text_form{background-color: white;text-align: center;}
+    .landing_contact .logosite h1{text-align: center;}
+    .landing_contact .logosite img{max-width: 250px;margin: 0 auto;}
+    .landing_contact .formu input[type=submit]{width: 25%;margin-top: 15px;}
+
+</style>
+
+
+<div class="col-xs-offset-3 col-xs-6 landing_contact">
+	
+	<div class="col-xs-offset-2 col-xs-8 text_form">
+		<div class="logosite">
+			<a href="/" title="Ma Cave à Vin"><img class="img img-responsive" src="/images/templates/base/FR/logo.jpg" alt="Ma cave à vin : expert en caves à vin et accessoires"></a>
+			<h1>Expert en caves à vin et agencement de caves</h1>
+		</div>
+		<p>
+			Merci de renseigner vos informations personnelles qui nous permettront de vous contacter 
+		</p>
+	</div>
+	<div class="col-xs-offset-2 col-xs-8 formu">
+		<form action="#" method="post" name="landing_form" class="landing_form">
+			<input type="hidden" name="valid" value="1">
+			<label for="nom">Nom*</label>
+			<input type="text" name="nom" required>
+			<label for="prenom">Prénom*</label>
+			<input type="text" name="prenom" required>
+			<label for="mail">Adresse email*</label>
+			<input type="text" name="mail" required>
+			<label for="tel">Numéro de téléphone*</label>
+			<input type="text" name="tel" required>
+			
+			<input type="submit" value="ENVOYER">
+		</form>
+	</div>
+</div>

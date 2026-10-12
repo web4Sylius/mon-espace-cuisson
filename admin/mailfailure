@@ -1,0 +1,64 @@
+From - Fri Jan 31 15:22:19 2014
+X-Account-Key: account10
+X-UIDL: UID39450-1307410033
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+X-Mozilla-Keys:                                                                                 
+Received: (qmail 23369 invoked for bounce); 31 Jan 2014 15:22:04 +0100
+Date: 31 Jan 2014 15:22:04 +0100
+From: MAILER-DAEMON@ns382043.ovh.net
+To: webmaster@ma-cave-a-vin.fr
+Subject: failure notice
+
+Hi. This is the qmail-send program at ns382043.ovh.net.
+I'm afraid I wasn't able to deliver your message to the following addresses.
+This is a permanent error; I've given up. Sorry it didn't work out.
+
+<mr.cc@free.fr>:
+Sorry, I couldn't find any host named radiofmrrrrrrrrrrrrrrrr.com. (#5.1.2)
+
+--- Below this line is a copy of the message.
+
+Return-Path: <webmaster@ma-cave-a-vin.fr>
+Received: (qmail 23366 invoked from network); 31 Jan 2014 15:22:04 +0100
+Received: from alc74-1-88-184-216-175.fbx.proxad.net (HELO ?192.168.1.2?) (88.184.216.175)
+  by mon-espace-cuisson.fr with ESMTPA; 31 Jan 2014 15:22:03 +0100
+Message-ID: <52EBB18B.1000502@ma-cave-a-vin.fr>
+Date: Fri, 31 Jan 2014 15:22:03 +0100
+From: CHARVIER Cyril <webmaster@ma-cave-a-vin.fr>
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:10.0.12) Gecko/20130121 Icedove/10.0.12
+MIME-Version: 1.0
+To: c.charvier@radiofmrrrrrrrrrrrrrrrr.com
+Subject: test
+Content-Type: multipart/alternative;
+ boundary="------------000905090302000608060500"
+
+This is a multi-part message in MIME format.
+--------------000905090302000608060500
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+
+-- 
+Cyril Charvier - ma-cave-a-vin.fr <http://www.ma-cave-a-vin.fr>
+
+--------------000905090302000608060500
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <br>
+    <div class="moz-signature">-- <br>
+      Cyril Charvier - <a href="http://www.ma-cave-a-vin.fr">ma-cave-a-vin.fr</a></div>
+  </body>
+
+</html>
+
+--------------000905090302000608060500--
+
+ 

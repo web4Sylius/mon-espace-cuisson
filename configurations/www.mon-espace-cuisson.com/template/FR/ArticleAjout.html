@@ -1,0 +1,14 @@
+<div class="addtobasket">
+	  <div class="qte">Quantité : 
+	  	<select id="qte[?artid]" name="qte[?artid]" onchange="copy_qte_from_option([?artid]);">[?ajoutSelect]</select>
+	  </div>
+	  <div class="clear"></div>
+</div>
+<div id="opterror">Merci de sélectionner les options pour personnaliser votre produit</div>
+<div class="ajout_panier hidden-xs hidden-sm">
+	<a onclick="ajaxAddProduct2('[?artid]'); return false;" href="javascript:void(0);">AJOUTER AU PANIER</a>
+</div>
+<div class="ajout_panier visible-xs visible-sm">
+	<a onclick="ajaxAddProduct2Mobile('[?artid]'); return false;" href="javascript:void(0);">AJOUTER AU PANIER</a>
+</div>
+<div class="clear"></div>

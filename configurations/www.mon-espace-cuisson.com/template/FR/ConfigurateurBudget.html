@@ -1,0 +1,19 @@
+<div class="question" onclick="show_question('prix')">
+    <h2>Quel est votre budget ? <small>(Plusieurs possibilités)</small></h2>
+    <div class="fleche"><div></div></div>
+    <div class="reponse" id="repprix"></div>
+    <div class="close" id="btnprix" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      <!--<div class="icon"></div>-->
+    </div>
+</div>
+<ul class="prop">
+    [?listeprix]
+    <li class="li6 [?prix1000class]" onclick="clickli(this,'prix1000',false)">
+      <h3><span>Je n'ai pas de budget précis</span></h3>
+      <div class="checkbox hidden-xs"><i class="far fa-square"></i></div>
+      <input type="checkbox" name="prix" id="prix1000" value="1000" onclick="uncheck('prix',this);show_next('prix');" [?checkprix1000] class="hidden-xs">
+    </li>
+</ul>
+<div id="nextprix" class="nextbtn" onclick="clickbtn(this,'budget',return_checkboxes('prix'))">Étape suivante <i class="fas fa-chevron-right"></i></div>
+<div class="clear"></div>

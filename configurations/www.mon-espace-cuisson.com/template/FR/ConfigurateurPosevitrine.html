@@ -1,0 +1,39 @@
+<div class="question col-xs-12" onclick="show_question('posevitrine')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Type d'installation :</h2>
+      <div class="reponse" id="repposevitrine"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btnposevitrine" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnrespposevitrine" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <ul class="prop">
+  <li class="li3 [?posevitrine1class]" onclick="clickli(this,'posevitrine1')">
+    <h3><span>En pose libre</span></h3>
+    <p>La vitrine sera placée contre un mur ou en position îlot</p>
+    <img src="/images/configurateur/posevitrine1.jpg" alt="" class="hidden-xs" width="286">
+    <input type="radio" id="posevitrine1" name="posevitrine" onclick="next('posevitrine','[?posevitrine1]')" [?checkposevitrine1] class="hidden-xs">
+  </li>
+
+  <li class="li3 [?posevitrine2class]" onclick="clickli(this,'posevitrine2')">
+    <h3><span>Encastrable</span></h3>
+    <p>La vitrine sera placée dans une niche ou dans un meuble</p>
+    <img src="/images/configurateur/posevitrine3.jpg" alt="" class="hidden-xs" width="286">
+    <input type="radio" id="posevitrine2" name="posevitrine" onclick="next('posevitrine','[?posevitrine2]')" [?checkposevitrine2] class="hidden-xs">
+  </li>
+  <li class="li3 [?posevitrine3class]" onclick="clickli(this,'posevitrine3')">
+    <h3><span>En îlot central</span></h3>
+    <p class="hidden-xs">La vitrine à vin sera posée au centre d'une pièce, permettant un accès aux bouteilles par l'avant et l'arrière</p>
+    <img src="/images/configurateur/posevitrine2.jpg" alt="" class="hidden-xs" width="286">
+    <input type="radio" id="posevitrine3" name="posevitrine" onclick="next('posevitrine','[?posevitrine3]')" [?checkposevitrine3] class="hidden-xs">  
+  </li>
+  </ul>
+</div>

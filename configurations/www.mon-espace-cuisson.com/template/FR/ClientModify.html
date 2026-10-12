@@ -1,0 +1,148 @@
+<div class="frame">
+  <h2>Modification des coordonnées</h2>
+  <form name="nouveau" method="post" action="client.php">
+    <input type="hidden" value="domodify" name="action2">
+    
+    <div class="error">[?errormessage]</div>
+	
+    <div class="table">
+      <div class="row">
+          <div class="col-sm-3 col-xs-12" ></div>
+          <div class="col-sm-9 col-xs-12" >
+              <input type="radio" name="civilite" value=0 [?selectmr]> M. &nbsp; <input type="radio" name="civilite" value=1 [?selectmme]> Mme
+          </div>
+      </div>
+      
+      <div class="row">
+          <div class="col-sm-3 col-xs-12" >Nom *: </div>
+          <div class="col-sm-9 col-xs-12" >
+              <span class="error" id="err_nom">Veuillez indiquer un nom</span>
+              <input type="text" name="nom" value="[?nom]" onblur="this.value=this.value.toUpperCase()">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-3 col-xs-12" >Prénom *: </div>
+          <div class="col-sm-9 col-xs-12" >
+                <span class="error" id="err_prenom">Veuillez indiquer un prénom</span>
+                <input type="text" name="prenom" value="[?prenom]">
+          </div>
+      </div>
+      
+      <div class="row">
+          <div class="col-sm-3 col-xs-12" >Société : </div>
+          <div class="col-sm-9 col-xs-12" >
+              <span class="error" id="err_tva">Veuillez indiquer un nom de société</span>
+              <input type="text" name="raisonsociale" value="[?raisonsociale]">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-3 col-xs-12" >Adresse *: </div>
+          <div class="col-sm-9 col-xs-12" >
+                <span class="error" id="err_adresse">Veuillez indiquer une adresse</span>
+                <input type="text" name="adresse" value="[?adresse]">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-3 col-xs-12" >Code postal *: </div>
+          <div class="col-sm-9 col-xs-12" >
+                <span class="error" id="err_cp">Veuillez indiquer un code postal</span>
+                <input type="text" name="codepostal" value="[?codepostal]">
+          </div>
+      </div>
+      
+      <div class="row">
+          <div class="col-sm-3 col-xs-12" >Ville *: </div>
+          <div class="col-sm-9 col-xs-12" >
+              <span class="error" id="err_ville">Veuillez indiquer une ville</span>
+            <input type="text" name="ville" value="[?ville]">
+          </div>
+      </div>
+        <div class="row">
+          <div class="col-sm-3 col-xs-12" >Téléphone *: </div>
+          <div class="col-sm-9 col-xs-12" >
+              <span class="error" id="err_tel">Veuillez indiquer un téléphone</span>
+                <input type="text" name="telephone" value="[?telephone]">
+          </div>
+        </div>
+      <div class="row">
+          <div class="col-sm-3 col-xs-12" >Portable : </div>
+          <div class="col-sm-9 col-xs-12" >
+              <input type="text" name="portable" value="[?portable]">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-3 col-xs-12" >Pays *: </div>
+          <div class="col-sm-9 col-xs-12" >
+              <select name="paysid">[?zonedeliste_pays]</select>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-3 col-xs-12" >N° TVA intracommunautaire ** : </div>
+          <div class="col-sm-9 col-xs-12" >
+              <span class="error" id="err_tva2">Veuillez indiquer un° de TVA correct</span>
+               <input type="text" name="tvaintracom" onblur="this.value=this.value.toUpperCase()" value="[?tvaintracom]">
+          </div>
+      </div>
+      
+    </div>
+
+    <div class="mentions">
+      * Champ obligatoire
+      <br>** Champ obligatoire pour les entreprises dans l'Union Européenne
+    </div>
+    <div class="clear"></div>
+  
+  <div class="row">  
+    <div class="btns col-xs-12">
+      <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3"><a href="client.php" class="retour"><i class="fa fa-chevron-left"></i>Retour page précédente</a></div>
+      <div class="col-xs-12 col-sm-5 col-sm-offset-2 col-sm-4 col-md-offset-4 col-md-4 col-lg-offset-6 col-lg-3"><a href="javascript:void(0)" onclick="verif()" class="valide">Modifier<i class="fa fa-chevron-right"></i></a></div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  </form>
+</div>
+
+<script language="javascript">
+  function verif(){
+  	var ret=true;
+  	var civchk=false;
+    var tva = new RegExp("^[A-Z]{2}[0-9]+$");
+    
+  	seterror('err_nom');
+  	seterror('err_prenom');
+  	seterror('err_adresse');
+  	seterror('err_cp');
+  	seterror('err_ville');
+  	seterror('err_tel');
+    seterror('err_tva');
+    seterror("err_tva2");
+  	
+  	if(document.getElementsByName('nom')[0].value=="") ret=seterror('err_nom',true);
+  	if(document.getElementsByName('prenom')[0].value=="") ret=seterror('err_prenom',true);
+  	if(document.getElementsByName('adresse')[0].value=="") ret=seterror('err_adresse',true);
+  	if(document.getElementsByName('codepostal')[0].value=="") ret=seterror('err_cp',true);
+  	if(document.getElementsByName('ville')[0].value=="") ret=seterror('err_ville',true);
+  	if(document.getElementsByName('telephone')[0].value=="") ret=seterror('err_tel',true);
+    if(document.getElementsByName('tvaintracom')[0].value!="" && document.getElementsByName('raisonsociale')[0].value=="") ret=seterror("err_tva",true);
+    if(document.getElementsByName('tvaintracom')[0].value!="" && !tva.test(document.getElementsByName('tvaintracom')[0].value.replace(/\s/g,""))){
+      ret=seterror("err_tva2",true);
+    }
+
+  	if(ret==false)
+  	  alert("Le formulaire comporte des erreurs, merci de les corriger");
+  	else
+  	  document.forms.nouveau.submit();
+  }
+
+  function seterror(id,state){
+  	var cont=document.getElementById(id);
+  	if(cont){
+	    cont.style.display=(state?"block":"none");
+	    var input=cont.parentNode.getElementsByTagName("input");
+	    if(input)
+	      input[0].style.border=state?"solid 1px red":"none";
+  	}
+  	return !state;
+  }
+</script>

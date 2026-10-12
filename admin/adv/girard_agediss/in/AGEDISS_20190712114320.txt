@@ -1,0 +1,3 @@
+2019/07/01|151637|315036802|PERRARD Olivier|39210|70213|RDV PRI|RDV pris|2019/07/31|0|20190731|http://webtracking.girard-agediss.com/tracking-acilyon-315036802.html
+2019/07/01|151706|315038245|HALET Eric|85570|70791|LIV CFM|Livraison conforme|2019/07/11|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038245.html
+2019/07/01|151706|315038245|HALET Eric|85570|70791|POD CFM|BL numérisé|2019/07/12|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038245.html

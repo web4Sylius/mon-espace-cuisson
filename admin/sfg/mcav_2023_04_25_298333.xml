@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Contrats>
+	<Contrat>
+             <LCOSTID>MCAV</LCOSTID>
+             <SNUMCO>298333</SNUMCO>
+             <DACHATC>06/02/2023</DACHATC>
+             <SCIVILITE></SCIVILITE>
+             <SNOM>GOUHIER LECOCQ</SNOM>
+             <SPRENOM>Claire</SPRENOM>
+             <SADRESSE1>Les petits gasons</SADRESSE1>
+             <SADRESSE2></SADRESSE2>
+             <SCP>72470</SCP>
+             <SVILLE>SAINT MARS LA BRIERE</SVILLE>
+             <STELGSM></STELGSM>
+             <STELDOM>0620638064</STELDOM>
+             <EMAIL>sauraya2@hotmail.fr</EMAIL>
+             <SOBSERVATION></SOBSERVATION>
+	<PRODUIT>
+		<SMARQUE>HOTPOINT</SMARQUE>
+		<SMODEL>EC-LVE317 / HCB90FDN</SMODEL>
+		<LIBELLE>Plaque de cuisson encastrable inox 90cm &quot;Nostalgie&quot; 4 foyers gaz et plancha</LIBELLE>
+		<NPRIX>1963</NPRIX>
+		<SN></SN>
+		<DACHAT>14/03/2023</DACHAT>
+		<DEFFET>14/03/2023</DEFFET>
+		<TDUREE_GAR>5</TDUREE_GAR>
+		<TDUREE_EXT>0</TDUREE_EXT>
+		<SOBSERVATION></SOBSERVATION><SGARTYPE></SGARTYPE>
+</PRODUIT>
+	</Contrat>
+</Contrats>

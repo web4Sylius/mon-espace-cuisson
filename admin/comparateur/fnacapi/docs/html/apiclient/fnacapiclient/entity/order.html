@@ -1,0 +1,424 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 07 Aug 2015 08:19:07 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>Order (Fnac Marketplace PHP Client API Documentation)</title>
+
+</head>
+<body id="definition" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../fnacapiclient/entity/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../fnacapiclient/entity/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../fnacapiclient/entity/order.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<div class="qualifiedName">FnacApiClient\Entity\Order</div>
+<a href="../../source/entity/order.php.html#line22" class="location">Entity/Order.php at line 22</a>
+
+<h1>Class Order</h1>
+
+<pre class="tree"><a href="../../fnacapiclient/entity/entity.html">Entity</a><br>    └─<strong>Order</strong><br /></pre>
+
+<hr>
+
+<p class="signature">public  class <strong>Order</strong><br>extends <a href="../../fnacapiclient/entity/entity.html">Entity</a>
+
+</p>
+
+<div class="comment" id="overview_description"><p>Order definition.</p></div>
+
+<dl>
+<dt>Author:</dt>
+<dd>Fnac</dd>
+<dt>Version:</dt>
+<dd>1.0.0</dd>
+</dl>
+<hr>
+
+<table id="summary_method">
+<tr><th colspan="2">Method Summary</th></tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#__construct()">__construct</a>()</p><p class="description"></p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#addOrderDetail()">addOrderDetail</a>(<a href="../../fnacapiclient/entity/orderdetail.html">OrderDetail</a> order_detail, $order_detail OrderDetail)</p><p class="description">Add order detail to this order</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#clearOrdersDetail()">clearOrdersDetail</a>()</p><p class="description">Removing all order detail when you want to make a massive update</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#denormalize()">denormalize</a>(NormalizerInterface normalizer, mixed data, mixed format)</p><p class="description"></p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getAdherentNumber()">getAdherentNumber</a>()</p><p class="description">Client's adherent number</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../fnacapiclient/entity/address.html">Address</a></td>
+<td class="description"><p class="name"><a href="#getBillingAddress()">getBillingAddress</a>()</p><p class="description">Client's billing address</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getClientEmail()">getClientEmail</a>()</p><p class="description">Client's email</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getClientFirstname()">getClientFirstname</a>()</p><p class="description">Client's firstname</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getClientId()">getClientId</a>()</p><p class="description">Client's unique identifier from fnac</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getClientLastname()">getClientLastname</a>()</p><p class="description">Client's lastname</p></td>
+</tr>
+<tr>
+<td class="type"> date</td>
+<td class="description"><p class="name"><a href="#getCreatedAt()">getCreatedAt</a>()</p><p class="description">Order's creation date</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getDeliveryNote()">getDeliveryNote</a>()</p><p class="description">Url of delivery note in PDFThis link contains your login information do not share it</p></td>
+</tr>
+<tr>
+<td class="type"> float</td>
+<td class="description"><p class="name"><a href="#getFees()">getFees</a>()</p><p class="description">Order's fees with all tax</p></td>
+</tr>
+<tr>
+<td class="type"> integer</td>
+<td class="description"><p class="name"><a href="#getNbMessages()">getNbMessages</a>()</p><p class="description">Number of messages associated to this order</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getOrderCulture()">getOrderCulture</a>()</p><p class="description">Order's culture</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getOrderId()">getOrderId</a>()</p><p class="description">Order's unique identifier</p></td>
+</tr>
+<tr>
+<td class="type"> ArrayObject<OrderDetail></td>
+<td class="description"><p class="name"><a href="#getOrdersDetail()">getOrdersDetail</a>()</p><p class="description">Get list of orders detail</p></td>
+</tr>
+<tr>
+<td class="type"> <a href="../../fnacapiclient/entity/address.html">Address</a></td>
+<td class="description"><p class="name"><a href="#getShippingAddress()">getShippingAddress</a>()</p><p class="description">Client's shipping address</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getShopId()">getShopId</a>()</p><p class="description">Shop's unique identifier from fnac</p></td>
+</tr>
+<tr>
+<td class="type"> string</td>
+<td class="description"><p class="name"><a href="#getState()">getState</a>()</p><p class="description">Order's state</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#normalize()">normalize</a>(NormalizerInterface normalizer, mixed format, mixed properties)</p><p class="description"></p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setOrderAction()">setOrderAction</a>(string order_action)</p><p class="description">Set Group action type for order detail action</p></td>
+</tr>
+<tr>
+<td class="type"> void</td>
+<td class="description"><p class="name"><a href="#setOrderId()">setOrderId</a>(string order_id)</p><p class="description">Set order's unique identifier</p></td>
+</tr>
+</table>
+
+<h2 id="detail_method">Method Detail</h2>
+<a href="../../source/entity/order.php.html#line47" class="location">Entity/Order.php at line 47</a>
+
+<h3 id="__construct()">__construct</h3>
+<code class="signature">public  void <strong>__construct</strong>()</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line89" class="location">Entity/Order.php at line 89</a>
+
+<h3 id="addOrderDetail()">addOrderDetail</h3>
+<code class="signature">public  void <strong>addOrderDetail</strong>(<a href="../../fnacapiclient/entity/orderdetail.html">OrderDetail</a> order_detail, $order_detail OrderDetail)</code>
+<div class="details">
+<p>Add order detail to this order</p><dl>
+<dt>Parameters:</dt>
+<dd>OrderDetail - Order detail to add</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line107" class="location">Entity/Order.php at line 107</a>
+
+<h3 id="clearOrdersDetail()">clearOrdersDetail</h3>
+<code class="signature">public  void <strong>clearOrdersDetail</strong>()</code>
+<div class="details">
+<p>Removing all order detail when you want to make a massive update</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line136" class="location">Entity/Order.php at line 136</a>
+
+<h3 id="denormalize()">denormalize</h3>
+<code class="signature">public  void <strong>denormalize</strong>(NormalizerInterface normalizer, mixed data, mixed format)</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line229" class="location">Entity/Order.php at line 229</a>
+
+<h3 id="getAdherentNumber()">getAdherentNumber</h3>
+<code class="signature">public  string <strong>getAdherentNumber</strong>()</code>
+<div class="details">
+<p>Client's adherent number</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line317" class="location">Entity/Order.php at line 317</a>
+
+<h3 id="getBillingAddress()">getBillingAddress</h3>
+<code class="signature">public  <a href="../../fnacapiclient/entity/address.html">Address</a> <strong>getBillingAddress</strong>()</code>
+<div class="details">
+<p>Client's billing address</p><dl>
+<dt>See Also:</dt>
+<dd><a href="../../fnacapiclient/entity/address.html">Address</a></dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line219" class="location">Entity/Order.php at line 219</a>
+
+<h3 id="getClientEmail()">getClientEmail</h3>
+<code class="signature">public  string <strong>getClientEmail</strong>()</code>
+<div class="details">
+<p>Client's email</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line199" class="location">Entity/Order.php at line 199</a>
+
+<h3 id="getClientFirstname()">getClientFirstname</h3>
+<code class="signature">public  string <strong>getClientFirstname</strong>()</code>
+<div class="details">
+<p>Client's firstname</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line189" class="location">Entity/Order.php at line 189</a>
+
+<h3 id="getClientId()">getClientId</h3>
+<code class="signature">public  string <strong>getClientId</strong>()</code>
+<div class="details">
+<p>Client's unique identifier from fnac</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line209" class="location">Entity/Order.php at line 209</a>
+
+<h3 id="getClientLastname()">getClientLastname</h3>
+<code class="signature">public  string <strong>getClientLastname</strong>()</code>
+<div class="details">
+<p>Client's lastname</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line261" class="location">Entity/Order.php at line 261</a>
+
+<h3 id="getCreatedAt()">getCreatedAt</h3>
+<code class="signature">public  date <strong>getCreatedAt</strong>()</code>
+<div class="details">
+<p>Order's creation date</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line293" class="location">Entity/Order.php at line 293</a>
+
+<h3 id="getDeliveryNote()">getDeliveryNote</h3>
+<code class="signature">public  string <strong>getDeliveryNote</strong>()</code>
+<div class="details">
+<p>Url of delivery note in PDF</p><p>This link contains your login information do not share it</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line271" class="location">Entity/Order.php at line 271</a>
+
+<h3 id="getFees()">getFees</h3>
+<code class="signature">public  float <strong>getFees</strong>()</code>
+<div class="details">
+<p>Order's fees with all tax</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line281" class="location">Entity/Order.php at line 281</a>
+
+<h3 id="getNbMessages()">getNbMessages</h3>
+<code class="signature">public  integer <strong>getNbMessages</strong>()</code>
+<div class="details">
+<p>Number of messages associated to this order</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line239" class="location">Entity/Order.php at line 239</a>
+
+<h3 id="getOrderCulture()">getOrderCulture</h3>
+<code class="signature">public  string <strong>getOrderCulture</strong>()</code>
+<div class="details">
+<p>Order's culture</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line67" class="location">Entity/Order.php at line 67</a>
+
+<h3 id="getOrderId()">getOrderId</h3>
+<code class="signature">public  string <strong>getOrderId</strong>()</code>
+<div class="details">
+<p>Order's unique identifier</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line99" class="location">Entity/Order.php at line 99</a>
+
+<h3 id="getOrdersDetail()">getOrdersDetail</h3>
+<code class="signature">public  ArrayObject<OrderDetail> <strong>getOrdersDetail</strong>()</code>
+<div class="details">
+<p>Get list of orders detail</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line305" class="location">Entity/Order.php at line 305</a>
+
+<h3 id="getShippingAddress()">getShippingAddress</h3>
+<code class="signature">public  <a href="../../fnacapiclient/entity/address.html">Address</a> <strong>getShippingAddress</strong>()</code>
+<div class="details">
+<p>Client's shipping address</p><dl>
+<dt>See Also:</dt>
+<dd><a href="../../fnacapiclient/entity/address.html">Address</a></dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line179" class="location">Entity/Order.php at line 179</a>
+
+<h3 id="getShopId()">getShopId</h3>
+<code class="signature">public  string <strong>getShopId</strong>()</code>
+<div class="details">
+<p>Shop's unique identifier from fnac</p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line251" class="location">Entity/Order.php at line 251</a>
+
+<h3 id="getState()">getState</h3>
+<code class="signature">public  string <strong>getState</strong>()</code>
+<div class="details">
+<p>Order's state</p><dl>
+<dt>See Also:</dt>
+<dd><a href="../../fnacapiclient/type/orderstatetype.html">FnacApiClient\Type\OrderStateType</a></dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line115" class="location">Entity/Order.php at line 115</a>
+
+<h3 id="normalize()">normalize</h3>
+<code class="signature">public  void <strong>normalize</strong>(NormalizerInterface normalizer, mixed format, mixed properties)</code>
+<div class="details">
+<p></p></div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line79" class="location">Entity/Order.php at line 79</a>
+
+<h3 id="setOrderAction()">setOrderAction</h3>
+<code class="signature">public  void <strong>setOrderAction</strong>(string order_action)</code>
+<div class="details">
+<p>Set Group action type for order detail action</p><dl>
+<dt>See Also:</dt>
+<dd><a href="../../fnacapiclient/type/orderactiontype.html">FnacApiClient\Type\OrderActionType</a></dd>
+<dt>Parameters:</dt>
+<dd>order_action - : Action to do on this order</dd>
+</dl>
+</div>
+
+<hr>
+
+<a href="../../source/entity/order.php.html#line57" class="location">Entity/Order.php at line 57</a>
+
+<h3 id="setOrderId()">setOrderId</h3>
+<code class="signature">public  void <strong>setOrderId</strong>(string order_id)</code>
+<div class="details">
+<p>Set order's unique identifier</p><dl>
+<dt>Parameters:</dt>
+<dd>order_id - : Order uid</dd>
+</dl>
+</div>
+
+<hr>
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="../../fnacapiclient/entity/package-summary.html">Namespace</a></li>
+<li class="active">Class</li>
+<li><a href="../../fnacapiclient/entity/package-tree.html">Tree</a></li>
+<li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../fnacapiclient/entity/order.html" target="_top">No frames</a>
+</div>
+<div class="small_links">
+Summary: <a href="#summary_field">Field</a> | <a href="#summary_method">Method</a> | <a href="#summary_constr">Constr</a>
+Detail: <a href="#detail_field">Field</a> | <a href="#detail_method">Method</a> | <a href="#summary_constr">Constr</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

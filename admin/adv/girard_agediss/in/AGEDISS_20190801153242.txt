@@ -1,0 +1,3 @@
+2019/07/11|152112|315063864|CHICHERY Cathy|45800|70452|RDV CCL|Confirmation Creneaux de Livraison|2019/08/02|0||http://webtracking.girard-agediss.com/tracking-acilyon-315063864.html
+2019/07/19|152343|315079611|TERNON Ludovic|76210|70762|LIV CFM|Livraison conforme|2019/07/31|0||http://webtracking.girard-agediss.com/tracking-acilyon-315079611.html
+2019/07/19|152343|315079611|TERNON Ludovic|76210|70762|POD CFM|BL numérisé|2019/08/01|0||http://webtracking.girard-agediss.com/tracking-acilyon-315079611.html

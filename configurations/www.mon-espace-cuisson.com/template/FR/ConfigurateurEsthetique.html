@@ -1,0 +1,32 @@
+<div class="question col-xs-12" onclick="show_question('esthetique')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Design ?</h2>
+      <div class="reponse" id="repesthetique"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btnesthetique" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères</div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnrespesthetique" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12">
+  <ul class="prop">
+    <li class="li2 [?repesth1]" onclick="clickli(this,'esthetique1')">
+      <h3><span>Une cave à vin esthétique</span></h3>
+      <p>Une cave à installer dans une pièce où la cave est visible : cuisine, salon, salle à manger, salle de restaurant, boutique, etc.</p>
+      <img src="/images/configurateur/esthetique1.jpg" alt="" class="hidden-xs" width="371">
+      <input type="radio" name="esthetique" id="esthetique1" onclick="next('esthetique','1')" [?checkesth1] class="hidden-xs">
+    </li>
+    <li class="li2 [?repesth0]" onclick="clickli(this,'esthetique0')">
+      <h3><span>Peu importe l'esthétique</span></h3>
+      <p>La cave est installée dans une pièce secondaire : garage, sous-sol, buanderie, cellier, arrière-boutique, etc.</p>
+      <img src="/images/configurateur/esthetique0.jpg" alt="" class="hidden-xs" width="371">
+      <input type="radio" name="esthetique" id="esthetique0" onclick="next('esthetique',0)" [?checkesth0] class="hidden-xs">
+    </li>
+  </ul>
+</div>

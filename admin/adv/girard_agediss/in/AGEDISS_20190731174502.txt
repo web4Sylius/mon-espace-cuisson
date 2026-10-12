@@ -1,0 +1,7 @@
+2019/07/01|151742|315038849|BOURGAUD David|38750|70263|RDV CCL|Confirmation Creneaux de Livraison|2019/08/02|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038849.html
+2019/07/01|151742|315038849|BOURGAUD David|38750|70263|RDV PRI|RDV pris|2019/08/02|0|20190802|http://webtracking.girard-agediss.com/tracking-acilyon-315038849.html
+2019/07/19|152334|315078702|ENTZ LAURE|17000|70791|LIV CFM|Livraison conforme|2019/07/31|0||http://webtracking.girard-agediss.com/tracking-acilyon-315078702.html
+2019/07/19|152334|315078702|ENTZ LAURE|17000|70791|POD CFM|BL numérisé|2019/07/31|0||http://webtracking.girard-agediss.com/tracking-acilyon-315078702.html
+2019/07/23|152454|315086614|BARTHELEMY Pierre-Antoine|17740|70791|LIV CFM|Livraison conforme|2019/07/31|0||http://webtracking.girard-agediss.com/tracking-acilyon-315086614.html
+2019/07/23|152454|315086614|BARTHELEMY Pierre-Antoine|17740|70791|POD CFM|BL numérisé|2019/07/31|0||http://webtracking.girard-agediss.com/tracking-acilyon-315086614.html
+2019/07/25|152478|315089576|CESARI Christian|20166|70205|INI INF|Arrivee info|2019/07/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-315089576.html

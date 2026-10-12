@@ -1,0 +1,93 @@
+<div id="devis_rapide2">
+    <p id="titreDevisRap" style="margin-bottom: 15px;">DEVIS GRATUIT sans engagement </p>
+    <div id="main" class="col-xs-12">
+        <!-- IMAGE GAUCHE -->
+        <div id="img" class="col-xs-6">
+            <div id="bandeau_img">
+                <h2>[?libelle]</h2>
+                <p>[?marque]<br> Référence [?ref]</p>
+            </div>
+            <img src="[?img]">
+            <img src="/marques/[?marqueid]_100_30.jpg">
+        </div>
+        
+        <!-- PARTIE DROITE  -->
+        <div class="col-xs-6"> 
+            <div class="devisfacturation">
+                <div class="title">Adresse de facturation <span class="fa fa-pencil-square-o" title="Modifier" onclick="document.location='client.php?action=modify';"></span></div>
+                <div class="txt">[?raison_sociale]<b>[?nom] [?prenom]</b><br>[?adresse1]<br>[?codepostal] [?ville]<br>[?pays]<br>[?telephone]</div>
+            </div>
+            <input type="hidden" id="civ" value="[?civ]">
+            <input type="hidden" id="nom" value="[?nom]">
+            <input type="hidden" id="prenom" value="[?prenom]">
+            <input type="hidden" id="societe" value="[?raison_sociale]">
+            <input type="hidden" id="mail" value="[?mail]">
+            <input type="hidden" id="adresse1" value="[?adresse1]">
+            <input type="hidden" id="cp" value="[?codepostal]">
+            <input type="hidden" id="ville" value="[?ville]">
+            <input type="hidden" id="pays" value="[?paysid]">
+            <input type="hidden" id="telephone" value="[?telephone]">
+            <input type="hidden" id="portable" value="[?portable]">
+            <input type="hidden" id="devisartid" value="[?artid]">
+
+            <!-- FORMULAIRE ADRESSE LIVRAISON -->
+            <div id="livrtbl" class="register col-xs-12" style="display: none;">
+                <div id="bandeau_livr" class="col-xs-12">
+                    <p style="margin-top: 10px;">Adresse de livraison</p>
+                </div>
+                <div class="line livr col-xs-12 no-padding">
+                    <div class="col-xs-3 col-lg-2 no-padding"><span>NOM <i class="i">*</i></span></div>
+                    <div class="col-xs-9 col-lg-10"><input type="text" id="nom_livr"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="line livr col-xs-12 no-padding">
+                    <div class="col-xs-3 col-lg-2 no-padding"><span>PRÉNOM <i class="i">*</i></span></div>
+                    <div class="col-xs-9 col-lg-10"><input type="text" id="prenom_livr"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="line livr col-xs-12 no-padding [?classPro]">
+                    <div class="col-xs-3 col-lg-2 no-padding"><span>RAISON SOCIALE</span></div>
+                    <div class="col-xs-9 col-lg-10"><input type="text" id="societe_livr"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="line livr col-xs-12 no-padding">
+                    <div class="col-xs-3 col-lg-2 no-padding"><span>ADRESSE <i class="i">*</i></span></div>
+                    <div class="col-xs-9 col-lg-10"><input type="text" id="adresse1_livr"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="line livr col-xs-12 no-padding">
+                    <div class="col-xs-3 col-lg-2 no-padding"><span>CODE POSTAL <i class="i">*</i></span></div>
+                   <div class="col-xs-9 col-lg-10"> <input type="text" id="cp_livr"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="line livr col-xs-12 no-padding">
+                    <div class="col-xs-3 col-lg-2 no-padding"><span>VILLE <i class="i">*</i></span></div>
+                   <div class="col-xs-9 col-lg-10"> <input type="text" id="ville_livr"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="line livr col-xs-12 no-padding">
+                    <div class="col-xs-3 col-lg-2 no-padding"><span>PAYS <i class="i">*</i></span></div>
+                    <div class="col-xs-9 col-lg-10"><select id="payslivr">[?optpays]</select></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="line livr col-xs-12 no-padding">
+                    <div class="col-xs-3 col-lg-2 no-padding"><span>TÉLÉPHONE</span></div>
+                    <div class="col-xs-9 col-lg-10"><input type="text" id="telephone_livr"></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="line">
+                <div class="checkbox">
+                    <input type="checkbox" id="livrid" value="1" onclick="showlivr();"> <label for="livrid">ADRESSE DE LIVRAISON DIFFÉRENTE</label>
+                </div>
+            </div>
+            <div class="line final">
+                <a href="javascript:void(0);" id="sendbtn" class="btn" onclick="sendit()">Recevoir le devis<i class="fa fa-chevron-right"></i></a>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div id="mentions" class="line mention" style="display: none;">* CHAMPS OBLIGATOIRES</div>
+        <div id="waiticon" style="display: none;"><img src="/configurations/www.mon-espace-cuisson.com/images/templates/ajax_wait.gif" align="absmiddle"> Envoi en cours. Merci de patienter ...</div>
+    </div>
+    <div class="clear"></div>
+</div>

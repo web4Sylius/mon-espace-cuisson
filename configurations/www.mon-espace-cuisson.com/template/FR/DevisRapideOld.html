@@ -1,0 +1,246 @@
+<div id="devis_rapide2">
+    <div id="main">
+        <!-- IMAGE GAUCHE -->
+        <div id="img">
+            <div id="bandeau_img">
+                <h2>[?libelle]</h2>
+                <p>[?marque]<br> Référence [?ref]</p>
+            </div>
+            <img src="[?img]">
+            <img src="/marques/[?marqueid]_100_30.jpg">
+        </div>
+
+        <!-- FORMULAIRE GAUCHE -->
+        <div id="livrtbl" class="register" style="display: none;">
+            <div id="bandeau_livr">
+                <p style="margin-top: 10px;">Adresse de livraison</p>
+            </div>
+            <div class="line livr">
+                <span>NOM <i class="i">*</i></span>
+                <input type="text" id="nom_livr">
+                <div class="clear"></div>
+            </div>
+            <div class="line livr">
+                <span>PRÉNOM <i class="i">*</i></span>
+                <input type="text" id="prenom_livr">
+                <div class="clear"></div>
+            </div>
+            <div class="line livr">
+                <span>SOCIÉTÉ</span>
+                <input type="text" id="societe_livr">
+                <div class="clear"></div>
+            </div>
+            <div class="line livr">
+                <span>ADRESSE <i class="i">*</i></span>
+                <input type="text" id="adresse1_livr">
+                <div class="clear"></div>
+            </div>
+            <div class="line livr">
+                <span>CODE POSTAL <i class="i">*</i></span>
+                <input type="text" id="cp_livr">
+                <div class="clear"></div>
+            </div>
+            <div class="line livr">
+                <span>VILLE <i class="i">*</i></span>
+                <input type="text" id="ville_livr">
+                <div class="clear"></div>
+            </div>
+            <div class="line livr">
+                <span>PAYS <i class="i">*</i></span>
+                <select id="payslivr">[?optpays]</select>
+                <div class="clear"></div>
+            </div>
+            <div class="line livr">
+                <span>TÉLÉPHONE</span>
+                <input type="text" id="telephone_livr">
+                <div class="clear"></div>
+            </div>
+            <img src="[?imglivr]">
+            <br>
+            <img src="/marques/[?marqueid]_100_30.jpg">
+        </div>
+
+        
+        <div class="register" >
+            <div id="bandeau_register">
+                <p>Recevez immédiatement un devis accompagné de la fiche technique du produit.</p>
+            </div>
+        </div> 
+        <div class="register" id="register-devis">
+            <div class="row">
+                <div class="col-xs-12 userstatut"><h2>Êtes-vous ?</h2></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 btnstatut"><p class="part" onclick="nextdevispart();">Un particulier</p></div>
+                <div class="col-xs-6 btnstatut"><p class="pro" onclick="nextdevispro();">Un professionnel</p></div>
+            </div>
+
+        </div>     
+        <!-- FORMULAIRE DROITE PRO -->
+        <div class="register" style="display: none;" id="register-devis-pro">
+            
+            <div class="line">
+                <span>TITRE <i class="i">*</i></span>
+                <input type="hidden" id="civpro" value="[?civ]">
+                <select name="civpro" onclick="document.getElementById('civ').value=this.value;">
+                    <option value="0" checked>M.</option>
+                    <option value="1">Mme</option>
+                </select>
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>NOM <i class="i">*</i></span>
+                <input type="text" id="nompro" value="[?nom]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>PRÉNOM <i class="i">*</i></span>
+                <input type="text" id="prenompro" value="[?prenom]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>SOCIÉTÉ <i class="i">*</i></span>
+                <input type="text" id="societe" value="[?raison_sociale]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>E MAIL <i class="i">*</i></span>
+                <input type="text" id="mailpro" value="[?mail]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>ADRESSE </span>
+                <input type="text" id="adresse1pro" value="[?adresse1]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>CODE POSTAL <i class="i">*</i></span>
+                <input type="text" id="cppro" value="[?codepostal]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>VILLE <i class="i">*</i></span>
+                <input type="text" id="villepro" value="[?ville]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>PAYS <i class="i">*</i></span>
+                <select id="payspro">[?optpays]</select>
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>TÉL. FIXE <i class="i">**</i></span>
+                <input type="text" id="telephonepro" value="[?telephone]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>PORTABLE <i class="i">**</i></span>
+                <input type="text" id="portablepro" value="[?portable]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <div class="checkbox">
+                    <input type="checkbox" id="livridpro" value="1" onclick="showlivr();"> <label for="livridpro">ADRESSE DE LIVRAISON DIFFÉRENTE</label>
+                </div>
+            </div>
+            <div class="line final">
+                
+                <div class="checkbox" id="devis_immediat_cgvpro">
+                    <input type="checkbox" value="1" style="height:10px;width:10px;display: inline-block;">J'accepte les <a href="/int,1,conditions-generales-de-vente-france-et-etranger.htm" target="_blank" style="text-decoration: underline;">conditions générales de vente</a>
+                </div>
+                <a href="javascript:void(0);" id="sendbtnpro" class="btn" onclick="sendit()">Recevoir le devis<i class="fa fa-chevron-right"></i></a>
+                <div class="clear"></div>
+            </div>
+
+            <div class="line mention">* CHAMPS OBLIGATOIRES <br>** REMPLIR AU MOINS UN DES DEUX CHAMPS &nbsp;&nbsp;&nbsp;&nbsp;*** CONSEILS OFFERTS</div>
+            <div id="waiticonpro"><img src="/configurations/www.ma-cave-a-vin.fr/images/templates/ajax_wait.gif" align="absmiddle"> Envoi en cours. Merci de patienter ...</div>
+        </div>
+        <!-- FORMULAIRE DROITE PART -->
+        <div class="register" style="display: none;" id="register-devis-part">
+            
+            <div class="line">
+                <span>TITRE <i class="i">*</i></span>
+                <input type="hidden" id="civ" value="[?civ]">
+                <select name="civ" onclick="document.getElementById('civ').value=this.value;">
+                    <option value="0" chedked>M.</option>
+                    <option value="1">Mme</option>
+                </select>
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>NOM <i class="i">*</i></span>
+                <input type="text" id="nom" value="[?nom]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>PRÉNOM <i class="i">*</i></span>
+                <input type="text" id="prenom" value="[?prenom]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>E MAIL <i class="i">*</i></span>
+                <input type="text" id="mail" value="[?mail]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>ADRESSE </span>
+                <input type="text" id="adresse1" value="[?adresse1]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>CODE POSTAL <i class="i">*</i></span>
+                <input type="text" id="cp" value="[?codepostal]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>VILLE <i class="i">*</i></span>
+                <input type="text" id="ville" value="[?ville]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>PAYS <i class="i">*</i></span>
+                <select id="pays">[?optpays]</select>
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>TÉL. FIXE <i class="i">**</i></span>
+                <input type="text" id="telephone" value="[?telephone]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span>PORTABLE <i class="i">**</i></span>
+                <input type="text" id="portable" value="[?portable]">
+                <div class="clear"></div>
+            </div>
+            <div class="line">
+                <span id="conseilstxt" style="width: 55%;">Je souhaite être accompagné(e) par un expert pour mon achat <i class="i">***</i></span>
+                <div>
+                    <input type="radio" name="conseils" id="conseils1" value="1"> Oui &nbsp;&nbsp;
+                    <input type="radio" name="conseils" id="conseils0" value="0"> Non
+                </div>
+            </div>
+            <div class="line">
+                <div class="checkbox">
+                    <input type="checkbox" id="livrid" value="1" onclick="showlivr();"> <label for="livrid">ADRESSE DE LIVRAISON DIFFÉRENTE</label>
+                </div>
+            </div>
+            <div class="line final">
+                
+                <div class="checkbox" id="devis_immediat_cgv">
+                    <input type="checkbox" value="1" style="height:10px;width:10px;display: inline-block;">J'accepte les <a href="/int,1,conditions-generales-de-vente-france-et-etranger.htm" target="_blank" style="text-decoration: underline;">conditions générales de vente</a>
+                </div>
+                <a href="javascript:void(0);" id="sendbtn" class="btn" onclick="sendit()">Recevoir le devis<i class="fa fa-chevron-right"></i></a>
+                <div class="clear"></div>
+            </div>
+
+            <div class="line mention">* CHAMPS OBLIGATOIRES <br>** REMPLIR AU MOINS UN DES DEUX CHAMPS &nbsp;&nbsp;&nbsp;&nbsp;*** CONSEILS OFFERTS</div>
+            <div id="waiticon"><img src="/configurations/www.ma-cave-a-vin.fr/images/templates/ajax_wait.gif" align="absmiddle"> Envoi en cours. Merci de patienter ...</div>
+        </div>
+        <input type="hidden" id="devisartid" value="[?artid]">
+        <input type="hidden" id="propartdevis" value="0">
+        <div class="retour-devis" id="retour-devis">
+            <div><p onclick="retourdevis();">Revenir à l'étape précédente</p></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

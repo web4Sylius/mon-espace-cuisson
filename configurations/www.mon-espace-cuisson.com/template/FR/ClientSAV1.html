@@ -1,0 +1,17 @@
+<div class="frame sav">
+  <h2>Service Après Vente</h2>
+
+  <p>Ce module de gestion du Service Après Vente vous permettra d'ouvrir une réclamation en quelques clics. La démarche est très simple et rapide. Notre équipe est à votre disposition pour trouver une solution rapide et adaptée à votre demande. Dès réception, vous serez contacté sous 24/48h.</p>
+  <p>IMPORTANT : votre demande devra être la plus complète possible afin d'être traitée efficacement et dans les plus brefs délais. Nous vous remercions de bien suivre toutes les étapes de la procédure de Service Après Vente.</p>
+  <p>ATTENTION : Ce module ne doit pas être utilisée pour un suivi de commande (information sur la livraison, retard, ...). Pour cela, notre service client est à votre écoute au 04.81.91.90.40.</p>
+
+  <h2>MA DEMANDE DE SAV</h2>
+  <form name="sav1" method="post">
+  <p>Votre demande concerne la commande : [?choixfacture]</p>
+  <p>Ma demande concerne :<br><select name="typelitige" onchange="sav_lignes()"><option></option><option value="0">Une avarie de transport</option><option value="1">Une panne (sous ou hors garantie)</option><option value="2">Une erreur de produit à la livraison</option><option value="4">Un manque de produit à la livraison</option><option value="3">Une demande d'annulation de commande</option></select></p>
+  <div id="lignes"></div>
+  </form>
+  <div id="nberror" class="erreur" style="display:none;margin-top:10px;">Attention : aucun article n'est sélectionné</div>
+
+  <script language="javascript" src="javascripts/sav.js"></script>
+</div>

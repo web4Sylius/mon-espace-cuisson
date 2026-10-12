@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="PHPDoctor 2RC4 (http://peej.github.com/phpdoctor/)">
+<meta name="when" content="Fri, 07 Aug 2015 08:19:08 +0000">
+
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+<link rel="start" href="../../overview-summary.html">
+
+<title>Client/SimpleClient.php (Fnac Marketplace PHP Client API Documentation)</title>
+
+</head>
+<body id="file" onload="parent.document.title=document.title;">
+
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/client/simpleclient.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<h1>Client/SimpleClient.php</h1>
+<hr>
+
+<a name="line1"></a><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a name="line2"></a><span style="color: #666666; font-style: italic;">/*
+<a name="line3"></a> * This file is part of the FnacApiClient.
+<a name="line4"></a> * (c) 2011 Fnac
+<a name="line5"></a> *
+<a name="line6"></a> * For the full copyright and license information, please view the LICENSE
+<a name="line7"></a> * file that was distributed with this source code.
+<a name="line8"></a> */</span>
+<a name="line9"></a>&nbsp;
+<a name="line10"></a><span style="color: #000000; font-weight: bold;">namespace</span> FnacApiClient\Client<span style="color: #339933;">;</span>
+<a name="line11"></a>&nbsp;
+<a name="line12"></a><span style="color: #000000; font-weight: bold;">use</span> Symfony\Component\Serializer\Serializer<span style="color: #339933;">;</span>
+<a name="line13"></a><span style="color: #000000; font-weight: bold;">use</span> Symfony\Component\Serializer\Encoder\XmlEncoder<span style="color: #339933;">;</span>
+<a name="line14"></a><span style="color: #000000; font-weight: bold;">use</span> Symfony\Component\Serializer\Normalizer\CustomNormalizer<span style="color: #339933;">;</span>
+<a name="line15"></a>&nbsp;
+<a name="line16"></a><span style="color: #000000; font-weight: bold;">use</span> Zend\Http\Client <span style="color: #b1b100;">as</span> ZendClient<span style="color: #339933;">;</span>
+<a name="line17"></a><span style="color: #000000; font-weight: bold;">use</span> Zend\Http\Response <span style="color: #b1b100;">as</span> ZendResponse<span style="color: #339933;">;</span>
+<a name="line18"></a><span style="color: #000000; font-weight: bold;">use</span> Zend\Http\Client\Adapter\Proxy<span style="color: #339933;">;</span>
+<a name="line19"></a>&nbsp;
+<a name="line20"></a><span style="color: #000000; font-weight: bold;">use</span> FnacApiClient\Service\Request\RequestService<span style="color: #339933;">;</span>
+<a name="line21"></a><span style="color: #000000; font-weight: bold;">use</span> FnacApiClient\Exception\ErrorResponseException<span style="color: #339933;">;</span>
+<a name="line22"></a><span style="color: #000000; font-weight: bold;">use</span> FnacApiClient\Configuration\Configuration<span style="color: #339933;">;</span>
+<a name="line23"></a><span style="color: #000000; font-weight: bold;">use</span> FnacApiClient\Service\Request\Authentified<span style="color: #339933;">;</span>
+<a name="line24"></a><span style="color: #000000; font-weight: bold;">use</span> FnacApiClient\Service\Request\Authentification<span style="color: #339933;">;</span>
+<a name="line25"></a>&nbsp;
+<a name="line26"></a><span style="color: #009933; font-style: italic;">/**
+<a name="line27"></a> * SimpleClient connect to Fnac REST WebServices using default object and configuration.
+<a name="line28"></a> *
+<a name="line29"></a> * You simply need to provide the following information in the constructor or on init function in a array or a file :
+<a name="line30"></a> *
+<a name="line31"></a> *  host : Uri of the Fnac REST WebServices&lt;br /&gt;
+<a name="line32"></a> *  shop_id : Your shop unique identifier&lt;br /&gt;
+<a name="line33"></a> *  partner_id : Your partner unique identifier&lt;br /&gt;
+<a name="line34"></a> *  key : Your authentification key
+<a name="line35"></a> *
+<a name="line36"></a> * @author     Fnac
+<a name="line37"></a> * @version    1.0.0
+<a name="line38"></a> */</span>
+<a name="line39"></a><span style="color: #000000; font-weight: bold;">class</span> SimpleClient <span style="color: #000000; font-weight: bold;">extends</span> Client
+<a name="line40"></a><span style="color: #009900;">&#123;</span>
+<a name="line41"></a>&nbsp;
+<a name="line42"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$shop_id</span><span style="color: #339933;">;</span>
+<a name="line43"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$partner_id</span><span style="color: #339933;">;</span>
+<a name="line44"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$key</span><span style="color: #339933;">;</span>
+<a name="line45"></a>&nbsp;
+<a name="line46"></a>    <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$token</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line47"></a>&nbsp;
+<a name="line48"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line49"></a>     * Create a new Client
+<a name="line50"></a>     *
+<a name="line51"></a>     * @param string $uri : Uri of fnac rest webservice
+<a name="line52"></a>     * @param string $shop_id : Your shop unique identifier
+<a name="line53"></a>     * @param string $partner_id : Your partner unique identifier
+<a name="line54"></a>     * @param string $key : Your authentification key
+<a name="line55"></a>     */</span>
+<a name="line56"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$uri</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;&quot;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$shop_id</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;&quot;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$partner_id</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;&quot;</span><span style="color: #339933;">,</span> <span style="color: #000088;">$key</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;&quot;</span><span style="color: #009900;">&#41;</span>
+<a name="line57"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line58"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$uri</span><span style="color: #339933;">;</span>
+<a name="line59"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">shop_id</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$shop_id</span><span style="color: #339933;">;</span>
+<a name="line60"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">partner_id</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$partner_id</span><span style="color: #339933;">;</span>
+<a name="line61"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/key"><span style="color: #990000;">key</span></a> <span style="color: #339933;">=</span> <span style="color: #000088;">$key</span><span style="color: #339933;">;</span>
+<a name="line62"></a>&nbsp;
+<a name="line63"></a>        <span style="color: #000088;">$serializer</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Serializer<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line64"></a>        <span style="color: #000088;">$serializer</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addNormalizer</span><span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">new</span> CustomNormalizer<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line65"></a>        <span style="color: #000088;">$serializer</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setEncoder</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'xml'</span><span style="color: #339933;">,</span> <span style="color: #000000; font-weight: bold;">new</span> XmlEncoder<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line66"></a>&nbsp;
+<a name="line67"></a>        <span style="color: #000088;">$zendClient</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> ZendClient<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line68"></a>&nbsp;
+<a name="line69"></a>        parent<span style="color: #339933;">::</span>__construct<span style="color: #009900;">&#40;</span><span style="color: #000088;">$serializer</span><span style="color: #339933;">,</span> <span style="color: #000088;">$zendClient</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line70"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line71"></a>&nbsp;
+<a name="line72"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line73"></a>     * Init parameters of client
+<a name="line74"></a>     *
+<a name="line75"></a>     * You can give a yml filename (if don't give a absolute path the root dir for relative is the root directory of this lib)
+<a name="line76"></a>     * Or an array with the different information inside :
+<a name="line77"></a>     *
+<a name="line78"></a>     * &lt;pre&gt;
+<a name="line79"></a>     * Array (
+<a name="line80"></a>     *  'host' =&gt; 'http://...'
+<a name="line81"></a>     *  'shop_id' =&gt; 'Your shop unique identifier'
+<a name="line82"></a>     *  'partner_id' =&gt; 'Your partner unique identifier'
+<a name="line83"></a>     *  'key' =&gt; Your authentification key
+<a name="line84"></a>     * )
+<a name="line85"></a>     * &lt;/pre&gt;
+<a name="line86"></a>     *
+<a name="line87"></a>     * @param mixed $parameters
+<a name="line88"></a>     */</span>
+<a name="line89"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> init<span style="color: #009900;">&#40;</span><span style="color: #000088;">$parameters</span><span style="color: #009900;">&#41;</span>
+<a name="line90"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line91"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><a href="http://www.php.net/is_string"><span style="color: #990000;">is_string</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$parameters</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line92"></a>            <span style="color: #000088;">$config</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Configuration<span style="color: #009900;">&#40;</span><span style="color: #000088;">$parameters</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line93"></a>            <span style="color: #000088;">$parameters</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$config</span><span style="color: #009900;">&#91;</span>Configuration<span style="color: #339933;">::</span><span style="color: #004000;">CLIENT_CONFIG</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">;</span>
+<a name="line94"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line95"></a>&nbsp;
+<a name="line96"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">uri</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$parameters</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'host'</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$parameters</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'host'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">&quot;&quot;</span><span style="color: #339933;">;</span>
+<a name="line97"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">shop_id</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$parameters</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'shop_id'</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$parameters</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'shop_id'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">&quot;&quot;</span><span style="color: #339933;">;</span>
+<a name="line98"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">partner_id</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$parameters</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'partner_id'</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$parameters</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'partner_id'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">&quot;&quot;</span><span style="color: #339933;">;</span>
+<a name="line99"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/key"><span style="color: #990000;">key</span></a> <span style="color: #339933;">=</span> <a href="http://www.php.net/isset"><span style="color: #990000;">isset</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$parameters</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'key'</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span> ? <span style="color: #000088;">$parameters</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'key'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">:</span> <span style="color: #0000ff;">&quot;&quot;</span><span style="color: #339933;">;</span>
+<a name="line100"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line101"></a>&nbsp;
+<a name="line102"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line103"></a>     * Call a service on fnac rest webservice
+<a name="line104"></a>     *
+<a name="line105"></a>     * @param Authentified $service : Service to call
+<a name="line106"></a>     * @return FnacApiClient\Service\ResponseService
+<a name="line107"></a>     */</span>
+<a name="line108"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> callService<span style="color: #009900;">&#40;</span>RequestService <span style="color: #000088;">$service</span><span style="color: #339933;">,</span> <span style="color: #000088;">$checkXML</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #009900;">&#41;</span>
+<a name="line109"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line110"></a>        try <span style="color: #009900;">&#123;</span>
+<a name="line111"></a>            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">checkAuth</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line112"></a>            <span style="color: #000088;">$service</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">initAuth</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">shop_id</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">partner_id</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">token</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getToken</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line113"></a>&nbsp;
+<a name="line114"></a>            <span style="color: #b1b100;">return</span> parent<span style="color: #339933;">::</span><span style="color: #004000;">callService</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$service</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line115"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line116"></a>        catch<span style="color: #009900;">&#40;</span>\Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line117"></a>            <span style="color: #b1b100;">throw</span> <span style="color: #000088;">$e</span><span style="color: #339933;">;</span>
+<a name="line118"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line119"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line120"></a>&nbsp;
+<a name="line121"></a>    <span style="color: #009933; font-style: italic;">/**
+<a name="line122"></a>     * Check if we are authentified to fnac rest webservice using Authentification Service
+<a name="line123"></a>     *
+<a name="line124"></a>     * @return boolean
+<a name="line125"></a>     */</span>
+<a name="line126"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> checkAuth<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line127"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line128"></a>      try <span style="color: #009900;">&#123;</span>
+<a name="line129"></a>        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">token</span> <span style="color: #339933;">===</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line130"></a>          <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">token</span> <span style="color: #339933;">=</span> parent<span style="color: #339933;">::</span><span style="color: #004000;">callService</span><span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">new</span> Authentification<span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">shop_id</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">partner_id</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/key"><span style="color: #990000;">key</span></a><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line131"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line132"></a>&nbsp;
+<a name="line133"></a>        <span style="color: #000088;">$i</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">;</span>
+<a name="line134"></a>        <span style="color: #b1b100;">while</span> <span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">token</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">isValid</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line135"></a>          <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">token</span> <span style="color: #339933;">=</span> parent<span style="color: #339933;">::</span><span style="color: #004000;">callService</span><span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">new</span> Authentification<span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">shop_id</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">partner_id</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/key"><span style="color: #990000;">key</span></a><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line136"></a>          <span style="color: #000088;">$i</span><span style="color: #339933;">++;</span>
+<a name="line137"></a>          <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$i</span> <span style="color: #339933;">&gt;</span> <span style="color: #cc66cc;">50</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line138"></a>            <span style="color: #b1b100;">throw</span> <span style="color: #000000; font-weight: bold;">new</span> \Exception<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;Error token unvalid for more than 50 times in a row, check if your system is at the right time&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<a name="line139"></a>          <span style="color: #009900;">&#125;</span>
+<a name="line140"></a>        <span style="color: #009900;">&#125;</span>
+<a name="line141"></a>      <span style="color: #009900;">&#125;</span>
+<a name="line142"></a>      catch <span style="color: #009900;">&#40;</span>ErrorResponseException <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<a name="line143"></a>        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">token</span> <span style="color: #339933;">=</span> <span style="color: #009900; font-weight: bold;">null</span><span style="color: #339933;">;</span>
+<a name="line144"></a>        <span style="color: #b1b100;">throw</span> <span style="color: #000088;">$e</span><span style="color: #339933;">;</span>
+<a name="line145"></a>      <span style="color: #009900;">&#125;</span>
+<a name="line146"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line147"></a>&nbsp;
+<a name="line148"></a>  <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getShopId<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line149"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line150"></a>      <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">shop_id</span><span style="color: #339933;">;</span>
+<a name="line151"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line152"></a>&nbsp;
+<a name="line153"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getPartnerId<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line154"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line155"></a>      <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">partner_id</span><span style="color: #339933;">;</span>
+<a name="line156"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line157"></a>&nbsp;
+<a name="line158"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getKey<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line159"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line160"></a>      <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><a href="http://www.php.net/key"><span style="color: #990000;">key</span></a><span style="color: #339933;">;</span>
+<a name="line161"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line162"></a>&nbsp;
+<a name="line163"></a>    <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> getToken<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+<a name="line164"></a>    <span style="color: #009900;">&#123;</span>
+<a name="line165"></a>      <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">token</span><span style="color: #339933;">;</span>
+<a name="line166"></a>    <span style="color: #009900;">&#125;</span>
+<a name="line167"></a>&nbsp;
+<a name="line168"></a>&nbsp;
+<a name="line169"></a><span style="color: #009900;">&#125;</span>
+<a name="line170"></a>&nbsp;</pre>
+<div class="header">
+<h1>Fnac Marketplace PHP Client API Documentation</h1>
+<ul>
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li>Package</li><li>Class</li><li>Tree</li><li><a href="../../overview-files.html">Files</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../todo-list.html">Todo</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+</ul>
+</div>
+
+<div class="small_links">
+<a href="../../index.html" target="_top">Frames</a>
+<a href="../../source/client/simpleclient.php.html" target="_top">No frames</a>
+</div>
+<hr>
+
+<p id="footer">This document was generated by <a href="http://peej.github.com/phpdoctor/">PHPDoctor: The PHP Documentation Creator</a></p>
+
+</body>
+
+</html>

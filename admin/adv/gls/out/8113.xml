@@ -1,0 +1,51 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://fpcs.gls-group.eu/v1/ShipmentProcessing/types" xmlns:com="http://fpcs.gls-group.eu/v1/Common">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <typ:ShipmentRequestData>
+            <typ:Shipment>
+                <typ:ShippingDate>2024-03-28</typ:ShippingDate>
+                
+                <typ:Product>Parcel</typ:Product>
+                <typ:Consignee>
+                    <com:Address>
+                        <com:Name1>cabinet médical</com:Name1>
+                        <com:CountryCode>FR</com:CountryCode>
+                        <com:ZIPCode>78410</com:ZIPCode>
+                        <com:City>AUBERGENVILLE</com:City>
+                        <com:Street>3 bis avenue de la division leclerc</com:Street>
+                        <com:eMail>gerardavakiantz@hotmail.com</com:eMail>
+                        <com:ContactPerson>AVAKIANTZ gerard</com:ContactPerson>
+                        <com:MobilePhoneNumber>0615350393</com:MobilePhoneNumber>
+                    </com:Address>
+                </typ:Consignee>
+                <typ:Shipper>
+                    <com:ContactID>250aaamgYm</com:ContactID>
+                    <com:AlternativeShipperAddress>
+                        <com:Name1>ACILYON DEVELOPPEMENTS</com:Name1>
+                        <com:CountryCode>FR</com:CountryCode>
+                        <com:ZIPCode>69003</com:ZIPCode>
+                        <com:City>Lyon</com:City>
+                        <com:Street>150 Rue Paul Bert</com:Street>
+                    </com:AlternativeShipperAddress>
+                </typ:Shipper>
+                <typ:ShipmentUnit>
+                    <typ:ShipmentUnitReference>298717</typ:ShipmentUnitReference>
+                    <typ:Weight>7.00</typ:Weight>
+                    <typ:Note1></typ:Note1>
+                    <typ:Note2></typ:Note2>
+                </typ:ShipmentUnit>
+                
+            </typ:Shipment>
+            <typ:PrintingOptions>
+                <typ:ReturnLabels>
+                    <typ:TemplateSet>NONE</typ:TemplateSet>
+                    <typ:LabelFormat>PDF</typ:LabelFormat>
+                </typ:ReturnLabels>
+            </typ:PrintingOptions>
+            <typ:ReturnOptions>
+                <typ:ReturnPrintData>true</typ:ReturnPrintData>
+                <typ:ReturnRoutingInfo>true</typ:ReturnRoutingInfo>
+            </typ:ReturnOptions>
+        </typ:ShipmentRequestData>
+    </soapenv:Body>
+</soapenv:Envelope>

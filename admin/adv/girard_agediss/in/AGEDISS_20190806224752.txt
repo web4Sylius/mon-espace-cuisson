@@ -1,0 +1,4 @@
+2019/07/12|151834RVS|315065470|SIMONNET corinne|13140|7013A|LIV CFM|Livraison conforme|2019/08/06|0||http://webtracking.girard-agediss.com/tracking-acilyon-315065470.html
+2019/07/12|151834RVS|315065470|SIMONNET corinne|13140|7013A|POD CFM|BL numérisé|2019/08/06|0||http://webtracking.girard-agediss.com/tracking-acilyon-315065470.html
+2019/07/12|151834RVS|315065470|SIMONNET corinne|13140|7013A|RDV PRI|RDV pris|2019/08/06|0|20190806|http://webtracking.girard-agediss.com/tracking-acilyon-315065470.html
+2019/08/06|152871|315112574|HILHORST Wilhelmus|30200|70343|INI INF|Arrivee info|2019/08/06|0||http://webtracking.girard-agediss.com/tracking-acilyon-315112574.html

@@ -1,0 +1,236 @@
+<div class="affine_title">
+  <div class="fleche" onclick="show_elements(new Array('questions_affines'),true)"><div></div></div>
+  <div class="txt" onclick="show_elements(new Array('questions_affines'),true)">Affiner ma recherche avec des critères complémentaires</div>
+  <div class="fleche" onclick="show_elements(new Array('questions_affines'),true)"><div></div></div>
+</div>
+<div class="clear"></div>
+
+<div id="questions_affines">
+    <div class="question affine">
+      <h2>Contrainte de dimension ?</h2>
+      <div class="fleche"><div></div></div>
+      <div class="reponse" id="repdim"></div>
+      <div class="open" id="btndim" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>" onclick="show_question('dim')">
+	<div class="txt" onselectstart='return false;'>Voir les critères</div>
+	<!--<div class="icon"></div>-->
+      </div>
+    </div>
+    <ul class="affine">
+      <li class="li5 [?dim1class]" onclick="clickli(this,'dim1')">
+	<h3><span>Non</span></h3>
+	<p>Non, je n'ai pas de contrainte de hauteur, de largeur ou de profondeur</p>
+	<input type="radio" id="dim1" name="dim" onclick="showdim(false);next('dimensions',',,,,,,')">
+      </li>
+      <li class="li5 [?dim2class]" onclick="clickli(this,'dim2',false)">
+	<h3><span>Oui</span></h3>
+	<p>Oui, j'ai une contrainte de dimension en hauteur, en largeur ou en profondeur</p>
+	<input type="radio" id="dim2" name="dim" onclick="showdim(true)" [?dim2check]>
+      </li>
+      <div id="arrowdim"></div>
+      <li id="lilarg" class="li5 clicked [?largclass]">
+	<h3><span>En hauteur (H)</span></h3>
+	<p><input type="checkbox" id="haut0" onclick="selectdim(this)"> Pas de contrainte</p>
+	<p>Minimum <input type="text" id="hautminval" value="[?hauteurmin]"> mm</p>
+	<p>Maximum <input type="text" id="hautmaxval" value="[?hauteurmax]"> mm</p>
+      </li>
+      <li id="lihaut" class="li5 clicked [?hautclass]">
+	<h3><span>En largeur (L)</span></h3>
+	<p><input type="checkbox" id="larg0" onclick="selectdim(this)"> Pas de contrainte</p>
+	<p>Minimum <input type="text" id="largminval" value="[?largeurmin]"> mm</p>
+	<p>Maximum <input type="text" id="largmaxval" value="[?largeurmax]"> mm</p>
+      </li>
+      <li id="liprof" class="li5 clicked [?profclass]">
+	<h3><span>En profondeur (P)</span></h3>
+	<p><input type="checkbox" id="prof0" onclick="selectdim(this)"> Pas de contrainte</p>
+	<p>Minimum <input type="text" id="profminval" value="[?profondeurmin]"> mm</p>
+	<p>Maximum <input type="text" id="profmaxval" value="[?profondeurmax]"> mm</p>
+      </li>
+    </ul>
+    <div class="clear"></div>
+<div id="nextdim" class="nextbtn" onclick="clickbtn(this,'dimensions',returndim())">Voir les résultats</div>    
+    <div class="question affine">
+      <h2>Avez-vous un budget ? <small>(Plusieurs possibilités)</small></h2>
+      <div class="fleche"><div></div></div>
+      <div class="reponse" id="repprix"></div>
+      <div class="open" id="btnprix" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>" onclick="show_question('prix')">
+	<div class="txt" onselectstart='return false;'>Voir les critères</div>
+	<!--<div class="icon"></div>-->
+      </div>
+    </div>
+    <ul class="affine">
+      [?listeprix]
+      <li class="li6" onclick="clickli(this,'prix1000',false)">
+	<h3><span>Je ne sais pas</span></h3>
+	<div class="checkbox"></div>
+	<input type="checkbox" name="prix" id="prix1000" value="1000" onclick="uncheck('prix',this);show_next('prix');">
+      </li>
+    </ul>
+    <div class="clear"></div>
+    <div id="nextprix" class="nextbtn" onclick="clickbtn(this,'prix',return_checkboxes('prix'))">Voir les résultats</div>
+    <div class="question affine">
+      <h2>Choisir parmi les marques suivantes <small>(Plusieurs possibilités)</small></h2>
+      <div class="fleche"><div></div></div>
+      <div class="reponse" id="repmarque"></div>
+      <div class="open" id="btnmarque" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>" onclick="show_question('marque')">
+	<div class="txt" onselectstart='return false;'>Voir les critères</div>
+	<!--<div class="icon"></div>-->
+      </div>
+    </div>
+    <ul class="affine">
+      [?listemarques]
+      <li class="li6 marque" onclick="clickli(this,'marque0',false)">
+	<h3><span>Peu importe la marque</span></h3>
+	<img src="/images/configurateur/marque0.jpg">
+	<div class="checkbox"></div>
+	<input type="checkbox" name="marque" id="marque0" onclick="uncheck('marque',this);show_next('marque');">
+      </li>
+      <div class="clear"></div>
+      
+      <div class="clear"></div>
+    </ul>
+    <div class="clear"></div>
+    <div id="nextmarque" class="nextbtn" onclick="clickbtn(this,'marque',return_checkboxes('marque'))">Voir les résultats</div>
+    <div class="question affine">
+      <h2>Classe énergétique <small>(Plusieurs possibilités)</small></h2>
+      <div class="fleche"><div></div></div>
+      <div class="reponse" id="repclasse"></div>
+    </div>
+    <ul class="affine">
+      <li class="li6 classe [classerep1class]" onclick="clickli(this,'classe1')">
+	<h3><span>Classe A ou A+</span></h3>
+	<p>Cave à vin classe A ou A+ exclusivement</p>
+	<input type="radio" name="classe" id="classe1" onclick="next('classe','[?classerep1]')">
+      </li>
+      <li class="li6 classe [classerep2class]" onclick="clickli(this,'classe2')">
+	<h3><span>Classe A ou B</span></h3>
+	<p>Cave à vin classe B au minimum</p>
+	<input type="radio" name="classe" id="classe2" onclick="next('classe','[?classerep2]')">
+      </li>
+      <li class="li6 classe" onclick="clickli(this,'classe0')">
+	<h3><span>Peu importe la classe énergétique</span></h3>
+	<img src="/images/configurateur/classe0.jpg">
+	<input type="radio" name="classe" id="classe0" onclick="next('classe','0')">
+      </li>
+      <div class="clear"></div>
+    </ul>
+    <div class="clear"></div>
+    
+    <div class="question affine">
+      <h2>Besoin d'une serrure ?</h2>
+      <div class="fleche"><div></div></div>
+      <div class="reponse" id="repserrure"></div>
+      <div class="open" id="btnserrure" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>" onclick="show_question('serrure')">
+	<div class="txt" onselectstart='return false;'>Voir les critères</div>
+	<!--<div class="icon"></div>-->
+      </div>
+    </div>
+    <ul class="affine">
+      <li class="li6 serrure [?serrure1class]" onclick="clickli(this,'serrure1')">
+	<h3><span>Oui</span></h3>
+	<p>Je souhaite une serrure à ma cave à vin</p>
+	<input type="radio" name="serrure" id="serrure1" onclick="next('serrure','[?serrure1]')">
+      </li>
+      <li class="li6 serrure" onclick="clickli(this,'serrure0')">
+	<h3><span>Non</span></h3>
+	<p>Il n'est pas nécessaire d'avoir une serrure</p>
+	<input type="radio" name="serrure" id="serrure0" onclick="next('serrure','[?serrure0]')">
+      </li>
+      <div class="clear"></div>
+    </ul>
+    <div class="clear"></div>
+    
+    <div class="question affine">
+      <h2>Température mini et maxi de la pièce où sera installée ma cave durant l'année ?</h2>
+      <div class="fleche"><div></div></div>
+      <div class="reponse" id="repinstalltemp"></div>
+      <div class="open" id="btninstalltemp" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>" onclick="show_question('installtemp')">
+	<div class="txt" onselectstart='return false;'>Voir les critères</div>
+	<!--<div class="icon"></div>-->
+      </div>
+    </div>
+    <ul class="affine">
+      <li class="li5 [?installtemp0class]" onclick="clickli(this,'installtemp0')">
+	<h3><span>Non</span></h3>
+	<p>Je ne connais pas les températures de la pièce</p>
+	<input type="radio" id="installtemp0" name="installtemp" onclick="show_elements(new Array('limaxtemp','limintemp','nextinstalltemp','arrowtemp'),false);next('installtemp','1000,1000')" [?checkinstalltemp0]>
+      </li>
+      <li class="li5 [?installtemp1class]" onclick="clickli(this,'installtemp1',false)">
+	<h3><span>Oui</span></h3>
+	<p>Je connais la température la plus basse et/ou la plus haute de la pièce</p>
+	<input type="radio" id="installtemp1" name="installtemp" onclick="show_elements(new Array('limaxtemp','limintemp','nextinstalltemp','arrowtemp'),true)" [?checkinstalltemp1]>
+      </li>
+      <div id="arrowtemp"></div>
+      <li class="li5 clicked [?mintempclass]" id="limintemp">
+	<h3><span>Température minimale</span></h3>
+	<input type="checkbox" id="mintemp0"><label for="mintemp0"> Je ne sais pas</label>
+	<p>Minimum [?listetempmin]°C</p>
+      </li>
+      <li class="li5 clicked [?maxtempclass]" id="limaxtemp">
+	<h3><span>Température maximale</span></h3>
+	<input type="checkbox" id="maxtemp0"><label for="maxtemp0"> Je ne sais pas</label>
+	<p>Maximum [?listetempmax]°C</p>
+      </li>
+    </ul>
+    <div class="clear"></div>
+    <div id="nextinstalltemp" class="nextbtn" onclick="clickbtn(this,'installtemp',return_installtemp())">Voir les résultats</div>
+    <div class="question affine">
+      <h2>Sens d'ouverture de la porte</h2>
+      <div class="fleche"><div></div></div>
+      <div class="reponse" id="repsensporte"></div>
+      <div class="open" id="btnsensporte" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>" onclick="show_question('sensporte')">
+	<div class="txt" onselectstart='return false;'>Voir les critères</div>
+	<!--<div class="icon"></div>-->
+      </div>
+    </div>
+    <ul class="affine">
+      <li class="li6 classe [?sensporte0class]" onclick="clickli(this,'sensporte0')">
+	<h3><span>Porte avec charnière à droite</span></h3>
+	<p>Il me faut une porte à ouverture de gauche à droite</p>
+	<input type="radio" name="sensporte" id="sensporte0" onclick="next('sensporte','[?sensporte0]')">
+      </li>
+      <li class="li6 classe [?sensporte1class]" onclick="clickli(this,'sensporte1')">
+	<h3><span>Porte avec charnière à gauche</span></h3>
+	<p>Il me faut une porte à ouverture de droite à gauche</p>
+	<input type="radio" name="sensporte" id="sensporte1" onclick="next('sensporte','[?sensporte1]')">
+      </li>
+      <li class="li6 classe" onclick="clickli(this,'sensporte1000')">
+	<h3><span>Je ne sais pas ou peu importe</span></h3>
+	<img src="/images/configurateur/sensporte0.jpg">
+	<input type="radio" name="sensporte" id="sensporte1000" onclick="next('sensporte','1000')">
+      </li>
+      <div class="clear"></div>
+    </ul>
+    <div class="clear"></div>
+    
+    <div class="question affine">
+      <h2>Origine de fabrication des produits ?</h2>
+      <div class="fleche"><div></div></div>
+      <div class="reponse" id="reporigine"></div>
+      <div class="open" id="btnorigine" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>" onclick="show_question('origine')">
+	<div class="txt" onselectstart='return false;'>Voir les critères</div>
+	<!--<div class="icon"></div>-->
+      </div>
+    </div>
+    <ul class="affine">
+      <li class="li3 origine [?origine0class]" onclick="clickli(this,'origine0')">
+	<h3><span>Fabrication Française</span></h3>
+	<p>Une cave à vin fabriquée en France uniquement</p>
+	<img src="/images/configurateur/origine0.jpg">
+	<input type="radio" name="origine" id="origine0" onclick="next('origine','[?origine0]')">
+      </li>
+      <li class="li3 origine [?origine1class]" onclick="clickli(this,'origine1')">
+	<h3><span>Fabrication Européenne</span></h3>
+	<p>Une cave à vin fabriquée en France ou en Europe</p>
+	<img src="/images/configurateur/origine1.jpg">
+	<input type="radio" name="origine" id="origine1" onclick="next('origine','[?origine1]')">
+      </li>
+      <li class="li3 origine" onclick="clickli(this,'origine1000')">
+	<h3><span>Peu importe le pays de fabrication</span></h3>
+	<p>&nbsp;</p>
+	<img src="/images/configurateur/origine1000.jpg">
+	<input type="radio" name="origine" id="origine1000" onclick="next('origine','1000')">
+      </li>
+      <div class="clear"></div>
+    </ul>
+    <div class="clear"></div>
+</div>

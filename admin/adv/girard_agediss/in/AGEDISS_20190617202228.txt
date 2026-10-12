@@ -1,0 +1,6 @@
+2019/05/09|150401|314942902|BRANCA Andria|20200|70201|RST REP|Message Repondeur|2019/06/17|0||http://webtracking.girard-agediss.com/tracking-acilyon-314942902.html
+2019/05/14|150532|314953537|BRAUN Sta phane|5400|70544|RDV CCL|Confirmation Creneaux de Livraison|2019/06/18|0||http://webtracking.girard-agediss.com/tracking-acilyon-314953537.html
+2019/05/27|150867|314977697|DE CHAISEMARTIN Jean-Baptiste|44000|70441|RDV CCL|Confirmation Creneaux de Livraison|2019/06/18|0||http://webtracking.girard-agediss.com/tracking-acilyon-314977697.html
+2019/05/31|150952|314985836|LAPORTE Jean-Pierre|85470|70857|AAR CFM|Reception conforme|2019/06/17|0||http://webtracking.girard-agediss.com/tracking-acilyon-314985836.html
+2019/05/31|150952|314985836|LAPORTE Jean-Pierre|85470|70857|RST REP|Message Repondeur|2019/06/17|0||http://webtracking.girard-agediss.com/tracking-acilyon-314985836.html
+2019/06/17|151357|315012503|CHIQUET Antoine|06230|70061|INI INF|Arrivee info|2019/06/17|0||http://webtracking.girard-agediss.com/tracking-acilyon-315012503.html

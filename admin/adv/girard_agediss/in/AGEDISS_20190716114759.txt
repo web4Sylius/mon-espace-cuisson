@@ -1,0 +1,4 @@
+2019/07/04|151893|315047829|MARENGHI Walter|33260|70333|LIV CFM|Livraison conforme|2019/07/15|0||http://webtracking.girard-agediss.com/tracking-acilyon-315047829.html
+2019/07/04|151893|315047829|MARENGHI Walter|33260|70333|POD CFM|BL numérisé|2019/07/16|0||http://webtracking.girard-agediss.com/tracking-acilyon-315047829.html
+2019/07/09|152045|315058924|BARTHELEMY Pierre-Antoine|17740|70791|RDV CCL|Confirmation Creneaux de Livraison|2019/07/17|0||http://webtracking.girard-agediss.com/tracking-acilyon-315058924.html
+2019/07/11|151592bis|315063726|BEYER JEREMY|74140|70735|AAR CFM|Reception conforme|2019/07/16|0||http://webtracking.girard-agediss.com/tracking-acilyon-315063726.html

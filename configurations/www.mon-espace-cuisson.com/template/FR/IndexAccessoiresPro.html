@@ -1,0 +1,14 @@
+<div id="access_index" class="bloc_droite center-block" [?styleaccpro] data-msgbrand="Veuillez choisir une marque" data-msgmodel="Veuillez choisir un modèle">
+    <p class="titre">BESOIN D'<span>ACCESSOIRES ?</span></p>
+    <select name="marque_clayette" id="marque_clayette" onchange="accsrc(this.value)">
+        <option value="">Marque</option>
+        [?listemarquesaccessoires]
+    </select>
+    <select name="modele_cave_aci" disabled>
+        <option value="">Modèle avec référence MA CAVE A VIN</option>
+    </select>
+    <select name="modele_cave_fab" disabled>
+        <option value="">Modèle avec référence constructeur</option>
+    </select>
+    <p class="bouton"><a href="javascript:void(0);" onclick="accsrc_submit();">RECHERCHER <span class="fa fa-chevron-right"></span></a></p>
+</div>

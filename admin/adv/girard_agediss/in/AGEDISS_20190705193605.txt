@@ -1,0 +1,3 @@
+2019/07/01|151738|315038618|DEBOST Matthieu|27230|70762|RDV CCL|Confirmation Creneaux de Livraison|2019/07/08|0||http://webtracking.girard-agediss.com/tracking-acilyon-315038618.html
+2019/07/03|151834|315045835|SIMONNET corinne|83700|7013A|RDV PRI|RDV pris|2019/07/10|0|20190710|http://webtracking.girard-agediss.com/tracking-acilyon-315045835.html
+2019/07/05|150890bis|315050112|FOURNIER Julien|33000|70333|RDV PRI|RDV pris|2019/07/10|0|20190710|http://webtracking.girard-agediss.com/tracking-acilyon-315050112.html

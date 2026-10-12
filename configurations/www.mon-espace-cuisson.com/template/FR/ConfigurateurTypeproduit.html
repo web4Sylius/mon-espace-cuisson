@@ -1,0 +1,35 @@
+<div class="question col-xs-12" onclick="show_question('typeproduit')">
+  <div class="col-xs-12">
+    <div class="col-sm-8 col-xs-11">
+      <h2>Type de cave ?</h2>
+      <div class="reponse" id="reptypeproduit"></div>
+    </div>
+    <div class="col-lg-4 hidden-xs">
+      <div class="close" id="btntypeproduit" data-close="Masquer les critères" data-open="Voir les critères<i class='fa fa-caret-down'></i>">
+        <div class="txt" onselectstart='return false;'>Masquer les critères </div>
+      </div>
+    </div>
+    <div class="col-xs-1 visible-xs close" id="btnresptypeproduit" data-close="<i class='fa fa-caret-up'></i>" data-open="<i class='fa fa-caret-down'></i>">
+      <div class="txt" onselectstart='return false;'><i class='fa fa-caret-down'></i></div>
+    </div>
+  </div>
+</div>
+  
+  <!--<div class="fleche"><div></div></div>-->
+<div class="col-xs-12">
+  <ul class="prop">
+  <li class="li5 typeproduit [?typesrep1class]" onclick="clickli(this,'typeproduit1')">
+    <h3><span>Une cave à vin</span></h3>
+    <p >Armoire à vin porte pleine ou porte vitrée</p>
+    <img src="/images/configurateur/typeproduit1.jpg" alt="" class="hidden-xs" width="151">
+    <input type="radio" id="typeproduit1" name="typeproduit" onclick="next('typeproduit','[?typesrep1]')" [?checktypesrep1] class="hidden-xs">
+  </li>
+  <li class="li5 typeproduit [?typesrep2class]" onclick="clickli(this,'typeproduit2')">
+    <h3><span>Une vitrine à vin</span></h3>
+    <p>Vitrine de présentation de 1 à 4 faces vitrées</p>
+    <img src="/images/configurateur/typeproduit2.jpg" alt="" class="hidden-xs" width="151">
+    <input type="radio" id="typeproduit2" name="typeproduit" onclick="next('typeproduit','[?typesrep2]')" [?checktypesrep2] class="hidden-xs">
+  </li>
+
+  </ul>
+</div>

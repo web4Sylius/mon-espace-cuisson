@@ -1,0 +1,133 @@
+
+<div xmlns:v="http://rdf.data-vocabulary.org/#" class="fil_ariane">[?fil_ariane]</div>
+<div class="configurateur" style="position: relative;">
+<div class="col-xs-12 container-config">
+		<div id="titre_config" class="col-lg-7">
+			<h1>Le configurateur de caves à vin</h1>
+    		<h2>Exprimez précisement votre besoin et découvrez votre cave à vin idéale en moins d'1 minute !</h2>
+		</div>
+		<div class="col-xs-12 col-lg-5 tab_bloc">
+			<div class="col-xs-5 col-sm-6 col-md-5 col-lg-4 no-padding">
+				<div id="helpconf_tab">
+					<h2>Besoin d'aide ?</h2>
+	    			<p onclick="toggleaideconfig();" class="ok hidden-xs">SE FAIRE RAPPELER</p>
+	    			<img src="/configurations/www.ma-cave-a-vin.fr/images/templates/tel-config.png" alt="téléphone" onclick="toggleaideconfig();">
+	    			<div></div>
+	    			<div class="arrow-down"></div>
+				</div>
+			</div>
+			<div class="col-xs-7 col-sm-5 col-md-4 col-lg-3">
+				<div id="newconf_tab">
+					<p>Nouvelle configuration ?</p>
+	    			<div class="cross" onclick="datalayer('restart',null,null,null);document.location.href='/configurateur.php?id=0'">
+		    			<a onclick="datalayer('restart',null,null,null);document.location.href='/configurateur.php?id=0'"><img src="/images/templates/redcross.png"></a>
+					</div>
+					<div class="arrow-down"></div>
+				</div>
+			</div>
+				<div id="rappelinst_config" class="etat_rappelconfig">
+		<div onclick="toggleaideconfig()" style="position: relative; margin-right: 10px;"><img src="/images/templates/croix.png" alt="fermer" class="croix-bar"></div>
+		    <p class="titre">Rappel immédiat gratuit</p>
+		    <p>Un expert vous rappelle dans les délais les plus brefs...</p>
+		    <p id="rappelinst_error_config" class="msg_error">Veuillez renseigner tous les champs obligatoires</p>
+		    <div id="rappelinst_msg_config">
+			<input type="text" class="first" id="rappelinst_nom_config" value="[?nomprenom]" placeholder="Nom, prénom *">
+			<input type="text" id="rappelinst_tel_config" onkeypress="nbonly(event,false,this)" value="[?telephone]" placeholder="Téléphone *">
+			<input type="text" id="rappelinst_societe_config" value="[?societe]" placeholder="Société">
+			<input type="text" id="rappelinst_adresse_config" value="[?adresse]" placeholder="Adresse">
+			<input type="text" id="rappelinst_cp_config" value="[?cp]" placeholder="Code postal ">
+			<input type="text" id="rappelinst_ville_config" value="[?ville]" placeholder="ville *">
+			<input type="text" id="rappelinst_pays_config" value="[?pays]" placeholder="Pays *">
+			<input type="text" id="rappelinst_mail_config" value="[?email]" placeholder="Email *">
+		    </div>
+		    <div id="rappelinst_cgv_config">
+                <input type="checkbox" value="1" style="height:10px;width:10px;">J'accepte les <a href="/int,1,conditions-generales-de-vente-france-et-etranger.htm" target="_blank" style="text-decoration: underline;">conditions générales de vente</a>
+            </div>
+		    <p>Lundi - vendredi : 9h-19h<br><br>ou Appelez nous au <strong>[?contact_telephone]</strong></p>
+		    <p style="font-style: italic;font-weight: 500;">En dehors de ces horaires, vous serez contacté<br>dès notre retour.</p>
+		    <a href="javascript:void(0)" class="ok" onclick="submitbarrappel_config('');">ENVOYER</a>
+		    <div class="clear"></div>
+		</div>
+		</div>
+    
+
+	    <div id="start_conf" class="row" style="background: url(/images/templates/accueil_config.jpg) no-repeat">
+	    	<div class="text_start">QUELLE CAVE CORRESPONDRA À VOS CRITÈRES ?
+<p>Une exclusivité ma cave à vin - Unique en Europe</p></div>
+			<a href="javascript:start()" class="start">Démarrer <i class="fa fa-chevron-right"></i></a>
+			<input type="hidden" id="configtype" value="[?configtype]">
+	    </div>
+	    <div id="configurateur" class="col-xs-12 no-padding">[?reponses]</div>
+
+	    <div class="clear"></div>
+
+	    <div id="resultstart" class="col-xs-12" style="background-image:url('/images/templates/accueil_config.jpg');background-position:center;">
+			<div class="text_start">QUELLE CAVE CORRESPONDRA À VOS CRITÈRES ?
+				<p>Une exclusivité ma cave à vin - Unique en Europe</p>
+			</div>
+	    </div>
+	    
+<div id="barresults" class="col-xs-12 no-padding">
+  <div><span class="resultats_nb_conf">?</span> Résultats correspondent à vos critères</div>
+</div>
+
+	    <div id="results" class="col-xs-12">
+			<div class="title">Caves à vin correspondant à vos critères</div>
+			<a href="/configurateur.php?id=0" class="newconfig">Annuler et faire une<br>nouvelle configuration<img src="/images/templates/cross.gif"></a>
+			<div class="clear"></div>
+	      
+			<div class="result_txt col-xs-12">
+				<div id="result_trop">Trop de résultats ?<br>Veuillez affiner vos critères</div>
+				<div id="result_choix">
+					<!--<p class="p1">Vous pouvez dès à présent voir vos résultats</p>
+					<p class="p2">Que voulez-vous faire ? :</p>
+					<div id="selection_btn" onclick="next('ident',0)">Voir les resultats<i class="fa fa-chevron-right"></i></div>
+					ou-->
+					<div id="continue_btn" onclick="show_invisible_div()">Affiner la recherche</div>
+				</div>
+				<!--<div class="row">
+					<div id="result_ident" class="col-xs-12">
+						<p class="p1">Vous pouvez dès à présent voir vos résultats</p>
+						<div id="selection_btn2" onclick="next('ident',0)">Voir les resultats<i class="fa fa-chevron-right"></i></div>
+					</div>
+				</div>-->
+				<div class="clear"></div>
+				
+				<div class="tout row">
+					<div class="col-xs-12">
+						<div id="tout_nb" class="col-xs-offset-4 col-xs-4">?</div>
+						<div class="txt">caves à vin parmi<br>tout notre catalogue</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div id="result_img" class="col-xs-2"></div>
+			<div class="clear"></div>
+	    </div>
+
+	    <div class="clear"></div>
+	    <div id="products">      
+			<div id="conf_affinage"></div>
+			<!--<div id="onglet_selection" class="clicked col-xs-12 col-md-3 col-lg-3" onclick="show_results('selection')">
+				VOICI LES <span id="selection_nb2"></span> RÉSULTATS DE VOTRE CONFIGURATION
+			</div>-->
+			<div id="onglet_total" class="col-xs-12" onclick="show_results('total')">
+				Tous les autres produits
+			</div>
+			<!--<a href="/configurateur.php?id=0" id="new_conf2" class="new_conf">Annuler et faire une<br>nouvelle configuration</a>-->
+			<div class="clear"></div>
+			<div id="products_selection">[?vignettes_selection]</div>
+			<div id="products_total">[?vignettes_total]</div>
+	    </div>
+	    <!--<div id="cta_config_bloc">
+	    	<p class="cta_config">Vous avez besoin de conseils ?</p>
+	    	<div id="cta_config" onclick="toggleaide();showhelpform('rappelinst');">Contactez un de nos experts</div>
+	    </div>-->
+	    
+	    <!--<a href="#start_conf" class="remonte">Remonter la page<i class="fa fa-chevron-up"></i></a>-->
+	    <div class="clear"></div>
+	</div>
+</div>
+
+[?js]

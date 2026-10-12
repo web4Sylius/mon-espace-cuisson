@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Contrats>
+	<Contrat>
+             <LCOSTID>MEC</LCOSTID>
+             <SNUMCO>297920</SNUMCO>
+             <DACHATC>10/01/2022</DACHATC>
+             <SCIVILITE></SCIVILITE>
+             <SNOM>MAMIAS EBENISTERIE MAMIAS</SNOM>
+             <SPRENOM>Francois</SPRENOM>
+             <SADRESSE1>5 le tertre beauvais </SADRESSE1>
+             <SADRESSE2></SADRESSE2>
+             <SCP>22150</SCP>
+             <SVILLE>PLEMY</SVILLE>
+             <STELGSM></STELGSM>
+             <STELDOM>0613979647</STELDOM>
+             <EMAIL>Francois.mamias@gmail.com</EMAIL>
+             <SOBSERVATION></SOBSERVATION>
+	<PRODUIT>
+		<SMARQUE>HOTPOINT</SMARQUE>
+		<SMODEL>EC-JCI125 / 7414038_9 (E-</SMODEL>
+		<LIBELLE>Piano de cuisson, bois, gaz et électrique 180cm &quot;Prestige&quot; (Ex. Country) avec 2 fours et une plaque de cuisson personnalisable</LIBELLE>
+		<NPRIX>14448</NPRIX>
+		<SN></SN>
+		<DACHAT>12/12/2022</DACHAT>
+		<DEFFET>12/12/2022</DEFFET>
+		<TDUREE_GAR>2</TDUREE_GAR>
+		<TDUREE_EXT>0</TDUREE_EXT>
+		<SOBSERVATION></SOBSERVATION><SGARTYPE></SGARTYPE>
+</PRODUIT>
+	</Contrat>
+</Contrats>

@@ -1,0 +1,37 @@
+<div class="choix_affine [?ulcolorisclasse]">
+        <ul class="prop [?ulcolorisclasse]">
+
+     <li class="li5 [?coloris3class]" onclick="clicklichoix('coloris3');show_next('coloris')">
+<input type="checkbox" id="coloris3" name="coloris" value="3" onclick="clicklichoix('coloris3');show_next('coloris')" [?checkcoloris3] style="display: inline">
+        <span style="vertical-align: baseline">Noir</span>
+      </li>
+
+             <li class="li5 [?coloris2class]" onclick="clicklichoix('coloris2');show_next('coloris')">
+  <input type="checkbox" id="coloris2" name="coloris" value="2" onclick="clicklichoix('coloris2');show_next('coloris')" [?checkcoloris2] style="display: inline">
+        <span style="vertical-align: baseline">Inox</span>
+      </li>
+
+           <li class="li5 [?coloris4class]" onclick="clicklichoix('coloris4');show_next('coloris')">
+ <input type="checkbox" id="coloris4" name="coloris" value="4" onclick="clicklichoix('coloris4');show_next('coloris')" [?checkcoloris4] style="display: inline">
+        <span style="vertical-align: baseline">Bois</span>
+      </li>
+
+      <li class="li5 [?coloris5class]" onclick="clicklichoix('coloris5');show_next('coloris')">
+ <input type="checkbox" id="coloris5" name="coloris" value="5" onclick="clicklichoix('coloris5');show_next('coloris')" [?checkcoloris5] style="display: inline">
+        <span style="vertical-align: baseline">Blanc</span>
+      </li>
+
+            <li class="li5 [?coloris1class]" onclick="clicklichoix('coloris1');show_next('coloris')">
+ <input type="checkbox" id="coloris1" name="coloris" value="1" onclick="clicklichoix('coloris1');show_next('coloris')" [?checkcoloris1] style="display: inline">
+        <span style="vertical-align: baseline">Autre couleur</span>
+      </li>
+
+                   <li class="li5 [?coloris0class]" onclick="uncheck('coloris',this);clicklichoix('coloris0');show_next('coloris')" id="coloris_all">
+  <input type="checkbox" name="coloris" id="coloris0" onclick="uncheck('coloris',this);clicklichoix('coloris0');show_next('coloris');" [?checkcoloris0] style="display: inline">
+        <span style="vertical-align: baseline">Je ne sais pas ou peu importe</span>
+      </li>
+
+        </ul>
+ <div id="nextcoloris" class="nextbtn" onclick="clickbtn(this,'coloris',return_checkboxes('coloris'))">Valider <i class="fas fa-chevron-right"></i></div>
+</div>
+<div class="clear"></div>

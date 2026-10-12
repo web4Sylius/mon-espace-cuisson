@@ -1,0 +1,15 @@
+<div class="btn_barre_fix" id="minicontact" onclick="donthideform(event)">
+    <p class="titre">Contactez nos experts</p>
+    <p>Exposez-nous précisément votre besoin.</p>
+    <p id="minicontact_error" class="msg_error">Veuillez renseigner tous les champs obligatoires</p>
+    <div id="minicontact_form">
+        <input type="text" id="minicontact_nom" class="first" placeholder="Nom, prénom">
+        <input type="text" id="minicontact_mail" placeholder="Email">
+        <input type="text" id="minicontact_telephone" onkeypress="nbonly(event,false,this)" placeholder="Téléphone *">
+        <input type="text" id="minicontact_pays" placeholder="Pays *">
+        <textarea id="minicontact_message" placeholder="Message"></textarea>
+    </div>
+    <p>Nos Experts sont à votre disposition du<br>lundi au vendredi : 9h-19h<br>ou Appelez nous au <strong>[?contact_telephone]</strong></p>
+    <a href="javascript:void(0)" class="ok" onclick="submitbarcontact();">ENVOYER <i class="fa fa-chevron-right"></i></a>
+    <div class="clear"></div>
+</div>

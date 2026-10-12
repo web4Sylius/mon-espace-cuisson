@@ -1,0 +1,5 @@
+2019/05/31|150952|314985836|LAPORTE Jean-Pierre|85470|70857|LIV CFM|Livraison conforme|2019/06/21|0||http://webtracking.girard-agediss.com/tracking-acilyon-314985836.html
+2019/05/31|150952|314985836|LAPORTE Jean-Pierre|85470|70857|POD CFM|BL numérisé|2019/06/24|0||http://webtracking.girard-agediss.com/tracking-acilyon-314985836.html
+2019/06/14|151314|315009635|SALLIOT-DETHIER Marie-Madelein|83630|7013A|RDV CCL|Confirmation Creneaux de Livraison|2019/06/25|0||http://webtracking.girard-agediss.com/tracking-acilyon-315009635.html
+2019/06/21|151451|315021463|RICCI Ca cile|69130|70387|RST ANN|Annulation client|2019/06/24|0|à la demande du DO|http://webtracking.girard-agediss.com/tracking-acilyon-315021463.html
+2019/06/24|151479|315023792|PADIOLEAU Laetitia|10190|70891|INI INF|Arrivee info|2019/06/24|0||http://webtracking.girard-agediss.com/tracking-acilyon-315023792.html

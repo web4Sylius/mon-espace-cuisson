@@ -1,0 +1,76 @@
+.countdown .count-title,h1,h2{text-transform:uppercase}
+.wrap{font-family: 'Open Sans', sans-serif;}
+.wrap p{margin-bottom:28px;font-size: 22px;}
+.wrap p strong{font-weight:600;}
+.countdown{width:100%;top:-20px;}
+.countdown .bloc-time{float:left;margin-right:26px;text-align:center}
+.countdown .bloc-time:last-child{margin-right:0}
+.countdown .count-title{display:block;margin-top:10px;margin-bottom:5px;font-size:12px;color:#1a1a1a}
+.countdown .figure{position:relative;float:left;height:80px;width:57px;margin-right:10px;background-color:#fff;border-radius:8px;-moz-box-shadow:0 3px 4px 0 rgba(0,0,0,.2),inset 2px 4px 0 0 rgba(255,255,255,.08);-webkit-box-shadow:0 3px 4px 0 rgba(0,0,0,.2),inset 2px 4px 0 0 rgba(255,255,255,.08);box-shadow:0 3px 4px 0 rgba(0,0,0,.2),inset 2px 4px 0 0 rgba(255,255,255,.08)}
+.countdown .figure .bottom-back,.countdown .figure .top{-moz-border-radius-topleft:10px;-moz-border-radius-topright:10px}
+.countdown .figure:last-child{margin-right:0}
+.countdown .figure>span{position:absolute;left:0;right:0;margin:auto;font-size:3.94em;font-weight:600;color:#ac8b5a}
+.countdown .figure .bottom-back:after,.countdown .figure .top:after{content:"";position:absolute;z-index:-1;left:0;bottom:0;width:100%;height:100%;border-bottom:1px solid rgba(0,0,0,.1)}
+.countdown .figure .top{z-index:3;background-color:#f7f7f7;transform-origin:50% 100%;-webkit-transform-origin:50% 100%;-webkit-border-top-left-radius:10px;border-top-left-radius:10px;-webkit-border-top-right-radius:10px;border-top-right-radius:10px;-moz-transform:perspective(200px);-ms-transform:perspective(200px);-webkit-transform:perspective(200px);transform:perspective(200px)}
+.countdown .figure .bottom{z-index:1}
+.countdown .figure .bottom:before{content:"";position:absolute;display:block;top:0;left:0;width:100%;height:50%;background-color:rgba(0,0,0,.02)}
+.countdown .figure .bottom-back{z-index:2;top:0;height:50%;overflow:hidden;background-color:#f7f7f7;-webkit-border-top-left-radius:10px;border-top-left-radius:10px;-webkit-border-top-right-radius:10px;border-top-right-radius:10px}
+.countdown .figure .bottom-back span{position:absolute;top:0;left:0;right:0;margin:auto}
+.countdown .figure .top,.countdown .figure .top-back{height:50%;overflow:hidden;-moz-backface-visibility:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.countdown .figure .top-back{z-index:4;bottom:0;background-color:#fff;-webkit-transform-origin:50% 0;transform-origin:50% 0;-moz-transform:perspective(200px) rotateX(180deg);-ms-transform:perspective(200px) rotateX(180deg);-webkit-transform:perspective(200px) rotateX(180deg);transform:perspective(200px) rotateX(180deg);-moz-border-radius-bottomleft:10px;-webkit-border-bottom-left-radius:10px;border-bottom-left-radius:10px;-moz-border-radius-bottomright:10px;-webkit-border-bottom-right-radius:10px;border-bottom-right-radius:10px}
+.countdown .figure .top-back span{position:absolute;top:-100%;left:0;right:0;margin:auto}
+.countdown .bloc-time.sec{display: none;}
+.countdown .bloc-time.min.margincdwn{margin-right: 0;}
+
+
+@media(max-width: 1591px) and (min-width: 1200px){
+	.countdown{margin-left: 10%;}
+	.countdown .figure>span {font-size: 2.94em;}
+	.countdown .count-title{margin-bottom: 2px;margin-top: 0;}
+	.countdown .figure{height: 58px;width: 50px;margin-right: 10px;}
+	div.venteflashactive div.blochaut .titreModif{font-size: 31px;margin:0;}
+	div.venteflashactive div.blocbas{padding: 0 17px;}
+	.wrap p{margin-bottom: 25px;font-size: 18px;padding-top: 5px;}
+}
+@media(max-width: 1199px){
+	div.venteflashactive div.blocbas div.countdown{height: 105px;padding:0; margin-left: 0}
+	div.venteflashactive div.blocbas div.countdown div.container-countdown{position: absolute;transform: translate(-50%,-50%);left: 50%;top: 60%;min-width: 336px;}
+	div.venteflashactive div.blocbas div.countdown .figure{height: 55px;width: 43px;margin-right: 3px;}
+	div.venteflashactive div.blocbas div.countdown .figure > span{font-size:2.94em;}
+	.wrap p{margin-bottom: 0;}
+}
+@media(max-width: 991px){
+	div.venteflashactive div.blocbas div.countdown .figure{height: 55px;width: 43px;margin-right: 3px;}
+	div.venteflashactive div.blocbas div.countdown .figure > span{font-size:2.94em;}
+	div.venteflashactive div.blocbas div.countdown div.container-countdown{min-width: 358px;}
+
+}
+@media(max-width: 767px){
+	.wrap p{margin-bottom: 28px;}
+	div.venteflashactive div.blocbas div.countdown{height: 90px;}
+}
+
+@media(max-width: 650px){
+	div.venteflashactive div.blocbas div.countdown{height: 85px;}
+}
+
+@media (max-width: 540px ){
+	div.venteflashactive div.blocbas div.countdown{height: 70px;}
+	div.venteflashactive div.blocbas div.countdown div.container-countdown{position: absolute;transform: translate(-50%,-50%);left: 50%;top: 60%;min-width: 387px;}
+	div.venteflashactive div.blocbas div.countdown .count-title{margin-bottom: 6px;font-size: 12px;}
+	div.venteflashactive div.blocbas div.countdown .figure{height: 62px;width: 51px;margin-right: 8px;}
+	div.venteflashactive div.blocbas div.countdown .figure > span{font-size:2.94em;}
+	div.venteflashactive div.blocbas div.countdown .bloc-time{margin-right: 11px;}
+	div.venteflashactive .wrap p{font-size: 18px;text-align: center;}
+}
+
+@media (max-width: 470px) {
+	div.venteflashactive div.blocbas div.countdown{height: 50px;}
+	div.venteflashactive div.blocbas div.countdown div.container-countdown{position: absolute;transform: translate(-50%,-50%);left: 50%;top: 50%;min-width: 235px;}
+	div.venteflashactive div.blocbas div.countdown .count-title{margin-bottom: 4px;font-size: 11px;}
+	div.venteflashactive div.blocbas div.countdown .figure{height: 41px;width: 32px;margin-right: 3px;}
+	div.venteflashactive div.blocbas div.countdown .figure > span{font-size:1.94em;}
+	div.venteflashactive div.blocbas div.countdown .bloc-time{margin-right: 7px;}
+	div.venteflashactive .wrap p{font-size: 18px;}
+	div.venteflashactive div.blocbas{min-width: 265px;}
+}
