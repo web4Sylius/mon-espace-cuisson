@@ -11,7 +11,7 @@ include "./menu.php";
 </center>
 <br>
 <br>
-<?
+<?php 
 $is_remise=$DB_site2->query_first("SELECT count(catid) as nb
 								  from remisecategorie") ;
 if ($is_remise[nb] != 0)
@@ -41,7 +41,7 @@ else
 <br>
 <br>
 <br>
-<?
+<?php 
 echo "<a href=\"ajouter_remise_cat.php\">Ajouter une remise pour une catégorie</a>";
 
 

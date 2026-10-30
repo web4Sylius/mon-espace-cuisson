@@ -155,7 +155,7 @@ if($action=="" or !isset($action)) {
 						$libelle_array = array();
 						$caractvalid_array = array();
 						foreach($cv as $lk => $lv) {
-							if($lk{0}.$lk{1} == 'lb') {
+							if($lk[0].$lk[1] == 'lb') {
 								$libelle_array[] = $lv;
 					//			$caractid_array[] = substr($lk,2);
 	

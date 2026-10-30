@@ -104,7 +104,7 @@ case '12':
 ?>
 <tr>
 <td class="td_location" align="left">
-<?
+<?php 
 echo "$m_lettre $a" ; 
 ?>
 </td>

@@ -141,7 +141,7 @@ if(isset($_GET['planning_username'])){
 	});
 
 	</script>
-	<?
+	<?php 
 	
 	
 }

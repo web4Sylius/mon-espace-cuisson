@@ -1108,7 +1108,7 @@ elseif(isset($_GET['commercial']) && $_GET['commercial'] !== '' && empty($_GET['
 			<td class=\"ca_nb showpopup\">".number_format($list['attente'][$mois],0,',',' ')." &euro;
 			<div class=\"popup\"><table>".$list['factid_attente'][$mois]."</table></div></td>
 			<td class=\"ca_nb\">".number_format($total+$list['attente'][$mois],0,',',' ')." &euro;</td>
-			".tdvalue(($objencours == 0 ? 0 : $objectif_commercial[$year][$mois]?100*$total/($mois==date("n")&&$year==date("Y")?$objencours:($objectif_commercial[$year][$mois]*$nb_jour)):0),"%",false,100)
+			".tdvalue(($objencours == 0 ? 0 : ($objectif_commercial[$year][$mois]?100*$total/($mois==date("n")&&$year==date("Y")?$objencours:($objectif_commercial[$year][$mois]*$nb_jour)):0)),"%",false,100)
 			.($mois<=date('n')||$year!=date("Y")?tdvalue($encours,"&euro;",true):"<td class=\"ca_nb\"></td>")  
 			.($mois<=date('n')||$year!=date("Y")?tdvalue($pcencours,"%",true):"<td class=\"ca_nb\"></td>")
 			.tdvalue($total-($list1['ca'][$mois]),"&euro;",true)

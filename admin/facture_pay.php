@@ -1,7 +1,7 @@
 <?php
 
 require "admin_global.php";
-if(ESPACE =!'prod'){
+if(ESPACE != 'prod'){
 	include("/var/www/vhosts/ma-cave-a-vin.fr/fusion.ma-cave-a-vin.fr/fonctions.php");
 }else{
 	include("/var/www/vhosts/mon-espace-cuisson.com/httpdocs/fonctions.php");

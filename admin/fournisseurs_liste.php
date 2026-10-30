@@ -475,7 +475,7 @@ if(!empty($_POST)){
         if($aConditions['devise'] != $_POST['devise']) $suivitxt .= "<br>Devise : ".$aConditions['devise']." => ".$_POST['devise'];
         if($aConditions['compte_client'] != $_POST['compte_client']) $suivitxt .= "<br>Compte client : ".$aConditions['compte_client']." => ".$_POST['compte_client'];
         if($aConditions['langue'] != $_POST['flangue']) $suivitxt .= "<br>Langue : ".$aConditions['langue']." => ".$_POST['flangue'];
-        if($aConditions['activite'] != $_POST['activite']) $suivitxt .= "<br>Activite : ".($aConditions['activite'] == 1 ? 'Oui' : $aConditions['activite'] == 2 ? 'Non' : '')." => ".($_POST['activite'] == 1 ? 'Oui' : $_POST['activite'] == 2 ? 'Non' : '');
+        if($aConditions['activite'] != $_POST['activite']) $suivitxt .= "<br>Activite : ".($aConditions['activite'] == 1 ? 'Oui' : ($aConditions['activite'] == 2 ? 'Non' : ''))." => ".($_POST['activite'] == 1 ? 'Oui' : ($_POST['activite'] == 2 ? 'Non' : ''));
         if($aConditions['pdts_vendus'] != $_POST['pdts_vendus']) $suivitxt .= "<br>Pdts vendus : ".$aConditions['pdts_vendus']." => ".$_POST['pdts_vendus'];
         if($aConditions['ar'] != intval($_POST['ar'])) $suivitxt .= "<br>AR ADV : ".($aConditions['ar'] == 1 ? 'Oui' : 'Non')." => ".(intval($_POST['ar']) == 1 ? 'Oui' : 'Non');
         if($aConditions['tvaintra'] != mysqli_real_escape_string($DB_site2->link_id,$_POST['tvaintra'])) $suivitxt .= "<br>tva intra : ".$aConditions['tvaintra']." => ".mysqli_real_escape_string($DB_site2->link_id,$_POST['tvaintra']);

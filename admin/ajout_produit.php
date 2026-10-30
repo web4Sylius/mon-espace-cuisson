@@ -3746,7 +3746,7 @@ switch ($action2) // formulaires
 			
 			//Les caractéristiques et liens d'agencement
 			foreach($caract_array as $key => $value) {
-				if($key{0}.$key{1} == "cl") {
+				if($key[0].$key[1] == "cl") {
 					$tri_key = "lb".substr($key, 2);
 					$contenu_onglet .=  "<th><a href=\"javascript: tritable('$tri_key','".(isset($sens) && $sens == "ASC" && isset($orderby) && $orderby == $tri_key ? 'DESC' : 'ASC')."');\">$value</a></th>";
 					}
@@ -3762,7 +3762,7 @@ switch ($action2) // formulaires
 				$histo_label = array();
 				$stock_label = "";
 				foreach($svalue as $lkey => $lvalue) {
-					if($lkey{0}.$lkey{1} == "lb") {
+					if($lkey[0].$lkey[1] == "lb") {
 						$stock_label .= "<td>".$svalue[$lkey]."</td>";
 						$histo_label[] = $svalue[$lkey];
 						}

@@ -921,7 +921,8 @@ if ($_COOKIE['s']==""){
     $TemplateCde1Bit = "" ;
     if ($action != "delpanier"){
         if ($action2 == "changeqte"){
-        while (list($key, $val) = each($qte)){
+        foreach ((array)$qte as $key => $val){
+            $key = intval($key); $val = intval($val);
             if ($val > "0"){
             $artencours=$DB_site->query_first("select artid from lignepanier WHERE lignepanierid = '".$key."'");
             $DB_site->query("UPDATE lignepanier SET qte='".$val."' WHERE lignepanierid='".$key."'");

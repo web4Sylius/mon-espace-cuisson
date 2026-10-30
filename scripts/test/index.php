@@ -1,4 +1,4 @@
-<?
+<?php 
 require_once __DIR__.'/../../secrets.php';
 
 include("google-api.php");

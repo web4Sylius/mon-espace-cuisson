@@ -1,4 +1,4 @@
-<?
+<?php 
 $prov = "comp" ;
 require "../admin_global.php";
 

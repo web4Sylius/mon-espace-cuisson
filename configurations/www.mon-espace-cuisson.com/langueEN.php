@@ -1,4 +1,4 @@
-<?
+<?php 
 $multilangue[portabledoitcommencer]="Le n° de portable doit être de la forme 06********<br>" ;
 $multilangue[portabledoitetrelong]="Le n° de portable doit être de la forme 06******** (10 caractères)<br>" ;
 

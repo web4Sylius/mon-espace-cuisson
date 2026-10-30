@@ -841,7 +841,7 @@ function toptable($pdf){
             $pdf->SetFillColor(250,200,150);
             $pdf->Cell(30,5,"$multilangue[dateeedition]",1,0,'R',1);
             $pdf->SetFillColor(255,255,255);
-            $dateafftmp=split("-",substr($facture[order_date],0,10));
+            $dateafftmp=explode("-",substr($facture[order_date],0,10));
             $dateaff="$dateafftmp[2]/$dateafftmp[1]/$dateafftmp[0]";
             $pdf->Cell(50,5,"$dateaff",1,0,'C',1);
             $pdf->Ln(5);

@@ -15,7 +15,7 @@ eval( "\$TemplateMenuBas = \"$templatecache[MenuBas]\";" );
 
 if (isset($action) and $action == "mail")
 	{
-	if ($adresse == "" or !ereg("@", $adresse))
+	if ($adresse == "" or strpos($adresse, "@") === false)
 		{
 		$error = "$multilangue[adresseinexistanteouincorrecte]" ;
 		}

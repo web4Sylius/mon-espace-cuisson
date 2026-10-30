@@ -1,4 +1,4 @@
-<?
+<?php 
 require "../admin_global.php";
 require "../fonctions.php";
 
