@@ -295,7 +295,7 @@ HTML;
 		}
 		$listemarque .= "<option value=\"".$marque['marqueid']."\" ".$selected.">".$marque['libelle']."</option>";;
 	}
-	$marque_page = $DB_site2->query_first("SELECT marqueid FROM caracteristique WHERE caractid=".$caract[caractid]);
+	$marque_page = $DB_site2->query_first("SELECT marqueid FROM caracteristique WHERE caractid=".$caract['caractid']);
 
     echo <<<HTML
 
@@ -423,12 +423,12 @@ HTML;
 		      $traductions.="<tr>
 					<td><strong>$flag Libelle $langue :</strong></td>
 					<td>
-					      <input type=\"text\" name=\"libelle".$langue."[".$caractval[caractvalid]."]\" style=\"width:615px; margin: 0;\" value=\"".$caractval['libelle'.$langue]."\">
+					      <input type=\"text\" name=\"libelle".$langue."[".$caractval['caractvalid']."]\" style=\"width:615px; margin: 0;\" value=\"".$caractval['libelle'.$langue]."\">
 					</td>
 				    </tr>
 				    <tr>
 					<td><strong>$flag Description $langue :</strong></td>
-					<td><textarea rows=\"3\" name=\"description".$langue."[".$caractval[caractvalid]."]\" style=\"width:615px;height:40px;\">".$caractval['description'.$langue]."</textarea></td>
+					<td><textarea rows=\"3\" name=\"description".$langue."[".$caractval['caractvalid']."]\" style=\"width:615px;height:40px;\">".$caractval['description'.$langue]."</textarea></td>
 				    </tr>";
 		}
 		

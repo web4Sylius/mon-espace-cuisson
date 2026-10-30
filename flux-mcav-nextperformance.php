@@ -58,13 +58,13 @@ while($article=$DB_site->fetch_array($requete)){
       	  $article['prixht']=$article['prix']/$txtva;
       	  $article['prixconseilleht']=$temp_price['prixconseilleht'];
       }
-      if(round($article[prixconseilleht],1) != round($article[prixht],1)){
+      if(round($article['prixconseilleht'],1) != round($article['prixht'],1)){
         	$retail=round($article['prixconseilleht']*$txtva,2);
         	$discount=round(100-100*$article['prixht']/$article['prixconseilleht']);
      }
      
-     $txtTitle=str_replace("&amp;","&",$mq['libelle'])." ".str_replace("&amp;","&",$article[libelleFR])." ".$article['artcode'];
-     $txtCateg=str_replace("&amp;","&",$article[categorie]);
+     $txtTitle=str_replace("&amp;","&",$mq['libelle'])." ".str_replace("&amp;","&",$article['libelleFR'])." ".$article['artcode'];
+     $txtCateg=str_replace("&amp;","&",$article['categorie']);
      
      print "<product>
                 <id>$article[artid]</id>

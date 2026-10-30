@@ -743,8 +743,8 @@ function navigation($catidfunc , $isarticle=0){
     } else {
         $navigationbit="<a href=\"catalogue.php?catid=$navigation_categorie[catid]\">$navigation_categorie[$libelle]</a>" . $separateur_navigation . $navigationbit;
     }
-    if ($navigation_categorie[parentid]!=0) {
-        navigation($navigation_categorie[parentid]);
+    if ($navigation_categorie['parentid']!=0) {
+        navigation($navigation_categorie['parentid']);
     }
 }
 

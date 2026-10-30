@@ -63,7 +63,7 @@ elseif( $action == "supprimer2" )
 		$rq_positions_suivantes=$DB_site2->query("SELECT promotionid, position FROM promotion WHERE position > $position_page" );
 		while ($rs_positions_suivantes=$DB_site2->fetch_array($rq_positions_suivantes)) 
 			{
-			$position_temp = $rs_positions_suivantes[position] - 1;
+			$position_temp = $rs_positions_suivantes['position'] - 1;
 			$DB_site2->query("UPDATE promotion SET position = '$position_temp' WHERE promotionid = '$rs_positions_suivantes[promotionid]'");
 			}
 		$DB_site2->query("DELETE from promotion WHERE promotionid = '$promotionid'");
@@ -111,7 +111,7 @@ else
 										ORDER BY $libelle" );
 	while( $rs_categorie = $DB_site2->fetch_array( $rq_categorie ) )
 	{
-		$tab_categorie[] = array( $rs_categorie[catid], $rs_categorie[parentid], $rs_categorie[$libelle] );
+		$tab_categorie[] = array( $rs_categorie['catid'], $rs_categorie['parentid'], $rs_categorie[$libelle] );
 	}
 	
 	$nb_categories = $DB_site2->query_first( "select count(*) from categorie" );
@@ -146,8 +146,8 @@ else
 					$rowalt = "td_".getrowbg();
 					while( $rs_promo = $DB_site2->fetch_array( $rq_promo ) )
 					{
-						list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $rs_promo[datedebut] );
-						list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $rs_promo[datefin] );
+						list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $rs_promo['datedebut'] );
+						list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $rs_promo['datefin'] );
 
 						echo "<tr><td class=\"$rowalt\">&nbsp".tabulation_article($rang)."<img src=\"images/fleche.gif\" height=\"14\"> <a href=\"ajout_produit.php?artid=".$rs_categorie_articles[artid]."&prec=modif\">".$rs_categorie_articles[$libelle]."</a></td>
 								  <td class=\"$rowalt\" align=\"center\" nowrap>$jour_debut/$mois_debut/$annee_debut&nbsp;</td>

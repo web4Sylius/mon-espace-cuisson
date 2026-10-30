@@ -105,30 +105,30 @@ elseif ($moyen == 8)
 	$xml = "<?xml version='1.0' encoding='ISO-8859-1'?>" ;
 	$xml .= "<control>" ;
 	$xml .= "<utilisateur type='facturation' qualite='2'>" ;
-	switch ($infosxml[ucivilite])
+	switch ($infosxml['ucivilite'])
 		{
 		case 0:
-			$infosxml[ucivilite] = "monsieur" ;
+			$infosxml['ucivilite'] = "monsieur" ;
 			break;
 		case 1:
-			$infosxml[ucivilite] = "madame" ;
+			$infosxml['ucivilite'] = "madame" ;
 			break;
 		case 2:
-			$infosxml[ucivilite] = "mademoiselle" ;
+			$infosxml['ucivilite'] = "mademoiselle" ;
 			break;
 		}
 		
 		
 		
 		
-	if ($infosxml[upaysid]==57 || $infosxml[upaysid]==181)
-		$infosxml[upays]="France";
+	if ($infosxml['upaysid']==57 || $infosxml['upaysid']==181)
+		$infosxml['upays']="France";
 		
-	if ($infosxml[paysid]==57 || $infosxml[paysid]==181)
-		$infosxml[libelle]="France";	
+	if ($infosxml['paysid']==57 || $infosxml['paysid']==181)
+		$infosxml['libelle']="France";	
 		
 		
-	$xml .= "<nom titre='".$infosxml[ucivilite]."'>$infosxml[unom]</nom>" ;
+	$xml .= "<nom titre='".$infosxml['ucivilite']."'>$infosxml[unom]</nom>" ;
 	$xml .= "<prenom>$infosxml[uprenom]</prenom>" ;
 	$xml .= "<societe>$infosxml[uraisonsociale]</societe>" ;
 	$xml .= "<telhome>$infosxml[utelephone]</telhome>" ;
@@ -153,16 +153,16 @@ elseif ($moyen == 8)
 	$xml .= "</appartement>" ;
 	$xml .= "</adresse>" ;
 	$xml .= "<utilisateur type='livraison' qualite='2'>" ;
-	switch ($infosxml[civilite])
+	switch ($infosxml['civilite'])
 		{
 		case 0:
-			$infosxml[civilite] = "monsieur" ;
+			$infosxml['civilite'] = "monsieur" ;
 			break;
 		case 1:
-			$infosxml[civilite] = "madame" ;
+			$infosxml['civilite'] = "madame" ;
 			break;
 		case 2:
-			$infosxml[civilite] = "mademoiselle" ;
+			$infosxml['civilite'] = "mademoiselle" ;
 			break;
 		}
 		
@@ -170,7 +170,7 @@ elseif ($moyen == 8)
 	
 		
 	
-	$xml .= "<nom titre='".$infosxml[civilite]."'>$infosxml[nom]</nom>" ;
+	$xml .= "<nom titre='".$infosxml['civilite']."'>$infosxml[nom]</nom>" ;
 	$xml .= "<prenom>$infosxml[prenom]</prenom>" ;
 	$xml .= "<societe>$infosxml[raisonsociale]</societe>" ;
 	$xml .= "<telhome>$infosxml[telephone]</telhome>" ;
@@ -212,7 +212,7 @@ elseif ($moyen == 8)
 	if ($nb == 1)
 		{
 		$article = $DB_site->query_first("SELECT sowine FROM article a INNER JOIN lignefacture lf ON (lf.artid = a.artid) WHERE lf.factureid = '$factureid'");
-		if ($article[sowine] == '1')
+		if ($article['sowine'] == '1')
 			$transporteur = "TNT";
 		}
 	$xml .= "<nom>$transporteur</nom>" ;
@@ -221,9 +221,9 @@ elseif ($moyen == 8)
 	$lstartid=array();
 	while ($lignefacture=$DB_site->fetch_array($lignesfactures))
 		{
-		$lignefacture[libelle] = str_replace("\"", " ", $lignefacture[libelle]) ;
-		$lignefacture[libelle] = str_replace("'", " ", $lignefacture[libelle]) ;
-		$xml .= "<produit type='5' ref='".$lignefacture[artcode]."' nb='".$lignefacture[qte]."'>".$lignefacture[libelle]."</produit>" ;
+		$lignefacture['libelle'] = str_replace("\"", " ", $lignefacture['libelle']) ;
+		$lignefacture['libelle'] = str_replace("'", " ", $lignefacture['libelle']) ;
+		$xml .= "<produit type='5' ref='".$lignefacture['artcode']."' nb='".$lignefacture[qte]."'>".$lignefacture['libelle']."</produit>" ;
 		$lstartid[]=$lignefacture['artid'];
 		}
 	$xml .= "</list>" ;
@@ -297,29 +297,29 @@ elseif ($moyen == 9)
 	$xml = "<?xml version='1.0' encoding='ISO-8859-1'?>" ;
 	$xml .= "<control>" ;
 	$xml .= "<utilisateur type='facturation' qualite='2'>" ;
-	switch ($infosxml[ucivilite])
+	switch ($infosxml['ucivilite'])
 		{
 		case 0:
-			$infosxml[ucivilite] = "monsieur" ;
+			$infosxml['ucivilite'] = "monsieur" ;
 			break;
 		case 1:
-			$infosxml[ucivilite] = "madame" ;
+			$infosxml['ucivilite'] = "madame" ;
 			break;
 		case 2:
-			$infosxml[ucivilite] = "mademoiselle" ;
+			$infosxml['ucivilite'] = "mademoiselle" ;
 			break;
 		}
 		
 		
-	if ($infosxml[upaysid]==57 || $infosxml[upaysid]==181)
-		$infosxml[upays]="France";
+	if ($infosxml['upaysid']==57 || $infosxml['upaysid']==181)
+		$infosxml['upays']="France";
 		
-	if ($infosxml[paysid]==57 || $infosxml[paysid]==181)
-		$infosxml[libelle]="France";	
+	if ($infosxml['paysid']==57 || $infosxml['paysid']==181)
+		$infosxml['libelle']="France";	
 		
 		
 	
-	$xml .= "<nom titre='".$infosxml[ucivilite]."'>$infosxml[unom]</nom>" ;
+	$xml .= "<nom titre='".$infosxml['ucivilite']."'>$infosxml[unom]</nom>" ;
 	$xml .= "<prenom>$infosxml[uprenom]</prenom>" ;
 	$xml .= "<societe>$infosxml[uraisonsociale]</societe>" ;
 	$xml .= "<telhome>$infosxml[utelephone]</telhome>" ;
@@ -344,19 +344,19 @@ elseif ($moyen == 9)
 	$xml .= "</appartement>" ;
 	$xml .= "</adresse>" ;
 	$xml .= "<utilisateur type='livraison' qualite='2'>" ;
-	switch ($infosxml[civilite])
+	switch ($infosxml['civilite'])
 		{
 		case 0:
-			$infosxml[civilite] = "monsieur" ;
+			$infosxml['civilite'] = "monsieur" ;
 			break;
 		case 1:
-			$infosxml[civilite] = "madame" ;
+			$infosxml['civilite'] = "madame" ;
 			break;
 		case 2:
-			$infosxml[civilite] = "mademoiselle" ;
+			$infosxml['civilite'] = "mademoiselle" ;
 			break;
 		}
-	$xml .= "<nom titre='".$infosxml[civilite]."'>$infosxml[nom]</nom>" ;
+	$xml .= "<nom titre='".$infosxml['civilite']."'>$infosxml[nom]</nom>" ;
 	$xml .= "<prenom>$infosxml[prenom]</prenom>" ;
 	$xml .= "<societe>$infosxml[raisonsociale]</societe>" ;
 	$xml .= "<telhome>$infosxml[telephone]</telhome>" ;
@@ -399,7 +399,7 @@ elseif ($moyen == 9)
 	if ($nb == 1)
 		{
 		$article = $DB_site->query_first("SELECT sowine FROM article a INNER JOIN lignefacture lf ON (lf.artid = a.artid) WHERE lf.factureid = '$factureid'");
-		if ($article[sowine] == '1')
+		if ($article['sowine'] == '1')
 			$transporteur = "TNT";
 		}
 	$xml .= "<nom>$transporteur</nom>" ;	
@@ -407,9 +407,9 @@ elseif ($moyen == 9)
 	$xml .= "<list nbproduit='".$nb."'>" ;
 	while ($lignefacture=$DB_site->fetch_array($lignesfactures))
 		{
-		$lignefacture[libelle] = str_replace("\"", " ", $lignefacture[libelle]) ;
-		$lignefacture[libelle] = str_replace("'", " ", $lignefacture[libelle]) ;
-		$xml .= "<produit type='5' ref='".$lignefacture[artcode]."' nb='".$lignefacture[qte]."'>".$lignefacture[libelle]."</produit>" ;
+		$lignefacture['libelle'] = str_replace("\"", " ", $lignefacture['libelle']) ;
+		$lignefacture['libelle'] = str_replace("'", " ", $lignefacture['libelle']) ;
+		$xml .= "<produit type='5' ref='".$lignefacture['artcode']."' nb='".$lignefacture[qte]."'>".$lignefacture['libelle']."</produit>" ;
 		$lstartid[]=$lignefacture['artid'];
 		}
 	$xml .= "</list>" ;

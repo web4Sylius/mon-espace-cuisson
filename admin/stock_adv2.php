@@ -345,7 +345,7 @@ function mail_fourn($adv,$preview=false){
 
         if($adv->fields['fournisseur']!="0"){
             $result=$mail->sendmail();
-            $DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info[username]."', `to`='".$mail->destinataire."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', stock_cmd_id=".$facturid);
+            $DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info['username']."', `to`='".$mail->destinataire."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', stock_cmd_id=".$facturid);
             //$DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='".addslashes("Passage de commande à ".$adv->destinataire."<br>".$mail->body)."'");
 
              /// enregistre les pièces jointes :
@@ -479,7 +479,7 @@ function mail_trspt($adv,$preview=false){
         $text.="<p><b>Lieu d'enlèvement :</b><br>";
 
         $fourn=$DB_site2->query_first("SELECT * FROM fournisseur WHERE id='".$stock_cmd->enlevement."'");//var_dump($stock_cmd->enlevement);
-        $text.="$fourn[societe] $fourn[fonction]<br>$fourn[prenom] $fourn[nom]<br>$fourn[adresse1]".($fourn[adresse2]!=""?"<br>$fourn[adresse2]":"")."<br>$fourn[cp] $fourn[ville]<br>Tel $fourn[telephone] / fax $fourn[fax]<br>$fourn[horaires]";
+        $text.="$fourn[societe] $fourn[fonction]<br>$fourn[prenom] $fourn[nom]<br>$fourn[adresse1]".($fourn['adresse2']!=""?"<br>$fourn[adresse2]":"")."<br>$fourn[cp] $fourn[ville]<br>Tel $fourn[telephone] / fax $fourn[fax]<br>$fourn[horaires]";
         
         $text.="</p>";
 
@@ -529,7 +529,7 @@ function mail_trspt($adv,$preview=false){
         $blsls=false;
 
         $livr=$DB_site2->query_first("SELECT * FROM fournisseur INNER JOIN pays USING(paysid) WHERE id='".$stock_cmd->livraison."'");
-        $text.="<br>$livr[raisonsociale]<br>$livr[nom] $livr[prenom]<br>$livr[adresse1]".($livr[adresse2]!=""?"<br>$livr[adresse2]":"")."<br>$livr[cp] $livr[ville]<br>$livr[libelle]<br>$livr[telephone]";
+        $text.="<br>$livr[raisonsociale]<br>$livr[nom] $livr[prenom]<br>$livr[adresse1]".($livr['adresse2']!=""?"<br>$livr[adresse2]":"")."<br>$livr[cp] $livr[ville]<br>$livr[libelle]<br>$livr[telephone]";
 
         if($adv->fields['infotrspt']=="other") $text.="<p><b>Informations pour transporteur</b> : ".stripslashes($adv->fields['othertrsptinfo'])."</p>";
 
@@ -743,7 +743,7 @@ function mail_trspt($adv,$preview=false){
         
         if($adv->fields['typetrspt']!="0"){ //desactivé
             $mail->sendmail();  // on envoie pas de mail s'il n'y a pas de transport
-            $DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info[username]."', `to`='".$mail->destinataire."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', stock_cmd_id=".$facturid);
+            $DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info['username']."', `to`='".$mail->destinataire."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', stock_cmd_id=".$facturid);
             //$DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='".addslashes("Passage de commande à ".$_POST['trsptname']."<br>".$mail->body)."'");
 
             /// enregistre les pièces jointes :

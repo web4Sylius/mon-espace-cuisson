@@ -75,7 +75,7 @@ if (isset($admin_username) && $admin_username != "") {
          exit;
       }else{
         $user_info=$DB_site->query_first("SELECT * FROM parametresgeneraux WHERE username = '$admin_username'");
-        if ($user_info[username] != $admin_username){
+        if ($user_info['username'] != $admin_username){
 			echo "erreur d'autenfication";
 			exit;
 		}
@@ -199,7 +199,7 @@ while($res=$DB_site->fetch_array($req)){
 		}
 	}
 	if($res['artcode']=="ACI-ART910"){
-		$debug=$res[itemid];
+		$debug=$res['itemid'];
 	}
 	echo "<tr class=\"row".$rowalt."\">
 				<td>".$datecde."</td>

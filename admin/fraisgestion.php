@@ -86,7 +86,7 @@ if (isset($action) and $action=="ajouter")
 if (isset($action) and $action=="doajouter") 
 	{
 	echo "<form name=\"formu\" method=\"post\" action=\"fraisgestion.php\">";
-			$requete="insert into fraisgestion (libelleFR,libelleDE,libelleSP,libelleIT,libelleEN,prix) values ('$_POST[libelleFR]','$_POST[libelleDE]','$_POST[libelleSP]','$_POST[libelleIT]','$_POST[libelleEN]',".floatval($_POST[prix]).")";
+			$requete="insert into fraisgestion (libelleFR,libelleDE,libelleSP,libelleIT,libelleEN,prix) values ('$_POST[libelleFR]','$_POST[libelleDE]','$_POST[libelleSP]','$_POST[libelleIT]','$_POST[libelleEN]',".floatval($_POST['prix']).")";
 			$DB_site2->query($requete);
 	echo"<script language=\"javascript\">document.formu.submit();</script>";
 	echo "</form>";

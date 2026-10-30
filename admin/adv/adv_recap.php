@@ -1196,12 +1196,12 @@ function trspt_recap($facturid){
 					$rdv_tel=$livr['telephone'];
 				}
 				$adv_facture=$DB_site2->query_first("SELECT * FROM facture f, pays p WHERE f.paysid=p.paysid AND f.facturid=".$facturid);
-				$rdv_tel=$adv_facture[telephone];
+				$rdv_tel=$adv_facture['telephone'];
 				switch($livrtype){
 					case "sls":
 					case "stock":
 					case "fourn":
-					$text_livr="<br>$livr[societe] $livr[ville]<br>$livr[adresse1]".($livr[adresse2]!=""?"<br>$livr[adresse2]":"")."<br>$livr[cp] $livr[ville]<br>tél: $livr[telephone] fax: $livr[fax]<br>$livr[mail]<br>$livr[horaires]";
+					$text_livr="<br>$livr[societe] $livr[ville]<br>$livr[adresse1]".($livr['adresse2']!=""?"<br>$livr[adresse2]":"")."<br>$livr[cp] $livr[ville]<br>tél: $livr[telephone] fax: $livr[fax]<br>$livr[mail]<br>$livr[horaires]";
 					break;
 
 					case "client":
@@ -1627,7 +1627,7 @@ function sls_recap($facturid){
 				$ligne_article_envoi=$DB_site2->query("SELECT a.artcode_eurocave,lf.libelle AS lib,m.libelle AS marque, efl.qte, efl.paht, efl.ecopart, efl.outdate, efl.indate FROM article a INNER JOIN article_marque am ON(am.artid=a.artid) INNER JOIN marque m ON(m.marqueid=am.marqueid) INNER JOIN lignefacture lf ON lf.artid = a.artid INNER JOIN envoi_fournisseur_ligne efl ON efl.ligne_facture_id = lf.lignefactureid WHERE efl.efid=".$envoi['id']." AND efl.type='sls' AND facture!='STOCK'");
 
 				$adv_facture=$DB_site2->query_first("SELECT * FROM facture f, pays p WHERE f.paysid=p.paysid AND f.facturid=".$facturid);
-				$text_livr=($adv_facture['raisonsociale']!==''?$adv_facture[raisonsociale].'<br>':'')."$adv_facture[nom] $adv_facture[prenom]<br>$adv_facture[adresse]<br>$adv_facture[codepostal] $adv_facture[ville]<br>$adv_facture[libelle]<br>$adv_facture[telephone]<br>";
+				$text_livr=($adv_facture['raisonsociale']!==''?$adv_facture['raisonsociale'].'<br>':'')."$adv_facture[nom] $adv_facture[prenom]<br>$adv_facture[adresse]<br>$adv_facture[codepostal] $adv_facture[ville]<br>$adv_facture[libelle]<br>$adv_facture[telephone]<br>";
 
 				switch($f->modelivraison){
 					case 1:

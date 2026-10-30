@@ -53,11 +53,11 @@ echo "<h1>Liste des jours fériés</h1>
 				</td>
 			</tr>";
 while($jour_ferie=$DB_site2->fetch_array($jour_feries)){
-	$explode = explode("-", $jour_ferie[dateline]);
+	$explode = explode("-", $jour_ferie['dateline']);
 	$dateline_fr=$explode[2].'/'.$explode[1].'/'.$explode[0];
 	echo "<tr>
 			<td align=\"center\">".$dateline_fr."</td>
-			<td><a href=\"jour_ferie.php?action=delete&jour_ferieid=".$jour_ferie[jour_ferieid]."\">supprimer</a></td>
+			<td><a href=\"jour_ferie.php?action=delete&jour_ferieid=".$jour_ferie['jour_ferieid']."\">supprimer</a></td>
 		</tr>";
 }
 			

@@ -829,7 +829,7 @@ $rq = $DB_site2->query($sql);
           $nb_contact    = 0;
           while($row = $DB_site2->fetch_array($rq)){ 
                
-			   $liste_ids.=",".$row[userid];
+			   $liste_ids.=",".$row['userid'];
 			   
                $cpt++;
                

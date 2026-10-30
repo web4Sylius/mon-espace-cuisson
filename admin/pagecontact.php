@@ -344,7 +344,7 @@ if (isset($action) and $action == "formu")
 				$valeurs=$DB_site2->query("SELECT * from formulaire_champ_valeur where formulairechampid = '$champid'");
 				while ($valeur=$DB_site2->fetch_array($valeurs))
 					{
-					$num = $valeur[formulairechampvaleurid] ;
+					$num = $valeur['formulairechampvaleurid'] ;
 					$lib = "val_chp$num" ;
 					$DB_site2->query("update formulaire_champ_valeur set valeur = '$_POST[$lib]' where formulairechampvaleurid = '$num'");
 					echo "<font class=\"cost\">Champ modifié</font><br>" ;
@@ -385,7 +385,7 @@ if (isset($action) and $action == "formu")
 			{
 			while ($valeur=$DB_site2->fetch_array($valeurs))
 				{
-				$num = $valeur[formulairechampvaleurid] ;
+				$num = $valeur['formulairechampvaleurid'] ;
 				$affich_valeurs .= "
 				<tr><td align=\"right\">$valeur[description] : </td><td align=\"left\"><input type=\"text\" name=\"val_chp$num\" value=\"$valeur[valeur]\"></td></tr>" ;
 				}
@@ -394,7 +394,7 @@ if (isset($action) and $action == "formu")
 			{
 			while ($valeur=$DB_site2->fetch_array($valeurs))
 				{
-				$num = $valeur[formulairechampvaleurid] ;
+				$num = $valeur['formulairechampvaleurid'] ;
 				$affich_valeurs .= "<tr><td align=\"right\">Valeur : </td><td align=\"left\"><input type=\"text\" name=\"val_chp$num\" value=\"$valeur[description]\"> 
 				<a href=\"pagecontact.php?action=formu&action2=suppr_val&valid=$valeur[formulairechampvaleurid]&champid=$champid\">Supprimer</a></td></tr>" ;
 				}
@@ -404,7 +404,7 @@ if (isset($action) and $action == "formu")
 			(Cliquez sur modifier pour ajouter les valeurs.)" ;
 			}
 		$affich_valeurs .= "</table>" ;
-		switch ($champ[obligatoire])
+		switch ($champ['obligatoire'])
 			{
 			case "0":
 				$checked0 = "checked" ;
@@ -481,7 +481,7 @@ if (isset($action) and $action == "formu")
 		$rq_positions_suivantes = $DB_site2->query("SELECT formulairechampid, position FROM formulaire_champ WHERE position > $position_page" );
 		while ($rs_positions_suivantes=$DB_site2->fetch_array($rq_positions_suivantes)) 
 			{
-			$position_temp = $rs_positions_suivantes[position] - 1;
+			$position_temp = $rs_positions_suivantes['position'] - 1;
 			$DB_site2->query("UPDATE formulaire_champ SET position = '$position_temp' WHERE formulairechampid = '$rs_positions_suivantes[formulairechampid]'");
 			}
 		$DB_site2->query("delete from formulaire_champ_valeur where formulairechampid = '$champid'");
@@ -497,7 +497,7 @@ if (isset($action) and $action == "formu")
 		$liste_types = "" ;
 		while ($type_champ=$DB_site2->fetch_array($types_champs))
 			{
-			if ($type_champ[formulairetypechampid] == $champ[type])
+			if ($type_champ['formulairetypechampid'] == $champ[type])
 				{
 				$liste_types .= "<option value=\"$type_champ[formulairetypechampid]\" selected>$type_champ[nom]</option>" ;
 				}
@@ -586,13 +586,13 @@ if (isset($action) and $action == "formu")
 										<a href=\"pagecontact.php?action=formu&action2=down&champid=$champ[formulairechampid]\">
 										<img src=\"images/descendre.gif\" alt=\"Descendre\" title=\"Descendre\" height=\"7\" border=\"0\"></a>";
 					}
-				switch ($champ[obligatoire])
+				switch ($champ['obligatoire'])
 					{
 					case "0":
-						$champ[obligatoire] = "Non" ;
+						$champ['obligatoire'] = "Non" ;
 						break ;
 					case "1":
-						$champ[obligatoire] = "Oui" ;
+						$champ['obligatoire'] = "Oui" ;
 						break ;
 					}
 				echo "<tr>

@@ -26,12 +26,12 @@ while ($article=$DB_site2->fetch_array($articles))
 	echo "<b>$article[artid] ==></b> TTC avant:".$article[prix]." après:".$newprix."<br>";
 	$DB_site2->query("UPDATE article SET prix = '$newprix', prixht = '$newprixht' WHERE artid = '$article[artid]'");*/
 
-	$newprixht = $article[prixconseilleht];
+	$newprixht = $article['prixconseilleht'];
 	$newprixht = number_format($newprixht, 2, '.', '');
-	echo "<b>$article[artid] ==></b> HT avant:".$article[prixht]." après:".$newprixht."<br>";
+	echo "<b>$article[artid] ==></b> HT avant:".$article['prixht']." après:".$newprixht."<br>";
 	$newprix = $newprixht * 1.196;
 	$newprix = number_format($newprix, 2, '.', '');
-	echo "<b>$article[artid] ==></b> TTC avant:".$article[prix]." après:".$newprix."<br>";
+	echo "<b>$article[artid] ==></b> TTC avant:".$article['prix']." après:".$newprix."<br>";
 	$DB_site2->query("UPDATE article SET prix = '$newprix', prixht = '$newprixht' WHERE artid = '$article[artid]'");
 	
 	}

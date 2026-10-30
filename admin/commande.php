@@ -52,7 +52,7 @@ if (isset($action) and $action == "etape5") // équivaut à cde3.php
 	{
 	$facture=$DB_site2->query_first("SELECT * FROM facture WHERE facturid = '$factureid'");
 	$prix_contre_remboursement=$DB_site2->query_first("SELECT prix_contre_remboursement FROM parametresgeneraux");
-	if ($facture[moyenid] == "3")
+	if ($facture['moyenid'] == "3")
 		{
 		$DB_site2->query("UPDATE facture SET prixport = $prixport - $prix_contre_remboursement[0] WHERE facturid = '$facture[facturid]'");
 		}
@@ -61,44 +61,44 @@ if (isset($action) and $action == "etape5") // équivaut à cde3.php
 	$totalmontant = 0 ;
 	while ($lignefacture=$DB_site->fetch_array($lignefactures))
 		{
-		$totalmontant += $lignefacture[prix] * $lignefacture[qte] ;
+		$totalmontant += $lignefacture['prix'] * $lignefacture[qte] ;
 		}
 	// remise sut tout catalogue 
 	if (in_array ("106", $modules))
 		{
-		if ($facture[pctremise] != 0)
+		if ($facture['pctremise'] != 0)
 			{
-			$fmttremise = $totalmontant * ($facture[pctremise] / 100) ;
+			$fmttremise = $totalmontant * ($facture['pctremise'] / 100) ;
 			$totalmontant -= $fmttremise ;
 			}
 		}
 	// remise
 	if (in_array ("3", $modules))
 		{
-		if ($facture[montantremise] != 0)
+		if ($facture['montantremise'] != 0)
 			{
-			$totalmontant -= $facture[montantremise] ;
+			$totalmontant -= $facture['montantremise'] ;
 			}
 		} 
 	// Bons de réduction 
 	if (in_array("13", $modules))
 		{
-		if ($facture[montantcadeau] != 0)
+		if ($facture['montantcadeau'] != 0)
 			{
-			$totalmontant -= $facture[montantcadeau] ;
+			$totalmontant -= $facture['montantcadeau'] ;
 			}
 		}
 	// frais de port
-	$totalmontant += $facture[prixport] ;
+	$totalmontant += $facture['prixport'] ;
 	// frais de gestion
-	$totalmontant += $facture[prixgestion] ;
+	$totalmontant += $facture['prixgestion'] ;
 	// selon moyen
 	if (in_array("2" , $modules)) // paiements par CB ...
 		{
 		if ($moyen == "1")
 			{
 			$DB_site->query("UPDATE facture SET moyenid = '1', valide = '0' WHERE facturid = '$facture[facturid]'");
-			$facturid = $facture[facturid] ;
+			$facturid = $facture['facturid'] ;
 			include ($pagepaiement) ;
 			echo "<blockquote><strong>Règelement par Carte Bleue</strong></blockquote>
 				<table><tr><td align=\"center\">$pagepaiementcb</td></tr></table>" ;
@@ -111,9 +111,9 @@ if (isset($action) and $action == "etape5") // équivaut à cde3.php
 			{
 			$totalmontant = number_format($totalmontant, 2, ',', ' ');
 			}
-		while (strlen($facture[facturid] < 8))
+		while (strlen($facture['facturid'] < 8))
 			{
-			$facture[facturid] = $facture[facturid]."0" ;
+			$facture['facturid'] = $facture['facturid']."0" ;
 			}
 		if ($moyen == "2") // cheque
 			{
@@ -228,13 +228,13 @@ if (isset($action) and $action == "etape5") // équivaut à cde3.php
 		if ($moyen == "5") // virement
 			{
 			$DB_site->query("UPDATE facture SET moyenid = '5', valide = '0' WHERE facturid = '$facture[facturid]'");
-			$IBAN1 = substr($coord_marchand[IBAN], 0, 4) ;
-			$IBAN2 = substr($coord_marchand[IBAN], 4, 4) ;
-			$IBAN3 = substr($coord_marchand[IBAN], 8, 4) ;
-			$IBAN4 = substr($coord_marchand[IBAN], 12, 4) ;
-			$IBAN5 = substr($coord_marchand[IBAN], 16, 4) ;
-			$IBAN6 = substr($coord_marchand[IBAN], 20, 4) ;
-			$IBAN7 = substr($coord_marchand[IBAN], 24, 3) ;
+			$IBAN1 = substr($coord_marchand['IBAN'], 0, 4) ;
+			$IBAN2 = substr($coord_marchand['IBAN'], 4, 4) ;
+			$IBAN3 = substr($coord_marchand['IBAN'], 8, 4) ;
+			$IBAN4 = substr($coord_marchand['IBAN'], 12, 4) ;
+			$IBAN5 = substr($coord_marchand['IBAN'], 16, 4) ;
+			$IBAN6 = substr($coord_marchand['IBAN'], 20, 4) ;
+			$IBAN7 = substr($coord_marchand['IBAN'], 24, 3) ;
 			echo "<blockquote><strong>Règlement par virement bancaire</strong></blockquote>
 			<table><tr><td align=\"center\">Veuillez réaliser un virement de <font color=red size=3>$totalmontant €</font>.<br><br>
 			Utilisez les coordonnées bancaires ci-dessous :<br><br>Depuis la France <font color=red size=3> $coord_marchand[RIBetab] | $coord_marchand[RIBguichet] | $coord_marchand[RIBcompte] | $coord_marchand[RIBrice]</font><br><br>
@@ -345,7 +345,7 @@ if (isset($action) and $action == "etape4")
 		// insertion dans le panier
 		$datepanier = date('Y-m-d') ;
 		$panier=$DB_site2->query_first("SELECT * FROM panier where sessionid = '$s'");
-		$temppanierid = $panier[panierid] ;
+		$temppanierid = $panier['panierid'] ;
 		$DB_site2->query("INSERT IGNORE INTO panier (sessionid, datepanier, prixtva, prixgestion, affilieid) VALUES ('$s', '$datepanier', 0, 0, 0)");
 		if ($temppanierid == "") 
 			{
@@ -365,19 +365,19 @@ if (isset($action) and $action == "etape4")
 												caracteristiquevaleur cv where c.caractid = cv.caractid and cv.caractvalid = '$valeur'");
 				$texte .= "$valeurs[libc] = $valeurs[libcv] ; " ;
 				$diff=$DB_site2->query_first("select differenceprix from article_caractval where artid = '$artid' and caractvalid = '$valeur'");
-				$difference_de_prix += $diff[differenceprix] ;
+				$difference_de_prix += $diff['differenceprix'] ;
 				}
 			}
 		$datejour=date("Y-m-d") ;
 		$articlepromo=$DB_site2->query_first("SELECT * FROM promotion WHERE artid = '$artid' and datedebut <= '$datejour' and datefin > '$datejour'");
-		if ($articlepromo[promotionid] != "")
+		if ($articlepromo['promotionid'] != "")
 			{
-			$prix_article = $articlepromo[prix] ;
+			$prix_article = $articlepromo['prix'] ;
 			}
 		else
 			{
 			$px_article=$DB_site2->query_first("SELECT prix FROM article WHERE artid = '$artid'");
-			$prix_article = $px_article[prix] ;
+			$prix_article = $px_article['prix'] ;
 			}
 		$prix_article += $difference_de_prix ;
 		$texte .= "Prix = $prix_article € ; " ;
@@ -387,8 +387,8 @@ if (isset($action) and $action == "etape4")
 		$erreur = "" ;
 		while ($champ=$DB_site2->fetch_array($champs))
 			{
-			$nom_champ = $champ[nom] ;
-			if ($champ[obligatoire] == '1' and ${$nom_champ} == "")
+			$nom_champ = $champ['nom'] ;
+			if ($champ['obligatoire'] == '1' and ${$nom_champ} == "")
 				{
 				$erreur .= "Le champ <strong>$champ[libelle]</strong> est obligatoire.<br>" ;
 				}
@@ -775,7 +775,7 @@ if (isset($action) and $action == "etape4")
 		if ($erreur != "")
 			{ // on vide le panier
 			$panier=$DB_site2->query_first("SELECT * FROM panier where sessionid = '$s'");
-			if ($panier[panierid] != "")
+			if ($panier['panierid'] != "")
 				{
 				$DB_site2->query("DELETE FROM lignepanier WHERE lignepanierid = '$templignepanierid'");
 				$DB_site2->query("DELETE FROM lignepaniercaracteristique WHERE lignepanierid = '$templignepanierid'");
@@ -820,10 +820,10 @@ if (isset($action) and $action == "etape4")
 						$fraisgestion=0;
 						}
 					$fraisgestions=$DB_site2->query_first("SELECT prixgestion, prixtva FROM panier WHERE sessionid = '$s'");
-					if ($fraisgestions[prixgestion] == $fraisgestion and $fraisgestions[prixtva] == $prixtva)
+					if ($fraisgestions['prixgestion'] == $fraisgestion and $fraisgestions['prixtva'] == $prixtva)
 						{
-						$fraisgestion = $fraisgestions[prixgestion] ;
-						$prixtva = $fraisgestions[prixtva] ;
+						$fraisgestion = $fraisgestions['prixgestion'] ;
+						$prixtva = $fraisgestions['prixtva'] ;
 						}
 					else
 						{
@@ -832,30 +832,30 @@ if (isset($action) and $action == "etape4")
 					$poidtotal = 0 ;
 					// infos user
 					$user_info=$DB_site2->query_first("SELECT * FROM  utilisateur WHERE userid = '$clientid'");
-					$user_info[nom] = addslashes($user_info[nom]) ;
-					$user_info[prenom] = addslashes($user_info[prenom]) ;
-					$user_info[codepostal] = addslashes($user_info[codepostal]) ;
-					$user_info[ville] = addslashes($user_info[ville]) ;
-					$user_info[adresse] = addslashes($user_info[adresse]) ;
-					$user_info[raisonsociale] = addslashes($user_info[raisonsociale]) ;
-					$user_info[telephone] = addslashes($user_info[telephone]) ;
+					$user_info['nom'] = addslashes($user_info['nom']) ;
+					$user_info['prenom'] = addslashes($user_info['prenom']) ;
+					$user_info['codepostal'] = addslashes($user_info['codepostal']) ;
+					$user_info['ville'] = addslashes($user_info['ville']) ;
+					$user_info['adresse'] = addslashes($user_info['adresse']) ;
+					$user_info['raisonsociale'] = addslashes($user_info['raisonsociale']) ;
+					$user_info['telephone'] = addslashes($user_info['telephone']) ;
 					// taux de TVA
 					$taux=$DB_site2->query_first("SELECT port, gestion, TVAtauxnormal FROM pays WHERE paysid = '$user_info[paysid]'");
-					if ($taux[port] == '0')
+					if ($taux['port'] == '0')
 						{
 						$tauxport = 0 ;
 						}
 					else
 						{
-						$tauxport = $taux[TVAtauxnormal] ;
+						$tauxport = $taux['TVAtauxnormal'] ;
 						}
-					if ($taux[gestion] == '0')
+					if ($taux['gestion'] == '0')
 						{
 						$tauxgestion = 0 ;
 						}
 					else
 						{
-						$tauxgestion = $taux[TVAtauxnormal] ;
+						$tauxgestion = $taux['TVAtauxnormal'] ;
 						}
 					// insertion dans facture
 					$DB_site2->query("INSERT INTO facture (userid, datefacture, prixport, civilite, nom, prenom, codepostal, adresse, ville,
@@ -866,7 +866,7 @@ if (isset($action) and $action == "etape4")
 					$factureid=$DB_site2->insert_id();
 					// transfert de panier vers facture
 					$panier=$DB_site2->query_first("SELECT * FROM panier where sessionid = '$s'");
-					if ($panier[panierid] != "")
+					if ($panier['panierid'] != "")
 						{
 						$TemplateCde2Bit = "" ;
 						$lignepaniertmps=$DB_site2->query("SELECT l.qte, a.artid, a.libelleFR, a.libelleDE, a.libelleEN, a.libelleIT, 
@@ -876,24 +876,24 @@ if (isset($action) and $action == "etape4")
 						$taux=$DB_site2->query_first("SELECT TVAtauxnormal, TVAtauxreduit FROM pays WHERE paysid = '$user_info[paysid]'");
 						while ($lignepaniertmp=$DB_site2->fetch_array($lignepaniertmps))
 							{
-							if ($lignepaniertmp[promotionid] != NULL)
+							if ($lignepaniertmp['promotionid'] != NULL)
 								{	
 								$rs_promo=$DB_site2->query_first("SELECT prix FROM promotion WHERE promotionid = '$lignepaniertmp[promotionid]'
 														AND datedebut <= '" .date( "Y-m-d" ). "' AND datefin > '" .date( "Y-m-d" ). "'");
-								if ($rs_promo[prix] != "")
+								if ($rs_promo['prix'] != "")
 									{	// Article en cours de Promotion
-									$lignepaniertmp[prix] = $rs_promo[prix];
+									$lignepaniertmp['prix'] = $rs_promo['prix'];
 									}
 								}
 							$poidtotal += $lignepaniertmp[9] * $lignepaniertmp[0] ;
 							$lignepaniertmp[2] = addslashes($lignepaniertmp[2]) ;
-							if ($lignepaniertmp[tauxchoisi] == '1')
+							if ($lignepaniertmp['tauxchoisi'] == '1')
 								{
-								$tauxarticle = $taux[TVAtauxnormal] ;
+								$tauxarticle = $taux['TVAtauxnormal'] ;
 								}
-							elseif ($lignepaniertmp[tauxchoisi] == '2')
+							elseif ($lignepaniertmp['tauxchoisi'] == '2')
 								{
-								$tauxarticle = $taux[TVAtauxreduit] ;
+								$tauxarticle = $taux['TVAtauxreduit'] ;
 								}
 							else
 								{
@@ -911,15 +911,15 @@ if (isset($action) and $action == "etape4")
 							$cde2_caracteristique = "" ;
 							while ($rs_lignepaniercaracteristique=$DB_site2->fetch_array($rq_lignepaniercaracteristique))
 								{	
-								$rs_lignepaniercaracteristique[libelle_caract] = addslashes($rs_lignepaniercaracteristique[libelle_caract]) ;
-								$rs_lignepaniercaracteristique[libelle_caractval] = addslashes($rs_lignepaniercaracteristique[libelle_caractval]) ;
+								$rs_lignepaniercaracteristique['libelle_caract'] = addslashes($rs_lignepaniercaracteristique['libelle_caract']) ;
+								$rs_lignepaniercaracteristique['libelle_caractval'] = addslashes($rs_lignepaniercaracteristique['libelle_caractval']) ;
 								$cde2_caracteristique .= "$rs_lignepaniercaracteristique[libelle_caract] : $rs_lignepaniercaracteristique[libelle_caractval]<br>" ;
 								$diff=$DB_site2->query_first("select differenceprix from article_caractval where caractvalid = 
 								'$rs_lignepaniercaracteristique[caractvalid]' and artid = '$lignepaniertmp[artid]'") ;
-								if ($diff[differenceprix] != 0)
+								if ($diff['differenceprix'] != 0)
 									{
 									$DB_site2->query("UPDATE lignefacture set prix = prix + '$diff[differenceprix]' where lignefactureid = '$lignefactureid'");
-									$lignepaniertmp[prix] += $diff[differenceprix] ;
+									$lignepaniertmp['prix'] += $diff['differenceprix'] ;
 									}
 								$DB_site2->query("INSERT IGNORE INTO lignefacturecaracteristique (lignefactureid, libelle_caract, 
 								libelle_caractval) VALUES ('$lignefactureid', '$rs_lignepaniercaracteristique[libelle_caract]', 
@@ -942,9 +942,9 @@ if (isset($action) and $action == "etape4")
 											{
 										echo "fslm" ;
 											$folder = "/home/boutique/www/configurations/$host/images/uploads" ;
-											$fichier = $monchamp[0].".".$champaisi[valeur] ;
+											$fichier = $monchamp[0].".".$champaisi['valeur'] ;
 											echo "<bR> $folder"."/"."$fichier" ;
-											$fichier2 = $insertid.".".$champaisi[valeur] ;
+											$fichier2 = $insertid.".".$champaisi['valeur'] ;
 											if (file_exists($folder."/".$fichier)) // article
 												{
 												rename ($folder."/".$fichier, $folder."/".$fichier2) ;
@@ -958,7 +958,7 @@ if (isset($action) and $action == "etape4")
 							$prixtotalpanier += $prixligne ;
 							$prixtvaligne = $prixligne - ($prixligne / (1 + ($tauxarticle/100))) ;
 							$prixtva += $prixtvaligne ;
-							$lignepaniertmp[prix] = number_format($lignepaniertmp[prix], 2, ',', ' ');
+							$lignepaniertmp['prix'] = number_format($lignepaniertmp['prix'], 2, ',', ' ');
 							$prixligne = number_format($prixligne, 2, ',', ' ');
 							$TemplateCde2Bit.="
 							<tr>
@@ -976,14 +976,14 @@ if (isset($action) and $action == "etape4")
 																   WHERE userid = '$user_info[userid]' AND facturid = '$factureid'" );
 					// frais de port		
 					$mini_gratuit=$DB_site2->query_first("SELECT  minimum_frais_port_gratuit FROM parametresgeneraux") ;
-					$minimum_frais_port_gratuit = $mini_gratuit[minimum_frais_port_gratuit] ;
+					$minimum_frais_port_gratuit = $mini_gratuit['minimum_frais_port_gratuit'] ;
 					if (($minimum_frais_port_gratuit != '-1') and ($prixtotalpanier >= $minimum_frais_port_gratuit)) // si on paie pas de frais de port !!
 						{
 						$fraisport = " : Gratuit" ;
 						$DB_site2->query("UPDATE facture SET prixport = '0' WHERE facturid = '$factureid'");
 						$prix_contre_remboursement=$DB_site2->query_first("SELECT prix_contre_remboursement FROM parametresgeneraux");
-						$pays[libelle] = "Gratuit : Total > $minimum_frais_port_gratuit €";
-						$fraisport[prix] = "0";
+						$pays['libelle'] = "Gratuit : Total > $minimum_frais_port_gratuit €";
+						$fraisport['prix'] = "0";
 						}
 					else // on fait tout le traitement des frais de port !!
 						{
@@ -991,17 +991,17 @@ if (isset($action) and $action == "etape4")
 															and paysid = '$rs_facture_coordonnees[paysid]'");
 						if ($fraisport[0] == "")
 							{	// On ne livre pas dans ce pays
-							$pays[libelle] = "en sus";
-							$fraisport[prix] = "0";
+							$pays['libelle'] = "en sus";
+							$fraisport['prix'] = "0";
 							$pasdefraisdeport = "oui" ;
 							}
 						else
 							{
 							$pays=$DB_site2->query_first("SELECT * FROM pays WHERE paysid = '$rs_facture_coordonnees[paysid]'");
 							$DB_site2->query("UPDATE facture SET prixport = '$fraisport[prix]' WHERE facturid = '$factureid'");
-							$prixtotalpanier += $fraisport[prix];
+							$prixtotalpanier += $fraisport['prix'];
 							$prix_contre_remboursement=$DB_site2->query_first("SELECT prix_contre_remboursement FROM parametresgeneraux");
-							$fraisport[prix] = number_format($fraisport[prix], 2, ',', ' ');
+							$fraisport['prix'] = number_format($fraisport['prix'], 2, ',', ' ');
 							}
 						}
 					// moyens de paiement	
@@ -1013,27 +1013,27 @@ if (isset($action) and $action == "etape4")
 							{
 							while ($moyen_paiement=$DB_site2->fetch_array($moyens_paiement))
 								{
-								if (in_array("2", $modules) and $moyen_paiement[moyenid] == '1')
+								if (in_array("2", $modules) and $moyen_paiement['moyenid'] == '1')
 									{
 									$mtt_max=$DB_site2->query_first("select montant_max_cb from parametresgeneraux");
-									if ($mtt_max[montant_max_cb] == '0' or ($mtt_max[montant_max_cb] != '0' and $prixtotalpanier_point < $mtt_max[montant_max_cb])) // pas de montant max
+									if ($mtt_max['montant_max_cb'] == '0' or ($mtt_max['montant_max_cb'] != '0' and $prixtotalpanier_point < $mtt_max['montant_max_cb'])) // pas de montant max
 										{
 										$moyens_affiches .= "<tr><td><input type=\"radio\" name=\"moyen\" value=\"$moyen_paiement[moyenid]\"> $moyen_paiement[libelleFR]</td></tr>" ;
 										}
 									}
 								else
 									{
-									if ($moyen_paiement[moyenid] == '6') //paypal
+									if ($moyen_paiement['moyenid'] == '6') //paypal
 										{
 										$paypal_gros_mtts=$DB_site2->query_first("select paypal_sup from parametresgeneraux");
-										if ($paypal_gros_mtts[paypal_sup] == '1' or ($paypal_gros_mtts[paypal_sup] == '0' and $prixtotalpanier < '750')) // mtt max 750 €
+										if ($paypal_gros_mtts['paypal_sup'] == '1' or ($paypal_gros_mtts['paypal_sup'] == '0' and $prixtotalpanier < '750')) // mtt max 750 €
 											{
 											$moyens_affiches .= "<tr><td><input type=\"radio\" name=\"moyen\" value=\"$moyen_paiement[moyenid]\"> $moyen_paiement[libelleFR]</td></tr>" ;
 											}
 										}
 									else
 										{
-										if ($moyen_paiement[moyenid] == '3') // contre remboursement
+										if ($moyen_paiement['moyenid'] == '3') // contre remboursement
 											{
 											$supplement = "" ;
 											$prix_cr=$DB_site2->query_first("select prix_contre_remboursement from parametresgeneraux");
@@ -1084,30 +1084,30 @@ if (isset($action) and $action == "etape4")
 								{
 								$rayon=$DB_site2->query_first("SELECT catid from remisecategorie where remiseid = '$remise[remiseid]'");
 								$article=$DB_site2->query_first("SELECT * from article a, remisearticle ra where a.artid = ra.artid and ra.remiseid = '$remise[remiseid]'");
-								if (($rayon[catid] == "") and ($article[artid] == "")) // remise sans article ni catégorie
+								if (($rayon['catid'] == "") and ($article[artid] == "")) // remise sans article ni catégorie
 									{
-									switch ($remise[typeremise])
+									switch ($remise['typeremise'])
 										{
 										case 0: // remise sur le poids
 											$poids=$DB_site2->query_first("SELECT SUM(poid) as poids_tot FROM lignefacture lf, article a WHERE lf.artid = a.artid and lf.factureid = '$factureid'");
-											if ($poids[poids_tot] > $remise[valeur])
+											if ($poids['poids_tot'] > $remise['valeur'])
 												{
-												$remise0[$i] = ($total_facture[0] *($remise[pctremise] / 100)) ;
+												$remise0[$i] = ($total_facture[0] *($remise['pctremise'] / 100)) ;
 												$remise0[$i] .= "-Remise : poids > $remise[valeur] grammes) :--$remise[remiseid]" ;
 												}
 											break;
 										case 1: // remise sur le prix
-											if ($total_facture[0] > $remise[valeur])
+											if ($total_facture[0] > $remise['valeur'])
 												{
-												$remise1[$i] = $total_facture[0] *($remise[pctremise] / 100) ;
+												$remise1[$i] = $total_facture[0] *($remise['pctremise'] / 100) ;
 												$remise1[$i] .= "-Remise : prix > $remise[valeur] €) :--$remise[remiseid]" ;
 												}
 											break;
 										case 2: // remise sur la quantité
 											$qte = $DB_site2 -> query_first ("SELECT SUM(qte) nb FROM lignefacture WHERE factureid = '$factureid'" );
-											if ($qte[nb] > $remise[valeur])
+											if ($qte['nb'] > $remise['valeur'])
 												{
-												$remise2[$i] = $total_facture[0] *($remise[pctremise] / 100) ;
+												$remise2[$i] = $total_facture[0] *($remise['pctremise'] / 100) ;
 												$remise2[$i] .= "-Remise : quantité > $remise[valeur]) :--$remise[remiseid]" ;
 												}
 											break;
@@ -1115,7 +1115,7 @@ if (isset($action) and $action == "etape4")
 									} // fin if remise sans article ni catégorie
 								elseif ($article[artid] != "") // remise sur un article
 									{
-									switch ($remise[typeremise])
+									switch ($remise['typeremise'])
 										{
 										case 0: // remise sur le poids
 											$facture_lignes = $DB_site2 -> query("select * from lignefacture where factureid = '$factureid'") ;
@@ -1126,14 +1126,14 @@ if (isset($action) and $action == "etape4")
 												if ($facture_ligne[artid] == $article[artid])
 													{
 													$poids=$DB_site2->query_first("SELECT (a.poid * lf.qte) as poids_tot FROM lignefacture lf, article a WHERE lf.artid = a.artid and a.artid = '$article[artid]' and lf.lignefactureid = '$facture_ligne[lignefactureid]'");
-													$poids_tot_article+=$poids[poids_tot] ;
+													$poids_tot_article+=$poids['poids_tot'] ;
 													$prix = $DB_site2 -> query_first("SELECT (prix * qte) as prix_tot FROM lignefacture WHERE artid = '$article[artid]' and lignefactureid = '$facture_ligne[lignefactureid]'");
-													$prix_tot_article += $prix[prix_tot] ;
+													$prix_tot_article += $prix['prix_tot'] ;
 													}
 												}
-											if ($poids_tot_article > $remise[valeur])
+											if ($poids_tot_article > $remise['valeur'])
 												{
-												$remise0[$i] = ($prix_tot_article *($remise[pctremise] / 100)) ;
+												$remise0[$i] = ($prix_tot_article *($remise['pctremise'] / 100)) ;
 												$remise0[$i] .= "-Remise : poids pour l'article] $article[libelleFR] > $remise[valeur] grammes) :--$remise[remiseid]" ;
 												}
 											break;
@@ -1145,12 +1145,12 @@ if (isset($action) and $action == "etape4")
 												if ($facture_ligne[artid] == $article[artid])
 													{
 													$prix = $DB_site2 -> query_first("SELECT (prix * qte) as prix_tot FROM lignefacture WHERE artid = '$article[artid]' and lignefactureid = '$facture_ligne[lignefactureid]'");
-													$prix_tot_article += $prix[prix_tot] ;
+													$prix_tot_article += $prix['prix_tot'] ;
 													}
 												}
-											if ($prix_tot_article > $remise[valeur])
+											if ($prix_tot_article > $remise['valeur'])
 												{
-												$remise1[$i] = $prix_tot_article *($remise[pctremise] / 100) ;
+												$remise1[$i] = $prix_tot_article *($remise['pctremise'] / 100) ;
 												$remise1[$i] .= "-Remise : prix pour l'article $article[libelleFR] > $remise[valeur] €) :--$remise[remiseid]" ;
 												}
 											break;
@@ -1163,23 +1163,23 @@ if (isset($action) and $action == "etape4")
 												if ($facture_ligne[artid] == $article[artid])
 													{
 													$qte=$DB_site2->query_first("SELECT SUM(qte) as qte_tot FROM lignefacture WHERE artid = '$article[artid]' and lignefactureid = '$facture_ligne[lignefactureid]'" );
-													$qte_tot_article += $qte[qte_tot] ;
+													$qte_tot_article += $qte['qte_tot'] ;
 													$prix = $DB_site2 -> query_first("SELECT (prix * qte) as prix_tot FROM lignefacture WHERE artid = '$article[artid]' and lignefactureid = '$facture_ligne[lignefactureid]'");
-													$prix_tot_article += $prix[prix_tot] ;
+													$prix_tot_article += $prix['prix_tot'] ;
 													}
 												}
-											if ($qte_tot_article > $remise[valeur])
+											if ($qte_tot_article > $remise['valeur'])
 												{
-												$remise2[$i] = $prix_tot_article *($remise[pctremise] / 100) ;
+												$remise2[$i] = $prix_tot_article *($remise['pctremise'] / 100) ;
 												$remise2[$i] .= "-Remise : quantité pour l'article $article[libelleFR] > $remise[valeur]) :--$remise[remiseid]" ;
 												}
 											break;
 										} // fin du switch
 									} // fin si remise sur un article
-								elseif ($rayon[catid] != "") // remise sur une catégorie
+								elseif ($rayon['catid'] != "") // remise sur une catégorie
 									{
-									arborescence($rayon[catid]) ;
-									switch ($remise[typeremise])
+									arborescence($rayon['catid']) ;
+									switch ($remise['typeremise'])
 										{
 										case 0: // remise sur le poids
 											$poids_tot_categ = 0 ;
@@ -1189,13 +1189,13 @@ if (isset($action) and $action == "etape4")
 														WHERE lf.artid = a.artid and a.catid = c.catid 
 														and lf.factureid = '$factureid' 
 														and lf.catid in ($categs_num $rayon[catid]) ") ;
-											$poids_tot_categ += $poids[poids_tot] ;
+											$poids_tot_categ += $poids['poids_tot'] ;
 											$prix = $DB_site2 -> query_first("SELECT (prix * qte) as prix_tot FROM lignefacture 
 																				WHERE factureid = '$factureid' and catid in ($categs_num $rayon[catid])");
-											$prix_tot_categ += $prix[prix_tot] ;
-											if ($poids_tot_categ > $remise[valeur])
+											$prix_tot_categ += $prix['prix_tot'] ;
+											if ($poids_tot_categ > $remise['valeur'])
 												{
-												$remise0[$i] .= ($prix_tot_categ *($remise[pctremise] / 100)) ;
+												$remise0[$i] .= ($prix_tot_categ *($remise['pctremise'] / 100)) ;
 												$remise0[$i] .= "-Remise : poids pour le rayon $rayon[libelleFR] > $remise[valeur] grammes) :--$remise[remiseid]" ;
 												}
 											break;
@@ -1203,10 +1203,10 @@ if (isset($action) and $action == "etape4")
 											$prix_tot_categ = 0 ;
 											$prix = $DB_site2 -> query_first("SELECT (prix * qte) as prix_tot FROM lignefacture
 																			WHERE factureid = '$factureid' and catid in ($categs_num $rayon[catid])");
-											$prix_tot_categ += $prix[prix_tot] ;
-											if ($prix_tot_categ > $remise[valeur])
+											$prix_tot_categ += $prix['prix_tot'] ;
+											if ($prix_tot_categ > $remise['valeur'])
 												{
-												$remise1[$i] = $prix_tot_categ *($remise[pctremise] / 100) ;
+												$remise1[$i] = $prix_tot_categ *($remise['pctremise'] / 100) ;
 												$remise1[$i] .= "-Remise : prix pour le rayon $rayon[libelleFR] > $remise[valeur] €) :--$remise[remiseid]" ;
 												}
 											break;
@@ -1215,13 +1215,13 @@ if (isset($action) and $action == "etape4")
 											$prix_tot_categ = 0 ;
 											$qte = $DB_site2 -> query_first ("SELECT SUM(qte) as qte_tot FROM lignefacture 
 																			WHERE factureid = '$factureid' and catid in ($categs_num $rayon[catid])" );
-											$qte_tot_categ += $qte[qte_tot] ;
+											$qte_tot_categ += $qte['qte_tot'] ;
 											$prix = $DB_site2 -> query_first("SELECT (prix * qte) as prix_tot FROM lignefacture
 																			WHERE factureid = '$factureid' and catid in ($categs_num $rayon[catid])");
-											$prix_tot_categ += $prix[prix_tot] ;
-											if ($qte_tot_categ > $remise[valeur])
+											$prix_tot_categ += $prix['prix_tot'] ;
+											if ($qte_tot_categ > $remise['valeur'])
 												{
-												$remise2[$i] = $prix_tot_categ *($remise[pctremise] / 100) ;
+												$remise2[$i] = $prix_tot_categ *($remise['pctremise'] / 100) ;
 												$remise2[$i] .= "-Remise : quantité pour le rayon $rayon[libelleFR] > $remise[valeur]) :--$remise[remiseid]" ;
 												}
 											break;
@@ -1292,20 +1292,20 @@ if (isset($action) and $action == "etape4")
 								case "CATEGORIE":
 									$categ_cadeau=$DB_site2->query_first("select catid, cadeauid from categorie_cadeau where cadeauid = '$cadeau_en_cours[cadeauid]'");
 									$liste_cats_cde=$DB_site2->query("select catid, prix, qte from lignefacture where factureid = '$factureid'") ;
-									categories_filles ($categ_cadeau[catid]) ;
-									$cat_en_cours = $categ_cadeau[catid] ;
+									categories_filles ($categ_cadeau['catid']) ;
+									$cat_en_cours = $categ_cadeau['catid'] ;
 									$cats_cde[$cat_en_cours] = $cat_en_cours ;
 									while ($liste_cat_cde=$DB_site2->fetch_array($liste_cats_cde))
 										{
-										if (in_array ($liste_cat_cde[catid], $cats_cde))
+										if (in_array ($liste_cat_cde['catid'], $cats_cde))
 											{
-											$prix_de_la_ligne = $liste_cat_cde[prix] * $liste_cat_cde[qte] ;
-											switch ($cadeau[typecadeauid])
+											$prix_de_la_ligne = $liste_cat_cde['prix'] * $liste_cat_cde[qte] ;
+											switch ($cadeau['typecadeauid'])
 												{
 												case 0:
-													if ($cadeau[valeurcadeau] < $prix_de_la_ligne)
+													if ($cadeau['valeurcadeau'] < $prix_de_la_ligne)
 														{
-														$prixreduction += $cadeau[valeurcadeau] ;
+														$prixreduction += $cadeau['valeurcadeau'] ;
 														}
 													else
 														{
@@ -1313,7 +1313,7 @@ if (isset($action) and $action == "etape4")
 														}
 													break ;
 												case 1:
-													$prixreduction += ($prix_de_la_ligne * $cadeau[valeurcadeau] / 100) ;
+													$prixreduction += ($prix_de_la_ligne * $cadeau['valeurcadeau'] / 100) ;
 													break ;
 												}
 											}
@@ -1326,13 +1326,13 @@ if (isset($action) and $action == "etape4")
 										{
 										if ($liste_art_cde[artid] == $article_cadeau[artid])
 											{
-											$prix_de_la_ligne = $liste_art_cde[prix] * $liste_art_cde[qte] ;
-											switch ($cadeau[typecadeauid])
+											$prix_de_la_ligne = $liste_art_cde['prix'] * $liste_art_cde[qte] ;
+											switch ($cadeau['typecadeauid'])
 												{
 												case 0:
-													if ($cadeau[valeurcadeau] < $prix_de_la_ligne)
+													if ($cadeau['valeurcadeau'] < $prix_de_la_ligne)
 														{
-														$prixreduction += $cadeau[valeurcadeau] ;
+														$prixreduction += $cadeau['valeurcadeau'] ;
 														}
 													else
 														{
@@ -1340,19 +1340,19 @@ if (isset($action) and $action == "etape4")
 														}
 													break ;
 												case 1:
-													$prixreduction += ($prix_de_la_ligne * $cadeau[valeurcadeau] / 100) ;
+													$prixreduction += ($prix_de_la_ligne * $cadeau['valeurcadeau'] / 100) ;
 													break ;
 												}
 											}
 										}
 									break ;
 								case "GENERAL":
-									switch ($cadeau[typecadeauid])
+									switch ($cadeau['typecadeauid'])
 										{
 										case 0:
-											if ($cadeau[valeurcadeau] < $prixtotalpanier_sansfrais)
+											if ($cadeau['valeurcadeau'] < $prixtotalpanier_sansfrais)
 												{
-												$prixreduction += $cadeau[valeurcadeau] ;
+												$prixreduction += $cadeau['valeurcadeau'] ;
 												}
 											else
 												{
@@ -1360,21 +1360,21 @@ if (isset($action) and $action == "etape4")
 												}
 											break ;
 										case 1:
-											$prixreduction += ($prixtotalpanier_sansfrais * $cadeau[valeurcadeau] / 100) ;
+											$prixreduction += ($prixtotalpanier_sansfrais * $cadeau['valeurcadeau'] / 100) ;
 											break ;
 										}
 									break ;
 								}
 							$cadeau_existant=$DB_site2->query_first("select montantcadeau from facture where facturid = '$factureid'");
-							if ($cadeau_existant[montantcadeau] != 0)
+							if ($cadeau_existant['montantcadeau'] != 0)
 								{
-								if ($prixreduction > $cadeau_existant[montantcadeau])
+								if ($prixreduction > $cadeau_existant['montantcadeau'])
 									{
 									$DB_site2->query("update facture set cadeauid = '$cadeau_en_cours[cadeauid]', montantcadeau = '$prixreduction' where facturid = '$factureid'");
 									}
 								else
 									{
-									$prixreduction = $cadeau_existant[montantcadeau] ;
+									$prixreduction = $cadeau_existant['montantcadeau'] ;
 									}
 								}
 							else
@@ -1392,14 +1392,14 @@ if (isset($action) and $action == "etape4")
 					if (in_array ("106", $modules))
 						{
 						$util_remise=$DB_site2->query_first("SELECT * FROM utilisateur WHERE userid = '$clientid'") ;
-						if ($util_remise[pctremise] != 0)
+						if ($util_remise['pctremise'] != 0)
 							{
-							$remise_sur_tout_catalogue = $util_remise[pctremise] ;
+							$remise_sur_tout_catalogue = $util_remise['pctremise'] ;
 							}
-						elseif ($util_remise[groupeid] != 0)
+						elseif ($util_remise['groupeid'] != 0)
 							{
 							$gp_remise=$DB_site2->query_first("SELECT * FROM groupe_utilisateur WHERE groupeid = '$util_remise[groupeid]'") ;
-							$remise_sur_tout_catalogue = $gp_remise[pctremise] ;
+							$remise_sur_tout_catalogue = $gp_remise['pctremise'] ;
 							}
 						if (isset($remise_sur_tout_catalogue) and $remise_sur_tout_catalogue > 0)
 							{
@@ -1410,7 +1410,7 @@ if (isset($action) and $action == "etape4")
 							}
 						}
 					$port=$DB_site2->query_first("select prixport, tvaport from facture where facturid = '$factureid'");
-					$prixtvaport = $port[prixport] - ($port[prixport] / (1 + ($port[tvaport]/100))) ;
+					$prixtvaport = $port['prixport'] - ($port['prixport'] / (1 + ($port['tvaport']/100))) ;
 					$prixtva += $prixtvaport ;
 					$prixtotalpanier = number_format($prixtotalpanier, 2, ',', ' ');
 					$prixtva = number_format($prixtva, 2, ',', ' ');	
@@ -1510,10 +1510,10 @@ if (isset($action) and $action == "etape3")
 		$libelle = "libelleFR" ;
 		$titre2 = "Titre2FR" ;
 		$article=$DB_site2->query_first("SELECT * FROM article WHERE artid='$artid' ");
-		if ($article[image]!="") 
+		if ($article['image']!="") 
 			{
 			$articleimage="<center><a href=\"http://$host/configurations/$host/images/produits/$article[artid].$article[image]\" title=\"$article[$libelle]\" alt=\"$article[$libelle]\" target=\"_blank\"><img src=\"http://$host/configurations/$host/images/produits/article/$article[artid].$article[image]\" alt=\"$article[$libelle]\"></a>";
-			if ($article[legende] != "")
+			if ($article['legende'] != "")
 				{
 				$articlelegende = "<br>$article[legende]" ;
 				}
@@ -1523,13 +1523,13 @@ if (isset($action) and $action == "etape3")
 			$articleimage="Pas de photo";
 			}
 		$datejour=date("Y-m-d") ;
-		$article[prix]= number_format($article[prix], 2, '.', '');
+		$article['prix']= number_format($article['prix'], 2, '.', '');
 		$articlepromo=$DB_site2->query_first("SELECT * FROM promotion WHERE artid = '$article[artid]' and datedebut <= '$datejour' 
 																	and datefin > '$datejour'");
-		if ($articlepromo[promotionid] != "")
+		if ($articlepromo['promotionid'] != "")
 			{
-			$articlepromo[prix]= number_format($articlepromo[prix], 2, '.', '');
-			$temp_datefinpromo = affichDate($articlepromo[datefin]);
+			$articlepromo['prix']= number_format($articlepromo['prix'], 2, '.', '');
+			$temp_datefinpromo = affichDate($articlepromo['datefin']);
 			$prix_encours = "$articlepromo[prix] € <br>au lieu de <s>$article[prix] €</s>" ;
 			}
 		else
@@ -1553,11 +1553,11 @@ if (isset($action) and $action == "etape3")
 			while ($caract_valeur=$DB_site2->fetch_array($caract_valeurs))
 				{
 				$sel = "" ;
-				if ($caract_valeur[differenceprix] == "0")
+				if ($caract_valeur['differenceprix'] == "0")
 					{
 					$differenceprix = "" ;
 					}
-				elseif ($caract_valeur[differenceprix] > 0)
+				elseif ($caract_valeur['differenceprix'] > 0)
 					{
 					$differenceprix = "(+ $caract_valeur[differenceprix] €)" ;
 					}
@@ -1565,7 +1565,7 @@ if (isset($action) and $action == "etape3")
 					{
 					$differenceprix = "($caract_valeur[differenceprix] €)" ;
 					}
-				if (${$lst} == $caract_valeur[caractvalid])
+				if (${$lst} == $caract_valeur['caractvalid'])
 					{
 					$sel = "selected" ;
 					}
@@ -1643,7 +1643,7 @@ if (isset($action) and $action == "etape3")
 						$champform = "" ;
 						while ($valeur=$DB_site2->fetch_array($valeurs))
 							{
-							if ($valeur[valeur] == $_POST[$nom_champ])
+							if ($valeur['valeur'] == $_POST[$nom_champ])
 								{
 								$champform .= "<input type=\"radio\" name=\"$champ[nom]\" $valeur[libelle]=\"$valeur[valeur]\" checked> $valeur[description] &nbsp;" ;
 								}
@@ -1657,7 +1657,7 @@ if (isset($action) and $action == "etape3")
 						$champform = "" ;
 						while ($valeur=$DB_site2->fetch_array($valeurs))
 							{
-							if ($valeur[valeur] == $_POST[$nom_champ])
+							if ($valeur['valeur'] == $_POST[$nom_champ])
 								{
 								$champform .= "<input type=\"checkbox\" name=\"$champ[nom][]\" $valeur[libelle]=\"$valeur[valeur]\" selected> $valeur[description] &nbsp;" ;
 								}
@@ -1679,7 +1679,7 @@ if (isset($action) and $action == "etape3")
 						$options = "" ;
 						while ($valeur=$DB_site2->fetch_array($valeurs))
 							{
-							if ($valeur[valeur] == $_POST[$nom_champ])
+							if ($valeur['valeur'] == $_POST[$nom_champ])
 								{
 								$options .= "<option $valeur[libelle]=$valeur[valeur] selected>$valeur[description]</option>" ;
 								}
@@ -1694,7 +1694,7 @@ if (isset($action) and $action == "etape3")
 						$options = "" ;
 						while ($valeur=$DB_site2->fetch_array($valeurs))
 							{
-							if ($valeur[valeur] == $_POST[$nom_champ])
+							if ($valeur['valeur'] == $_POST[$nom_champ])
 								{
 								$options .= "<option $valeur[libelle]=$valeur[valeur] selected>$valeur[description]</option>" ;
 								}
@@ -1714,7 +1714,7 @@ if (isset($action) and $action == "etape3")
 						$champform = "<input type=\"file\" name=\"$champ[nom]\" value=\"$_POST[$nom_champ]\" $vals>" ;
 						break ;
 					}
-				if ($champ[obligatoire] == '1')
+				if ($champ['obligatoire'] == '1')
 					{
 					$etoile = " <font color=blue>*</font> " ;
 					}
@@ -1881,7 +1881,7 @@ if (!isset($action) or $action == "etape1")
 	$payss=$DB_site2->query("SELECT * FROM pays ORDER BY libelle ASC");
 	while($pays=$DB_site2->fetch_array($payss))
 		{
-		if($pays[paysid]==57) 
+		if($pays['paysid']==57) 
 			{
 			$selected="selected";
 			} 
@@ -2038,9 +2038,9 @@ if (!isset($action) or $action == "etape1")
 				}	
 			// champ optionnel
 			$champsup=$DB_site2->query_first("select user_option_actif, user_option_lib, user_option_obligatoire from parametresgeneraux");
-			if ($champsup[user_option_actif] == '1')
+			if ($champsup['user_option_actif'] == '1')
 				{
-				if ($champsup[user_option_obligatoire] == '1')
+				if ($champsup['user_option_obligatoire'] == '1')
 					{
 					$etoilechp = "<font color=blue>*</font>" ;
 					}
@@ -2129,7 +2129,7 @@ function arborescence($parentid)
 	while ($arbo=$DB_site2->fetch_array($arbos))
 		{
 		$categs_num .= "$arbo[catid]," ;
-		arborescence($arbo[catid]);
+		arborescence($arbo['catid']);
 		}
 	return ($categs_num) ;
 	}

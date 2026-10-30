@@ -1592,19 +1592,19 @@ foreach($r as $scmd){
     $utilisations=$DB_site2->query($sql);
     while($utilisation=$DB_site2->fetch_array($utilisations)){
         
-        if($utilisation[state]==1){
+        if($utilisation['state']==1){
             $etat="en stock";
-        } elseif($utilisation[state]==2){
+        } elseif($utilisation['state']==2){
             $etat="réservé";
-        } elseif($utilisation[state]==3){
+        } elseif($utilisation['state']==3){
             $etat="expédié";
         }
-        $le_lieu=$lieux[$utilisation[lieu]];
+        $le_lieu=$lieux[$utilisation['lieu']];
         print "<tr>
-                <td>".$utilisation[artcode]."</td>
-                <td align=\"right\">".$utilisation[paht]." €</td>
-                <td align=\"right\">".$utilisation[ecopartht]." €</td>
-                <td>".$utilisation[dest]."</td>
+                <td>".$utilisation['artcode']."</td>
+                <td align=\"right\">".$utilisation['paht']." €</td>
+                <td align=\"right\">".$utilisation['ecopartht']." €</td>
+                <td>".$utilisation['dest']."</td>
                 <td>".$le_lieu."</td>
                 <td align=\"right\">1</td>
                 <td>".$etat."</td>
@@ -2513,14 +2513,14 @@ foreach($r as $scmd){
                             $trqte += $qteartid;
                         }
                     }
-                    $lieulivraison=$stock->lieudetail($s[lieu]);
-                    $tr[date("Y",$s[date])][$s[date].".".$s[id]] .= ""
+                    $lieulivraison=$stock->lieudetail($s['lieu']);
+                    $tr[date("Y",$s[date])][$s[date].".".$s['id']] .= ""
                     . "<tr style=\"background-color:#CCFFAA;\">"
                         . "<td></td>"
                         . "<td>".date("d/m/Y H:i",$s[date])."</td>"
-                        . "<td>".$s[user]."</td>"
+                        . "<td>".$s['user']."</td>"
                         . "<td>MAJ quantité du suivi</td>"
-                        . "<td>".$s[commentaire]."</td>"
+                        . "<td>".$s['commentaire']."</td>"
                         . "<td>".$lieulivraison."</td>"
                         . "<td>".$trqte."</td>"
                     . "</tr>";

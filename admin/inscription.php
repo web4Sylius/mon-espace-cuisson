@@ -137,7 +137,7 @@ if($_GET['action']=="search"){
 		<tr>
 			<td class="<?php echo $class_td; ?>" align="center"><?php echo $jour; ?>/<?php echo $mois; ?>/<?php echo $annee; ?><br><?php echo $heure; ?>h<?php echo $minute; ?></td>
 			<td class="<?php echo $class_td; ?>" align="center">
-				<?php echo $inscrit[userid]; ?>
+				<?php echo $inscrit['userid']; ?>
 			</td>
 			<td class="<?php echo $class_td; ?>" align="center">
 				<?php echo $inscrit['raisonsociale']; ?>
@@ -152,7 +152,7 @@ if($_GET['action']=="search"){
 				<?php echo $allowemail; ?>
 			</td>
 			<td class="<?php echo $class_td; ?>" align="center">
-				<a href="utilisateur.php?action=editer&userid=<?php echo $inscrit[userid]; ?>"><img src="images/icon/edit.png"></a>
+				<a href="utilisateur.php?action=editer&userid=<?php echo $inscrit['userid']; ?>"><img src="images/icon/edit.png"></a>
 			</td>
 		</tr>
 		<?php

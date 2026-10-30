@@ -511,35 +511,35 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 					}
 				if (in_array("FR" , $langues))
 					{
-					if ($mesparams[FRactif] == '1' and $libelleFR == '')
+					if ($mesparams['FRactif'] == '1' and $libelleFR == '')
 						{
 						$erreur .= "Vous devez saisir un libellé en français pour votre article<bR>" ;
 						}
 					}
 				if (in_array("DE" , $langues))
 					{
-					if ($mesparams[DEactif] == '1' and $libelleDE == '')
+					if ($mesparams['DEactif'] == '1' and $libelleDE == '')
 						{
 						$erreur .= "Vous devez saisir un libellé en allemand pour votre article<bR>" ;
 						}
 					}
 				if (in_array("EN" , $langues))
 					{
-					if ($mesparams[ENactif] == '1' and $libelleEN == '')
+					if ($mesparams['ENactif'] == '1' and $libelleEN == '')
 						{
 						$erreur .= "Vous devez saisir un libellé en anglais pour votre article<bR>" ;
 						}
 					}
 				if (in_array("IT" , $langues))
 					{
-					if ($mesparams[ITactif] == '1' and $libelleIT == '')
+					if ($mesparams['ITactif'] == '1' and $libelleIT == '')
 						{
 						$erreur .= "Vous devez saisir un libellé en italien pour votre article<bR>" ;
 						}
 					}
 				if (in_array("SP" , $langues))
 					{
-					if ($mesparams[SPactif] == '1' and $libelleSP == '')
+					if ($mesparams['SPactif'] == '1' and $libelleSP == '')
 						{
 						$erreur .= "Vous devez saisir un libellé en espagnol pour votre article<bR>" ;
 						}
@@ -556,14 +556,14 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 					{
 					// position
 					$positions=$DB_site2->query_first("select page, pageposition from article where catid = '$catid' order by page desc, pageposition desc limit 1");
-					if ($positions[pageposition] < $perpage)
+					if ($positions['pageposition'] < $perpage)
 						{
-						$page = $positions[page] ;
-						$pageposition = $positions[pageposition] + 1 ;
+						$page = $positions['page'] ;
+						$pageposition = $positions['pageposition'] + 1 ;
 						}
 					else
 						{
-						$page = $positions[page] + 1 ;
+						$page = $positions['page'] + 1 ;
 						$pageposition = 1 ;
 						}	
 					$date_reappro=intval($date_reappro);
@@ -638,35 +638,35 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 					}
 				if (in_array("FR" , $langues))
 					{
-					if ($mesparams[FRactif] == '1' and $libelleFR == '')
+					if ($mesparams['FRactif'] == '1' and $libelleFR == '')
 						{
 						$erreur .= "Vous devez saisir un libellé en français pour votre article<bR>" ;
 						}
 					}
 				if (in_array("DE" , $langues))
 					{
-					if ($mesparams[DEactif] == '1' and $libelleDE == '')
+					if ($mesparams['DEactif'] == '1' and $libelleDE == '')
 						{
 						$erreur .= "Vous devez saisir un libellé en allemand pour votre article<bR>" ;
 						}
 					}
 				if (in_array("EN" , $langues))
 					{
-					if ($mesparams[ENactif] == '1' and $libelleEN == '')
+					if ($mesparams['ENactif'] == '1' and $libelleEN == '')
 						{
 						$erreur .= "Vous devez saisir un libellé en anglais pour votre article<bR>" ;
 						}
 					}
 				if (in_array("IT" , $langues))
 					{
-					if ($mesparams[ITactif] == '1' and $libelleIT == '')
+					if ($mesparams['ITactif'] == '1' and $libelleIT == '')
 						{
 						$erreur .= "Vous devez saisir un libellé en italien pour votre article<bR>" ;
 						}
 					}
 				if (in_array("SP" , $langues))
 					{
-					if ($mesparams[SPactif] == '1' and $libelleSP == '')
+					if ($mesparams['SPactif'] == '1' and $libelleSP == '')
 						{
 						$erreur .= "Vous devez saisir un libellé en espagnol pour votre article<bR>" ;
 						}
@@ -728,7 +728,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 					if (isset($mq) and $mq != 0)
 						{
 						$marque_existante=$DB_site2->query_first("select marqueid from article_marque where artid = '$artid'");
-						if ($marque_existante[marqueid] != "")
+						if ($marque_existante['marqueid'] != "")
 							$DB_site2->query("update article_marque set marqueid = '$mq' where artid = '$artid'");
 						else
 							$DB_site2->query("INSERT INTO article_marque (artid, marqueid) VALUES ('$artid', '$mq')");
@@ -748,7 +748,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 				$DB_site2->query("DELETE FROM articlerecherche_finition WHERE artid='$artid' ");
 				$finitions=$DB_site2->query("SELECT * FROM recherche_finition");
 				while ($finition=$DB_site2->fetch_array($finitions))
-					if (${"finition".$finition[finitionid]} =="on")
+					if (${"finition".$finition['finitionid']} =="on")
 						$DB_site2->query("INSERT INTO articlerecherche_finition (artid, finitionid) VALUES ('$artid','$finition[finitionid]') ");	
 				break ;
 			case "visible":
@@ -1416,21 +1416,21 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 							{
 							/*article*/				
 							$art=$DB_site2->query_first("select * from article where artid = '$artid'"); 
-							$art[legende] = addslashes($art[legende]) ;
-							$art[libelleFR] = addslashes($art[libelleFR]) ;
-							$art[descriptionFR] = addslashes($art[descriptionFR]) ;
-							$art[libelleDE] = addslashes($art[libelleDE]) ;
-							$art[descriptionDE] = addslashes($art[descriptionDE]) ;
-							$art[libelleEN] = addslashes($art[libelleEN]) ;
-							$art[descriptionEN] = addslashes($art[descriptionEN]) ;
-							$art[libelleIT] = addslashes($art[libelleIT]) ;
-							$art[descriptionIT] = addslashes($art[descriptionIT]) ;
-							$art[libelleSP] = addslashes($art[libelleSP]) ;
-							$art[Titre2FR] = addslashes($art[Titre2FR]) ;
-							$art[Titre2DE] = addslashes($art[Titre2DE]) ;
-							$art[Titre2EN] = addslashes($art[Titre2EN]) ;
-							$art[Titre2IT] = addslashes($art[Titre2IT]) ;
-							$art[Titre2SP] = addslashes($art[Titre2SP]) ;
+							$art['legende'] = addslashes($art['legende']) ;
+							$art['libelleFR'] = addslashes($art['libelleFR']) ;
+							$art['descriptionFR'] = addslashes($art['descriptionFR']) ;
+							$art['libelleDE'] = addslashes($art['libelleDE']) ;
+							$art['descriptionDE'] = addslashes($art['descriptionDE']) ;
+							$art['libelleEN'] = addslashes($art['libelleEN']) ;
+							$art['descriptionEN'] = addslashes($art['descriptionEN']) ;
+							$art['libelleIT'] = addslashes($art['libelleIT']) ;
+							$art['descriptionIT'] = addslashes($art['descriptionIT']) ;
+							$art['libelleSP'] = addslashes($art['libelleSP']) ;
+							$art['Titre2FR'] = addslashes($art['Titre2FR']) ;
+							$art['Titre2DE'] = addslashes($art['Titre2DE']) ;
+							$art['Titre2EN'] = addslashes($art['Titre2EN']) ;
+							$art['Titre2IT'] = addslashes($art['Titre2IT']) ;
+							$art['Titre2SP'] = addslashes($art['Titre2SP']) ;
 							$DB_site2->query("insert into article (artcode,pro, catid, active, prix, tva, tauxchoisi, poid, fraisgestionid, 
 							image, legende, libelleFR, descriptionFR, libelleDE, descriptionDE, libelleEN, descriptionEN, libelleIT, 
 							descriptionIT, libelleSP, descriptionSP, Titre2FR, Titre2DE, Titre2EN, Titre2IT, Titre2SP, upload_images, 
@@ -1442,7 +1442,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 							'$art[Titre2EN]', '$art[Titre2IT]', '$art[Titre2SP]', '$art[upload_images]', '$art[upload_images_oblig]', 
 							'$art[upload_comm]', '$art[upload_comm_oblig]', '$art[commandable]')");
 							$insertid=$DB_site2->insert_id() ;
-							if ($art[image] != "")
+							if ($art['image'] != "")
 								{
 								$nom_fic=$rootpath."configurations/$host/images/produits/$artid.$art[image]";
 								$new_nom_fic=$rootpath."configurations/$host/images/produits/$insertid.$art[image]";
@@ -1482,39 +1482,39 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 								{
 								while ($artphoto=$DB_site2->fetch_array($artphotos))
 									{
-									$artphoto[legende] = addslashes ($artphoto[legende]) ;
+									$artphoto['legende'] = addslashes ($artphoto['legende']) ;
 									$DB_site2->query("insert into articlephoto (artid, image, legende) values ('$insertid', '$artphoto[image]', '$artphoto[legende]')");
 									$insertid2=$DB_site2->insert_id() ;
-									$nom_fic2=$rootpath."configurations/$host/images/produits/".$artid."_".$artphoto[articlephotoid].".".$artphoto[image];
-									$new_nom_fic2=$rootpath."configurations/$host/images/produits/".$insertid."_".$insertid2.".".$artphoto[image];
+									$nom_fic2=$rootpath."configurations/$host/images/produits/".$artid."_".$artphoto['articlephotoid'].".".$artphoto['image'];
+									$new_nom_fic2=$rootpath."configurations/$host/images/produits/".$insertid."_".$insertid2.".".$artphoto['image'];
 									if (file_exists($nom_fic2)) 
 										{
 										copy($nom_fic2, $new_nom_fic2) ;
 										}
-									$destination0=$rootpath."configurations/$host/images/produits/article/".$insertid."_".$insertid2.".".$artphoto[image];
+									$destination0=$rootpath."configurations/$host/images/produits/article/".$insertid."_".$insertid2.".".$artphoto['image'];
 									redimentionner_image($new_nom_fic2,$destination0,$article_largeur,$article_hauteur);
-									$destination1=$rootpath."configurations/$host/images/produits/categorie/".$insertid."_".$insertid2.".".$artphoto[image];
+									$destination1=$rootpath."configurations/$host/images/produits/categorie/".$insertid."_".$insertid2.".".$artphoto['image'];
 									redimentionner_image($new_nom_fic2,$destination1,$categorie_largeur,$categorie_hauteur);
-									$destination2=$rootpath."configurations/$host/images/produits/cdc_categ/".$insertid."_".$insertid2.".".$artphoto[image];
+									$destination2=$rootpath."configurations/$host/images/produits/cdc_categ/".$insertid."_".$insertid2.".".$artphoto['image'];
 									redimentionner_image($new_nom_fic2,$destination2,$cdc_categ_largeur,$cdc_categ_hauteur);
-									$destination3=$rootpath."configurations/$host/images/produits/cdc_index/".$insertid."_".$insertid2.".".$artphoto[image];
+									$destination3=$rootpath."configurations/$host/images/produits/cdc_index/".$insertid."_".$insertid2.".".$artphoto['image'];
 									redimentionner_image($new_nom_fic2,$destination3,$cdc_index_largeur,$cdc_index_hauteur);
-									$destination4=$rootpath."configurations/$host/images/produits/nouveautes_categ/".$insertid."_".$insertid2.".".$artphoto[image];
+									$destination4=$rootpath."configurations/$host/images/produits/nouveautes_categ/".$insertid."_".$insertid2.".".$artphoto['image'];
 									redimentionner_image($new_nom_fic2,$destination4,$nouveautes_categ_largeur,$nouveates_categ_hauteur);
-									$destination5=$rootpath."configurations/$host/images/produits/nouveautes_index/".$insertid."_".$insertid2.".".$artphoto[image];
+									$destination5=$rootpath."configurations/$host/images/produits/nouveautes_index/".$insertid."_".$insertid2.".".$artphoto['image'];
 									redimentionner_image($new_nom_fic2,$destination5,$nouveautes_index_largeur,$nouveates_index_hauteur);
-									$destination6=$rootpath."configurations/$host/images/produits/promos_categ/".$insertid."_".$insertid2.".".$artphoto[image];
+									$destination6=$rootpath."configurations/$host/images/produits/promos_categ/".$insertid."_".$insertid2.".".$artphoto['image'];
 									redimentionner_image($new_nom_fic2,$destination6,$promos_categ_largeur,$promos_categ_hauteur);
-									$destination7=$rootpath."configurations/$host/images/produits/promos_index/".$insertid."_".$insertid2.".".$artphoto[image];
+									$destination7=$rootpath."configurations/$host/images/produits/promos_index/".$insertid."_".$insertid2.".".$artphoto['image'];
 									redimentionner_image($new_nom_fic2,$destination7,$promos_index_largeur,$promos_index_hauteur);
-									$destination8=$rootpath."configurations/$host/images/produits/topventes_categ/".$insertid."_".$insertid2.".".$artphoto[image];
+									$destination8=$rootpath."configurations/$host/images/produits/topventes_categ/".$insertid."_".$insertid2.".".$artphoto['image'];
 									redimentionner_image($new_nom_fic2,$destination8,$topventes_categ_largeur,$topventes_categ_hauteur);
-									$destination9=$rootpath."configurations/$host/images/produits/topventes_index/".$insertid."_".$insertid2.".".$artphoto[image];
+									$destination9=$rootpath."configurations/$host/images/produits/topventes_index/".$insertid."_".$insertid2.".".$artphoto['image'];
 									redimentionner_image($new_nom_fic2,$destination9,$topventes_index_largeur,$topventes_index_hauteur);
-									$destination10=$rootpath."configurations/$host/images/produits/br/".$insertid."_".$insertid2.".".$artphoto[image];
+									$destination10=$rootpath."configurations/$host/images/produits/br/".$insertid."_".$insertid2.".".$artphoto['image'];
 									redimentionner_image($new_nom_fic2,$destination10,$largeurimages,$hauteurimages);
 									if (isset($hauteurphotos) && isset($largeurphotos)) {
-										$destination11=$rootpath."configurations/$host/images/produits/photos/".$insertid."_".$insertid2.".".$artphoto[image];
+										$destination11=$rootpath."configurations/$host/images/produits/photos/".$insertid."_".$insertid2.".".$artphoto['image'];
 										redimentionner_image($new_nom_fic2,$destination11,$largeurphotos,$hauteurphotos);
 										}
 									}
@@ -1575,10 +1575,10 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 	/* stock */			if (in_array("4",$modules))
 							{
 							$articlestock=$DB_site2->query_first("select * from stock where artid = '$artid'") ;
-							if ($articlestock[nombre] == "") 
+							if ($articlestock['nombre'] == "") 
 								{ // si la ligne n'existe pas on regarde si il y a des articles liés et on copie le stock
 								$articlestock=$DB_site2->query_first("select * from stock where artid in ($arts_a_suppr)") ;
-								if ($articlestock[nombre] != "")
+								if ($articlestock['nombre'] != "")
 									{
 									$DB_site2->query("insert into stock (artid, nombre, seuil, delaiappro) values ('$artid', '$articlestock[nombre]', '$articlestock[seuil]', '$articlestock[delaiappro]')");
 									$DB_site2->query("delete from stock where artid in ($arts_a_suppr)") ;
@@ -1612,7 +1612,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 								{
 								while ($photo=$DB_site2->fetch_array($photos))
 									{
-									$file=$rootpath."configurations/$host/images/produits/".$photo[artid]."_".$photo[articlephotoid].".".$photo[image];
+									$file=$rootpath."configurations/$host/images/produits/".$photo[artid]."_".$photo['articlephotoid'].".".$photo['image'];
 									if (file_exists($file)) 
 										{
 										unlink($file) ;
@@ -1625,7 +1625,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 								{
 								while ($pho=$DB_site2->fetch_array($phos))
 									{
-									$file=$rootpath."configurations/$host/images/produits/".$pho[artid].".".$pho[image];
+									$file=$rootpath."configurations/$host/images/produits/".$pho[artid].".".$pho['image'];
 									if (file_exists($file)) 
 										{
 										unlink($file) ;
@@ -1653,10 +1653,10 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 	/* stock */			if (in_array("4",$modules))
 							{
 							$articlestock=$DB_site2->query_first("select * from stock where artid = '$artid'") ;
-							if ($articlestock[nombre] == "") 
+							if ($articlestock['nombre'] == "") 
 								{ // si la ligne n'existe pas on regarde si il y a des articles liés et on copie le stock
 								$articlestock=$DB_site2->query_first("select * from stock where artid in ($arts_a_suppr)") ;
-								if ($articlestock[nombre] != "")
+								if ($articlestock['nombre'] != "")
 									{
 									$DB_site2->query("insert into stock (artid, nombre, seuil, delaiappro) values ('$artid', '$articlestock[nombre]', '$articlestock[seuil]', '$articlestock[delaiappro]')");
 									$DB_site2->query("delete from stock where artid in ($arts_a_suppr)") ;
@@ -1690,7 +1690,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 								{
 								while ($photo=$DB_site2->fetch_array($photos))
 									{
-									$file=$rootpath."configurations/$host/images/produits/".$photo[artid]."_".$photo[articlephotoid].".".$photo[image];
+									$file=$rootpath."configurations/$host/images/produits/".$photo[artid]."_".$photo['articlephotoid'].".".$photo['image'];
 									if (file_exists($file)) 
 										{
 										unlink($file) ;
@@ -1703,7 +1703,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 								{
 								while ($pho=$DB_site2->fetch_array($phos))
 									{
-									$file=$rootpath."configurations/$host/images/produits/".$pho[artid].".".$pho[image];
+									$file=$rootpath."configurations/$host/images/produits/".$pho[artid].".".$pho['image'];
 									if (file_exists($file)) 
 										{
 										unlink($file) ;
@@ -2237,7 +2237,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 				$DB_site2->query("DELETE FROM articlerecherche_usage WHERE artid='$artid' ");
 				$usages=$DB_site2->query("SELECT * FROM recherche_usage");
 				while ($usage=$DB_site2->fetch_array($usages))
-					if (${"usage".$usage[rechercheusageid]} =="on")
+					if (${"usage".$usage['rechercheusageid']} =="on")
 						$DB_site2->query("INSERT INTO articlerecherche_usage (artid, rechercheusageid) VALUES ('$artid','$usage[rechercheusageid]') ");
 				
 				$erreur = "Article modifié" ;			
@@ -2246,7 +2246,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 				$DB_site2->query("DELETE FROM articlerecherche_typeporte WHERE artid='$artid' ");
 				$typesporte=$DB_site2->query("SELECT * FROM recherche_typeporte");
 				while ($typeporte=$DB_site2->fetch_array($typesporte))
-					if (${"typeporte".$typeporte[recherchetypeporteid]} =="on")
+					if (${"typeporte".$typeporte['recherchetypeporteid']} =="on")
 						$DB_site2->query("INSERT INTO articlerecherche_typeporte (artid, recherchetypeporteid) VALUES ('$artid','$typeporte[recherchetypeporteid]') ");
 				
 				$erreur = "Article modifié" ;			
@@ -2255,7 +2255,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 				$DB_site2->query("DELETE FROM articlerecherche_coloris WHERE artid='$artid' ");
 				$coloriss=$DB_site2->query("SELECT * FROM recherche_coloris");
 				while ($coloris=$DB_site2->fetch_array($coloriss))
-					if (${"coloris".$coloris[recherchecolorisid]} =="on")
+					if (${"coloris".$coloris['recherchecolorisid']} =="on")
 						$DB_site2->query("INSERT INTO articlerecherche_coloris (artid, recherchecolorisid) VALUES ('$artid','$coloris[recherchecolorisid]') ");
 				
 				$erreur = "Article modifié" ;			
@@ -2264,7 +2264,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 				$DB_site2->query("DELETE FROM articlerecherche_moderangement WHERE artid='$artid' ");
 				$rangements=$DB_site2->query("SELECT * FROM recherche_moderangement");
 				while ($rangement=$DB_site2->fetch_array($rangements))
-					if (${"rangement".$rangement[recherchemoderangementid]} =="on")
+					if (${"rangement".$rangement['recherchemoderangementid']} =="on")
 						$DB_site2->query("INSERT INTO articlerecherche_moderangement (artid, recherchemoderangementid) VALUES ('$artid','$rangement[recherchemoderangementid]') ");
 				
 				$erreur = "Article modifié" ;			
@@ -2273,7 +2273,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 				$DB_site2->query("DELETE FROM articlerecherche_emplacement WHERE artid='$artid' ");
 				$emplacements=$DB_site2->query("SELECT * FROM recherche_emplacement");
 				while ($emplacement=$DB_site2->fetch_array($emplacements))
-					if (${"emplacement".$emplacement[rechercheemplacementid]} =="on")
+					if (${"emplacement".$emplacement['rechercheemplacementid']} =="on")
 						$DB_site2->query("INSERT INTO articlerecherche_emplacement (artid, rechercheemplacementid) VALUES ('$artid','$emplacement[rechercheemplacementid]') ");
 				
 				$erreur = "Article modifié" ;
@@ -2471,23 +2471,23 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 				$typearticleid = $table_type[1];
 				$typearticle = $typearticleid;
 				$article=$DB_site2->query_first("select a.*, spec.* from article AS a LEFT JOIN ".$table_type['bdd_table']." AS spec USING(artid)  where artid = '$artid'") ;
-				$catid = $article[catid] ;
-				$artcode = $article[artcode] ;
-				$artcode_eurocave = $article[artcode_eurocave] ;
-				$fraisgestion = $article[fraisgestionid] ;
-				$libelleFR = $article[libelleFR] ;
-				$libelleDE = $article[libelleDE] ;
-				$libelleEN = $article[libelleEN] ;
-				$libelleIT = $article[libelleIT] ;
-				$libelleSP = $article[libelleSP] ;
-				if ($article[delailivraison] != 0)
-					$delailivraison = $article[delailivraison] ;
+				$catid = $article['catid'] ;
+				$artcode = $article['artcode'] ;
+				$artcode_eurocave = $article['artcode_eurocave'] ;
+				$fraisgestion = $article['fraisgestionid'] ;
+				$libelleFR = $article['libelleFR'] ;
+				$libelleDE = $article['libelleDE'] ;
+				$libelleEN = $article['libelleEN'] ;
+				$libelleIT = $article['libelleIT'] ;
+				$libelleSP = $article['libelleSP'] ;
+				if ($article['delailivraison'] != 0)
+					$delailivraison = $article['delailivraison'] ;
 				else {
 					$param=$DB_site2->query_first("select delailivraison from parametresgeneraux") ;
-					$delailivraison = $param[delailivraison] ;
+					$delailivraison = $param['delailivraison'] ;
 					}
-				$delailivraison_txt = $article[delailivraison_txt] ;
-				$opt_visible = $article[active] ;
+				$delailivraison_txt = $article['delailivraison_txt'] ;
+				$opt_visible = $article['active'] ;
 				$msg_visible="";
 				$dis_visible="";
 				if($article['prix']==0){
@@ -2496,14 +2496,14 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 				  $dis_visible="disabled";
 				}
 
-				$version_porte = $article[version_porte] ;
-				$coloris = $article[coloris] ;
-				$coloris_porte = $article[coloris_porte] ;
-				$absence_vibration = $article[absence_vibration] ;
-				$filtre_charbon = $article[filtre_charbon] ;
-				$rangements_txt = $article[rangements_txt] ;
-				$conso_kw=$article[conso_kw];
-				$conso_euro = $article[conso_euro];
+				$version_porte = $article['version_porte'] ;
+				$coloris = $article['coloris'] ;
+				$coloris_porte = $article['coloris_porte'] ;
+				$absence_vibration = $article['absence_vibration'] ;
+				$filtre_charbon = $article['filtre_charbon'] ;
+				$rangements_txt = $article['rangements_txt'] ;
+				$conso_kw=$article['conso_kw'];
+				$conso_euro = $article['conso_euro'];
 				$refscons=$article['refs_fabricant'];
 				
 				switch ($opt_visible)
@@ -2524,7 +2524,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 						$checkedv6 = "checked" ;
 						break ;
 					}
-				$opt_sowine = $article[sowine] ;
+				$opt_sowine = $article['sowine'] ;
 				switch ($opt_sowine)
 					{
 					case '0':
@@ -2539,7 +2539,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 					}					
 				
 				$articlemarque=$DB_site2->query_first("select * from article_marque where artid = '$artid'") ;
-				$mq = $articlemarque[marqueid] ;
+				$mq = $articlemarque['marqueid'] ;
 				
 				break ;
 			case "visible":
@@ -2563,7 +2563,7 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 					case '0':
 						$checkedcd0 = "checked" ;
 						$appel_fonction="<SCRIPT LANGUAGE=\"JavaScript\">pascommandable();</SCRIPT>" ;
-						if ($article[prix] == 0){
+						if ($article['prix'] == 0){
 							$chkaffpx0 = "checked" ;
 							$chkaffpx1 = "" ;
 							$appel_fonction.="<SCRIPT LANGUAGE=\"JavaScript\">affichepasprix();</SCRIPT>" ;
@@ -2602,27 +2602,27 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 			case "stocks":
 				//si on arrive par les stocks
 				$article=$DB_site2->query_first("select * from article where artid = '$artid'") ;
-				$catid = $article[catid] ;
+				$catid = $article['catid'] ;
 				break;
 			case "equipements": 
 				$article=$DB_site2->query_first("select a.*, spec.* from article AS a LEFT JOIN ".$table_type['bdd_table']." AS spec USING(artid)  where artid = '$artid'") ;
-				$interrupteur = $article[interrupteur] ;
-				$hygrometrie = $article[hygrometrie] ;
-				$hygrometre = $article[hygrometre] ;
-				$eclairage = $article[eclairage] ;
-				$bouton_test = $article[bouton_test] ;
-				$pieds_reglables = $article[pieds_reglables] ;
-				$serrure = $article[serrure] ;
-				$poignee = $article[poignee] ;
-				$modularite_interieure = $article[modularite_interieure] ;
-				$roulettes = $article[roulettes] ;
-				$vide_poche = $article[vide_poche] ;
-				$clayette_fil = $article[clayette_fil] ;
-				$panier_transport = $article[panier_transport] ;
-				$vinokit = $article[vinokit] ;
-				$tablette = $article[tablette] ;
-				$clayette_hetre = $article[clayette_hetre] ;
-				$tapis_basse = $article[tapis_basse] ;
+				$interrupteur = $article['interrupteur'] ;
+				$hygrometrie = $article['hygrometrie'] ;
+				$hygrometre = $article['hygrometre'] ;
+				$eclairage = $article['eclairage'] ;
+				$bouton_test = $article['bouton_test'] ;
+				$pieds_reglables = $article['pieds_reglables'] ;
+				$serrure = $article['serrure'] ;
+				$poignee = $article['poignee'] ;
+				$modularite_interieure = $article['modularite_interieure'] ;
+				$roulettes = $article['roulettes'] ;
+				$vide_poche = $article['vide_poche'] ;
+				$clayette_fil = $article['clayette_fil'] ;
+				$panier_transport = $article['panier_transport'] ;
+				$vinokit = $article['vinokit'] ;
+				$tablette = $article['tablette'] ;
+				$clayette_hetre = $article['clayette_hetre'] ;
+				$tapis_basse = $article['tapis_basse'] ;
 				
 				$optsensporte="";
 				$sensporte=array(0=>"Porte à droite",1=>"Porte à gauche",2=>"Porte réversible");
@@ -2636,90 +2636,90 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 				break ;					
 			case "regulation": 
 				$article=$DB_site2->query_first("select * from ".$table_type['bdd_table']." where artid = '$artid'") ;
-				$regulation = $article[regulation] ;
-				$boutons_reglage = $article[boutons_reglage] ;
-				$reglage = $article[reglage] ;
-				$affichage = $article[affichage] ;
-				$temperature = $article[temperature] ;
-				$thermometre = $article[thermometre] ;
+				$regulation = $article['regulation'] ;
+				$boutons_reglage = $article['boutons_reglage'] ;
+				$reglage = $article['reglage'] ;
+				$affichage = $article['affichage'] ;
+				$temperature = $article['temperature'] ;
+				$thermometre = $article['thermometre'] ;
 				break ;	
 			case "emballage": 
 				$article=$DB_site2->query_first("select * from article where artid = '$artid'") ;
-				$dimensions = $article[dimensions] ;
-				$hauteur_txt = $article[hauteur] ;
-				$largeur_txt = $article[largeur] ;
-				$profondeur_txt = $article[profondeur] ;
-				$poid = $article[poid] ;
-				$emballage_hauteur = $article[emballage_hauteur1] ;
-				$emballage_largeur = $article[emballage_largeur1] ;
-				$emballage_profondeur = $article[emballage_profondeur1] ;
-				$emballage_poids = $article[emballage_poids1] ;
-				$emballage_hauteur2 = $article[emballage_hauteur2] ;
-				$emballage_largeur2 = $article[emballage_largeur2] ;
-				$emballage_profondeur2 = $article[emballage_profondeur2] ;
-				$emballage_poids2 = $article[emballage_poids2] ;
-				$emballage_hauteur3 = $article[emballage_hauteur3] ;
-				$emballage_largeur3 = $article[emballage_largeur3] ;
-				$emballage_profondeur3 = $article[emballage_profondeur3] ;
-				$emballage_poids3 = $article[emballage_poids3] ;
-				$emballage_volume=round(($article[emballage_hauteur1]*$article[emballage_largeur1]*$article[emballage_profondeur1])/pow(10,9),2);
+				$dimensions = $article['dimensions'] ;
+				$hauteur_txt = $article['hauteur'] ;
+				$largeur_txt = $article['largeur'] ;
+				$profondeur_txt = $article['profondeur'] ;
+				$poid = $article['poid'] ;
+				$emballage_hauteur = $article['emballage_hauteur1'] ;
+				$emballage_largeur = $article['emballage_largeur1'] ;
+				$emballage_profondeur = $article['emballage_profondeur1'] ;
+				$emballage_poids = $article['emballage_poids1'] ;
+				$emballage_hauteur2 = $article['emballage_hauteur2'] ;
+				$emballage_largeur2 = $article['emballage_largeur2'] ;
+				$emballage_profondeur2 = $article['emballage_profondeur2'] ;
+				$emballage_poids2 = $article['emballage_poids2'] ;
+				$emballage_hauteur3 = $article['emballage_hauteur3'] ;
+				$emballage_largeur3 = $article['emballage_largeur3'] ;
+				$emballage_profondeur3 = $article['emballage_profondeur3'] ;
+				$emballage_poids3 = $article['emballage_poids3'] ;
+				$emballage_volume=round(($article['emballage_hauteur1']*$article['emballage_largeur1']*$article['emballage_profondeur1'])/pow(10,9),2);
 				break ;
 
 			case "recherche":
 				$usages=$DB_site2->query("SELECT * FROM recherche_usage ");
 				while ($usage=$DB_site2->fetch_array($usages)){
 					$countusage=$DB_site2->query_first("SELECT count(*) as nb FROM articlerecherche_usage WHERE artid='$artid' AND rechercheusageid='$usage[rechercheusageid]' ");
-					if ($countusage[nb]==1)
-						${"usagechecked".$usage[rechercheusageid]}="checked";
+					if ($countusage['nb']==1)
+						${"usagechecked".$usage['rechercheusageid']}="checked";
 				}
 
 			
 				$typesporte=$DB_site2->query("SELECT * FROM recherche_typeporte ");
 				while ($typeporte=$DB_site2->fetch_array($typesporte)){
 					$counttypeporte=$DB_site2->query_first("SELECT count(*) as nb FROM articlerecherche_typeporte WHERE artid='$artid' AND recherchetypeporteid='$typeporte[recherchetypeporteid]' ");
-					if ($counttypeporte[nb]==1)
-						${"portechecked".$typeporte[recherchetypeporteid]}="checked";
+					if ($counttypeporte['nb']==1)
+						${"portechecked".$typeporte['recherchetypeporteid']}="checked";
 				}
 			
 			
 				$coloriss=$DB_site2->query("SELECT * FROM recherche_coloris ");
 				while ($coloris=$DB_site2->fetch_array($coloriss)){
 					$countcoloris=$DB_site2->query_first("SELECT count(*) as nb FROM articlerecherche_coloris WHERE artid='$artid' AND recherchecolorisid='$coloris[recherchecolorisid]' ");
-					if ($countcoloris[nb]==1)
-						${"colorischecked".$coloris[recherchecolorisid]}="checked";
+					if ($countcoloris['nb']==1)
+						${"colorischecked".$coloris['recherchecolorisid']}="checked";
 				}
 			
 			
 				$rangements=$DB_site2->query("SELECT * FROM recherche_moderangement ");
 				while ($rangement=$DB_site2->fetch_array($rangements)){
 					$countrangement=$DB_site2->query_first("SELECT count(*) as nb FROM articlerecherche_moderangement WHERE artid='$artid' AND recherchemoderangementid='$rangement[recherchemoderangementid]' ");
-					if ($countrangement[nb]==1)
-						${"modechecked".$rangement[recherchemoderangementid]}="checked";
+					if ($countrangement['nb']==1)
+						${"modechecked".$rangement['recherchemoderangementid']}="checked";
 				}
 			
 			 
 				$emplacements=$DB_site2->query("SELECT * FROM recherche_emplacement ");
 				while ($emplacement=$DB_site2->fetch_array($emplacements)){
 					$countemplacement=$DB_site2->query_first("SELECT count(*) as nb FROM articlerecherche_emplacement WHERE artid='$artid' AND rechercheemplacementid='$emplacement[rechercheemplacementid]' ");
-					if ($countemplacement[nb]==1)
-						${"emplacementchecked".$emplacement[rechercheemplacementid]}="checked";
+					if ($countemplacement['nb']==1)
+						${"emplacementchecked".$emplacement['rechercheemplacementid']}="checked";
 				}
 				
 				break ;
 			case "performances": 
 				$article=$DB_site2->query_first("select a.*, spec.* from article AS a LEFT JOIN ".$table_type['bdd_table']." AS spec USING(artid)  where artid = '$artid'") ;
-				$puissance_electrique = $article[puissance_electrique] ;
-				$intensite_electrique = $article[intensite_electrique] ;
-				$dispo_pieces = $article[dispo_pieces];
+				$puissance_electrique = $article['puissance_electrique'] ;
+				$intensite_electrique = $article['intensite_electrique'] ;
+				$dispo_pieces = $article['dispo_pieces'];
 				$conso_kw=round($article['conso_kw'],1);
 				$conso_kw_old=round($article['conso_kw_old'],1);
 				$conso_an=round($article['conso_kw']*365);
 				$conso_an_old=round($article['conso_kw_old']*365);
 				$conso_euro=round($conso_an*$prixkw);
 				$conso_euro_old=round($conso_an_old*$prixkw);
-				$niveau_bruit = $article[niveau_bruit] ;
-				$niveau_bruit_abcd = $article[niveau_bruit_abcd] ;
-				$niveau_bruit_old = $article[niveau_bruit_old] ;
+				$niveau_bruit = $article['niveau_bruit'] ;
+				$niveau_bruit_abcd = $article['niveau_bruit_abcd'] ;
+				$niveau_bruit_old = $article['niveau_bruit_old'] ;
 				for($i=-15;$i<=45;$i++){
 				    $temp_instal_min_opt.="<option value=\"".$i."\"".($article['temp_instal_min']==$i?" selected":"").">".$i."</option>";
 				    $temp_instal_max_opt.="<option value=\"".$i."\"".($article['temp_instal_max']==$i?" selected":"").">".$i."</option>";
@@ -2727,19 +2727,19 @@ if (isset ($action2) and $action2 != "") // traitements des formulaires après (
 				break ;											
 			case "technologies": 
 				$article=$DB_site2->query_first("select a.*, spec.* from article AS a LEFT JOIN ".$table_type['bdd_table']." AS spec USING(artid)  where artid = '$artid'") ;
-				$production_froid = $article[production_froid] ;
-				$production_chaud = $article[production_chaud] ;
-				$declenchement_chaud = $article[declenchement_chaud] ;
-				$fonction_hiver_techno = $article[fonction_hiver_techno] ;
-				$parois_laterales = $article[parois_laterales] ;
-				$parois_fond = $article[parois_fond] ;
-				$revetement_exterieur = $article[revetement_exterieur] ;
-				$isolation = $article[isolation] ;
-				$gaz=$article[gaz];
+				$production_froid = $article['production_froid'] ;
+				$production_chaud = $article['production_chaud'] ;
+				$declenchement_chaud = $article['declenchement_chaud'] ;
+				$fonction_hiver_techno = $article['fonction_hiver_techno'] ;
+				$parois_laterales = $article['parois_laterales'] ;
+				$parois_fond = $article['parois_fond'] ;
+				$revetement_exterieur = $article['revetement_exterieur'] ;
+				$isolation = $article['isolation'] ;
+				$gaz=$article['gaz'];
 				break ;
 			case "garantie_incluse": 
 				$article=$DB_site2->query_first("select * from article where artid = '$artid'") ;
-				$garantie_incluse = $article[garantie_incluse] ;
+				$garantie_incluse = $article['garantie_incluse'] ;
 				break ;	
 			}
 			article_action($disp_tabs, $old, 'update');
@@ -3242,8 +3242,8 @@ switch ($action2) // formulaires
 			{
 			while ($article_promo=$DB_site2->fetch_array($article_promos))
 				{
-				$article_promo[datedebut] = substr ($article_promo[datedebut], 8, 2) . "/" . substr ($article_promo[datedebut], 5, 2) . "/" . substr($article_promo[datedebut], 0, 4) ;
-				$article_promo[datefin] = substr ($article_promo[datefin], 8, 2) . "/" . substr ($article_promo[datefin], 5, 2) . "/" . substr($article_promo[datefin], 0, 4) ;
+				$article_promo['datedebut'] = substr ($article_promo['datedebut'], 8, 2) . "/" . substr ($article_promo['datedebut'], 5, 2) . "/" . substr($article_promo['datedebut'], 0, 4) ;
+				$article_promo['datefin'] = substr ($article_promo['datefin'], 8, 2) . "/" . substr ($article_promo['datefin'], 5, 2) . "/" . substr($article_promo['datefin'], 0, 4) ;
 				$contenu_onglet .= "<li>Du $article_promo[datedebut] au $article_promo[datefin] : $article_promo[prix] € (au lieu de $article_promo[prixbase] €)</li>" ;
 				}
 			}
@@ -3279,22 +3279,22 @@ switch ($action2) // formulaires
 			{
 			while ($article_cadeau=$DB_site2->fetch_array($article_cadeaux))
 				{
-				if ($article_cadeau[datefin] != 0)
+				if ($article_cadeau['datefin'] != 0)
 					{
-					$article_cadeau[datefin] = substr ($article_cadeau[datefin], 8, 2) . "/" . substr ($article_cadeau[datefin], 5, 2) . "/" . substr($article_cadeau[datefin], 0, 4) ;
-					$article_cadeau[datefin] = "(jusqu'au $article_cadeau[datefin])" ;
+					$article_cadeau['datefin'] = substr ($article_cadeau['datefin'], 8, 2) . "/" . substr ($article_cadeau['datefin'], 5, 2) . "/" . substr($article_cadeau['datefin'], 0, 4) ;
+					$article_cadeau['datefin'] = "(jusqu'au $article_cadeau[datefin])" ;
 					}
 				else
 					{
-					$article_cadeau[datefin] = "" ;
+					$article_cadeau['datefin'] = "" ;
 					}
-				switch ($article_cadeau[typecadeau])
+				switch ($article_cadeau['typecadeau'])
 					{
 					case 0:
-						$article_cadeau[typecadeau] = "€" ;
+						$article_cadeau['typecadeau'] = "€" ;
 						break ;
 					case 1:
-						$article_cadeau[typecadeau] = "%" ;
+						$article_cadeau['typecadeau'] = "%" ;
 						break ;
 					}
 				$contenu_onglet .= "<li>$article_cadeau[code] : Réduction de $article_cadeau[valeurcadeau] $article_cadeau[typecadeau] $article_cadeau[datefin]</li>" ;
@@ -3308,22 +3308,22 @@ switch ($action2) // formulaires
 			{
 			while ($categorie_cadeau=$DB_site2->fetch_array($categorie_cadeaux))
 				{
-				if ($categorie_cadeau[datefin] != 0)
+				if ($categorie_cadeau['datefin'] != 0)
 					{
-					$categorie_cadeau[datefin] = substr ($categorie_cadeau[datefin], 8, 2) . "/" . substr ($categorie_cadeau[datefin], 5, 2) . "/" . substr($categorie_cadeau[datefin], 0, 4) ;
-					$categorie_cadeau[datefin] = "(jusqu'au $categorie_cadeau[datefin])" ;
+					$categorie_cadeau['datefin'] = substr ($categorie_cadeau['datefin'], 8, 2) . "/" . substr ($categorie_cadeau['datefin'], 5, 2) . "/" . substr($categorie_cadeau['datefin'], 0, 4) ;
+					$categorie_cadeau['datefin'] = "(jusqu'au $categorie_cadeau[datefin])" ;
 					}
 				else
 					{
-					$categorie_cadeau[datefin] = "" ;
+					$categorie_cadeau['datefin'] = "" ;
 					}
-				switch ($categorie_cadeau[typecadeau])
+				switch ($categorie_cadeau['typecadeau'])
 					{
 					case 0:
-						$categorie_cadeau[typecadeau] = "€" ;
+						$categorie_cadeau['typecadeau'] = "€" ;
 						break ;
 					case 1:
-						$categorie_cadeau[typecadeau] = "%" ;
+						$categorie_cadeau['typecadeau'] = "%" ;
 						break ;
 					}
 				$contenu_onglet .= "<li>$categorie_cadeau[code] : Réduction de $categorie_cadeau[valeurcadeau] $categorie_cadeau[typecadeau] $categorie_cadeau[datefin]</li>" ;
@@ -3358,15 +3358,15 @@ switch ($action2) // formulaires
 		$contenu_onglet .= "<br><table class=\"table_coupscoeur\">";
 		$uploads=$DB_site2->query_first("SELECT upload_images, upload_images_oblig, upload_comm, upload_comm_oblig
 										FROM article where artid = '$artid'");
-		if ($uploads[upload_images] > 0)
+		if ($uploads['upload_images'] > 0)
 			{
-			$nb_img = $uploads[upload_images] ;
+			$nb_img = $uploads['upload_images'] ;
 			}
-		if ($uploads[upload_comm] > 0)
+		if ($uploads['upload_comm'] > 0)
 			{
-			$nb_comm = $uploads[upload_comm] ;
+			$nb_comm = $uploads['upload_comm'] ;
 			}
-		switch ($uploads[upload_images_oblig]) 
+		switch ($uploads['upload_images_oblig']) 
 			{
 			case '0':
 				$checkedimg1 = "" ;
@@ -3377,7 +3377,7 @@ switch ($action2) // formulaires
 				$checkedimg2 = "" ;
 			   break;
 			}		
-		switch ($uploads[upload_comm_oblig]) 
+		switch ($uploads['upload_comm_oblig']) 
 			{
 			case '0':
 				$checkedcomm1 = "" ;
@@ -3430,19 +3430,19 @@ switch ($action2) // formulaires
 			{
 			while ($article_remise=$DB_site2->fetch_array($article_remises))
 				{
-				switch ($article_remise[typeremise])
+				switch ($article_remise['typeremise'])
 					{
 					case '0':
-						$article_remise[typeremise] = "sur le prix" ;
-						$article_remise[valeur] = "pour un montant supérieur à $article_remise[valeur] €" ;
+						$article_remise['typeremise'] = "sur le prix" ;
+						$article_remise['valeur'] = "pour un montant supérieur à $article_remise[valeur] €" ;
 						break ;
 					case '1':
-						$article_remise[typeremise] = "sur la quantité" ;
-						$article_remise[valeur] = "pour une quantité supérieure à $article_remise[valeur] €" ;
+						$article_remise['typeremise'] = "sur la quantité" ;
+						$article_remise['valeur'] = "pour une quantité supérieure à $article_remise[valeur] €" ;
 						break ;
 					case '2':
-						$article_remise[typeremise] = "sur le poids" ;
-						$article_remise[valeur] = "pour un poids supérieur à $article_remise[valeur] grammes" ;
+						$article_remise['typeremise'] = "sur le poids" ;
+						$article_remise['valeur'] = "pour un poids supérieur à $article_remise[valeur] grammes" ;
 						break ;
 					}
 				$contenu_onglet .= "<li>Remise $article_remise[typeremise] de $article_remise[pctremise] % $article_remise[valeur]</li>" ;
@@ -3456,19 +3456,19 @@ switch ($action2) // formulaires
 			{
 			while ($categorie_remise=$DB_site2->fetch_array($categorie_remises))
 				{
-				switch ($categorie_remise[typeremise])
+				switch ($categorie_remise['typeremise'])
 					{
 					case '0':
-						$categorie_remise[typeremise] = "sur le prix" ;
-						$categorie_remise[valeur] = "pour un montant supérieur à $categorie_remise[valeur] €" ;
+						$categorie_remise['typeremise'] = "sur le prix" ;
+						$categorie_remise['valeur'] = "pour un montant supérieur à $categorie_remise[valeur] €" ;
 						break ;
 					case '1':
-						$categorie_remise[typeremise] = "sur la quantité" ;
-						$categorie_remise[valeur] = "pour une quantité supérieure à $categorie_remise[valeur] €" ;
+						$categorie_remise['typeremise'] = "sur la quantité" ;
+						$categorie_remise['valeur'] = "pour une quantité supérieure à $categorie_remise[valeur] €" ;
 						break ;
 					case '2':
-						$categorie_remise[typeremise] = "sur le poids" ;
-						$categorie_remise[valeur] = "pour un poids supérieur à $categorie_remise[valeur] grammes" ;
+						$categorie_remise['typeremise'] = "sur le poids" ;
+						$categorie_remise['valeur'] = "pour un poids supérieur à $categorie_remise[valeur] grammes" ;
 						break ;
 					}
 				$contenu_onglet .= "<li>Remise $categorie_remise[typeremise] de $categorie_remise[pctremise] % $categorie_remise[valeur]</li>" ;
@@ -3558,7 +3558,7 @@ switch ($action2) // formulaires
 						$case = "<input type=\"checkbox\" name=\"chk_categories[$cat[catid]]\" value=\"$cat[catid]\" checked onchange=\"javascript:changecolor('C$cat[catid]');\">" ;
 						}
 					$sscats=$DB_site2->query("select * from categorie where parentid = '$cat[catid]' limit 1");
-					if ($cat[catid] == $catid)
+					if ($cat['catid'] == $catid)
 						{
 						$place = "&nbsp;<font color=\"#000044\"><strong>Vous êtes ici</strong></font>\n" ;
 						}
@@ -3571,7 +3571,7 @@ switch ($action2) // formulaires
 						if ($txt != "")
 							{
 							$treeview.="<li class=folder id=\"T$cat[catid]\"><a title=\"$cat[libelleFR]\" alt=\"$cat[libelleFR]\" href=\"Javascript: toggle('F$cat[catid]','T$cat[catid]');\" class=treeview><font style=\"color:#FF0000;\" id=\"C$cat[catid]\">$cat[libelleFR]</font></a>$case</li>\n<ul class=tree id=\"F$cat[catid]\">\n";
-							construire_cat($cat[catid]);
+							construire_cat($cat['catid']);
 							$treeview.="</ul>\n";
 							}
 						else
@@ -3579,13 +3579,13 @@ switch ($action2) // formulaires
 							if ($place == "")
 								{
 								$treeview.="<li class=folder id=\"T$cat[catid]\"><a title=\"$cat[libelleFR]\" alt=\"$cat[libelleFR]\" href=\"Javascript: toggle('F$cat[catid]','T$cat[catid]');\" class=treeview><font style=\"color:#5F718A;\" id=\"C$cat[catid]\">$cat[libelleFR]</font></a>$case</li>\n<ul class=tree id=\"F$cat[catid]\">\n";
-								construire_cat($cat[catid]);
+								construire_cat($cat['catid']);
 								$treeview.="</ul>\n";
 								}
 							else
 								{
 								$treeview.="<li class=folder id=\"T$cat[catid]\"><a title=\"$cat[libelleFR]\" alt=\"$cat[libelleFR]\" href=\"Javascript: toggle('F$cat[catid]','T$cat[catid]');\" class=treeview><font color=\"red\">$cat[libelleFR]</font></a>$place</li>\n<ul class=tree id=\"F$cat[catid]\">\n";
-								construire_cat($cat[catid]);
+								construire_cat($cat['catid']);
 								$treeview.="</ul>\n";
 								}
 							}
@@ -3716,12 +3716,12 @@ switch ($action2) // formulaires
 			$filtre_select = "";
 			$where = "";
 			while($filtre = $DB_site2->fetch_array($filtre_query)) {
-					if($caracteristique != $filtre[seltitle]) {
+					if($caracteristique != $filtre['seltitle']) {
 						//debut de select
 						$filtre_select .= ($filtre_select ? '</select>' : '')." $filtre[seltitle] <select name=\"filtrecaract[$filtre[caractid]]\" onchange=\"javascript:filtretable();\"><option value=\"\">Non filtré</option><option value=\"\">--------</option>";
 						}
-					$filtre_select .= "<option value=\"$filtre[caractvalid]\"".(isset($filtrecaract[$filtre[caractid]]) && $filtrecaract[$filtre[caractid]] == $filtre[caractvalid] ? ' selected' : '').">$filtre[selval]</option>";
-					$caracteristique = $filtre[seltitle];
+					$filtre_select .= "<option value=\"$filtre[caractvalid]\"".(isset($filtrecaract[$filtre['caractid']]) && $filtrecaract[$filtre['caractid']] == $filtre['caractvalid'] ? ' selected' : '').">$filtre[selval]</option>";
+					$caracteristique = $filtre['seltitle'];
 				}
 			
 			if($filtre_select)
@@ -3829,9 +3829,9 @@ switch ($action2) // formulaires
 			while ($histo=$DB_site2->fetch_array($histos))
 				{
 				$contenu_onglet .= "<tr>
-						<td align=\"center\">".date("d/m/Y", $histo[dateline])."</td>
+						<td align=\"center\">".date("d/m/Y", $histo['dateline'])."</td>
 						<td align=\"left\">".$histo_labels[$histo['stockid']]."</td>
-						<td align=\"right\">".($histo[delta] > 0 ? "<span style=\"color:green;\">+ ".$histo[delta]."</span>" : "<span style=\"color:red;\">- ".abs($histo[delta])."</span>")."</td>
+						<td align=\"right\">".($histo['delta'] > 0 ? "<span style=\"color:green;\">+ ".$histo['delta']."</span>" : "<span style=\"color:red;\">- ".abs($histo['delta'])."</span>")."</td>
 					</tr>" ;
 				}		
 			$contenu_onglet .= "</table>
@@ -3895,13 +3895,13 @@ switch ($action2) // formulaires
 				$liste_champs = "" ;
 				while ($champ=$DB_site2->fetch_array($champs))
 					{
-					switch ($champ[obligatoire])
+					switch ($champ['obligatoire'])
 						{
 						case "0":
-							$champ[obligatoire] = "" ;
+							$champ['obligatoire'] = "" ;
 							break ;
 						case "1":
-							$champ[obligatoire] = "Oblig." ;
+							$champ['obligatoire'] = "Oblig." ;
 							break ;
 						}
 					$liste_champs .= "<option value=\"$champ[articlechampid]\">$champ[articlechampid]:$champ[libelleFR] ($champ[nomtype] $champ[obligatoire])</option>" ;
@@ -3911,13 +3911,13 @@ switch ($action2) // formulaires
 				$liste_champs2 = "" ;
 				while ($champ2=$DB_site2->fetch_array($champs2))
 					{
-					switch ($champ2[obligatoire])
+					switch ($champ2['obligatoire'])
 						{
 						case "0":
-							$champ2[obligatoire] = "" ;
+							$champ2['obligatoire'] = "" ;
 							break ;
 						case "1":
-							$champ2[obligatoire] = "Oblig." ;
+							$champ2['obligatoire'] = "Oblig." ;
 							break ;
 						}
 					$liste_champs2 .= "<option value=\"$champ2[articlechampid]\">$champ2[articlechampid]:$champ2[libelleFR] ($champ2[nomtype] $champ2[obligatoire])</option>" ;
@@ -3969,7 +3969,7 @@ switch ($action2) // formulaires
 					$contenu_onglet .= "<ul>" ;
 					while ($piece=$DB_site2->fetch_array($pieces))
 						{
-						$piece[contenu] = "<a href=\"Javascript: supprimer_piece('$piece[articlepieceid]') ;\">Supprimer</a>" ;
+						$piece['contenu'] = "<a href=\"Javascript: supprimer_piece('$piece[articlepieceid]') ;\">Supprimer</a>" ;
 						$contenu_onglet .= "<li>$piece[description] ($piece[libelle]) : $piece[contenu]</li>" ;
 						}
 					$contenu_onglet .= "</ul><br>" ;
@@ -4061,7 +4061,7 @@ switch ($action2) // formulaires
 				while ($art_conseille=$DB_site2->fetch_array($arts_conseilles))
 					{
 					$txt = "ok" ;
-					array_push($tab_conseilles, $art_conseille[artid_conseille]) ;
+					array_push($tab_conseilles, $art_conseille['artid_conseille']) ;
 					}
 				$sscats=$DB_site2->query("select * from categorie where parentid = '$cat[catid]' limit 1");
 				if($sscat=$DB_site2->fetch_array($sscats)) // chaque categ de niveau 2
@@ -4073,7 +4073,7 @@ switch ($action2) // formulaires
 						$articles=$DB_site2->query("SELECT * FROM article WHERE catid = '$cat[catid]'");
 						while ($article=$DB_site2->fetch_array($articles))
 							{
-							if ($article[artcode] != "")
+							if ($article['artcode'] != "")
 								{
 								$ref_article = "<i>Réf $article[artcode]</i> : ";
 								}
@@ -4081,7 +4081,7 @@ switch ($action2) // formulaires
 								{
 								$ref_article = "";
 								}
-							$article[libelleFR] = substr($article[libelleFR], 0, 50) ;
+							$article['libelleFR'] = substr($article['libelleFR'], 0, 50) ;
 							if ($article[artid] == $artid)
 								{
 								$treeview .= "<li class=\"art\">&nbsp;<font color=\"#000044\"><strong>$article[libelleFR]</strong></font></li>" ;
@@ -4099,7 +4099,7 @@ switch ($action2) // formulaires
 								}
 							}
 						$treeview.="</ul>" ;
-						construire_cat($cat[catid]);
+						construire_cat($cat['catid']);
 						$treeview.="</ul>\n";
 						}
 					else
@@ -4109,7 +4109,7 @@ switch ($action2) // formulaires
 						$articles=$DB_site2->query("SELECT * FROM article WHERE catid = '$cat[catid]'");
 						while ($article=$DB_site2->fetch_array($articles))
 							{
-							if ($article[artcode] != "")
+							if ($article['artcode'] != "")
 								{
 								$ref_article = "<i>Réf $article[artcode]</i> : ";
 								}
@@ -4117,7 +4117,7 @@ switch ($action2) // formulaires
 								{
 								$ref_article = "";
 								}							
-							$article[libelleFR] = substr($article[libelleFR], 0, 50) ;
+							$article['libelleFR'] = substr($article['libelleFR'], 0, 50) ;
 							if ($article[artid] == $artid)
 								{
 								$treeview .= "<li class=\"art\">&nbsp;<font color=\"#000044\"><strong>$article[libelleFR]</strong></font></li>" ;
@@ -4135,7 +4135,7 @@ switch ($action2) // formulaires
 								}
 							}
 						$treeview.="</ul>" ;
-						construire_cat($cat[catid]);
+						construire_cat($cat['catid']);
 						$treeview.="</ul>\n";
 						}
 					}
@@ -4153,7 +4153,7 @@ switch ($action2) // formulaires
 					$articles=$DB_site2->query("SELECT * FROM article WHERE catid = '$cat[catid]'");
 					while ($article=$DB_site2->fetch_array($articles))
 						{
-						if ($article[artcode] != "")
+						if ($article['artcode'] != "")
 							{
 							$ref_article = "<i>Réf $article[artcode]</i> : ";
 							}
@@ -4161,7 +4161,7 @@ switch ($action2) // formulaires
 							{
 							$ref_article = "";
 							}													
-						$article[libelleFR] = substr($article[libelleFR], 0, 50) ;
+						$article['libelleFR'] = substr($article['libelleFR'], 0, 50) ;
 						if ($article[artid] == $artid)
 							{
 							$treeview .= "<li class=\"art\">&nbsp;<font color=\"#000044\"><strong>$article[libelleFR]</strong></font></li>" ;
@@ -4170,11 +4170,11 @@ switch ($action2) // formulaires
 							{
 							if (in_array($article[artid], $tab_conseilles))
 								{
-								$treeview .= "<li class=\"art\"><input type=\"checkbox\" name=\"chk_articles[$article[artid]]\" value=\"$article[artid]\" onclick=\"javascript:changecolor('A$article[artid]');\" checked>$ref_article <font style=\"color:#FF0000;\" id=\"A$article[artid]\">$article[libelleFR]</font>".($article[commandable]==0?" <font color=\"red\">(invisible)</font>":"")."</li>" ;
+								$treeview .= "<li class=\"art\"><input type=\"checkbox\" name=\"chk_articles[$article[artid]]\" value=\"$article[artid]\" onclick=\"javascript:changecolor('A$article[artid]');\" checked>$ref_article <font style=\"color:#FF0000;\" id=\"A$article[artid]\">$article[libelleFR]</font>".($article['commandable']==0?" <font color=\"red\">(invisible)</font>":"")."</li>" ;
 								}
 							else
 								{
-								$treeview .= "<li class=\"art\"><input type=\"checkbox\" name=\"chk_articles[$article[artid]]\" value=\"$article[artid]\" onclick=\"javascript:changecolor('A$article[artid]');\">$ref_article <font id=\"A$article[artid]\">$article[libelleFR]</font>".($article[commandable]==0?" <font color=\"red\">(invisible)</font>":"")."</li>" ;
+								$treeview .= "<li class=\"art\"><input type=\"checkbox\" name=\"chk_articles[$article[artid]]\" value=\"$article[artid]\" onclick=\"javascript:changecolor('A$article[artid]');\">$ref_article <font id=\"A$article[artid]\">$article[libelleFR]</font>".($article['commandable']==0?" <font color=\"red\">(invisible)</font>":"")."</li>" ;
 								}
 							}
 						}
@@ -4250,7 +4250,7 @@ switch ($action2) // formulaires
 		</tr>
 		<tr>
 		<td align=\"left\">Filtres à charbon : </td>
-		<td align=\"left\">&nbsp;".selecttranslate("filtre_charbon","/article/filtre_charbon",$article[filtre_charbon])."</td>
+		<td align=\"left\">&nbsp;".selecttranslate("filtre_charbon","/article/filtre_charbon",$article['filtre_charbon'])."</td>
 		</tr>
 		<tr>
 		<td align=\"left\">Pieds vérin réglables : </td>
@@ -4342,11 +4342,11 @@ switch ($action2) // formulaires
 		<table width=\"90%\" align=\"center\">
 		<tr>
 		<td align=\"left\">Nombre de températures : </td>
-		<td align=\"left\">&nbsp;".selecttranslate("nbr_temperature","/article/nbr_temperature",$article[nbr_temperature])."</td>
+		<td align=\"left\">&nbsp;".selecttranslate("nbr_temperature","/article/nbr_temperature",$article['nbr_temperature'])."</td>
 		</tr>
 		<tr>
 		<td align=\"left\">Plage de réglage de la températures : </td>
-		<td align=\"left\">&nbsp;".selecttranslate("plage_temperature","/article/plage_temperature",$article[plage_temperature])."</td>
+		<td align=\"left\">&nbsp;".selecttranslate("plage_temperature","/article/plage_temperature",$article['plage_temperature'])."</td>
 		</tr>
 		<tr>
 		<td align=\"left\">Régulation : </td>
@@ -4397,7 +4397,7 @@ switch ($action2) // formulaires
 			if($rechercheusage['rechercheusageid']==5)
 			    $listeusages.="<tr><td colspan=\"2\" align=\"center\"><h3>Type de pose</h3></td></tr>";
 			else
-			    $listeusages .= "<tr> <td> <input type=\"checkbox\" name=\"usage$rechercheusage[rechercheusageid]\" ".${'usagechecked'.$rechercheusage[rechercheusageid]}." onclick=\"setmodif()\"></td> <td>$rechercheusage[nom]</td></tr>" ;
+			    $listeusages .= "<tr> <td> <input type=\"checkbox\" name=\"usage$rechercheusage[rechercheusageid]\" ".${'usagechecked'.$rechercheusage['rechercheusageid']}." onclick=\"setmodif()\"></td> <td>$rechercheusage[nom]</td></tr>" ;
 		}
 		
 		$contenu_onglet .= "$listeusages</table>" ;
@@ -4408,7 +4408,7 @@ switch ($action2) // formulaires
 		$listetypeporte = "" ;
 		$recherchetypesporte=$DB_site2->query("SELECT * FROM recherche_typeporte");
 		while ($recherchetypeporte=$DB_site2->fetch_array($recherchetypesporte))
-			$listetypeporte .= "<tr> <td> <input type=\"checkbox\" name=\"typeporte$recherchetypeporte[recherchetypeporteid]\" ".${'portechecked'.$recherchetypeporte[recherchetypeporteid]}." onclick=\"setmodif()\"></td> <td>$recherchetypeporte[nom]</td></tr>" ;
+			$listetypeporte .= "<tr> <td> <input type=\"checkbox\" name=\"typeporte$recherchetypeporte[recherchetypeporteid]\" ".${'portechecked'.$recherchetypeporte['recherchetypeporteid']}." onclick=\"setmodif()\"></td> <td>$recherchetypeporte[nom]</td></tr>" ;
 		
 		$contenu_onglet .= "$listetypeporte</table>" ;
 	
@@ -4418,7 +4418,7 @@ switch ($action2) // formulaires
 		$listecoloris = "" ;
 		$recherchecoloriss=$DB_site2->query("SELECT * FROM recherche_coloris");
 		while ($recherchecoloris=$DB_site2->fetch_array($recherchecoloriss))
-			$listecoloris .= "<tr> <td> <input type=\"checkbox\" name=\"coloris$recherchecoloris[recherchecolorisid]\" ".${'colorischecked'.$recherchecoloris[recherchecolorisid]}." onclick=\"setmodif()\"></td> <td>$recherchecoloris[nom]</td></tr>" ;
+			$listecoloris .= "<tr> <td> <input type=\"checkbox\" name=\"coloris$recherchecoloris[recherchecolorisid]\" ".${'colorischecked'.$recherchecoloris['recherchecolorisid']}." onclick=\"setmodif()\"></td> <td>$recherchecoloris[nom]</td></tr>" ;
 		
 		$contenu_onglet .= "$listecoloris</table>" ;
 	
@@ -4436,7 +4436,7 @@ switch ($action2) // formulaires
 		$listerangement = "" ;
 		$rechercherangements=$DB_site2->query("SELECT * FROM recherche_moderangement");
 		while ($rechercherangement=$DB_site2->fetch_array($rechercherangements))
-			$listerangement .= "<tr> <td> <input type=\"checkbox\" name=\"rangement$rechercherangement[recherchemoderangementid]\" ".${'modechecked'.$rechercherangement[recherchemoderangementid]}." onclick=\"setmodif()\"></td> <td>$rechercherangement[nom]</td></tr>" ;
+			$listerangement .= "<tr> <td> <input type=\"checkbox\" name=\"rangement$rechercherangement[recherchemoderangementid]\" ".${'modechecked'.$rechercherangement['recherchemoderangementid']}." onclick=\"setmodif()\"></td> <td>$rechercherangement[nom]</td></tr>" ;
 		
 		$contenu_onglet .= "$listerangement</table>" ;
 
@@ -4447,7 +4447,7 @@ switch ($action2) // formulaires
 		$listeemplacement = "" ;
 		$rechercheemplacements=$DB_site2->query("SELECT * FROM recherche_emplacement");
 		while ($rechercheemplacement=$DB_site2->fetch_array($rechercheemplacements))
-			$listeemplacement .= "<tr> <td> <input type=\"checkbox\" name=\"emplacement$rechercheemplacement[rechercheemplacementid]\" ".${'emplacementchecked'.$rechercheemplacement[rechercheemplacementid]}." onclick=\"setmodif()\"></td> <td>$rechercheemplacement[nom]</td></tr>" ;
+			$listeemplacement .= "<tr> <td> <input type=\"checkbox\" name=\"emplacement$rechercheemplacement[rechercheemplacementid]\" ".${'emplacementchecked'.$rechercheemplacement['rechercheemplacementid']}." onclick=\"setmodif()\"></td> <td>$rechercheemplacement[nom]</td></tr>" ;
 		
 		$contenu_onglet .= "$listeemplacement</table>";
 
@@ -4471,7 +4471,7 @@ switch ($action2) // formulaires
 		<table width=\"90%\" align=\"center\">
 		<tr>
 		<td align=\"left\">Absence de vibration : </td>
-		<td align=\"left\">&nbsp;".selecttranslate("absence_vibration","/article/absence_vibration",$article[absence_vibration])."</td>
+		<td align=\"left\">&nbsp;".selecttranslate("absence_vibration","/article/absence_vibration",$article['absence_vibration'])."</td>
 		</tr>	
 		<tr>
 		<td align=\"left\">Production de froid : </td>
@@ -4652,7 +4652,7 @@ switch ($action2) // formulaires
 		while ($attribut=$DB_site2->fetch_array($attributs))
 			{
 			$attributArt = $DB_site2->query_first("SELECT valeur FROM article_attribut WHERE artid = '$artid' AND attributid = '$attribut[attributid]'");
-			$attributArt[valeur] = stripslashes($attributArt[valeur]);
+			$attributArt['valeur'] = stripslashes($attributArt['valeur']);
 			$contenu_onglet .= "<li> $attribut[libelle] : <input type=\"text\" name=\"chk_attributs[$attribut[attributid]]\" value=\"$attributArt[valeur]\"></li>";
 			}
 		$contenu_onglet .= "</ul>";	
@@ -4942,13 +4942,13 @@ function article_base($artid_lie)
 	global $DB_site2, $artid_base;
 	$artid_base = $artid_lie;
 	$article=$DB_site2->query_first("SELECT * FROM liens_articles WHERE article_lie = '$artid_lie'");
-	if ($article[liensarticlesid] != "")
+	if ($article['liensarticlesid'] != "")
 		{
 		$actif=$DB_site2->query_first("SELECT * FROM article WHERE artid = '$article[article_base]'");
-		if ($actif[active] == '0' or $actif[artid] == "")
-			$artid_base = $article[article_base];
+		if ($actif['active'] == '0' or $actif[artid] == "")
+			$artid_base = $article['article_base'];
 		else
-			article_base($article[article_base]);
+			article_base($article['article_base']);
 		}
 	return $artid_base;
 	}

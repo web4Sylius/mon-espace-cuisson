@@ -136,9 +136,9 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 		$pdf->SetFillColor(230,230,230);
 
 		$user=$DB_site2->query_first("SELECT * FROM utilisateur u, pays p WHERE userid = '$facture[userid]' and u.paysid = p.paysid");
-		$numerofacture = $facture[codenumerofacture].$facture[numerofacture];
+		$numerofacture = $facture['codenumerofacture'].$facture['numerofacture'];
 		$moyenpaiement=$DB_site2->query_first("SELECT * FROM moyenpaiement WHERE moyenid = '$facture[moyenid]'");
-		$facturid = $facture[facturid];
+		$facturid = $facture['facturid'];
 	
 		$pdf->SetFont('Arial','U',8);
 		$pdf->Cell(70,5,"$multilangue[expediteur] :",0,0,'',1);
@@ -216,7 +216,7 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 		$pdf->SetFillColor(250,200,150);
 		$pdf->Cell(30,5,"$multilangue[dateeedition]",1,0,'R',1);
 		$pdf->SetFillColor(255,255,255);
-		$dateafftmp=explode("-",$facture[datefacture]);
+		$dateafftmp=explode("-",$facture['datefacture']);
 		$dateaff="$dateafftmp[2]/$dateafftmp[1]/$dateafftmp[0]";
 		$pdf->Cell(50,5,"$dateaff",1,0,'C',1);
 		$pdf->Ln(5);
@@ -256,15 +256,15 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 				}
 			$libmarque=$DB_site2->query_first("SELECT * from article_marque am, marque m where am.marqueid = m.marqueid and am.artid = '$lignefacture[artid]'");	
 			$libmodele = $DB_site2->query_first("SELECT modele FROM article WHERE artid = '$lignefacture[artid]'");	
-			$designation = html_entity_decode($lignefacture[libelle]." ".$libmarque[libelle]." ".$libmodele[0]) . $des_caracts ;
+			$designation = html_entity_decode($lignefacture['libelle']." ".$libmarque['libelle']." ".$libmodele[0]) . $des_caracts ;
 	
-			$puht = ($lignefacture[prix] / (1 + $lignefacture[tva] / 100)) ;
+			$puht = ($lignefacture['prix'] / (1 + $lignefacture['tva'] / 100)) ;
 			$puht = number_format($puht, 2, ',', ' ') ;
 			$qte = $lignefacture[qte] ;
-			$txtva = $lignefacture[tva] ;
-			$tva += ($lignefacture[prix] * $qte) - (($lignefacture[prix] * $qte) / (1 + $lignefacture[tva] / 100)) ;
-			$montant_ttc = $lignefacture[prix] * $qte ;
-			if ($lignefacture[remboursement] != '1')
+			$txtva = $lignefacture['tva'] ;
+			$tva += ($lignefacture['prix'] * $qte) - (($lignefacture['prix'] * $qte) / (1 + $lignefacture['tva'] / 100)) ;
+			$montant_ttc = $lignefacture['prix'] * $qte ;
+			if ($lignefacture['remboursement'] != '1')
 				{
 				$total += $montant_ttc ;
 				}
@@ -340,9 +340,9 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 				}
 	
 			
-			if ($lignefacture[remboursement] == '1')
+			if ($lignefacture['remboursement'] == '1')
 				{
-				$dateremb = explode("-", $lignefacture[date_remboursement]) ;
+				$dateremb = explode("-", $lignefacture['date_remboursement']) ;
 				$pdf->SetFont('Arial','',8);
 				if ($nbre > 1)
 					{
@@ -415,10 +415,10 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 		// remise sut tout catalogue 
 		if (in_array ("106", $modules))
 			{
-			if ($facture[pctremise] != 0)
+			if ($facture['pctremise'] != 0)
 				{
 				$i++ ;
-				$fmttremise = $total * ($facture[pctremise] / 100) ;
+				$fmttremise = $total * ($facture['pctremise'] / 100) ;
 				$total -= $fmttremise ;
 				$pdf->SetFillColor(255,255,255);
 				$pdf->SetFont('Arial','',8);
@@ -435,7 +435,7 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 		// remise
 		if (in_array ("3", $modules))
 			{
-			if ($facture[remiseid] != 0)
+			if ($facture['remiseid'] != 0)
 				{
 				$infosremise=$DB_site2->query_first("SELECT * from remise where remiseid = '$facture[remiseid]'");
 				$article=$DB_site2->query_first("SELECT $libelle from article a, remisearticle ra where a.artid = ra.artid and remiseid = '$facture[remiseid]'");
@@ -455,7 +455,7 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 						$fin = "." ;
 						}
 					}
-				switch ($infosremise[typeremise])
+				switch ($infosremise['typeremise'])
 					{
 					case '0': // remise sur le poids
 						$libremise = "$multilangue[remise] $infosremise[pctremise] % : $multilangue[poids] > $infosremise[valeur] $multilangue[grammes] $fin" ;
@@ -468,7 +468,7 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 						break;
 					} // fin du switch
 				$i++ ;
-				$total -= $facture[montantremise] ;
+				$total -= $facture['montantremise'] ;
 				$pdf->SetFillColor(255,255,255);
 				$pdf->SetFont('Arial','',8);
 				$pdf->Cell(110,5, "$libremise",1,0,'',1);
@@ -476,7 +476,7 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 				$pdf->Cell(20,5,"" ,1,0,'R',1);
 				$pdf->Cell(20,5,"" ,1,0,'C',1);
 				$pdf->Cell(15,5,"" ,1,0,'C',1);
-				$pdf->Cell(25,5,"-".number_format($facture[montantremise], 2, ',', ' ')." €",1,0,'R',1);
+				$pdf->Cell(25,5,"-".number_format($facture['montantremise'], 2, ',', ' ')." €",1,0,'R',1);
 				$pdf->Ln(5);
 				}
 			} 
@@ -485,7 +485,7 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 		// Bons de réduction 
 		if (in_array("13", $modules))
 			{
-			if ($facture[cadeauid] != 0)
+			if ($facture['cadeauid'] != 0)
 				{
 				$infoscadeau=$DB_site2->query_first("SELECT * FROM cadeau WHERE cadeauid = '$facture[cadeauid]'");
 				$article=$DB_site2->query_first("SELECT $libelle from article a, article_cadeau ac where a.artid = ac.artid and cadeauid = '$facture[cadeauid]'");
@@ -505,7 +505,7 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 						$fin = "." ;
 						}
 					}
-				switch ($infoscadeau[typecadeauid])
+				switch ($infoscadeau['typecadeauid'])
 					{
 					case '0': // remise sur le poids
 						$libcadeau = "$multilangue[bonreduction] $multilangue[de] $infoscadeau[valeurcadeau] € $fin" ;
@@ -515,9 +515,9 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 						break;
 					}
 				$i++ ;
-				$total -= $facture[montantcadeau] ;
+				$total -= $facture['montantcadeau'] ;
 				
-				$tvaremise = $facture[montantcadeau]-($facture[montantcadeau]/1.196);
+				$tvaremise = $facture['montantcadeau']-($facture['montantcadeau']/1.196);
 				
 				$pdf->SetFillColor(255,255,255);
 				$pdf->SetFont('Arial','',8);
@@ -526,7 +526,7 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 				$pdf->Cell(20,5,"" ,1,0,'R',1);
 				$pdf->Cell(20,5,"" ,1,0,'C',1);
 				$pdf->Cell(15,5,"" ,1,0,'C',1);
-				$pdf->Cell(25,5,"-".number_format($facture[montantcadeau], 2, ',', ' ')." €",1,0,'R',1);
+				$pdf->Cell(25,5,"-".number_format($facture['montantcadeau'], 2, ',', ' ')." €",1,0,'R',1);
 				$pdf->Ln(5);
 				}
 			}
@@ -544,8 +544,8 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 		$pdf->Ln(5);
 		
 		// frais de port
-		$total += $facture[prixport] ;
-		$tva += $facture[prixport] - ($facture[prixport] / (1 + $facture[tvaport]/100)) ;
+		$total += $facture['prixport'] ;
+		$tva += $facture['prixport'] - ($facture['prixport'] / (1 + $facture['tvaport']/100)) ;
 		$pdf->SetFillColor(255,255,255);
 		$pdf->SetFont('Arial','',8);
 		$pdf->Cell(30,5,"" ,1,0,'',1);
@@ -554,12 +554,12 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 		$pdf->Cell(20,5,"" ,1,0,'C',1);
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(15,5,"$facture[tvaport] %" ,1,0,'C',1);
-		$pdf->Cell(25,5,number_format($facture[prixport], 2, ',', ' ')." €",1,0,'R',1);
+		$pdf->Cell(25,5,number_format($facture['prixport'], 2, ',', ' ')." €",1,0,'R',1);
 		$pdf->Ln(5);
 		
 	
 		// contre remboursement
-		if ($facture[moyenid] == '3' and $facture[prix_contre_remboursement] != 0)
+		if ($facture['moyenid'] == '3' and $facture['prix_contre_remboursement'] != 0)
 			{
 			$i++ ;
 			$pdf->SetFillColor(255,255,255);
@@ -571,7 +571,7 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 			$pdf->Cell(25,5,"",1,0,'R',1);
 			$pdf->Ln(5);
 		
-			$total += $facture[prix_contre_remboursement] ;
+			$total += $facture['prix_contre_remboursement'] ;
 			$i++;
 			$pdf->SetFillColor(255,255,255);
 			$pdf->SetFont('Arial','',8);
@@ -580,7 +580,7 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 			$pdf->Cell(20,5,"" ,1,0,'C',1);
 			$pdf->SetFont('Arial','',10);
 			$pdf->Cell(15,5,"" ,1,0,'C',1);
-			$pdf->Cell(25,5,number_format($facture[prix_contre_remboursement], 2, ',', ' ')." €",1,0,'R',1);
+			$pdf->Cell(25,5,number_format($facture['prix_contre_remboursement'], 2, ',', ' ')." €",1,0,'R',1);
 			$pdf->Ln(5);
 			}
 	
@@ -631,7 +631,7 @@ if (isset($datedebut) and isset($datefin) and $datefin >= $datedebut)
 		$pdf->Ln(5);
 		if ($cde != "1") 
 			{
-			$dateexp=explode("-",$facture[dateexpedition]);
+			$dateexp=explode("-",$facture['dateexpedition']);
 			$pdf->Cell(190,5,"Date expédition : $dateexp[2]/$dateexp[1]/$dateexp[0]",0,0,'',1);
 			}
 		$pdf->Ln(5);

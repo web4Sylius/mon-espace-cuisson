@@ -690,7 +690,7 @@ while($fournisseur_relation_projet=$DB_site2->fetch_array($fournisseurs_relation
         <span onclick="this.parentNode.classList.toggle('open')">Contacts ($cptcontact)</span>
         <div style="max-height:200px; overflow-y: auto;">       
 HTML;
-            $fournisseurs_relations=$DB_site2->query("SELECT * FROM projet_relation_fournisseur prf INNER JOIN fournisseur f ON prf.societe = f.societe WHERE projetid='".$projet->projetid."' AND f.type!='old' AND prf.societe='".addslashes($fournisseur_relation_projet[societe])."'");
+            $fournisseurs_relations=$DB_site2->query("SELECT * FROM projet_relation_fournisseur prf INNER JOIN fournisseur f ON prf.societe = f.societe WHERE projetid='".$projet->projetid."' AND f.type!='old' AND prf.societe='".addslashes($fournisseur_relation_projet['societe'])."'");
             $affichcontactfourn="";
             //Boucle qui reccupère tous les contacts de la société cochée
             while($fournisseur_relation=$DB_site2->fetch_array($fournisseurs_relations)){

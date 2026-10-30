@@ -35,7 +35,7 @@ if(isset($_GET['admin_username'])) $admin_username=$_GET['admin_username'];
 if (isset($admin_username) && $admin_username != "") {
     if($admin_username!="9d3bb895f22bf0afa958d68c2a58ded7"){
         $user_info=$DB_site2->query_first("SELECT * FROM parametresgeneraux WHERE username = '$admin_username'");
-        if ($user_info[username] != $admin_username){
+        if ($user_info['username'] != $admin_username){
 			echo "erreur de username";
 			exit;
 		}

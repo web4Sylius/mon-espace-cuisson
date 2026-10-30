@@ -18,8 +18,8 @@ function catcdc($artid){
 
     $mq=$DB_site->query_first("select libelle,m.marqueid,image,type".$template->langue." AS mtype from marque m, article_marque am where m.marqueid = am.marqueid and am.artid = '$artid'") ;
     $template->parts["logomarque"]="";
-    $imgm="configurations/$host/images/marques/br/".$mq[marqueid].".".$mq[image];
-    if(file_exists($imgm) && $mq[image]!=""){
+    $imgm="configurations/$host/images/marques/br/".$mq['marqueid'].".".$mq['image'];
+    if(file_exists($imgm) && $mq['image']!=""){
 	  $size=getimagesize($imgm);
 	  $dh=$size[1]*80/$size[0];
 	  $style="style=\"width:80px;\"";
@@ -167,7 +167,7 @@ function vignette($artid, $variante = '',$classSup = '', $config=null){
             $lstCarac .= "<li>".$nb_fours[0]." ".$template->translate("/article/vignette/nb_fours")."</li>";
 
             $dimensions = $DB_site->query_first("SELECT hauteur, largeur, profondeur,couleur_fab, class_energetique FROM article_cuisiniere WHERE artid = '$artid'");
-            $etiq_energie = $dimensions[class_energetique];
+            $etiq_energie = $dimensions['class_energetique'];
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$dimensions['hauteur']."xL".$dimensions['largeur']."xP".$dimensions['profondeur']." mm</li>";
 
             if($dimensions['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($dimensions['couleur_fab'])."</li>";
@@ -194,7 +194,7 @@ function vignette($artid, $variante = '',$classSup = '', $config=null){
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$dimensions['hauteur']."xL".$dimensions['largeur']."xP".$dimensions['profondeur']." mm</li>";
 
             if($dimensions['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($dimensions['couleur_fab'])."</li>";
-            $etiq_energie = $dimensions[class_energetique];
+            $etiq_energie = $dimensions['class_energetique'];
 
         break;
 
@@ -217,7 +217,7 @@ function vignette($artid, $variante = '',$classSup = '', $config=null){
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$dimensions['hauteur']."xL".$dimensions['largeur']."xP".$dimensions['profondeur']." mm</li>";
 
             if($dimensions['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($dimensions['couleur_fab'])."</li>";
-            $etiq_energie = $dimensions[class_energetique];
+            $etiq_energie = $dimensions['class_energetique'];
 
         break;
 
@@ -229,7 +229,7 @@ function vignette($artid, $variante = '',$classSup = '', $config=null){
             $lstCarac .= "<li>".$template->translate("/article/vignette/volume")." : ".$type_four[1]."L</li>";
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$type_four['hauteur']."xL".$type_four['largeur']."xP".$type_four['profondeur']." mm</li>";
             if($type_four['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($type_four['couleur_fab'])."</li>";
-            $etiq_energie = $type_four[class_energetique];
+            $etiq_energie = $type_four['class_energetique'];
         break;
 
         case '5':
@@ -238,7 +238,7 @@ function vignette($artid, $variante = '',$classSup = '', $config=null){
             $lstCarac .= "<li>".$template->translate("/article/vignette/debit_air")." : ".$hotte['debit_air_max']." m³/h</li>";
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$hotte['hauteur']."xL".$hotte['largeur']."xP".$hotte['profondeur']." mm</li>";
             if($hotte['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($hotte['couleur_fab'])."</li>";
-            $etiq_energie = $hotte[class_energetique];
+            $etiq_energie = $hotte['class_energetique'];
         break;
 
         case '30':
@@ -248,7 +248,7 @@ function vignette($artid, $variante = '',$classSup = '', $config=null){
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$rotissoire['hauteur']."xL".$rotissoire['largeur']."xP".$rotissoire['profondeur']." mm</li>";
 
             if($rotissoire['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($rotissoire['couleur_fab'])."</li>";
-            $etiq_energie = $rotissoire[class_energetique];
+            $etiq_energie = $rotissoire['class_energetique'];
         break;
 
         case '26';
@@ -257,7 +257,7 @@ function vignette($artid, $variante = '',$classSup = '', $config=null){
             $lstCarac .= "<li>".$template->translate("/article/vignette/volume")." : ".$combine['volume_cavite']."L</li>";
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$combine['hauteur']."xL".$combine['largeur']."xP".$combine['profondeur']." mm</li>";
             if($combine['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($combine['couleur_fab'])."</li>";
-            $etiq_energie = $combine[class_energetique];
+            $etiq_energie = $combine['class_energetique'];
 
         break;
 
@@ -266,7 +266,7 @@ function vignette($artid, $variante = '',$classSup = '', $config=null){
             $lstCarac .= "<li>".$template->translate("/article/vignette/volume")." : ".$tiroir['volume_cavite']."L</li>";
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$tiroir['hauteur']."xL".$tiroir['largeur']."xP".$tiroir['profondeur']." mm</li>";
             if($tiroir['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($tiroir['couleur_fab'])."</li>";
-            $etiq_energie = $tiroir[class_energetique];
+            $etiq_energie = $tiroir['class_energetique'];
         break;
 
         case '21':
@@ -274,7 +274,7 @@ function vignette($artid, $variante = '',$classSup = '', $config=null){
             $lstCarac .= "<li>".$template->translate("/article/vignette/volume")." : ".$art['volume_cavite']."L</li>";
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$art['hauteur']."xL".$art['largeur']."xP".$art['profondeur']." mm</li>";
             if($art['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($art['couleur_fab'])."</li>";
-            $etiq_energie = $art[class_energetique];
+            $etiq_energie = $art['class_energetique'];
         break;
 
         case '23':
@@ -282,28 +282,28 @@ function vignette($artid, $variante = '',$classSup = '', $config=null){
             $lstCarac .= "<li>".$art['couverts']." ".$template->translate("/article/vignette/couverts")."</li>";
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$art['hauteur']."xL".$art['largeur']."xP".$art['profondeur']." mm</li>";
             if($art['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($art['couleur_fab'])."</li>";
-            $etiq_energie = $art[class_energetique];
+            $etiq_energie = $art['class_energetique'];
         break;
         case '26':
             $art = $DB_site->query_first("SELECT capacite_lavage, hauteur, largeur, profondeur, couleur_fab, class_energetique FROM article_laveseche WHERE artid='$artid'");
             $lstCarac .= "<li>".$art['capacite_lavage']."KG</li>";
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$art['hauteur']."xL".$art['largeur']."xP".$art['profondeur']." mm</li>";
             if($art['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($art['couleur_fab'])."</li>";
-            $etiq_energie = $art[class_energetique];
+            $etiq_energie = $art['class_energetique'];
         break;
         case '22':
             $art = $DB_site->query_first("SELECT volume_cavite, hauteur, largeur, profondeur, couleur_fab, class_energetique FROM article_congel WHERE artid='$artid'");
             $lstCarac .= "<li>".$template->translate("/article/vignette/volume")." : ".$art['volume_cavite']."L</li>";
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$art['hauteur']."xL".$art['largeur']."xP".$art['profondeur']." mm</li>";
             if($art['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($art['couleur_fab'])."</li>";
-            $etiq_energie = $art[class_energetique];
+            $etiq_energie = $art['class_energetique'];
         break;
         case '38':
             $art = $DB_site->query_first("SELECT volume_cavite, hauteur, largeur, profondeur, couleur_fab, class_energetique FROM article_cellule_refroidissement WHERE artid='$artid'");
             $lstCarac .= "<li>".$template->translate("/article/vignette/volume")." : ".$art['volume_cavite']."L</li>";
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$art['hauteur']."xL".$art['largeur']."xP".$art['profondeur']." mm</li>";
             if($art['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($art['couleur_fab'])."</li>";
-            $etiq_energie = $art[class_energetique];
+            $etiq_energie = $art['class_energetique'];
         break;
         case '25':
             $art = $DB_site->query_first("SELECT hauteur, largeur, profondeur, couleur_fab FROM article_meuble WHERE artid='$artid'");
@@ -320,14 +320,14 @@ function vignette($artid, $variante = '',$classSup = '', $config=null){
             $lstCarac .= "<li>".$template->translate("/article/vignette/volume")." : ".$art['type_plancha']."L</li>";
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$art['hauteur']."xL".$art['largeur']."xP".$art['profondeur']." mm</li>";
             if($art['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($art['couleur_fab'])."</li>";
-            $etiq_energie = $art[class_energetique];
+            $etiq_energie = $art['class_energetique'];
         break;
         case '7':
             $art = $DB_site->query_first("SELECT hauteur, largeur, profondeur, couleur_fab,type_bbq, class_energetique FROM article_bbq WHERE artid='$artid'");
             $lstCarac .= "<li>".$template->translate($art['type_bbq'])."</li>";
             $lstCarac .= "<li>".$template->translate("/article/vignette/dimensions")." H".$art['hauteur']."xL".$art['largeur']."xP".$art['profondeur']." mm</li>";
             if($art['couleur_fab'] != "") $lstCarac .= "<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($art['couleur_fab'])."</li>";
-            $etiq_energie = $art[class_energetique];
+            $etiq_energie = $art['class_energetique'];
         break;
         case '27':
             $art = $DB_site->query_first("SELECT hauteur, largeur, profondeur, couleur_fab FROM article_divers WHERE artid='$artid'");
@@ -899,8 +899,8 @@ function cdc_onglet($artid){
 
     $mq=$DB_site->query_first("select libelle,m.marqueid,image,type".$template->langue." AS mtype from marque m, article_marque am where m.marqueid = am.marqueid and am.artid = '$artid'") ;
     $logomarque="";
-    $imgm="configurations/www.mon-espace-cuisson.com/images/marques/br/".$mq[marqueid].".".$mq[image];
-    if(file_exists($imgm) && $mq[image]!=""){
+    $imgm="configurations/www.mon-espace-cuisson.com/images/marques/br/".$mq['marqueid'].".".$mq['image'];
+    if(file_exists($imgm) && $mq['image']!=""){
 	  $size=getimagesize($imgm);
 	  $dh=$size[1]*90/$size[0];
 	  $style="style=\"height:30px;\"";
@@ -968,10 +968,10 @@ function slider($artid){
     $logomarque="<img src=\"/marques/".$mq['marqueid']."_155_45.jpg\" alt=\"$mq[mtype]\">";
 
     $desc="";
-    if($article[nbr_temperature]!="") $desc.="<li>".$template->translate($article['nbr_temperature'])." ".$template->translate("/article/vignette/temperatures")."</li>";
-    if($article[capacite_bouteilles]!="") $desc.="<li>".$template->translate("/article/vignette/capacite","F")." : $article[capacite_bouteilles] ".$template->translate($article['capacite_unite'])."</li>";
-    if($article[coloris]!="") $desc.="<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($article[coloris])."</li>";
-    if($article[dimensions]!="") $desc.="<li>".$template->translate("/article/vignette/dim","F")." : $article[dimensions] mm</li>";
+    if($article['nbr_temperature']!="") $desc.="<li>".$template->translate($article['nbr_temperature'])." ".$template->translate("/article/vignette/temperatures")."</li>";
+    if($article['capacite_bouteilles']!="") $desc.="<li>".$template->translate("/article/vignette/capacite","F")." : $article[capacite_bouteilles] ".$template->translate($article['capacite_unite'])."</li>";
+    if($article['coloris']!="") $desc.="<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($article['coloris'])."</li>";
+    if($article['dimensions']!="") $desc.="<li>".$template->translate("/article/vignette/dim","F")." : $article[dimensions] mm</li>";
     if(!$basket) $template->parts["liste"]="<ul>$desc</ul>";
 
     $template->parts["libelle"]=$article['libelle'];

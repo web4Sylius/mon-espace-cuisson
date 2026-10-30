@@ -40,9 +40,9 @@ echo "
 // MODIFIER UN ATTRIBUT
 if (isset($action) and $action == "modifier") {
 	$critere=$DB_site2->query_first("SELECT * FROM rueducommerce_attribut WHERE attributid = '$attributid'");
-	$f_libelle = $critere[libelle] ;
-	$code = $critere[code] ;
-	$MCID = $critere[MCID] ;
+	$f_libelle = $critere['libelle'] ;
+	$code = $critere['code'] ;
+	$MCID = $critere['MCID'] ;
 	echo "<div class=\"titrefleche\">Modifier un attribut</div>
 	<div class=\"right\"><a href=\"placedemarche_rueducommerce_attribut.php\"><img src=\"images/templates/btn_retour.jpg\" alt=\"\"></a></div>
 	<form method=\"post\">

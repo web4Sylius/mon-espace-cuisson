@@ -242,13 +242,13 @@ foreach($cmd->items as $item){
 
     $designation2="";
 	
-    if($libmodele[rangements_txt]!="") $designation2.="\n - Accessoires inclus : ".str_replace("<br>","\n",$libmodele[rangements_txt]);
+    if($libmodele['rangements_txt']!="") $designation2.="\n - Accessoires inclus : ".str_replace("<br>","\n",$libmodele['rangements_txt']);
 	
-    if($libmodele[emballage_hauteur]!="" || $libmodele[emballage_largeur]!="" || $libmodele[emballage_profondeur]!="" || $libmodele[emballage_poids]!="" || $libmodele[hauteur]!="" || $libmodele[largeur]!="" || $libmodele[profondeur]!="" || $libmodele[poid]!=0)
-	    $designation2.="\n - ".$template->translate("/facture/dim_poids_brut")." : ".$libmodele[emballage_hauteur]."*".$libmodele[emballage_largeur]."*".$libmodele[emballage_profondeur]." / ".$libmodele[emballage_poids]."\n - ".$template->translate("/facture/dim_poids_net")." : ".$libmodele[hauteur]."*".$libmodele[largeur]."*".$libmodele[profondeur]." / ".round($libmodele[poid]/1000,1) ;
+    if($libmodele['emballage_hauteur']!="" || $libmodele['emballage_largeur']!="" || $libmodele['emballage_profondeur']!="" || $libmodele['emballage_poids']!="" || $libmodele['hauteur']!="" || $libmodele['largeur']!="" || $libmodele['profondeur']!="" || $libmodele['poid']!=0)
+	    $designation2.="\n - ".$template->translate("/facture/dim_poids_brut")." : ".$libmodele['emballage_hauteur']."*".$libmodele['emballage_largeur']."*".$libmodele['emballage_profondeur']." / ".$libmodele['emballage_poids']."\n - ".$template->translate("/facture/dim_poids_net")." : ".$libmodele['hauteur']."*".$libmodele['largeur']."*".$libmodele['profondeur']." / ".round($libmodele['poid']/1000,1) ;
     $calcdesign.="\n".$designation2;
 
-    $poidstotal+=(floatval(str_replace(",",".",$libmodele[emballage_poids]))*$item->qte);
+    $poidstotal+=(floatval(str_replace(",",".",$libmodele['emballage_poids']))*$item->qte);
 
     $pdf->SetFillColor(255,255,255);
     $i++ ;

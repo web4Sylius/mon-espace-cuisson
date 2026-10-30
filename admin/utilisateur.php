@@ -222,7 +222,7 @@ if($action=="commercial"){
     $DB_site2->query("UPDATE utilisateur SET commercial='$_GET[commercial]' WHERE userid='$_GET[userid]'");
     $last=$DB_site2->query_first("SELECT etat FROM suivi_client WHERE userid=".$_GET['userid']." ORDER BY date DESC LIMIT 1");
     if($last=="") $last['etat']=1;
-    $DB_site2->query("INSERT INTO suivi_client SET commercial='$user_info[username]', date=".time().", userid=".$_GET['userid'].", suivi='[infos_client] Nouveau commercial attribué : ".$_GET[commercial]."', rappel=0, etat=".intval($last['etat']).",compte=0");
+    $DB_site2->query("INSERT INTO suivi_client SET commercial='$user_info[username]', date=".time().", userid=".$_GET['userid'].", suivi='[infos_client] Nouveau commercial attribué : ".$_GET['commercial']."', rappel=0, etat=".intval($last['etat']).",compte=0");
     $action="editer";
 }
 if($action=="vip"){
@@ -413,13 +413,13 @@ if (in_array("106", $modules)) // groupes d'utilisateurs
 						{
 						$rowalt = "td_promos_".getrowbg();
 						$nb=$DB_site2->query_first("SELECT count(*) FROM utilisateur where groupeid = '$gp[groupeid]'" );
-						if ($gp[pctremise] == 0)
+						if ($gp['pctremise'] == 0)
 							{
-							$gp[pctremise] = "Aucune" ;
+							$gp['pctremise'] = "Aucune" ;
 							}
 						else
 							{
-							$gp[pctremise] = "$gp[pctremise] %" ;
+							$gp['pctremise'] = "$gp[pctremise] %" ;
 							}
 						echo "<tr>
 								<td align=\"left\" class=\"$rowalt\">$gp[nom]</td>
@@ -515,7 +515,7 @@ if (in_array("106", $modules)) // groupes d'utilisateurs
 					$utilisateur['allowsms'] = "Reçoit" ;
 					break ;
 			}
-		switch ($utilisateur[civilite])
+		switch ($utilisateur['civilite'])
 			{
 			case '0':
 				$utilisateur['civilite'] = "Monsieur" ;
@@ -1676,7 +1676,7 @@ if (in_array("106", $modules)) // groupes d'utilisateurs
                 $sql .= " FROM utilisateur";
                 $sql .= " WHERE userid = '".$_GET['userid']."'";
                 $utilisateur = $DB_site2->query_first($sql);
-                $photo = "../configurations/$host/photos_clients/client_".$utilisateur[userid];
+                $photo = "../configurations/$host/photos_clients/client_".$utilisateur['userid'];
                 $photoSuppr = glob($photo.".{jpg,gif,png,jpeg}", GLOB_BRACE)[0];
 
                if(file_exists($photoSuppr)){
@@ -1693,7 +1693,7 @@ if (in_array("106", $modules)) // groupes d'utilisateurs
             	$sql = "SELECT *";
                 $sql .= " FROM utilisateur";
                 $sql .= " WHERE userid = '".$_GET['userid']."'";
-                $utilisateur = $DB_site2->query_first($sql)[userid];
+                $utilisateur = $DB_site2->query_first($sql)['userid'];
                 $budget = str_replace(',', '.', $_POST['budget_projet']);
                 
                 $sql = "UPDATE utilisateur SET";
@@ -1970,10 +1970,10 @@ if (in_array("106", $modules)) // groupes d'utilisateurs
 				if(is_array($projet_relation)){
 					$projet_rels=$DB_site2->query("SELECT * FROM utilisateur_relation WHERE user1id='".$_POST['userid']."' OR user2id='".$_POST['userid']."' ");
 					while($projet_rel=$DB_site2->fetch_array($projet_rels)){
-						if($projet_rel[user1id]==$_POST['userid']){
-							$userid_related=$projet_rel[user2id];
+						if($projet_rel['user1id']==$_POST['userid']){
+							$userid_related=$projet_rel['user2id'];
 						} else {
-							$userid_related=$projet_rel[user1id];
+							$userid_related=$projet_rel['user1id'];
 						}
 						if(in_array($userid_related,$projet_relation)){
 							$DB_site2->query("INSERT IGNORE INTO projet_relation (projetid, userid, dateline) VALUES ('".$_POST['projetid']."' , '".$userid_related."', '".time()."') ");

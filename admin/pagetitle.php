@@ -275,9 +275,9 @@ if (!isset($action) or $action == "")
 	while (list($key, $val) = each($script)) 
 		{
 		$rowalt = "td_promos_".getrowbg();
-		$pagetitle=$DB_site2->query_first("select pagetitleid from pagetitle WHERE scriptname = '{$script[$key][script]}'");
+		$pagetitle=$DB_site2->query_first("select pagetitleid from pagetitle WHERE scriptname = '{$script[$key]['script']}'");
 		echo "<tr>
-				<td align=\"left\" width=\"70%\" class=\"$rowalt\">{$script[$key][nom]}</td>
+				<td align=\"left\" width=\"70%\" class=\"$rowalt\">{$script[$key]['nom']}</td>
 				<td align=\"center\" class=\"$rowalt\"><a href=pagetitle.php?action=modify&pagetitleid=$pagetitle[0]>Modifier</a></td>
 			</tr>" ;
 		}
@@ -289,9 +289,9 @@ if ($action == "modify")
 	$pagetitle=$DB_site2->query_first("select * from pagetitle WHERE pagetitleid = '$pagetitleid'");
 	while (list($key, $val) = each($script)) 
 		{
-		if ($pagetitle[scriptname] == $script[$key][script])
+		if ($pagetitle['scriptname'] == $script[$key]['script'])
 			{
-			echo "<h3>Modification des mots cl고de {$script[$key][nom]}</h3>" ;
+			echo "<h3>Modification des mots cl고de {$script[$key]['nom']}</h3>" ;
 			}
 		}
 	echo "<br>
@@ -301,7 +301,7 @@ if ($action == "modify")
 				<input type=\"hidden\" name=\"pagetitleid\" value=\"$pagetitleid\">";
 	if (in_array("FR", $langues))
 		{
-		$pagetitletmp1=$pagetitle[titleFR];
+		$pagetitletmp1=$pagetitle['titleFR'];
 		$pagetitletmp1=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp1 );
 		$pagetitletmp1=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp1 );
 		$pagetitletmp1=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp1 );
@@ -310,7 +310,7 @@ if ($action == "modify")
 		$pagetitletmp1=str_replace( "\$keydescription" , "[keydescription]" , $pagetitletmp1 );
 		$pagetitletmp1=stripslashes($pagetitletmp1);
 		$metadescription=$DB_site2->query_first("select *  from description WHERE scriptname = '$pagetitle[scriptname]'");
-		$pagetitletmp2=$metadescription[titleFR];
+		$pagetitletmp2=$metadescription['titleFR'];
 		$pagetitletmp2=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp2 );
 		$pagetitletmp2=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp2 );
 		$pagetitletmp2=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp2 );
@@ -319,7 +319,7 @@ if ($action == "modify")
 		$pagetitletmp2=str_replace( "\$keydescription" , "[keydescription]" , $pagetitletmp2 );
 		$pagetitletmp2=stripslashes($pagetitletmp2);
 		$metakeywords = $DB_site2->query_first(" select *  from keywords WHERE scriptname='$pagetitle[scriptname]' ");
-		$pagetitletmp3=$metakeywords[titleFR];
+		$pagetitletmp3=$metakeywords['titleFR'];
 		$pagetitletmp3=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp3 );
 		$pagetitletmp3=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp3 );
 		$pagetitletmp3=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp3 );
@@ -340,7 +340,7 @@ if ($action == "modify")
 		}
 	if (in_array("EN", $langues))
 		{
-		$pagetitletmp1=$pagetitle[titleEN];
+		$pagetitletmp1=$pagetitle['titleEN'];
 		$pagetitletmp1=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp1 );
 		$pagetitletmp1=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp1 );
 		$pagetitletmp1=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp1 );
@@ -349,7 +349,7 @@ if ($action == "modify")
 		$pagetitletmp1=str_replace( "\$keydescription" , "[keydescription]" , $pagetitletmp1 );
 		$pagetitletmp1=stripslashes($pagetitletmp1);
 		$metadescription = $DB_site2->query_first(" select *  from description WHERE scriptname='$pagetitle[scriptname]' ");
-		$pagetitletmp2=$metadescription[titleEN];
+		$pagetitletmp2=$metadescription['titleEN'];
 		$pagetitletmp2=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp2 );
 		$pagetitletmp2=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp2 );
 		$pagetitletmp2=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp2 );
@@ -358,7 +358,7 @@ if ($action == "modify")
 		$pagetitletmp2=str_replace( "\$keydescription" , "[keydescription]" , $pagetitletmp2 );
 		$pagetitletmp2=stripslashes($pagetitletmp2);
 		$metakeywords = $DB_site2->query_first(" select *  from keywords WHERE scriptname='$pagetitle[scriptname]' ");
-		$pagetitletmp3=$metakeywords[titleEN];
+		$pagetitletmp3=$metakeywords['titleEN'];
 		$pagetitletmp3=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp3 );
 		$pagetitletmp3=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp3 );
 		$pagetitletmp3=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp3 );
@@ -380,7 +380,7 @@ if ($action == "modify")
 		}
 	if (in_array("DE", $langues))
 		{
-		$pagetitletmp1=$pagetitle[titleDE];
+		$pagetitletmp1=$pagetitle['titleDE'];
 		$pagetitletmp1=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp1 );
 		$pagetitletmp1=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp1 );
 		$pagetitletmp1=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp1 );
@@ -389,7 +389,7 @@ if ($action == "modify")
 		$pagetitletmp1=str_replace( "\$keydescription" , "[keydescription]" , $pagetitletmp1 );
 		$pagetitletmp1=stripslashes($pagetitletmp1);
 		$metadescription = $DB_site2->query_first(" select *  from description WHERE scriptname='$pagetitle[scriptname]' ");
-		$pagetitletmp2=$metadescription[titleDE];
+		$pagetitletmp2=$metadescription['titleDE'];
 		$pagetitletmp2=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp2 );
 		$pagetitletmp2=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp2 );
 		$pagetitletmp2=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp2 );
@@ -398,7 +398,7 @@ if ($action == "modify")
 		$pagetitletmp2=str_replace( "\$keydescription" , "[keydescription]" , $pagetitletmp2 );
 		$pagetitletmp2=stripslashes($pagetitletmp2);
 		$metakeywords = $DB_site2->query_first(" select *  from keywords WHERE scriptname='$pagetitle[scriptname]' ");
-		$pagetitletmp3=$metakeywords[titleDE];
+		$pagetitletmp3=$metakeywords['titleDE'];
 		$pagetitletmp3=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp3 );
 		$pagetitletmp3=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp3 );
 		$pagetitletmp3=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp3 );
@@ -420,7 +420,7 @@ if ($action == "modify")
 		}
 	if (in_array("SP", $langues))
 		{
-		$pagetitletmp1=$pagetitle[titleSP];
+		$pagetitletmp1=$pagetitle['titleSP'];
 		$pagetitletmp1=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp1 );
 		$pagetitletmp1=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp1 );
 		$pagetitletmp1=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp1 );
@@ -429,7 +429,7 @@ if ($action == "modify")
 		$pagetitletmp1=str_replace( "\$keydescription" , "[keydescription]" , $pagetitletmp1 );
 		$pagetitletmp1=stripslashes($pagetitletmp1);
 		$metadescription = $DB_site2->query_first(" select *  from description WHERE scriptname='$pagetitle[scriptname]' ");
-		$pagetitletmp2=$metadescription[titleSP];
+		$pagetitletmp2=$metadescription['titleSP'];
 		$pagetitletmp2=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp2 );
 		$pagetitletmp2=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp2 );
 		$pagetitletmp2=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp2 );
@@ -438,7 +438,7 @@ if ($action == "modify")
 		$pagetitletmp2=str_replace( "\$keydescription" , "[keydescription]" , $pagetitletmp2 );
 		$pagetitletmp2=stripslashes($pagetitletmp2);
 		$metakeywords = $DB_site2->query_first(" select *  from keywords WHERE scriptname='$pagetitle[scriptname]' ");
-		$pagetitletmp3=$metakeywords[titleSP];
+		$pagetitletmp3=$metakeywords['titleSP'];
 		$pagetitletmp3=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp3 );
 		$pagetitletmp3=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp3 );
 		$pagetitletmp3=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp3 );
@@ -460,7 +460,7 @@ if ($action == "modify")
 		}
 	if (in_array("IT", $langues))
 		{
-		$pagetitletmp1=$pagetitle[titleIT];
+		$pagetitletmp1=$pagetitle['titleIT'];
 		$pagetitletmp1=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp1 );
 		$pagetitletmp1=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp1 );
 		$pagetitletmp1=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp1 );
@@ -469,7 +469,7 @@ if ($action == "modify")
 		$pagetitletmp1=str_replace( "\$keydescription" , "[keydescription]" , $pagetitletmp1 );
 		$pagetitletmp1=stripslashes($pagetitletmp1);
 		$metadescription = $DB_site2->query_first(" select *  from description WHERE scriptname='$pagetitle[scriptname]' ");
-		$pagetitletmp2=$metadescription[titleIT];
+		$pagetitletmp2=$metadescription['titleIT'];
 		$pagetitletmp2=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp2 );
 		$pagetitletmp2=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp2 );
 		$pagetitletmp2=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp2 );
@@ -478,7 +478,7 @@ if ($action == "modify")
 		$pagetitletmp2=str_replace( "\$keydescription" , "[keydescription]" , $pagetitletmp2 );
 		$pagetitletmp2=stripslashes($pagetitletmp2);
 		$metakeywords = $DB_site2->query_first(" select *  from keywords WHERE scriptname='$pagetitle[scriptname]' ");
-		$pagetitletmp3=$metakeywords[titleIT];
+		$pagetitletmp3=$metakeywords['titleIT'];
 		$pagetitletmp3=str_replace( "\${\$title}" , "[boutiquetitre]" , $pagetitletmp3 );
 		$pagetitletmp3=str_replace( "\$pagetitle_catname" , "[categorietitre]" , $pagetitletmp3 );
 		$pagetitletmp3=str_replace( "\$article[\$libelle]" , "[articletitre]" , $pagetitletmp3 );

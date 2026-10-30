@@ -241,7 +241,7 @@ if(isset($_GET['fid'])){
     while($contact=$DB_site2->fetch_array($requete)){
 	    $nom=$contact['nom']." ".$contact['prenom'];
         print "<type id=\"srcfournisseur\" />";
-	    print "<contact id=\"$contact[id]\" mail=\"$contact[mail]\" fonction=\"".cleantxt($contact[fonction])."\" nom=\"".cleantxt($nom)."\" societe=\"".cleantxt($contact[societe])."\" telephone=\"$contact[telephone]\" portable=\"$contact[portable]\" tel=\"$usertel\" type=\"pro\" caller=\"".$user_info['tel'.$langue]."\" />\n";
+	    print "<contact id=\"$contact[id]\" mail=\"$contact[mail]\" fonction=\"".cleantxt($contact['fonction'])."\" nom=\"".cleantxt($nom)."\" societe=\"".cleantxt($contact['societe'])."\" telephone=\"$contact[telephone]\" portable=\"$contact[portable]\" tel=\"$usertel\" type=\"pro\" caller=\"".$user_info['tel'.$langue]."\" />\n";
       //print "<a href=\"javascript:addcontact('$contact[mail]','$nom');\" title=\"$contact[mail]\"><img src=\"/admin/images/pro.png\" height=\"20\" border=\"0\" align=\"absmiddle\">".surligne($nom,$txt)." (".utf8_encode(surligne($contact['fonction']." ".$contact['societe'],$txt)).")</a><br>";
     }
 }
@@ -316,7 +316,7 @@ if($_GET['txt']!="" && strlen($_GET['txt'])>2){
     while($contact=$DB_site2->fetch_array($requete)){
       $pays = $DB_site2->query_first("SELECT libelle FROM pays WHERE paysid=".$contact['paysid']);
 	    $nom=$contact['nom']." ".$contact['prenom'];
-	    print "<contact id=\"$contact[id]\" mail=\"$contact[mail]\" fonction=\"".cleantxt($contact[fonction])."\" nom=\"".cleantxt($nom)."\" societe=\"".cleantxt($contact[societe])."\" type_fourn=\"".cleantxt($types[$contact[type]])."\" adresse=\"".cleantxt($contact[adresse])."\" codepostal=\"$contact[codepostal]\" ville=\"".cleantxt($contact[ville])."\" pays=\"$pays[0]\" telephone=\"$contact[telephone]\" portable=\"$contact[portable]\" tel=\"$usertel\" type=\"pro\" caller=\"".$user_info['tel'.$langue]."\" languemail=\"$langue\" site_code=\"base\" mailcontact=\"$contact_infos[mail]\" typesrc=\"".$id."\" />\n";
+	    print "<contact id=\"$contact[id]\" mail=\"$contact[mail]\" fonction=\"".cleantxt($contact['fonction'])."\" nom=\"".cleantxt($nom)."\" societe=\"".cleantxt($contact['societe'])."\" type_fourn=\"".cleantxt($types[$contact[type]])."\" adresse=\"".cleantxt($contact['adresse'])."\" codepostal=\"$contact[codepostal]\" ville=\"".cleantxt($contact['ville'])."\" pays=\"$pays[0]\" telephone=\"$contact[telephone]\" portable=\"$contact[portable]\" tel=\"$usertel\" type=\"pro\" caller=\"".$user_info['tel'.$langue]."\" languemail=\"$langue\" site_code=\"base\" mailcontact=\"$contact_infos[mail]\" typesrc=\"".$id."\" />\n";
       //print "<a href=\"javascript:addcontact('$contact[mail]','$nom');\" title=\"$contact[mail]\"><img src=\"/admin/images/pro.png\" height=\"20\" border=\"0\" align=\"absmiddle\">".surligne($nom,$txt)." (".utf8_encode(surligne($contact['fonction']." ".$contact['societe'],$txt)).")</a><br>";
     }
   }
@@ -349,11 +349,11 @@ if($_GET['txt']!="" && strlen($_GET['txt'])>2){
     while($contact=$DB_site2->fetch_array($requete)){
       $pays = $DB_site2->query_first("SELECT libelle FROM pays WHERE paysid=".$contact['paysid']);
 	    $nom=$contact['nom']." ".$contact['prenom'];
-	    print "<contact userid=\"$contact[userid]\" mail=\"$contact[mail]\" nom=\"".cleantxt($nom)."\" societe=\"".cleantxt($contact[raisonsociale])."\" telephone=\"".cleantxt($contact[telephone])."\" portable=\"$contact[portable]\" tel=\"$usertel\" adresse=\"".cleantxt($contact[adresse])."\" codepostal=\"".cleantxt($contact[codepostal])."\" ville=\"".cleantxt($contact[ville])."\" paysid=\"$contact[paysid]\" pays=\"".$pays[0]."\" type=\"client\" caller=\"".$user_info['tel'.$langue]."\" typesrc=\"".$id."\" />\n";
-      $autres_contact=$DB_site2->query("SELECT * FROM utilisateur_assoc WHERE userid=".$contact[userid]." AND actif != 0");
+	    print "<contact userid=\"$contact[userid]\" mail=\"$contact[mail]\" nom=\"".cleantxt($nom)."\" societe=\"".cleantxt($contact['raisonsociale'])."\" telephone=\"".cleantxt($contact['telephone'])."\" portable=\"$contact[portable]\" tel=\"$usertel\" adresse=\"".cleantxt($contact['adresse'])."\" codepostal=\"".cleantxt($contact['codepostal'])."\" ville=\"".cleantxt($contact['ville'])."\" paysid=\"$contact[paysid]\" pays=\"".$pays[0]."\" type=\"client\" caller=\"".$user_info['tel'.$langue]."\" typesrc=\"".$id."\" />\n";
+      $autres_contact=$DB_site2->query("SELECT * FROM utilisateur_assoc WHERE userid=".$contact['userid']." AND actif != 0");
       while($autre_contact=$DB_site2->fetch_array($autres_contact)) {
-        $nom = $autre_contact[utilisateur_assoc_prenom]." ".$autre_contact[utilisateur_assoc_nom];
-        print "<contact assoc_id=\"$autre_contact[utilisateur_assoc_id]\" mail=\"$autre_contact[utilisateur_assoc_email]\" nom=\"".cleantxt($nom)."\" fonction=\"".cleantxt($autre_contact[utilisateur_assoc_fonction])."\" telephone=\"$autre_contact[utilisateur_assoc_tel]\" portable=\"$autre_contact[utilisateur_assoc_portable]\" tel=\"$usertel\" adresse=\"\" societe=\"".cleantxt($contact[raisonsociale])."\" codepostal=\"\" ville=\"\" paysid=\"\" pays=\"\" type=\"client\" caller=\"".$user_info['tel'.$langue]."\" />\n";
+        $nom = $autre_contact['utilisateur_assoc_prenom']." ".$autre_contact['utilisateur_assoc_nom'];
+        print "<contact assoc_id=\"$autre_contact[utilisateur_assoc_id]\" mail=\"$autre_contact[utilisateur_assoc_email]\" nom=\"".cleantxt($nom)."\" fonction=\"".cleantxt($autre_contact['utilisateur_assoc_fonction'])."\" telephone=\"$autre_contact[utilisateur_assoc_tel]\" portable=\"$autre_contact[utilisateur_assoc_portable]\" tel=\"$usertel\" adresse=\"\" societe=\"".cleantxt($contact['raisonsociale'])."\" codepostal=\"\" ville=\"\" paysid=\"\" pays=\"\" type=\"client\" caller=\"".$user_info['tel'.$langue]."\" />\n";
       }
     }
   }
@@ -373,7 +373,7 @@ if(isset($_GET['mail'])){
     while($contact=$DB_site2->fetch_array($requete)){
 // 	$nom=utf8_encode($contact['nom'])." ".utf8_encode($contact['prenom']);
 	$nom=$contact['nom']." ".$contact['prenom'];
-	print "<contact userid=\"$contact[userid]\" mail=\"$contact[mail]\" nom=\"".cleantxt($nom)."\" societe=\"".cleantxt($contact[raisonsociale])."\" telephone=\"$contact[telephone]\" portable=\"$contact[portable]\" tel=\"$usertel\" adresse=\"".cleantxt($contact[adresse])."\" codepostal=\"$contact[codepostal]\" ville=\"".cleantxt($contact[ville])."\" paysid=\"$contact[paysid]\" type=\"client\" caller=\"".$user_info['tel'.$langue]."\" />\n";
+	print "<contact userid=\"$contact[userid]\" mail=\"$contact[mail]\" nom=\"".cleantxt($nom)."\" societe=\"".cleantxt($contact['raisonsociale'])."\" telephone=\"$contact[telephone]\" portable=\"$contact[portable]\" tel=\"$usertel\" adresse=\"".cleantxt($contact['adresse'])."\" codepostal=\"$contact[codepostal]\" ville=\"".cleantxt($contact['ville'])."\" paysid=\"$contact[paysid]\" type=\"client\" caller=\"".$user_info['tel'.$langue]."\" />\n";
     }
 }
 

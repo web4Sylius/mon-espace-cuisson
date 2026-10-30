@@ -28,8 +28,8 @@ while ($article=$DB_site2->fetch_array($articles))
 		while ($couleur=$DB_site2->fetch_array($couleurs))
 			{
 			$codebarre = $DB_site2->query_first("SELECT codebarre FROM code_barre WHERE artid = '$article[artid]' AND caractvalid = '$couleur[caractvalid]'");
-			$couleur[libelleFR] = stripslashes($couleur[libelleFR]);
-			$contenu = generationligne($article[artid],$couleur[libelleFR],$codebarre[0]) ;
+			$couleur['libelleFR'] = stripslashes($couleur['libelleFR']);
+			$contenu = generationligne($article[artid],$couleur['libelleFR'],$codebarre[0]) ;
 			if($contenu!=false) fwrite($handle, stripslashes(html_entity_decode($contenu,ENT_COMPAT,"ISO-8859-15")));
 			}
 		}
@@ -61,12 +61,12 @@ function generationligne ($artid,$couleur,$codebarre)
 	    $mp[$row['champ']]=$row['valeur'];
 	
 
-	$artcode = $article[artcode];
+	$artcode = $article['artcode'];
 
 	$ligne = "";
 	
 	//image
-	$article[urlimage] = "" ;
+	$article['urlimage'] = "" ;
 	if ($couleur != ""){
 		
 		$coloris = explode("'",$couleur);
@@ -74,21 +74,21 @@ function generationligne ($artid,$couleur,$codebarre)
 		$infocaractvalid = $DB_site2->query_first("SELECT caractvalid FROM caracteristiquevaleur WHERE caractid = '1' AND libelleFR like '%$coloris[0]%'");
 		$artcode.="-$infocaractvalid[caractvalid]";
 		$existeimg = $DB_site2->query_first("SELECT image FROM article_caractval WHERE caractvalid = '$infocaractvalid[caractvalid]' AND artid = '$artid'");
-		if ($existeimg[image] == "jpg")
-			$article[urlimage] = "http://$host/configurations/$host/images/produits/article_caractval/$article[artid]_".$infocaractvalid[caractvalid].".$article[image]" ;
-		elseif ($article[image] != "")
-			$article[urlimage] = "http://$host/configurations/$host/images/produits/$article[artid].$article[image]" ;
-	}elseif ($article[image] != ""){
-		$article[urlimage] = "http://$host/configurations/$host/images/produits/$article[artid].$article[image]" ;
+		if ($existeimg['image'] == "jpg")
+			$article['urlimage'] = "http://$host/configurations/$host/images/produits/article_caractval/$article[artid]_".$infocaractvalid['caractvalid'].".$article[image]" ;
+		elseif ($article['image'] != "")
+			$article['urlimage'] = "http://$host/configurations/$host/images/produits/$article[artid].$article[image]" ;
+	}elseif ($article['image'] != ""){
+		$article['urlimage'] = "http://$host/configurations/$host/images/produits/$article[artid].$article[image]" ;
 		$color=$article['coloris'];
 	}
 	
 	//image2
-	$article[urlimage2] = "" ;
-	$article[urlimage3] = "" ;
-	$article[urlimage4] = "" ;
-	$article[urlimage5] = "" ;
-	$article[urlimage6] = "" ;
+	$article['urlimage2'] = "" ;
+	$article['urlimage3'] = "" ;
+	$article['urlimage4'] = "" ;
+	$article['urlimage5'] = "" ;
+	$article['urlimage6'] = "" ;
 	$i=2;
 	$photos=$DB_site2->query("SELECT * FROM articlephoto WHERE artid=".$article['artid']." ORDER BY position LIMIT 6");
 	while($photo=$DB_site2->fetch_array($photos)){
@@ -113,14 +113,14 @@ function generationligne ($artid,$couleur,$codebarre)
 	//prix de vente TTC
 	$temp_price=$DB_site2->query_first("SELECT * FROM temp_price WHERE artid=".$article['artid']." AND ".time()." BETWEEN du AND au");
 	if($temp_price['id']!=""){
-	    $article[prixconseilleht]=$temp_price[prixconseilleht];
-	    $article[prix]=$temp_price[prix];
-	    $article[prixht]=$temp_price[prix]/$tvafrance['taux'.$article['tauxchoisi']];
+	    $article['prixconseilleht']=$temp_price['prixconseilleht'];
+	    $article['prix']=$temp_price['prix'];
+	    $article['prixht']=$temp_price['prix']/$tvafrance['taux'.$article['tauxchoisi']];
 	}
-	$port = fdp($article['emballage_poids'],$article[prix]);
-	$prixvente = $article[prix] + $port ;	
-	$prixpublic = ($article[prixconseilleht]*1.196) + $port;	
-	if(floor($article[prixht])==floor($article[prixconseilleht]))
+	$port = fdp($article['emballage_poids'],$article['prix']);
+	$prixvente = $article['prix'] + $port ;	
+	$prixpublic = ($article['prixconseilleht']*1.196) + $port;	
+	if(floor($article['prixht'])==floor($article['prixconseilleht']))
 	  $prixpublic="";
 	else
 	  $prixpublic = number_format($prixpublic, 2, ',', '');
@@ -159,7 +159,7 @@ function generationligne ($artid,$couleur,$codebarre)
 	$ligne.=";";
 	
 	// eco part
-	$ecopart = number_format($article[ecopart], 2, ',', '');	
+	$ecopart = number_format($article['ecopart'], 2, ',', '');	
 	$ligne.="$ecopart";
 	$ligne.=";";
 	

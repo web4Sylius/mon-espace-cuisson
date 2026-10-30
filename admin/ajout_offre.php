@@ -148,7 +148,7 @@ if (isset ($action) and $action != ""){ // traitements des formulaires après (s
 						$exp = explode(',', $_POST['imgOffre']);
 						if($exp[1] == $langue){
 							$articlephoto=$DB_site2->query_first("SELECT * FROM articlephoto WHERE artid=".$artid." AND langue='".$langue."'");
-							if($articlephoto[articlephotoid]!=""){
+							if($articlephoto['articlephotoid']!=""){
 								unlink("../configurations/".$host."/images/produits/".$artid."_".$articlephotoid.".jpg");
 							}
 							$DB_site2->query("DELETE FROM articlephoto WHERE artid=".$artid." AND langue='".$langue."'");
@@ -165,7 +165,7 @@ if (isset ($action) and $action != ""){ // traitements des formulaires après (s
 							$ext=pathinfo($_FILES['img'.$langue]['name'],PATHINFO_EXTENSION);
 							if(strtolower($ext)=="jpg"){
 								$articlephoto=$DB_site2->query_first("SELECT * FROM articlephoto WHERE artid=".$artid." AND langue='".$langue."'");
-								if($articlephoto[articlephotoid]!=""){
+								if($articlephoto['articlephotoid']!=""){
 									unlink("../configurations/".$host."/images/produits/".$artid."_".$articlephotoid.".jpg");
 								}
 								$DB_site2->query("DELETE FROM articlephoto WHERE artid=".$artid." AND langue='".$langue."'");
@@ -307,8 +307,8 @@ HTML;
 	$article=$packs->getDetails($artid);
 
 		//$article=$DB_site2->query_first("select * from article where artid = '$artid'") ;
-	$delailivraison = $article[delailivraison];
-	$opt_visible = $article[active];
+	$delailivraison = $article['delailivraison'];
+	$opt_visible = $article['active'];
 	$msg_visible="";
 	$dis_visible="";
 	if($article['prix_pack_ttc']==null){
@@ -319,7 +319,7 @@ HTML;
 	$checkedv0=$checkedv1=$checkedv2=$checkedv3="";
 	${"checkedv".$opt_visible}="checked";
 
-	$opt_publie = $article[publie];
+	$opt_publie = $article['publie'];
 	$checkedp1=$checkedp2=$checkedp3="";
 	${"checkedp".$opt_publie}="checked";
 
@@ -419,10 +419,10 @@ HTML;
 		$checkedportrait="";
 		$checkedpaysage="";
 		
-		if($photo[legende]=='portrait'){
+		if($photo['legende']=='portrait'){
 			$checkedportrait="checked";
 		}
-		if($photo[legende]=='paysage'){
+		if($photo['legende']=='paysage'){
 			$checkedpaysage="checked";
 		}
 		

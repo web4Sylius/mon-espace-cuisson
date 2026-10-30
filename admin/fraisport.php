@@ -25,7 +25,7 @@ if (isset($action) and $action=="ajouter") {
        
         echo "<input type=\"hidden\" name=\"action\" value=\"20fraisport\">";
         
-        $paysid=$_POST[ajouter_id];
+        $paysid=$_POST['ajouter_id'];
         $requete="
             select count(*) from fraisport 
                 where paysid = $paysid AND sites='$_POST[site_code]' AND(
@@ -122,7 +122,7 @@ if (isset($action) and ($action=="20fraisport" || $action=="21fraisport"))
 	  $fpsite[$fp['paysid']]=array_unique($fpsite[$fp['paysid']]);
 	  
 	  foreach($fpsite[$fp['paysid']] as $site_code){
-		$form_name="form_".$site_code."_".$fp[paysid];
+		$form_name="form_".$site_code."_".$fp['paysid'];
 		echo "<form name=\"".$form_name."\" method=\"post\">
 		<input type=\"hidden\" name=\"site_code\" value=\"$site_code\">
 		<input type=\"hidden\" name=\"action\" value=\"on\">";
@@ -269,7 +269,7 @@ if (isset($min) and $min != '')
     else
         {
         $recup=$DB_site2->query_first("select pourcentage_default_affilie from parametresgeneraux");
-        $recup_info = $recup[pourcentage_default_affilie] ;
+        $recup_info = $recup['pourcentage_default_affilie'] ;
         // update pour valeur
         /*$update_valeur=$DB_site2->query("UPDATE parametresgeneraux 
                                   SET minimum_frais_port_gratuit = '$min'
@@ -280,7 +280,7 @@ if (isset($min) and $min != '')
 if (isset($del))
     {
     $recup=$DB_site2->query_first("select pourcentage_default_affilie from parametresgeneraux");
-    $recup_info = $recup[pourcentage_default_affilie] ;
+    $recup_info = $recup['pourcentage_default_affilie'] ;
     // update pour -1
     /*$update_null=$DB_site2->query("UPDATE parametresgeneraux 
                                    SET minimum_frais_port_gratuit = '-1'

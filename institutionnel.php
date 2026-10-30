@@ -7,7 +7,7 @@ $libelle     = "libelle".$template->langue;
 $contenu     = "contenu".$template->langue;
 $description = "description".$template->langue;
 
-$url_actuelle = $_SERVER[REQUEST_URI];
+$url_actuelle = $_SERVER['REQUEST_URI'];
 $url_actuelle = explode(",",$url_actuelle);
 $last_niveau  = count($url_actuelle) - 1;
 
@@ -244,7 +244,7 @@ if (isset($instit_id) and $instit_id != ""){
             $institutionnel[$contenu] .= "<table align=\"center\">" ;
             while ($lien=$DB_site->fetch_array($liens)){
                 $lien_image = "" ;
-                if ($lien[logo] != ""){
+                if ($lien['logo'] != ""){
                     $lien_image = "<a href=\"$lien[lien]\" target=\"_blank\"><img src=\"/configurations/$host/images/partenaires/$lien[partenaireid].$lien[logo]\"></a><br><br>" ;
                     if($lien['logo']=="swf"){
                         $swf="configurations/$host/images/partenaires/$lien[partenaireid].$lien[logo]";
@@ -287,7 +287,7 @@ if (isset($instit_id) and $instit_id != ""){
             $institutionnel[$contenu] .= "<table align=\"center\">" ;
             while ($lien=$DB_site->fetch_array($liens)){
                 $lien_image = "" ;
-                if ($lien[logo] != ""){
+                if ($lien['logo'] != ""){
                     $lien_image = "<a href=\"$lien[lien]\" target=\"_blank\"><img src=\"/images/partenaires/$lien[partenaireid].$lien[logo]\"></a><br><br>" ;
                     if($lien['logo']=="swf"){
                         $swf="configurations/".$host."/images/partenaires/$lien[partenaireid].$lien[logo]";
@@ -337,7 +337,7 @@ if (isset($instit_id) and $instit_id != ""){
     $formus=$DB_site->query("SELECT * from formulaire where formulaireid != '1' and actif = '1'");
     if ($DB_site->num_rows($formus) > 0){
         while ($formu=$DB_site->fetch_array($formus)){
-            $lien = "for,$formu[formulaireid],".url_rewrite($formu[nom]).".html" ;
+            $lien = "for,$formu[formulaireid],".url_rewrite($formu['nom']).".html" ;
             $TemplateFormulaire .= "<a href=\"$lien\">Formulaire personnel</a><br>" ;
 	    }
     }

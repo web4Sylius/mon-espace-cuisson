@@ -69,7 +69,7 @@ if (!isset($action) or $action=="")
 	    $payss=$DB_site2->query("SELECT DISTINCT (p.paysid), gratuit, gratuitpro, diminutif, libelle FROM pays p, fraisport fp WHERE p.paysid = fp.paysid AND zone_tnt=0 AND sites='base'");
 	    while ($pays=$DB_site2->fetch_array($payss)) 
 		    {
-		    $num = $pays[paysid] ;
+		    $num = $pays['paysid'] ;
 		    echo "<tr>
 				    <td><img border=\"0\" src=\"./images/drapeaux/br/$pays[diminutif].gif\"></td>
 				    <td>$pays[libelle]</td>

@@ -99,9 +99,9 @@ Cliquez sur le mot clé pour plus de détails
 $topsliens=$DB_site2->query("SELECT * FROM (SELECT *, sum(hit) as somme, SUM(nb_commande) as nbcom, SUM(montant_commande) as mtcom from referents where motcle != '' and dateline = '$ajd' GROUP BY motcle ORDER BY somme DESC limit 20) as sel ORDER BY $order") ;
 while ($toplien=$DB_site2->fetch_array($topsliens))
 	{		
-	if ($toplien[position] == 0)
+	if ($toplien['position'] == 0)
 		{
-		$toplien[position] = "Inconnue" ;
+		$toplien['position'] = "Inconnue" ;
 		}
 	$rowalt = "td_promos_".getrowbg () ;
 	echo "<tr>
@@ -126,9 +126,9 @@ echo "<tr>
 $topsliens=$DB_site2->query("SELECT * FROM (SELECT *, sum(hit) as somme, SUM(nb_commande) as nbcom, SUM(montant_commande) as mtcom from referents where motcle != '' and dateline = '$hier' GROUP BY motcle ORDER BY somme DESC limit 20) as sel ORDER BY $order") ;
 while ($toplien=$DB_site2->fetch_array($topsliens))
 	{		
-	if ($toplien[position] == 0)
+	if ($toplien['position'] == 0)
 		{
-		$toplien[position] = "Inconnue" ;
+		$toplien['position'] = "Inconnue" ;
 		}
 	$rowalt = "td_promos_".getrowbg () ;
 	echo "<tr>
@@ -153,9 +153,9 @@ echo "<tr>
 $topsliens=$DB_site2->query("SELECT * FROM (SELECT * , sum(hit) as somme, SUM(nb_commande) as nbcom, SUM(montant_commande) as mtcom from referents where motcle != '' and dateline LIKE '$mois%' group by motcle ORDER BY somme DESC limit 20) as sel ORDER BY $order") ;
 while ($toplien=$DB_site2->fetch_array($topsliens))
 	{		
-	if ($toplien[position] == 0)
+	if ($toplien['position'] == 0)
 		{
-		$toplien[position] = "Inconnue" ;
+		$toplien['position'] = "Inconnue" ;
 		}
 	$rowalt = "td_promos_".getrowbg () ;
 	echo "<tr>
@@ -271,9 +271,9 @@ Cliquez sur le lien pour plus de détails
 $topsliens=$DB_site2->query("SELECT * FROM (SELECT *, sum(hit) as somme, SUM(nb_commande) as nbcom, SUM(montant_commande) as mtcom from referents where motcle = '' and dateline = '$ajd' GROUP BY referent ORDER BY somme DESC limit 20) as sel ORDER BY $order") ;
 while ($toplien=$DB_site2->fetch_array($topsliens))
 	{		
-	if ($toplien[position] == 0)
+	if ($toplien['position'] == 0)
 		{
-		$toplien[position] = "Inconnue" ;
+		$toplien['position'] = "Inconnue" ;
 		}
 	$rowalt = "td_promos_".getrowbg () ;
 	echo "<tr>
@@ -297,9 +297,9 @@ echo "<tr>
 $topsliens=$DB_site2->query("SELECT * FROM (SELECT * , sum(hit) as somme, SUM(nb_commande) as nbcom, SUM(montant_commande) as mtcom from referents where motcle = '' and dateline = '$hier' GROUP BY referent ORDER BY somme DESC limit 20) as sel ORDER BY $order") ;
 while ($toplien=$DB_site2->fetch_array($topsliens))
 	{		
-	if ($toplien[position] == 0)
+	if ($toplien['position'] == 0)
 		{
-		$toplien[position] = "Inconnue" ;
+		$toplien['position'] = "Inconnue" ;
 		}
 	$rowalt = "td_promos_".getrowbg () ;
 	echo "<tr>
@@ -323,9 +323,9 @@ echo "<tr>
 $topsliens=$DB_site2->query("SELECT * FROM (SELECT * , sum(hit) as somme, SUM(nb_commande) as nbcom, SUM(montant_commande) as mtcom from referents where motcle = '' and dateline LIKE '$mois%' group by referent ORDER BY somme DESC limit 20) as sel ORDER BY $order") ;
 while ($toplien=$DB_site2->fetch_array($topsliens))
 	{		
-	if ($toplien[position] == 0)
+	if ($toplien['position'] == 0)
 		{
-		$toplien[position] = "Inconnue" ;
+		$toplien['position'] = "Inconnue" ;
 		}
 	$rowalt = "td_promos_".getrowbg () ;
 	echo "<tr>

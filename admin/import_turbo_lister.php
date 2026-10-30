@@ -209,9 +209,9 @@ if ($action == "import")
 						if ($montableau[$key][50] != "")
 							{
 							$contenuactuel=$DB_site2->query_first("SELECT * from institutionnel where libelleFR = 'Insctructions de règlement'") ;
-							if (!(ereg("{$montableau[$key][50]}", $contenuactuel[contenuFR])))
+							if (!(ereg("{$montableau[$key][50]}", $contenuactuel['contenuFR'])))
 								{
-								$nouveaucontenu = addslashes($contenuactuel[contenuFR]) . addslashes($montableau[$key][50]) ;
+								$nouveaucontenu = addslashes($contenuactuel['contenuFR']) . addslashes($montableau[$key][50]) ;
 								$DB_site2->query("UPDATE institutionnel set contenuFR = '$nouveaucontenu', contenuDE = '$nouveaucontenu', 
 								contenuEN = '$nouveaucontenu', contenuSP = '$nouveaucontenu', contenuIT = '$nouveaucontenu' where 
 								institutionnelid = '$institutionnelid'") ;

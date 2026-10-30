@@ -261,11 +261,11 @@ switch($article['typearticleid']){
     $nb_fours = $DB_site->query_first("SELECT nettoyage FROM article_four WHERE artid = '$artid'");
     $dimensions = $DB_site->query_first("SELECT hauteur, largeur, profondeur, nb_fours, couleur_fab, class_energetique FROM article_cuisiniere WHERE artid = '$artid'");
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/fours")." : ".$template->translate($dimensions['nb_fours'])." </p></div>";
-    if(!is_null($nb_fours)) $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/nettoyage_four")." : ".$template->translate($nb_fours[nettoyage])." </p></div>";  
+    if(!is_null($nb_fours)) $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/nettoyage_four")." : ".$template->translate($nb_fours['nettoyage'])." </p></div>";  
     
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($dimensions['couleur_fab'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$dimensions['hauteur']."xL".$dimensions['largeur']."xP".$dimensions['profondeur']." mm </p></div>";
-    $class_energetique = $dimensions[class_energetique];
+    $class_energetique = $dimensions['class_energetique'];
   break;
 
   case '1':
@@ -287,13 +287,13 @@ switch($article['typearticleid']){
     $nb_fours = $DB_site->query_first("SELECT nettoyage FROM article_four WHERE artid = '$artid'");
     $dimensions = $DB_site->query_first("SELECT hauteur, largeur, profondeur,couleur_fab, nb_fours,class_energetique FROM article_piano WHERE artid = '$artid'");
     
-    $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/fours")." : ".$template->translate($dimensions[nb_fours])." </p></div>";
-    $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/nettoyage_four")." : ".$template->translate($nb_fours[nettoyage])." </p></div>";
+    $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/fours")." : ".$template->translate($dimensions['nb_fours'])." </p></div>";
+    $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/nettoyage_four")." : ".$template->translate($nb_fours['nettoyage'])." </p></div>";
 
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($dimensions['couleur_fab'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$dimensions['hauteur']."xL".$dimensions['largeur']."xP".$dimensions['profondeur']." mm </p></div>";
 
-    $class_energetique = $dimensions[class_energetique];
+    $class_energetique = $dimensions['class_energetique'];
   break;
 
   case '3'://plaque de cuisson seule
@@ -311,7 +311,7 @@ switch($article['typearticleid']){
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/foyers")." : ".$nb_foyers[0]." </p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($plaque['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$plaque['hauteur']."xL".$plaque['largeur']."xP".$plaque['profondeur']." mm </p></div>";
-    $class_energetique = $plaque[class_energetique];
+    $class_energetique = $plaque['class_energetique'];
 
   break;
 
@@ -320,7 +320,7 @@ switch($article['typearticleid']){
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/capacite")." : ".$template->translate($result['volume_cavite'])." L</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>"; 
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
 
   case '22': //congel seul
@@ -328,7 +328,7 @@ switch($article['typearticleid']){
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/capacite")." : ".$template->translate($result['volume_cavite'])." L</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>";
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
 
   case '7'://BBQ
@@ -337,7 +337,7 @@ switch($article['typearticleid']){
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/systeme_allumage")." : ".$template->translate($result['systeme_allumage'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>";
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
 
   case '6'://plancha
@@ -346,7 +346,7 @@ switch($article['typearticleid']){
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/systeme_allumage")." : ".$template->translate($result['systeme_allumage'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>";
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
   case '26'://combine froid
     $result = $DB_site->query_first("SELECT type_refrigerateur, couleur_fab as couleur, hauteur, largeur, profondeur,volume_cavite, class_energetique FROM article_froid WHERE artid=".$artid);
@@ -359,7 +359,7 @@ switch($article['typearticleid']){
 
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>";
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
 
   case '38'://cellule refroidissement
@@ -367,7 +367,7 @@ switch($article['typearticleid']){
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/volume_cavite")." : ".$template->translate($result['volume_cavite'])." L</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>";
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
   case '28'://credence
     $result = $DB_site->query_first("SELECT couleur_fab as couleur, hauteur, largeur, profondeur FROM article_credence WHERE artid=".$artid);
@@ -405,7 +405,7 @@ switch($article['typearticleid']){
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/nettoyage_four")." : ".$template->translate($result['nettoyage'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>";
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
   case '17'://miro onde
     $result = $DB_site->query_first("SELECT couleur, hauteur, largeur, profondeur,type_four,nettoyage, class_energetique FROM article_four WHERE artid=".$artid);
@@ -413,13 +413,13 @@ switch($article['typearticleid']){
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/nettoyage_four")." : ".$template->translate($result['nettoyage'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>";
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
   case '29'://tiroir chauffant
     $result = $DB_site->query_first("SELECT couleur_fab as couleur, hauteur, largeur, profondeur, class_energetique FROM article_tiroir WHERE artid=".$artid);
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>";
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
   case '30'://rotissoire
     $result = $DB_site->query_first("SELECT couleur_fab as couleur, hauteur, largeur, profondeur,type_foyer,nb_foyer,class_energetique FROM article_rotissoire WHERE artid=".$artid);
@@ -427,7 +427,7 @@ switch($article['typearticleid']){
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/foyers")." : ".$result['nb_foyer']." </p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>";
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
   case '5'://hotte
     $result = $DB_site->query_first("SELECT couleur_fab as couleur, hauteur, largeur, profondeur,type_hotte,type_aspiration,debit_air_max,nb_vitesses,class_energetique FROM article_hotte WHERE artid=".$artid);
@@ -437,7 +437,7 @@ switch($article['typearticleid']){
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/nb_vitesses")." : ".$template->translate($result['nb_vitesses'])." </p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>";
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
 
   case '23'://lave vaiselle
@@ -445,7 +445,7 @@ switch($article['typearticleid']){
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/couverts")." : ".$result['couverts']." </p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>";
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
   case '36'://lave seche
     $result = $DB_site->query_first("SELECT couleur_fab as couleur, hauteur, largeur, profondeur,type_lavelinge,capacite_lavage, class_energetique FROM article_laveseche WHERE artid=".$artid);
@@ -453,7 +453,7 @@ switch($article['typearticleid']){
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/capacite_lavage")." : ".$result['capacite_lavage']." </p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/coloris")." : ".$template->translate($result['couleur'])."</p></div>";
     $template->parts['caractsprinc'].="<div><p>".$template->translate("/article/caract_principales/dimensions")." : H".$result['hauteur']."xL".$result['largeur']."xP".$result['profondeur']." mm </p></div>";
-    $class_energetique = $result[class_energetique];
+    $class_energetique = $result['class_energetique'];
   break;
   case '33'://lave evier
     $result = $DB_site->query_first("SELECT couleur_fab as couleur, hauteur_evier as hauteur, largeur_evier as largeur, profondeur_evier as profondeur,type_accessoire as type FROM article_evier WHERE artid=".$artid);
@@ -844,9 +844,9 @@ if(ESPACE == 'prod'){
 // Utile pour le template "ArticlePage"
 $article[$description] = stripslashes($article[$description]);
 $article[$description2] = stripslashes($article[$description2]);
-if ($article[poid] > 0){
-    if ($article[poid] > 1000){
-        $article[poid] = $article[poid] / 1000 ;
+if ($article['poid'] > 0){
+    if ($article['poid'] > 1000){
+        $article['poid'] = $article['poid'] / 1000 ;
         $poidsunit="kg";
     }else{
         $poidsunit="g";
@@ -1589,7 +1589,7 @@ if($nb_articles > 0){
             $template->parts["itempropImage"] .= "<link itemprop=\"image\" href=\"".$src."\" />";
             
             if ($photonb < 6) $TemplatePhotosArticleBit .= ""
-            . "<div class=\"smallimg\" onclick=\"openPhotoSwipe('/images/".$article['artid']."_".$article_image[articlephotoid]."_800_600.jpg');\" onmouseover=\"change_artpic('/images/".$article['artid']."_".$article_image[articlephotoid]."_280_420.jpg');\" onmouseout=\"change_artpic('".$imgart."')\">"
+            . "<div class=\"smallimg\" onclick=\"openPhotoSwipe('/images/".$article['artid']."_".$article_image['articlephotoid']."_800_600.jpg');\" onmouseover=\"change_artpic('/images/".$article['artid']."_".$article_image['articlephotoid']."_280_420.jpg');\" onmouseout=\"change_artpic('".$imgart."')\">"
                 . "<img src=\"".$src."\" alt=\"".$article[$libelle]."\" width=\"60\" height=\"60\">"
             . "</div>";
             
@@ -1758,11 +1758,11 @@ if($art_actif[0]==3 || $art_actif[0]==5){
 if($cookieconsent){
 //pixel facebook
 $template->parts['fbpixel'] = "fbq('track', 'ViewContent', { 
-  content_name: '".$article[artcode]."',
+  content_name: '".$article['artcode']."',
   content_category: '".utf8_encode($categorie->libelle)."',
   content_ids: ['".$article[artid]."'], // top 5-10 search results
   content_type: 'product',
-  value: ".$article[prix].",
+  value: ".$article['prix'].",
   currency: 'EUR'
 });";
 }
@@ -1772,9 +1772,9 @@ if($secondchoix[0]>0){
 }
 
 $article[$titre2] = html_entity_decode($article[$titre2],ENT_COMPAT,"ISO-8859-15") ;
-$article[ecopart]= number_format($article[ecopart], 2, ',', '');
-$article[ecopartht]= number_format(floatval($article[ecopartht]), 2, ',', '');
-$article[poid] = $article[poid] / 1000;
+$article['ecopart']= number_format($article['ecopart'], 2, ',', '');
+$article['ecopartht']= number_format(floatval($article['ecopartht']), 2, ',', '');
+$article['poid'] = $article['poid'] / 1000;
 $template->parts["libelle"]=$article[$libelle];
 $template->parts["marque"]=$marq['libelle'];
 $template->parts["itempropMarque"]=$marq['libelle'];
@@ -1860,12 +1860,12 @@ function article_base($artid){
     global $DB_site, $artid_base;
     $artid_base = $artid;
     $article = $DB_site->query_first("SELECT * FROM liens_articles WHERE article_lie = '$artid'");
-    if ($article[liensarticlesid] != ""){
+    if ($article['liensarticlesid'] != ""){
         $actif = $DB_site->query_first("SELECT * FROM article WHERE artid = $article[article_base]");
-        if ($actif[active] == '0' or $actif[artid] == ""){
-            $artid_base = $article[article_lie];
+        if ($actif['active'] == '0' or $actif[artid] == ""){
+            $artid_base = $article['article_lie'];
         }else{
-            article_base($article[article_base]);
+            article_base($article['article_base']);
         }
     }
     return $artid_base;
@@ -2132,7 +2132,7 @@ function checkit($value_id,$table_nom,$type_value='artid'){
     $array[] = $DB_site->num_rows($result);
     $tt = array();
     while($row = $DB_site->fetch_array($result)){
-      $tt[] = $row[id];
+      $tt[] = $row['id'];
     }
     $array[] = $tt;
     return $array;

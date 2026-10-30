@@ -6,7 +6,7 @@ while ($marque=$DB_site2->fetch_array($marques))
     {
     if (isset($mq2) and $mq2 != 0)
         {
-        if ($marque[marqueid] == $mq2)
+        if ($marque['marqueid'] == $mq2)
             {
             $liste_marques .= "<option value=\"$marque[marqueid]\" selected>$marque[libelle]</option>" ;
             }
@@ -17,7 +17,7 @@ while ($marque=$DB_site2->fetch_array($marques))
         }
     else
         {
-        if ($marque[marqueid] == $mq)
+        if ($marque['marqueid'] == $mq)
             {
             $liste_marques .= "<option value=\"$marque[marqueid]\" selected>$marque[libelle]</option>" ;
             }
@@ -30,7 +30,7 @@ while ($marque=$DB_site2->fetch_array($marques))
 $frais=$DB_site2->query(" select fraisgestionid, $libelle from fraisgestion");
 $options="<select name=\"fraisgestion\"><option value=\"0\">Aucun</option>";
 while ($frai=$DB_site2->fetch_array($frais)){
-    if ($fraisgestion==$frai[fraisgestionid]) {
+    if ($fraisgestion==$frai['fraisgestionid']) {
         $selected="selected";
     } else {
         $selected="";
@@ -179,13 +179,13 @@ $contenu_onglet.="
 $emplacements=$DB_site2->query("SELECT * FROM recherche_finition");
 while ($emplacement=$DB_site2->fetch_array($emplacements)){
       $countemplacement=$DB_site2->query_first("SELECT count(*) as nb FROM articlerecherche_finition WHERE artid='$artid' AND finitionid='$emplacement[finitionid]' ");
-      if ($countemplacement[nb]==1)
-          ${"finitionchecked".$emplacement[finitionid]}="checked";
+      if ($countemplacement['nb']==1)
+          ${"finitionchecked".$emplacement['finitionid']}="checked";
 }
 $listefinition=$DB_site2->query("SELECT * FROM recherche_finition");
 while($finition=$DB_site2->fetch_array($listefinition))
     $contenu_onglet.="<tr>
-        <td><input type=\"checkbox\" name=\"finition$finition[finitionid]\" ".${'finitionchecked'.$finition[finitionid]}."></td>
+        <td><input type=\"checkbox\" name=\"finition$finition[finitionid]\" ".${'finitionchecked'.$finition['finitionid']}."></td>
         <td>$finition[nom]</td>
     </tr>";        
 

@@ -457,7 +457,7 @@ if (isset($action) and $action == "supprdocok")
 	$rq_positions_suivantes = $DB_site2->query("SELECT documentid, position FROM document WHERE position > $position_page" );
 	while ($rs_positions_suivantes=$DB_site2->fetch_array($rq_positions_suivantes)) 
 		{
-		$position_temp = $rs_positions_suivantes[position] - 1;
+		$position_temp = $rs_positions_suivantes['position'] - 1;
 		$DB_site2->query("UPDATE document SET position = '$position_temp' WHERE documentid = '$rs_positions_suivantes[documentid]'");
 		}
 	$DB_site2->query("delete from document where documentid = '$doc'") ;
@@ -540,7 +540,7 @@ if (!isset($action) or $action == "")
 									<img src=\"images/descendre.gif\" alt=\"Descendre\" title=\"Descendre\" height=\"7\" border=\"0\"></a>";
 				}
 			}
-		if ($document[actif] == '1')
+		if ($document['actif'] == '1')
 			{
 			$action2 = "<a href=\"telecharg.php?action=desactdoc&doc=$document[documentid]\">Désactiver</a>" ;
 			}

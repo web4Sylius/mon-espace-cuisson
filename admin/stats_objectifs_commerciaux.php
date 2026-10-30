@@ -61,29 +61,29 @@ if($is_superuser){
 	$selected="selected";
 	$selected_direct="";
 	$username="";
-	if($_GET[username]==""){
+	if($_GET['username']==""){
 		$username="";
 	}
-	elseif($_GET[username]=="direct"){
+	elseif($_GET['username']=="direct"){
 		$username="direct";
 		$selected_direct="selected";
 		$selected="";
 	}
-	elseif($_GET[username]!="direct"){
+	elseif($_GET['username']!="direct"){
 		$selected="";
 	}
 	echo "<option value=\"\" ".$selected.">Choisir</option>";
 	echo "<option value=\"direct\" ".$selected_direct.">".UCfirst("direct")."</option>";
 	$commercials=$DB_site2->query(" SELECT username FROM parametresgeneraux WHERE commissions ='1' ORDER BY username ASC ");
 	while($commercial=$DB_site2->fetch_array($commercials)){
-		$liste_commerciaux[]=array('username' => $commercial[username], 'jours' => 'ouvres');
-		if($_GET[username]==$commercial[username]){
+		$liste_commerciaux[]=array('username' => $commercial['username'], 'jours' => 'ouvres');
+		if($_GET['username']==$commercial['username']){
 			$selected="selected";
 			$username=$commercial['username'];
 		} else {
 			$selected="";
 		}
-		echo "<option value=\"".$commercial[username]."\" ".$selected.">".UCfirst($commercial[username])."</option>";
+		echo "<option value=\"".$commercial['username']."\" ".$selected.">".UCfirst($commercial['username'])."</option>";
 		$i++;
 	}
 	echo "</select>";
@@ -115,7 +115,7 @@ $list1=ca($year-1,$end,$username);
 $objectif_commercial=array();
 $objectifs_sql=$DB_site2->query(" SELECT * FROM objectif_commercial WHERE username='".$username."' AND annee='".$year."' ORDER BY mois ASC ");
 while($objectif=$DB_site2->fetch_array($objectifs_sql)){
-	$objectif_commercial[$year][$objectif[mois]]=$objectif[objectif_ca];
+	$objectif_commercial[$year][$objectif[mois]]=$objectif['objectif_ca'];
 }
 
 echo "<table class=\"ca\">";
@@ -337,7 +337,7 @@ function ca($annee,$to=null,$username=""){
 		$remise[$month] += $facture['remiseHT'];
         $nb[$month]++;
 		// echo "Cde NÂ° ".$facture[facturid]." : ".$totalvente."<br>";
-		$totalachat=calcul_prix_achat_facture($facture[facturid]);
+		$totalachat=calcul_prix_achat_facture($facture['facturid']);
 		$marge[$month]+=$totalvente-$totalachat;
 		//affiche la marge en % dans les lignes popup
     	if($facture['marge']!='' && $facture['marge'] != 0.00 && number_format($totalvente,0,',',' ') != 0) {

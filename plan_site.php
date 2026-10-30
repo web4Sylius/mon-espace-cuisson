@@ -94,7 +94,7 @@ $mid=floor($DB_site->num_rows($instits)/2);
 $i=0;
 while ($instit=$DB_site->fetch_array($instits)){
 	$i++;
-	$url=$template->mkurl("institutionnel",$instit[institutionnelid],$instit);
+	$url=$template->mkurl("institutionnel",$instit['institutionnelid'],$instit);
 	$template->parts["institutionnelles1"].="<li><a href=\"".$url."\">".$instit[$libelle]."</a></li>";
 	if($i==$mid){
 		$template->parts["institutionnelles1"].="</ul>
@@ -113,7 +113,7 @@ $mid=floor($DB_site->num_rows($instits)/2);
 $i=0;
 while ($instit=$DB_site->fetch_array($instits)){
 	$i++;
-	$url=$template->mkurl("institutionnel",$instit[institutionnelid],$instit);
+	$url=$template->mkurl("institutionnel",$instit['institutionnelid'],$instit);
 	$template->parts["institutionnelles3"].="<li><a href=\"".$url."\">".$instit[$libelle]."</a></li>";
 	if($i==$mid)
 		$template->parts["institutionnelles3"].="</ul>
@@ -131,7 +131,7 @@ $mid=floor($DB_site->num_rows($instits)/2);
 $i=0;
 while ($instit=$DB_site->fetch_array($instits)){
 	$i++;
-	$url=$template->mkurl("institutionnel",$instit[institutionnelid],$instit);
+	$url=$template->mkurl("institutionnel",$instit['institutionnelid'],$instit);
 	$template->parts["institutionnelles4"].="<li><a href=\"".$url."\">".$instit[$libelle]."</a></li>";
 	if($i==$mid)
 		$template->parts["institutionnelles4"].="</ul>

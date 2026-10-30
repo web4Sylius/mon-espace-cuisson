@@ -80,7 +80,7 @@ ORDER BY somme DESC LIMIT 500";
 
 $req=$DB_site2->query($sql);
 while($page=$DB_site2->fetch_array($req)){
-    $art=article($page[artid],$page[somme],$from,$to);
+    $art=article($page[artid],$page['somme'],$from,$to);
     if($_GET['marqueid']==0 || $_GET['marqueid']==$art['marqueid']){
 
       $instock=$stock->in_stock(intval($art['artid']));

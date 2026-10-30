@@ -71,21 +71,21 @@ if (!isset($action) or $action == "")
 	// fréquentation
 	$statistique=$DB_site2->query_first("select sum(visites) as visites , sum(visiteurs) as visiteurs , sum(pagesvues) as pagesvues 
 										from statistique where datestatistique='".date("Y")."-".date("m")."-".date("d")."' ");
-	$nb_pages_j += $statistique[pagesvues] ;
-	$nb_visites_j += $statistique[visites] ;
-	$nb_visiteurs_j += $statistique[visiteurs] ;
+	$nb_pages_j += $statistique['pagesvues'] ;
+	$nb_visites_j += $statistique['visites'] ;
+	$nb_visiteurs_j += $statistique['visiteurs'] ;
 	
 	$statistiques=$DB_site2->query_first("select sum(visites) as visites , sum(visiteurs) as visiteurs , sum(pagesvues) as pagesvues 
 										from statistique where datestatistique>'".date("Y")."-".date("m")."-01' ");
-	$nb_pages_m += $statistiques[pagesvues] ;
-	$nb_visites_m += $statistiques[visites] ;
-	$nb_visiteurs_m += $statistiques[visiteurs] ;
+	$nb_pages_m += $statistiques['pagesvues'] ;
+	$nb_visites_m += $statistiques['visites'] ;
+	$nb_visiteurs_m += $statistiques['visiteurs'] ;
 	
 	$statistiquess=$DB_site2->query_first("select sum(visites) as visites , sum(visiteurs) as visiteurs , sum(pagesvues) as pagesvues 
 										from statistique");
-	$nb_pages_tot += $statistiquess[pagesvues] ;
-	$nb_visites_tot += $statistiquess[visites] ;
-	$nb_visiteurs_tot += $statistiquess[visiteurs] ;
+	$nb_pages_tot += $statistiquess['pagesvues'] ;
+	$nb_visites_tot += $statistiquess['visites'] ;
+	$nb_visiteurs_tot += $statistiquess['visiteurs'] ;
 	
 	// chiffre d'affaires
 	$factures_j=$DB_site2->query("select f.facturid as facturid, f.userid as userid, f.prixport as prixport, f.prixgestion as prixgestion, 
@@ -96,13 +96,13 @@ if (!isset($action) or $action == "")
 	
 	while ($facture_j=$DB_site2->fetch_array($factures_j)) 
 		{
-		$facturid = $facture_j[facturid] ;
-		$prixport = $facture_j[prixport] ;
-		$prixgestion = $facture_j[prixgestion] ;
+		$facturid = $facture_j['facturid'] ;
+		$prixport = $facture_j['prixport'] ;
+		$prixgestion = $facture_j['prixgestion'] ;
 		$qte = $facture_j[qte] ;
-		$prix = $facture_j[prix] ;
-		$typecadeauid = $facture_j[typecadeauid] ;
-		$valeurcadeau = $facture_j[valeurcadeau] ;
+		$prix = $facture_j['prix'] ;
+		$typecadeauid = $facture_j['typecadeauid'] ;
+		$valeurcadeau = $facture_j['valeurcadeau'] ;
 		if ($facturid != $facturid_j_prec)
 			{
 			if ($typecadeauid  == 0) //euros
@@ -142,13 +142,13 @@ if (!isset($action) or $action == "")
 								and (f.valide = 1 or f.valide=5) and f.datefacture>'".date("Y")."-".date("m")."-01' ORDER BY f.facturid ASC ");
 	while ($facture_m=$DB_site2->fetch_array($factures_m)) 
 		{
-		$facturid = $facture_m[facturid] ;
-		$prixport = $facture_m[prixport] ;
-		$prixgestion = $facture_m[prixgestion] ;
+		$facturid = $facture_m['facturid'] ;
+		$prixport = $facture_m['prixport'] ;
+		$prixgestion = $facture_m['prixgestion'] ;
 		$qte = $facture_m[qte] ;
-		$prix = $facture_m[prix] ;
-		$typecadeauid = $facture_m[typecadeauid] ;
-		$valeurcadeau = $facture_m[valeurcadeau] ;
+		$prix = $facture_m['prix'] ;
+		$typecadeauid = $facture_m['typecadeauid'] ;
+		$valeurcadeau = $facture_m['valeurcadeau'] ;
 		if ($facturid != $facturid_m_prec)
 			{
 			if ($typecadeauid  == 0) //euros
@@ -189,13 +189,13 @@ if (!isset($action) or $action == "")
 								and (f.valide = 1 or f.valide=5) ORDER BY f.facturid ASC ");
 	while ($facture_tot=$DB_site2->fetch_array($factures_tot)) 
 		{
-		$facturid = $facture_tot[facturid] ;
-		$prixport = $facture_tot[prixport] ;
-		$prixgestion = $facture_tot[prixgestion] ;
+		$facturid = $facture_tot['facturid'] ;
+		$prixport = $facture_tot['prixport'] ;
+		$prixgestion = $facture_tot['prixgestion'] ;
 		$qte = $facture_tot[qte] ;
-		$prix = $facture_tot[prix] ;
-		$typecadeauid = $facture_tot[typecadeauid] ;
-		$valeurcadeau = $facture_tot[valeurcadeau] ;
+		$prix = $facture_tot['prix'] ;
+		$typecadeauid = $facture_tot['typecadeauid'] ;
+		$valeurcadeau = $facture_tot['valeurcadeau'] ;
 		if ($typecadeauid  == 0) //euros
 			{
 			$ca_tot += ($qte * $prix) - $valeurcadeau + $prixport + $prixgestion ;
@@ -376,26 +376,26 @@ if (!isset($action) or $action == "")
 			$tvas=$DB_site2->query("SELECT prix, qte, tva FROM lignefacture where factureid = '$fact[facturid]'");
 			$matva = 0 ;
 			while ($tva=$DB_site2->fetch_array($tvas)) {
-				$matva += ($tva[prix] * $tva[qte]) - ($tva[prix] / (1 + ($tva[tva] / 100))) * $tva[qte] ;
+				$matva += ($tva['prix'] * $tva[qte]) - ($tva['prix'] / (1 + ($tva['tva'] / 100))) * $tva[qte] ;
 				}
-			$totalttc = $mtt[0] + $fact[prixport] + $fact[prixgestion] - $fact[montantremise] - $fact[montantcadeau] ;
+			$totalttc = $mtt[0] + $fact['prixport'] + $fact['prixgestion'] - $fact['montantremise'] - $fact['montantcadeau'] ;
 			$matvaport = 0 ;
-			if ($fact[tvaport] > 0) {
-				$matvaport = $fact[prixport] - ($fact[prixport] / (1 + ($fact[tvaport] / 100))) ;
+			if ($fact['tvaport'] > 0) {
+				$matvaport = $fact['prixport'] - ($fact['prixport'] / (1 + ($fact['tvaport'] / 100))) ;
 				}
 			$mttht = $totalttc - ($matva + $matvaport) ;
 			$totalht += $mttht ;
-			$totalport += $fact[prixport] ;
+			$totalport += $fact['prixport'] ;
 			$tva = $matva + $matvaport ;
 			$totaltva += $tva ;
 			$totalgeneral += $totalttc ;
-			$tabdate = explode("-", $fact[datefacture]) ;
+			$tabdate = explode("-", $fact['datefacture']) ;
 			$liste .= "<tr>
 						<td align=\"center\">$fact[codenumerofacture]$fact[numerofacture]</td>
 						<td align=\"center\">$fact[facturid]</td>
 						<td align=\"center\">$tabdate[2]/$tabdate[1]/$tabdate[0]</td>
 						<td align=\"right\">".number_format($mttht, 2, ",", " ")." €</td>
-						<td align=\"right\">".number_format($fact[prixport], 2, ",", " ")." €</td>
+						<td align=\"right\">".number_format($fact['prixport'], 2, ",", " ")." €</td>
 						<td align=\"right\">".number_format($tva, 2, ",", " ")." €</td>
 						<td align=\"right\">".number_format($totalttc, 2, ",", " ")." €</td>
 					</tr>" ;
@@ -459,9 +459,9 @@ elseif ($action == "articles")
 		{
 		$art_tot=$DB_site2->query_first("SELECT sum(visites) as visites, sum(panier) as panier, sum(commandes) as commandes 
 		FROM statistique_produit where artid = $art[artid]");
-		$visites += $art_tot[visites] ;
-		$panier += $art_tot[panier] ;
-		$commandes += $art_tot[commandes] ;
+		$visites += $art_tot['visites'] ;
+		$panier += $art_tot['panier'] ;
+		$commandes += $art_tot['commandes'] ;
 		$anneemois = date ('Y-m') ;
 		$arts_mois=$DB_site2->query_first("SELECT sum(visites) as visites, sum(panier) as panier, sum(commandes) as commandes 
 		FROM statistique_produit where artid = '$art[artid]' and datestatistique LIKE '%$anneemois-%'");

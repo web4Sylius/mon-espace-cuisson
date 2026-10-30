@@ -64,7 +64,7 @@ $actu=$DB_site2->query_first("select edito from parametresgeneraux");
 			$contenu = "<table align=\"center\" width=\"100%\"><tr><td><br>" ;
 			$oFCKeditor = new FCKeditor('edito') ;
 			$oFCKeditor->BasePath = '/fckeditor/' ;
-			$oFCKeditor->Value		= $actu[edito] ;
+			$oFCKeditor->Value		= $actu['edito'] ;
 			$oFCKeditor->Height	= 400 ;
 			$oFCKeditor->Width	= 585 ;
 			$contenu .= $oFCKeditor->Create() ;

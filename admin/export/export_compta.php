@@ -87,11 +87,11 @@ while($facture=$DB_site2->fetch_array($requete)){
       }
       $total-=$montantcadeau;
 
-      $portht=$facture[prixport]/(1+$facture[tvaport]/100);
+      $portht=$facture['prixport']/(1+$facture['tvaport']/100);
       $tva=$total*$txtva+$facture['prixport']*($facture['tvaport']/100)/(1+$facture['tvaport']/100);
       $totalcmd=$total+$portht;
       $totalttc+=$totalcmd*(1+$txtva);
-      $line=array("Site",compte_analytique($facture[paysid]),date("d/m/Y",$facture['datecde']),$facture[facturid],date("d/m/Y",$facture['datef']),$facture[numerofacture],paymethod($facture['moyenid']),-$montantcadeau,$cadeaucode,($total-$ecopart-$garantie),$ecopart,$portht,$garantie,$totalcmd,$tva,$totalttc,$utilisateur[raisonsociale],$utilisateur[nom]." ".$utilisateur[prenom],$utilisateur[codepostal],$utilisateur[ville],$utilisateur[pays],$ppmarque['ARTEVINO'],$ppmarque['TRANSTHERM'],$ppmarque['MODULORACK'],$ppmarque['MODULOCUBE'],$ppmarque['SOWINE'],$ppmarque['VIN sur VIN'],$ppmarque['CLIMADIFF'],$ppmarque['PRESERVINO'],$ppmarque['VINOSAFE'],$ppmarque['AVINTAGE'],$ppmarque['La SOMMELIERE'],$ppmarque['BIVINOX'],$ppmarque['FRIGELUX'],$ppmarque['VINOSPHERE'],$ppmarque['LIEBHERR'],$ppmarque['DOMETIC'],$ppmarque['WAECO'],$ppmarque['MOBICOOL'],"","","","","");
+      $line=array("Site",compte_analytique($facture['paysid']),date("d/m/Y",$facture['datecde']),$facture['facturid'],date("d/m/Y",$facture['datef']),$facture['numerofacture'],paymethod($facture['moyenid']),-$montantcadeau,$cadeaucode,($total-$ecopart-$garantie),$ecopart,$portht,$garantie,$totalcmd,$tva,$totalttc,$utilisateur['raisonsociale'],$utilisateur['nom']." ".$utilisateur['prenom'],$utilisateur['codepostal'],$utilisateur['ville'],$utilisateur['pays'],$ppmarque['ARTEVINO'],$ppmarque['TRANSTHERM'],$ppmarque['MODULORACK'],$ppmarque['MODULOCUBE'],$ppmarque['SOWINE'],$ppmarque['VIN sur VIN'],$ppmarque['CLIMADIFF'],$ppmarque['PRESERVINO'],$ppmarque['VINOSAFE'],$ppmarque['AVINTAGE'],$ppmarque['La SOMMELIERE'],$ppmarque['BIVINOX'],$ppmarque['FRIGELUX'],$ppmarque['VINOSPHERE'],$ppmarque['LIEBHERR'],$ppmarque['DOMETIC'],$ppmarque['WAECO'],$ppmarque['MOBICOOL'],"","","","","");
       $line=array_merge($line,$catnb);
       $xl->addrow($line);
 }

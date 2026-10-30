@@ -342,12 +342,12 @@ if ($action == "import")
 							
 							// marque
 							$marque = $DB_site2->query_first("SELECT * FROM marque WHERE libelle like '%$libmarque%'");
-							if ($marque[marqueid] == ""){
+							if ($marque['marqueid'] == ""){
 								$DB_site2->query("INSERT INTO marque (libelle) VALUES ('$libmarque')");
 								$marqueid = $DB_site2->insert_id();
 							}
 							else
-								$marqueid = $marque[marqueid];
+								$marqueid = $marque['marqueid'];
 							$DB_site2->query("INSERT INTO article_marque (artid, marqueid) VALUES ('$artid', '$marqueid')");	
 							
 							//position
@@ -359,7 +359,7 @@ if ($action == "import")
 							if ($garantie2ans != "" or $garantie5ans != "")	{
 								// on associe d'abord la caracteristique au rayon
 								$caract_associee = $DB_site2->query_first("SELECT * FROM categorie_caracteristique WHERE catid = '$catid' AND caractid = '3'");
-								if ($caract_associee[catid] == "")
+								if ($caract_associee['catid'] == "")
 									$DB_site2->query("INSERT INTO categorie_caracteristique (catid, caractid) VALUES ('$catid', '3')");	
 								//on met à jour la table article_caractval
 								$DB_site2->query("INSERT INTO article_caractval (artid, caractvalid, differenceprixht, differenceprix) VALUES ('$artid', '9', '0', '0')");								

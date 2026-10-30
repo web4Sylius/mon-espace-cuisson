@@ -82,7 +82,7 @@ else
 										ORDER BY $libelle" );
 	while( $rs_categorie = $DB_site2->fetch_array( $rq_categorie ) )
 	{
-		$tab_categorie[] = array( $rs_categorie[catid], $rs_categorie[parentid], $rs_categorie[$libelle] );
+		$tab_categorie[] = array( $rs_categorie['catid'], $rs_categorie['parentid'], $rs_categorie[$libelle] );
 	}
 	
 	$nb_categories = $DB_site2->query_first( "select count(*) from categorie" );
@@ -107,10 +107,10 @@ else
 					$rowalt = "td_".getrowbg();
 					while( $rs_remise = $DB_site2->fetch_array( $rq_remise ) )
 					{
-						if( $rs_remise[typeremise] == 0 ) {
+						if( $rs_remise['typeremise'] == 0 ) {
 							$type_remise = "sur le poids :";
 							$unite_valeur = "grammes";
-						} elseif( $rs_remise[typeremise] == 1 ) {
+						} elseif( $rs_remise['typeremise'] == 1 ) {
 							$type_remise = "sur le prix :";
 							$unite_valeur = "€";
 						} else {
@@ -176,10 +176,10 @@ else
 						 $rowalt = "td_".getrowbg();
 						while( $rs_remise = $DB_site2->fetch_array( $rq_remise ) )
 						{
-							if( $rs_remise[typeremise] == 0 ) {
+							if( $rs_remise['typeremise'] == 0 ) {
 								$type_remise = "sur le poids :";
 								$unite_valeur = "grammes";
-							} elseif( $rs_remise[typeremise] == 1 ) {
+							} elseif( $rs_remise['typeremise'] == 1 ) {
 								$type_remise = "sur le prix :";
 								$unite_valeur = "€";
 							} else {

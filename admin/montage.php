@@ -88,13 +88,13 @@ while($pays=$DB_site2->fetch_array($req)) {
     
     print "<tr>
 	<td><img src=\"images/drapeaux/br/".$pays['diminutif'].".gif\"> ".$pays['libelle']."</td>
-	<td class=\"center\"><input type=\"checkbox\" name=\"actif[$pays[paysid]]\" value=\"1\" ".($actif[$pays[paysid]]==1?"checked":"")."></td>";
+	<td class=\"center\"><input type=\"checkbox\" name=\"actif[$pays[paysid]]\" value=\"1\" ".($actif[$pays['paysid']]==1?"checked":"")."></td>";
     
     foreach($sites as $site_code=>$site)    
-	print "<td><input type=\"text\" name=\"pv[$pays[paysid]][$site_code]\" value=\"".floatval($listeprix[$pays[paysid]][$site_code])."\" class=\"pv\" onkeyup=\"calcht('$site_code','$pays[paysid]')\"><span id=\"ht".$site_code.$pays['paysid']."\">".round($listeprix[$pays[paysid]][$site_code]/$txtva,2).$devises->symbole($site['devise'])." HT</span></td>";
+	print "<td><input type=\"text\" name=\"pv[$pays[paysid]][$site_code]\" value=\"".floatval($listeprix[$pays['paysid']][$site_code])."\" class=\"pv\" onkeyup=\"calcht('$site_code','$pays[paysid]')\"><span id=\"ht".$site_code.$pays['paysid']."\">".round($listeprix[$pays['paysid']][$site_code]/$txtva,2).$devises->symbole($site['devise'])." HT</span></td>";
 	
     foreach($installateurs as $installateur)
-	print "<td><input type=\"text\" name=\"pa[$installateur][$pays[paysid]]\" value=\"".floatval($listepaht[$pays[paysid]][$installateur])."\" class=\"pa\">".$devise_fournisseur[$installateur]."</td>";
+	print "<td><input type=\"text\" name=\"pa[$installateur][$pays[paysid]]\" value=\"".floatval($listepaht[$pays['paysid']][$installateur])."\" class=\"pa\">".$devise_fournisseur[$installateur]."</td>";
 
     print "</tr>";
 }

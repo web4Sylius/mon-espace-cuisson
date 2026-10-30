@@ -109,7 +109,7 @@ $departement = array(
 //attention les types sont réutilisés pour récupérer le texte dans la table traduction
 $types=array("restaurants-bars-a-vin"=>"restaurants bars à vin","club-d-oenologie"=>"club oenologie","cavistes"=>"Cavistes","producteurs-de-vin"=>"Producteurs de vin","epicerie-fine"=>"epiceries fines","agences-site-web"=>"agences et site web");
 
-$url_actuelle = $_SERVER[REQUEST_URI];
+$url_actuelle = $_SERVER['REQUEST_URI'];
 $url_actuelle = explode(",",$url_actuelle);
 $last_niveau = count($url_actuelle) - 1;
 
@@ -129,7 +129,7 @@ if (isset($type) and $type!=""){
             $dep = '';
            while ($caviste=$DB_site->fetch_array($partenaires)){
                 $empty = false;
-                 if($lastactivite=="") $lastactivite=$caviste[activite];
+                 if($lastactivite=="") $lastactivite=$caviste['activite'];
                  $image="&nbsp;";
                  if($caviste['image']!="" && file_exists($caviste['image'])){
                        $extension = pathinfo($caviste['image'], PATHINFO_EXTENSION);
@@ -153,12 +153,12 @@ if (isset($type) and $type!=""){
                        //$image= "ext:".$extension;
                  }
                  $site="";
-                 if($caviste[affiche_site]==1 && $caviste[site]!=""){
-                       if(substr($caviste[site],0,7)!="http://") $caviste[site]="http://".$caviste[site];
-                       $site="<a href=\"$caviste[site]\" target=\"_blank\">".str_replace("http://","",$caviste[site])."</a>";
+                 if($caviste['affiche_site']==1 && $caviste['site']!=""){
+                       if(substr($caviste['site'],0,7)!="http://") $caviste['site']="http://".$caviste['site'];
+                       $site="<a href=\"$caviste[site]\" target=\"_blank\">".str_replace("http://","",$caviste['site'])."</a>";
                  }
-                 $activite=$caviste[activite];
-		 $caviste[description]=nl2br($caviste[description]);
+                 $activite=$caviste['activite'];
+		 $caviste['description']=nl2br($caviste['description']);
 
                 $dpNum = substr($caviste['codepostal'], 0, 2);
 
@@ -197,7 +197,7 @@ if (isset($type) and $type!=""){
             $pays = '';
            while ($caviste=$DB_site->fetch_array($partenaires)){
                 $empty = false;
-                 if($lastactivite=="") $lastactivite=$caviste[activite];
+                 if($lastactivite=="") $lastactivite=$caviste['activite'];
                  $image="&nbsp;";
                  if($caviste['image']!="" && file_exists($caviste['image'])){
                        $extension = pathinfo($caviste['image'], PATHINFO_EXTENSION);
@@ -221,12 +221,12 @@ if (isset($type) and $type!=""){
                        //$image= "ext:".$extension;
                  }
                  $site="";
-                 if($caviste[affiche_site]==1 && $caviste[site]!=""){
-                       if(substr($caviste[site],0,7)!="http://") $caviste[site]="http://".$caviste[site];
-                       $site="<a href=\"$caviste[site]\" target=\"_blank\">".str_replace("http://","",$caviste[site])."</a>";
+                 if($caviste['affiche_site']==1 && $caviste['site']!=""){
+                       if(substr($caviste['site'],0,7)!="http://") $caviste['site']="http://".$caviste['site'];
+                       $site="<a href=\"$caviste[site]\" target=\"_blank\">".str_replace("http://","",$caviste['site'])."</a>";
                  }
-                 $activite=$caviste[activite];
-     $caviste[description]=nl2br($caviste[description]);
+                 $activite=$caviste['activite'];
+     $caviste['description']=nl2br($caviste['description']);
                 if($pays != $caviste['pays']) {
                   $pays = $caviste['pays'];
                   $template->parts["articles"].="<div class=\"first_bloc categorie_desc kdosPage_title\"><h2>$pays</h2></div>";

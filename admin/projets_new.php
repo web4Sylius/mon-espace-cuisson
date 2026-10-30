@@ -1392,7 +1392,7 @@ function ca($annee,$to=null,$username=""){
 		$remise[$month] += $facture['remiseHT'];
         $nb[$month]++;
 		// echo "Cde NÂ° ".$facture[facturid]." : ".$totalvente."<br>";
-		$totalachat=calcul_prix_achat_facture($facture[facturid]);
+		$totalachat=calcul_prix_achat_facture($facture['facturid']);
 		$marge[$month]+=$totalvente-$totalachat;
 		//affiche la marge en % dans les lignes popup
     	if($facture['marge']!='' && $facture['marge'] != 0.00 && number_format($totalvente,0,',',' ') != 0) {

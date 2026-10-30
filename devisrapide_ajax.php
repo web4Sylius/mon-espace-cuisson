@@ -26,7 +26,7 @@ $testuser=$DB_site->query_first("SELECT * FROM utilisateur WHERE mail='".mysqli_
 
 $client = $testuser;
 
-$result=$DB_site->query("INSERT INTO facture SET userid='".$client[userid]."', datefacture=NOW(), heurefacture=".mktime().", raisonsociale='".mysqli_real_escape_string($DB_site->link_id, $_GET['societe_livr'])."', nom='".mysqli_real_escape_string($DB_site->link_id, $_GET['nom_livr'])."', prenom='".mysqli_real_escape_string($DB_site->link_id, $_GET['prenom_livr'])."', codepostal='".mysqli_real_escape_string($DB_site->link_id, $_GET['cp_livr'])."', adresse='".mysqli_real_escape_string($DB_site->link_id, $_GET['adresse1_livr'])."', ville='".mysqli_real_escape_string($DB_site->link_id, $_GET['ville_livr'])."', telephone='".mysqli_real_escape_string($DB_site->link_id, $_GET['telephone_livr'])."', paysid='".intval($_GET['payslivr'])."',mail='".mysqli_real_escape_string($DB_site->link_id, $client['mail'])."',modelivraison='0', site_code='".$template->site_code()."'");
+$result=$DB_site->query("INSERT INTO facture SET userid='".$client['userid']."', datefacture=NOW(), heurefacture=".mktime().", raisonsociale='".mysqli_real_escape_string($DB_site->link_id, $_GET['societe_livr'])."', nom='".mysqli_real_escape_string($DB_site->link_id, $_GET['nom_livr'])."', prenom='".mysqli_real_escape_string($DB_site->link_id, $_GET['prenom_livr'])."', codepostal='".mysqli_real_escape_string($DB_site->link_id, $_GET['cp_livr'])."', adresse='".mysqli_real_escape_string($DB_site->link_id, $_GET['adresse1_livr'])."', ville='".mysqli_real_escape_string($DB_site->link_id, $_GET['ville_livr'])."', telephone='".mysqli_real_escape_string($DB_site->link_id, $_GET['telephone_livr'])."', paysid='".intval($_GET['payslivr'])."',mail='".mysqli_real_escape_string($DB_site->link_id, $client['mail'])."',modelivraison='0', site_code='".$template->site_code()."'");
 
 $facturid=$DB_site->insert_id();
 
@@ -135,12 +135,12 @@ foreach($articles as $article){
 
 $taux=$DB_site->query_first("SELECT * FROM pays WHERE paysid = '$client[paysid_livraison]'");
 
-if($taux[port] == '0')
+if($taux['port'] == '0')
     $tauxport = 0 ;
 elseif($prixht)
 	$tauxport = 0 ;
 else
-    $tauxport = $taux[TVAtauxnormal] ;
+    $tauxport = $taux['TVAtauxnormal'] ;
 
 $devises = new devises($DB_site);
 $change  = $devises->getchange();
@@ -148,7 +148,7 @@ $change  = $devises->getchange();
 $pro = false;                           
 if($user_info['raisonsociale'] != "") $pro = true;
 
-$frais_port=new frais_port($DB_site,array($article['artid']=>1),$client['paysid_livraison'],floatval($article['prix']),floatval($article['paht']),$template->site_code(),$pro, $client[userid]);
+$frais_port=new frais_port($DB_site,array($article['artid']=>1),$client['paysid_livraison'],floatval($article['prix']),floatval($article['paht']),$template->site_code(),$pro, $client['userid']);
 $DB_site->query("UPDATE facture SET prixport=".$frais_port->prixttc($tauxport,$change[$template->devise()]).", tvaport='".floatval($tauxport)."' WHERE facturid=".$facturid);
 
 $p=strrev(md5($facturid."devis"));

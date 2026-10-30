@@ -902,9 +902,9 @@ function caracteristiques($return_array=false){
     $rq_caracteristiques=$this->DB->query("SELECT lfc.*,cv.caractid FROM lignefacturecaracteristique lfc INNER JOIN caracteristiquevaleur cv USING(caractvalid) WHERE lignefactureid='".$this->lignefactureid."'") ;
     while ($rs_caracteristiques=$this->DB->fetch_array($rq_caracteristiques)){
 		if($return_array)
-			$ret[$rs_caracteristiques[caractid]]=array($rs_caracteristiques[libelle_caract],$rs_caracteristiques[libelle_caractval]); 
+			$ret[$rs_caracteristiques['caractid']]=array($rs_caracteristiques['libelle_caract'],$rs_caracteristiques['libelle_caractval']); 
 		else
-			$ret[$rs_caracteristiques[caractid]]="$rs_caracteristiques[libelle_caract] : $rs_caracteristiques[libelle_caractval]";
+			$ret[$rs_caracteristiques['caractid']]="$rs_caracteristiques[libelle_caract] : $rs_caracteristiques[libelle_caractval]";
     }
     return $ret;
 }
@@ -912,7 +912,7 @@ function caracteristiquesval($return_array=false){
     $ret=array();
     $rq_caracteristiques=$this->DB->query("SELECT cv.caractid,cv.caractvalid FROM lignefacturecaracteristique lfc INNER JOIN caracteristiquevaleur cv USING(caractvalid) WHERE lignefactureid='".$this->lignefactureid."'") ;
     while ($rs_caracteristiques=$this->DB->fetch_array($rq_caracteristiques)){
-      $ret[$rs_caracteristiques[caractid]]=$rs_caracteristiques['caractvalid'];
+      $ret[$rs_caracteristiques['caractid']]=$rs_caracteristiques['caractvalid'];
     }
     return $ret;
 }
@@ -923,9 +923,9 @@ function caracteristiques25($return_array=false){
 	$rq_caracteristiques=$this->DB->query("SELECT lfc.*,cv.caractid FROM lignefacturecaracteristique lfc INNER JOIN caracteristiquevaleur cv USING(caractvalid) INNER JOIN caracteristique c ON c.caractid = cv.caractid WHERE lignefactureid='".$this->lignefactureid."' ORDER BY c.position") ;
     while ($rs_caracteristiques=$this->DB->fetch_array($rq_caracteristiques)){
 		if($return_array)
-			$ret[$rs_caracteristiques[lignefacturecaracteristiqueid]]=array($rs_caracteristiques[libelle_caract],$rs_caracteristiques[libelle_caractval]); 
+			$ret[$rs_caracteristiques['lignefacturecaracteristiqueid']]=array($rs_caracteristiques['libelle_caract'],$rs_caracteristiques['libelle_caractval']); 
 		else
-			$ret[$rs_caracteristiques[lignefacturecaracteristiqueid]]="$rs_caracteristiques[libelle_caract] : $rs_caracteristiques[libelle_caractval]";
+			$ret[$rs_caracteristiques['lignefacturecaracteristiqueid']]="$rs_caracteristiques[libelle_caract] : $rs_caracteristiques[libelle_caractval]";
     }
     return $ret;
 }

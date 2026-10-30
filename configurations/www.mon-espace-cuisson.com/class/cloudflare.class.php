@@ -72,7 +72,7 @@ class cloudflare_api {
 		// les pages article
 		$url1[]="https://www.mon-espace-cuisson.com/".url_rewrite($article['libelleFR']."-".$marque['libelle'])."-art".$artid.".htm";
 		// les pages catégories
-		$parentid=$article[catid];
+		$parentid=$article['catid'];
 		while($parentid!=0){
 			$categorie=$this->DB->query_first("SELECT libelleFR, urlFR, urlEN, parentid FROM categorie WHERE catid=".$parentid);
 			$url1[]="https://www.mon-espace-cuisson.com/".$categorie['urlFR'];
@@ -85,10 +85,10 @@ class cloudflare_api {
 					$i++;
 				}
 			} else {
-				echo "l'URL FR indiqu&eacute;e en base de donn&eacute;es de la catégorie ".$categorie[libelleFR]." n'est pas bonne ... Ca serai bien de les corriger.<br>";
+				echo "l'URL FR indiqu&eacute;e en base de donn&eacute;es de la catégorie ".$categorie['libelleFR']." n'est pas bonne ... Ca serai bien de les corriger.<br>";
 			}
 			
-			$parentid=$categorie[parentid];
+			$parentid=$categorie['parentid'];
 		}
 		// les pages marque
 		$url1[]="https://www.mon-espace-cuisson.com/".url_rewrite($marque['libelle'])."-".$marque['marqueid'].".htm";
@@ -130,7 +130,7 @@ class cloudflare_api {
 		while (list($key, $val) = each($urlencours)) {
 			$results = $this->purgeFiles($this->cloudflare_email, $this->cloudflare_api, $this->cloudflare_zone_id, $val);
 			if($results->success === false) {
-				$return[success]=false;
+				$return['success']=false;
 			}
 		}
 		$urlencours=array();

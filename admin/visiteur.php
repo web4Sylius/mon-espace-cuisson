@@ -123,11 +123,11 @@ while($visiteur = $DB_site2->fetch_array($liste)){
 	<button onclick=\"mail_auto('".$template->translate('/site/mail_expediteur')."','$visiteur[mail]',undefined,undefined,undefined,undefined,undefined,false,'visiteur');mail_services('FR','base','commercial');add_exp_list('contact','".$template->translate('/site/mail_expediteur')."','base','FR')\">Envoyer email</button>
 	</div>
 	</td>";
-	$ligne.= "<td class=\"$class_td\">".gmdate("Y-m-d H:m:s",($visiteur[dateinscription]+7200))."</td>";
-	$ligne.= "<td class=\"$class_td\"><span id=\"mail_exist_color_".$visiteur[visiteurid]."\">$visiteur[mail]</span></td>";
-	$ligne.= "<td class=\"$class_td\">".($visiteur[civilite] == 0?"Mr":"Mme")."</td>";
+	$ligne.= "<td class=\"$class_td\">".gmdate("Y-m-d H:m:s",($visiteur['dateinscription']+7200))."</td>";
+	$ligne.= "<td class=\"$class_td\"><span id=\"mail_exist_color_".$visiteur['visiteurid']."\">$visiteur[mail]</span></td>";
+	$ligne.= "<td class=\"$class_td\">".($visiteur['civilite'] == 0?"Mr":"Mme")."</td>";
 	$ligne.= "<td class=\"$class_td\">$visiteur[raisonsociale]</td>";
-	$ligne.= "<td class=\"$class_td\">$visiteur[nom] ".($visiteur[nom]!=''?"<a href=\"/admin/utilisateur.php?src=".$visiteur[nom]."\" target=\"_blank\" style=\"text-decoration: none\">🔍</a>":'')."</td>";
+	$ligne.= "<td class=\"$class_td\">$visiteur[nom] ".($visiteur['nom']!=''?"<a href=\"/admin/utilisateur.php?src=".$visiteur['nom']."\" target=\"_blank\" style=\"text-decoration: none\">🔍</a>":'')."</td>";
 	$ligne.= "<td class=\"$class_td\">$visiteur[prenom]</td>";
 	$ligne.= "<td class=\"$class_td\">$visiteur[adresse]</td>";
 	$ligne.= "<td class=\"$class_td\">$visiteur[ville]</td>";
@@ -136,8 +136,8 @@ while($visiteur = $DB_site2->fetch_array($liste)){
 	$ligne.= "<td class=\"$class_td\">$pays[0]</td>";
 	$ligne.= "<td class=\"$class_td\">$visiteur[telephone] / $visiteur[portable]</td>";
 	$ligne.= "<td class=\"$class_td\">$visiteur[connu]</td>";
-	$ligne.= "<td class=\"$class_td\">".($visiteur[news_sms] == 1?"oui":"non")."</td>";
-	$ligne.= "<td class=\"$class_td\">".($visiteur[news_mail] == 1?"oui":"non")."</td>";
+	$ligne.= "<td class=\"$class_td\">".($visiteur['news_sms'] == 1?"oui":"non")."</td>";
+	$ligne.= "<td class=\"$class_td\">".($visiteur['news_mail'] == 1?"oui":"non")."</td>";
 	$ligne.= "<td class=\"$class_td\">$visiteur[provenance]</td>";
 	$ligne.= "<td class=\"$class_td\">$visiteur[device]</td>";
 	$ligne.= "<td class=\"$class_td\">$visiteur[browser]</td>";

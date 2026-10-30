@@ -17,7 +17,7 @@ $article=$DB_site->query_first($requete_articles);
 
 $url_libelle_art = url_rewrite($article[$libelle]);
 
-if($article[artid]==$artid) $catid=$article[catid];
+if($article[artid]==$artid) $catid=$article['catid'];
 
 $pagewidth=800;
 $mainheight=600;
@@ -28,14 +28,14 @@ $photo=$DB_site->query_first(" SELECT count(*) nb FROM articlephoto WHERE artid=
 $autre="";
 
 $jslist="var imgl=new Array();\n";
-if($photo[nb]>0){
+if($photo['nb']>0){
 	$i=1;
 	$virgule="";
 	$photos=$DB_site->query("SELECT * FROM articlephoto WHERE artid='$artid' AND langue IN ('','".$template->langue."') AND visible IN (0,1) ORDER BY position");
 	while($photo=$DB_site->fetch_array($photos)) {
-		if($photo[articlephotoid]==$imgid) {
+		if($photo['articlephotoid']==$imgid) {
 			$curimg=$i;
-			$url="images/".$artid."_".$photo[articlephotoid]."_".$pagewidth."_".$mainheight.".jpg";
+			$url="images/".$artid."_".$photo['articlephotoid']."_".$pagewidth."_".$mainheight.".jpg";
 			$articlediaporama.="
 			  <td class=\"btnl\" onclick=\"curimg--; changeimg(curimg);\"></td>
 			  <td class=\"mainpic\">
@@ -48,7 +48,7 @@ if($photo[nb]>0){
 // 		if($i==12) $autre.="</tr><tr><td colspan=\"24\" class=\"sep\"></td></tr><tr>";
 		$autre.="<td class=\"thumb\" id=\"td_$i\" onclick=\"changeimg($i)\"><IMG alt=\"$photo[legende]\" src=\"$url\"></td><td class=\"sep\"></td>";
 		$virgule=",";
-		$jslist.="imgl[$i]=\"images/".$artid."_".$photo[articlephotoid]."_".$pagewidth."_".$mainheight.".jpg\";\n";
+		$jslist.="imgl[$i]=\"images/".$artid."_".$photo['articlephotoid']."_".$pagewidth."_".$mainheight.".jpg\";\n";
 		$i++;
 	} //
 }

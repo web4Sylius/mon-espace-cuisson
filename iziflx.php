@@ -153,7 +153,7 @@ function qte($article){
 
 function fraisdeport($article){
 	global $DB_site;
-	$port = $DB_site->query_first("SELECT prix,gratuit FROM fraisport WHERE poiddebut <= ".$article[poid]." AND poidfin >= ".$article[poid]." and paysid = '57'");
+	$port = $DB_site->query_first("SELECT prix,gratuit FROM fraisport WHERE poiddebut <= ".$article['poid']." AND poidfin >= ".$article['poid']." and paysid = '57'");
 	if($port['gratuit']>0 && $port['gratuit'] < $article['prix']) $port['prix']=0;
 	return round($port['prix']);
 }
@@ -261,7 +261,7 @@ function url_photo($DB,$artid,$format){
 	
 	while ($photo=$DB->fetch_array($photos)) {
 
-		$url_img[] = "https://www.mon-espace-cuisson.com/configurations/www.mon-espace-cuisson.com/images/produits/".$artid."_".$photo[articlephotoid].".".$photo[image] ;
+		$url_img[] = "https://www.mon-espace-cuisson.com/configurations/www.mon-espace-cuisson.com/images/produits/".$artid."_".$photo['articlephotoid'].".".$photo['image'] ;
 	}
 	$y = 0;
 	for($i=5;$i<=9;$i++){

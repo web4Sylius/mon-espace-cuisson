@@ -182,7 +182,7 @@ elseif( $action == "supprimer2" )
 
 	while( $rs_positions_suivantes = $DB_site2->fetch_array( $rq_positions_suivantes ) ) 
 	{
-		$position_temp = $rs_positions_suivantes[position] - 1;
+		$position_temp = $rs_positions_suivantes['position'] - 1;
 		$rq_modifier_position = "UPDATE promo SET position = '$position_temp' 
 								 WHERE promoid = '$rs_positions_suivantes[promoid]'";
 		$DB_site2->query( $rq_modifier_position );

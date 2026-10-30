@@ -312,7 +312,7 @@ HTML;
 	    
 	    while  ($rs_institutionnel=$DB_site2->fetch_array($rq_institutionnel)) {
 		echo "<tr>
-		    <td style=\"".($rs_institutionnel[active] == "0"?"color:red;":"")."\"><input type=\"checkbox\" id=\"page".$num_menu."[".$rs_institutionnel['institutionnelid']."]\" value=\"".$rs_institutionnel['institutionnelid']."\"> $rs_institutionnel[$libelle]</td>";
+		    <td style=\"".($rs_institutionnel['active'] == "0"?"color:red;":"")."\"><input type=\"checkbox\" id=\"page".$num_menu."[".$rs_institutionnel['institutionnelid']."]\" value=\"".$rs_institutionnel['institutionnelid']."\"> $rs_institutionnel[$libelle]</td>";
 		foreach($sitelangues as $l){
 		    print "<td>";
 		    for($i=0;$i<$nbppage;$i++){

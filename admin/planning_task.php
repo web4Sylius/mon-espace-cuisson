@@ -36,8 +36,8 @@ if(isset($_GET['planning_username'])){
 	
 	
 	
-	$start_time=strtotime($req_bornes[mini_date]);
-	$end_time=strtotime($req_bornes[maxi_date]);
+	$start_time=strtotime($req_bornes['mini_date']);
+	$end_time=strtotime($req_bornes['maxi_date']);
 
 
 	$start=date("m-d-Y", $start_time);
@@ -92,8 +92,8 @@ if(isset($_GET['planning_username'])){
 				echo "<td colspan=\"".$i."\">&nbsp;</td>";
 			}
 			*/
-			if($res[duration]>0){
-				$pourcent=round($res[duration_real]*100/$res[duration]);
+			if($res['duration']>0){
+				$pourcent=round($res['duration_real']*100/$res['duration']);
 			} else {
 				$pourcent=0;
 			}
@@ -105,9 +105,9 @@ if(isset($_GET['planning_username'])){
 				$class="ajd";
 			}
 			echo "<td align=\"center\" nowrap class=\"survol ".$class."\" style=\"position:relative\">
-					<a href=\"task.php?a=showTask&task=".$res[id]."\" target=\"_blank\" style=\"z-index:50;\">".$res[id]."</a><br>
+					<a href=\"task.php?a=showTask&task=".$res['id']."\" target=\"_blank\" style=\"z-index:50;\">".$res['id']."</a><br>
 					".$pourcent." %
-					<div style=\"display:none; position:absolute; top:20px; background-color:#fff; border:1px solid black; z-index:100;\">".$res[name]."</div>
+					<div style=\"display:none; position:absolute; top:20px; background-color:#fff; border:1px solid black; z-index:100;\">".$res['name']."</div>
 				</td>";
 			
 			for ($l = 0; $l <= $reste; $l++) {

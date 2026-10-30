@@ -102,7 +102,7 @@ if (isset($admin_username) && $admin_username != "") {
                $sql .= " FROM parametresgeneraux";
                $sql .= " WHERE username = '".$admin_username."'";
                $user_info = $DB_site->query_first($sql);
-               if($user_info[username] != $admin_username){
+               if($user_info['username'] != $admin_username){
                     exit;
                }
           }

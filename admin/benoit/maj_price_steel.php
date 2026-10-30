@@ -39,7 +39,7 @@ if (isset($admin_username) && $admin_username != "") {
                $sql .= " FROM parametresgeneraux";
                $sql .= " WHERE username = '".$admin_username."'";
                $user_info = $DB_site->query_first($sql);
-               if($user_info[username] != $admin_username){
+               if($user_info['username'] != $admin_username){
                     exit;
                }
           }
@@ -60,10 +60,10 @@ if (($handle = fopen("./steel.csv", "r")) !== FALSE) {
        //     echo $data[$c] . "<br />\n";
        // }
 		$article=$DB_site->query_first("SELECT * FROM article WHERE artcode_eurocave LIKE '".$data[0]."' ");
-		if($article[artcode_eurocave]==$data[0]){
+		if($article['artcode_eurocave']==$data[0]){
 			echo "article trouvé : ".$data[0]."<br>";
 			echo "Prix vente TTC : $article[prix] € -> ".ceil($data[1]*1.2)." €<br>";
-			echo "Prix vente HT : ".$article[prixht]." € -> ".$data[1]." €<br>";
+			echo "Prix vente HT : ".$article['prixht']." € -> ".$data[1]." €<br>";
 			echo "Prix achat HT : $article[paht] € -> ".($data[1]/2)." €<br>";
 			/*
 			$DB_site->query("UPDATE article_fournisseur

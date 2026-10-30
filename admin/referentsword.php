@@ -58,12 +58,12 @@ if (isset($action) and $action == "view")
 		while ($toplien=$DB_site2->fetch_array($topsliens))
 			{
 			$rowalt = "td_promos_".getrowbg () ;
-			$datelinetmp=explode("-",$toplien[dateline]);
-			$largeur=round($toplien[hit]*400/$topsliencount[0]);
+			$datelinetmp=explode("-",$toplien['dateline']);
+			$largeur=round($toplien['hit']*400/$topsliencount[0]);
 			
-			if ($toplien[position] == 0)
+			if ($toplien['position'] == 0)
 				{
-				$toplien[position] = "Inconnue" ;
+				$toplien['position'] = "Inconnue" ;
 				}
 			echo "<tr>
 					<td class=\"$rowalt\" align=\"center\">$datelinetmp[2]/$datelinetmp[1]/$datelinetmp[0]</td>

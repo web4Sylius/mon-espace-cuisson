@@ -218,7 +218,7 @@ while($facture = $DB_site->fetch_array($reqfacture)){
 				$csv_prix_vente    = 0;
 				$dureeGarantie     = $garantie->duree;
 				$dureeExtGarantie  = 0;
-				$date_effet 	   = date_create(date("Y-m-d",$facture[tsenvoi]));
+				$date_effet 	   = date_create(date("Y-m-d",$facture['tsenvoi']));
 				$dateEffetGarantie = date_format($date_effet,"d/m/Y"); 
 				date_add($date_effet,date_interval_create_from_date_string("2 years"));
                 date_add($date_effet,date_interval_create_from_date_string("-1 day"));
@@ -230,7 +230,7 @@ while($facture = $DB_site->fetch_array($reqfacture)){
 				$csv_prix_vente    = $article['differenceprix'];
 				$dureeExtGarantie  = $garantie->duree;
 				$dureeGarantie     = 0;
-				$date_effet = date_create(date("Y-m-d",$facture[tsenvoi]));
+				$date_effet = date_create(date("Y-m-d",$facture['tsenvoi']));
                 date_add($date_effet,date_interval_create_from_date_string("2 years"));
                 date_add($date_effet,date_interval_create_from_date_string("-1 day"));
                 $dateEffetGarantie = date_format($date_effet,"d/m/Y");
@@ -300,7 +300,7 @@ while($facture = $DB_site->fetch_array($reqfacture)){
 	
 		//Stockage de l'information comme quoi cette garantie a été commandée
 		$ef = new envoi_fournisseur($DB_site);
-		$ef->facturid     = $facture[facturid];
+		$ef->facturid     = $facture['facturid'];
 		$ef->destinataire = 'UK WARRANTY';
 		$ef->tarif        = $totalpaht;
 		$ef->type         = 'garantie';

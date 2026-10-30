@@ -32,7 +32,7 @@ if(isset($_GET['efl']) && isset($_GET['ts'])){
     $envoi=$DB_site2->query_first("SELECT efl.indate,efl.outdate,efl.type,lf.artcode,ef.destinataire FROM envoi_fournisseur_ligne efl INNER JOIN lignefacture lf ON (lf.lignefactureid=efl.ligne_facture_id) INNER JOIN envoi_fournisseur ef ON (ef.id=efl.efid) WHERE efl.id=".$_GET['efl']);
     $DB_site2->query("UPDATE envoi_fournisseur_ligne SET ".$_GET['upddatetype']."date=".intval($_GET['ts'])." WHERE id=".intval($_GET['efl']));
     $suivitxt="Changement date ".($_GET['upddatetype']=="in"?"enl�vement":"livraison")." commande ".$envoi['destinataire']." ".$envoi['artcode']." : ".date("d/m/Y",$envoi[$_GET['upddatetype']."date"])." remplac� par ".date("d/m/Y",$_GET['ts']);
-    $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='$suivitxt'");
+    $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info['username']."', suivi='$suivitxt'");
 }
 if(isset($_GET['deladvcmd'])){
     $DB_site2->query("DELETE FROM envoi_fournisseur WHERE id=".$_GET['deladvcmd']);
@@ -249,7 +249,7 @@ if($actionadv=="advfournisseur" || $actionadv=="advfournisseur2"){
 	    <br>$txtlivr : ".$_POST['parvossoinsoutdate'];
 	    $blfourn=$_POST['selectmazet'];
 	    $advtrspt="transporteur fournisseur";
-	    $livrid=$_POST[selectmazet];
+	    $livrid=$_POST['selectmazet'];
 	    break;
 	    case "installsls":
 	    $text.="Livraison par vos soins avec installation par votre installateur
@@ -291,12 +291,12 @@ if($actionadv=="advfournisseur" || $actionadv=="advfournisseur2"){
 	    foreach($insertids as $eflid) $DB_site2->query("UPDATE envoi_fournisseur_ligne SET efid=$insertid WHERE id=$eflid");
 	}else{
 	     $annultxt="Annulation article : <br>".$annultxt;
-	     $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='$annultxt'");
+	     $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info['username']."', suivi='$annultxt'");
 	}
 
 	$pj=array();
         $mail=new email();
-        $mail->destinataire=$_POST[fournisseur];
+        $mail->destinataire=$_POST['fournisseur'];
 	$mail->copymode="bcc";
 	$mail->to=array("pr@mon-espace-cuisson.com","adv@mon-espace-cuisson.com");
 	$mail->expediteur="adv@mon-espace-cuisson.com";
@@ -375,8 +375,8 @@ if($actionadv=="advfournisseur" || $actionadv=="advfournisseur2"){
 
         if($_POST['fournisseur']!="0"){
 	    	$result=$mail->sendmail();
-	    	$DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info[username]."', `to`='".$mail->destinataire."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', facturid=".$facturid.",userid='".$adv_facture[userid]."', uniqueid='".$mail->uniqueid."', compta ='non'");
-	    	$DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='".addslashes("Passage de commande � ".$_POST['fournisseurname']."<br>".$mail->body)."'");
+	    	$DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info['username']."', `to`='".$mail->destinataire."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', facturid=".$facturid.",userid='".$adv_facture['userid']."', uniqueid='".$mail->uniqueid."', compta ='non'");
+	    	$DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info['username']."', suivi='".addslashes("Passage de commande � ".$_POST['fournisseurname']."<br>".$mail->body)."'");
 		}
 		$action="editer";
     }else{
@@ -484,7 +484,7 @@ if($actionadv=="advtransport"){
 	    $fournid=substr($_POST['lieutrspt'],5);
 	    $fourn=$DB_site2->query_first("SELECT * FROM fournisseur WHERE id='$fournid'");
 	    $enlev=$fournid;
-	    $text.="$fourn[societe] $fourn[fonction]<br>$fourn[prenom] $fourn[nom]<br>$fourn[adresse1]".($fourn[adresse2]!=""?"<br>$fourn[adresse2]":"")."<br>$fourn[cp] $fourn[ville]<br>Tel $fourn[telephone] / fax $fourn[fax]<br>$fourn[horaires]";
+	    $text.="$fourn[societe] $fourn[fonction]<br>$fourn[prenom] $fourn[nom]<br>$fourn[adresse1]".($fourn['adresse2']!=""?"<br>$fourn[adresse2]":"")."<br>$fourn[cp] $fourn[ville]<br>Tel $fourn[telephone] / fax $fourn[fax]<br>$fourn[horaires]";
 	}
 	if($_POST['lieutrspt']=="liebherr"){
 	    $lieutrspt=$DB_site2->query_first("SELECT * FROM fournisseur WHERE id='$_POST[livraisoneb]'");
@@ -544,7 +544,7 @@ if($actionadv=="advtransport"){
 	if(substr($_POST['trsptlivr'],0,3)=="sls"){
 	  $slsid=substr($_POST['trsptlivr'],3);
 	  $sls=$DB_site2->query_first("SELECT * FROM fournisseur WHERE id='$slsid'");
-	  $text.="$sls[societe] $sls[ville]<br>$sls[adresse1]".($sls[adresse2]!=""?"<br>$sls[adresse2]":"")."<br>$sls[cp] $sls[ville]<br>t�l: $sls[telephone] fax: $sls[fax]<br>$sls[mail]<br>$sls[horaires]";
+	  $text.="$sls[societe] $sls[ville]<br>$sls[adresse1]".($sls['adresse2']!=""?"<br>$sls[adresse2]":"")."<br>$sls[cp] $sls[ville]<br>t�l: $sls[telephone] fax: $sls[fax]<br>$sls[mail]<br>$sls[horaires]";
 // 	  $advtrspt="$sls[societe] $sls[ville]";
 	  $blsls=$slsid;
 	  $livrid=$slsid;
@@ -582,7 +582,7 @@ if($actionadv=="advtransport"){
 // 	if(isset($_POST['trsptassurcomp'])){ $tarif+=floatval($_POST['trsptassurcompval']); $text.="<br>+ $_POST[trsptassurcompval] (assurance : valeur d�clar�e : $_POST[valeurdeclaree])"; $assur_comp=1; }
 // 	if(isset($_POST['trsptcoutother'])){ $tarif+=floatval($_POST['trsptcoutotherval']); $text.="<br>+ $_POST[trsptcoutotherval] ($_POST[trsptcoutothername])"; }
 	$text.="<br><b>= $tarif &euro; HT (hors taxe gas oil)</b>
-	<br>valeur d�clar�e : ".$_POST[valeurdeclaree]." &euro; HT, ".number_format($_POST['valeurdeclaree']*(1+$tvafrance[0]/100),2,',','')." &euro; TTC</p>";
+	<br>valeur d�clar�e : ".$_POST['valeurdeclaree']." &euro; HT, ".number_format($_POST['valeurdeclaree']*(1+$tvafrance[0]/100),2,',','')." &euro; TTC</p>";
     }
 
     $text.=$fin;
@@ -596,7 +596,7 @@ if($actionadv=="advtransport"){
 	    foreach($insertids as $eflid) $DB_site2->query("UPDATE envoi_fournisseur_ligne SET efid=$insertid, paht=".round($tarif/$nblignes,2)." WHERE id=$eflid");
 	}else{
 	     $annultxt="Annulation transport : <br>".$annultxt;
-	     $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='$annultxt'");
+	     $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info['username']."', suivi='$annultxt'");
 	}
 
 	$pj=array();
@@ -653,7 +653,7 @@ if($actionadv=="advtransport"){
         $action="editer";
         if($_POST['typetrspt']!="0"){
 	    //$mail->sendmail();  // on envoie pas de mail s'il n'y a pas de transport
-	    $DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info[username]."', `to`='".$mail->destinataire."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', facturid=".$facturid.",userid='".$adv_facture[userid]."', uniqueid='".$mail->uniqueid."', compta ='non'");
+	    $DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info['username']."', `to`='".$mail->destinataire."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', facturid=".$facturid.",userid='".$adv_facture['userid']."', uniqueid='".$mail->uniqueid."', compta ='non'");
 		//$DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='".addslashes("Passage de commande � ".$_POST['trsptname']."<br>".$mail->body)."'");
 	}
     }else{
@@ -863,7 +863,7 @@ if($actionadv=="advsls"){
 		foreach($insertids as $eflid) $DB_site2->query("UPDATE envoi_fournisseur_ligne SET efid=$insertid, paht=".round($totalsls/$nblignes,2)." WHERE id=$eflid");
 	    }else{
 	     $annultxt="Annulation installation : <br>".$annultxt;
-	     $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='$annultxt'");
+	     $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info['username']."', suivi='$annultxt'");
 	    }
 
 	    $pj=array();
@@ -904,7 +904,7 @@ if($actionadv=="advsls"){
             $action="editer";
             if($_POST['livrsls']!="0"){
 		$mail->sendmail();    // on envoie le mail seulement s'il y a une livraison
-		$DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info[username]."', `to`='".$mail->destinataire."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', facturid=".$facturid.",userid='".$adv_facture[userid]."', uniqueid='".$mail->uniqueid."', compta ='non'");
+		$DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info['username']."', `to`='".$mail->destinataire."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', facturid=".$facturid.",userid='".$adv_facture['userid']."', uniqueid='".$mail->uniqueid."', compta ='non'");
 		//$DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='".addslashes("Passage de commande � ".$_POST['livrslsname']."<br>".$mail->body)."'");
 	    }
         }else{

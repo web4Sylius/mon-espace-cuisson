@@ -29,8 +29,8 @@ function email($destinataire, $sujet ,$messhtml, $mailcontact) {
 	$message .= "Content-Type: text/html; charset=\"iso-8859-1\"\n"; 
 	$message .= "Content-Transfer-Encoding: 8bit\n\n"; 
 	$message .= $messhtml; 
-	if ($fichierjoint[type]!=""){$message .= "\n--$boundary\n";$message .= "Content-Type: $fichierjoint[type]; name=\"$fichierjoint[name]\"\n";$message .= "Content-Transfer-Encoding: base64\n";$message .= "\n";$message .= $fichierjoint[contenu] . "\n";}
-	if ($fichierjoint2[type]!=""){$message .= "\n--$boundary\n";$message .= "Content-Type: $fichierjoint2[type]; name=\"$fichierjoint2[name]\"\n";$message .= "Content-Transfer-Encoding: base64\n";$message .= "\n";$message .= $fichierjoint2[contenu] . "\n";}
+	if ($fichierjoint[type]!=""){$message .= "\n--$boundary\n";$message .= "Content-Type: $fichierjoint[type]; name=\"$fichierjoint[name]\"\n";$message .= "Content-Transfer-Encoding: base64\n";$message .= "\n";$message .= $fichierjoint['contenu'] . "\n";}
+	if ($fichierjoint2[type]!=""){$message .= "\n--$boundary\n";$message .= "Content-Type: $fichierjoint2[type]; name=\"$fichierjoint2[name]\"\n";$message .= "Content-Transfer-Encoding: base64\n";$message .= "\n";$message .= $fichierjoint2['contenu'] . "\n";}
 	$message .="\n\n";
 	return @mail($destinataire, $sujet, $message, $entete); 
 	}
@@ -106,13 +106,13 @@ if ($action == "supprimer_ad")
 		$ad_existe_users=$DB_site2->query_first("select mail as adresse_mail from utilisateur where mail = '$ad_mail'");
 		$ad_existe_gl = 0 ;
 		$msg_suppr = "" ;
-		if ($ad_existe_newsletters[adresse_mail] != "")
+		if ($ad_existe_newsletters['adresse_mail'] != "")
 			{
 			$msg_suppr .= "Adresse e-mail supprimée dans 'mails_newsletter'." ;
 			$ajt_ad=$DB_site2->query("update mails_newsletter set allow_email = '0' where adresse_mail = '$ad_mail'");
 			$ad_existe_gl = 1 ;
 			}	
-		if ($ad_existe_users[adresse_mail] != "")
+		if ($ad_existe_users['adresse_mail'] != "")
 			{
 			$msg_suppr .= "<br>Adresse e-mail supprimée dans 'utilisateur'." ;
 			$ajt_ad=$DB_site2->query("update utilisateur set allowemail = '0' where mail = '$ad_mail'");
@@ -151,12 +151,12 @@ if ($action == "ajouter_ad")
 						{
 						/*if (ereg(".com$",$line) or ereg(".fr$",$line))
 							{*/
-							if ($ad_newsletters[adresse_mail] != "")
+							if ($ad_newsletters['adresse_mail'] != "")
 								{
 								$ad_existes = "oui" ;
 								$modif_ad_import=$DB_site2->query("update mails_newsletter set allow_email = '1' where  adresse_mail = '$line'");
 								}	
-							if ($ad_users[adresse_mail] != "") 
+							if ($ad_users['adresse_mail'] != "") 
 								{ 
 								$ad_existes = "oui" ;
 								$modif_ad=$DB_site2->query("update utilisateur set allowemail = '1' where mail = '$line'");
@@ -196,13 +196,13 @@ if ($action == "ajouter_ad")
 			$ad_existe_newsletters=$DB_site2->query_first("select adresse_mail from mails_newsletter where adresse_mail = '$ad_mail'");
 			$ad_existe_users=$DB_site2->query_first("select mail as adresse_mail from utilisateur where mail = '$ad_mail'");
 			$ad_existe_gl = 0 ;
-			if ($ad_existe_newsletters[adresse_mail] != "")
+			if ($ad_existe_newsletters['adresse_mail'] != "")
 				{
 				$msg_saisi = "Adresse déjà existante : e-mail ajouté." ;
 				$modif_ad=$DB_site2->query("update mails_newsletter set allow_email = '1' where  adresse_mail = '$ad_mail'");
 				$ad_existe_gl = 1 ;
 				}	
-			if ($ad_existe_users[adresse_mail] != "")
+			if ($ad_existe_users['adresse_mail'] != "")
 				{
 				$msg_saisi = "Adresse déjà existante : e-mail ajouté." ;
 				$modif_ad=$DB_site2->query("update utilisateur set allowemail = '1' where mail = '$ad_mail'");
@@ -372,7 +372,7 @@ if ($action == "envoyertest2")
 		$parametres_generaux=$DB_site2->query_first("select * from parametresgeneraux") ;
 		$message="<html><head><title>$rs_newsletter[libelle]</title></head><body>$rs_newsletter[contenu]</body></html>";
 		$messagetxt="$rs_newsletter[contenutexte]";
-		email($monmail, stripslashes($rs_newsletter[libelle]), stripslashes($message), $parametres_generaux[mail_contact]);
+		email($monmail, stripslashes($rs_newsletter['libelle']), stripslashes($message), $parametres_generaux[mail_contact]);
 		echo "<h3>Envoyer un e-mail de test</h3>
 		<br>
 		Email de test envoyé à $monmail.
@@ -521,7 +521,7 @@ if ($action == "envoyer3")
 	$parametres_generaux=$DB_site2->query_first("select * from parametresgeneraux") ;
 	$message="<html><head><title>$rs_newsletter[libelle]</title></head><body>$rs_newsletter[contenu]</body></html>";
 	$messagetxt="$rs_newsletter[contenutexte]";
-	email($mail[mail], stripslashes($rs_newsletter[libelle]), stripslashes($message), $parametres_generaux[mail_contact]) ;
+	email($mail['mail'], stripslashes($rs_newsletter['libelle']), stripslashes($message), $parametres_generaux[mail_contact]) ;
 	echo "Envoi du message " .($page+1) . " / $total. ($mail[mail])<br>" ;
 	$page++ ;
 
@@ -544,11 +544,11 @@ if ($action == "editer")
 		{
 		// Table temporaire
 		$wysiwyg_temp=$DB_site2->query_first("SELECT * FROM wysiwyg");
-		if (!isset($wysiwyg_temp[wysiwygid]))
+		if (!isset($wysiwyg_temp['wysiwygid']))
 			{
 			$rs_newsletter=$DB_site2->query_first("select * from newsletter where newsletterid = '$newsletterid'");
 			// Copie de la news en cours de modification dans la table temporaire
-			$rq_ajout_wysiwyg = "INSERT INTO wysiwyg (wysiwygid, libelleFR, contenuFR) VALUES ('1', '".addslashes($rs_newsletter[libelle])."', '".addslashes($rs_newsletter[contenu]). "')";					   
+			$rq_ajout_wysiwyg = "INSERT INTO wysiwyg (wysiwygid, libelleFR, contenuFR) VALUES ('1', '".addslashes($rs_newsletter['libelle'])."', '".addslashes($rs_newsletter['contenu']). "')";					   
 			$DB_site2->query($rq_ajout_wysiwyg);
 			$wysiwyg_temp=$DB_site2->query_first("SELECT * FROM wysiwyg");
 			}
@@ -566,7 +566,7 @@ if ($action == "editer")
 			}
 		if (isset($_POST['btn_valid']) && $_POST['btn_valid'] == 'Valider les modifications')
 			{
-			$rq_modifier_newsletter = "UPDATE newsletter SET libelle = '".addslashes($wysiwyg_temp[libelleFR])."', contenu = '".addslashes($wysiwyg_temp[contenuFR])."', 
+			$rq_modifier_newsletter = "UPDATE newsletter SET libelle = '".addslashes($wysiwyg_temp['libelleFR'])."', contenu = '".addslashes($wysiwyg_temp['contenuFR'])."', 
 									   contenutexte = '$contenutexte' WHERE newsletterid = $newsletterid";
 			$DB_site2->query($rq_modifier_newsletter);
 			// Effacement de la table temporaire
@@ -611,7 +611,7 @@ if( $action == "ajouter" )
 {
 	// Table temporaire
 	$wysiwyg_temp = $DB_site2->query_first( "SELECT * FROM wysiwyg" );
-	if( !isset( $wysiwyg_temp[wysiwygid] ) )
+	if( !isset( $wysiwyg_temp['wysiwygid'] ) )
 	{
 		// Ajout d'un enregistrement dans la table temporaire s'il n'existe pas
 		$rq_ajout_wysiwyg = "INSERT INTO wysiwyg ( wysiwygid ) VALUES ( '1' )";
@@ -637,7 +637,7 @@ if( $action == "ajouter" )
 	if( isset($_POST['btn_valid']) && $_POST['btn_valid']=='Ajouter la newsletter' )
 	{
 		$rq_ajouter_newsletter = "INSERT INTO newsletter ( libelle, contenu )	
-			VALUES (  '" .addslashes( $wysiwyg_temp[libelleFR] ). "', '" .addslashes( $wysiwyg_temp[contenuFR] ). "' )";
+			VALUES (  '" .addslashes( $wysiwyg_temp['libelleFR'] ). "', '" .addslashes( $wysiwyg_temp['contenuFR'] ). "' )";
 		$DB_site2->query($rq_ajouter_newsletter);
 		// Effacement de la table temporaire
 		$wysiwyg_suppr = $DB_site2->query( "DELETE FROM wysiwyg" );

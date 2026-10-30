@@ -39,7 +39,7 @@ if($_POST['action']=="add"){
 	
 	if($erreur==0){
 		$DB_site2->query("INSERT INTO absence (username, datedebut, datefin, absence_raisonid)
-						VALUES ('".$_POST['username']."', '".$datedebut_us."', '".$datefin_us."', '".$_POST[absence_raisonid]."') ");
+						VALUES ('".$_POST['username']."', '".$datedebut_us."', '".$datefin_us."', '".$_POST['absence_raisonid']."') ");
 		echo "<br><b>absence ajoutée avec succès.</b>";
 	} else {
 		echo "<br><b>absence non ajoutée.</b>";
@@ -75,7 +75,7 @@ if($_POST['action']=="domodify"){
 		$DB_site2->query("UPDATE absence SET username='".$_POST['username']."',
 							datedebut='".$datedebut_us."',
 							datefin='".$datefin_us."',
-							absence_raisonid='".$_POST[absence_raisonid]."'
+							absence_raisonid='".$_POST['absence_raisonid']."'
 							WHERE absenceid='".$_POST['absenceid']."' ");
 		echo "<br><b>absence modifiée avec succès.</b>";
 	} else {
@@ -91,31 +91,31 @@ if($_GET['action']=="modify"){
 	$selectutilisateur="<select name=\"username\"><option value=\"\">-- Sélectionner --</option>";
 	$commercials=$DB_site2->query(" SELECT username FROM parametresgeneraux WHERE commissions ='1' ORDER BY username ASC ");
 	while($commercial=$DB_site2->fetch_array($commercials)){
-		if($absence[username]==$commercial[username]){
+		if($absence['username']==$commercial['username']){
 			$selected="selected";
 		} else {
 			$selected="";
 		}
-		$selectutilisateur.= "<option value=\"".$commercial[username]."\" ".$selected.">".UCfirst($commercial[username])."</option>";
+		$selectutilisateur.= "<option value=\"".$commercial['username']."\" ".$selected.">".UCfirst($commercial['username'])."</option>";
 	}
 	$selectutilisateur.="</select>";
 	
 	$selectraison="<select name=\"absence_raisonid\"><option value=\"\">-- Sélectionner --</option>";
 	$raisons=$DB_site2->query(" SELECT * FROM absence_raison ORDER BY libelle ASC ");
 	while($raison=$DB_site2->fetch_array($raisons)){
-		if($absence[absence_raisonid]==$raison[absence_raisonid]){
+		if($absence['absence_raisonid']==$raison['absence_raisonid']){
 			$selected="selected";
 		} else {
 			$selected="";
 		}
-		$selectraison.= "<option value=\"".$raison[absence_raisonid]."\" ".$selected.">".UCfirst($raison[libelle])."</option>";
+		$selectraison.= "<option value=\"".$raison['absence_raisonid']."\" ".$selected.">".UCfirst($raison['libelle'])."</option>";
 	}
 	$selectraison.="</select>";
 
-	$explodedebut = explode("-", $absence[datedebut]);
+	$explodedebut = explode("-", $absence['datedebut']);
 	$datedebut_fr=$explodedebut[2].'/'.$explodedebut[1].'/'.$explodedebut[0];
 	
-	$explodefin = explode("-", $absence[datefin]);
+	$explodefin = explode("-", $absence['datefin']);
 	$datefin_fr=$explodefin[2].'/'.$explodefin[1].'/'.$explodefin[0];
 	
 	echo "<h1>modifier une absence</h1>
@@ -150,7 +150,7 @@ if($_GET['action']=="modify"){
 	$selectutilisateur="<select name=\"username\"><option value=\"\">-- Sélectionner --</option>";
 	$commercials=$DB_site2->query(" SELECT username FROM parametresgeneraux WHERE commissions ='1' ORDER BY username ASC ");
 	while($commercial=$DB_site2->fetch_array($commercials)){
-		$selectutilisateur.= "<option value=\"".$commercial[username]."\">".UCfirst($commercial[username])."</option>";
+		$selectutilisateur.= "<option value=\"".$commercial['username']."\">".UCfirst($commercial['username'])."</option>";
 	}
 	$selectutilisateur.="</select>";
 
@@ -158,10 +158,10 @@ if($_GET['action']=="modify"){
 	$raisons=$DB_site2->query(" SELECT * FROM absence_raison ORDER BY libelle ASC ");
 	while($raison=$DB_site2->fetch_array($raisons)){
 		if($raison['libelle']=='maladie' || $raison['libelle']=='injustifié') {
-			$selectraison.= "<option value=\"".$raison[absence_raisonid]."\">".UCfirst($raison['libelle'])." (pas comptabilisé)</option>";
+			$selectraison.= "<option value=\"".$raison['absence_raisonid']."\">".UCfirst($raison['libelle'])." (pas comptabilisé)</option>";
 		}
 		else {
-			$selectraison.= "<option value=\"".$raison[absence_raisonid]."\">".UCfirst($raison['libelle'])."</option>";
+			$selectraison.= "<option value=\"".$raison['absence_raisonid']."\">".UCfirst($raison['libelle'])."</option>";
 		}
 	}
 	$selectraison.="</select>";
@@ -227,15 +227,15 @@ if($_GET['action']=="modify"){
 				</tr>";
 	$rowalt=1;
 	while($absence=$DB_site2->fetch_array($absences)){
-		$explodedebut = explode("-", $absence[datedebut]);
+		$explodedebut = explode("-", $absence['datedebut']);
 		$datedebut_fr=$explodedebut[2].'/'.$explodedebut[1].'/'.$explodedebut[0];
 		
-		$explodefin = explode("-", $absence[datefin]);
+		$explodefin = explode("-", $absence['datefin']);
 		$datefin_fr=$explodefin[2].'/'.$explodefin[1].'/'.$explodefin[0];
 		
-		$raison=$DB_site2->query_first("SELECT * FROM absence_raison WHERE absence_raisonid='".$absence[absence_raisonid]."' ");
+		$raison=$DB_site2->query_first("SELECT * FROM absence_raison WHERE absence_raisonid='".$absence['absence_raisonid']."' ");
 		
-		$nb_jour_ouvres=getJours($absence['datedebut'], $absence[datefin]);
+		$nb_jour_ouvres=getJours($absence['datedebut'], $absence['datefin']);
 		$rowalt=$rowalt%2;
 
 		if($raison['libelle']=="maladie" || $raison['libelle']=="injustifié"){
@@ -246,15 +246,15 @@ if($_GET['action']=="modify"){
 		}
 		
 		echo "<tr class=\"td_alt".$rowalt."\">
-				<td align=\"center\">".UCfirst($absence[username])."</td>
+				<td align=\"center\">".UCfirst($absence['username'])."</td>
 				<td align=\"center\">".$datedebut_fr."</td>
 				<td align=\"center\">".$datefin_fr."</td>
-				<td align=\"center\">".$raison[libelle]."</td>
+				<td align=\"center\">".$raison['libelle']."</td>
 				<td align=\"center\">".$nb_jour_ouvres."</td>
 				<td align=\"center\">".$nb_jour_comptabilises."</td>
 				<td align=\"center\">
-					<a href=\"absence.php?action=delete&absenceid=".$absence[absenceid]."\">supprimer</a><br>
-					<a href=\"absence.php?action=modify&absenceid=".$absence[absenceid]."\">modifier</a>
+					<a href=\"absence.php?action=delete&absenceid=".$absence['absenceid']."\">supprimer</a><br>
+					<a href=\"absence.php?action=modify&absenceid=".$absence['absenceid']."\">modifier</a>
 				</td>
 			</tr>";
 		$rowalt++;
@@ -269,7 +269,7 @@ function getJours($datedeb,$datefin,$utilisateur=""){ // format "Y-m-d"
 	$jour_ferie_array=array();
 	$jour_feries=$DB_site2->query("SELECT * FROM jour_ferie ORDER BY dateline ASC ");
 	while($jour_ferie=$DB_site2->fetch_array($jour_feries)){
-		$jour_ferie_array[]=$jour_ferie[dateline];
+		$jour_ferie_array[]=$jour_ferie['dateline'];
 	}
     $nb_jours=0;
     $dated=explode('-',$datedeb);

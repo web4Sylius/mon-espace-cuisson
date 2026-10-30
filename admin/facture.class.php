@@ -250,7 +250,7 @@ function caracteristiques(){
     $ret=array();
     $rq_caracteristiques=$this->DB->query("SELECT lfc.*,cv.caractid FROM lignefacturecaracteristique lfc INNER JOIN caracteristiquevaleur cv USING(caractvalid) WHERE lignefactureid='".$this->lignefactureid."'") ;
     while ($rs_caracteristiques=$this->DB->fetch_array($rq_caracteristiques)){
-	$ret[$rs_caracteristiques[caractid]]="$rs_caracteristiques[libelle_caract] : $rs_caracteristiques[libelle_caractval]";
+	$ret[$rs_caracteristiques['caractid']]="$rs_caracteristiques[libelle_caract] : $rs_caracteristiques[libelle_caractval]";
 	
     }
     return $ret;

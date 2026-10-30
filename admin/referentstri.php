@@ -74,9 +74,9 @@ if (isset($action) and $action == "change")
 				$topsliens=$DB_site2->query("SELECT * , sum(hit) as somme , min(position) as position from referents where motcle != '' and dateline = '$ajd' and referent = '$moteur' group by motcle order by somme desc, motcle asc limit 30") ;
 				while ($toplien=$DB_site2->fetch_array($topsliens))
 					{
-					if ($toplien[position] == 0)
+					if ($toplien['position'] == 0)
 						{
-						$toplien[position] = "Inconnue" ;
+						$toplien['position'] = "Inconnue" ;
 						}
 					$rowalt = "td_promos_".getrowbg () ;
 					echo "<tr>
@@ -98,9 +98,9 @@ if (isset($action) and $action == "change")
 				$topsliens=$DB_site2->query("SELECT * , sum(hit) as somme , min(position) as position from referents where motcle != '' and dateline = '$hier' and referent = '$moteur' group by motcle order by somme desc, motcle asc limit 30") ;
 				while ($toplien=$DB_site2->fetch_array($topsliens))
 					{
-					if ($toplien[position] == 0)
+					if ($toplien['position'] == 0)
 						{
-						$toplien[position] = "Inconnue" ;
+						$toplien['position'] = "Inconnue" ;
 						}
 					$rowalt = "td_promos_".getrowbg () ;
 					echo "<tr>
@@ -122,9 +122,9 @@ if (isset($action) and $action == "change")
 				$topsliens=$DB_site2->query("SELECT * , sum(hit) as somme , min(position) as position from referents where motcle != '' and dateline LIKE '$mois%' and referent = '$moteur' group by motcle order by somme desc, motcle asc limit 30") ;
 				while ($toplien=$DB_site2->fetch_array($topsliens))
 					{	
-					if ($toplien[position] == 0)
+					if ($toplien['position'] == 0)
 						{
-						$toplien[position] = "Inconnue" ;
+						$toplien['position'] = "Inconnue" ;
 						}
 					$rowalt = "td_promos_".getrowbg () ;
 					echo "<tr>

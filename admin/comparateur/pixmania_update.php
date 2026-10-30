@@ -81,10 +81,10 @@ function product($article,$coloris=false){
 	$port = $DB_site2->query_first("SELECT p.prix as prixport, a.poid,p.gratuit FROM fraisport p, article a WHERE p.paysid = '57' AND a.poid between p.poiddebut and p.poidfin AND a.artid = '$article[artid]'");
 	$temp_price=$DB_site2->query_first("SELECT * FROM temp_price WHERE artid=".$article['artid']." AND ".time()." BETWEEN du AND au");
 	if($temp_price['id']!=""){
-	    $article[prixconseilleht]=$temp_price[prixconseilleht];
-	    $article[prixht]=round($temp_price[prix]/$tvafrance['taux'.$article['tauxchoisi']],5);
+	    $article['prixconseilleht']=$temp_price['prixconseilleht'];
+	    $article['prixht']=round($temp_price['prix']/$tvafrance['taux'.$article['tauxchoisi']],5);
 	}
-	if($article[prix]>=$port['gratuit']) $port[prixport]=0;
+	if($article['prix']>=$port['gratuit']) $port['prixport']=0;
 	$delai=delailivraison($article);
 
 	$line[0]=$article['artid'];
@@ -93,7 +93,7 @@ function product($article,$coloris=false){
 	$line[3]=$article['prixconseilleht'];
 	$line[4]=$active2qte[$article['active']];
 	$line[5]=$delai['delailivraison'];
-	$line[6]=round($port[prixport]/$tvafrance['taux1'],5);
+	$line[6]=round($port['prixport']/$tvafrance['taux1'],5);
 	$line[7]="Livraison par transporteur au pied de l'habitation";
 	$line[9]="00000000";
 	$line[10]=0;

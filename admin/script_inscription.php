@@ -102,13 +102,13 @@ $req=$DB_site->query($sql);
 while($user=$DB_site->fetch_array($req)){
 	// on vérifie qu'il n'y ai pas de suivi commercial 
 	$sqlSub1 = "SELECT COUNT(*) FROM facture ";
-	$sqlSub1 .= " WHERE facture.userid = '".$user[userid]."'";
+	$sqlSub1 .= " WHERE facture.userid = '".$user['userid']."'";
 	
 	$suivi_commande=$DB_site->query_first($sqlSub1);
 	
 	$sqlSub2 = "SELECT COUNT(*)";
 	$sqlSub2 .= " FROM suivi_client ";
-	$sqlSub2 .= " WHERE userid = ".$user[userid];
+	$sqlSub2 .= " WHERE userid = ".$user['userid'];
 	$sqlSub2 .= " AND suivi_client.commercial NOT IN ('client') ";
 	$sqlSub2 .= " AND etat != 0";
 	
@@ -116,16 +116,16 @@ while($user=$DB_site->fetch_array($req)){
 	$suivi_client=$DB_site->query_first($sqlSub2);
 	
 	if($suivi_commande[0]==0 && $suivi_client[0]==0){
-        $req = "SELECT COUNT(*) FROM suivi_client WHERE userid = ".$user[userid]." AND commercial='auto' AND moyen ='cron' AND etat=0";
+        $req = "SELECT COUNT(*) FROM suivi_client WHERE userid = ".$user['userid']." AND commercial='auto' AND moyen ='cron' AND etat=0";
         $deja_marque = $DB_site->query_first($req);
         if($deja_marque[0] == 0){
     		echo "- ".$user['mail']."<br>";
     		$sql="INSERT INTO suivi_client (type,moyen,destinataire,userid,commercial,date,suivi,rappel,rappeltype,etat)
-    				VALUES ('client','cron','".$user[userid]."','".$user[userid]."','auto','".time()."','le client a été marqué automatiquement comme perdu car pas de conseil et pas de newsletter',0,'int','0')";
+    				VALUES ('client','cron','".$user['userid']."','".$user['userid']."','auto','".time()."','le client a été marqué automatiquement comme perdu car pas de conseil et pas de newsletter',0,'int','0')";
 
     		$DB_site->query($sql);
     		$sql="INSERT INTO causeperte (userid,date,cause)
-    				VALUES ('".$user[userid]."','".time()."','13')";
+    				VALUES ('".$user['userid']."','".time()."','13')";
     		
     		$DB_site->query($sql);
 		}
@@ -149,13 +149,13 @@ $req=$DB_site->query($sql);
 while($user=$DB_site->fetch_array($req)){
 	// on vérifie qu'il n'y ai pas de suivi commercial 
 	$sqlSub1 = "SELECT COUNT(*) FROM facture ";
-	$sqlSub1 .= " WHERE facture.userid = '".$user[userid]."'";
+	$sqlSub1 .= " WHERE facture.userid = '".$user['userid']."'";
 	// echo $sqlSub1."<br>";
 	$suivi_commande=$DB_site->query_first($sqlSub1);
 	
 	$sqlSub2 = "SELECT COUNT(*)";
 	$sqlSub2 .= " FROM suivi_client ";
-	$sqlSub2 .= " WHERE userid = ".$user[userid];
+	$sqlSub2 .= " WHERE userid = ".$user['userid'];
 	$sqlSub2 .= " AND suivi_client.commercial NOT IN ('', 'client') ";
 	//echo $sqlSub2."<br>";
 	$suivi_client=$DB_site->query_first($sqlSub2);
@@ -193,11 +193,11 @@ while($user=$DB_site->fetch_array($req)){
 	    //$DB_site->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='', `to`='".$user['mail']."', subject='".addslashes($emc->subject)."', body='".addslashes($emc->body_original)."', userid='".$user['userid']."', uniqueid='".$mail->uniqueid."', compta='non'");
 
         $sql="INSERT INTO suivi_client (type,moyen,destinataire,userid,commercial,date,suivi,rappel,rappeltype,etat)
-                VALUES ('client','cron','".$user[userid]."','".$user[userid]."','','".(time()+120)."','le client a été marqué automatiquement comme perdu car pas de conseil et 3 jours d attente',0,'int','0')";
+                VALUES ('client','cron','".$user['userid']."','".$user['userid']."','','".(time()+120)."','le client a été marqué automatiquement comme perdu car pas de conseil et 3 jours d attente',0,'int','0')";
         $DB_site->query($sql);
 
         $sql="INSERT INTO causeperte (userid,date,cause)
-                VALUES ('".$user[userid]."','".(time()+120)."','13')";
+                VALUES ('".$user['userid']."','".(time()+120)."','13')";
         $DB_site->query($sql);
 	}
 
@@ -219,7 +219,7 @@ function vignette_mail($artid){
     $template->parts["arturl"]=$host.$template->mkurl("article",$artid,$article);
     $template->parts['libelle']=$article['libelle'];
     $template->parts['ref']=strtoupper($mq['libelle']." ".$article['gamme']."<br>".$article['artcode']);
-    $template->parts["logomarque"]="<img src=\"https://www.ma-cave-a-vin.fr/configurations/www.ma-cave-a-vin.fr/images/marques/br/".$mq[marqueid].".jpg\" alt=\"".$mq['mtype']."\" width=\"90\" style=\"width:90px;max-height:24px;\">";
+    $template->parts["logomarque"]="<img src=\"https://www.ma-cave-a-vin.fr/configurations/www.ma-cave-a-vin.fr/images/marques/br/".$mq['marqueid'].".jpg\" alt=\"".$mq['mtype']."\" width=\"90\" style=\"width:90px;max-height:24px;\">";
     
     $imgartid=$artid;
     $packs=new Pack($DB_site);

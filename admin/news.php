@@ -65,7 +65,7 @@ if( !isset( $action ) || $action == "" )
 		$rowalt = "td_".getrowbg();
 
 		echo "<tr>";
-		echo "  <td class=\"$rowalt\" align=\"center\" width=\"20%\">" .date( "d/m/Y", $rs_news[datenews] ). "</td>";
+		echo "  <td class=\"$rowalt\" align=\"center\" width=\"20%\">" .date( "d/m/Y", $rs_news['datenews'] ). "</td>";
 		echo "  <td class=\"$rowalt\">$rs_news[$libelle]</td>";
 		echo "  <td class=\"$rowalt\" align=\"center\" width=\"20%\">
 				  <a href=\"news.php?action=editer&newsid=$rs_news[newsid]&i_langue=0\" target=\"_self\">Editer</a>
@@ -95,7 +95,7 @@ elseif( $action == "editer" )
 	{
 		// Table temporaire
 		$wysiwyg_temp = $DB_site2->query_first( "SELECT * FROM wysiwyg" );
-		if( !isset( $wysiwyg_temp[wysiwygid] ) )
+		if( !isset( $wysiwyg_temp['wysiwygid'] ) )
 		{
 			$rs_news = $DB_site2->query_first( "select * from news where newsid = $newsid" );		
 
@@ -105,16 +105,16 @@ elseif( $action == "editer" )
 																  libelleSP, contenuSP,
 																  libelleEN, contenuEN,
 																  libelleIT, contenuIT )
-								 VALUES ( '1', '" .addslashes( $rs_news[libelleFR] ). "', '"
-								 				  .addslashes( $rs_news[contenuFR] ). "', '"
-								  			      .addslashes( $rs_news[libelleDE] ). "', '"
-												  .addslashes( $rs_news[contenuDE] ). "', '"
-								  			      .addslashes( $rs_news[libelleSP] ). "', '"
-												  .addslashes( $rs_news[contenuSP] ). "', '"
-								  			      .addslashes( $rs_news[libelleEN] ). "', '"
-												  .addslashes( $rs_news[contenuEN] ). "', '"
-								  			      .addslashes( $rs_news[libelleIT] ). "', '"
-												  .addslashes( $rs_news[contenuIT] ). "' )";					   
+								 VALUES ( '1', '" .addslashes( $rs_news['libelleFR'] ). "', '"
+								 				  .addslashes( $rs_news['contenuFR'] ). "', '"
+								  			      .addslashes( $rs_news['libelleDE'] ). "', '"
+												  .addslashes( $rs_news['contenuDE'] ). "', '"
+								  			      .addslashes( $rs_news['libelleSP'] ). "', '"
+												  .addslashes( $rs_news['contenuSP'] ). "', '"
+								  			      .addslashes( $rs_news['libelleEN'] ). "', '"
+												  .addslashes( $rs_news['contenuEN'] ). "', '"
+								  			      .addslashes( $rs_news['libelleIT'] ). "', '"
+												  .addslashes( $rs_news['contenuIT'] ). "' )";					   
 			$DB_site2->query($rq_ajout_wysiwyg);
 			$wysiwyg_temp = $DB_site2->query_first( "SELECT * FROM wysiwyg" );
 		}
@@ -154,16 +154,16 @@ elseif( $action == "editer" )
 		elseif( isset($_POST['btn_valid']) && $_POST['btn_valid']=='Valider les modifications' )
 		{
 			$rq_modifier_news = "UPDATE news
-					 SET libelleFR='" .addslashes( $wysiwyg_temp[libelleFR] ). "', 
-						 contenuFR='" .addslashes( $wysiwyg_temp[contenuFR] ). "', 
-						 libelleDE='" .addslashes( $wysiwyg_temp[libelleDE] ). "', 
-						 contenuDE='" .addslashes( $wysiwyg_temp[contenuDE] ). "', 
-					 	 libelleSP='" .addslashes( $wysiwyg_temp[libelleSP] ). "', 
-						 contenuSP='" .addslashes( $wysiwyg_temp[contenuSP] ). "', 
-						 libelleEN='" .addslashes( $wysiwyg_temp[libelleEN] ). "', 
-						 contenuEN='" .addslashes( $wysiwyg_temp[contenuEN] ). "', 
-					 	 libelleIT='" .addslashes( $wysiwyg_temp[libelleIT] ). "', 
-						 contenuIT='" .addslashes( $wysiwyg_temp[contenuIT] ). "' 
+					 SET libelleFR='" .addslashes( $wysiwyg_temp['libelleFR'] ). "', 
+						 contenuFR='" .addslashes( $wysiwyg_temp['contenuFR'] ). "', 
+						 libelleDE='" .addslashes( $wysiwyg_temp['libelleDE'] ). "', 
+						 contenuDE='" .addslashes( $wysiwyg_temp['contenuDE'] ). "', 
+					 	 libelleSP='" .addslashes( $wysiwyg_temp['libelleSP'] ). "', 
+						 contenuSP='" .addslashes( $wysiwyg_temp['contenuSP'] ). "', 
+						 libelleEN='" .addslashes( $wysiwyg_temp['libelleEN'] ). "', 
+						 contenuEN='" .addslashes( $wysiwyg_temp['contenuEN'] ). "', 
+					 	 libelleIT='" .addslashes( $wysiwyg_temp['libelleIT'] ). "', 
+						 contenuIT='" .addslashes( $wysiwyg_temp['contenuIT'] ). "' 
 					 WHERE newsid = $newsid";
 			$DB_site2->query($rq_modifier_news);
 			// Effacement de la table temporaire
@@ -243,7 +243,7 @@ elseif( $action == "ajouter" )
 	{
 		// Table temporaire
 		$wysiwyg_temp = $DB_site2->query_first( "SELECT * FROM wysiwyg" );
-		if( !isset( $wysiwyg_temp[wysiwygid] ) )
+		if( !isset( $wysiwyg_temp['wysiwygid'] ) )
 		{
 			// Ajout d'un enregistrement dans la table temporaire s'il n'existe pas
 			$rq_ajout_wysiwyg = "INSERT INTO wysiwyg ( wysiwygid ) VALUES ( '1' )";
@@ -290,11 +290,11 @@ elseif( $action == "ajouter" )
 															 libelleEN, contenuEN,
 															 libelleIT, contenuIT )	
 				VALUES ( '" .time(). "', '"
-						 .addslashes( $wysiwyg_temp[libelleFR] ). "', '" .addslashes( $wysiwyg_temp[contenuFR] ). "', '"
-						 .addslashes( $wysiwyg_temp[libelleDE] ). "', '" .addslashes( $wysiwyg_temp[contenuDE] ). "', '"
-						 .addslashes( $wysiwyg_temp[libelleSP] ). "', '" .addslashes( $wysiwyg_temp[contenuSP] ). "', '"
-						 .addslashes( $wysiwyg_temp[libelleEN] ). "', '" .addslashes( $wysiwyg_temp[contenuEN] ). "', '"
-						 .addslashes( $wysiwyg_temp[libelleIT] ). "', '" .addslashes( $wysiwyg_temp[contenuIT] ). "' )";
+						 .addslashes( $wysiwyg_temp['libelleFR'] ). "', '" .addslashes( $wysiwyg_temp['contenuFR'] ). "', '"
+						 .addslashes( $wysiwyg_temp['libelleDE'] ). "', '" .addslashes( $wysiwyg_temp['contenuDE'] ). "', '"
+						 .addslashes( $wysiwyg_temp['libelleSP'] ). "', '" .addslashes( $wysiwyg_temp['contenuSP'] ). "', '"
+						 .addslashes( $wysiwyg_temp['libelleEN'] ). "', '" .addslashes( $wysiwyg_temp['contenuEN'] ). "', '"
+						 .addslashes( $wysiwyg_temp['libelleIT'] ). "', '" .addslashes( $wysiwyg_temp['contenuIT'] ). "' )";
 
 			$DB_site2->query($rq_ajouter_news);
 			// Effacement de la table temporaire

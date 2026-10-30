@@ -360,7 +360,7 @@ Vous pouvez le désactiver à tout moment !<br><br>" ;
 		$rq_positions_suivantes = $DB_site2->query("SELECT formulairechampid, position FROM formulaire_champ WHERE position > $position_page" );
 		while ($rs_positions_suivantes=$DB_site2->fetch_array($rq_positions_suivantes)) 
 			{
-			$position_temp = $rs_positions_suivantes[position] - 1;
+			$position_temp = $rs_positions_suivantes['position'] - 1;
 			$DB_site2->query("UPDATE formulaire_champ SET position = '$position_temp' WHERE formulairechampid = '$rs_positions_suivantes[formulairechampid]'");
 			}
 		$DB_site2->query("delete from formulaire_champ_valeur where formulairechampid = '$champid'");
@@ -428,7 +428,7 @@ Vous pouvez le désactiver à tout moment !<br><br>" ;
 				$valeurs=$DB_site2->query("SELECT * from formulaire_champ_valeur where formulairechampid = '$champid'");
 				while ($valeur=$DB_site2->fetch_array($valeurs))
 					{
-					$num = $valeur[formulairechampvaleurid] ;
+					$num = $valeur['formulairechampvaleurid'] ;
 					$lib = "val_chp$num" ;
 					$DB_site2->query("update formulaire_champ_valeur set valeur = '$_POST[$lib]' where formulairechampvaleurid = '$num'");
 					echo "<font class=\"cost\">Champ modifié</font><br>" ;
@@ -469,7 +469,7 @@ Vous pouvez le désactiver à tout moment !<br><br>" ;
 			{
 			while ($valeur=$DB_site2->fetch_array($valeurs))
 				{
-				$num = $valeur[formulairechampvaleurid] ;
+				$num = $valeur['formulairechampvaleurid'] ;
 				$affich_valeurs .= "
 				<tr><td align=\"right\">$valeur[description] : </td><td align=\"left\"><input type=\"text\" name=\"val_chp$num\" value=\"$valeur[valeur]\"></td></tr>" ;
 				}
@@ -478,7 +478,7 @@ Vous pouvez le désactiver à tout moment !<br><br>" ;
 			{
 			while ($valeur=$DB_site2->fetch_array($valeurs))
 				{
-				$num = $valeur[formulairechampvaleurid] ;
+				$num = $valeur['formulairechampvaleurid'] ;
 				$affich_valeurs .= "<tr><td align=\"right\">Valeur : </td><td align=\"left\"><input type=\"text\" name=\"val_chp$num\" value=\"$valeur[description]\"> 
 				<a href=\"formulaire.php?action=formu&action2=suppr_val&valid=$valeur[formulairechampvaleurid]&champid=$champid\">Supprimer</a></td></tr>" ;
 				}
@@ -488,7 +488,7 @@ Vous pouvez le désactiver à tout moment !<br><br>" ;
 			(Cliquez sur modifier pour ajouter les valeurs.)" ;
 			}
 		$affich_valeurs .= "</table>" ;
-		switch ($champ[obligatoire])
+		switch ($champ['obligatoire'])
 			{
 			case "0":
 				$checked0 = "checked" ;
@@ -568,7 +568,7 @@ Vous pouvez le désactiver à tout moment !<br><br>" ;
 		$liste_types = "" ;
 		while ($type_champ=$DB_site2->fetch_array($types_champs))
 			{
-			if ($type_champ[formulairetypechampid] == $champ[type])
+			if ($type_champ['formulairetypechampid'] == $champ[type])
 				{
 				$liste_types .= "<option value=\"$type_champ[formulairetypechampid]\" selected>$type_champ[nom]</option>" ;
 				}
@@ -669,13 +669,13 @@ Vous pouvez le désactiver à tout moment !<br><br>" ;
 											<img src=\"images/descendre.gif\" alt=\"Descendre\" title=\"Descendre\" height=\"7\" border=\"0\"></a>";
 						}
 					}
-				switch ($champ[obligatoire])
+				switch ($champ['obligatoire'])
 					{
 					case "0":
-						$champ[obligatoire] = "Non" ;
+						$champ['obligatoire'] = "Non" ;
 						break ;
 					case "1":
-						$champ[obligatoire] = "Oui" ;
+						$champ['obligatoire'] = "Oui" ;
 						break ;
 					}
 				echo "<tr>
@@ -702,7 +702,7 @@ Vous pouvez le désactiver à tout moment !<br><br>" ;
 		$formus=$DB_site2->query("select * from formulaire where formulaireid != '1'");
 		while ($formu=$DB_site2->fetch_array($formus))
 			{
-			if ($formu[actif] == '0')
+			if ($formu['actif'] == '0')
 				{
 				$action = "<a href=\"formulaire.php?action=activer&formu=$formu[formulaireid]\">Activer</a>" ;
 				}

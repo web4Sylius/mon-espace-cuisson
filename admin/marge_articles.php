@@ -164,77 +164,77 @@ $jQuery("#artids")
 		$i=0;
 		$marges=$DB_site2->query("SELECT * FROM marge_archive ORDER BY marge_archiveid DESC");
 		while($marge=$DB_site2->fetch_array($marges)){
-			$critere=unserialize($marge[criteres]);
+			$critere=unserialize($marge['criteres']);
 			
-			if($critere[marqueid]==""){
+			if($critere['marqueid']==""){
 				$lib_marque_txt="Toutes marques";
 			} else {
-				$lib_marque=$DB_site2->query_first("SELECT * FROM marque WHERE marqueid='".$critere[marqueid]."' ");
-				$lib_marque_txt=$lib_marque[libelle];
+				$lib_marque=$DB_site2->query_first("SELECT * FROM marque WHERE marqueid='".$critere['marqueid']."' ");
+				$lib_marque_txt=$lib_marque['libelle'];
 			}
-			if($critere[visu_fournisseur]==0){
+			if($critere['visu_fournisseur']==0){
 				$visu_fournisseur_txt="interne";
 			} else {
 				$visu_fournisseur_txt="fournisseur";
 			}
-			if($critere[typesrc]==""){
+			if($critere['typesrc']==""){
 				$typesrc_txt="tous";
-			}elseif($critere[typesrc]=="vus"){
+			}elseif($critere['typesrc']=="vus"){
 				$typesrc_txt="les + vus";
 			}else{
 				$typesrc_txt="les + vendus";
 			}
-			if($critere[typearticleid]==""){
+			if($critere['typearticleid']==""){
 				$typearticleid_txt="Tous";
 			} else {
-				$res=$DB_site2->query_first("SELECT * FROM typearticle WHERE typearticleid='".$critere[typearticleid]."' ");
-				$typearticleid_txt=$res[libelle];
+				$res=$DB_site2->query_first("SELECT * FROM typearticle WHERE typearticleid='".$critere['typearticleid']."' ");
+				$typearticleid_txt=$res['libelle'];
 			}
 			$lotage_txt="";
 			$virgule="";
-			if(in_array("seul",$critere[lotage])){
+			if(in_array("seul",$critere['lotage'])){
 				$lotage_txt.="articles seuls";
 				$virgule=", ";
 			}
-			if(in_array("lot",$critere[lotage])){
+			if(in_array("lot",$critere['lotage'])){
 				$lotage_txt.=$virgule."lots";
 			}
 			$active_txt="";
 			$virgule="";
-			if(in_array(1,$critere[active])){
+			if(in_array(1,$critere['active'])){
 				$active_txt.="Actifs";
 				$virgule=", ";
 			}
-			if(in_array(0,$critere[active])){
+			if(in_array(0,$critere['active'])){
 				$active_txt.=$virgule."Inactifs";
 				$virgule=", ";
 			}
-			if(in_array(2,$critere[active])){
+			if(in_array(2,$critere['active'])){
 				$active_txt.=$virgule."supprimés";
 				$virgule=", ";
 			}
-			if(in_array(3,$critere[active])){
+			if(in_array(3,$critere['active'])){
 				$active_txt.=$virgule."archivés";
 			}
-			if($critere[marketplace]==""){
+			if($critere['marketplace']==""){
 				$marketplace_txt="ignoré";
 			} else {
-				$marketplace_txt=$critere[marketplace];
+				$marketplace_txt=$critere['marketplace'];
 			}
 			echo "<tr class=\"flist\">
-					<td>".$marge[marge_archiveid]."</td>
-					<td>".date("d/m/Y h:i:s",$marge[dateline])."</td>
+					<td>".$marge['marge_archiveid']."</td>
+					<td>".date("d/m/Y h:i:s",$marge['dateline'])."</td>
 					<td>".$typesrc_txt."</td>
 					<td>".$lib_marque_txt."</td>
 					<td>".$typearticleid_txt."</td>
 					<td>".$lotage_txt."</td>
 					<td>".$active_txt."</td>
-					<td>du ".$critere[from]."<br>au ".$critere[to]."</td>
+					<td>du ".$critere['from']."<br>au ".$critere['to']."</td>
 					<td>".$marketplace_txt."</td>
 					<td>".$visu_fournisseur_txt."</td>
 					<td>
-						<a href=\"marge_archive.php?action=visu&marge_archiveid=".$marge[marge_archiveid]."\" target=\"_blank\">charger</a><br>
-						<a href=\"marge_archive.php?action=delete&marge_archiveid=".$marge[marge_archiveid]."\">supprimer</a>
+						<a href=\"marge_archive.php?action=visu&marge_archiveid=".$marge['marge_archiveid']."\" target=\"_blank\">charger</a><br>
+						<a href=\"marge_archive.php?action=delete&marge_archiveid=".$marge['marge_archiveid']."\">supprimer</a>
 					</td>
 				</tr>";
 			$i++;

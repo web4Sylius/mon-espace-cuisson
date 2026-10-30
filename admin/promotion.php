@@ -143,8 +143,8 @@ if( $action == "voir" || !isset($action) ) {
 			</tr>";
 	
 	while( $promotion = $DB_site2->fetch_array( $promotions ) ) {
-		list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion[datedebut] );
-		list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion[datefin] );
+		list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion['datedebut'] );
+		list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion['datefin'] );
 		
 	
 		$rowalt = "td_".getrowbg();
@@ -214,7 +214,7 @@ if( $action == "voir" || !isset($action) ) {
 		$tmp_prix = str_replace( ",", ".", $txt_prix );
 
 		if( ( (isset($txt_prix) && $txt_prix!="") && !is_numeric($tmp_prix) )
-			|| ( (isset($txt_prix) && $txt_prix!="") && is_numeric($tmp_prix) && ($tmp_prix > $article[prix]) ) ) {
+			|| ( (isset($txt_prix) && $txt_prix!="") && is_numeric($tmp_prix) && ($tmp_prix > $article['prix']) ) ) {
 			//echo "<table align=\"center\"><tr><td><b>";
 			$erreur_saisie = 1;
 		}
@@ -238,7 +238,7 @@ if( $action == "voir" || !isset($action) ) {
 			echo "<tr><td><b>  Le prix doit être de valeur numérique<b></td></tr>";
 			$erreur_saisie = 1;
 		}
-		elseif( $tmp_prix >= $article[prix] ) {
+		elseif( $tmp_prix >= $article['prix'] ) {
 			echo "<tr><td><b>  Le prix de la promotion doit etre inférieur au prix normal de l'article<b></td></tr>";
 			$erreur_saisie = 1;
 		}
@@ -269,15 +269,15 @@ if( $action == "voir" || !isset($action) ) {
 			$promotions = $DB_site2->query( $rq_promotions );
 			
 			while( $promotion = $DB_site2->fetch_array( $promotions ) ) {
-				$tmp_datedebut_bdd = explode( '-', $promotion[datedebut] );
+				$tmp_datedebut_bdd = explode( '-', $promotion['datedebut'] );
 				$str_datedebut_bdd = $tmp_datedebut_bdd[0] . $tmp_datedebut_bdd[1] . $tmp_datedebut_bdd[2];
-				$tmp_datefin_bdd = explode( '-', $promotion[datefin] );
+				$tmp_datefin_bdd = explode( '-', $promotion['datefin'] );
 				$str_datefin_bdd = $tmp_datefin_bdd[0] . $tmp_datefin_bdd[1] . $tmp_datefin_bdd[2];
 
 				if( $tmp_datedebut < $tmp_datefin_bdd )
 					if( $tmp_datefin > $tmp_datedebut_bdd ) {
-						list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion[datedebut] );
-						list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion[datefin] );
+						list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion['datedebut'] );
+						list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion['datefin'] );
 						echo "<tr><td><b>Il existe déja une promotion pour ces dates :<b></td></tr>";
 						echo "<tr><td><b>$nbsp$nbsp$nbsp Du $jour_debut/$mois_debut/$annee_debut au $jour_fin/$mois_fin/$annee_fin de $promotion[prix]€<b></td></tr>";
 						$erreur_saisie = 1;
@@ -304,7 +304,7 @@ if( $action == "voir" || !isset($action) ) {
 			  <tr><td align=\"right\">Prix promo :</td>";
 			  
 			  if( ( (isset($txt_prix) || $txt_prix!="") && !is_numeric($tmp_prix) )
-					|| ( (isset($txt_prix) || $txt_prix!="") && is_numeric($tmp_prix) && ($tmp_prix >= $article[prix]) ) )
+					|| ( (isset($txt_prix) || $txt_prix!="") && is_numeric($tmp_prix) && ($tmp_prix >= $article['prix']) ) )
 					echo "<td><input type = \"text\" name=\"txt_prix\"  size=\"10\">";
 					else
 					echo "<td><input type = \"text\" name=\"txt_prix\"  value=\"$txt_prix\" size=\"10\">";
@@ -339,13 +339,13 @@ if( $action == "voir" || !isset($action) ) {
 			$arts_lies=$DB_site2->query("select * from liens_articles where article_base = '$artid' or article_lie = '$artid'") ;
 			while ($art_lie=$DB_site2->fetch_array($arts_lies))
 				{
-				if ($art_lie[article_lie] != $artid)
+				if ($art_lie['article_lie'] != $artid)
 					{
-					$art = $art_lie[article_lie] ;
+					$art = $art_lie['article_lie'] ;
 					}
 				else
 					{
-					$art = $art_lie[article_base] ;
+					$art = $art_lie['article_base'] ;
 					}
 				$last=$DB_site2->query_first("select max(position) from promotion");
 				if ($last[0] != "")
@@ -371,8 +371,8 @@ if( $action == "voir" || !isset($action) ) {
 
 	$promotion = $DB_site2->query_first( "select * from promotion where promotionid = $promoid" );
 
-	list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion[datedebut] );
-	list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion[datefin] );
+	list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion['datedebut'] );
+	list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion['datefin'] );
 
 	echo "<div align=\"center\"><h3>Promotion sur l'article '$article[$libelle]'<br>(Prix : $article[prix] €)</h3></div>";
 
@@ -416,7 +416,7 @@ if( $action == "voir" || !isset($action) ) {
 		$tmp_prix = str_replace( ",", ".", $txt_prix );
 
 		if( ( (isset($txt_prix) && $txt_prix!="") && !is_numeric($tmp_prix) )
-			|| ( (isset($txt_prix) && $txt_prix!="") && is_numeric($tmp_prix) && ($tmp_prix > $article[prix]) ) ) {
+			|| ( (isset($txt_prix) && $txt_prix!="") && is_numeric($tmp_prix) && ($tmp_prix > $article['prix']) ) ) {
 			//echo "<table align=\"center\"><tr><td><b>";
 			$erreur_saisie = 1;
 		}
@@ -440,7 +440,7 @@ if( $action == "voir" || !isset($action) ) {
 			echo "<tr><td><b>  Le prix doit être de valeur numérique<b></td></tr>";
 			$erreur_saisie = 1;
 		}
-		elseif( $tmp_prix >= $article[prix] ) {
+		elseif( $tmp_prix >= $article['prix'] ) {
 			echo "<tr><td><b>  Le prix de la promotion doit etre inférieur au prix normal de l'article<b></td></tr>";
 			$erreur_saisie = 1;
 		}
@@ -469,15 +469,15 @@ if( $action == "voir" || !isset($action) ) {
 			$promotions = $DB_site2->query( $rq_promotions );
 			
 			while( $promotion = $DB_site2->fetch_array( $promotions ) ) {
-				$tmp_datedebut_bdd = explode( '-', $promotion[datedebut] );
+				$tmp_datedebut_bdd = explode( '-', $promotion['datedebut'] );
 				$str_datedebut_bdd = $tmp_datedebut_bdd[0] . $tmp_datedebut_bdd[1] . $tmp_datedebut_bdd[2];
-				$tmp_datefin_bdd = explode( '-', $promotion[datefin] );
+				$tmp_datefin_bdd = explode( '-', $promotion['datefin'] );
 				$str_datefin_bdd = $tmp_datefin_bdd[0] . $tmp_datefin_bdd[1] . $tmp_datefin_bdd[2];
 
 				if( $tmp_datedebut <= $tmp_datefin_bdd )
 					if( $tmp_datefin >= $tmp_datedebut_bdd ) {
-						list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion[datedebut] );
-						list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion[datefin] );
+						list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion['datedebut'] );
+						list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion['datefin'] );
 						echo "<tr><td><b>Il existe déja une promotion pour ces dates :<b></td></tr>";
 						echo "<tr><td><b>$nbsp$nbsp$nbsp Du $jour_debut/$mois_debut/$annee_debut au $jour_fin/$mois_fin/$annee_fin de $promotion[prix]€<b></td></tr>";
 						$erreur_saisie = 1;
@@ -506,7 +506,7 @@ if( $action == "voir" || !isset($action) ) {
 			  <tr><td align=\"right\">Prix promo :</td>";
 			  
 			  if( ( (isset($txt_prix) || $txt_prix!="") && !is_numeric($tmp_prix) )
-					|| ( (isset($txt_prix) || $txt_prix!="") && is_numeric($tmp_prix) && ($tmp_prix >= $article[prix]) ) )
+					|| ( (isset($txt_prix) || $txt_prix!="") && is_numeric($tmp_prix) && ($tmp_prix >= $article['prix']) ) )
 					echo "<td><input type = \"text\" name=\"txt_prix\"  size=\"10\">";
 					else
 					echo "<td><input type = \"text\" name=\"txt_prix\"  value=\"$txt_prix\" size=\"10\">";
@@ -532,13 +532,13 @@ if( $action == "voir" || !isset($action) ) {
 			$arts_lies=$DB_site2->query("select article_lie from liens_articles where article_base = '$artid' or article_lie = '$artid'") ;
 			while ($art_lie=$DB_site2->fetch_array($arts_lies))
 				{
-				if ($art_lie[article_lie] != $artid)
+				if ($art_lie['article_lie'] != $artid)
 					{
-					$art = $art_lie[article_lie] ;
+					$art = $art_lie['article_lie'] ;
 					}
 				else
 					{
-					$art = $art_lie[article_base] ;
+					$art = $art_lie['article_base'] ;
 					}
 				$promo_identique=$DB_site2->query_first("select promotionid from promotion where artid = '$art'
 														and prix = '$promo_a_supprimer[prix]' and datedebut = '$promo_a_supprimer[datedebut]'
@@ -572,18 +572,18 @@ elseif ($action == "supprimer2")
 		$arts_lies=$DB_site2->query("select article_lie from liens_articles where article_base = '$artid' or article_lie = '$artid'") ;
 		while ($art_lie=$DB_site2->fetch_array($arts_lies))
 			{
-			if ($art_lie[article_lie] != $artid)
+			if ($art_lie['article_lie'] != $artid)
 				{
-				$art = $art_lie[article_lie] ;
+				$art = $art_lie['article_lie'] ;
 				}
 			else
 				{
-				$art = $art_lie[article_base] ;
+				$art = $art_lie['article_base'] ;
 				}
 			$promo_identique=$DB_site2->query_first("select promotionid from promotion where artid = '$art'
 													and prix = '$promo_a_supprimer[prix]' and datedebut = '$promo_a_supprimer[datedebut]'
 													and datefin = '$promo_a_supprimer[datefin]'") ;
-			if ($promo_identique[promotionid] != "")
+			if ($promo_identique['promotionid'] != "")
 				{
 				//$DB_site2->query("delete from promotion where promotionid = '$promo_identique[promotionid]'") ;
 
@@ -593,7 +593,7 @@ elseif ($action == "supprimer2")
 				$rq_positions_suivantes=$DB_site2->query("SELECT promotionid, position FROM promotion WHERE position > $position_page" );
 				while ($rs_positions_suivantes=$DB_site2->fetch_array($rq_positions_suivantes)) 
 					{
-					$position_temp = $rs_positions_suivantes[position] - 1;
+					$position_temp = $rs_positions_suivantes['position'] - 1;
 					$DB_site2->query("UPDATE promotion SET position = '$position_temp' WHERE promotionid = '$rs_positions_suivantes[promotionid]'");
 					}
 				$DB_site2->query("DELETE from promotion WHERE promotionid = '$promo_identique[promotionid]'");
@@ -608,7 +608,7 @@ elseif ($action == "supprimer2")
 	$rq_positions_suivantes=$DB_site2->query("SELECT promotionid, position FROM promotion WHERE position > $position_page" );
 	while ($rs_positions_suivantes=$DB_site2->fetch_array($rq_positions_suivantes)) 
 		{
-		$position_temp = $rs_positions_suivantes[position] - 1;
+		$position_temp = $rs_positions_suivantes['position'] - 1;
 		$DB_site2->query("UPDATE promotion SET position = '$position_temp' WHERE promotionid = '$rs_positions_suivantes[promotionid]'");
 		}
 	$DB_site2->query("DELETE from promotion WHERE promotionid = '$promoid'");

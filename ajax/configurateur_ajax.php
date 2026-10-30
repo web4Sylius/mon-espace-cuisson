@@ -175,7 +175,7 @@ switch($_GET['rep']){
         $template->parts["zonedeliste_pays"]="";
         $payss=$DB_site->query("SELECT * FROM pays INNER JOIN fraisport USING(paysid) WHERE sites='".$template->site_code()."' GROUP BY paysid ORDER BY libelle ASC");
         while($pays=$DB_site->fetch_array($payss)){
-        $template->parts["zonedeliste_pays"] .= "<option value=$pays[paysid] ".($pays[paysid]==57?"selected":"").">$pays[libelle]</option>";
+        $template->parts["zonedeliste_pays"] .= "<option value=$pays[paysid] ".($pays['paysid']==57?"selected":"").">$pays[libelle]</option>";
         }
         
         $template->evaltemplate("ConfigIdent","main");

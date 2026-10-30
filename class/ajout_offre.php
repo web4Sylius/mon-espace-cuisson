@@ -317,8 +317,8 @@ HTML;
 	$article=$packs->getDetails($artid);
 
 		//$article=$DB_site2->query_first("select * from article where artid = '$artid'") ;
-	$delailivraison = $article[delailivraison];
-	$opt_visible = $article[active];
+	$delailivraison = $article['delailivraison'];
+	$opt_visible = $article['active'];
 	$msg_visible="";
 	$dis_visible="";
 	if($article['prix_pack_ttc']==null){
@@ -329,7 +329,7 @@ HTML;
 	$checkedv0=$checkedv1=$checkedv2=$checkedv3="";
 	${"checkedv".$opt_visible}="checked";
 
-	$opt_publie = $article[publie];
+	$opt_publie = $article['publie'];
 	$checkedp1=$checkedp2=$checkedp3="";
 	${"checkedp".$opt_publie}="checked";
 

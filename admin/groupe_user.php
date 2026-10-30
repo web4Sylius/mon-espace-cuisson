@@ -303,13 +303,13 @@ if (in_array ("106", $modules))
 					while ($gp=$DB_site2->fetch_array($gps))
 						{
 						$rowalt = "td_promos_".getrowbg();
-						if ($gp[pctremise] == 0)
+						if ($gp['pctremise'] == 0)
 							{
-							$gp[pctremise] = "Aucune" ;
+							$gp['pctremise'] = "Aucune" ;
 							}
 						else
 							{
-							$gp[pctremise] = "$gp[pctremise] %" ;
+							$gp['pctremise'] = "$gp[pctremise] %" ;
 							}
 						echo "<tr>
 								<td align=\"left\" class=\"$rowalt\">$gp[nom]</td>
@@ -355,7 +355,7 @@ if (in_array ("106", $modules))
 						while ($rs_client=$DB_site2->fetch_array($rq_client))
 							{
 							$rowalt = "td_promos_".getrowbg();
-							list($annee, $mois, $jour) = explode( "-", $rs_client[dateinscription] );
+							list($annee, $mois, $jour) = explode( "-", $rs_client['dateinscription'] );
 							echo "<tr class=\"td_promos\">";
 							echo "  <td class=\"$rowalt\" align=\"left\">$rs_client[nom] $rs_client[prenom]</td>";
 							echo "  <td class=\"$rowalt\" align=\"center\">$rs_client[pctremise] %</td>";

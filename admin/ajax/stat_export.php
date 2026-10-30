@@ -205,7 +205,7 @@ switch($_GET['action']){
 		$req=$DB_site2->query($sql);
 		while($page=$DB_site2->fetch_array($req)){
 
-		    $art=article($page[artid],$page[somme],$from,$to);
+		    $art=article($page[artid],$page['somme'],$from,$to);
 
 		    if($_GET['marque']==0 || $_GET['marque']==$art['marqueid']){
 		      	$instock=$stock->in_stock(intval($art['artid']));

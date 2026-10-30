@@ -1738,7 +1738,7 @@ while ($fiche = $DB_site->fetch_array($lignefactures)) {
 
 
 // image fin
-if ($user[raisonsociale] == "") {
+if ($user['raisonsociale'] == "") {
     
     $pdf->addpage();
     $pdf->image($rootpath . "configurations/".$template->host_conf->path."/images/templates/base/" . $template->langue . "/pub_devis" . ($template->pro ? "_pro" : "") . ".jpg", 0, 0, 210);
@@ -1899,7 +1899,7 @@ function calcport($poidstotal, $prixtotal, $livrmode, $prixtypeinstall, $poidsca
         if ($livrmode == 4)
             $return += prix_montage($facture['facturid']);
     }elseif($livrmode == '7'){
-        $tarif = tarifMES($facture[facturid]);
+        $tarif = tarifMES($facture['facturid']);
         $tarif += prixsls($facture['codepostal'], $poidstotal * 1000, $facture['paysid'], $prixtypeinstall);
         $return = $tarif;
     }

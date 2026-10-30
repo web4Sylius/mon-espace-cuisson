@@ -6,7 +6,7 @@ $req = $DB_site->query($sql);
 
 while($row = $DB_site->fetch_array($req)){
 	
-	$garantie=str_replace("\\", "", $row[garantie_incluse]);
+	$garantie=str_replace("\\", "", $row['garantie_incluse']);
 	
 	
 	$sql = "UPDATE article SET garantie_incluse='". addslashes($garantie) ."' WHERE artid=".$row[artid]." ";

@@ -90,7 +90,7 @@ function getfiles($parentid=null){
         if(!is_null($parentid) && $parentid>0){
       	  $parent=$DB_site2->query_first("SELECT * FROM fournisseur_files WHERE id=".$parentid." AND stock_cmd_id=0");
       	  $path.="<path name=\"".$parent['name']."\" dataurl=\"fournisseur_files.php?action=files&amp;fournisseur=".rawurlencode(stripslashes($_GET['fournisseur']))."&amp;parent=".$parentid."\" />";
-      	  $ret.="<parent id=\"$parent[parent]\" dataurl=\"fournisseur_files.php?action=files&amp;fournisseur=".rawurlencode(stripslashes($_GET['fournisseur']))."&amp;parent=$parent[parent]\" name=\"".str_replace("&","&amp;",$parent[name])."\" utilisateur=\"$parent[utilisateur]\" date=\"$parent[date]\" mod=\"rw\" />";
+      	  $ret.="<parent id=\"$parent[parent]\" dataurl=\"fournisseur_files.php?action=files&amp;fournisseur=".rawurlencode(stripslashes($_GET['fournisseur']))."&amp;parent=$parent[parent]\" name=\"".str_replace("&","&amp;",$parent['name'])."\" utilisateur=\"$parent[utilisateur]\" date=\"$parent[date]\" mod=\"rw\" />";
         }else
   	      $ret.="<parent id=\"\" name=\"\" utilisateur=\"\" date=\"\" mod=\"rw\" />";
         
@@ -155,7 +155,7 @@ function getfiles($parentid=null){
       if(!is_null($parentid) && $parentid>0){
           $parent=$DB_site2->query_first("SELECT * FROM fournisseur_files WHERE id=".$parentid." AND stock_cmd_id=".$_GET['cmdid']);
           $path.="<path name=\"".$parent['name']."\" dataurl=\"fournisseur_files.php?action=stock&amp;fournisseur=".rawurlencode(stripslashes($_GET['fournisseur']))."&amp;parent=".$parentid."&amp;cmdid=".$_GET['cmdid']."\" />";
-          $ret.="<parent id=\"$parent[parent]\" dataurl=\"fournisseur_files.php?action=stock&amp;fournisseur=".rawurlencode(stripslashes($_GET['fournisseur']))."&amp;parent=$parent[parent]&amp;cmdid=".$_GET['cmdid']."\" name=\"".str_replace("&","&amp;",$parent[name])."\" utilisateur=\"$parent[utilisateur]\" date=\"$parent[date]\" mod=\"rw\" />";
+          $ret.="<parent id=\"$parent[parent]\" dataurl=\"fournisseur_files.php?action=stock&amp;fournisseur=".rawurlencode(stripslashes($_GET['fournisseur']))."&amp;parent=$parent[parent]&amp;cmdid=".$_GET['cmdid']."\" name=\"".str_replace("&","&amp;",$parent['name'])."\" utilisateur=\"$parent[utilisateur]\" date=\"$parent[date]\" mod=\"rw\" />";
       }else
           $ret.="<parent id=\"\" name=\"\" utilisateur=\"\" date=\"\" mod=\"rw\" />";
       $ret.="<upload dataurl=\"fournisseur_ul.php?fournisseur=".rawurlencode($_GET['fournisseur'])."&amp;action=fb.load()&amp;parent=".intval($parentid)."&amp;cmdid=".$_GET['cmdid']."\" />".$path;
@@ -177,9 +177,9 @@ function getfournfiles($fournisseur,$parent){
   while($f=$DB_site2->fetch_array($r)){
       if($f['ext']==""){
 	  $count=$DB_site2->query_first("SELECT COUNT(*),SUM(size) FROM fournisseur_files WHERE parent=".$f['id']." AND stock_cmd_id=0");
-	  $ret.="<folder id=\"$f[id]\" dataurl=\"fournisseur_files.php?action=files&amp;fournisseur=".rawurlencode($_GET['fournisseur'])."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f[name])." (".$count[0].")\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
+	  $ret.="<folder id=\"$f[id]\" dataurl=\"fournisseur_files.php?action=files&amp;fournisseur=".rawurlencode($_GET['fournisseur'])."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f['name'])." (".$count[0].")\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
       }else
-	  $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f[name])."\" path=\"fournfiles/dl.php?fid=".$f['id']."\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
+	  $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f['name'])."\" path=\"fournfiles/dl.php?fid=".$f['id']."\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
   }
   return $ret;
 }
@@ -195,9 +195,9 @@ function getsavfiles($savid,$parent){
   while($f=$DB_site2->fetch_array($r)){
       if($f['ext']==""){
 	  $count=$DB_site2->query_first("SELECT COUNT(*),SUM(size) FROM sav_files WHERE parent=".$f['id']);
-	  $ret.="<folder id=\"$f[id]\" dataurl=\"fournisseur_files.php?action=files&amp;savid=".$savid."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f[name])." (".$count[0].")\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
+	  $ret.="<folder id=\"$f[id]\" dataurl=\"fournisseur_files.php?action=files&amp;savid=".$savid."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f['name'])." (".$count[0].")\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
       }else
-	  $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f[name])."\" path=\"sav/".$f['id'].".".$f['ext']."\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
+	  $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f['name'])."\" path=\"sav/".$f['id'].".".$f['ext']."\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
   }
   return $ret;
 }
@@ -227,9 +227,9 @@ function getartid($artid,$parent){
   while($f=$DB_site2->fetch_array($r)){
       if($f['ext']==""){
 	  $count=$DB_site2->query_first("SELECT COUNT(*),SUM(size) FROM article_files WHERE parent=".$f['id']);
-	  $ret.="<folder id=\"$f[id]\" dataurl=\"fournisseur_files.php?action=article&amp;fournisseur=".rawurlencode($_GET['fournisseur'])."&amp;artid=".$_GET['artid'].(isset($_GET['artid2'])?"&amp;artid2=$artid":"")."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f[name])." (".$count[0].")\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
+	  $ret.="<folder id=\"$f[id]\" dataurl=\"fournisseur_files.php?action=article&amp;fournisseur=".rawurlencode($_GET['fournisseur'])."&amp;artid=".$_GET['artid'].(isset($_GET['artid2'])?"&amp;artid2=$artid":"")."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f['name'])." (".$count[0].")\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
       }else
-	  $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f[name])."\" path=\"articlefiles/$f[id].$f[ext]\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
+	  $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f['name'])."\" path=\"articlefiles/$f[id].$f[ext]\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
   }
   return $ret;
 }
@@ -242,7 +242,7 @@ function tree($fournisseur){
     $sql="SELECT * FROM fournisseur_files WHERE fournisseur='".mysqli_real_escape_string($DB_site2->link_id,$fournisseur)."' AND ext='' AND stock_cmd_id=0 ORDER BY name";
     $r=$DB_site2->query($sql);
     while($f=$DB_site2->fetch_array($r)){
-	$ret.="<folder id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f[name])."\" parent=\"$f[parent]\" />";
+	$ret.="<folder id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f['name'])."\" parent=\"$f[parent]\" />";
     }
 
     return $ret;
@@ -256,7 +256,7 @@ function sav_tree($savid){
     $sql="SELECT * FROM sav_files WHERE savid=".$savid." AND ext='' ORDER BY name";
     $r=$DB_site2->query($sql);
     while($f=$DB_site2->fetch_array($r)){
-	$ret.="<folder id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f[name])."\" parent=\"$f[parent]\" />";
+	$ret.="<folder id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f['name'])."\" parent=\"$f[parent]\" />";
     }
 
     return $ret;
@@ -276,9 +276,9 @@ function stock_files($cmdid,$parent){
       while($f=$DB_site2->fetch_array($r)){
 	  if($f['ext']==""){
 	      $count=$DB_site2->query_first("SELECT COUNT(*),SUM(size) FROM fournisseur_files WHERE parent=".$f['id']." AND stock_cmd_id=".$cmdid);
-	      $ret.="<folder id=\"$f[id]\" dataurl=\"fournisseur_files.php?action=stock&amp;fournisseur=".rawurlencode($_GET['fournisseur'])."&amp;parent=".$f['id']."&amp;cmdid=$cmdid\" name=\"".str_replace("&","&amp;",$f[name])." (".$count[0].")\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
+	      $ret.="<folder id=\"$f[id]\" dataurl=\"fournisseur_files.php?action=stock&amp;fournisseur=".rawurlencode($_GET['fournisseur'])."&amp;parent=".$f['id']."&amp;cmdid=$cmdid\" name=\"".str_replace("&","&amp;",$f['name'])." (".$count[0].")\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
 	  }else
-	      $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f[name])."\" path=\"fournfiles/dl.php?fid=".$f['id']."\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
+	      $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f['name'])."\" path=\"fournfiles/dl.php?fid=".$f['id']."\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
       }
       if($parent==0){
 	  $sav=new sav($DB_site2);

@@ -79,12 +79,12 @@ if(isset($_GET['send'])){
 
   $ef = new envoi_fournisseur($DB_site2);
   //$ef->facturid=$facture['facturid'];
-  $ef->facturid = $facture[facturid];
+  $ef->facturid = $facture['facturid'];
   $ef->destinataire = 'SFG';
   $ef->tarif = $totalpaht;
   $ef->type = 'garantie';
   $ef->date = time();
-  $gar = $DB_site2->query_first("SELECT id FROM envoi_fournisseur WHERE facturid =".$facture[facturid]." AND destinataire = 'SFG'");
+  $gar = $DB_site2->query_first("SELECT id FROM envoi_fournisseur WHERE facturid =".$facture['facturid']." AND destinataire = 'SFG'");
   if($gar[0] != ''){
     $ef->id = $gar[0];
     $ef->update();
@@ -116,10 +116,10 @@ function generatexml(){
   global $DB_site2;
   global $facture,$user,$adv;
   
-  $datefacture=date("d/m/Y",$facture[tsdate]);
-  $dateenvoi=date("d/m/Y",$facture[tsenvoi]);
+  $datefacture=date("d/m/Y",$facture['tsdate']);
+  $dateenvoi=date("d/m/Y",$facture['tsenvoi']);
 
-  $snom = trim($user[raisonsociale]." ".$user[nom]);
+  $snom = trim($user['raisonsociale']." ".$user['nom']);
   if(strlen($snom) > 44){
     $snom = substr($snom, 0,44);
   }
@@ -150,13 +150,13 @@ function generatexml(){
 	    if($garantie->cumul==2){ // pas d'extension
 		$dureeGarantie = $garantie->duree;
 		$dureeExtGarantie = 0;
-		$dateEffetGarantie = date_create(date("Y-m-d",$facture[tsenvoi]));
+		$dateEffetGarantie = date_create(date("Y-m-d",$facture['tsenvoi']));
 		$dateEffetGarantie = date_format($dateEffetGarantie,"d/m/Y");
 		
 	    }else{ // extension
 		$dureeExtGarantie = $garantie->duree;
 		$dureeGarantie = 0;
-		$dateEffetGarantie = date_create(date("Y-m-d",$facture[tsenvoi]));
+		$dateEffetGarantie = date_create(date("Y-m-d",$facture['tsenvoi']));
                 date_add($dateEffetGarantie,date_interval_create_from_date_string("2 years"));
                 date_add($dateEffetGarantie,date_interval_create_from_date_string("-1 day"));
                 $dateEffetGarantie = date_format($dateEffetGarantie,"d/m/Y");

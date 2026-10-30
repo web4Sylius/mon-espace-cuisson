@@ -257,11 +257,11 @@ function suivi_fourn($fourn,$ts,$typedate,$order="facturid",$late=null){
     }*/
 
     
-    if($envoi[trspt]=="transporteur fournisseur" || $envoi[trspt]=="colissimo") $envoi[trspt]="Par vos soins";
+    if($envoi['trspt']=="transporteur fournisseur" || $envoi['trspt']=="colissimo") $envoi['trspt']="Par vos soins";
     if($typedate=="outdate"){
-      if($envoi[livr]==-1){
+      if($envoi['livr']==-1){
 	$txtlivr="<td></td>";
-      }elseif($envoi[livr]==0){$tr[$envoi['enlev']].="<tr onmouseover=\"this.style.backgroundColor='#cccccc';\" onmouseout=\"this.style.backgroundColor='';\">
+      }elseif($envoi['livr']==0){$tr[$envoi['enlev']].="<tr onmouseover=\"this.style.backgroundColor='#cccccc';\" onmouseout=\"this.style.backgroundColor='';\">
       <td>".date("d/m/Y",$envoi[$typedate])."</td>
       <td>$envoi[facturid]</td>
       <td>$envoi[qte]</td>

@@ -66,14 +66,14 @@ if ($action=="delproduit")
 			if ($autrearticle[artid] == $artid)
 				$depart = $i + 1 ;
 			$tabpositions[$i][artid] = $autrearticle[artid] ;
-			$tabpositions[$i][page] = $autrearticle[page] ;
-			$tabpositions[$i][pageposition] = $autrearticle[pageposition] ;
+			$tabpositions[$i]['page'] = $autrearticle['page'] ;
+			$tabpositions[$i]['pageposition'] = $autrearticle['pageposition'] ;
 			$i++;
 			}
 		for ($j = $depart ; $j < count($tabpositions) ; $j++)
 			{
 			$k = $j - 1 ;
-			$DB_site2->query("update article set page = '".$tabpositions[$k][page]."', pageposition = '".$tabpositions[$k][pageposition]."' where artid = '".$tabpositions[$j][artid]."'");
+			$DB_site2->query("update article set page = '".$tabpositions[$k]['page']."', pageposition = '".$tabpositions[$k]['pageposition']."' where artid = '".$tabpositions[$j][artid]."'");
 			}
 		}
 	

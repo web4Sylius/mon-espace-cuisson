@@ -28,12 +28,12 @@ if(isset($_GET['contactinfo'])){
    switch($_GET['type']){
       case "fourn":
       $fourn=$DB_site2->query_first("SELECT * FROM fournisseur WHERE id=".$_GET['contactinfo']);
-      print utf8_encode($fourn[societe])."|".utf8_encode($fourn[nom])."|".utf8_encode($fourn[prenom])."|".$fourn[mail]."|".$fourn[telephone]."|".utf8_encode($fourn[adresse1])."|".$fourn[cp]."|".utf8_encode($fourn[ville])."|".utf8_encode($fourn[paysid]);
+      print utf8_encode($fourn['societe'])."|".utf8_encode($fourn['nom'])."|".utf8_encode($fourn['prenom'])."|".$fourn['mail']."|".$fourn['telephone']."|".utf8_encode($fourn['adresse1'])."|".$fourn['cp']."|".utf8_encode($fourn['ville'])."|".utf8_encode($fourn['paysid']);
       break;
       
       case "user":
       $utilisateur=$DB_site2->query_first("SELECT * FROM utilisateur WHERE userid=".$_GET['contactinfo']);
-      print utf8_encode($utilisateur[raisonsociale])."|".utf8_encode($utilisateur[nom])."|".utf8_encode($utilisateur[prenom])."|".utf8_encode($utilisateur[mail])."|".$utilisateur[telephone]."|".utf8_encode($utilisateur[adresse])."|".$utilisateur[codepostal]."|".utf8_encode($utilisateur[ville])."|".$utilisateur[paysid];
+      print utf8_encode($utilisateur['raisonsociale'])."|".utf8_encode($utilisateur['nom'])."|".utf8_encode($utilisateur['prenom'])."|".utf8_encode($utilisateur['mail'])."|".$utilisateur['telephone']."|".utf8_encode($utilisateur['adresse'])."|".$utilisateur['codepostal']."|".utf8_encode($utilisateur['ville'])."|".$utilisateur['paysid'];
       break;
    }
 }
@@ -92,7 +92,7 @@ if(isset($action) && $action == 'liste_caracteristique_article')
 	while($rs_caracteristique=$DB_site2->fetch_array($rq_caracteristiques))
 	{
 		//Pour chaque caracteristique, on liste les valeurs possibles
-		$reponse .= '<td align="left"><div id="caract_nouveau_article_'.$nb_caract.'" style="display:inline">'.$rs_caracteristique[libelle];
+		$reponse .= '<td align="left"><div id="caract_nouveau_article_'.$nb_caract.'" style="display:inline">'.$rs_caracteristique['libelle'];
 		$reponse .= '</div><br><select id="caractval_nouveau_article_'.$nb_caract.'" name="caractval_nouveau_article_'.$nb_caract.'" onchange="document.getElementById(\'qte_nouveau_article\').focus();">';
 		
 		//On récupère la liste des caracteristiquevaleur associées
@@ -173,12 +173,12 @@ if(isset($action) && $action == 'ajouter_article')
 	$rq_present = $rq_caracteristiques_select.$rq_caracteristiques_from.$rq_caracteristiques_inner.$rq_caracteristiques_where.$rq_caracteristiques_and;	
 	$rs_present = $DB_site2->query_first($rq_present);
 	
-	if ($rs_present[lignefactureid] != '')
+	if ($rs_present['lignefactureid'] != '')
 		$article_present = true;
 	
 	if($article_present)
 		{
-		$DB_site2->query('UPDATE lignefacture SET qte = (qte+\''.$qte.'\') WHERE lignefactureid = \''.$rs_present[lignefactureid].'\'');
+		$DB_site2->query('UPDATE lignefacture SET qte = (qte+\''.$qte.'\') WHERE lignefactureid = \''.$rs_present['lignefactureid'].'\'');
 		}
 	else
 		{
@@ -193,19 +193,19 @@ if(isset($action) && $action == 'ajouter_article')
 							AND datedebut <= '" .date( "Y-m-d" ). "' AND datefin > '" .date( "Y-m-d" ). "'"))
 			{
 			//Une promotion est en cours
-			if ($rs_promo[prix] != "")
+			if ($rs_promo['prix'] != "")
 				{	// Article en cours de Promotion
-				$prix_article = $rs_promo[prix];
+				$prix_article = $rs_promo['prix'];
 				}
 			}
 		else
-			$prix_article = $rs_article[prix];
+			$prix_article = $rs_article['prix'];
 		
 		//On définit le taux de tva à appliquer
-		if ($rs_article[tauxchoisi] == '1')
-			$tauxarticle = $taux[TVAtauxnormal] ;
-		elseif ($rs_article[tauxchoisi] == '2')
-			$tauxarticle = $taux[TVAtauxreduit] ;
+		if ($rs_article['tauxchoisi'] == '1')
+			$tauxarticle = $taux['TVAtauxnormal'] ;
+		elseif ($rs_article['tauxchoisi'] == '2')
+			$tauxarticle = $taux['TVAtauxreduit'] ;
 		else
 			$tauxarticle = 0 ;
 			
@@ -213,7 +213,7 @@ if(isset($action) && $action == 'ajouter_article')
 		//On peut maintenant ajouter la ligne à notre facture
 		$DB_site2->query("INSERT IGNORE INTO lignefacture (factureid, artid, catid, artcode, qte, libelle, prix, tva) 
 							VALUES ('$facturid', '$artid', '$catid', '$rs_article[artcode]', '$qte',
-							'".addslashes($rs_article[libelle])."', '$prix_article', '$tauxarticle')");
+							'".addslashes($rs_article['libelle'])."', '$prix_article', '$tauxarticle')");
 		
 		$lignefactureid=$DB_site2->insert_id();
 
@@ -223,7 +223,7 @@ if(isset($action) && $action == 'ajouter_article')
 			$diff=$DB_site2->query_first("SELECT differenceprix FROM article_caractval 
 					WHERE caractvalid = '$liste_caractvalid[$i]' AND artid = '$artid'") ;
 		
-			if($diff[differenceprix] != 0)
+			if($diff['differenceprix'] != 0)
 				{
 				$DB_site2->query("UPDATE lignefacture SET prix = prix + '$diff[differenceprix]' WHERE lignefactureid = '$lignefactureid'");
 				}
@@ -297,21 +297,21 @@ if(isset($action) && $action == "modifier_article")
 			$rq_caracteristiques_inner .= 'INNER JOIN lignefacturecaracteristique lc'.$i.' ON ('.$rq_caracteristiques_on.'.lignefactureid = lc'.$i.'.lignefactureid) ';
 			$rq_caracteristiques_on = 'lc'.$i;
 			//Creation de la ligne AND
-			$rq_caracteristiques_and .= 'AND lc'.$i.'.libelle_caract = \''.$rs_caract_lib[libellecaract].'\' ';
-			$rq_caracteristiques_and .= 'AND lc'.$i.'.libelle_caractval = \''.$rs_caract_lib[libellecaractval].'\' ';
+			$rq_caracteristiques_and .= 'AND lc'.$i.'.libelle_caract = \''.$rs_caract_lib['libellecaract'].'\' ';
+			$rq_caracteristiques_and .= 'AND lc'.$i.'.libelle_caractval = \''.$rs_caract_lib['libellecaractval'].'\' ';
 		}			
 		//Construction de notre requête
 		$rq_present = $rq_caracteristiques_select.$rq_caracteristiques_from.$rq_caracteristiques_inner.$rq_caracteristiques_where.$rq_caracteristiques_and;
 		$rs_present = $DB_site2->query_first($rq_present);
 
-		if($rs_present[lignefactureid] != '')
+		if($rs_present['lignefactureid'] != '')
 		{
 			//Un article similaire est déjà présent, on le met à jour avec les nouvelles valeurs
 			//On supprime dans un premier temps l'article mis à jour
 			$rs_dellignefacturechamp = $DB_site2->query("DELETE FROM lignefacture WHERE lignefactureid=$lignefactureid");
 			$rs_dellignefacturecaract = $DB_site2->query("DELETE FROM lignefacturecaracteristique WHERE lignefactureid=$lignefactureid");
 			//on met à jour lignefactureid qui prends la valeur de l'autre article identique
-			$lignefactureid = $rs_present[lignefactureid];
+			$lignefactureid = $rs_present['lignefactureid'];
 			//Seul la quantité à besoin d'être modifiée
 			$rq_maj_qte_prix = 'qte = (qte+\''.$qte.'\') ';
 
@@ -332,8 +332,8 @@ if(isset($action) && $action == "modifier_article")
 										FROM caracteristiquevaleur cv INNER JOIN article_caractval ac ON (cv.caractvalid = ac.caractvalid) 
 										WHERE cv.caractvalid = $caracteristiques[$i]");
 										
-				if($rs_diffprix[differenceprix]!='')
-					$diffprix += $rs_diffprix[differenceprix];
+				if($rs_diffprix['differenceprix']!='')
+					$diffprix += $rs_diffprix['differenceprix'];
 									
 				$rs_updatelignefacturecaract = $DB_site2->query("UPDATE lignefacturecaracteristique
 										SET libelle_caract = '$rs_caract[libellecaract]',
@@ -342,7 +342,7 @@ if(isset($action) && $action == "modifier_article")
 			}
 			//On ajoute la différence au prix de l'article
 			$rs_prixarticle = $DB_site2->query_first("SELECT prix FROM article WHERE artid = $artid");
-			$prixfinal = $rs_prixarticle[prix] + $diffprix;
+			$prixfinal = $rs_prixarticle['prix'] + $diffprix;
 			$rq_maj_qte_prix = 'qte = \''.$qte.'\', prix = \''.$prixfinal.'\' ';
 		}//end if($rs_present[lignefactureid] != '')
 	}else
@@ -387,7 +387,7 @@ if(isset($action) && $action == 'calcul_frais_de_port')
 									FROM fraisport fp INNER JOIN facture f ON (fp.paysid = f.paysid) 
 									WHERE f.facturid = '$facturid'");
 									
-	if (($gratuitfrais[gratuit] != 0) and ($prixtotal[prixtotal] >= $gratuitfrais[gratuit])) 
+	if (($gratuitfrais['gratuit'] != 0) and ($prixtotal['prixtotal'] >= $gratuitfrais['gratuit'])) 
 		// si on paie pas de frais de port !!
 		echo '0';
 	else 
@@ -398,14 +398,14 @@ if(isset($action) && $action == 'calcul_frais_de_port')
 		$fraisport=$DB_site2->query_first("SELECT * FROM fraisport WHERE poiddebut <= '$poidstotal[poidstotal]' AND poidfin >= '$poidstotal[poidstotal]' 
 											and paysid = '$paysid[paysid]'");
 											
-		if ($fraisport[fraisportid] == "")
+		if ($fraisport['fraisportid'] == "")
 		{
 			// On prend le frais de port par défaut
 			$rs_fraisportpays = $DB_site2->query_first("SELECT prixfraisport FROM pays WHERE paysid = '$paysid[paysid]'");
-			$prixfraisport = $rs_fraisportpays[prixfraisport];
+			$prixfraisport = $rs_fraisportpays['prixfraisport'];
 		}else
 			//On prend le frais de port correspondant
-			$prixfraisport = $fraisport[prix];
+			$prixfraisport = $fraisport['prix'];
 			
 		echo $prixfraisport;
 	}								
@@ -428,7 +428,7 @@ function calcul_frais_de_port($facturid, $DB_site2)
 									FROM fraisport fp INNER JOIN facture f ON (fp.paysid = f.paysid) 
 									WHERE f.facturid = '$facturid'");
 									
-	if (($gratuitfrais[gratuit] != 0) and ($prixtotal[prixtotal] >= $gratuitfrais[gratuit])) 
+	if (($gratuitfrais['gratuit'] != 0) and ($prixtotal['prixtotal'] >= $gratuitfrais['gratuit'])) 
 		// si on paie pas de frais de port !!
 		return 0;
 
@@ -440,14 +440,14 @@ function calcul_frais_de_port($facturid, $DB_site2)
 		$fraisport=$DB_site2->query_first("SELECT * FROM fraisport WHERE poiddebut <= '$poidstotal[poidstotal]' AND poidfin >= '$poidstotal[poidstotal]' 
 											and paysid = '$paysid[paysid]'");
 											
-		if ($fraisport[fraisportid] == "")
+		if ($fraisport['fraisportid'] == "")
 		{
 			// On prend le frais de port par défaut
 			$rs_fraisportpays = $DB_site2->query_first("SELECT prixfraisport FROM pays WHERE paysid = '$paysid[paysid]'");
-			$prixfraisport = $rs_fraisportpays[prixfraisport];
+			$prixfraisport = $rs_fraisportpays['prixfraisport'];
 		}else
 			//On prend le frais de port correspondant
-			$prixfraisport = $fraisport[prix];
+			$prixfraisport = $fraisport['prix'];
 			
 		return $prixfraisport;
 	}								

@@ -21,7 +21,7 @@ print "<a name=\"sav\"></a>
 		$article=$DB_site2->query_first("SELECT artcode_eurocave,garantie_incluse,m.libelle AS marque FROM article a INNER JOIN article_marque am USING(artid) INNER JOIN marque m USING(marqueid) WHERE artid=".$ligne['artid']);
 		$optqte="";
 		for($i=0;$i<=$ligne['qte'];$i++) $optqte.="<option value=\"$i\"".($sav->lignes[$ligne['lignefactureid']]==$i?" selected":"").">$i</option>";
-		if($sav->lignes[$ligne['lignefactureid']]>0) $refs[]=$ligne[artcode]."/".$article[artcode_eurocave];
+		if($sav->lignes[$ligne['lignefactureid']]>0) $refs[]=$ligne['artcode']."/".$article['artcode_eurocave'];
 		
 		print "<br>
 			<select name=\"savligne[$ligne[lignefactureid]]\" onchange=\"document.forms.et1.submit();\">$optqte</select> / $ligne[qte] $ligne[libelle] $ligne[artcode] - $article[artcode_eurocave] $article[marque]
@@ -106,7 +106,7 @@ print "<div>
 			</tr>
 			<tr>
 				<td>Date expédition de la commande</td>
-				<td class=\"client\">".$rs_facture[dateexpedition]."</td>
+				<td class=\"client\">".$rs_facture['dateexpedition']."</td>
 				<td class=\"etapesep\"></td>
 				<td></td>
 				<td nowrap></td>

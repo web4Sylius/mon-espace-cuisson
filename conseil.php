@@ -6,12 +6,12 @@ $ref_question="ref_question".$template->langue;
 $ref_reponse="ref_reponse".$template->langue;
 $description="description".$template->langue;
 
-$url_actuelle = $_SERVER[REQUEST_URI];
+$url_actuelle = $_SERVER['REQUEST_URI'];
 $url_actuelle = explode(",",$url_actuelle);
 $last_niveau = count($url_actuelle) - 1;
 // on récupère le réel dernier niveau de l'URL
 
-if (substr($_SERVER[REQUEST_URI],-4)!="html"){
+if (substr($_SERVER['REQUEST_URI'],-4)!="html"){
 	$instit=$DB_site->query_first("SELECT $libelle FROM $table_conseil WHERE conseilid = '$id'");
 	if (url_rewrite($instit[$libelle]) == ""){
 		$url_reel = "-.htm";
@@ -24,7 +24,7 @@ if (substr($_SERVER[REQUEST_URI],-4)!="html"){
 		if ($url_actuelle[$last_niveau] == "")
 			$url_redirect = "int,$id,$url_reel.htm";
 		else
-			$url_redirect = str_replace("$url_actuelle[$last_niveau]","$url_reel",$_SERVER[REQUEST_URI]);
+			$url_redirect = str_replace("$url_actuelle[$last_niveau]","$url_reel",$_SERVER['REQUEST_URI']);
 		header("Status: 301 Moved Permanently");
 		header("Location: $url_redirect");
 		exit();	
@@ -156,7 +156,7 @@ $template->parts["title"]=$institutionnel[$libelle];
 if($institutionnel[$ref_reponse]!='' && $institutionnel[$ref_question] != ''){
   $template->parts['ref_question']=$institutionnel[$ref_question];
   $template->parts['ref_reponse']=$institutionnel[$ref_reponse];
-  $template->parts['ref_url']=SITE_URL.$_SERVER[REQUEST_URI];
+  $template->parts['ref_url']=SITE_URL.$_SERVER['REQUEST_URI'];
   $template->evaltemplate("ConseilBref","bref");
 }
 

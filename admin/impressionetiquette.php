@@ -252,14 +252,14 @@ if (isset($nb_etiquette) and isset($chk_etiquette))
 		{
 		$coord = $DB_site2->query_first("SELECT * FROM facture WHERE facturid = '$cle'");
 		$pays = $DB_site2->query_first("SELECT libelle FROM pays WHERE paysid = '$coord[paysid]'");
-		$coord[pays] = strtoupper($pays[libelle]);
-		$coord[raisonsociale] = strtoupper($coord[raisonsociale]);
-		$coord[nom] = strtoupper($coord[nom]);
-		$coord[prenom] = strtoupper($coord[prenom]);
-		$coord[adresse] = strtoupper($coord[adresse]);
-		$coord[ville] = strtoupper($coord[ville]);
-		$coord[pays] = strtoupper($coord[pays]);
-		$pdf->Add_PDF_Label(sprintf("%s\n%s\n%s\n%s\n%s", $coord[raisonsociale], $coord[nom]." ".$coord[prenom], $coord[adresse], $coord[codepostal].' '.$coord[ville], $coord[pays]));
+		$coord['pays'] = strtoupper($pays['libelle']);
+		$coord['raisonsociale'] = strtoupper($coord['raisonsociale']);
+		$coord['nom'] = strtoupper($coord['nom']);
+		$coord['prenom'] = strtoupper($coord['prenom']);
+		$coord['adresse'] = strtoupper($coord['adresse']);
+		$coord['ville'] = strtoupper($coord['ville']);
+		$coord['pays'] = strtoupper($coord['pays']);
+		$pdf->Add_PDF_Label(sprintf("%s\n%s\n%s\n%s\n%s", $coord['raisonsociale'], $coord['nom']." ".$coord['prenom'], $coord['adresse'], $coord['codepostal'].' '.$coord['ville'], $coord['pays']));
 		$i++;
 		}
 	// fin

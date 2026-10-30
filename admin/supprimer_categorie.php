@@ -56,7 +56,7 @@ if ($action=="delcategorie")
 	$rq_positions_suivantes=$DB_site2->query("SELECT catid, position FROM categorie WHERE position > $position_page and parentid = '$position_page[parentid]'" );
 	while ($rs_positions_suivantes=$DB_site2->fetch_array($rq_positions_suivantes)) 
 		{
-		$position_temp = $rs_positions_suivantes[position] - 1;
+		$position_temp = $rs_positions_suivantes['position'] - 1;
 		$DB_site2->query("UPDATE categorie SET position = '$position_temp' WHERE catid = '$rs_positions_suivantes[catid]'");
 		}	
 	$catids=lister_catid($catid);$catids=substr($catids,0,strlen($catids)-1);

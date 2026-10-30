@@ -18,8 +18,8 @@ function catcdc($artid){
 
     $mq=$DB_site->query_first("select libelle,m.marqueid,image,type".$template->langue." AS mtype from marque m, article_marque am where m.marqueid = am.marqueid and am.artid = '$artid'") ;
     $template->parts["logomarque"]="";
-    $imgm="configurations/$host/images/marques/br/".$mq[marqueid].".".$mq[image];
-    if(file_exists($imgm) && $mq[image]!=""){
+    $imgm="configurations/$host/images/marques/br/".$mq['marqueid'].".".$mq['image'];
+    if(file_exists($imgm) && $mq['image']!=""){
 	  $size=getimagesize($imgm);
 	  $dh=$size[1]*80/$size[0];
 	  $style="style=\"width:80px;\"";
@@ -735,8 +735,8 @@ function cdc_onglet($artid){
 
     $mq=$DB_site->query_first("select libelle,m.marqueid,image,type".$template->langue." AS mtype from marque m, article_marque am where m.marqueid = am.marqueid and am.artid = '$artid'") ;
     $logomarque="";
-    $imgm="configurations/www.ma-cave-a-vin.fr/images/marques/br/".$mq[marqueid].".".$mq[image];
-    if(file_exists($imgm) && $mq[image]!=""){
+    $imgm="configurations/www.ma-cave-a-vin.fr/images/marques/br/".$mq['marqueid'].".".$mq['image'];
+    if(file_exists($imgm) && $mq['image']!=""){
 	  $size=getimagesize($imgm);
 	  $dh=$size[1]*90/$size[0];
 	  $style="style=\"height:30px;\"";
@@ -804,8 +804,8 @@ function slider($artid){
     $logomarque="<img src=\"/marques/".$mq['marqueid']."_155_45.jpg\" alt=\"$mq[mtype]\">";
 
     $desc="";
-    if($article[coloris]!="") $desc.="<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($article[coloris])."</li>";
-    if($article[dimensions]!="") $desc.="<li>".$template->translate("/article/vignette/dim","F")." : $article[dimensions] mm</li>";
+    if($article['coloris']!="") $desc.="<li>".$template->translate("/article/vignette/coloris","F")." : ".$template->translate($article['coloris'])."</li>";
+    if($article['dimensions']!="") $desc.="<li>".$template->translate("/article/vignette/dim","F")." : $article[dimensions] mm</li>";
     if(!$basket) $template->parts["liste"]="<ul>$desc</ul>";
 
     $template->parts["libelle"]=$article['libelle'];

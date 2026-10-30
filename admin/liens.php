@@ -104,7 +104,7 @@ if ($action == "ajout")
 	      $lien=$DB_site2->query_first("SELECT lienid FROM liens WHERE account_id='".$_GET['from']."'");
 	      if($lien!="") print "<script language=\"javascript\">document.location='/admin/liens.php?action=modif&lien=$lien[lienid]';</script>";
 	      $account=$DB_site2->query_first("SELECT * FROM crm_accounts WHERE id='".$_GET['from']."'");
-	      $lien[libelle]=$account['name'];
+	      $lien['libelle']=$account['name'];
 	}
 	echo "<h3>Ajouter un lien</h3>
 	<font class=\"cost\">$erreur</font>
@@ -233,17 +233,17 @@ if ($action == "modif")
 	if (isset($action2) and $action2 == "supprimage")
 		{
 		$folder = $rootpath."configurations/$host/images/liens";
-		$fichier = $lien[lienid].".".$lien[logo] ;
+		$fichier = $lien['lienid'].".".$lien['logo'] ;
 		$dossier = opendir($folder);
 		if (file_exists($folder."/".$fichier)) // article
 			{
 			unlink($folder."/".$fichier) ;
 			}
 		}
-	if ($lien[logo] != "")
+	if ($lien['logo'] != "")
 		{
 		$folder = $rootpath."configurations/$host/images/liens";
-		$fichier = $lien[lienid].".".$lien[logo] ;
+		$fichier = $lien['lienid'].".".$lien['logo'] ;
 		$dossier = opendir($folder);
 		if (file_exists($folder."/".$fichier)) // article
 			{
@@ -261,9 +261,9 @@ if ($action == "modif")
 	
 	$checked1="";
 	$checked2="";
-	if ($lien[encarttexte] == 1)
+	if ($lien['encarttexte'] == 1)
 		$checked1="checked";
-	if ($lien[encartimage] == 1)
+	if ($lien['encartimage'] == 1)
 		$checked2="checked";
 		
 	echo "<h3>Modification</h3>

@@ -505,7 +505,7 @@ if(isset($_POST['spysrc']) || isset($_COOKIE['spysrc'])){
         $macave=$DB_site2->query_first("SELECT artid,prix FROM article WHERE artcode='$row[artcode]'");
         $spyresult="<img src=\"/configurations/".$host."/images/produits/br/".$macave['artid'].".jpg\" height=\"50\" align=\"left\"> <b>$row[artcode]</b><br>&#9654; Ma Cave : $macave[prix]
 		  <div class=\"clear\"></div>";
-        $list[$macave[prix]]="ma cave";
+        $list[$macave['prix']]="ma cave";
         $req=$DB_site2->query("SELECT * FROM history WHERE timestamp>$limit AND artcode='$row[artcode]' ORDER BY timestamp");
         while($spyr=$DB_site2->fetch_array($req)){
             $history[$spyr['site']]=$spyr['price'];
@@ -520,7 +520,7 @@ if(isset($_POST['spysrc']) || isset($_COOKIE['spysrc'])){
         }
     }else{
         while($row=$DB_site2->fetch_array($countr)){
-            $spyresult.="<br><a href=\"javascript:linksrc('".$row[artcode]."')\">".$row[artcode]."</a>";
+            $spyresult.="<br><a href=\"javascript:linksrc('".$row['artcode']."')\">".$row['artcode']."</a>";
         }
     }
 

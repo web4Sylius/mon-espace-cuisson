@@ -56,9 +56,9 @@ if (isset($action) and ($action == "Activer" or $action == "Désactiver"))
 	$action = "" ;
 	}
 $params=$DB_site2->query_first("SELECT * FROM parametresgeneraux");
-if ($params[onglets_activables] == 1)
+if ($params['onglets_activables'] == 1)
 	{
-	switch ($params[onglets_actifs]) 
+	switch ($params['onglets_actifs']) 
 		{
 			case 0:
 			   $nom = "Activer" ;
@@ -77,13 +77,13 @@ if ($params[onglets_activables] == 1)
 
 				
 $params=$DB_site2->query_first("SELECT * FROM parametresgeneraux");
-if ($params[onglets_activables] == 1 and $params[onglets_actifs] == 1)
+if ($params['onglets_activables'] == 1 and $params['onglets_actifs'] == 1)
 	{
 	echo "<br>Pour des raisons d'affichage, le nombre de rayons que vous pouvez sélectionner est limité à <strong>$params[nb_onglets_max]</strong>.<br>" ;
 	if (isset ($action) and $action == "ajouter")
 		{
 		$nb_choisies = count ($chk) ;
-		if ($nb_choisies > $params[nb_onglets_max])
+		if ($nb_choisies > $params['nb_onglets_max'])
 			{
 			echo "<font color=\"red\">Vous avez choisi trop de rayons, vous êtes limité(e) à $params[nb_onglets_max].</font><br><br>" ;
 			$action = "" ;
@@ -143,14 +143,14 @@ if ($params[onglets_activables] == 1 and $params[onglets_actifs] == 1)
 									$chkd = "" ;
 									if ($action_prec == "ajouter")
 										{
-										if (array_key_exists($categ_onglet[catid], $chk))
+										if (array_key_exists($categ_onglet['catid'], $chk))
 											{
 											$chkd = "checked" ;
 											}
 										}
 									else
 										{
-										if ($categ_onglet[onglet] == '1')
+										if ($categ_onglet['onglet'] == '1')
 											{
 											$chkd = "checked" ;
 											}

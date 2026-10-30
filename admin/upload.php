@@ -137,7 +137,7 @@ if (in_array ("103", $modules))
 							$liste_caracteristiques .= "<td align=\"center\">$caract[libelle_caract]<br>$caract[libelle_caractval]</td>";
 							}
 						$liste_caracteristiques .= "</tr></table>";
-						$ligne_factureprix = $ligne_facture[qte] * $ligne_facture[prix] ;
+						$ligne_factureprix = $ligne_facture[qte] * $ligne_facture['prix'] ;
 						echo "<tr>
 								<td align=\"center\">$ligne_facture[artcode]</td>
 								<td align=\"center\">$ligne_facture[libelleFR]</td>
@@ -173,7 +173,7 @@ if (in_array ("103", $modules))
 								<table align=\"center\" class=\"table_moyen_paiement\">" ;
 						while ($img=$DB_site2->fetch_array($imgs)) 
 							{
-							$img[image] = "$img[uploadid].$img[image]&nbsp;&nbsp;
+							$img['image'] = "$img[uploadid].$img[image]&nbsp;&nbsp;
 								<a href=\"http://$host/configurations/$host/images/uploads/$img[uploadid].$img[image]\" target=\"blank\">Voir</a>" ;
 							echo "<tr>
 									<td width=\"15%\" valign=\"top\">N° $img[uploadid]</td>
@@ -212,9 +212,9 @@ if (in_array ("103", $modules))
 				$a = substr($upload[date], 0, 4) ;
 				$upload[date] = "$j/$m/$a" ;
 				$rowalt = "td_promos_".getrowbg() ;
-				$upload[commentaire] = substr($upload[commentaire], 0, 20) ;
-				$upload[commentaire] .= "..." ;
-				$upload[prenom] = substr($upload[prenom], 0, 1) ;
+				$upload['commentaire'] = substr($upload['commentaire'], 0, 20) ;
+				$upload['commentaire'] .= "..." ;
+				$upload['prenom'] = substr($upload['prenom'], 0, 1) ;
 				$nb_uploads=$DB_site2->query_first("select count(uploadid) from uploads where uploadpageid = '$upload[uploadpageid]'") ;
 				echo  "<tr class=\"$rowalt\">
 							<td align=\"center\" width=\"5%\">$upload[date]</td>
@@ -253,9 +253,9 @@ if (in_array ("103", $modules))
 				$a = substr($upload[date], 0, 4) ;
 				$upload[date] = "$j/$m/$a" ;
 				$rowalt = "td_promos_".getrowbg() ;
-				$upload[commentaire] = substr($upload[commentaire], 0, 20) ;
-				$upload[commentaire] .= "..." ;
-				$upload[prenom] = substr($upload[prenom], 0, 1) ;
+				$upload['commentaire'] = substr($upload['commentaire'], 0, 20) ;
+				$upload['commentaire'] .= "..." ;
+				$upload['prenom'] = substr($upload['prenom'], 0, 1) ;
 				$nb_uploads=$DB_site2->query_first("select count(uploadid) from uploads where uploadpageid = '$upload[uploadpageid]'") ;
 				echo  "<tr class=\"$rowalt\">
 							<td align=\"center\" width=\"5%\">$upload[date]</td>

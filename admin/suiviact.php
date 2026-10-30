@@ -78,32 +78,32 @@ function construire_cat($parentid)
 	while($cat=$DB_site2->fetch_array($cats)) // chaque categ de niveau 1
 		{
 		$categories = array () ;
-		(categories_parentes($cat[catid])) ;
+		(categories_parentes($cat['catid'])) ;
 		$sscats=$DB_site2->query("select * from categorie where parentid = '$cat[catid]' limit 1");
 		if($sscat=$DB_site2->fetch_array($sscats)) // chaque categ de niveau 2
 			{
-			if ($cat[catid] == $catid)
+			if ($cat['catid'] == $catid)
 				{
 				$treeview.="<li class=folder2 id=\"T$cat[catid]\"><a title=\"$cat[libelleFR]\" alt=\"$cat[libelleFR]\" href=\"suiviact.php?catid=$cat[catid]&categs=oui\" class=treeview><strong><font color=\"red\">$cat[libelleFR]</font></strong></a>$case</li>\n<ul class=tree2 id=\"F$cat[catid]\">$place\n";
-				construire_cat($cat[catid]);
+				construire_cat($cat['catid']);
 				$treeview.="</ul>\n";
 				}
 			elseif (in_array ("$catid", $categories))
 				{
 				$treeview.="<li class=folder2 id=\"T$cat[catid]\"><a title=\"$cat[libelleFR]\" alt=\"$cat[libelleFR]\" href=\"suiviact.php?catid=$cat[catid]&categs=oui\" class=treeview><font color=\"red\">$cat[libelleFR]</font></a>$case</li>\n<ul class=tree2 id=\"F$cat[catid]\">$place\n";
-				construire_cat($cat[catid]);
+				construire_cat($cat['catid']);
 				$treeview.="</ul>\n";
 				}
 			else
 				{
 				$treeview.="<li class=folder2 id=\"T$cat[catid]\"><a title=\"$cat[libelleFR]\" alt=\"$cat[libelleFR]\" href=\"suiviact.php?catid=$cat[catid]&categs=oui\" class=treeview>$cat[libelleFR]</a>$case</li>\n<ul class=tree2 id=\"F$cat[catid]\">$place\n";
-				construire_cat($cat[catid]);
+				construire_cat($cat['catid']);
 				$treeview.="</ul>\n";
 				}
 			}
 		else
 			{
-			if ($cat[catid] == $catid)
+			if ($cat['catid'] == $catid)
 				{
 				$treeview.="<li class=folder2 id=\"T$cat[catid]\"><a title=\"$cat[libelleFR]\" alt=\"$cat[libelleFR]\" href=\"suiviact.php?catid=$cat[catid]&categs=oui\" class=treeview><strong><font color=\"red\">$cat[libelleFR]</font></strong></a>$case</li>\n<ul class=tree2 id=\"F$cat[catid]\">$place</ul>\n";
 				}
@@ -160,7 +160,7 @@ if (in_array ("10", $modules))
 	$rq_categorie = $DB_site2->query("SELECT * FROM categorie GROUP BY catid ORDER BY $libelle");
 	while ($rs_categorie = $DB_site2->fetch_array($rq_categorie))
 		{
-		$tab_categorie[] = array ($rs_categorie[catid], $rs_categorie[parentid]);
+		$tab_categorie[] = array ($rs_categorie['catid'], $rs_categorie['parentid']);
 		}
 	$nb_categories = $DB_site2->query_first("select count(*) from categorie");
 	$rq_categorie = $DB_site2->query("SELECT * FROM categorie WHERE parentid='$catid' ORDER BY $libelle");
@@ -359,7 +359,7 @@ if (in_array ("10", $modules))
 			$data_barre .= $pipe;
 			while ($statistique_courbe = $DB_site2->fetch_array($statistique_courbes))
 				{
-				list ($annee_fac, $mois_fac, $jour_fac) = explode ('-', $statistique_courbe[datefacture]) ;
+				list ($annee_fac, $mois_fac, $jour_fac) = explode ('-', $statistique_courbe['datefacture']) ;
 				while ($k < $jour_fac)
 					{
 					$data_barre .= $virgule3."0" ;
@@ -441,7 +441,7 @@ if (in_array ("10", $modules))
 			if($statistique_detail_article[0]!=0) 
 				{
 				$donnee_article .= $virgule2.$statistique_detail_article[0];
-				$donnee_lib_article .= $virgule2.url_rewrite($statistique_detail_article[libelle])." : ".number_format($statistique_detail_article[0], 2, '.', ' ')." Euros";
+				$donnee_lib_article .= $virgule2.url_rewrite($statistique_detail_article['libelle'])." : ".number_format($statistique_detail_article[0], 2, '.', ' ')." Euros";
 				$is_null2++;
 				$virgule2 = ",";
 				}
@@ -458,7 +458,7 @@ if (in_array ("10", $modules))
 			$donnee_lib_barre .= $virgule."Dans ce rayon";
 			while ($statistique_detail_courbe = $DB_site2->fetch_array( $statistique_detail_courbes))
 				{
-				list ($annee_fac, $mois_fac, $jour_fac) = explode ('-', $statistique_detail_courbe[datefacture]) ;
+				list ($annee_fac, $mois_fac, $jour_fac) = explode ('-', $statistique_detail_courbe['datefacture']) ;
 				while ($k < $jour_fac)
 					{
 					$data_barre .= $virgule3."0";

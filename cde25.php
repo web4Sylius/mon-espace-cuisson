@@ -50,7 +50,7 @@ $user_info=$DB_site->query_first("SELECT u.*,p.tvaintracom AS paysintracom,p.TVA
 $lignefactures=$DB_site->query("SELECT lf.artid,lf.prix,qte,lf.paht,(a.emballage_poids1 + a.emballage_poids2 + a.emballage_poids3) AS emballage_poids,a.typearticleid FROM lignefacture lf INNER JOIN article a USING(artid) WHERE factureid=".intval($factureid));
 while($lf=$DB_site->fetch_array($lignefactures)){
 	$poidtotal+=1000*floatval(str_replace(",",".",$lf['emballage_poids']))* $lf['qte'];
-	$prixtotalpanier+=$lf[prix]*$lf['qte'];
+	$prixtotalpanier+=$lf['prix']*$lf['qte'];
 	$totalpaht+=$lf['paht']*$lf['qte'];
 	$artids[$lf['artid']]+=$lf['qte'];
 	if($lf['typearticleid']==1) $poidscaves[round($lf['emballage_poids'])]+=$lf[qte];
@@ -95,11 +95,11 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 	} else { // Code saisit
 		$txt_code = mysqli_real_escape_string($DB_site->link_id,$txt_code);
 		$cadeau_en_cours=$DB_site->query_first("SELECT * FROM cadeau WHERE code=\"".$txt_code."\" AND site_code='".$template->site_code()."'");
-		if ($cadeau_en_cours[cadeauid] != "" && ($cadeau_en_cours['userid']==0 || $cadeau_en_cours['userid']==$user_info['userid'])){ // Code existe
-			if ($cadeau_en_cours[active] == '1'){ // Cadeau actif
-				if ($cadeau_en_cours[datefin] == 0){ // pas de datefin
+		if ($cadeau_en_cours['cadeauid'] != "" && ($cadeau_en_cours['userid']==0 || $cadeau_en_cours['userid']==$user_info['userid'])){ // Code existe
+			if ($cadeau_en_cours['active'] == '1'){ // Cadeau actif
+				if ($cadeau_en_cours['datefin'] == 0){ // pas de datefin
 					$okdate = 1 ;
-				}elseif ($cadeau_en_cours[datefin] != 0 and $cadeau_en_cours[datefin] > time()){ // datefin > ajd
+				}elseif ($cadeau_en_cours['datefin'] != 0 and $cadeau_en_cours['datefin'] > time()){ // datefin > ajd
 					$okdate = 1 ;
 				}else{
 					$erreur_cadeau = $template->translate("/commande/code_perime","F");
@@ -112,28 +112,28 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 				$okminimum=1;
 
 				if ($okdate == 1 && $okminimum==1){
-					if ($cadeau_en_cours[nbrmaxi] != 0){ // nb fois total max
+					if ($cadeau_en_cours['nbrmaxi'] != 0){ // nb fois total max
 						$nb_fois_tot=$DB_site->query_first("SELECT count(*) FROM facture WHERE cadeauid = '$cadeau_en_cours[cadeauid]' AND facturid!='$factureid' AND valide IN (1,5)");
-						if ($nb_fois_tot[0] < $cadeau_en_cours[nbrmaxi]){
+						if ($nb_fois_tot[0] < $cadeau_en_cours['nbrmaxi']){
 							$okvalide = 1 ;
 						}else{
-							$erreur_cadeau = sprintf($template->translate("/commande/code_utlise_x_fois","F"),$cadeau_en_cours[nbrmaxi]);
+							$erreur_cadeau = sprintf($template->translate("/commande/code_utlise_x_fois","F"),$cadeau_en_cours['nbrmaxi']);
 							$okvalide=0;
 						}
 					}
 					
-					if ($cadeau_en_cours[nbrfois] != 0){ // nb fois total
+					if ($cadeau_en_cours['nbrfois'] != 0){ // nb fois total
 						$nb_fois_user=$DB_site->query_first("SELECT count(*) FROM facture WHERE cadeauid = '$cadeau_en_cours[cadeauid]' AND userid = '$user_info[userid]' AND facturid != '$factureid' AND valide IN (1,5)" );
 						
-						if ($nb_fois_user[0] < $cadeau_en_cours[nbrfois]){ // nb fois par ustilisateur
+						if ($nb_fois_user[0] < $cadeau_en_cours['nbrfois']){ // nb fois par ustilisateur
 							$okvalide = 1 ;
 						}else{
-							$erreur_cadeau = sprintf($template->translate("/commande/code_utlise_x_fois","F"),$cadeau_en_cours[nbrmaxi]);
+							$erreur_cadeau = sprintf($template->translate("/commande/code_utlise_x_fois","F"),$cadeau_en_cours['nbrmaxi']);
 							$okvalide=0;
 						}
 					}
 					
-					if (($cadeau_en_cours[nbrmaxi] == 0) and ($cadeau_en_cours[nbrfois] == 0)){
+					if (($cadeau_en_cours['nbrmaxi'] == 0) and ($cadeau_en_cours['nbrfois'] == 0)){
 						$okvalide = 1 ;
 					}
 				}
@@ -169,14 +169,14 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 			$arts_cde[$art_en_cours] = $art_en_cours ; 
 		}
 		
-		if ($categ_cadeau[cadeauid] == $cadeau_en_cours[cadeauid]){ // cadeau sur une categorie
-			categories_filles ($categ_cadeau[catid]) ;
-			$cat_en_cours = $categ_cadeau[catid] ;
+		if ($categ_cadeau['cadeauid'] == $cadeau_en_cours['cadeauid']){ // cadeau sur une categorie
+			categories_filles ($categ_cadeau['catid']) ;
+			$cat_en_cours = $categ_cadeau['catid'] ;
 			$cats_cde[$cat_en_cours] = $cat_en_cours ;
 			$passe = 0 ;
 			
 			while ($liste_cat_cde=$DB_site->fetch_array($liste_cats_cde)){
-				if (in_array ($liste_cat_cde[catid], $cats_cde)){
+				if (in_array ($liste_cat_cde['catid'], $cats_cde)){
 					$okcorrespond = 1 ;
 					$passe = 1 ;
 				}
@@ -187,7 +187,7 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 			else
 				$type_du_cadeau = "CATEGORIE" ;
 			
-		}elseif($article_cadeau[cadeauid] == $cadeau_en_cours[cadeauid]) { // cadeau sur un article
+		}elseif($article_cadeau['cadeauid'] == $cadeau_en_cours['cadeauid']) { // cadeau sur un article
 			if (in_array ($article_cadeau[artid], $arts_cde)) {
 				$okcorrespond = 1 ;
 				$type_du_cadeau = "ARTICLE" ;
@@ -218,25 +218,25 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 				if($cadeau['marqueid']!=0) $sql.=" AND marqueid IN (".$cadeau['marqueid'].")";
 
 				$liste_cats_cde=$DB_site->query($sql) ;
-				categories_filles ($categ_cadeau[catid]) ;
-				$cat_en_cours = $categ_cadeau[catid] ;
+				categories_filles ($categ_cadeau['catid']) ;
+				$cat_en_cours = $categ_cadeau['catid'] ;
 				$cats_cde[$cat_en_cours] = $cat_en_cours ;
 
 				while ($liste_cat_cde=$DB_site->fetch_array($liste_cats_cde)){
-					if (in_array ($liste_cat_cde[catid], $cats_cde)){
+					if (in_array ($liste_cat_cde['catid'], $cats_cde)){
 						$optionsttc=$DB_site->query_first("SELECT SUM(differenceprix) FROM lignefacturecaracteristique WHERE lignefactureid=$liste_cat_cde[lignefactureid]");
-						$prix_de_la_ligne = ($liste_cat_cde[prix]-$optionsttc[0]) * $liste_cat_cde[qte] ;
+						$prix_de_la_ligne = ($liste_cat_cde['prix']-$optionsttc[0]) * $liste_cat_cde[qte] ;
 						
-						switch ($cadeau[typecadeauid]){
+						switch ($cadeau['typecadeauid']){
 							case 0:
-								if ($cadeau[valeurcadeau] < $prix_de_la_ligne)
-									$prixreduction += $cadeau[valeurcadeau] ;
+								if ($cadeau['valeurcadeau'] < $prix_de_la_ligne)
+									$prixreduction += $cadeau['valeurcadeau'] ;
 								else
 									$prixreduction += $prix_de_la_ligne ;
 								break ;
 								
 							case 1:
-								if($cadeau[appliquer]=="PPC"){
+								if($cadeau['appliquer']=="PPC"){
 									$modifcaract=0;
 									$modifprixcaracts=$DB_site->query("SELECT lfc.differenceprix as prixcarac FROM article_caractval as ac inner join lignefacturecaracteristique as lfc on (ac.caractvalid=lfc.caractvalid) WHERE lfc.lignefactureid='$liste_cat_cde[lignefactureid]' and artid='$liste_cat_cde[artid]' ");
 									while($modifprixcaract=$DB_site->fetch_array($modifprixcaracts)){
@@ -245,15 +245,15 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 									
 									$garanties=$DB_site->query_first("SELECT SUM(differenceprix) AS differenceprixTotale FROM `lignefacturegarantie` WHERE `lignefactureid`='$liste_cat_cde[lignefactureid]'");
 									$modifcaract+=$garanties['differenceprixTotale'];
-									$prix_remise = round(($liste_art_cde[prixconseilleht] * (1+$liste_art_cde['tva']/100) + $modifcaract) * $liste_art_cde[qte] * ($cadeau[valeurcadeau] / 100),2);
-									if($prix_remise<($liste_cat_cde[prix] * $liste_cat_cde[qte])){
+									$prix_remise = round(($liste_art_cde['prixconseilleht'] * (1+$liste_art_cde['tva']/100) + $modifcaract) * $liste_art_cde[qte] * ($cadeau['valeurcadeau'] / 100),2);
+									if($prix_remise<($liste_cat_cde['prix'] * $liste_cat_cde[qte])){
 										$reducligne=$prix_remise;
 										$prixreduction += $prix_remise;
 									} else {
 										// on garde le prix de vente car la remise est désavantageuse
 									}
 								} else {
-									$prixreduction += ($prix_de_la_ligne * $cadeau[valeurcadeau] / 100) ;
+									$prixreduction += ($prix_de_la_ligne * $cadeau['valeurcadeau'] / 100) ;
 
 								}
 								break ;
@@ -270,32 +270,32 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 				while ($liste_art_cde=$DB_site->fetch_array($liste_arts_cde)){
 					if ($liste_art_cde[artid] == $article_cadeau[artid]){
 						$optionsttc=$DB_site->query_first("SELECT SUM(differenceprix) FROM lignefacturecaracteristique WHERE lignefactureid=$liste_art_cde[lignefactureid]");
-						$prix_de_la_ligne = ($liste_art_cde[prix]-$optionsttc[0]) * $liste_art_cde[qte] ;
-						switch ($cadeau[typecadeauid]){
+						$prix_de_la_ligne = ($liste_art_cde['prix']-$optionsttc[0]) * $liste_art_cde[qte] ;
+						switch ($cadeau['typecadeauid']){
 							case 0:
-								if ($cadeau[valeurcadeau] < $prix_de_la_ligne)
-								$prixreduction += $cadeau[valeurcadeau] ;
+								if ($cadeau['valeurcadeau'] < $prix_de_la_ligne)
+								$prixreduction += $cadeau['valeurcadeau'] ;
 								else
 								$prixreduction += $prix_de_la_ligne ;
 								break ;
 							case 1:
-								if($cadeau[appliquer]=="PPC"){ 
+								if($cadeau['appliquer']=="PPC"){ 
 									$modifcaract=0;
 									$modifprixcaracts=$DB_site->query("SELECT lfc.differenceprix FROM article_caractval as ac inner join lignefacturecaracteristique as lfc on (ac.caractvalid=lfc.caractvalid) WHERE lfc.lignefactureid='$liste_art_cde[lignefactureid]' and artid='$liste_art_cde[artid]' ");
 									while($modifprixcaract=$DB_site->fetch_array($modifprixcaracts)){
-										$modifcaract+=$modifprixcaract[differenceprix];
+										$modifcaract+=$modifprixcaract['differenceprix'];
 									}
 									$garanties=$DB_site->query_first("SELECT SUM(differenceprix) AS differenceprixTotale FROM `lignefacturegarantie` WHERE `lignefactureid`='$liste_cat_cde[lignefactureid]'");
 									$modifcaract+=$garanties['differenceprixTotale'];
-									$prix_remise = round(($liste_art_cde[prixconseilleht] * (1+$liste_art_cde['tva']/100) + $modifcaract) * $liste_art_cde[qte] * ($cadeau[valeurcadeau] / 100),2);
-									if($prix_remise<($liste_art_cde[prix] * $liste_art_cde[qte] * (1+$liste_art_cde['tva']/100))){
+									$prix_remise = round(($liste_art_cde['prixconseilleht'] * (1+$liste_art_cde['tva']/100) + $modifcaract) * $liste_art_cde[qte] * ($cadeau['valeurcadeau'] / 100),2);
+									if($prix_remise<($liste_art_cde['prix'] * $liste_art_cde[qte] * (1+$liste_art_cde['tva']/100))){
 										$reducligne=$prix_remise;
 										$prixreduction += $prix_remise;
 									} else {
 										// on garde le prix de vente car la remise est désavantageuse
 									}
 								} else {
-								$prixreduction += ($prix_de_la_ligne * $cadeau[valeurcadeau] / 100) ;
+								$prixreduction += ($prix_de_la_ligne * $cadeau['valeurcadeau'] / 100) ;
 								}
 								  
 						}
@@ -314,14 +314,14 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 				$liste_arts_cde = $DB_site->query($sql) ;
 				while ($liste_art_cde = $DB_site->fetch_array($liste_arts_cde)){
 					$optionsttc = $DB_site->query_first("SELECT SUM(differenceprix) FROM lignefacturecaracteristique WHERE lignefactureid=$liste_art_cde[lignefactureid]");
-					$prix_de_la_ligne = ($liste_art_cde[prix] - $optionsttc[0]) * $liste_art_cde[qte];
+					$prix_de_la_ligne = ($liste_art_cde['prix'] - $optionsttc[0]) * $liste_art_cde[qte];
 					$prixtotalpanier_sansfrais += $prix_de_la_ligne;
 				}
 				
-				switch ($cadeau[typecadeauid]){
+				switch ($cadeau['typecadeauid']){
 					case 0: // En euros
-						if ($cadeau[valeurcadeau] < $prixtotalpanier_sansfrais){
-							$prixreduction += $cadeau[valeurcadeau] ;
+						if ($cadeau['valeurcadeau'] < $prixtotalpanier_sansfrais){
+							$prixreduction += $cadeau['valeurcadeau'] ;
 						}else{
 							$prixreduction += $prixtotalpanier_sansfrais ;
 						}
@@ -329,19 +329,19 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 						break ;
 						
 					case 1: // En pourcent
-						if($cadeau[totalite] != 0){ // Appliquer sur la totalité de la commande
-							if($cadeau[totalite] == 1){ // remise avec transport
+						if($cadeau['totalite'] != 0){ // Appliquer sur la totalité de la commande
+							if($cadeau['totalite'] == 1){ // remise avec transport
 
 								$fcl=new facture($DB_site,$factureid);
 								$fcl->lignes();
-								$prixreduction += $fcl->totalttc * $cadeau[valeurcadeau] / 100;
+								$prixreduction += $fcl->totalttc * $cadeau['valeurcadeau'] / 100;
 							
-							}elseif ($cadeau[totalite] == 2) { //remise hors transport
+							}elseif ($cadeau['totalite'] == 2) { //remise hors transport
 								$fcl=new facture($DB_site,$factureid);
 								$fcl->lignes();
-								$prixreduction += ($fcl->totalttc - $fcl->portttc )* $cadeau[valeurcadeau] / 100;
+								$prixreduction += ($fcl->totalttc - $fcl->portttc )* $cadeau['valeurcadeau'] / 100;
 							}
-						} elseif($cadeau[appliquer] == "PPC"){ // Appliquer sur le PCC
+						} elseif($cadeau['appliquer'] == "PPC"){ // Appliquer sur le PCC
 							$sql = "SELECT lf.prix, lf.qte, lf.lignefactureid,lf.tva as vat, a.prixconseilleht, a.artid, a.tva, asite.tauxchoisi";
 							$sql .= " FROM lignefacture lf";
 							$sql .= " INNER JOIN article a ON (a.artid = lf.artid)";
@@ -355,14 +355,14 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 								$modifcaract = 0;
 								$modifprixcaracts=$DB_site->query("SELECT lfc.differenceprix as prixcarac,lfc.*,ac.* FROM article_caractval as ac inner join lignefacturecaracteristique as lfc on (ac.caractvalid=lfc.caractvalid) WHERE lfc.lignefactureid='$prix_normal[lignefactureid]' and artid='$prix_normal[artid]' ");
 								while($modifprixcaract = $DB_site->fetch_array($modifprixcaracts)){
-									$differenceprixht = unserialize($modifprixcaract[differenceprixht]);
+									$differenceprixht = unserialize($modifprixcaract['differenceprixht']);
 									$modifcaract += intval($modifprixcaract['prixcarac']);
 								}
 								$garanties = $DB_site->query_first("SELECT SUM(differenceprix) AS differenceprixTotale FROM `lignefacturegarantie` WHERE `lignefactureid`='$prix_normal[lignefactureid]'");
 								$modifcaract += $garanties['differenceprixTotale'];
 								//$bonprix = round( ($prix_normal['prixconseilleht'] + $modifcaract) * $prix_normal['qte'] * (1+ $template->tva_ref($prix_normal['tauxchoisi'])/100) * (1 - ($cadeau['valeurcadeau'] / 100) ),2) ;
-								$prix_remise = round(($prix_normal[prixconseilleht] * (1+$template->tva_ref($prix_normal['tauxchoisi'])/100) + $modifcaract) * $prix_normal[qte] * ($cadeau[valeurcadeau] / 100),2) ;
-								if($prix_remise < ($prix_normal[prix] * $prix_normal[qte])){
+								$prix_remise = round(($prix_normal['prixconseilleht'] * (1+$template->tva_ref($prix_normal['tauxchoisi'])/100) + $modifcaract) * $prix_normal[qte] * ($cadeau['valeurcadeau'] / 100),2) ;
+								if($prix_remise < ($prix_normal['prix'] * $prix_normal[qte])){
 									$reducligne = $prix_remise;
 									$prixreduction += $prix_remise;
 								} else {
@@ -383,7 +383,7 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 								$optionsttc = $DB_site->query_first("SELECT SUM(differenceprix) FROM lignefacturecaracteristique WHERE lignefactureid=$ligne[lignefactureid]");
 								$garanties = $DB_site->query_first("SELECT SUM(differenceprix) AS differenceprixTotale FROM `lignefacturegarantie` WHERE `lignefactureid`='$ligne[lignefactureid]'");
 								//$prixreduction += $ligne[qte] * ($ligne[prix] - $optionsttc[0] - $garanties[0]) * $cadeau[valeurcadeau] / 100; pour enlever le prix de l'option dans la garantie
-								$prixreduction += $ligne[qte] * ($ligne[prix] - $garanties[0]) * $cadeau[valeurcadeau] / 100;
+								$prixreduction += $ligne[qte] * ($ligne['prix'] - $garanties[0]) * $cadeau['valeurcadeau'] / 100;
 							}
 							if($DB_site->num_rows($lignes)==0) $erreur_cadeau = $template->translate("/commande/code_correspond_pas_article","F");
 							//$prixreduction += ($prixtotalpanier_sansfrais * $cadeau[valeurcadeau] / 100) ;
@@ -427,8 +427,8 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 		$prix_cadeau=article_prices($cadeau['cadeau_artid'],$taux,$template->site_code(),$user_info['tvaintracom']!="" && $taux['tvaintracom']==1);
 		
 
-		$DB_site->query("INSERT INTO lignefacture SET factureid=$factureid, artid=$artoffert[artid], catid=$artoffert[catid], artcode='$artoffert[artcode]', qte=1, libelle='".mysqli_real_escape_string($DB_site->link_id,$artoffert[libelleFR])."', prix=$prix_cadeau[prix], tva=$prix_cadeau[tauxtva], paht=$artoffert[paht]");
-		$DB_site->query("INSERT INTO lignefacture SET factureid=$factureid, artid=0, catid=$artoffert[catid], artcode='$artoffert[artcode]', qte=1, libelle='".addslashes($template->translate("/commande/bon_reduction","F")." $cadeau[code] : ".$template->translate("/commande/en_cadeau")." $artoffert[libelleFR] $artoffert[artcode]")."', prix=".(-$prix_cadeau[prix]).", tva=$prix_cadeau[tauxtva]");
+		$DB_site->query("INSERT INTO lignefacture SET factureid=$factureid, artid=$artoffert[artid], catid=$artoffert[catid], artcode='$artoffert[artcode]', qte=1, libelle='".mysqli_real_escape_string($DB_site->link_id,$artoffert['libelleFR'])."', prix=$prix_cadeau[prix], tva=$prix_cadeau[tauxtva], paht=$artoffert[paht]");
+		$DB_site->query("INSERT INTO lignefacture SET factureid=$factureid, artid=0, catid=$artoffert[catid], artcode='$artoffert[artcode]', qte=1, libelle='".addslashes($template->translate("/commande/bon_reduction","F")." $cadeau[code] : ".$template->translate("/commande/en_cadeau")." $artoffert[libelleFR] $artoffert[artcode]")."', prix=".(-$prix_cadeau['prix']).", tva=$prix_cadeau[tauxtva]");
 		$cadeauoffert.="<br>".$template->translate("/commande/en_cadeau","F")." : $artoffert[libelleFR]";
 		$texteecopart="";
 		$libellerewrite = url_rewrite($artoffert[$libelle]) ;
@@ -437,12 +437,12 @@ if(isset($_POST['action2']) && $_POST['action2']=="cadeau"){
 	}
 
 	$cadeau_existant=$DB_site->query_first("select montantcadeau from facture where facturid = '$factureid'");
-	if ($cadeau_existant[montantcadeau] != 0){
-		if ($prixreduction > $cadeau_existant[montantcadeau]){
+	if ($cadeau_existant['montantcadeau'] != 0){
+		if ($prixreduction > $cadeau_existant['montantcadeau']){
 			$prixreduction  = number_format($prixreduction, 2, ".", "");
 			$DB_site->query("update facture set cadeauid = '$cadeau_en_cours[cadeauid]', montantcadeau = '$prixreduction' where facturid = '$factureid'");
 		}else{
-			$prixreduction = $cadeau_existant[montantcadeau] ;
+			$prixreduction = $cadeau_existant['montantcadeau'] ;
 		}
 	}else{
 		$DB_site->query("update facture set cadeauid = '$cadeau_en_cours[cadeauid]', montantcadeau = '$prixreduction' where facturid = '$factureid'");
@@ -807,78 +807,78 @@ if ($DB_site->num_rows($moyens_paiement) > 0){
      $btninfo="";
      
      while ($moyen_paiement=$DB_site->fetch_array($moyens_paiement)){
-	  switch($moyen_paiement[moyenid]){
+	  switch($moyen_paiement['moyenid']){
 	  case 1:
-	  if (($mesparametresgeneraux[montant_max_cb] == '0' || $prixtotalpanier < 6000) && $template->site_code()=="base"){
-	      $TemplateCde2MoyenContenu1[$moyen_paiement[moyenid]]= "
+	  if (($mesparametresgeneraux['montant_max_cb'] == '0' || $prixtotalpanier < 6000) && $template->site_code()=="base"){
+	      $TemplateCde2MoyenContenu1[$moyen_paiement['moyenid']]= "
 			    <div class=\"moyenimg col-xs-5 col-sm-4 col-md-4 col-lg-3\"><img src=\"images/templates/cb.jpg\" width=\"80\"></div>
 			    <div class=\"moyenopt col-xs-1 col-sm-1 col-md-1 col-lg-1\"><input type=\"radio\" name=\"moyen\" value=\"$moyen_paiement[moyenid]\"></div>
-			    <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement[moyenid]."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
+			    <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement['moyenid']."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
 	  }
 	  break;
 	  
 	  case 16:
-	  if (($mesparametresgeneraux[montant_max_cb] == '0' || $prixtotalpanier < 6000) && $template->site_code()=="uk"){
-	      $TemplateCde2MoyenContenu1[$moyen_paiement[moyenid]]= "
+	  if (($mesparametresgeneraux['montant_max_cb'] == '0' || $prixtotalpanier < 6000) && $template->site_code()=="uk"){
+	      $TemplateCde2MoyenContenu1[$moyen_paiement['moyenid']]= "
 			    <div class=\"moyenimg col-xs-5 col-sm-4 col-md-4 col-lg-3\"><img src=\"images/templates/adyen.jpg\" width=\"80\"></div>
 			    <div class=\"moyenopt col-xs-1 col-sm-1 col-md-1 col-lg-1\"><input type=\"radio\" name=\"moyen\" value=\"$moyen_paiement[moyenid]\"></div>
-			    <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement[moyenid]."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
+			    <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement['moyenid']."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
 	  }
 	  break;
 
 	  case 2: //cheque
-	  if (($rs_facture_coordonnees[paysid] == '57' || $rs_facture_coordonnees[paysid] == '181' || $rs_facture_coordonnees[paysid] == '111') && $prixtotalpanier < 3000){
-		$TemplateCde2MoyenContenu1[$moyen_paiement[moyenid]]="
+	  if (($rs_facture_coordonnees['paysid'] == '57' || $rs_facture_coordonnees['paysid'] == '181' || $rs_facture_coordonnees['paysid'] == '111') && $prixtotalpanier < 3000){
+		$TemplateCde2MoyenContenu1[$moyen_paiement['moyenid']]="
 			    <div class=\"moyenimg col-xs-5 col-sm-4 col-md-4 col-lg-3\"><img src=\"images/templates/cheque.jpg\" width=\"80\"></div>
 			    <div class=\"moyenopt col-xs-1 col-sm-1 col-md-1 col-lg-1\"><input type=\"radio\" name=\"moyen\" value=\"$moyen_paiement[moyenid]\"><input type=\"hidden\" id=\"delpanier$moyen_paiement[moyenid]\" value=\"1\"></div>
-			    <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement[moyenid]."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
+			    <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement['moyenid']."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
 	  }
 	  break;
 		      
 	  case 5:  //virement
 	  if ($prixtotalpanier < 100000){
-			$TemplateCde2MoyenContenu1[$moyen_paiement[moyenid]]="
+			$TemplateCde2MoyenContenu1[$moyen_paiement['moyenid']]="
 			  <div class=\"moyenimg col-xs-5 col-sm-4 col-md-4 col-lg-3\"><img src=\"images/templates/virement.jpg\" width=\"80\"></div>
 			  <div class=\"moyenopt col-xs-1 col-sm-1 col-md-1 col-lg-1\"><input type=\"radio\" name=\"moyen\" value=\"$moyen_paiement[moyenid]\"><input type=\"hidden\" id=\"delpanier$moyen_paiement[moyenid]\" value=\"1\"></div>
-			  <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement[moyenid]."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
+			  <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement['moyenid']."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
 	  }
 	  break;
 		  
 	  case 6: //paypal
 	  if ($prixtotalpanier < 3500){
-			  $TemplateCde2MoyenContenu1[$moyen_paiement[moyenid]]="
+			  $TemplateCde2MoyenContenu1[$moyen_paiement['moyenid']]="
 			    <div class=\"moyenimg col-xs-5 col-sm-4 col-md-4 col-lg-3\"><img src=\"https://www.paypal.com/fr_FR/FR/i/logo/PayPal_mark_180x113.gif\" width=\"80\"></div>
 			    <div class=\"moyenopt col-xs-1 col-sm-1 col-md-1 col-lg-1\"><input type=\"radio\" name=\"moyen\" value=\"$moyen_paiement[moyenid]\"></div>
-			    <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement[moyenid]."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
+			    <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement['moyenid']."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
 	  }
 	  break;
 
 	  case 13: // american express
 	  if(($prixtotalpanier<15000 && in_array($rs_facture_coordonnees['paysid'],array(57,111,181,4))) || $prixtotalpanier<5000){
 	      if($template->site_code()=="base")
-		  $TemplateCde2MoyenContenu1[$moyen_paiement[moyenid]]="
+		  $TemplateCde2MoyenContenu1[$moyen_paiement['moyenid']]="
 		    <div class=\"moyenimg col-xs-5 col-sm-4 col-md-4 col-lg-3\"><img src=\"images/templates/amex.jpg\" width=\"70\"></div>
 		    <div class=\"moyenopt col-xs-1 col-sm-1 col-md-1 col-lg-1\"><input type=\"radio\" name=\"moyen\" value=\"1\"></div>
-		    <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement[moyenid]."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
+		    <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement['moyenid']."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
 	  }
 
 	  break;
 
 	  case 4: // mandat cash
-	  if($prixtotalpanier<=1000 && ($rs_facture_coordonnees[paysid] == '57' || $rs_facture_coordonnees[paysid] == '181')){
-			$TemplateCde2MoyenContenu1[$moyen_paiement[moyenid]]="
+	  if($prixtotalpanier<=1000 && ($rs_facture_coordonnees['paysid'] == '57' || $rs_facture_coordonnees['paysid'] == '181')){
+			$TemplateCde2MoyenContenu1[$moyen_paiement['moyenid']]="
 			  <div class=\"moyenimg col-xs-5 col-sm-4 col-md-4 col-lg-3\"><img src=\"images/templates/logo-mandat.jpg\" width=\"80\"></div>
 			  <div class=\"moyenopt col-xs-1 col-sm-1 col-md-1 col-lg-1\"><input type=\"radio\" name=\"moyen\" value=\"$moyen_paiement[moyenid]\"><input type=\"hidden\" id=\"delpanier$moyen_paiement[moyenid]\" value=\"1\"></div>
-			  <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement[moyenid]."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
+			  <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement['moyenid']."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
 	  }
 	  break;
 
 	  case 14:
 	  if(in_array($fcl->utilisateur->paysid,array(57,181)) && $fcl->utilisateur->raisonsociale!=""){
-	      $TemplateCde2MoyenContenu1[$moyen_paiement[moyenid]]="
+	      $TemplateCde2MoyenContenu1[$moyen_paiement['moyenid']]="
 			  <div class=\"moyenimg col-xs-5 col-sm-4 col-md-4 col-lg-3\"><img src=\"images/templates/logo_location.jpg\" width=\"80\"></div>
 			  <div class=\"moyenopt col-xs-1 col-sm-1 col-md-1 col-lg-1\"><input type=\"radio\" name=\"moyen\" value=\"$moyen_paiement[moyenid]\"><input type=\"hidden\" id=\"delpanier$moyen_paiement[moyenid]\" value=\"1\"></div>
-			  <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement[moyenid]."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
+			  <div class=\"moyenname col-xs-5 col-sm-7 col-md-7 col-lg-8 no-padding\">".$moyen_paiement['display'.$template->langue].$btninfo."<span id=\"moyendesc".$moyen_paiement['moyenid']."\">".$moyen_paiement['description'.$template->langue]."</span></div>";
 	  }
 	  break;
 	  

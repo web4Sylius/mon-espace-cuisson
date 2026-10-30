@@ -170,15 +170,15 @@ function sendmail(){
 		}
 		$sql="SELECT mail_passwdFR, nom_contact FROM parametresgeneraux WHERE mail_contactFR='".$this->expediteur."' ";
 		$resFR=$DB->query_first($sql);
-		if($resFR[mail_passwdFR]!=""){
-			$smtpmail->Password=$resFR[mail_passwdFR];
+		if($resFR['mail_passwdFR']!=""){
+			$smtpmail->Password=$resFR['mail_passwdFR'];
 			$smtpmail->Username=$this->expediteur;
 			$smtpmail->setFrom($this->expediteur, $resFR[nom_contact]." Ma Cave A Vin");
 		} else {
 			$sql="SELECT mail_passwdEN, nom_contact FROM parametresgeneraux WHERE mail_contactEN='".$this->expediteur."' ";
 			$resEN=$DB->query_first($sql);
-			if($resEN[mail_passwdEN]!=""){
-				$smtpmail->Password=$resEN[mail_passwdEN];
+			if($resEN['mail_passwdEN']!=""){
+				$smtpmail->Password=$resEN['mail_passwdEN'];
 				$smtpmail->Username=$this->expediteur;
 				$smtpmail->setFrom($this->expediteur, $resEN[nom_contact]." My Wine Cabinet");
 			} else {

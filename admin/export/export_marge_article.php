@@ -227,7 +227,7 @@ $status.=")";
 $typetxt="(type : ";
 if($typearticleid!=""){
 	$type_article=$DB_site2->query_first("SELECT * FROM typearticle WHERE typearticleid='".$typearticleid."' ");
-	$typetxt.=$type_article[libelle];
+	$typetxt.=$type_article['libelle'];
 	$typesql=" AND a.typearticleid='".$typearticleid."' ";
 } else {
 	$typetxt.="tous";
@@ -242,7 +242,7 @@ if($marqueid==""){
 	$marquesql="";
 } else {
 	$lib_marque=$DB_site2->query_first("SELECT * FROM marque WHERE marqueid='".$marqueid."' ");
-	$lib_marque_txt=$lib_marque[libelle];
+	$lib_marque_txt=$lib_marque['libelle'];
 	$marquesql=" AND am.marqueid = ".$marqueid;
 }
 
@@ -294,7 +294,7 @@ if($artids!=""){
 
 //$rowalt=0;
 // $echototal.="<h1>Les ".$typetxt." ".$status." ".$lib_marque[libelle]." ".$lib_typesrc_txt." en article seul (sur la période du ".$dfrom." au ".$dto.")</h1>";
-$echototal.="<h1>Les ".$typetxt." ".$status." ".$lib_marque[libelle]." ".$lib_typesrc_txt." en article seul (sur la période du ".$dfrom->format("Y-m-d")." au ".$dto->format("Y-m-d").")</h1>";
+$echototal.="<h1>Les ".$typetxt." ".$status." ".$lib_marque['libelle']." ".$lib_typesrc_txt." en article seul (sur la période du ".$dfrom->format("Y-m-d")." au ".$dto->format("Y-m-d").")</h1>";
 $nbcols=0;
 if($visu_fournisseur==0){
 	$echototal.="Commission : <input type=\"text\" name=\"taux_commission\" id=\"taux_commission\" value=\"0\">%<br><br>";
@@ -469,19 +469,19 @@ function affiche_ligne($artid) {
 			AND a.artid=".$artid." ";
 	$res=$DB_site2->query_first($sql);
 	$status="";
-	if($res[active]==0){
+	if($res['active']==0){
 		$status="inactif";
 	}
-	if($res[active]==1){
+	if($res['active']==1){
 		$status="actif";
 	}
-	if($res[active]==2){
+	if($res['active']==2){
 		$status="supprimé";
 	}
-	if($res[active]==3){
+	if($res['active']==3){
 		$status="archivé";
 	}
-	if($res[commandable]==1){
+	if($res['commandable']==1){
 		$commandable="oui";
 	}else{
 		$commandable="non";
@@ -501,36 +501,36 @@ function affiche_ligne($artid) {
 	
 	$sql="SELECT prix, paht FROM temp_price WHERE artid=".$artid." AND du < '".time()."' AND au > '".time()."' LIMIT 1";
 	$temp_price=$DB_site2->query_first($sql);
-	if($temp_price[prix]!=""){
-		$article_pvttc=$temp_price[prix];
+	if($temp_price['prix']!=""){
+		$article_pvttc=$temp_price['prix'];
 	} else {
-		$article_pvttc=$res[prix];
+		$article_pvttc=$res['prix'];
 	}
 	
 	$sql="	SELECT foa.offre, foa.value FROM fournisseur_offre AS fo
 			INNER JOIN fournisseur_offre_article AS foa ON(fo.id=foa.offreid)
 			WHERE foa.artid=".$artid." AND fo.du < '".time()."' AND fo.au > '".time()."' LIMIT 1";
 	$offre_fournisseur=$DB_site2->query_first($sql);
-	if($offre_fournisseur[offre]!=""){
-		if($offre_fournisseur[offre]=="temp"){
-			$article_paht=$offre_fournisseur[value];
+	if($offre_fournisseur['offre']!=""){
+		if($offre_fournisseur['offre']=="temp"){
+			$article_paht=$offre_fournisseur['value'];
 		}
-		if($offre_fournisseur[offre]=="reduc"){
-			$article_paht=$res[paht]-$offre_fournisseur[value];
+		if($offre_fournisseur['offre']=="reduc"){
+			$article_paht=$res['paht']-$offre_fournisseur['value'];
 		}
-		if($offre_fournisseur[offre]=="pc"){
-			$article_paht=$res[paht]-($res[paht]*$offre_fournisseur[value]/100);
+		if($offre_fournisseur['offre']=="pc"){
+			$article_paht=$res['paht']-($res['paht']*$offre_fournisseur['value']/100);
 		}
 	} else {
-		$article_paht=$res[paht];
+		$article_paht=$res['paht'];
 	}
 	
 	$article_fournisseur=$DB_site2->query_first("SELECT ecopartht, trspt FROM article_fournisseur WHERE artid=".$artid." AND principal LIKE '%base%' AND devise='EUR' ");
-	if($article_fournisseur[ecopartht]==""){
-		$article_fournisseur[ecopartht]=0;
+	if($article_fournisseur['ecopartht']==""){
+		$article_fournisseur['ecopartht']=0;
 	}
-	if($article_fournisseur[trspt]==""){
-		$article_fournisseur[trspt]=0;
+	if($article_fournisseur['trspt']==""){
+		$article_fournisseur['trspt']=0;
 	}
 	$sql="SELECT m.libelle FROM marque AS m
 			INNER JOIN article_marque AS am ON(m.marqueid=am.marqueid)
@@ -539,7 +539,7 @@ function affiche_ligne($artid) {
 	
 	
 	$lot=$DB_site2->query_first("SELECT COUNT(*) as somme FROM article_lot WHERE lotid='".$artid."' ");
-	if($lot[somme]!=0){ // ceci est un lot ....
+	if($lot['somme']!=0){ // ceci est un lot ....
 		$lot_txt="OUI";
 	} else {
 		$lot_txt="--";
@@ -555,26 +555,26 @@ function affiche_ligne($artid) {
 	$nb_conccurents=0;
 	
 	while (list($key, $val) = each($aSiteSpy)) {
-		if($lot[somme]!=0){
+		if($lot['somme']!=0){
 			$echolignespy.= "<td align=\"center\">***</td>";
 		} else {
-			$sql="SELECT price FROM history WHERE timestamp>".$spytime." AND artcode='".$res[artcode]."' AND site='".$val."' ORDER BY timestamp DESC LIMIT 1 ";
+			$sql="SELECT price FROM history WHERE timestamp>".$spytime." AND artcode='".$res['artcode']."' AND site='".$val."' ORDER BY timestamp DESC LIMIT 1 ";
 			// echo $sql;
 			$spy=$DB_site2->query_first($sql);
 			
 			if($spy['price']!=""){
 				$spylist[$artcode][$val]=$spy['price'];
-				if($article_pvttc>$spy[price]){
+				if($article_pvttc>$spy['price']){
 					// ce site est mieux placé
 					$bolddeb="<b><font color=\"red\">";
 					$boldfin="</font></b>";
 					if($pricemin==""){
 						// première fois
-						$pricemin=$spy[price];
+						$pricemin=$spy['price'];
 						$sitemin=$val;
 					} elseif($pricemin>$spy['price']){
 						// nouveau meilleur prix
-						$pricemin=$spy[price];
+						$pricemin=$spy['price'];
 						$sitemin=$val;
 					}
 				} else {
@@ -582,7 +582,7 @@ function affiche_ligne($artid) {
 					$boldfin="";
 				}
 				$nb_conccurents++;
-				$echolignespy.= "<td align=\"right\" nowrap>".$bolddeb.number_format($spy[price], 0, ',', ' ').$boldfin."  &euro; <a href=\"".$spydata[$res[artcode]][$val][2]."\" target=\"_blank\">X</a></td>";
+				$echolignespy.= "<td align=\"right\" nowrap>".$bolddeb.number_format($spy['price'], 0, ',', ' ').$boldfin."  &euro; <a href=\"".$spydata[$res['artcode']][$val][2]."\" target=\"_blank\">X</a></td>";
 			} else {
 				$echolignespy.= "<td align=\"center\">-</td>";
 			}
@@ -590,7 +590,7 @@ function affiche_ligne($artid) {
 	}
 	reset($aSiteSpy);
 	
-	if($lot[somme]!=0){
+	if($lot['somme']!=0){
 		$pricemin="***";
 		$sitemin="***";
 		$priceminformat="***";
@@ -618,7 +618,7 @@ function affiche_ligne($artid) {
     $ventes=$DB_site2->query_first($sql);
 	if($ventes[qte]==""){
 		$ventes[qte]=0;
-		$ventes[caht]=0;
+		$ventes['caht']=0;
 		
 	}
 	$sql="SELECT sum(lf.qte) AS qte, sum(lf.qte*(lf.prix/(1+lf.tva/100))) AS caht FROM lignefacturediss lf
@@ -633,7 +633,7 @@ function affiche_ligne($artid) {
     $ventes2=$DB_site2->query_first($sql);
 	if($ventes2[qte]!=""){
 		$ventes[qte]+=$ventes2[qte];
-		$ventes[caht]+=$ventes2[caht];
+		$ventes['caht']+=$ventes2['caht'];
 	}
 	
 	
@@ -662,8 +662,8 @@ function affiche_ligne($artid) {
 	*/
 	
 	
-	if($res[somme]==""){
-		$res[somme]=0;
+	if($res['somme']==""){
+		$res['somme']=0;
 	}
 	$sql="SELECT sum(lf.qte) AS qte, sum(lf.qte*(lf.prix/(1+tva/100))) AS caht
 		FROM lignefacture lf
@@ -676,13 +676,13 @@ function affiche_ligne($artid) {
     $devis=$DB_site2->query_first($sql);
 	if($devis[qte]==""){
 		$devis[qte]=0;
-		$devis[caht]=0;
+		$devis['caht']=0;
 	}
 	
 	$visible_txt="";
 	$article_visible=$DB_site2->query_first("SELECT * FROM article_visible WHERE artid='".$artid."' AND date>'".time()."' ORDER BY date ASC LIMIT 1");
-	if($article_visible[id]!=""){
-		if($article_visible[active]==1){
+	if($article_visible['id']!=""){
+		if($article_visible['active']==1){
 			$visible_txt.="activation le ".date("d/m/Y", $article_visible[date]);
 		} else {
 			$visible_txt.="désactivation le ".date("d/m/Y", $article_visible[date]);
@@ -710,7 +710,7 @@ function affiche_ligne($artid) {
 		}
 	}
 	
-	$type_article=$DB_site2->query_first("SELECT * FROM typearticle WHERE typearticleid='".$res[typearticleid]."' ");
+	$type_article=$DB_site2->query_first("SELECT * FROM typearticle WHERE typearticleid='".$res['typearticleid']."' ");
 	
 	
 	
@@ -720,12 +720,12 @@ function affiche_ligne($artid) {
   
   
 	// $article_paht_total=$article_paht+$res[prixtrspt]+$article_fournisseur[ecopartht]+$article_fournisseur[trspt]+$garantie+$frais_port->paht-$frais_port->prixht;
-	$article_paht_total=$article_paht+$article_fournisseur[ecopartht]+$article_fournisseur[trspt]+$garantie+$frais_port->paht;
+	$article_paht_total=$article_paht+$article_fournisseur['ecopartht']+$article_fournisseur['trspt']+$garantie+$frais_port->paht;
 	$article_pv_ht_total=($article_pvttc/$tauxtva)+$frais_port->prixht;
 	$marge_ht=$article_pv_ht_total-$article_paht_total;
 	$marge_pct=100*$marge_ht/$article_pv_ht_total;
-	if($res[prixconseilleht]+$frais_port->prixht>0){
-		$marge_ppi_pct=100*($res[prixconseilleht]+$frais_port->prixht-$article_paht_total)/($res[prixconseilleht]+$frais_port->prixht);
+	if($res['prixconseilleht']+$frais_port->prixht>0){
+		$marge_ppi_pct=100*($res['prixconseilleht']+$frais_port->prixht-$article_paht_total)/($res['prixconseilleht']+$frais_port->prixht);
 	} else {
 		$marge_ppi_pct=0;
 	}
@@ -743,18 +743,18 @@ function affiche_ligne($artid) {
 	//$rowalt=$rowalt%2;
 	
 	$echoligne= "<tr>
-					<td nowrap><a href=\"https://www.ma-cave-a-vin.fr/a-art".$artid.".htm\" target=\"_blank\">".$res[artcode]."</a></td>
-					<td>".$marque[libelle]."</td>";
+					<td nowrap><a href=\"https://www.ma-cave-a-vin.fr/a-art".$artid.".htm\" target=\"_blank\">".$res['artcode']."</a></td>
+					<td>".$marque['libelle']."</td>";
 	if($visu_fournisseur!=1){
 		// $echoligne.="<td colspan=\"2\">--</td>";
 		$echoligne.="<td>".$lot_txt."</td>";
 	}		
-	$echoligne.="<td><a href=\"/admin/ajout_produit_history.php?artid=".$artid."\" target=\"_blank\">".$res[artcode_eurocave]."</a></td>
+	$echoligne.="<td><a href=\"/admin/ajout_produit_history.php?artid=".$artid."\" target=\"_blank\">".$res['artcode_eurocave']."</a></td>
 					
 					<td>&nbsp;</td>";
 	if($visu_fournisseur!=1){
-		$echoligne.="<td>".date("d/m/Y",$datecreation[date_creation])."</td>";
-		$echoligne.="<td>".$type_article[libelle]."</td>";
+		$echoligne.="<td>".date("d/m/Y",$datecreation['date_creation'])."</td>";
+		$echoligne.="<td>".$type_article['libelle']."</td>";
 	}		
 	$echoligne.="<td align=\"center\">".$status."</td>";
 	if($visu_fournisseur!=1){
@@ -767,13 +767,13 @@ function affiche_ligne($artid) {
 	$echoligne.="<td align=\"center\"><span title=\"".$garantie_txt."\">".substr($garantie_txt,0,10)."</span></td>
 					<td align=\"center\">".$ventes[qte]."</td>
 					<td align=\"center\">".$devis[qte]."</td>
-					<td align=\"center\">".$res[somme]."</td>
+					<td align=\"center\">".$res['somme']."</td>
 					
 					<td>&nbsp;</td>
 					
 					<td align=\"right\" nowrap>".@number_format($article_paht, 0, ',', ' ')." &euro;</td>
-					<td align=\"right\" nowrap>".number_format($article_fournisseur[ecopartht], 0, ',', ' ')." &euro;</td>
-					<td align=\"right\" nowrap>".number_format($article_fournisseur[trspt], 0, ',', ' ')." &euro;</td>
+					<td align=\"right\" nowrap>".number_format($article_fournisseur['ecopartht'], 0, ',', ' ')." &euro;</td>
+					<td align=\"right\" nowrap>".number_format($article_fournisseur['trspt'], 0, ',', ' ')." &euro;</td>
 					<td align=\"right\" nowrap>".number_format($garantie, 0, ',', ' ')." &euro;</td>
 					<td align=\"right\" nowrap>".number_format($frais_port->paht, 0, ',', ' ')." &euro;</td>
 					<td align=\"right\" nowrap>".number_format($article_paht_total, 0, ',', ' ')." &euro;</td>
@@ -781,7 +781,7 @@ function affiche_ligne($artid) {
 					<td>&nbsp;</td>
 					
 					
-					<td align=\"right\" nowrap>".number_format($res[prixconseilleht]*$tauxtva, 0, ',', ' ')." &euro;</td>
+					<td align=\"right\" nowrap>".number_format($res['prixconseilleht']*$tauxtva, 0, ',', ' ')." &euro;</td>
 					<td align=\"right\" nowrap><b>".number_format($article_pvttc, 0, ',', ' ')." &euro;</b></td>";
 	if($visu_fournisseur!=1){
 		$echoligne.="<td align=\"center\">--</td>

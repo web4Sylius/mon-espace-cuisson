@@ -47,14 +47,14 @@ function arborescence($parentid){
 	$requete_arbo=" select $libelle,catid from categorie where parentid='$parentid' ORDER BY $libelle ";
 	$arbos=$DB_site2->query($requete_arbo);
 	while ($arbo=$DB_site2->fetch_array($arbos)) {
-		if($catid==$arbo[catid]) {
+		if($catid==$arbo['catid']) {
 			$selected="selected";
 			$libellecat=$arbo[$libelle];
 		} else {
 			$selected="";
 		}
 		$select.="<option value=\"$arbo[catid]\" $selected>$niveau $arbo[$libelle]</option>";
-		arborescence($arbo[catid]);
+		arborescence($arbo['catid']);
 	}
 	$niveau=substr($niveau , 0 , strlen($niveau)-4 );
 	return ($select);
@@ -70,8 +70,8 @@ function navigation($catidfunc , $isarticle=0){
 	} else {
 		$navigationbit="<a href=\"catalogue.php?catid=$navigation_categorie[catid]\">$navigation_categorie[$libelle]</a>" . $separateur_navigation . $navigationbit;
 	}
-	if ($navigation_categorie[parentid]!=0) {
-		navigation($navigation_categorie[parentid]);
+	if ($navigation_categorie['parentid']!=0) {
+		navigation($navigation_categorie['parentid']);
 	}
 }
 
@@ -83,7 +83,7 @@ if ($artid=="" || !isset($artid))
 }
 
 $article=$DB_site2->query_first("SELECT * FROM article WHERE artid='$artid' ");
-$catid=$article[catid];
+$catid=$article['catid'];
 
 //*******************************************************************
 //****************AFFICHAGE BARRE NAVIGATION*************************

@@ -230,10 +230,10 @@ else
 		{
 		global $DB_site2,$caractval_array;
 		$aajouter=$DB_site2->query_first("SELECT caractvalid,parentid FROM stocks WHERE stockid='$stockid' ");
-		$caractval_array[]=$aajouter[caractvalid];
-		if($aajouter[parentid]!=0) 
+		$caractval_array[]=$aajouter['caractvalid'];
+		if($aajouter['parentid']!=0) 
 			{
-			caractval_retrieve($aajouter[parentid]);
+			caractval_retrieve($aajouter['parentid']);
 			}
 		}
 	foreach ($_POST as $key => $val) 

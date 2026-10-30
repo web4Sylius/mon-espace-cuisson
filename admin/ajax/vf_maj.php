@@ -37,7 +37,7 @@ if(isset($_GET['action'])){
 			$vf = $DB_site2->query_first("SELECT * FROM vente_flash WHERE id='".$_GET['id']."'");
 			if($vf){
   				// Delete liste article vente flash
-  				$DB_site2->query("DELETE FROM vente_flash_article WHERE vfid = ".$vf[id]);
+  				$DB_site2->query("DELETE FROM vente_flash_article WHERE vfid = ".$vf['id']);
 			}
 
 			echo "Vente Flash ".$_GET['name']." liste effacée !";

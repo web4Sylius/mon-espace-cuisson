@@ -1679,18 +1679,18 @@ function tableau_relation($genre=1, $sens=1){
 		$userid=$contact['user'.$autresens.'id'];
 		$sql_contact="SELECT userid, raisonsociale, prenom, nom FROM utilisateur WHERE userid='".$userid."' ";
 		$coordonnees=$DB_site2->query_first($sql_contact);
-		if($coordonnees[userid]==$userid){
+		if($coordonnees['userid']==$userid){
 			$libelle="";
-			if($coordonnees[raisonsociale]!=""){
-				$libelle=$coordonnees[raisonsociale]." - ";
+			if($coordonnees['raisonsociale']!=""){
+				$libelle=$coordonnees['raisonsociale']." - ";
 			}
-			$libelle.=$coordonnees[prenom]." ".$coordonnees[nom];
+			$libelle.=$coordonnees['prenom']." ".$coordonnees['nom'];
 			$lien="utilisateur.php?action=editer&userid=".$userid;
 			$type="client";
 		} else {
 			$libelle="<strong>erreur : client introuvable</strong>";
 		}
-		$return.="<a href=\"".$lien."\" target=\"_blank\">".$libelle."</a><br>".$contact[relation_description];
+		$return.="<a href=\"".$lien."\" target=\"_blank\">".$libelle."</a><br>".$contact['relation_description'];
 	}
 	return $return;
 }
@@ -2063,7 +2063,7 @@ function tableau_relation($genre=1, $sens=1){
         foreach($mlist as $mid){
         $attrmid[]=$mid;
         $randid=rand(1000,10000);
-        if($mid!="") print "<p id=\"drag_$randid\"><a href=javascript:removefromlist(".$fourn[id].",".$mid.",'drag_$randid');><img src='images/supprimer.gif' align='absmiddle'></a>".$marques[$mid]."</p>";
+        if($mid!="") print "<p id=\"drag_$randid\"><a href=javascript:removefromlist(".$fourn['id'].",".$mid.",'drag_$randid');><img src='images/supprimer.gif' align='absmiddle'></a>".$marques[$mid]."</p>";
         }
         print "</div>";
     }

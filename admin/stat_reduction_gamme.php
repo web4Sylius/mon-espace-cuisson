@@ -100,7 +100,7 @@ if(isset($_GET['marqueid'])){
     $req=$DB_site2->query($sql);
     while($page=$DB_site2->fetch_array($req)){
 		// $artid=get_artid($page['page']);
-		$vus[$page[artid]]+=$page[somme];
+		$vus[$page[artid]]+=$page['somme'];
     }
 
 

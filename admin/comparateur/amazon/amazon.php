@@ -216,7 +216,7 @@ while ($article=$DB_site2->fetch_array($articles)) {
                $contenu .= "	";
                $contenu .= "	";
           } else {
-               $tabsku = explode("_",$ligne[SKU]);
+               $tabsku = explode("_",$ligne['SKU']);
 				
                $sql = "SELECT codebarre";
                $sql .= " FROM code_barre";
@@ -332,7 +332,7 @@ while ($article=$DB_site2->fetch_array($articles)) {
                }
 
           //SwatchImageURL
-          if ($ligne[FD_image])
+          if ($ligne['FD_image'])
                $contenu .= "$ligne[FD_image]".$tab;
           else 
                $contenu .= $tab;
@@ -364,28 +364,28 @@ while ($article=$DB_site2->fetch_array($articles)) {
 		
 		
 		$Description = "<p>$Description</p>" ;
-		if ($article[sowine] == 0) {
+		if ($article['sowine'] == 0) {
 			if (strlen($Description."<br>T° d'installation cave à vin : $article[temperature_cave]") < 2000)
 				$Description .= "<br>T° d'installation cave à vin : $article[temperature_cave]" ;
-			if (strlen($Description."<br>Consommation d'énergie : $article[conso_kw] Kw/24h soit env. ".str_replace("€", "&euro;", $article[conso_euro])." TTC/an") < 2000)
-				$Description .= "<br>Consommation d'énergie : $article[conso_kw] Kw/24h soit env. ".str_replace("€", "&euro;", $article[conso_euro])." TTC/an" ;
-			if (strlen($Description."<br>Régulation : $article[regulation]") < 2000 && $article[regulation] != "")
+			if (strlen($Description."<br>Consommation d'énergie : $article[conso_kw] Kw/24h soit env. ".str_replace("€", "&euro;", $article['conso_euro'])." TTC/an") < 2000)
+				$Description .= "<br>Consommation d'énergie : $article[conso_kw] Kw/24h soit env. ".str_replace("€", "&euro;", $article['conso_euro'])." TTC/an" ;
+			if (strlen($Description."<br>Régulation : $article[regulation]") < 2000 && $article['regulation'] != "")
 				$Description .= "<br>Régulation : $article[regulation]" ;
-			if (strlen($Description."<br>Affichage : $article[affichage]") < 2000 && $article[affichage] != "")
+			if (strlen($Description."<br>Affichage : $article[affichage]") < 2000 && $article['affichage'] != "")
 				$Description .= "<br>Affichage : $article[affichage]" ;
-			if (strlen($Description."<br>Hygrometrie : $article[hygrometrie]") < 2000 && $article[hygrometrie] != "")
+			if (strlen($Description."<br>Hygrometrie : $article[hygrometrie]") < 2000 && $article['hygrometrie'] != "")
 				$Description .= "<br>Hygrometrie : $article[hygrometrie]" ;
-			if (strlen($Description."<br>Serrure : $article[serrure]") < 2000 && $article[serrure] != "")
+			if (strlen($Description."<br>Serrure : $article[serrure]") < 2000 && $article['serrure'] != "")
 				$Description .= "<br>Serrure : $article[serrure]" ;
-			if (strlen($Description."<br>Eclairage : $article[eclairage]") < 2000 && $article[eclairage] != "")
+			if (strlen($Description."<br>Eclairage : $article[eclairage]") < 2000 && $article['eclairage'] != "")
 				$Description .= "<br>Eclairage : $article[eclairage]" ;
-			if (strlen($Description."<br>Interrupteur : $article[interrupteur]") < 2000 && $article[interrupteur] != "")
+			if (strlen($Description."<br>Interrupteur : $article[interrupteur]") < 2000 && $article['interrupteur'] != "")
 				$Description .= "<br>Interrupteur : $article[interrupteur]" ;
-			if (strlen($Description."<br>Garantie incluse : $article[garantie_incluse]") < 2000 && $article[garantie_incluse] != "")
+			if (strlen($Description."<br>Garantie incluse : $article[garantie_incluse]") < 2000 && $article['garantie_incluse'] != "")
 				$Description .= "<br>Garantie incluse : $article[garantie_incluse]" ;
 			}
-		if (strlen($Description."<br>Eco-participation incluse : ".number_format($article[ecopart], 2, ",", " ")." &euro;") < 2000 && $article[ecopart] != "")
-			$Description .= "<br>Eco-participation incluse : ".number_format($article[ecopart], 2, ",", " ")." &euro;";
+		if (strlen($Description."<br>Eco-participation incluse : ".number_format($article['ecopart'], 2, ",", " ")." &euro;") < 2000 && $article['ecopart'] != "")
+			$Description .= "<br>Eco-participation incluse : ".number_format($article['ecopart'], 2, ",", " ")." &euro;";
 		
 		$Description = str_replace("&euro;", "euros", $Description) ;
 		
@@ -424,7 +424,7 @@ while ($article=$DB_site2->fetch_array($articles)) {
 			else {
 				$tabcoloris = array();
 				while ($coloriscadre=$DB_site2->fetch_array($colorisscadre))
-					array_push($tabcoloris, $coloriscadre[caractvalid]) ;
+					array_push($tabcoloris, $coloriscadre['caractvalid']) ;
 				if (in_array(7, $tabcoloris) && in_array(12, $tabcoloris)) {
 					if (strlen($version_porte." - Coloris cadre de la vitre : Aluminium noir") < 500)
 						$version_porte .= " - Coloris cadre de la vitre : Aluminium noir" ;
@@ -441,8 +441,8 @@ while ($article=$DB_site2->fetch_array($articles)) {
 			if(isset($_GET['tr'])) insert_mp($article['artcode'],"BulletPoint2",$version_porte,500);
 			
 			
-			$article[rangements_txt] = str_replace("<br>", " - ", $article[rangements_txt]);
-			$rangements_txt = explode("<>", wordwrap(strip_tags($article[rangements_txt]), 500, "<>", 1));
+			$article['rangements_txt'] = str_replace("<br>", " - ", $article['rangements_txt']);
+			$rangements_txt = explode("<>", wordwrap(strip_tags($article['rangements_txt']), 500, "<>", 1));
 			$rangements_txt = $rangements_txt[0] ;
 			if (strlen($rangements_txt." Pas de filtre à charbon - Pas de vibration : Moteur sur système anti-vibration - Cave sans entretien") < 500)
 				$rangements_txt .= " Pas de filtre à charbon - Pas de vibration : Moteur sur système anti-vibration - Cave sans entretien" ;
@@ -489,13 +489,13 @@ while ($article=$DB_site2->fetch_array($articles)) {
 		
 		
 		//SearchTerms1 et SearchTerms2 et SearchTerms3 et SearchTerms4 et SearchTerms5
-		if ($article[sowine] == 0) {
+		if ($article['sowine'] == 0) {
 			/*$contenu .= "$article[artcode_amazon]	" ;
 			$contenu .= "cave vin, cave a vin, cave à vin, caves a vins	" ;
 			$contenu .= "armoire vin, armoire a vin, armoire à vin	" ;
 			$contenu .= "la sommeliere, sommeliere, climadiff	" ;
 			$contenu .= "	" ;*/
-			if(isset($_GET['tr'])) insert_mp($article['artcode'],"SearchTerms1",$article[artcode_amazon]);
+			if(isset($_GET['tr'])) insert_mp($article['artcode'],"SearchTerms1",$article['artcode_amazon']);
 			if(isset($_GET['tr'])) insert_mp($article['artcode'],"SearchTerms2",'cave vin, cave a vin, cave à vin, caves a vin');
 			if(isset($_GET['tr'])) insert_mp($article['artcode'],"SearchTerms3",'armoire vin, armoire a vin, armoire à vin');
 			if(isset($_GET['tr'])) insert_mp($article['artcode'],"SearchTerms4","la sommeliere, sommeliere, climadiff");
@@ -507,7 +507,7 @@ while ($article=$DB_site2->fetch_array($articles)) {
 			$contenu .= "bars a vins, bars vins, bar à vins, servir vin	" ;
 			$contenu .= "Sowine Brandt, Sowine, cave 2 bouteilles	" ;
 			$contenu .= "	" ;*/
-			if(isset($_GET['tr'])) insert_mp($article['artcode'],"SearchTerms1",$article[artcode_amazon]);
+			if(isset($_GET['tr'])) insert_mp($article['artcode'],"SearchTerms1",$article['artcode_amazon']);
 			if(isset($_GET['tr'])) insert_mp($article['artcode'],"SearchTerms2",'bar vin, bar vins, home bar, home bar vin');
 			if(isset($_GET['tr'])) insert_mp($article['artcode'],"SearchTerms3",'bars a vins, bars vins, bar à vins, servir vin');
 			if(isset($_GET['tr'])) insert_mp($article['artcode'],"SearchTerms4",'Sowine Brandt, Sowine, cave 2 bouteilles');
@@ -597,13 +597,13 @@ while ($article=$DB_site2->fetch_array($articles)) {
 		}
 		$contenu .= "$garantie_libelle	" ;
 		
-		if ($article[paysfabrication]==0)
+		if ($article['paysfabrication']==0)
 			$paysfab="FRANCE";
-		if ($article[paysfabrication]==1)
+		if ($article['paysfabrication']==1)
 			$paysfab="EUROPE";
-		if ($article[paysfabrication]==2)
+		if ($article['paysfabrication']==2)
 			$paysfab="ASIE";
-		if ($article[paysfabrication]==3)
+		if ($article['paysfabrication']==3)
 			$paysfab="USA";
 			
 		//CountryProducedIn
@@ -630,7 +630,7 @@ while ($article=$DB_site2->fetch_array($articles)) {
           $contenu .= $tab;
 
           //ItemPackageQuantity
-          if ($ligne[parentage] == "parent") {
+          if ($ligne['parentage'] == "parent") {
                $contenu .= $tab;
           }
           else  {
@@ -710,7 +710,7 @@ function amazon_arbo($dbLink, $artid, $libelle = "libelleFR") {
 	$caract_req=$dbLink->query("SELECT caractid, COUNT(caractvalid) nb FROM article_caractval INNER JOIN caracteristiquevaleur USING(caractvalid) WHERE artid = '$artid' and caractid = '1' GROUP BY artid, caractid ORDER BY nb ASC"); //HAVING(nb > 1) 
 	while ($caract=$dbLink->fetch_array($caract_req)) {
 		$caract_array[] = $caract['caractid'];
-		$amatabcaracts[$caract[caractid]] = $caract[nb] ;
+		$amatabcaracts[$caract['caractid']] = $caract['nb'] ;
 		}
 		
 	//creer le tableau de combinaisons
@@ -741,14 +741,14 @@ function amazon_arbo($dbLink, $artid, $libelle = "libelleFR") {
 	$amacount = count($amatabcaracts) ;
 	if ($amacount == 0) {// pas de caracteristiques
 		$codebarre=$dbLink->query_first("SELECT codebarre FROM code_barre WHERE artid = '$artid'");
-		$amatab[0][SKU] = $artid ;
-		$amatab[0][parentage] = "child" ;
-		$amatab[0][ParentSKU] = "" ;
-		$amatab[0][RelationshipType] = "" ;
-		$amatab[0][K_Color] = "" ;
-		$amatab[0][K_Size] = "" ;
-		$amatab[0][K_VariationTheme] = "" ;
-		$amatab[0][codebarre] = $codebarre[codebarre] ;
+		$amatab[0]['SKU'] = $artid ;
+		$amatab[0]['parentage'] = "child" ;
+		$amatab[0]['ParentSKU'] = "" ;
+		$amatab[0]['RelationshipType'] = "" ;
+		$amatab[0]['K_Color'] = "" ;
+		$amatab[0]['K_Size'] = "" ;
+		$amatab[0]['K_VariationTheme'] = "" ;
+		$amatab[0]['codebarre'] = $codebarre['codebarre'] ;
 		}
 	elseif ($amacount == 1) {// une seule caracteristique à plusieurs valeurs
 		$VariationTheme = "" ;
@@ -757,27 +757,27 @@ function amazon_arbo($dbLink, $artid, $libelle = "libelleFR") {
 			$val=$dbLink->query_first("SELECT $libelle FROM caracteristiquevaleur WHERE caractvalid = '".substr($cle, 1)."'");
 			$codebarre=$dbLink->query_first("SELECT codebarre FROM code_barre WHERE artid = '$artid' and caractvalid = '".substr($cle, 1)."'");
 			$amacpt++ ;
-			$amatab[$amacpt][SKU] = $artid.$cle ;
-			$amatab[$amacpt][parentage] = "child" ;
-			$amatab[$amacpt][ParentSKU] = $artid ;
-			$amatab[$amacpt][RelationshipType] = "Variation" ;
-			$amatab[$amacpt][FD_Color] = stripslashes($val[$libelle]) ;
-			$amatab[$amacpt][FD_Size] = "" ;
-			$amatab[$amacpt][FD_VariationTheme] = "Color" ;
-			$amatab[$amacpt][codebarre] = $codebarre[codebarre] ;
-			$amatab[$amacpt][FD_image] = "https://$host/configurations/$host/images/caracteristiquevaleur/zoom/".substr($cle, 1).".jpg" ;
+			$amatab[$amacpt]['SKU'] = $artid.$cle ;
+			$amatab[$amacpt]['parentage'] = "child" ;
+			$amatab[$amacpt]['ParentSKU'] = $artid ;
+			$amatab[$amacpt]['RelationshipType'] = "Variation" ;
+			$amatab[$amacpt]['FD_Color'] = stripslashes($val[$libelle]) ;
+			$amatab[$amacpt]['FD_Size'] = "" ;
+			$amatab[$amacpt]['FD_VariationTheme'] = "Color" ;
+			$amatab[$amacpt]['codebarre'] = $codebarre['codebarre'] ;
+			$amatab[$amacpt]['FD_image'] = "https://$host/configurations/$host/images/caracteristiquevaleur/zoom/".substr($cle, 1).".jpg" ;
 			$VariationTheme = "Color" ;
 			}
 		$amacpt = 0 ;
 		$codebarre=$dbLink->query_first("SELECT codebarre FROM code_barre WHERE artid = '$artid'");
-		$amatab[$amacpt][SKU] = $artid ;
-		$amatab[$amacpt][parentage] = "parent" ;
-		$amatab[$amacpt][ParentSKU] = "" ;
-		$amatab[$amacpt][RelationshipType] = "" ;
-		$amatab[$amacpt][FD_Color] = "" ;
-		$amatab[$amacpt][FD_Size] = "" ;
-		$amatab[$amacpt][FD_VariationTheme] = "Color" ;
-		$amatab[$amacpt][codebarre] = $codebarre[codebarre] ;
+		$amatab[$amacpt]['SKU'] = $artid ;
+		$amatab[$amacpt]['parentage'] = "parent" ;
+		$amatab[$amacpt]['ParentSKU'] = "" ;
+		$amatab[$amacpt]['RelationshipType'] = "" ;
+		$amatab[$amacpt]['FD_Color'] = "" ;
+		$amatab[$amacpt]['FD_Size'] = "" ;
+		$amatab[$amacpt]['FD_VariationTheme'] = "Color" ;
+		$amatab[$amacpt]['codebarre'] = $codebarre['codebarre'] ;
 		sort($amatab);
 		}
 	return $amatab ;

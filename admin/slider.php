@@ -358,7 +358,7 @@ if(isset($slider) && $slider!="" && isset($sllang) && $sllang!="" && isset($slsi
 
 		    print "<tr><td nowrap>$up $down</td>
 			      <td>$img</td>
-			      <td nowrap id=\"slider".$s[id]."\">
+			      <td nowrap id=\"slider".$s['id']."\">
 				  <a href=\"slider.php?action=modif&id=$s[id]&slider=".$slider."&sllang=$sllang&slsite=$slsite\"><img src=\"images/editer.gif\"></a>
 				  <a href=\"slider.php?action=del&id=$s[id]&slider=".$slider."&sllang=$sllang&slsite=$slsite\"><img src=\"images/supprimer.gif\"></a>
 				  <br><a href=\"slider.php?action=pro&id=$s[id]&slider=".$slider."&sllang=$sllang&slsite=$slsite&pro=".intval(abs($part-1)+2*$pro)."#slider$s[id]\" style=\"color:".($part==1?"green":"red").";\">Part</a>

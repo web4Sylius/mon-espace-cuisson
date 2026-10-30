@@ -391,7 +391,7 @@ HTML;
 						$totalcmd+=$qte*$paht;
 						$tbloffres.=<<<HTML
 						  <tr>
-							<td>$qte {$article[$artid][artcode]}</td>
+							<td>$qte {$article[$artid]['artcode']}</td>
 							<td>$txtreduc</td>
 							<td align="right">$paht $devise</td>
 							<td align="right"><s>$paorigin</s></td>

@@ -153,7 +153,7 @@ if (isset($_GET['productId']) and isset($_GET['qte']) and is_numeric($_GET['qte'
 				if (!in_array("4", $modules) || stock_get($DB_site, $artid, $mycaractvalids) >= ($qte + $article_correspond[qte]))
 					{
 					$DB_site->query("UPDATE lignepanier set qte = (qte + $qte) where lignepanierid = '$article_correspond[lignepanierid]'") ;
-					$templignepanierid=$article_correspond[lignepanierid] ;
+					$templignepanierid=$article_correspond['lignepanierid'] ;
 					}
 				else
 					{
@@ -165,7 +165,7 @@ if (isset($_GET['productId']) and isset($_GET['qte']) and is_numeric($_GET['qte'
 				if (!in_array("4", $modules) || stock_get($DB_site, $artid) >= ($qte + $article_correspond[qte]))
 					{
 					$DB_site->query("UPDATE lignepanier set qte = (qte + $qte) where lignepanierid = '$article_correspond[lignepanierid]'") ;
-					$templignepanierid=$article_correspond[lignepanierid] ;
+					$templignepanierid=$article_correspond['lignepanierid'] ;
 					}
 				else
 					{
@@ -329,79 +329,79 @@ if (isset($_GET['productId']) and isset($_GET['qte']) and is_numeric($_GET['qte'
         }
  
 
-		$lignepaniertmp[prix] += $modif_px ;
+		$lignepaniertmp['prix'] += $modif_px ;
 		// promotion, remise tt cat : modif du prix
 		$promo_en_crs=$DB_site->query_first("select promotionid from promotion p, article a where a.artid = p.artid
 		and a.artid = $lignepaniertmp[artid] and p.datedebut <= '$datedujour' and p.datefin >= '$datedujour'");
 		if (isset($remise_sur_tout_catalogue) and $remise_sur_tout_catalogue > 0) // remise tt catalogue
 			{
-			if ($promo_en_crs[promotionid] != NULL) // promo
+			if ($promo_en_crs['promotionid'] != NULL) // promo
 				{
 				$rs_promo = $DB_site->query_first("SELECT prix FROM promotion WHERE promotionid = '$promo_en_crs[promotionid]'
 				AND datedebut <= '$datedujour' AND datefin > '$datedujour'");
-				$rs_promo[prix] += $modif_px ;
-				if ($rs_promo[prix] != "")
+				$rs_promo['prix'] += $modif_px ;
+				if ($rs_promo['prix'] != "")
 					{
-					$tmp_prix = $rs_promo[prix] * (1 - $remise_sur_tout_catalogue / 100) ;
+					$tmp_prix = $rs_promo['prix'] * (1 - $remise_sur_tout_catalogue / 100) ;
 					}
 				else
 					{
-					$tmp_prix = $lignepaniertmp[prix] * (1 - $remise_sur_tout_catalogue / 100) ;
+					$tmp_prix = $lignepaniertmp['prix'] * (1 - $remise_sur_tout_catalogue / 100) ;
 					}
 				}
 			else // pas de promo
 				{
-				$tmp_prix = $lignepaniertmp[prix] * (1 - $remise_sur_tout_catalogue / 100) ;
+				$tmp_prix = $lignepaniertmp['prix'] * (1 - $remise_sur_tout_catalogue / 100) ;
 				}
 			}
 		else // pas de remise tt cat.
 			{
-			if ($promo_en_crs[promotionid] != NULL) // promo
+			if ($promo_en_crs['promotionid'] != NULL) // promo
 				{
 				$rs_promo = $DB_site->query_first("SELECT prix FROM promotion WHERE promotionid = '$promo_en_crs[promotionid]'
 				AND datedebut <= '$datedujour' AND datefin > '$datedujour'");
-				if ($rs_promo[prix] != "")
+				if ($rs_promo['prix'] != "")
 					{
-					$tmp_prix = $rs_promo[prix];
+					$tmp_prix = $rs_promo['prix'];
 					}
 				else
 					{
-					$tmp_prix = $lignepaniertmp[prix];
+					$tmp_prix = $lignepaniertmp['prix'];
 					}
 				}
 			else // pas promo
 				{
-				$tmp_prix = $lignepaniertmp[prix];
+				$tmp_prix = $lignepaniertmp['prix'];
 				}
 			}
 		$prixligne = $tmp_prix * $lignepaniertmp[qte];
 		// pays pour définir le taux de TVA
-		if ($HTTP_COOKIE_VARS[userid] != "")
+		if ($HTTP_COOKIE_VARS['userid'] != "")
 			{
 			$pays_user=$DB_site->query_first("select paysid from utilisateur where userid = '$HTTP_COOKIE_VARS[userid]'");
-			$paysid = $pays_user[paysid] ;
+			$paysid = $pays_user['paysid'] ;
 			}
-		elseif ($user_info[userid] != "")
+		elseif ($user_info['userid'] != "")
 			{
 			$pays_user=$DB_site->query_first("select paysid from utilisateur where userid = '$user_info[userid]'");
-			$paysid = $pays_user[paysid] ;
+			$paysid = $pays_user['paysid'] ;
 			}
 		else
 			{
 			$paysid = "57" ;
 			}
-		switch ($lignepaniertmp[tauxchoisi])
+		switch ($lignepaniertmp['tauxchoisi'])
 			{
 			case '0' :
 				$prixtva += 0 ;
 				break ;
 			case '1' : // si on est connecté on regarde tout de suite le pays !!!
 				$montauxtva=$DB_site->query_first("select TVAtauxnormal from pays where paysid = '$paysid'");
-				$prixtva += $prixligne - ($prixligne / (1 + ($montauxtva[TVAtauxnormal]/100))) ;
+				$prixtva += $prixligne - ($prixligne / (1 + ($montauxtva['TVAtauxnormal']/100))) ;
 				break ;
 			case '2' : // si on est connecté on regarde tout de suite le pays !!!
 				$montauxtva=$DB_site->query_first("select TVAtauxreduit from pays where paysid = '$paysid'");
-				$prixtva += $prixligne - ($prixligne / (1 + ($montauxtva[TVAtauxreduit]/100))) ;
+				$prixtva += $prixligne - ($prixligne / (1 + ($montauxtva['TVAtauxreduit']/100))) ;
 				break ;
 			}
 		$nbart+=$lignepaniertmp[qte];

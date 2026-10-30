@@ -257,16 +257,16 @@ foreach($sites as $site_code=>$site) {
        $prixtrspt[$site_code]+=($lart['qte']*$larticle['prixtrspt']);
 
        $tdecopartht.="<td class=\"lot\"><input type=\"text\" name=\"lotecopartht[$site_code][$lart[id]]\" value=\"".($larticle['ecopartht'])."\" class=\"roinput\" readonly></td>";
-       $tdecopart.="<td class=\"lot\" id=\"lotecopart_".$site_code."_".$lart[id]."\">".round($larticle['ecopartht']*(1+$tvapc/100),2)."</td>";
-       $tdtrspt.="<td class=\"lot\" id=\"lottrspt_".$site_code."_".$lart[id]."\">".round($larticle['prixtrspt'],2)."</td>";
-       $tdprixht.="<td class=\"lot\" id=\"lotprixht_".$site_code."_".$lart[id]."\">".round($article_lot_site['prixht'],2).$devise_vente."</td>";
+       $tdecopart.="<td class=\"lot\" id=\"lotecopart_".$site_code."_".$lart['id']."\">".round($larticle['ecopartht']*(1+$tvapc/100),2)."</td>";
+       $tdtrspt.="<td class=\"lot\" id=\"lottrspt_".$site_code."_".$lart['id']."\">".round($larticle['prixtrspt'],2)."</td>";
+       $tdprixht.="<td class=\"lot\" id=\"lotprixht_".$site_code."_".$lart['id']."\">".round($article_lot_site['prixht'],2).$devise_vente."</td>";
        $tdprix.="<td class=\"lot\"><input type=\"text\" name=\"lotprix[$site_code][$lart[id]]\" value=\"".($article_lot_site['prix'])."\" size=\"7\" onkeypress=\"nbonly(event,true);\" onkeyup=\"verifprix(false,'$site_code')\">".$devise_vente."</td>";
-       $tdpaht.="<td class=\"lot\"><input type=\"text\" name=\"lotpaht[$site_code][$lart[id]]\" value=\"".($article_lot_site['paht'])."\" size=\"7\" onkeypress=\"nbonly(event,true);\" onkeyup=\"verifprix(false,'$site_code')\">$devise_achat_lot<br><span id=\"lotpattc_".$site_code."_".$lart[id]."\">".round($article_lot_site['paht']*(1+$tvapc/100),2)."$devise_achat_lot TTC</span><input type=\"hidden\" name=\"lotdevise[$site_code][$lart[id]]\" value=\"".$article_fournisseur['devise']."\"></td>";
-       $tdbarre.="<td class=\"lot\"><input type=\"text\" name=\"lotbarre[$site_code][$lart[id]]\" value=\"".round($article_site['prixconseilleht']*(1+$tvapc/100),2)."\" class=\"roinput\" readonly> ".$devise_vente." TTC<br><span id=\"lotbarreht_".$site_code."_".$lart[id]."\">".round($article_site['prixconseilleht'],2)." ".$devise_vente." HT</td>";
+       $tdpaht.="<td class=\"lot\"><input type=\"text\" name=\"lotpaht[$site_code][$lart[id]]\" value=\"".($article_lot_site['paht'])."\" size=\"7\" onkeypress=\"nbonly(event,true);\" onkeyup=\"verifprix(false,'$site_code')\">$devise_achat_lot<br><span id=\"lotpattc_".$site_code."_".$lart['id']."\">".round($article_lot_site['paht']*(1+$tvapc/100),2)."$devise_achat_lot TTC</span><input type=\"hidden\" name=\"lotdevise[$site_code][$lart[id]]\" value=\"".$article_fournisseur['devise']."\"></td>";
+       $tdbarre.="<td class=\"lot\"><input type=\"text\" name=\"lotbarre[$site_code][$lart[id]]\" value=\"".round($article_site['prixconseilleht']*(1+$tvapc/100),2)."\" class=\"roinput\" readonly> ".$devise_vente." TTC<br><span id=\"lotbarreht_".$site_code."_".$lart['id']."\">".round($article_site['prixconseilleht'],2)." ".$devise_vente." HT</td>";
        $tdspy.="<td class=\"lot\">".spytable($larticle['artcode'])."</td>";
 
        $tdtempprix[$site_code].="<td><input type=\"text\" name=\"tplotprix[$site_code][$lart[id]]\" value=\"".($article_lot_site['prix'])."\" size=\"7\" onkeyup=\"calctemp('$site_code');calcmarge('t','$site_code');\" onkeypress=\"nbonly(event,true);\">".$devise_vente."</td>";
-       $tdcalc.="<td><a href=\"javascript:srcprix('".$larticle['artcode']."',".$lart[id].",".$lart['artid'].",'".$site_code."')\">Remise a jour tarif article</a></td>";
+       $tdcalc.="<td><a href=\"javascript:srcprix('".$larticle['artcode']."',".$lart['id'].",".$lart['artid'].",'".$site_code."')\">Remise a jour tarif article</a></td>";
 
        $tdtempachatprix[$site_code].="<td><input type=\"text\" name=\"tpachatlotprix[$site_code][$lart[id]]\" value=\"".($article_lot_site['paht'])."\" size=\"7\" readonly>&euro;</td>";
      }

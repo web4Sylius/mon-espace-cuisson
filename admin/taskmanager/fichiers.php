@@ -33,7 +33,7 @@ function getfiles($parentid=null){
   if(!is_null($parentid) && $parentid>0){
       $parent=$DB_site2->query_first("SELECT * FROM suivi_interne_files WHERE id=".$parentid);
       $path.="<path name=\"".str_replace('"',"",$parent['name'])."\" dataurl=\"taskmanager/fichiers.php?action=files&amp;taskid=".$_GET['taskid']."&amp;parent=".$parentid."\" />";
-      $ret.="<parent id=\"$parent[parent]\" dataurl=\"taskmanager/fichiers.php?action=files&amp;taskid=".$_GET['taskid']."&amp;parent=$parent[parent]\" name=\"".str_replace("&","&amp;",$parent[name])."\" utilisateur=\"$parent[utilisateur]\" date=\"$parent[date]\" mod=\"rw\" />";
+      $ret.="<parent id=\"$parent[parent]\" dataurl=\"taskmanager/fichiers.php?action=files&amp;taskid=".$_GET['taskid']."&amp;parent=$parent[parent]\" name=\"".str_replace("&","&amp;",$parent['name'])."\" utilisateur=\"$parent[utilisateur]\" date=\"$parent[date]\" mod=\"rw\" />";
   }else
       $ret.="<parent id=\"\" name=\"\" utilisateur=\"\" date=\"\" mod=\"rw\" />";
 
@@ -44,9 +44,9 @@ function getfiles($parentid=null){
   while($f=$DB_site2->fetch_array($r)){
       if($f['ext']==""){
 	  $count=$DB_site2->query_first("SELECT COUNT(*),SUM(size) FROM suivi_interne_files WHERE parent=".$f['id']);
-	  $ret.="<folder id=\"$f[id]\" dataurl=\"taskmanager/fichiers.php?action=files&amp;taskid=".$_GET['taskid']."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f[name])." (".$count[0].")\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
+	  $ret.="<folder id=\"$f[id]\" dataurl=\"taskmanager/fichiers.php?action=files&amp;taskid=".$_GET['taskid']."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f['name'])." (".$count[0].")\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
       }else
-	  $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f[name])."\" path=\"taskmanager/fichiers/$f[id].$f[ext]\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
+	  $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f['name'])."\" path=\"taskmanager/fichiers/$f[id].$f[ext]\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
   }
 
   $ret.="<upload dataurl=\"taskmanager/fichier_ul.php?taskid=".$_GET['taskid']."&amp;action=fb.load()&amp;parent=".intval($parentid)."\" />".$path;
@@ -62,7 +62,7 @@ function tree($taskid){
     $sql="SELECT * FROM suivi_interne_files WHERE taskid='".$taskid."' AND ext='' ORDER BY name";
     $r=$DB_site2->query($sql);
     while($f=$DB_site2->fetch_array($r)){
-	$ret.="<folder id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f[name])."\" parent=\"$f[parent]\" />";
+	$ret.="<folder id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f['name'])."\" parent=\"$f[parent]\" />";
     }
 
     return $ret;

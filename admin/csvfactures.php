@@ -30,124 +30,124 @@ $factures=$DB_site2->query("SELECT * FROM facture f, pays p where f.paysid = p.p
 while($facture=$DB_site2->fetch_array($factures)) 
 	{
 	$contenu = "" ;
-	switch ($facture[civilite])
+	switch ($facture['civilite'])
 		{
 		case '0':
-			$facture[civilite] = "Monsieur" ;
+			$facture['civilite'] = "Monsieur" ;
 			break ;
 		case '1':
-			$facture[civilite] = "Madame" ;
+			$facture['civilite'] = "Madame" ;
 			break ;
 		case '2':
-			$facture[civilite] = "Mademoiselle" ;
+			$facture['civilite'] = "Mademoiselle" ;
 			break ;
 		case '3':
-			$facture[civilite] = "Mademoiselle" ;
+			$facture['civilite'] = "Mademoiselle" ;
 			break ;
 		}
-	switch ($facture[langue])
+	switch ($facture['langue'])
 		{
 		case 'FR':
-			$facture[langue] = "Français" ;
+			$facture['langue'] = "Français" ;
 			break ;
 		case 'DE':
-			$facture[langue] = "Allemand" ;
+			$facture['langue'] = "Allemand" ;
 			break ;
 		case 'EN':
-			$facture[langue] = "Anglais" ;
+			$facture['langue'] = "Anglais" ;
 			break ;
 		case 'IT':
-			$facture[langue] = "Italien" ;
+			$facture['langue'] = "Italien" ;
 			break ;
 		case 'SP':
-			$facture[langue] = "Espagnol" ;
+			$facture['langue'] = "Espagnol" ;
 			break ;
 		}
-	switch ($facture[moyenid])
+	switch ($facture['moyenid'])
 		{
 		case '0':
-			$facture[moyenid] = "Abandon" ;
+			$facture['moyenid'] = "Abandon" ;
 			break ;
 		case '1':
-			$facture[moyenid] = "Carte Bleue" ;
+			$facture['moyenid'] = "Carte Bleue" ;
 			break ;
 		case '2':
-			$facture[moyenid] = "Chèque" ;
+			$facture['moyenid'] = "Chèque" ;
 			break ;
 		case '3':
-			$facture[moyenid] = "Contre remboursement" ;
+			$facture['moyenid'] = "Contre remboursement" ;
 			break ;
 		case '4':
-			$facture[moyenid] = "Mandat postal" ;
+			$facture['moyenid'] = "Mandat postal" ;
 			break ;
 		case '5':
-			$facture[moyenid] = "Virement" ;
+			$facture['moyenid'] = "Virement" ;
 			break ;
 		case '6':
-			$facture[moyenid] = "Paypal" ;
+			$facture['moyenid'] = "Paypal" ;
 			break ;
 		}
-	switch ($facture[valide])
+	switch ($facture['valide'])
 		{
 		case '0':
-			$facture[valide] = "Non traitée" ;
+			$facture['valide'] = "Non traitée" ;
 			break ;
 		case '1':
-			$facture[valide] = "Validée" ;
+			$facture['valide'] = "Validée" ;
 			break ;
 		case '2':
-			$facture[valide] = "Refus commerçant" ;
+			$facture['valide'] = "Refus commerçant" ;
 			break ;
 		case '3':
-			$facture[valide] = "Refusée" ;
+			$facture['valide'] = "Refusée" ;
 			break ;
 		case '4':
-			$facture[valide] = "Abandon internaute" ;
+			$facture['valide'] = "Abandon internaute" ;
 			break ;
 		case '5':
-			$facture[valide] = "Expediée" ;
+			$facture['valide'] = "Expediée" ;
 			break ;
 		}
 	$contenu.="\n";	
-	$contenu.=$facture[facturid]; 
+	$contenu.=$facture['facturid']; 
 	$contenu.=";";
-	$contenu.=$facture[datefacture];
+	$contenu.=$facture['datefacture'];
 	$contenu.=";";
-	$contenu.=$facture[civilite]; 
+	$contenu.=$facture['civilite']; 
 	$contenu.=";";
-	$contenu.=$facture[nom]; 
+	$contenu.=$facture['nom']; 
 	$contenu.=";";
-	$contenu.=$facture[prenom]; 
+	$contenu.=$facture['prenom']; 
 	$contenu.=";";
-	$contenu.=$facture[mail]; 
+	$contenu.=$facture['mail']; 
 	$contenu.=";";
-	$contenu.=$facture[adresse]; 
+	$contenu.=$facture['adresse']; 
 	$contenu.=";";
-	$contenu.=$facture[codepostal]; 
+	$contenu.=$facture['codepostal']; 
 	$contenu.=";";
-	$contenu.=$facture[ville]; 
+	$contenu.=$facture['ville']; 
 	$contenu.=";";
-	$contenu.=$facture[telephone]; 
+	$contenu.=$facture['telephone']; 
 	$contenu.=";";
-	$contenu.=$facture[raisonsociale]; 
+	$contenu.=$facture['raisonsociale']; 
 	$contenu.=";";
-	$contenu.=$facture[libelle]; 
+	$contenu.=$facture['libelle']; 
 	$contenu.=";";
-	$contenu.=$facture[langue]; 
+	$contenu.=$facture['langue']; 
 	$contenu.=";";
-	$contenu.=$facture[prixport]; 
+	$contenu.=$facture['prixport']; 
 	$contenu.=";";
-	$contenu.=$facture[prixgestion]; 
+	$contenu.=$facture['prixgestion']; 
 	$contenu.=";";
-	$contenu.=$facture[moyenid]; 
+	$contenu.=$facture['moyenid']; 
 	$contenu.=";";
-	$contenu.=$facture[valide]; 
+	$contenu.=$facture['valide']; 
 	$contenu.=";";
-	$contenu.=$facture[montantremise]; 
+	$contenu.=$facture['montantremise']; 
 	$contenu.=";";
-	$contenu.=$facture[montantcadeau]; 
+	$contenu.=$facture['montantcadeau']; 
 	$contenu.=";";
-	$contenu.=$facture[numero_suivi]; 
+	$contenu.=$facture['numero_suivi']; 
 	$lignesfacture=$DB_site2->query("SELECT * FROM lignefacture where factureid = '$facture[facturid]'");
 	// en-tête des lignes facture
 	if ($DB_site2->num_rows($lignesfacture))
@@ -202,9 +202,9 @@ while($facture=$DB_site2->fetch_array($factures))
 		while ($lignefacturecaract=$DB_site2->fetch_array($lignefacturecaracts))
 			{
 			$modif = "" ;
-			if ($lignefacturecaract[differenceprix] != 0)
+			if ($lignefacturecaract['differenceprix'] != 0)
 				{
-				if (substr($lignefacturecaract[differenceprix], 0, 1) == "-")
+				if (substr($lignefacturecaract['differenceprix'], 0, 1) == "-")
 					{
 					$modif = "($lignefacturecaract[differenceprix] €)" ;
 					}
@@ -213,24 +213,24 @@ while($facture=$DB_site2->fetch_array($factures))
 					$modif = "(+$lignefacturecaract[differenceprix] €)" ;
 					}
 				}
-			$caracts .= strtoupper($lignefacturecaract[libelle_caract]) . " : $lignefacturecaract[libelle_caractval] $modif" ;
+			$caracts .= strtoupper($lignefacturecaract['libelle_caract']) . " : $lignefacturecaract[libelle_caractval] $modif" ;
 			}
 		$contenu.="\n";
 		$contenu.=""; 
 		$contenu.=";";
-		$contenu.=$lignefacture[lignefactureid];
+		$contenu.=$lignefacture['lignefactureid'];
 		$contenu.=";";
 		$contenu.=$lignefacture[artid]; 
 		$contenu.=";";
-		$contenu.=$lignefacture[artcode]; 
+		$contenu.=$lignefacture['artcode']; 
 		$contenu.=";";
-		$contenu.=$lignefacture[libelle]; 
+		$contenu.=$lignefacture['libelle']; 
 		$contenu.=";";
 		$contenu.=$lignefacture[qte]; 
 		$contenu.=";";
-		$contenu.=$lignefacture[prix]; 
+		$contenu.=$lignefacture['prix']; 
 		$contenu.=";";
-		$contenu.=$lignefacture[tva]; 
+		$contenu.=$lignefacture['tva']; 
 		$contenu.=";";
 		$contenu.=$caracts; 
 		$contenu.=";";

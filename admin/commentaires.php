@@ -69,23 +69,23 @@ if (in_array ("18", $modules))
 		}
 	$commentaire=$DB_site2->query_first("select gestion_commentaires from parametresgeneraux") ;
 	echo "<h3>Gestion des commentaires sur les atricles</h3><ul>" ;
-	if ($commentaire[gestion_commentaires] == "")
+	if ($commentaire['gestion_commentaires'] == "")
 		{
 		echo "<li><a href=\"commentaires.php?comm=auto\">Afficher automatiquement un commentaire dès sa rédaction par un visiteur</a></li>
 			 <li><a href=\"commentaires.php?comm=visu\">Visualiser les commentaires des visiteurs et choisir de les publier (ou non)</a></li>" ;
 		}
-	elseif ($commentaire[gestion_commentaires] == "auto")
+	elseif ($commentaire['gestion_commentaires'] == "auto")
 		{
 		echo "<li>Afficher automatiquement un commentaire dès sa rédaction par un visiteur</li>
 			 <li><a href=\"commentaires.php?comm=visu\">Visualiser les commentaires des visiteurs et choisir de les publier (ou non)</a></li>" ;
 		}
-	elseif ($commentaire[gestion_commentaires] == "visu")
+	elseif ($commentaire['gestion_commentaires'] == "visu")
 		{
 		echo "<li><a href=\"commentaires.php?comm=auto\">Afficher automatiquement un commentaire dès sa rédaction par un visiteur</a></li>
 			 <li>Visualiser les commentaires des visiteurs et choisir de les publier (ou non)</li>" ;
 		}
 	echo "</ul>";
-	if ($commentaire[gestion_commentaires] == "visu")
+	if ($commentaire['gestion_commentaires'] == "visu")
 		{
 		echo "<br><h1>NOUVEAUX COMMENTAIRES POSTES SUR LES ARTICLES</h1><br>$msg" ;
 		$new_commentaires=$DB_site2->query("select * from articlevote av, article a where av.artid = a.artid and (actif = '0' or actif = '')
@@ -101,10 +101,10 @@ if (in_array ("18", $modules))
 			while ($new_commentaire=$DB_site2->fetch_array($new_commentaires)) 
 				{
 				$rowalt="td_factures_".getrowbg();
-				$madate = explode("-", $new_commentaire[datevote]) ;
+				$madate = explode("-", $new_commentaire['datevote']) ;
 				$note = "" ;
 				$i = 0 ;
-				while ($i < $new_commentaire[note]) 
+				while ($i < $new_commentaire['note']) 
 					{
 					$i++ ;
 					$note .= "<img src=\"images/etoile.gif\">" ;

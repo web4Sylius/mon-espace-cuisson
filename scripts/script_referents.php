@@ -41,7 +41,7 @@ while ($boutique=$DB_site->fetch_array($boutiques))
 	
 	while($referent=$DB_site2->fetch_array($referents)) 
 		{
-		if($referent[motcle]!="t") 
+		if($referent['motcle']!="t") 
 			{
 			$i=0;
 			$position=0;
@@ -50,7 +50,7 @@ while ($boutique=$DB_site->fetch_array($boutiques))
 			$positionbatnight=0;
 			while($i<$finanalyse and $positionbatnight==0) 
 				{
-				$lines = file( "http://www.google.fr/search?q=".urlencode($referent[motcle])."&hl=fr&lr=&start=$i&sa=N" );
+				$lines = file( "http://www.google.fr/search?q=".urlencode($referent['motcle'])."&hl=fr&lr=&start=$i&sa=N" );
 				foreach ($lines as $line_num => $line) 
 					{
 					$f.= $line;

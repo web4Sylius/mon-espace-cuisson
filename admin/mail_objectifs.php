@@ -39,7 +39,7 @@ while($commercial=$DB_site->fetch_array($commercials)){
     $objectif_commercial=array();
     $objectifs_sql=$DB_site->query("SELECT * FROM objectif_commercial WHERE username='".$commercial['username']."' AND annee='".$year."'");
     while($objectif=$DB_site->fetch_array($objectifs_sql)){
-        $objectif_commercial[$objectif[mois]]=$objectif[objectif_ca];
+        $objectif_commercial[$objectif[mois]]=$objectif['objectif_ca'];
     }
     $ca=ca($year,null,$commercial['username']);
     $objectif_trimestre=$objectif_mois=$objectif_jour=0;

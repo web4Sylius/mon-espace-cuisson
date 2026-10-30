@@ -304,11 +304,11 @@ $sql = "SELECT u.userid as u_userid, u.*, p.* FROM utilisateur AS u INNER JOIN p
 		WHERE u.utilisateur_admin='0'  ";
 $requete = $DB_site2->query($sql);
 while($projet = $DB_site2->fetch_array($requete)){
-	$rappel_sql=$DB_site2->query_first("SELECT id, rappel, pour FROM suivi_client WHERE userid='".$projet[u_userid]."' AND projetid='".$projet[projetid]."' AND rappel>0 ORDER BY id DESC LIMIT 1 ");
-	if($rappel_sql[id]!=""){
+	$rappel_sql=$DB_site2->query_first("SELECT id, rappel, pour FROM suivi_client WHERE userid='".$projet['u_userid']."' AND projetid='".$projet['projetid']."' AND rappel>0 ORDER BY id DESC LIMIT 1 ");
+	if($rappel_sql['id']!=""){
 		$rappel_txt=date('d/m/Y', $rappel_sql['rappel']);
-		if($projet[rappel]==0){
-			$sql = "UPDATE projet SET rappel='".$rappel_sql[rappel]."', rappel_commercial='".$rappel_sql[pour]."' WHERE projetid = '".$projet[projetid]."' "; 
+		if($projet['rappel']==0){
+			$sql = "UPDATE projet SET rappel='".$rappel_sql['rappel']."', rappel_commercial='".$rappel_sql['pour']."' WHERE projetid = '".$projet['projetid']."' "; 
 			echo $sql."<br>";
 			$DB_site2->query($sql);
 			$i++;

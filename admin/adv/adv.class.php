@@ -118,7 +118,7 @@ function radio($name,$value,$action="",$options=""){
     $optionstr="";
     if($options!="") foreach($options as $attr=>$v) $optionstr.=" ".$attr."=\"".$v."\"";
     $uniq=uniqid();
-    $return="<label for=\"opt$name$uniq\"".$optionstr." style=\"cursor: pointer;\"><input type=\"radio\" name=\"opt$name\" id=\"opt$name$uniq\" value=\"$data[value]\" onclick=\"document.getElementsByName('$name')[0].value=this.value;$action;\" ".($this->fields[$name]==$data[value]?"checked":"").($this->locked?" disabled":"")." style=\"cursor:pointer;\">".$data['key']."</label>";
+    $return="<label for=\"opt$name$uniq\"".$optionstr." style=\"cursor: pointer;\"><input type=\"radio\" name=\"opt$name\" id=\"opt$name$uniq\" value=\"$data[value]\" onclick=\"document.getElementsByName('$name')[0].value=this.value;$action;\" ".($this->fields[$name]==$data['value']?"checked":"").($this->locked?" disabled":"")." style=\"cursor:pointer;\">".$data['key']."</label>";
 
     return $return;
 }

@@ -123,11 +123,11 @@ HTML;
 		$urls[]="https://www.ma-cave-a-vin.fr/vente_privee.html";
 		$articles = $DB_site2->query("SELECT * FROM vente_privee_article ");
 		while($article = $DB_site2->fetch_array($articles)){   
-			$temp="prixvf_".$article[artcode];
-			if($_POST[$temp]!=$article[prix]){
+			$temp="prixvf_".$article['artcode'];
+			if($_POST[$temp]!=$article['prix']){
 				// echo "<script>alert('".$article[artcode]." : prix changé de ".$article[prixflash]." a ".$_POST[$temp]." ')</script>";
 				$DB_site2->query("UPDATE vente_privee_article SET prix=".$_POST[$temp]." WHERE id=".$article['id']);
-				$cloud_article=$DB_site2->query_first("SELECT artid, libelleFR, libelleEN, catid FROM article WHERE artcode='".$article[artcode]."'");
+				$cloud_article=$DB_site2->query_first("SELECT artid, libelleFR, libelleEN, catid FROM article WHERE artcode='".$article['artcode']."'");
 				$cloud_marque=$DB_site2->query_first("SELECT marque.libelle, marque.urlFR, marque.urlEN, marqueid FROM marque INNER JOIN article_marque USING(marqueid) WHERE article_marque.artid=".$cloud_article[artid]);
 				$urls[]="https://www.ma-cave-a-vin.fr/".url_rewrite($cloud_article['libelleFR']."-".$cloud_marque['libelle'])."-art".$cloud_article[artid].".htm";
 				$urls[]="https://pro.ma-cave-a-vin.fr/".url_rewrite($cloud_article['libelleFR']."-".$cloud_marque['libelle'])."-art".$cloud_article[artid].".htm";
@@ -750,34 +750,34 @@ if($_GET['action'] == "editer"){
 		  $cptVenteVfHA = $DB_site2->query_first($requeteCpt);
 		  $nbVentes+=$cptVenteVfHA['nbVenteArt'];
 		  $nbVentestotal+=$nbVentes;
-		  $caApprox=$vfart[prix]*$nbVentes;
+		  $caApprox=$vfart['prix']*$nbVentes;
 		  $caApproxtotal+=$caApprox;
 		  
 		  
 			// debut calcul de marge de $article[artcode]
-			$sql="SELECT artid, active, paht, artcode, artcode_eurocave, prix, prixtrspt, codebarre, prixconseilleht FROM article WHERE artcode='".$article[artcode]."' ";
+			$sql="SELECT artid, active, paht, artcode, artcode_eurocave, prix, prixtrspt, codebarre, prixconseilleht FROM article WHERE artcode='".$article['artcode']."' ";
 			$res=$DB_site2->query_first($sql);
-			$remise = round(100 - ($vfart[prix] * 100 / ($res[prixconseilleht]*$tauxtva)),2);
+			$remise = round(100 - ($vfart['prix'] * 100 / ($res['prixconseilleht']*$tauxtva)),2);
 			
 			$article_fournisseur=$DB_site2->query_first("SELECT ecopartht, trspt, prix FROM article_fournisseur WHERE artid=".$res[artid]." AND principal LIKE '%base%' AND devise='EUR' ");
-			if($article_fournisseur[ecopartht]==""){
-				$article_fournisseur[ecopartht]=0;
+			if($article_fournisseur['ecopartht']==""){
+				$article_fournisseur['ecopartht']=0;
 			}
-			if($article_fournisseur[trspt]==""){
-				$article_fournisseur[trspt]=0;
+			if($article_fournisseur['trspt']==""){
+				$article_fournisseur['trspt']=0;
 			}
 			$sql="SELECT prix, paht FROM temp_price WHERE artid=".$res[artid]." AND du <= '".$vfh['du']."' AND au >= '".$vfh['au']."' LIMIT 1";
 			$temp_price=$DB_site2->query_first($sql);
-			if($temp_price[prix]!=""){
-				$article_paht=$temp_price[paht];
+			if($temp_price['prix']!=""){
+				$article_paht=$temp_price['paht'];
 			} else {
-				if($article_fournisseur[prix] != ''){
-					$article_paht = $article_fournisseur[prix];
+				if($article_fournisseur['prix'] != ''){
+					$article_paht = $article_fournisseur['prix'];
 				}else{
-					$article_paht=$res[paht];
+					$article_paht=$res['paht'];
 				}
 			}
-			$lesGaranties=DAOgarantie::loadMaxGarantieArtByPays($DB_site2,'base','FR','57',$res[artid],'',$vfart[prix]);
+			$lesGaranties=DAOgarantie::loadMaxGarantieArtByPays($DB_site2,'base','FR','57',$res[artid],'',$vfart['prix']);
 			$i=0;
 			$garantie=0;
 			if(!empty($lesGaranties)){
@@ -789,27 +789,27 @@ if($_GET['action'] == "editer"){
 						$garantie+=round($laGarantie->paht);
 				}
 			}
-			$frais_port=new frais_port($DB_site2,array($res[artid]=>1),57,$vfart[prix],$article_paht,'base');
+			$frais_port=new frais_port($DB_site2,array($res[artid]=>1),57,$vfart['prix'],$article_paht,'base');
 
-			$article_paht_total=$article_paht+$res[prixtrspt]+$article_fournisseur[ecopartht]+$article_fournisseur[trspt]+$garantie+$frais_port->paht-$frais_port->prixht;
-			$marge_ht=round(($vfart[prix]/$tauxtva)-$article_paht_total,2);
-			$marge_pct=round($marge_ht*100/($vfart[prix]/$tauxtva),2);
+			$article_paht_total=$article_paht+$res['prixtrspt']+$article_fournisseur['ecopartht']+$article_fournisseur['trspt']+$garantie+$frais_port->paht-$frais_port->prixht;
+			$marge_ht=round(($vfart['prix']/$tauxtva)-$article_paht_total,2);
+			$marge_pct=round($marge_ht*100/($vfart['prix']/$tauxtva),2);
 			// fin calcul de marge
 		  
 		  
 		  
           print "<tr>
-		            <td>".$article[artcode]."</td>
-		            <td>".$article[artcode_eurocave]."</td>
-					<td>".round($res[prixconseilleht]*$tauxtva,2)."€</td>
-		            <td>".$article[prix]."€</td>
-					<td nowrap><input name=\"prixvf_".$article[artcode]."\" align=\"right\" type=\"number\" step=\"0.01\" min=\"0\" value=\"".number_format($vfart[prix], 2, '.', '')."\">€</td>
+		            <td>".$article['artcode']."</td>
+		            <td>".$article['artcode_eurocave']."</td>
+					<td>".round($res['prixconseilleht']*$tauxtva,2)."€</td>
+		            <td>".$article['prix']."€</td>
+					<td nowrap><input name=\"prixvf_".$article['artcode']."\" align=\"right\" type=\"number\" step=\"0.01\" min=\"0\" value=\"".number_format($vfart['prix'], 2, '.', '')."\">€</td>
 	      			<td align=\"center\">".number_format($remise, 2, '.', '')."%</td>
 	      			<td align=\"center\">".number_format($marge_ht, 2, ',', ' ')."€<br>".$marge_pct."%</td>
-	      			<td align=\"center\">".$vfart[stock]."</td>
+	      			<td align=\"center\">".$vfart['stock']."</td>
 					<td align=\"center\">".$nbVentes."</td>
 					<td align=\"center\">".$caApprox."</td>
-			      	<td><a href=\"vente_privee.php?action=suppr&site_code=".$site_code."&action2=del&del=".$vfart[id]."&id=".$_GET['id']."\"><img src=\"images/supprimer.gif\" title=\"Supprimer\"></a></td>
+			      	<td><a href=\"vente_privee.php?action=suppr&site_code=".$site_code."&action2=del&del=".$vfart['id']."&id=".$_GET['id']."\"><img src=\"images/supprimer.gif\" title=\"Supprimer\"></a></td>
             	</tr>";
       }
 
@@ -903,7 +903,7 @@ if($_GET['action'] == "voir")
           $au=date("d/m/Y H:i",$vfh['au']);
           
           print "<tr>
-                    <td>".$vfh[nom]."</td>
+                    <td>".$vfh['nom']."</td>
                     <td>".$du."</td>
                     <td>".$au."</td>";
           print "</tr>";
@@ -926,11 +926,11 @@ if($_GET['action'] == "voir")
             </tr>";
          
           // liste des articles   id 	vfhid 	artcode 	artcode_eurocave 	prix 	prixflash
-          $arraydata =$vfh[nom].";".$du.";".$au."\n\n";
+          $arraydata =$vfh['nom'].";".$du.";".$au."\n\n";
           $arraydata .="code article;code fabricant;prix original;prix flash;nb vente\n";
           $nbVentestotal=0;
 		  $caApproxtotal=0;
-          $requete=$DB_site2->query("SELECT vfh.* FROM vente_privee_harticles vfh WHERE vfh.vfhid=".$vfh[id]." ORDER BY vfh.artcode"); 
+          $requete=$DB_site2->query("SELECT vfh.* FROM vente_privee_harticles vfh WHERE vfh.vfhid=".$vfh['id']." ORDER BY vfh.artcode"); 
           while($article=$DB_site2->fetch_array($requete)){
               // compte des ventes 
               $nbVentes=0;
@@ -939,36 +939,36 @@ if($_GET['action'] == "voir")
               $cptVenteVfHA = $DB_site2->query_first($requeteCpt);
               $nbVentes+=$cptVenteVfHA['nbVenteArt'];
 			  $nbVentestotal+=$nbVentes;
-			  $caApprox=$article[prixflash]*$nbVentes;
+			  $caApprox=$article['prixflash']*$nbVentes;
               $caApproxtotal+=$caApprox;
-			  $remise = round(100 - ($article[prixflash] * 100 / $article[prix]),2);
+			  $remise = round(100 - ($article['prixflash'] * 100 / $article['prix']),2);
 			  
 				// debut calcul de marge de $article[artcode]
-				$sql="SELECT artid, active, paht, artcode, artcode_eurocave, prix, prixtrspt, codebarre, prixconseilleht FROM article WHERE artcode='".$article[artcode]."' ";
+				$sql="SELECT artid, active, paht, artcode, artcode_eurocave, prix, prixtrspt, codebarre, prixconseilleht FROM article WHERE artcode='".$article['artcode']."' ";
 				$res=$DB_site2->query_first($sql);
 				$article_fournisseur=$DB_site2->query_first("SELECT ecopartht, trspt, prix FROM article_fournisseur WHERE artid=".$res[artid]." AND principal LIKE '%base%' AND devise='EUR' ");
-				if($article_fournisseur[ecopartht]==""){
-					$article_fournisseur[ecopartht]=0;
+				if($article_fournisseur['ecopartht']==""){
+					$article_fournisseur['ecopartht']=0;
 				}
-				if($article_fournisseur[trspt]==""){
-					$article_fournisseur[trspt]=0;
+				if($article_fournisseur['trspt']==""){
+					$article_fournisseur['trspt']=0;
 				}
                 
 				$sql="SELECT prix, paht FROM temp_price WHERE artid=".$res[artid]." AND du <= '".$vfh['du']."' AND au >= '".$vfh['au']."' LIMIT 1";
 				$temp_price=$DB_site2->query_first($sql);
-				if($temp_price[prix]!=""){
-					$article_paht=$temp_price[paht];
+				if($temp_price['prix']!=""){
+					$article_paht=$temp_price['paht'];
 				} else {
-					if($article_fournisseur[prix] != ''){
-						$article_paht = $article_fournisseur[prix];
+					if($article_fournisseur['prix'] != ''){
+						$article_paht = $article_fournisseur['prix'];
 					}else{
-						$article_paht=$res[paht];
+						$article_paht=$res['paht'];
 					}
 				}
                 
 
 
-				$lesGaranties=DAOgarantie::loadMaxGarantieArtByPays($DB_site2,'base','FR','57',$res[artid],'',$article[prixflash]);
+				$lesGaranties=DAOgarantie::loadMaxGarantieArtByPays($DB_site2,'base','FR','57',$res[artid],'',$article['prixflash']);
 				$i=0;
 				$garantie=0;
 				if(!empty($lesGaranties)){
@@ -980,19 +980,19 @@ if($_GET['action'] == "voir")
 							$garantie+=round($laGarantie->paht);
 					}
 				}
-				$frais_port=new frais_port($DB_site2,array($res[artid]=>1),57,$article[prixflash],$article_paht,'base');
+				$frais_port=new frais_port($DB_site2,array($res[artid]=>1),57,$article['prixflash'],$article_paht,'base');
 
-				$article_paht_total=$article_paht+$res[prixtrspt]+$article_fournisseur[ecopartht]+$article_fournisseur[trspt]+$garantie+$frais_port->paht-$frais_port->prixht;
-				$marge_ht=round(($article[prixflash]/$tauxtva)-$article_paht_total,2);
-				$marge_pct=round($marge_ht*100/($article[prixflash]/$tauxtva),2);
+				$article_paht_total=$article_paht+$res['prixtrspt']+$article_fournisseur['ecopartht']+$article_fournisseur['trspt']+$garantie+$frais_port->paht-$frais_port->prixht;
+				$marge_ht=round(($article['prixflash']/$tauxtva)-$article_paht_total,2);
+				$marge_pct=round($marge_ht*100/($article['prixflash']/$tauxtva),2);
 				// fin calcul de marge
 			  
               // affichage ligne du produit      
               print "<tr>
-                        <td>".$article[artcode]."</td>
-                        <td>".$article[artcode_eurocave]."</td>
-                        <td>".number_format($article[prix], 2, ',', ' ')."€</td>
-                        <td>".number_format($article[prixflash], 2, '.', '')."€</td>
+                        <td>".$article['artcode']."</td>
+                        <td>".$article['artcode_eurocave']."</td>
+                        <td>".number_format($article['prix'], 2, ',', ' ')."€</td>
+                        <td>".number_format($article['prixflash'], 2, '.', '')."€</td>
 						<td align=\"center\" nowrap>".$remise."%</td>
 						<td align=\"center\" nowrap>".number_format($marge_ht, 2, ',', ' ')."€ | ".$marge_pct."%</td>
                         <td align=\"center\">".$nbVentes."</td>
@@ -1000,8 +1000,8 @@ if($_GET['action'] == "voir")
                     </tr>";
               
               // stockage des donnees du csv      
-              $arraydata .= $article[artcode].";".$article[artcode_eurocave].";"
-                            .$article[prix].$devises->symbole($sites[$site_code]['devise']).";".$article[prixflash].$devises->symbole($sites[$site_code]['devise']).";"
+              $arraydata .= $article['artcode'].";".$article['artcode_eurocave'].";"
+                            .$article['prix'].$devises->symbole($sites[$site_code]['devise']).";".$article['prixflash'].$devises->symbole($sites[$site_code]['devise']).";"
                             .$nbVentes."\n";
          }
          echo "<tr>
@@ -1018,7 +1018,7 @@ if($_GET['action'] == "voir")
          
          // appel de la fonction javascript export en csv
          // echo json_encode($day) permet de transformer la varible php en variable js
-         $filename = $vfh[nom].".csv";
+         $filename = $vfh['nom'].".csv";
          print "<a href='#' onclick='downloadCSV(";
          print json_encode($filename).",";
          print json_encode($arraydata);

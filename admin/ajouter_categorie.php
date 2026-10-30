@@ -311,7 +311,7 @@ if ($action=="20ajouter" && false)
 		$cars=$DB_site2->query("select caractid from categorie_caracteristique where catid=$catid") ;
 		while ($car=$DB_site2->fetch_array($cars))
 			{
-			$liste_notin .= $car[caractid]."," ;
+			$liste_notin .= $car['caractid']."," ;
 			}
 		$lg = strlen($liste_notin) - 1 ;
 		$liste_notin = substr($liste_notin, 0, $lg) ;
@@ -333,7 +333,7 @@ if ($action=="20ajouter" && false)
 			$cars=$DB_site2->query("select caractid from categorie_caracteristique where catid=$catid") ;
 			while ($car=$DB_site2->fetch_array($cars))
 				{
-				$liste_notin .= $car[caractid]."," ;
+				$liste_notin .= $car['caractid']."," ;
 				}
 			$lg = strlen($liste_notin) - 1 ;
 			$liste_notin = substr($liste_notin, 0, $lg) ;
@@ -344,7 +344,7 @@ if ($action=="20ajouter" && false)
 				$rowalt = "td_".getrowbg();
 				echo "<tr>
 						<td class=\"$rowalt\">".stripslashes($caracteristique[$libelle])."</td>
-						<td class=\"$rowalt\">".stripslashes($caracteristique[description])."</td>
+						<td class=\"$rowalt\">".stripslashes($caracteristique['description'])."</td>
 						<td class=\"$rowalt\" align=\"center\"><input type=\"button\" value=\"Ajouter\" onclick=\"ajouter('$caracteristique[0]');\"></td>
 					  </tr>";
 				}
@@ -385,21 +385,21 @@ if ($action=="20ajouter" && false)
 				$visible_checked = "";
 				$filtrable_checked = "";
 				$stockable_checked = "";
-				if( $caract[visible] == "1" ) 
+				if( $caract['visible'] == "1" ) 
 					{
 					$visible_checked = "checked";
 					}
-				if( $caract[filtrable] == "1" ) 
+				if( $caract['filtrable'] == "1" ) 
 					{
 					$filtrable_checked = "checked";
 					}
-				if( $caract[stockable] == "1" ) 
+				if( $caract['stockable'] == "1" ) 
 					{
 					$stockable_checked = "checked";
 					}
 				echo "<tr>
 						<td class=\"$rowalt\">".stripslashes($caract[$libelle])."</td>
-						<td class=\"$rowalt\">".stripslashes($caract[description])."</td>
+						<td class=\"$rowalt\">".stripslashes($caract['description'])."</td>
 						<td class=\"$rowalt\" valign=\"middle\" align=\"center\" >
 						<form action=\"ajouter_categorie.php\" method=\"post\">
 						  <input type=\"hidden\" name=\"action\" value=\"modifetat\">
@@ -919,7 +919,7 @@ function compter_produits($catid){
 	$sscats=$DB_site2->query($requete_ss_cat);
 	$ssnombre=0;
 	while ($sscat=$DB_site2->fetch_array($sscats)) {
-		$ssnombre+=compter_produits($sscat[catid]);
+		$ssnombre+=compter_produits($sscat['catid']);
 	}
 	$total=$stringbre+$ssnombre;
 	return ($total);
@@ -935,8 +935,8 @@ function navigation($catidfunc , $isarticle=0){
 	} else {
 		$navigationbit="<a href=\"catalogue.php?catid=$navigation_categorie[catid]\">$navigation_categorie[$libelle]</a>" . $separateur_navigation . $navigationbit;
 	}
-	if ($navigation_categorie[parentid]!=0) {
-		navigation($navigation_categorie[parentid]);
+	if ($navigation_categorie['parentid']!=0) {
+		navigation($navigation_categorie['parentid']);
 	}
 }
 function redimentionner_image ($nom_fichier, $destination, $largeur, $hauteur){

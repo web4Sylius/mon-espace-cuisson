@@ -355,7 +355,7 @@ echo "<td valign=\"top\">
 if (isset ($action) and $action == "modif")
 	{
 	$moyen_paiement_a_modifier=$DB_site2->query_first("select accepte from moyenpaiement where moyenid = '$moyen'");
-	switch ($moyen_paiement_a_modifier[accepte])
+	switch ($moyen_paiement_a_modifier['accepte'])
 		{
 		case 0:
 			$modif_accepte = '1' ;
@@ -413,7 +413,7 @@ echo "<h3>Moyens de paiement acceptés sur ma boutique</h3>
 $moyens_paiement=$DB_site2->query("SELECT * from moyenpaiement where moyenid NOT IN (0, 7) order by libelleFR asc");
 while ($moyen_paiement=$DB_site2->fetch_array($moyens_paiement)) 
 	{
-	switch ($moyen_paiement[accepte])
+	switch ($moyen_paiement['accepte'])
 		{
 		case 0:
 			$accepte = "Non" ;
@@ -422,7 +422,7 @@ while ($moyen_paiement=$DB_site2->fetch_array($moyens_paiement))
 			$accepte = "Oui" ;
 			break ;
 		}
-	$moy = $moyen_paiement[moyenid] ;
+	$moy = $moyen_paiement['moyenid'] ;
 	echo "<tr>
 			<td class=\"td_location\" align=\"left\">&nbsp;</td>
 			<td class=\"td_location\" align=\"left\">$moyen_paiement[libelleFR]</td>
@@ -434,13 +434,13 @@ while ($moyen_paiement=$DB_site2->fetch_array($moyens_paiement))
 echo "</table>" ;
 
 $params=$DB_site2->query_first("SELECT * from parametresgeneraux");
-$prix_sup = $params[prix_contre_remboursement] ;
-$mtt_cb_max = $params[montant_max_cb] ;
+$prix_sup = $params['prix_contre_remboursement'] ;
+$mtt_cb_max = $params['montant_max_cb'] ;
 if ($mtt_cb_max == '0')
 	{
 	$mtt_cb_max = "" ;
 	}
-switch ($params[paypal_sup])
+switch ($params['paypal_sup'])
 	{
 	case 0:
 		$oui = "" ;
@@ -453,24 +453,24 @@ switch ($params[paypal_sup])
 	}
 
 $rib=$DB_site2->query_first("SELECT RIBetab, RIBguichet, RIBcompte, RIBrice, IBAN, BIC from parametresgeneraux");
-if ($rib[RIBetab] != "0")
+if ($rib['RIBetab'] != "0")
 	{
-	$codebanque = $rib[RIBetab] ;
+	$codebanque = $rib['RIBetab'] ;
 	}
-if ($rib[RIBguichet] != "0")
+if ($rib['RIBguichet'] != "0")
 	{
-	$codeguichet = $rib[RIBguichet] ;
+	$codeguichet = $rib['RIBguichet'] ;
 	}
-if ($rib[RIBcompte] != "0")
+if ($rib['RIBcompte'] != "0")
 	{
-	$nocompte = $rib[RIBcompte] ;
+	$nocompte = $rib['RIBcompte'] ;
 	}
-if ($rib[RIBrice] != "0")
+if ($rib['RIBrice'] != "0")
 	{
-	$cle = $rib[RIBrice] ;
+	$cle = $rib['RIBrice'] ;
 	}
-$iban = $rib[IBAN] ;
-$bic = $rib[BIC] ;
+$iban = $rib['IBAN'] ;
+$bic = $rib['BIC'] ;
 echo "<br><br><br>
 <table width=\"80%\">
 	<tr>

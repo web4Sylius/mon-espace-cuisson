@@ -6,12 +6,12 @@ $ref_question="ref_question".$template->langue;
 $ref_reponse="ref_reponse".$template->langue;
 $description="description".$template->langue;
 
-$url_actuelle = $_SERVER[REQUEST_URI];
+$url_actuelle = $_SERVER['REQUEST_URI'];
 $url_actuelle = explode(",",$url_actuelle);
 $last_niveau = count($url_actuelle) - 1;
 // on récupère le réel dernier niveau de l'URL
 
-if (substr($_SERVER[REQUEST_URI],-4)!="html"){
+if (substr($_SERVER['REQUEST_URI'],-4)!="html"){
 	$faq=$DB_site->query_first("SELECT $libelle FROM $table_faq WHERE faqid = '$id'");
 	if (url_rewrite($faq[$libelle]) == ""){
 		$url_reel = "-.htm";
@@ -24,7 +24,7 @@ if (substr($_SERVER[REQUEST_URI],-4)!="html"){
 		if ($url_actuelle[$last_niveau] == "")
 			$url_redirect = "int,$id,$url_reel.htm";
 		else
-			$url_redirect = str_replace("$url_actuelle[$last_niveau]","$url_reel",$_SERVER[REQUEST_URI]);
+			$url_redirect = str_replace("$url_actuelle[$last_niveau]","$url_reel",$_SERVER['REQUEST_URI']);
 		header("Status: 301 Moved Permanently");
 		header("Location: $url_redirect");
 		exit();	
@@ -70,12 +70,12 @@ while($question=$DB_site->fetch_array($questions)){
         if($ssm['libelle'] !=''){
           $selectclass2="";
           if($ssm['faqid']==$id) $selectclass2="selected";
-            $ssmenu.="<li class=\"".$selectclass2." ssmquestions\" style=\"font-weight:normal;\">".($ssm['sans_lien']==false?"<a href=\"faq,$ssm[faqid],".url_rewrite($ssm['libelle']).".htm\">$ssm[libelle]</a>":"<span>".$ssm[libelle]."</span>")."</li>";
+            $ssmenu.="<li class=\"".$selectclass2." ssmquestions\" style=\"font-weight:normal;\">".($ssm['sans_lien']==false?"<a href=\"faq,$ssm[faqid],".url_rewrite($ssm['libelle']).".htm\">$ssm[libelle]</a>":"<span>".$ssm['libelle']."</span>")."</li>";
         }
       }
       $ssmenu.="</ul></li>";
      }
-     $template->parts["menuautresfaq"].="<ul class=\"ul_bloc\"><li class=\"".$selectclass." titre_princi_faq\">".($question['sans_lien']==false?"<a href=\"faq,$question[faqid],".url_rewrite($question['libelle']).".htm\">$question[libelle]</a> <span class=\"fleche\" onclick=\"deroule_ss_menu(this)\">".($i==0?'▲':'▼')."</span>":$question[libelle]." <span class=\"fleche\" onclick=\"deroule_ss_menu(this)\">".($i==0?'▲':'▼')."</span>").$ssmenu."</ul>";
+     $template->parts["menuautresfaq"].="<ul class=\"ul_bloc\"><li class=\"".$selectclass." titre_princi_faq\">".($question['sans_lien']==false?"<a href=\"faq,$question[faqid],".url_rewrite($question['libelle']).".htm\">$question[libelle]</a> <span class=\"fleche\" onclick=\"deroule_ss_menu(this)\">".($i==0?'▲':'▼')."</span>":$question['libelle']." <span class=\"fleche\" onclick=\"deroule_ss_menu(this)\">".($i==0?'▲':'▼')."</span>").$ssmenu."</ul>";
 
      $i++;
   }
@@ -149,7 +149,7 @@ $template->parts["title"]=$faq[$libelle];
 if($faq[$ref_reponse]!='' && $faq[$ref_question] != ''){
   $template->parts['ref_question']=$faq[$ref_question];
   $template->parts['ref_reponse']=$faq[$ref_reponse];
-  $template->parts['ref_url']=SITE_URL.$_SERVER[REQUEST_URI];
+  $template->parts['ref_url']=SITE_URL.$_SERVER['REQUEST_URI'];
   $template->evaltemplate("ConseilBref","bref");
 }
 

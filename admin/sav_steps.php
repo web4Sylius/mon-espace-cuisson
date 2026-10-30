@@ -186,9 +186,9 @@ $steps[3][0]="<div class=\"advgroup\">
       <div style=\"margin-top:10px;\"><a href=\"javascript:void(0);\" onclick=\"mail_auto(undefined,'$rs_facture[mail]',undefined,subjectprocedure,mailprocedure);mail_suivi('sav_3','$savid');\">Générer mail procédure client</a></div>
       <b>Lettre client envoyée</b>
       <div>
-      <input type=\"hidden\" name=\"sav_lettrem3\" value=\"".intval($savfields[sav_lettrem3])."\"><input type=\"checkbox\" value=\"1\"".($savfields['sav_lettrem3']=="1"?" checked":"")." onclick=\"document.getElementsByName('sav_lettrem3')[0].value=this.checked?'1':'0';\"> Lettre réclamation client envoyée sous 3 jours
-      <br><input type=\"hidden\" name=\"sav_lettrehd\" value=\"".intval($savfields[sav_lettrehd])."\"><input type=\"checkbox\" value=\"1\"".($savfields['sav_lettrehd']=="1"?" checked":"")." onclick=\"document.getElementsByName('sav_lettrehd')[0].value=this.checked?'1':'0';\"> Lettre réclamation client envoyée hors délai
-      <br><input type=\"hidden\" name=\"sav_reclamacilyon\" value=\"".intval($savfields[sav_reclamacilyon])."\"><input type=\"checkbox\" value=\"1\"".($savfields['sav_reclamacilyon']=="1"?" checked":"")." onclick=\"document.getElementsByName('sav_reclamacilyon')[0].value=this.checked?'1':'0';\"> Lettre réclamation client envoyée par Acilyon
+      <input type=\"hidden\" name=\"sav_lettrem3\" value=\"".intval($savfields['sav_lettrem3'])."\"><input type=\"checkbox\" value=\"1\"".($savfields['sav_lettrem3']=="1"?" checked":"")." onclick=\"document.getElementsByName('sav_lettrem3')[0].value=this.checked?'1':'0';\"> Lettre réclamation client envoyée sous 3 jours
+      <br><input type=\"hidden\" name=\"sav_lettrehd\" value=\"".intval($savfields['sav_lettrehd'])."\"><input type=\"checkbox\" value=\"1\"".($savfields['sav_lettrehd']=="1"?" checked":"")." onclick=\"document.getElementsByName('sav_lettrehd')[0].value=this.checked?'1':'0';\"> Lettre réclamation client envoyée hors délai
+      <br><input type=\"hidden\" name=\"sav_reclamacilyon\" value=\"".intval($savfields['sav_reclamacilyon'])."\"><input type=\"checkbox\" value=\"1\"".($savfields['sav_reclamacilyon']=="1"?" checked":"")." onclick=\"document.getElementsByName('sav_reclamacilyon')[0].value=this.checked?'1':'0';\"> Lettre réclamation client envoyée par Acilyon
       <br>(Lorsque le client a refusé la cave)
       </div>
       <div style=\"margin-top:10px;\">
@@ -204,9 +204,9 @@ $steps[3][0]="<div class=\"advgroup\">
       <div style=\"text-align:center;padding:10px;\"><input type=\"button\" onclick=\"document.forms.et3form.action='';document.forms.et3form.target='';document.forms.et3form.submit();\" value=\"Enregistrer\"></div>
   </div>
   <div id=\"resum3\" style=\"margin-top:10px;display:".($maxstep>2?"block":"none")."\">";
-      if(intval($savfields[sav_lettrem3])>0) $steps[3][0].="<li>Lettre réclamation client envoyée sous 3 jours</li>";
-      if(intval($savfields[sav_lettrehd])>0) $steps[3][0].="<li>Lettre réclamation client envoyée hors délai</li>";
-      if(intval($savfields[sav_reclamacilyon])>0) $steps[3][0].="<li>Lettre réclamation client envoyée par Acilyon</li>";
+      if(intval($savfields['sav_lettrem3'])>0) $steps[3][0].="<li>Lettre réclamation client envoyée sous 3 jours</li>";
+      if(intval($savfields['sav_lettrehd'])>0) $steps[3][0].="<li>Lettre réclamation client envoyée hors délai</li>";
+      if(intval($savfields['sav_reclamacilyon'])>0) $steps[3][0].="<li>Lettre réclamation client envoyée par Acilyon</li>";
       $steps[3][0].="<div>Confirmation ouverture du dossier litige n°".$savfields['sav_ndossier']." le ".$savfields['sav_dateouvre']."</div>
       <div style=\"margin-top:10px;\">Commentaires</div>".suivi(3,false)."
       <input type=\"button\" value=\"Modifier\" onclick=\"modifstep(3);\">";

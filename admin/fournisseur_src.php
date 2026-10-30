@@ -13,15 +13,15 @@ function get_prix_achat_offre_fournisseur($artid, $paht, $date){
 			INNER JOIN fournisseur_offre_article AS foa ON(fo.id=foa.offreid)
 			WHERE foa.artid=".$artid." AND fo.du < '".$date."' AND fo.au > '".$date."' LIMIT 1";
 	$offre_fournisseur=$DB_site2->query_first($sql);
-	if($offre_fournisseur[offre]!=""){
-		if($offre_fournisseur[offre]=="temp"){
-			$article_paht=$offre_fournisseur[value];
+	if($offre_fournisseur['offre']!=""){
+		if($offre_fournisseur['offre']=="temp"){
+			$article_paht=$offre_fournisseur['value'];
 		}
-		if($offre_fournisseur[offre]=="reduc"){
-			$article_paht=$paht-$offre_fournisseur[value];
+		if($offre_fournisseur['offre']=="reduc"){
+			$article_paht=$paht-$offre_fournisseur['value'];
 		}
-		if($offre_fournisseur[offre]=="pc"){
-			$article_paht=$paht-($paht*$offre_fournisseur[value]/100);
+		if($offre_fournisseur['offre']=="pc"){
+			$article_paht=$paht-($paht*$offre_fournisseur['value']/100);
 		}
 	} else {
 		$article_paht=$paht;

@@ -268,7 +268,7 @@ if( (!isset( $action ) || $action == "") && isset($_GET['version']))
 			}
 		echo "<tr><td >$images_position $rs_faq[$libelle]</td>";
 		$active_action = "";
-			if ($rs_faq[active] == "1")
+			if ($rs_faq['active'] == "1")
 				$active_action = "<a href=\"page_faq.php?action=Désactiver&version=".$_GET['version']."&faqid=$rs_faq[faqid]\" target=\"_self\">Désactiver</a>";
 			else
 				$active_action = "<a href=\"page_faq.php?action=Activer&version=".$_GET['version']."&faqid=$rs_faq[faqid]\" target=\"_self\">Activer</a>";
@@ -317,7 +317,7 @@ if( (!isset( $action ) || $action == "") && isset($_GET['version']))
 				}
 		    }
 		    $active_action = "";
-		    	if ($child[active] == "1")
+		    	if ($child['active'] == "1")
 		    		$active_action = "<a href=\"page_faq.php?action=Désactiver&faqid=$child[faqid]&version=".$_GET['version']."&faqparent=$child[faqparent]\" target=\"_self\">Désactiver</a>";
 		    	else
 		    		$active_action = "<a href=\"page_faq.php?action=Activer&faqid=$child[faqid]&version=".$_GET['version']."&faqparent=$child[faqparent]\" target=\"_self\">Activer</a>";
@@ -494,14 +494,14 @@ if( (!isset( $action ) || $action == "") && isset($_GET['version']))
 	echo "<form method=\"post\" name=\"form_institutionnel\" action=\"page_faq.php?action=editer&faqid=".$faqid."&version=".$_GET['version']."\">";
 
 	
-	if ($rs_faq[faqparent] == "0")
+	if ($rs_faq['faqparent'] == "0")
 		$liste_parents = "<option value=\"0\" selected>Aucun parent</>";
 	else
 		$liste_parents = "<option value=\"0\">Aucun parent</>";
 	$parents = $DB_site2->query("SELECT * FROM $table_faq WHERE faqparent = '0'");
 	while( $parent = $DB_site2->fetch_array( $parents ) )
 		{
-		if ($parent[faqid] == $rs_faq[faqparent])
+		if ($parent['faqid'] == $rs_faq['faqparent'])
 			$liste_parents .= "<option value=\"$parent[faqid]\" selected>$parent[$libelle]</>";
 		else
 			$liste_parents .= "<option value=\"$parent[faqid]\">$parent[$libelle]</>";
@@ -822,7 +822,7 @@ elseif( $action == "supprimer2" )
 	
 	while( $rs_positions_suivantes = $DB_site2->fetch_array( $rq_positions_suivantes ) ) 
 	{
-		$position_temp = $rs_positions_suivantes[position] - 1;
+		$position_temp = $rs_positions_suivantes['position'] - 1;
 		$rq_modifier_position = "UPDATE $table_faq SET position = '$position_temp' 
 								 WHERE faqid = '$rs_positions_suivantes[faqid]'";
 		$DB_site2->query( $rq_modifier_position );

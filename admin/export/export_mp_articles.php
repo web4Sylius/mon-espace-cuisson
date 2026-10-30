@@ -187,20 +187,20 @@ foreach ($mp as $mp_key => $mp_name) {
 		
 		$artid=$row[artid];
 		$article_pvttc=$row['prix'];
-		$article_paht=$row[paht];
+		$article_paht=$row['paht'];
 		
 		
 		$article_fournisseur=$DB_site->query_first("SELECT ecopartht, trspt FROM article_fournisseur WHERE artid=".$artid." AND principal LIKE '%base%' AND devise='EUR' ");
-		if($article_fournisseur[ecopartht]==""){
-			$article_fournisseur[ecopartht]=0;
+		if($article_fournisseur['ecopartht']==""){
+			$article_fournisseur['ecopartht']=0;
 		}
-		if($article_fournisseur[trspt]==""){
-			$article_fournisseur[trspt]=0;
+		if($article_fournisseur['trspt']==""){
+			$article_fournisseur['trspt']=0;
 		}
 		
 		$frais_port=new frais_port($DB_site,array($artid=>1),57,$article_pvttc,$article_paht,'base');
 	  
-		$article_paht_total=$article_paht+$res[prixtrspt]+$article_fournisseur[ecopartht]+$article_fournisseur[trspt]+$garantie+$frais_port->paht-$frais_port->prixht;
+		$article_paht_total=$article_paht+$res['prixtrspt']+$article_fournisseur['ecopartht']+$article_fournisseur['trspt']+$garantie+$frais_port->paht-$frais_port->prixht;
 		$marge_ht=($article_pvttc/$tauxtva)-$article_paht_total;
 		
 		
@@ -213,7 +213,7 @@ foreach ($mp as $mp_key => $mp_name) {
 		$ventes1=$DB_site->query_first($sql);
 		if($ventes1[qte]==""){
 			$ventes1[qte]=0;
-			$ventes1[caht]=0;
+			$ventes1['caht']=0;
 		}
 		$sql="SELECT sum(lf.qte) AS qte, sum(lf.qte*(lf.prix/(1+tva/100))) AS caht
 			FROM lignefacture lf INNER JOIN facture AS f ON(factureid=facturid)
@@ -224,7 +224,7 @@ foreach ($mp as $mp_key => $mp_name) {
 		$ventes2=$DB_site->query_first($sql);
 		if($ventes2[qte]==""){
 			$ventes2[qte]=0;
-			$ventes2[caht]=0;
+			$ventes2['caht']=0;
 		}
 		$sql="SELECT sum(lf.qte) AS qte, sum(lf.qte*(lf.prix/(1+tva/100))) AS caht
 			FROM lignefacture lf INNER JOIN facture AS f ON(factureid=facturid)
@@ -235,7 +235,7 @@ foreach ($mp as $mp_key => $mp_name) {
 		$ventes3=$DB_site->query_first($sql);
 		if($ventes3[qte]==""){
 			$ventes3[qte]=0;
-			$ventes3[caht]=0;
+			$ventes3['caht']=0;
 		}
 		
 		if($row['active']==1){
@@ -265,11 +265,11 @@ foreach ($mp as $mp_key => $mp_name) {
 		$c8=new ooo_cell(number_format($marge_ht, 2, ',', ''),"","currency"); // marge
 		$c8->style="enabled".$curstyle;
 		
-		$c9=new ooo_cell(number_format($ventes1[caht], 2, ',', ''),"","currency"); // CA N-2
+		$c9=new ooo_cell(number_format($ventes1['caht'], 2, ',', ''),"","currency"); // CA N-2
 		$c9->style="enabled".$curstyle;
-		$c10=new ooo_cell(number_format($ventes2[caht], 2, ',', ''),"","currency"); // CA N-1
+		$c10=new ooo_cell(number_format($ventes2['caht'], 2, ',', ''),"","currency"); // CA N-1
 		$c10->style="enabled".$curstyle;
-		$c11=new ooo_cell(number_format($ventes3[caht], 2, ',', ''),"","currency"); // CA N
+		$c11=new ooo_cell(number_format($ventes3['caht'], 2, ',', ''),"","currency"); // CA N
 		$c11->style="enabled".$curstyle;
 		
 		$c12=new ooo_cell(number_format($ventes1[qte], 2, ',', ''),"","currency"); // CA N-2

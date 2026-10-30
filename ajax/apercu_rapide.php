@@ -73,8 +73,8 @@ $template->parts["gamme"] = $tabArticle['gamme'];
 $finition=$DB_site->query_first("SELECT finitionid,nom".$template->langue." FROM articlerecherche_finition INNER JOIN recherche_finition USING(finitionid) WHERE artid=".$tabArticle['artid']);
 if($finition[1]!="") $template->parts['caractprincipales'] .= "<li><b>".$template->translate("/article/champs/niveau_gamme","F")." : </b>$finition[1]</li>";
 
-if($tabArticle[couleur]!="" && $template->translate($tabArticle[couleur])!="") $template->parts['caractprincipales'] .= "<li><b>".$template->translate("/article/champs/coloris_modele","F")." : </b>".$template->translate($tabArticle[couleur])."</li>";
-$template->parts['caractprincipales'] .= "<li><b>".$template->translate("/article/champs/dimensions","F")." : </b>".sprintf($template->translate("/article/champs/dimensions_format"),$tabArticle[hauteur],$tabArticle[largeur],$tabArticle[profondeur])."</li>";
+if($tabArticle['couleur']!="" && $template->translate($tabArticle['couleur'])!="") $template->parts['caractprincipales'] .= "<li><b>".$template->translate("/article/champs/coloris_modele","F")." : </b>".$template->translate($tabArticle['couleur'])."</li>";
+$template->parts['caractprincipales'] .= "<li><b>".$template->translate("/article/champs/dimensions","F")." : </b>".sprintf($template->translate("/article/champs/dimensions_format"),$tabArticle['hauteur'],$tabArticle['largeur'],$tabArticle['profondeur'])."</li>";
 //if($tabArticle['class_energetique']!="" && $template->translate($tabArticle['class_energetique']) !='') $template->parts['caractprincipales'] .= "<li><b>".$template->translate("/article/champs/classe_energetique","F")." : </b>".$template->translate($tabArticle['class_energetique'])."</li>";
 
 

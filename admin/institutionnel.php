@@ -314,7 +314,7 @@ if( (!isset( $action ) || $action == "") && isset($_GET['site_code']))
 				echo "<tr class=\"border_bottom\" ><td >$images_position $rs_institutionnel[$libelle]</td>";
 				$active_action = "";
 				if(!$filter_langue) {
-			   		if ($rs_institutionnel[active] == "1")
+			   		if ($rs_institutionnel['active'] == "1")
 				 	 $active_action = "<a href=\"institutionnel.php?action=Désactiver&site_code=".$_GET['site_code']."&institutionnelid=$rs_institutionnel[institutionnelid]\" target=\"_self\">Désactiver</a>";
 			   	else
 					$active_action = "<a href=\"institutionnel.php?action=Activer&site_code=".$_GET['site_code']."&institutionnelid=$rs_institutionnel[institutionnelid]\" target=\"_self\">Activer</a>";
@@ -369,7 +369,7 @@ if( (!isset( $action ) || $action == "") && isset($_GET['site_code']))
 
 		  $active_action = "";
 		  if(!$filter_langue) {
-		  	if ($child[active] == "1")
+		  	if ($child['active'] == "1")
 		  		$active_action = "<a href=\"institutionnel.php?action=Désactiver&site_code=".$_GET['site_code']."&institutionnelid=$child[institutionnelid]&institutionnelparent=$child[institutionnelparent]\" target=\"_self\">Désactiver</a>";
 		  	else
 		  		$active_action = "<a href=\"institutionnel.php?action=Activer&site_code=".$_GET['site_code']."&institutionnelid=$child[institutionnelid]&institutionnelparent=$child[institutionnelparent]\" target=\"_self\">Activer</a>";
@@ -598,14 +598,14 @@ elseif( $action == "editer" && isset( $institutionnelid ) )
 
 
 	$rs_instit = $DB_site2->query_first( "select * FROM institutionnel where institutionnelid = $institutionnelid" );		
-    if ($rs_instit[institutionnelparent] == "0")
+    if ($rs_instit['institutionnelparent'] == "0")
 		$liste_parents = "<option value=\"0\" selected>Aucun parent</>";
 	else
 		$liste_parents = "<option value=\"0\">Aucun parent</>";
 	$parents = $DB_site2->query("SELECT * FROM institutionnel WHERE institutionnelparent=0 AND site_code='".$_GET['site_code']."' AND active='1' ORDER BY libelleFR ASC");
 	while( $parent = $DB_site2->fetch_array( $parents ) )
 		{
-		if ($parent[institutionnelid] == $rs_instit[institutionnelparent])
+		if ($parent['institutionnelid'] == $rs_instit['institutionnelparent'])
 			$liste_parents .= "<option value=\"$parent[institutionnelid]\" selected>$parent[$libelle]</>";
 		else
 			$liste_parents .= "<option value=\"$parent[institutionnelid]\">$parent[$libelle]</>";
@@ -944,7 +944,7 @@ elseif( $action == "supprimer2" )
 	
 	while( $rs_positions_suivantes = $DB_site2->fetch_array( $rq_positions_suivantes ) ) 
 	{
-		$position_temp = $rs_positions_suivantes[position] - 1;
+		$position_temp = $rs_positions_suivantes['position'] - 1;
 		$rq_modifier_position = "UPDATE institutionnel SET position = '$position_temp' 
 								 WHERE institutionnelid = '$rs_positions_suivantes[institutionnelid]'";
 		$DB_site2->query( $rq_modifier_position );

@@ -254,9 +254,9 @@ function arborescence($parentid)
 				}
 			while ($article=$DB_site2->fetch_array($articles)) 
 				{
-				if (strlen($article[artcode]) > 60)
+				if (strlen($article['artcode']) > 60)
 					{
-					$article[artcode] = substr($article[artcode], 0, 60) . "..." ;
+					$article['artcode'] = substr($article['artcode'], 0, 60) . "..." ;
 					}
 				if ($article[artid] == $promo_art)
 					{
@@ -273,7 +273,7 @@ function arborescence($parentid)
 			$arbo[$libelle] = substr($arbo[$libelle], 0, 60) . "..." ;
 			}
 		$select.="<option value=\"$arbo[catid]\" style=\"background-color:#EBEBE4;color:#000000;\" disabled=\"disabled\">$niveau $arbo[$libelle]</option>\n$options";
-		arborescence($arbo[catid]);
+		arborescence($arbo['catid']);
 		}
 	$niveau=substr($niveau , 0 , strlen($niveau)-4 );
 	return ($select);
@@ -303,7 +303,7 @@ function arborescence2($parentid)
 				{
 				$arbo[$libelle] = substr($arbo[$libelle], 0, 60) . "..." ;
 				}
-			if ($arbo[catid] == $promo_cat)
+			if ($arbo['catid'] == $promo_cat)
 				{
 				$select2.="<option value=\"$arbo[catid]\" selected>$niveau $arbo[$libelle]</option>\n$options";
 				}
@@ -314,7 +314,7 @@ function arborescence2($parentid)
 			}
 		else
 			{
-			if ($arbo[catid] == $promo_cat)
+			if ($arbo['catid'] == $promo_cat)
 				{
 				$select2.="<option value=\"$arbo[catid]\" selected>$niveau $arbo[$libelle]</option>\n$options";
 				}
@@ -323,7 +323,7 @@ function arborescence2($parentid)
 				$select2.="<option value=\"$arbo[catid]\">$niveau $arbo[$libelle]</option>\n$options";
 				}
 			}
-		arborescence2($arbo[catid]);
+		arborescence2($arbo['catid']);
 		}
 	$niveau=substr($niveau , 0 , strlen($niveau)-4 );
 	return ($select2);
@@ -419,14 +419,14 @@ if ($action == "ajouter2")
 					{
 					while ($promotion_existante=$DB_site2->fetch_array($promotions_existantes))
 						{
-						if (("$debut[2]-$debut[1]-$debut[0]" < $promotion_existante[datedebut] and "$fin[2]-$fin[1]-$fin[0]" <= $promotion_existante[datedebut]) or ("$debut[2]-$debut[1]-$debut[0]" >= $promotion_existante[datefin] and "$fin[2]-$fin[1]-$fin[0]" > $promotion_existante[datefin]))
+						if (("$debut[2]-$debut[1]-$debut[0]" < $promotion_existante['datedebut'] and "$fin[2]-$fin[1]-$fin[0]" <= $promotion_existante['datedebut']) or ("$debut[2]-$debut[1]-$debut[0]" >= $promotion_existante['datefin'] and "$fin[2]-$fin[1]-$fin[0]" > $promotion_existante['datefin']))
 							{
 							// rien
 							}
 						else
 							{
-							$deb = explode("-", $promotion_existante[datedebut]);
-							$fin = explode("-", $promotion_existante[datefin]);
+							$deb = explode("-", $promotion_existante['datedebut']);
+							$fin = explode("-", $promotion_existante['datefin']);
 							$erreur .= "Il y a un conflit avec la promotion du $deb[2]/$deb[1]/$deb[0] au $fin[2]/$fin[1]/$fin[0].<br>";
 							}
 						}
@@ -448,7 +448,7 @@ if ($action == "ajouter2")
 					<input type=\"hidden\" name=\"prixpromo\" value=\"$prixpromo[$promo_art]\">
 					Vous allez ajouter une promotion sur l'article <strong>$article[artcode]</strong>, vérifiez les informations :<br><br>
 					Promotion du $txt_datedebut au $txt_datefin<br>
-					Prix normal : ".number_format($article[prix], 2, ",", " ")." €<br>
+					Prix normal : ".number_format($article['prix'], 2, ",", " ")." €<br>
 					Prix promotionnel : ".number_format($prixpromo[$promo_art], 2, ",", " ")." €<br>
 					<br>
 					Etes-vous sûr(e) de vouloir ajouter cette promotion ?<br><br>
@@ -490,14 +490,14 @@ if ($action == "ajouter2")
 								{
 								while ($promotion_existante=$DB_site2->fetch_array($promotions_existantes))
 									{
-									if (("$debut[2]-$debut[1]-$debut[0]" < $promotion_existante[datedebut] and "$fin[2]-$fin[1]-$fin[0]" <= $promotion_existante[datedebut]) or ("$debut[2]-$debut[1]-$debut[0]" >= $promotion_existante[datefin] and "$fin[2]-$fin[1]-$fin[0]" > $promotion_existante[datefin]))
+									if (("$debut[2]-$debut[1]-$debut[0]" < $promotion_existante['datedebut'] and "$fin[2]-$fin[1]-$fin[0]" <= $promotion_existante['datedebut']) or ("$debut[2]-$debut[1]-$debut[0]" >= $promotion_existante['datefin'] and "$fin[2]-$fin[1]-$fin[0]" > $promotion_existante['datefin']))
 										{
 										// rien
 										}
 									else
 										{
-										$deb = explode("-", $promotion_existante[datedebut]);
-										$fin = explode("-", $promotion_existante[datefin]);
+										$deb = explode("-", $promotion_existante['datedebut']);
+										$fin = explode("-", $promotion_existante['datefin']);
 										$erreur .= "Il y a un conflit avec la promotion du $deb[2]/$deb[1]/$deb[0] au $fin[2]/$fin[1]/$fin[0].<br>";
 										}
 									}
@@ -517,7 +517,7 @@ if ($action == "ajouter2")
 					while ($article=$DB_site2->fetch_array($articles))
 						{
 						$art = $article[artid] ;
-						$liste_des_articles .= "<strong>$article[artcode]</strong> prix normal : ".number_format($article[prix], 2, ",", " ")." €, prix promotionnel : ".number_format($prixpromohidden[$art], 2, ",", " ")." €,
+						$liste_des_articles .= "<strong>$article[artcode]</strong> prix normal : ".number_format($article['prix'], 2, ",", " ")." €, prix promotionnel : ".number_format($prixpromohidden[$art], 2, ",", " ")." €,
 						<input type=\"hidden\" name=\"prixpromohidden[$art]\" value=\"$prixpromohidden[$art]\"><br>" ;
 						}
 					echo "<form method=\"post\" action=\"promotions.php\" name=\"formu\">
@@ -575,14 +575,14 @@ if ($action == "ajouter2")
 								{
 								while ($promotion_existante=$DB_site2->fetch_array($promotions_existantes))
 									{
-									if (("$debut[2]-$debut[1]-$debut[0]" < $promotion_existante[datedebut] and "$fin[2]-$fin[1]-$fin[0]" <= $promotion_existante[datedebut]) or ("$debut[2]-$debut[1]-$debut[0]" >= $promotion_existante[datefin] and "$fin[2]-$fin[1]-$fin[0]" > $promotion_existante[datefin]))
+									if (("$debut[2]-$debut[1]-$debut[0]" < $promotion_existante['datedebut'] and "$fin[2]-$fin[1]-$fin[0]" <= $promotion_existante['datedebut']) or ("$debut[2]-$debut[1]-$debut[0]" >= $promotion_existante['datefin'] and "$fin[2]-$fin[1]-$fin[0]" > $promotion_existante['datefin']))
 										{
 										// rien
 										}
 									else
 										{
-										$deb = explode("-", $promotion_existante[datedebut]);
-										$fin = explode("-", $promotion_existante[datefin]);
+										$deb = explode("-", $promotion_existante['datedebut']);
+										$fin = explode("-", $promotion_existante['datefin']);
 										$erreur .= "Il y a un conflit avec la promotion du $deb[2]/$deb[1]/$deb[0] au $fin[2]/$fin[1]/$fin[0].<br>";
 										}
 									}
@@ -602,7 +602,7 @@ if ($action == "ajouter2")
 					while ($article=$DB_site2->fetch_array($articles))
 						{
 						$art = $article[artid] ;
-						$liste_des_articles .= "<strong>$article[artcode]</strong> prix normal : ".number_format($article[prix], 2, ",", " ")." €, prix promotionnel : ".number_format($prixpromohidden[$art], 2, ",", " ")." €,
+						$liste_des_articles .= "<strong>$article[artcode]</strong> prix normal : ".number_format($article['prix'], 2, ",", " ")." €, prix promotionnel : ".number_format($prixpromohidden[$art], 2, ",", " ")." €,
 						<input type=\"hidden\" name=\"prixpromohidden[$art]\" value=\"$prixpromohidden[$art]\"><br>" ;
 						}
 					echo "<form method=\"post\" action=\"promotions.php\" name=\"formu\">
@@ -642,11 +642,11 @@ if ($action == "ajouterbis")
 	$types=$DB_site2->query("select * from promotion_type order by id");
 	while ($type=$DB_site2->fetch_array($types))
 		{
-		if ($type[id] == $type_promo)
+		if ($type['id'] == $type_promo)
 			{
 			$liste_type .= "<option value=\"$type[id]\" selected>$type[libelle]</option>" ;
 			$appel = "<script language=\"javascript\">document.getElementById('promo'+$type[id]).style.display='block'</script>" ;
-			switch ($type[id])
+			switch ($type['id'])
 				{
 				case '0':
 					$article_concerne=$DB_site2->query_first("select * from article where artid = '$promo_art'");
@@ -659,7 +659,7 @@ if ($action == "ajouterbis")
 											</tr>
 											<tr>
 												<td align=\"left\">$article_concerne[$libelle]</td>
-												<td align=\"right\"><input type=\"hidden\" name=\"prix[$promo_art]\" value=\"$article_concerne[prix]\">".number_format($article_concerne[prix], 2, ",", " ")." €</td>
+												<td align=\"right\"><input type=\"hidden\" name=\"prix[$promo_art]\" value=\"$article_concerne[prix]\">".number_format($article_concerne['prix'], 2, ",", " ")." €</td>
 												<td align=\"right\"><input type=\"text\" name=\"prixpromo[$promo_art]\" value=\"$prixpromo[$promo_art]\" size=\"4\"> €</td>
 											</tr>
 										</table>" ;
@@ -682,7 +682,7 @@ if ($action == "ajouterbis")
 						$liste_artid .= ",$artid" ;
 						$articlespromo1 .= "<tr>
 												<td align=\"left\">$article_concerne[$libelle]</td>
-												<td align=\"right\"><input type=\"hidden\" name=\"prix[$artid]\" id=\"prix_$artid\" value=\"$article_concerne[prix]\">".number_format($article_concerne[prix], 2, ",", " ")." €</td>
+												<td align=\"right\"><input type=\"hidden\" name=\"prix[$artid]\" id=\"prix_$artid\" value=\"$article_concerne[prix]\">".number_format($article_concerne['prix'], 2, ",", " ")." €</td>
 												<td align=\"right\"><input type=\"hidden\" name=\"prixpromohidden[$artid]\" id=\"prixpromohidden_$artid\" value=\"$prixpromo[$artid]\"><input type=\"text\" name=\"prixpromo[$artid]\" id=\"prixpromo_$artid\" value=\"$prixpromo[$artid]\" size=\"4\"  disabled=\"disabled\"> €</td>
 											</tr>" ;
 						}
@@ -713,7 +713,7 @@ if ($action == "ajouterbis")
 						$liste_artid .= ",$artid" ;
 						$articlespromo2 .= "<tr>
 												<td align=\"left\">$article_concerne[$libelle]</td>
-												<td align=\"right\"><input type=\"hidden\" name=\"prix[$artid]\" id=\"prix_$artid\" value=\"$article_concerne[prix]\">".number_format($article_concerne[prix], 2, ",", " ")." €</td>
+												<td align=\"right\"><input type=\"hidden\" name=\"prix[$artid]\" id=\"prix_$artid\" value=\"$article_concerne[prix]\">".number_format($article_concerne['prix'], 2, ",", " ")." €</td>
 												<td align=\"right\"><input type=\"hidden\" name=\"prixpromohidden[$artid]\" id=\"prixpromohidden_$artid\" value=\"$prixpromo[$artid]\"><input type=\"text\" name=\"prixpromo[$artid]\" id=\"prixpromo_$artid\" value=\"$prixpromo[$artid]\" size=\"4\"  disabled=\"disabled\"> €</td>
 											</tr>" ;
 						}
@@ -746,7 +746,7 @@ if ($action == "ajouterbis")
 		$count=$DB_site2->num_rows($arts) ;
 		$options .= "<option value=\"\" style=\"background-color:#EBEBE4;color:#000000;\" disabled=\"disabled\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$count article(s)</option>" ;
 		$options .= "<option value=\"\" style=\"background-color:#EBEBE4;color:#000000;\" disabled=\"disabled\"></option>" ;
-		if ($marque[marqueid] == $promo_marque)
+		if ($marque['marqueid'] == $promo_marque)
 			{
 			$liste_marques .= "<option value=\"$marque[marqueid]\" selected>$marque[libelle]</option>\n$options" ;
 			}
@@ -809,7 +809,7 @@ if ($action == "ajouter")
 	$types=$DB_site2->query("select * from promotion_type order by id");
 	while ($type=$DB_site2->fetch_array($types))
 		{
-		if ($type[id] == $type_promo)
+		if ($type['id'] == $type_promo)
 			{
 			$liste_type .= "<option value=\"$type[id]\" selected>$type[libelle]</option>" ;
 			}
@@ -890,8 +890,8 @@ if (!isset($action) or $action == "")
 		{
 		while ($promotion=$DB_site2->fetch_array($promotions)) 
 			{
-			list($annee_debut, $mois_debut, $jour_debut) = explode("-", $promotion[datedebut]);
-			list($annee_fin, $mois_fin, $jour_fin) = explode("-", $promotion[datefin]);
+			list($annee_debut, $mois_debut, $jour_debut) = explode("-", $promotion['datedebut']);
+			list($annee_fin, $mois_fin, $jour_fin) = explode("-", $promotion['datefin']);
 			echo "<tr><td align=\"left\"><strong>Du $jour_debut/$mois_debut/$annee_debut au $jour_fin/$mois_fin/$annee_fin</strong> : $promotion[nb] article(s)</td></tr>
 			<tr><td>
 					<table class=\"table_promos\">";
@@ -904,7 +904,7 @@ if (!isset($action) or $action == "")
 				$i++ ;
 				$ligne = "" ;
 				$lien = "" ;
-				switch ($promo[promotiontypeid])
+				switch ($promo['promotiontypeid'])
 					{
 					case '1':
 						$rowalt = "td_promomarque" ;
@@ -930,8 +930,8 @@ if (!isset($action) or $action == "")
 				echo "$ligne
 					<tr>
 						<td class=\"$rowalt\" align=\"left\">".substr($promo[$libelle], 0, 60)."</td>
-						<td class=\"$rowalt\" align=\"right\" width=\"60\"><s>".number_format($promo[prix], 2, ",", " ")." €</s></td>
-						<td class=\"$rowalt\" align=\"right\" width=\"60\">".number_format($promo[prixpromo], 2, ",", " ")." €</td>
+						<td class=\"$rowalt\" align=\"right\" width=\"60\"><s>".number_format($promo['prix'], 2, ",", " ")." €</s></td>
+						<td class=\"$rowalt\" align=\"right\" width=\"60\">".number_format($promo['prixpromo'], 2, ",", " ")." €</td>
 						<td class=\"$rowalt\" align=\"center\" width=\"45\">$lien</td>
 					</tr>";
 				}
@@ -1019,8 +1019,8 @@ if ($action == "detail")
 		case '1':
 			$promotion=$DB_site2->query_first("select p.promotiongroupeid, p.datedebut, p.datefin, pg.groupeid, pg.pourcentage, pg.promotiontypeid 
 			from promotion p INNER JOIN promotion_groupe pg on (p.promotiongroupeid = pg.promotiongroupeid) where p.promotionid = '$promotionid'");
-			list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion[datedebut] );
-			list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion[datefin] );
+			list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion['datedebut'] );
+			list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion['datefin'] );
 		
 			$type=$DB_site2->query_first("select * from promotion_type where id = '$promotion[promotiontypeid]'"); 
 			$marque=$DB_site2->query_first("select libelle from marque where marqueid = '$promotion[groupeid]'"); 
@@ -1055,8 +1055,8 @@ if ($action == "detail")
 				$promo=$DB_site2->query_first("select prix from promotion where artid = '$article[artid]' and promotiongroupeid = '$promotion[promotiongroupeid]'"); 
 				echo "<tr>
 					<td align=\"left\">$article[artcode]</td>
-					<td align=\"right\" width=\"60\"><s>".number_format($article[prix], 2, ",", " ")." €</s></td>
-					<td align=\"right\" width=\"60\">".number_format($promo[prix], 2, ",", " ")." €</td>
+					<td align=\"right\" width=\"60\"><s>".number_format($article['prix'], 2, ",", " ")." €</s></td>
+					<td align=\"right\" width=\"60\">".number_format($promo['prix'], 2, ",", " ")." €</td>
 				</tr>" ;
 				}
 			echo "</table><br><br>" ;
@@ -1070,8 +1070,8 @@ if ($action == "detail")
 		case '2':
 			$promotion=$DB_site2->query_first("select p.promotiongroupeid, p.datedebut, p.datefin, pg.groupeid, pg.pourcentage, pg.promotiontypeid 
 			from promotion p INNER JOIN promotion_groupe pg on (p.promotiongroupeid = pg.promotiongroupeid) where p.promotionid = '$promotionid'");
-			list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion[datedebut] );
-			list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion[datefin] );
+			list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion['datedebut'] );
+			list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion['datefin'] );
 		
 			$type=$DB_site2->query_first("select * from promotion_type where id = '$promotion[promotiontypeid]'"); 
 			$categ=$DB_site2->query_first("select $libelle from categorie where catid = '$promotion[groupeid]'"); 
@@ -1099,7 +1099,7 @@ if ($action == "detail")
 					  </tr>
 					</table><br><br>" ;
 			$liste_catid = "$promotion[groupeid]";
-			$liste_catid .= categories_filles($promotion[groupeid]); 
+			$liste_catid .= categories_filles($promotion['groupeid']); 
 			$articles=$DB_site2->query("select * from article where catid IN ($liste_catid)"); 
 			echo "Article(s) concerné(s) : <br><br>
 			<table class=\"table_caracts\">" ;
@@ -1108,8 +1108,8 @@ if ($action == "detail")
 				$promo=$DB_site2->query_first("select prix from promotion where artid = '$article[artid]' and promotiongroupeid = '$promotion[promotiongroupeid]'"); 
 				echo "<tr>
 					<td align=\"left\">$article[artcode]</td>
-					<td align=\"right\" width=\"60\"><s>".number_format($article[prix], 2, ",", " ")." €</s></td>
-					<td align=\"right\" width=\"60\">".number_format($promo[prix], 2, ",", " ")." €</td>
+					<td align=\"right\" width=\"60\"><s>".number_format($article['prix'], 2, ",", " ")." €</s></td>
+					<td align=\"right\" width=\"60\">".number_format($promo['prix'], 2, ",", " ")." €</td>
 				</tr>" ;
 				}
 			echo "</table><br><br>" ;
@@ -1123,8 +1123,8 @@ if ($action == "detail")
 		default:
 			$promotion=$DB_site2->query_first("select p.promotionid, p.artid, p.prix as prixpromo, p.datedebut, p.datefin, a.$libelle, a.prix from 
 			promotion p INNER JOIN article a on (p.artid = a.artid) where p.promotionid = '$promotionid'");
-			list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion[datedebut] );
-			list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion[datefin] );
+			list($annee_debut, $mois_debut, $jour_debut) = explode( "-", $promotion['datedebut'] );
+			list($annee_fin, $mois_fin, $jour_fin) = explode( "-", $promotion['datefin'] );
 		
 			$type=$DB_site2->query_first("select * from promotion_type where id = '$promotion[promotiontypeid]'"); 
 			echo "<div align=\"center\"><h3>Promotion du $jour_debut/$mois_debut/$annee_debut au $jour_fin/$mois_fin/$annee_fin</h3></div>
@@ -1146,8 +1146,8 @@ if ($action == "detail")
 			<table class=\"table_caracts\">
 				<tr>
 					<td align=\"left\">$promotion[$libelle]</td>
-					<td align=\"right\" width=\"60\"><s>".number_format($promotion[prix], 2, ",", " ")." €</s></td>
-					<td align=\"right\" width=\"60\">".number_format($promotion[prixpromo], 2, ",", " ")." €</td>
+					<td align=\"right\" width=\"60\"><s>".number_format($promotion['prix'], 2, ",", " ")." €</s></td>
+					<td align=\"right\" width=\"60\">".number_format($promotion['prixpromo'], 2, ",", " ")." €</td>
 				</tr>
 			</table><br><br>" ;
 			echo "<input type=\"hidden\" name=\"action\" value=\"supprimer\">
@@ -1196,8 +1196,8 @@ function categories_filles($parentid)
 	$filles=$DB_site2->query("select catid from categorie where parentid = '$parentid'");
 	while($fille=$DB_site2->fetch_array($filles))
 		{
-		$cats .= "," . $fille[catid] ;
-		categories_filles($fille[catid]) ;
+		$cats .= "," . $fille['catid'] ;
+		categories_filles($fille['catid']) ;
 		}
 	return ($cats) ;
 	}

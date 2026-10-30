@@ -31,7 +31,7 @@ if (isset($admin_username) && $admin_username != "") {
          exit;
       }else{
         $user_info=$DB_site->query_first("SELECT * FROM parametresgeneraux WHERE username = '$admin_username'");
-        if ($user_info[username] != $admin_username) exit;
+        if ($user_info['username'] != $admin_username) exit;
       }
     }
 }else

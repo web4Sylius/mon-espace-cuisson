@@ -43,7 +43,7 @@ echo "
 if (isset ($action) and $action == "modif")
 	{
 	$critere_a_modifier=$DB_site2->query_first("select autorise from recherche_type where recherchetypeid = '$critere'");
-	switch ($critere_a_modifier[autorise])
+	switch ($critere_a_modifier['autorise'])
 		{
 		case 0:
 			$modif_accepte = '1' ;
@@ -78,7 +78,7 @@ if (isset ($action) and $action == "ajout")
 		$tranches=$DB_site2->query("SELECT * from recherche_prix order by debut asc");
 		while ($tranche=$DB_site2->fetch_array($tranches)) 
 			{
-			if (($debut > $tranche[debut] and $debut < $tranche[fin]) or ($fin > $tranche[debut] and $fin < $tranche[fin]))
+			if (($debut > $tranche['debut'] and $debut < $tranche['fin']) or ($fin > $tranche['debut'] and $fin < $tranche['fin']))
 				{
 				$erreur .= "Conflit avec $tranche[debut] / $tranche[fin].<bR>" ;
 				}
@@ -102,7 +102,7 @@ echo "<h3>Types de recherches autorisées</h3>
 $criteres_recherche=$DB_site2->query("SELECT * from recherche_type order by libelleFR asc");
 while ($critere_recherche=$DB_site2->fetch_array($criteres_recherche)) 
 	{
-	switch ($critere_recherche[autorise])
+	switch ($critere_recherche['autorise'])
 		{
 		case 0:
 			$accepte = "Non" ;
@@ -111,7 +111,7 @@ while ($critere_recherche=$DB_site2->fetch_array($criteres_recherche))
 			$accepte = "Oui" ;
 			break ;
 		}
-	$moy = $critere_recherche[recherchetypeid] ;
+	$moy = $critere_recherche['recherchetypeid'] ;
 	echo "<tr>
 			<td class=\"td_location\" align=\"left\">&nbsp;</td>
 			<td class=\"td_location\" align=\"left\">$critere_recherche[libelleFR]</td>

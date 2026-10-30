@@ -105,7 +105,7 @@ elseif (isset($action) and $action == "affilies") // affiliés
 		$localhost="$mondom";
 		$abuse="arobases@$mondom";
 		$namefrom="${$title}";
-		$to=$aff[mail];
+		$to=$aff['mail'];
 		$subject=$sujet;
 		$message=stripslashes($corps) ;
 		gmail($from,$to,$subject,$smtppass,$localhost,$namefrom,$abuse,$message);
@@ -152,23 +152,23 @@ elseif (isset($action) and $action == "affilies") // affiliés
 		while ($lot=$DB_site2->fetch_array($lots))
 			{
 			$lot[date] = substr($lot[date], 8, 2) . "/" . substr($lot[date], 5, 2) . "/" . substr($lot[date], 0, 4) ;
-			if ($lot[honoraireid] != 0)
+			if ($lot['honoraireid'] != 0)
 				{
-				$liste_honoraires .= ",".$lot[honoraireid] ;
+				$liste_honoraires .= ",".$lot['honoraireid'] ;
 				$hono=$DB_site2->query_first("SELECT * FROM affilie_honoraires where honoraireid = '$lot[honoraireid]'") ;
-				if ($hono[dateversement] == "0000-00-00")
+				if ($hono['dateversement'] == "0000-00-00")
 					{
-					$hono[datedemande] = substr($hono[datedemande], 8, 2) . "/" . substr($hono[datedemande], 5, 2) . "/" . substr($hono[datedemande], 0, 4) ;
+					$hono['datedemande'] = substr($hono['datedemande'], 8, 2) . "/" . substr($hono['datedemande'], 5, 2) . "/" . substr($hono['datedemande'], 0, 4) ;
 					$lot[date] = "<a href=\"\" alt=\"Versement demandé le $hono[datedemande]\" title=\"Versement demandé le $hono[datedemande]\"><font color=\"green\">$lot[date]</font></a>" ;
 					}
 				else
 					{
-					$hono[dateversement] = substr($hono[dateversement], 8, 2) . "/" . substr($hono[dateversement], 5, 2) . "/" . substr($hono[dateversement], 0, 4) ;
+					$hono['dateversement'] = substr($hono['dateversement'], 8, 2) . "/" . substr($hono['dateversement'], 5, 2) . "/" . substr($hono['dateversement'], 0, 4) ;
 					$lot[date] = "<a href=\"\" alt=\"Versement effectué le $hono[dateversement]\" title=\"Versement effectué le $hono[dateversement]\"><font color=\"red\">$lot[date]</font></a>" ;
 					}
 				}
-			$lot[gain] = number_format ($lot[pourcentage] * $lot[montant] / 100, 2, ",", " ") ;
-			$lot[montant] = number_format ($lot[montant], 2, ",", " ") ;
+			$lot['gain'] = number_format ($lot['pourcentage'] * $lot['montant'] / 100, 2, ",", " ") ;
+			$lot['montant'] = number_format ($lot['montant'], 2, ",", " ") ;
 			echo "<tr>
 					<td>Cde $lot[factureid] : $lot[pourcentage]% de $lot[montant]€ = <strong>$lot[gain]€</strong></td>
 				</tr>" ;
@@ -178,7 +178,7 @@ elseif (isset($action) and $action == "affilies") // affiliés
 		$honos=$DB_site2->query("SELECT * FROM affilie_honoraires where honoraireid in ($liste_honoraires) and dateversement != '0000-00-00'");
 		while ($hono=$DB_site2->fetch_array($honos))
 			{
-			$hono[dateversement] = substr($hono[dateversement], 8, 2) . "/" . substr($hono[dateversement], 5, 2) . "/" . substr($hono[dateversement], 0, 4) ;
+			$hono['dateversement'] = substr($hono['dateversement'], 8, 2) . "/" . substr($hono['dateversement'], 5, 2) . "/" . substr($hono['dateversement'], 0, 4) ;
 			echo "<a href=\"honoraire.php?honoraireid=$hono[honoraireid]\" target=\"_blank\" alt=\"Feuille d'honoraires du $hono[dateversement]\" title=\"Feuille d'honoraires du $hono[dateversement]\"><font color=\"red\">PDF</font></a>" ;
 			}
 		echo "</td>
@@ -235,7 +235,7 @@ elseif (isset($action) and $action == "demandes") // demandes de versement
 		$localhost="$mondom";
 		$abuse="arobases@$mondom";
 		$namefrom="${$title}";
-		$to=$aff[mail];
+		$to=$aff['mail'];
 		$subject=$sujet;
 		$message=stripslashes($corps) ;
 		gmail($from,$to,$subject,$smtppass,$localhost,$namefrom,$abuse,$message);
@@ -252,8 +252,8 @@ elseif (isset($action) and $action == "demandes") // demandes de versement
 	$demandes=$DB_site2->query("SELECT * FROM affilie_honoraires where dateversement = '0000-00-00'");
 	while ($demande=$DB_site2->fetch_array($demandes))
 		{
-		$demande[datedemande] = substr($demande[datedemande], 8, 2) . "/" . substr($demande[datedemande], 5, 2) . "/" . substr($demande[datedemande], 0, 4) ;
-		$demande[montant] = number_format ($demande[montant], 2, ",", " ") ;
+		$demande['datedemande'] = substr($demande['datedemande'], 8, 2) . "/" . substr($demande['datedemande'], 5, 2) . "/" . substr($demande['datedemande'], 0, 4) ;
+		$demande['montant'] = number_format ($demande['montant'], 2, ",", " ") ;
 		echo "<tr>
 				<td align=\"center\" valign=\"top\">$demande[datedemande]</td>
 				<td width=\"55%\" valign=\"top\"><table>" ;
@@ -261,8 +261,8 @@ elseif (isset($action) and $action == "demandes") // demandes de versement
 		while ($lot=$DB_site2->fetch_array($lots))
 			{
 			$lot[date] = substr($lot[date], 8, 2) . "/" . substr($lot[date], 5, 2) . "/" . substr($lot[date], 0, 4) ;
-			$lot[gain] = number_format ($lot[pourcentage] * $lot[montant] / 100, 2, ",", " ") ;
-			$lot[montant] = number_format ($lot[montant], 2, ",", " ") ;
+			$lot['gain'] = number_format ($lot['pourcentage'] * $lot['montant'] / 100, 2, ",", " ") ;
+			$lot['montant'] = number_format ($lot['montant'], 2, ",", " ") ;
 			echo "<tr><td>Le $lot[date] : $lot[pourcentage] % sur $lot[montant] €</td><td>soit $lot[gain] €</td></tr>" ;
 			}
 		$aff=$DB_site2->query_first("SELECT distinct(affilieid) FROM affilie_lot where honoraireid = '$demande[honoraireid]'");
@@ -288,8 +288,8 @@ elseif (isset($action) and $action == "honoraires") // honoraires
 	$honoraires=$DB_site2->query("select* from affilie_honoraires where dateversement != '0000-00-00' order by dateversement desc");
 	while ($honoraire=$DB_site2->fetch_array($honoraires))
 		{
-		$honoraire[montant] = number_format ($honoraire[montant], 2, ",", " ") ;
-		$honoraire[dateversement] = substr ($honoraire[dateversement], 8, 2) . "/" . substr ($honoraire[dateversement], 5, 2) . "/" . substr ($honoraire[dateversement], 0, 4) ;
+		$honoraire['montant'] = number_format ($honoraire['montant'], 2, ",", " ") ;
+		$honoraire['dateversement'] = substr ($honoraire['dateversement'], 8, 2) . "/" . substr ($honoraire['dateversement'], 5, 2) . "/" . substr ($honoraire['dateversement'], 0, 4) ;
 		echo "Versement par $honoraire[moyen] en date du $honoraire[dateversement] pour un montant de $honoraire[montant] € &nbsp;&nbsp;
 		<a href=\"honoraire.php?honoraireid=$honoraire[honoraireid]\" target=\"_blank\" alt=\"Feuille d'honoraires au format PDF\" title=\"Feuille d'honoraires au format PDF\"><strong>PDF</strong></a><bR>" ;
 		}

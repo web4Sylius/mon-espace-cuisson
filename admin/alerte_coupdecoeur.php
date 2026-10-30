@@ -184,7 +184,7 @@ elseif( $action == "supprimer2" )
 
 	while( $rs_positions_suivantes = $DB_site2->fetch_array( $rq_positions_suivantes ) ) 
 	{
-		$position_temp = $rs_positions_suivantes[position] - 1;
+		$position_temp = $rs_positions_suivantes['position'] - 1;
 		$rq_modifier_position = "UPDATE coupdecoeur SET position = '$position_temp' 
 								 WHERE coupdecoeurid = '$rs_positions_suivantes[coupdecoeurid]'";
 		$DB_site2->query( $rq_modifier_position );
