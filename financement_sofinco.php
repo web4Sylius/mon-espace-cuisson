@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT']."/global.php");
+include_once(__DIR__.'/global.php');
 header('Content-Type: text/html; charset=utf-8');
 
 $ctx = stream_context_create(array('http'=>	array(	'timeout' => 10  /* 10 secondes */ 	)	));

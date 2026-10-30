@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/global.php');
+include_once(__DIR__.'/global.php');
 
 //Redirection sur la home si aucune catégorie ou url spécifiée
 if((!isset($_GET['catid']) || $_GET['catid']=="") && (!isset($_GET['url']) || $_GET['url']=="")) header("location:/");

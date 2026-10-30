@@ -1068,7 +1068,7 @@ if(!$template->mobile){
     $template->savecache("menuresp",intval($sitepro));
     $template->savecache("sousmenusResp",intval($sitepro));
     }
-}else{var_dump('yghes');
+}else{
     include("menu_mobile.php");
     $template->evaltemplate("rr","recherche_rapide");
 }

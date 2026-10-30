@@ -2,7 +2,7 @@
 
 $rootpath="/var/www/vhosts/mon-espace-cuisson.com/httpdocs/";
 
-include_once($_SERVER['DOCUMENT_ROOT']."/global.php");
+include_once(__DIR__.'/global.php');
 $pdf=new FPDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();

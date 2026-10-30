@@ -1,5 +1,5 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT']."/global.php");
+require(__DIR__.'/global.php');
 /*if(!isset($_COOKIE['admin_username'])){
     header("Location: maintenance.html");
     exit;

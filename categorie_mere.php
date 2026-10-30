@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . "/global.php");
+require_once(__DIR__.'/global.php');
 
 if(!isset($_GET['catid']) || !is_numeric($catid)) header("Location: /");
 

@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/global.php');
+include_once(__DIR__.'/global.php');
 
 if(isset($_GET['artid']) && is_numeric($_GET['artid'])){
 	$file_url = SITE_URL.'/images/mail/fiche_energetique.php?artid='.$_GET['artid'];

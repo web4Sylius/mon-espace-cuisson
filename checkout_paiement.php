@@ -2,7 +2,7 @@
 /**
  * Retour des moyens de paiement : CB / Kwixo (obsolète) / Adyen (paiement CB EN) / Sofinco
  */
-require_once($_SERVER['DOCUMENT_ROOT']."/global.php");
+require_once(__DIR__.'/global.php');
 
 //Retour depuis Paybox (CB)
 if(isset($_GET['facturid']) && !empty($_GET['facturid']) && isset($_GET['trans']) && !empty($_GET['trans'])){

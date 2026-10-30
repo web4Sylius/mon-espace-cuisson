@@ -45,7 +45,11 @@ class DB_Sql {
       }else{
         $nb_essais_connect = 0 ;
         $this->halt("Link-ID == false, connect failed");
-      }  
+      }
+    }elseif(!is_object($con)){
+      // Le code ancien suppose un MySQL permissif (GROUP BY partiels, dates 0000-00-00...) :
+      // on retire les modes stricts activés par défaut depuis MySQL 5.7.
+      mysqli_query($this->link_id, "SET SESSION sql_mode = (SELECT REPLACE(REPLACE(REPLACE(REPLACE(@@SESSION.sql_mode, 'ONLY_FULL_GROUP_BY', ''), 'STRICT_TRANS_TABLES', ''), 'NO_ZERO_IN_DATE', ''), 'NO_ZERO_DATE', ''))");
     }
 
   } 
@@ -137,9 +141,11 @@ class DB_Sql {
         //Enregistrement dans le fichier de log du jour
         // $log_texte = date("d/m/Y") . ' ||| ' . date("H:i:s") . ' ||| Script : ' . $_SERVER['REQUEST_URI'] . ' ||| trace : ' . print_r(debug_backtrace() ,true) . ' ||| Params GET : ' . $params_get . ' ||| Params POST : ' . $params_post . ' ||| ' . $params_cookies . ' ||| Requête : ' . $query_string . ' ||| Durée requête : ' . $dureerequette; 
         $log_texte = date("d/m/Y") . ' ||| ' . date("H:i:s") . ' ||| Script : ' . $_SERVER['REQUEST_URI'] . ' ||| Params GET : ' . $params_get . ' ||| Params POST : ' . $params_post . ' ||| ' . $params_cookies . ' ||| Requête : ' . $query_string . ' ||| Durée requête : ' . $dureerequette; 
-        $f = fopen($this->logpath . "/dbslow_" . date("Y-m-d") . ".txt","a");
-        fputs($f, $log_texte . "\r\n\r\n");
-        fclose($f);
+        $f = @fopen($this->logpath . "/dbslow_" . date("Y-m-d") . ".txt","a");
+        if($f){
+          fputs($f, $log_texte . "\r\n\r\n");
+          fclose($f);
+        }
     }
 
 
@@ -291,9 +297,11 @@ class DB_Sql {
       //Enregistrement dans le fichier de log du jour
       $log_texte = date("d/m/Y") . ' ||| ' . date("H:i:s") . ' ||| Script : ' . $_SERVER['REQUEST_URI'] . ' ||| GET : ' . $params_get . ' ||| POST : ' . $params_post . ' ||| COOKIE ' . $params_cookies . ' ||| Erreur : ' . $this->errdesc . ' ||| Message : ' . $msg. ' ||| backtrace : ' .$backtrace;
 
-      $f = fopen($this->logpath . "/dberror_" . date("Y-m-d") . ".txt","a");
-      fputs($f, $log_texte . "\r\n\r\n");
-      fclose($f);
+      $f = @fopen($this->logpath . "/dberror_" . date("Y-m-d") . ".txt","a");
+      if($f){
+        fputs($f, $log_texte . "\r\n\r\n");
+        fclose($f);
+      }
 
       //if ($this->reporterror==1) {
       $message="Erreur de requetes SQL :\n\n$msg\n";

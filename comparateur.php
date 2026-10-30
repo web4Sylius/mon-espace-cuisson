@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/global.php");
+require_once(__DIR__.'/global.php');
 
 $typearticleid = $_GET['typearticleid'];
 
