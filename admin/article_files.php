@@ -62,7 +62,7 @@ function getfiles($parentid=null){
     if(!is_null($parentid) && $parentid>0){
         $parent=$DB_site2->query_first("SELECT * FROM article_files WHERE id=".$parentid);
         $path.="<path name=\"".$parent['name']."\" dataurl=\"article_files.php?action=files&amp;artid=".$_GET['artid'].(isset($_GET['artid2'])?"&amp;artid2=".$_GET['artid2']:"")."&amp;parent=".$parentid."\" />";
-        $ret.="<parent id=\"$parent[parent]\" dataurl=\"article_files.php?action=files&amp;artid=".$_GET['artid'].(isset($_GET['artid2'])?"&amp;artid2=".$_GET['artid2']:"")."&amp;parent=$parent[parent]\" name=\"".str_replace("&","&amp;",$parent[name])."\" utilisateur=\"$parent[utilisateur]\" date=\"$parent[date]\" mod=\"rw\" />";
+        $ret.="<parent id=\"$parent[parent]\" dataurl=\"article_files.php?action=files&amp;artid=".$_GET['artid'].(isset($_GET['artid2'])?"&amp;artid2=".$_GET['artid2']:"")."&amp;parent=$parent[parent]\" name=\"".str_replace("&","&amp;",$parent['name'])."\" utilisateur=\"$parent[utilisateur]\" date=\"$parent[date]\" mod=\"rw\" />";
     }else
         if(isset($_GET['artid2']))
         $ret.="<parent id=\"".$_GET['artid']."\" dataurl=\"article_files.php?action=files&amp;artid=".$_GET['artid']."\" name=\"\" utilisateur=\"\" date=\"\" mod=\"rw\" />";
@@ -93,9 +93,9 @@ function getartid($artid,$parent){
     while($f=$DB_site2->fetch_array($r)){
         if($f['ext']==""){
             $count=$DB_site2->query_first("SELECT COUNT(*),SUM(size) FROM article_files WHERE parent=".$f['id']);
-            $ret.="<folder id=\"$f[id]\" dataurl=\"article_files.php?action=files&amp;artid=".$_GET['artid'].(isset($_GET['artid2'])?"&amp;artid2=$artid":"")."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f[name])." (".$count[0].")\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
+            $ret.="<folder id=\"$f[id]\" dataurl=\"article_files.php?action=files&amp;artid=".$_GET['artid'].(isset($_GET['artid2'])?"&amp;artid2=$artid":"")."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f['name'])." (".$count[0].")\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
         }else{
-            $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f[name])."\" path=\"/configurations/$host/articlefiles/$f[id].$f[ext]\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" infos=\"".$f['infos']."\" />";
+            $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f['name'])."\" path=\"/configurations/$host/articlefiles/$f[id].$f[ext]\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" infos=\"".$f['infos']."\" />";
         }
     }
     return $ret;

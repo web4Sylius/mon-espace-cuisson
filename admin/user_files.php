@@ -119,9 +119,9 @@ function getfiles(){
 
 						if($f['ext']==""){ //si dossier
 							$count=$DB_site2->query_first("SELECT COUNT(*),SUM(size) FROM sav_files WHERE parent=".$f['id']);
-							$ret.="<folder id=\"$f[id]\" dataurl=\"user_files.php?userid=".$_GET['userid']."&amp;savid=".$savid."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f[name])."\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
+							$ret.="<folder id=\"$f[id]\" dataurl=\"user_files.php?userid=".$_GET['userid']."&amp;savid=".$savid."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f['name'])."\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
 						}else{// si fichier
-							$ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f[name])."\" path=\"sav/$year/$f[id].$f[ext]\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
+							$ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f['name'])."\" path=\"sav/$year/$f[id].$f[ext]\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
 						}
 					}
 
@@ -143,7 +143,7 @@ function getfiles(){
 						$year=date("Y",$file['date']);
 						if($file['ext']==""){
 							$count=$DB_site2->query_first("SELECT COUNT(*),SUM(size) FROM sav_files WHERE parent=".$file['id']);
-							$ret.="<folder id=\"$file[id]\" dataurl=\"user_files.php?userid=".$_GET['userid']."&amp;facturid=".$_GET['facturid']."&amp;savid=".$_GET['savid']."&amp;parent=".$file['id']."\" name=\"".str_replace("&","&amp;",$file[name])."\" utilisateur=\"$file[utilisateur]\" date=\"$file[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
+							$ret.="<folder id=\"$file[id]\" dataurl=\"user_files.php?userid=".$_GET['userid']."&amp;facturid=".$_GET['facturid']."&amp;savid=".$_GET['savid']."&amp;parent=".$file['id']."\" name=\"".str_replace("&","&amp;",$file['name'])."\" utilisateur=\"$file[utilisateur]\" date=\"$file[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
 						}else{
 							$ret.="<file id=\"".$file['id']."\" name=\"".$file['name']."\" path=\"sav/$year/".$file['id'].".".$file['ext']."\" ext=\"".$file['ext']."\" utilisateur=\"".$file['utilisateur']."\" date=\"".$file['date']."\" size=\"".$file['size']."\" mod=\"rw\" />";
 						}
@@ -208,7 +208,7 @@ function getfiles(){
 					$year=date("Y",$file['date']);
 					if($file['ext']==""){
 						$count=$DB_site2->query_first("SELECT COUNT(*),SUM(size) FROM user_files WHERE parent=".$file['id']);
-						$ret.="<folder id=\"$file[id]\" dataurl=\"user_files.php?userid=".$_GET['userid']."&amp;facturid=".$_GET['facturid']."&amp;parent=".$file['id']."\" name=\"".str_replace("&","&amp;",$file[name])."\" utilisateur=\"$file[utilisateur]\" date=\"$file[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
+						$ret.="<folder id=\"$file[id]\" dataurl=\"user_files.php?userid=".$_GET['userid']."&amp;facturid=".$_GET['facturid']."&amp;parent=".$file['id']."\" name=\"".str_replace("&","&amp;",$file['name'])."\" utilisateur=\"$file[utilisateur]\" date=\"$file[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
 					}else{
 						if(file_exists("userfiles/$year/".$file['id'].".".$file['ext'])){
 							$path = "userfiles/$year/".$file['id'].".".$file['ext'];
@@ -261,14 +261,14 @@ function getfiles(){
                 $year=date("Y",$f['date']);
                 if($f['ext']==""){
                     $count=$DB_site2->query_first("SELECT COUNT(*),SUM(size) FROM user_files WHERE parent=".$f['id']);
-                    $ret.="<folder id=\"$f[id]\" dataurl=\"user_files.php?userid=".$_GET['userid']."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f[name])."\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
+                    $ret.="<folder id=\"$f[id]\" dataurl=\"user_files.php?userid=".$_GET['userid']."&amp;parent=".$f['id']."\" name=\"".str_replace("&","&amp;",$f['name'])."\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"".$count[1]."\" mod=\"rw\" />";
                 }else{
                     if(file_exists("userfiles/$year/$f[id].$f[ext]")){
                         $path = "userfiles/$year/$f[id].$f[ext]";
                     }else{
                         $path = "userfiles/$f[id].$f[ext]";
                     }
-                    $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f[name])."\" path=\"$path\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
+                    $ret.="<file id=\"$f[id]\" name=\"".str_replace("&","&amp;",$f['name'])."\" path=\"$path\" ext=\"$f[ext]\" utilisateur=\"$f[utilisateur]\" date=\"$f[date]\" size=\"$f[size]\" mod=\"rw\" />";
                 }
             }
             

@@ -380,11 +380,11 @@ if (isset($action) and $action == "modif")
 	}
 
 $affilie=$DB_site2->query_first("SELECT * FROM affilie where affilieid = '$aff'");
-$codebanque = $affilie[RIBetab] ;
-$codeguichet = $affilie[RIBguichet] ;
-$nocompte = $affilie[RIBcompte] ;
-$cle = $affilie[RIBcle] ;
-switch ($affilie[civilite])
+$codebanque = $affilie['RIBetab'] ;
+$codeguichet = $affilie['RIBguichet'] ;
+$nocompte = $affilie['RIBcompte'] ;
+$cle = $affilie['RIBcle'] ;
+switch ($affilie['civilite'])
 	{
 	case "1":
 		$selectmr = "selected" ; 
@@ -396,7 +396,7 @@ switch ($affilie[civilite])
 		$selectmelle = "selected" ; 
 		break; 
 	}
-	if ($affilie[actif] == '1')
+	if ($affilie['actif'] == '1')
 		{
 		$chk1 = "checked" ;
 		$chk0 = "" ;
@@ -410,7 +410,7 @@ $zonedeliste_pays = "";
 $payss=$DB_site2->query("SELECT * FROM pays ORDER BY libelle ASC");
 while($pays=$DB_site->fetch_array($payss))
 	{
-	if($pays[paysid]==$affilie[paysid]) 
+	if($pays['paysid']==$affilie['paysid']) 
 		{
 		$selected="selected";
 		} 

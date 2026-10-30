@@ -30,7 +30,7 @@ while ($boutique=$DB_site->fetch_array($boutiques)) {
 
 	$articles=$DB_site2->query("select artid, image from article order by artid") ;
 	while ($article=$DB_site2->fetch_array($articles)) {
-		if ($article[image] != "") { 
+		if ($article['image'] != "") { 
 			$rep_racine = $rootpath."configurations/$host/images/produits/$article[artid].$article[image]";
 			if (!file_exists($rep_racine)) {
 				$reparticle = $rootpath."configurations/$host/images/produits/article/$article[artid].$article[image]";

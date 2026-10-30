@@ -12,7 +12,7 @@ while($p=$DB_site->fetch_array($requete)){
         $template->parts["pays"] = $p['libelle'];
         $template->parts["paysid"] = $p['paysid'];
     }
-    $optpays.="<option value=\"$p[paysid]\"".($user_info['paysid']==$p['paysid']?" selected":"").">".$p[libelle]."</option>";
+    $optpays.="<option value=\"$p[paysid]\"".($user_info['paysid']==$p['paysid']?" selected":"").">".$p['libelle']."</option>";
 }
 
 $js=<<<JS
@@ -163,7 +163,7 @@ $template->parts["img"]=$articlePhoto;
 $template->parts["imglivr"]=$articlePhoto2;
 $template->parts["artid"]=$article[artid];
 $template->parts["url"]=$template->mkurl("article",$artid,$article);
-$template->parts["marqueid"]=$article[marqueid];
+$template->parts["marqueid"]=$article['marqueid'];
 $template->parts['civ']=intval($user_info['civilite']);
 if($user_info['civilite']==0) $template->parts["civ0"]="checked";
 if($user_info['civilite']==1) $template->parts["civ1"]="checked";

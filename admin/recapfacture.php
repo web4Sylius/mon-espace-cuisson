@@ -107,8 +107,8 @@ if(isset($_POST['du']) && isset($_POST['au'])){
 			$factureid="<a href=\"facture.php?action=editer&facturid=".$facturid."\" target=\"_blank\">".$facturid."</a>";
 			$sql = "SELECT note FROM facture_rentabilite WHERE facturid ='".$facturid."' ";
 			$rentabilite = $DB_site2->query_first($sql);
-			if($rentabilite[note]!=""){
-				$factureid.=" <a href=\"facture.php?action=editer&facturid=".$facturid."\" target=\"_blank\" title=\"".utf8_decode($rentabilite[note])."\">XXX</a>";
+			if($rentabilite['note']!=""){
+				$factureid.=" <a href=\"facture.php?action=editer&facturid=".$facturid."\" target=\"_blank\" title=\"".utf8_decode($rentabilite['note'])."\">XXX</a>";
 			}
 			$ligne['total_marge_previ_pct']=couleur_marge(floatval($ligne['total_marge_previ_pct']));
 			$ligne['total_marge_reel_pct']=couleur_marge(floatval($ligne['total_marge_reel_pct']));

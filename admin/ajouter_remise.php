@@ -14,7 +14,7 @@ else
   </head>
   <body background="/images/template/fond.gif">
 <link rel="stylesheet" href="/arobases.css">
-<?
+<?php 
 
 if( !in_array( "3", $modules ) )
 	echo "<script language=\"javascript\">location.href=\"index.php\";</script>";

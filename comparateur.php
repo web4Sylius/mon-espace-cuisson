@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/global.php");
+require_once(__DIR__.'/global.php');
 
 $typearticleid = $_GET['typearticleid'];
 
@@ -45,7 +45,7 @@ foreach($tabProduits as $articles){
 	$libelle=ucfirst(strtolower($article['libelle'.$template->langue]));
 	$template->parts["libelle"]=Truncate($libelle,60,false);
 	$template->parts["ref"]=$article['artcode'];
-	$template->parts["logomarque"]="<img src=\"/marques/".$mq[marqueid]."_180_25.jpg\" class=\"marque\" alt=\"".$mq['mtype']."\">";
+	$template->parts["logomarque"]="<img src=\"/marques/".$mq['marqueid']."_180_25.jpg\" class=\"marque\" alt=\"".$mq['mtype']."\">";
 	
 	if($article['commandable']==1){
             $template->parts["prix"]=$template->price_format($article['prix']);
@@ -75,7 +75,7 @@ foreach($tabProduits as $articles){
 	$d=delailivraison($article);
 	$template->parts["delailivraison"].="<td>".$d['delailivraison']."</td>";
 	$template->parts["dimensions"].="<td>".$article['hauteur']." * ".$article['largeur']." * ".$article['profondeur']." mm / ".round($article['poid']/1000)." kg</td>";
-	$imgfabrication="<img src=\"/images/templates/fabrication_".$article[paysfabrication].".jpg\" alt=\"".$template->translate("/article/origines/".$article[paysfabrication],"F")."\" align=\"absmiddle\" height=\"26\"> ".$template->translate("/article/origines/".$article[paysfabrication],"F");
+	$imgfabrication="<img src=\"/images/templates/fabrication_".$article['paysfabrication'].".jpg\" alt=\"".$template->translate("/article/origines/".$article['paysfabrication'],"F")."\" align=\"absmiddle\" height=\"26\"> ".$template->translate("/article/origines/".$article['paysfabrication'],"F");
 	$template->parts["origine"].="<td>".$imgfabrication."</td>";
 	
 	$template->parts["hygrometrie"].="<td>".$template->translate($article['hygrometrie'])."</td>";
@@ -98,8 +98,8 @@ foreach($tabProduits as $articles){
 	
 	$template->parts["consokw"].="<td>".round(floatval($article['conso_kw'])*365)."</td>";
 	$template->parts["bruit"].="<td>".$article['niveau_bruit']."</td>";
-	$article[conso_euro]=round($article['conso_kw']*$prixkw*365);
-	$template->parts["conso"].="<td>".round($article[conso_kw],1)." kW/24h ".$template->translate("/article/champs/soit_env")." $article[conso_euro] &euro; ".$template->translate("/site/ttc").$template->translate("/article/champs/par_an")."</td>";
+	$article['conso_euro']=round($article['conso_kw']*$prixkw*365);
+	$template->parts["conso"].="<td>".round($article['conso_kw'],1)." kW/24h ".$template->translate("/article/champs/soit_env")." $article[conso_euro] &euro; ".$template->translate("/site/ttc").$template->translate("/article/champs/par_an")."</td>";
     }
 }
 $template->evaltemplate("ComparateurGrille".$typearticleid,"blocgrille");

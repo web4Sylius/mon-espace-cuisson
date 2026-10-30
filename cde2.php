@@ -42,7 +42,7 @@ if(isset($_POST['action0']) && $_POST['action0'] != ""){
     $template->parts["zonedeliste_pays"]="";
     $payss=$DB_site->query("SELECT * FROM pays INNER JOIN fraisport USING(paysid) WHERE sites='".$site_code."' GROUP BY paysid ORDER BY libelle ASC");
     while($pays=$DB_site->fetch_array($payss)){
-        $template->parts["zonedeliste_pays"] .= "<option value=$pays[paysid] ".($pays[paysid]==57?"selected":"").">$pays[libelle]</option>";
+        $template->parts["zonedeliste_pays"] .= "<option value=$pays[paysid] ".($pays['paysid']==57?"selected":"").">$pays[libelle]</option>";
     }
     $action="";
     $template->parts["jsinscription"]="document.getElementById('register1').style.display='none';";
@@ -682,7 +682,7 @@ if (!isset($action) or $action == ""){
           if($user_info['raisonsociale'] != "") $pro = true;                 
           $frais_port = new frais_port($DB_site, $artids, $rs_facture_coordonnees['paysid'], $prixtotalpanier, $totalpaht, $template->site_code(),$pro,$user_info['userid']);
           
-          $install = pays_install($rs_facture_coordonnees[paysid]);
+          $install = pays_install($rs_facture_coordonnees['paysid']);
 
           if(!$frais_port->livre){   // On ne livre pas dans ce pays 
                
@@ -711,7 +711,7 @@ if (!isset($action) or $action == ""){
                     
                     $typelivraison = '1';
                     
-                    if($install == "sls") $tarifsls = prixsls($rs_facture_coordonnees[codepostal],$poidtotal,$rs_facture_coordonnees[paysid],$prixtypeinstall);
+                    if($install == "sls") $tarifsls = prixsls($rs_facture_coordonnees['codepostal'],$poidtotal,$rs_facture_coordonnees['paysid'],$prixtypeinstall);
                     if($install == "enigma") $tarifsls = prix_enigma($poidscaves,$template->site_code());
 
                     $prixtotalpanier += $tarif;
@@ -1062,45 +1062,45 @@ if (!isset($action) or $action == ""){
 	    $step=3;
             $rs_facture_coordonnees=$DB_site->query_first("SELECT * FROM facture WHERE userid = '$user_info[userid]' AND facturid = '$factureid'");
             if (isset($civilite) && $civilite != "")
-                $rs_facture_coordonnees[civilite] = $civilite;
+                $rs_facture_coordonnees['civilite'] = $civilite;
                 
             if (isset($nom) && $nom != "")
-                $rs_facture_coordonnees[nom] = $nom;
+                $rs_facture_coordonnees['nom'] = $nom;
                 
             if (isset($prenom) && $prenom != "")
-                $rs_facture_coordonnees[prenom] = $prenom;
+                $rs_facture_coordonnees['prenom'] = $prenom;
                 
             if (isset($adresse) && $adresse != "")
-                $rs_facture_coordonnees[adresse] = $adresse;
+                $rs_facture_coordonnees['adresse'] = $adresse;
                 
             if (isset($codepostal) && $codepostal != "")
-                $rs_facture_coordonnees[codepostal] = $codepostal;
+                $rs_facture_coordonnees['codepostal'] = $codepostal;
                 
             if (isset($ville) && $ville != "")
-                $rs_facture_coordonnees[ville] = $ville;
+                $rs_facture_coordonnees['ville'] = $ville;
                 
             if (isset($telephone) && $telephone != "")
-                $rs_facture_coordonnees[telephone] = $telephone;
+                $rs_facture_coordonnees['telephone'] = $telephone;
                 
             if (isset($raisonsociale) && $raisonsociale != "")
-                $rs_facture_coordonnees[raisonsociale] = $raisonsociale;
+                $rs_facture_coordonnees['raisonsociale'] = $raisonsociale;
                 
             if (isset($monpays) && $monpays != "")
-                $rs_facture_coordonnees[paysid] = $monpays;
+                $rs_facture_coordonnees['paysid'] = $monpays;
                 
-            if ($rs_facture_coordonnees[civilite] == '0') 
+            if ($rs_facture_coordonnees['civilite'] == '0') 
                 $selectmr="selected"; 
                 
-            if ($rs_facture_coordonnees[civilite] == '1') 
+            if ($rs_facture_coordonnees['civilite'] == '1') 
                 $selectmme="selected"; 
                 
-            if ($rs_facture_coordonnees[civilite] =='2') 
+            if ($rs_facture_coordonnees['civilite'] =='2') 
                 $selectmelle="selected"; 
                 
             $payss=$DB_site->query("SELECT * FROM pays WHERE paysid IN (select DISTINCT(paysid) FROM fraisport) ORDER BY libelle ASC");
             $Cde2Autre_lstPays = "" ;
             while ($pays=$DB_site->fetch_array($payss)){
-                if ($rs_facture_coordonnees[paysid] == $pays[paysid]) 
+                if ($rs_facture_coordonnees['paysid'] == $pays['paysid']) 
                     $selected = "selected";
                 else 
                     $selected = "";

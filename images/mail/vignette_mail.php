@@ -47,8 +47,8 @@ imagefill($vignette,0,0,$blanc);
 
 $article=$DB_site->query_first("SELECT artid,libelle".$langue." AS libelle,artcode,a_s.active,commandable,gamme".$template->langue.",a_s.prix,a_s.prixconseilleht,a_s.tauxchoisi FROM article INNER JOIN article_site a_s USING(artid) WHERE artid=".intval($_GET['artid'])." AND site_code='".$site_code."'");
 $mq=$DB_site->query_first("select libelle,m.marqueid,image from marque m, article_marque am where m.marqueid = am.marqueid and am.artid = '".$_GET['artid']."'") ;
-$imgm="../../configurations/www.ma-cave-a-vin.fr/images/marques/br/".$mq[marqueid].".".$mq[image];
-if(file_exists($imgm) && $mq[image]!=""){
+$imgm="../../configurations/www.ma-cave-a-vin.fr/images/marques/br/".$mq['marqueid'].".".$mq['image'];
+if(file_exists($imgm) && $mq['image']!=""){
     $logomarque=imagecreatefromjpeg($imgm);
     $size=getimagesize($imgm);
     $dh=$size[1]*$logo_w/$size[0];
@@ -112,8 +112,8 @@ if(round($article['prixht'])!=round($article['prixconseilleht']) && ($promo[0]>0
 }
 $vfarticle=$DB_site->query_first("SELECT * FROM vente_flash_article vfa INNER JOIN vente_flash vf ON (vf.id=vfa.vfid) WHERE (".time()." BETWEEN vf.du AND vf.au) AND vfa.artcode='$article[artcode]'");
 if($vfarticle['id']!=""){
-    $pc = "-".round(100-(($vfarticle[prix] * 100) / ($txtva*$article[prixconseilleht])))."%";
-    $strikeout=number_format($article[prixconseilleht]*$txtva, 2, ',', ' ');
+    $pc = "-".round(100-(($vfarticle['prix'] * 100) / ($txtva*$article['prixconseilleht'])))."%";
+    $strikeout=number_format($article['prixconseilleht']*$txtva, 2, ',', ' ');
     $prixttc=$vfarticle['prix'];
     $yprice=105;
 }

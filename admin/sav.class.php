@@ -94,7 +94,7 @@ function radio_inputs($name,$values,$action=""){
 
 function radio($name,$value,$action=""){
     $data=each($value);
-    $return="<input type=\"radio\" name=\"opt$name\" value=\"$data[value]\" onclick=\"document.getElementsByName('$name')[0].value=this.value;$action;\" ".($this->fields[$name]==$data[value]?"checked":"").">".$data['key'];
+    $return="<input type=\"radio\" name=\"opt$name\" value=\"$data[value]\" onclick=\"document.getElementsByName('$name')[0].value=this.value;$action;\" ".($this->fields[$name]==$data['value']?"checked":"").">".$data['key'];
 
     return $return;
 }

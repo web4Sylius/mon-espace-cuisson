@@ -72,19 +72,19 @@ function construire_cat($parentid)
 				$treeview .= "<ul class=\"tree2\">" ;
 				while ($article=$DB_site2->fetch_array($articles))
 					{
-					$article[libelleFR] = substr($article[libelleFR], 0, 50) ;
+					$article['libelleFR'] = substr($article['libelleFR'], 0, 50) ;
 					if (in_array($article[artid], $tab_conseilles))
 						{
-						$treeview .= "<li class=\"art\"><input type=\"checkbox\" name=\"chk_articles[$article[artid]]\" value=\"$article[artid]\" onclick=\"javascript:changecolor('A$article[artid]');\" checked> <img height=\"100\" src=\"/configurations/$host/images/produits/categorie/$article[artid].$article[image]\" style=\"vertical-align:middle;\"> <font style=\"color:#FF0000;\" id=\"A$article[artid]\">$article[libelleFR]</font> (prix : ".number_format($article[prix], 2, ",", " ")." €)</li>" ;
+						$treeview .= "<li class=\"art\"><input type=\"checkbox\" name=\"chk_articles[$article[artid]]\" value=\"$article[artid]\" onclick=\"javascript:changecolor('A$article[artid]');\" checked> <img height=\"100\" src=\"/configurations/$host/images/produits/categorie/$article[artid].$article[image]\" style=\"vertical-align:middle;\"> <font style=\"color:#FF0000;\" id=\"A$article[artid]\">$article[libelleFR]</font> (prix : ".number_format($article['prix'], 2, ",", " ")." €)</li>" ;
 						}
 					else
 						{
-						$treeview .= "<li class=\"art\"><input type=\"checkbox\" name=\"chk_articles[$article[artid]]\" value=\"$article[artid]\" onclick=\"javascript:changecolor('A$article[artid]');\"> <img height=\"100\" src=\"/configurations/$host/images/produits/categorie/$article[artid].$article[image]\" style=\"vertical-align:middle;\"> <font id=\"A$article[artid]\">$article[libelleFR]</font> (prix : ".number_format($article[prix], 2, ",", " ")." €)</li>" ;
+						$treeview .= "<li class=\"art\"><input type=\"checkbox\" name=\"chk_articles[$article[artid]]\" value=\"$article[artid]\" onclick=\"javascript:changecolor('A$article[artid]');\"> <img height=\"100\" src=\"/configurations/$host/images/produits/categorie/$article[artid].$article[image]\" style=\"vertical-align:middle;\"> <font id=\"A$article[artid]\">$article[libelleFR]</font> (prix : ".number_format($article['prix'], 2, ",", " ")." €)</li>" ;
 						}
 					}
 				$treeview.="</ul>" ;
 				}
-			construire_cat($cat[catid]);
+			construire_cat($cat['catid']);
 			$treeview.="</ul>\n";
 			}
 		else
@@ -96,14 +96,14 @@ function construire_cat($parentid)
 				$treeview .= "<ul class=\"tree2\">" ;
 				while ($article=$DB_site2->fetch_array($articles))
 					{
-					$article[libelleFR] = substr($article[libelleFR], 0, 50) ;
+					$article['libelleFR'] = substr($article['libelleFR'], 0, 50) ;
 					if (in_array($article[artid], $tab_conseilles))
 						{
-						$treeview .= "<li class=\"art\"><input type=\"checkbox\" name=\"chk_articles[$article[artid]]\" value=\"$article[artid]\" onclick=\"javascript:changecolor('A$article[artid]');\" checked> <img height=\"100\" src=\"/configurations/$host/images/produits/categorie/$article[artid].$article[image]\" style=\"vertical-align:middle;\"> <font style=\"color:#FF0000;\" id=\"A$article[artid]\">$article[libelleFR]</font> (prix : ".number_format($article[prix], 2, ",", " ")." €)</li>" ;
+						$treeview .= "<li class=\"art\"><input type=\"checkbox\" name=\"chk_articles[$article[artid]]\" value=\"$article[artid]\" onclick=\"javascript:changecolor('A$article[artid]');\" checked> <img height=\"100\" src=\"/configurations/$host/images/produits/categorie/$article[artid].$article[image]\" style=\"vertical-align:middle;\"> <font style=\"color:#FF0000;\" id=\"A$article[artid]\">$article[libelleFR]</font> (prix : ".number_format($article['prix'], 2, ",", " ")." €)</li>" ;
 						}
 					else
 						{
-						$treeview .= "<li class=\"art\"><input type=\"checkbox\" name=\"chk_articles[$article[artid]]\" value=\"$article[artid]\" onclick=\"javascript:changecolor('A$article[artid]');\"> <img height=\"100\" src=\"/configurations/$host/images/produits/categorie/$article[artid].$article[image]\" style=\"vertical-align:middle;\"> <font id=\"A$article[artid]\">$article[libelleFR]</font> (prix : ".number_format($article[prix], 2, ",", " ")." €)</li>" ;
+						$treeview .= "<li class=\"art\"><input type=\"checkbox\" name=\"chk_articles[$article[artid]]\" value=\"$article[artid]\" onclick=\"javascript:changecolor('A$article[artid]');\"> <img height=\"100\" src=\"/configurations/$host/images/produits/categorie/$article[artid].$article[image]\" style=\"vertical-align:middle;\"> <font id=\"A$article[artid]\">$article[libelleFR]</font> (prix : ".number_format($article['prix'], 2, ",", " ")." €)</li>" ;
 						}
 					}
 				$treeview .= "</ul>" ;
@@ -144,7 +144,7 @@ if (isset($action) and $action == "first")
 	$position=$DB_site2->query_first("SELECT position FROM art_nouveautes WHERE artid = '$artid'");
 	$poss=$DB_site2->query("select * from art_nouveautes WHERE position < '$position[position]'");
 	while ($pos=$DB_site2->fetch_array($poss)) {
-		$newpos = $pos[position]+1 ;
+		$newpos = $pos['position']+1 ;
 		$DB_site2->query("update art_nouveautes set position = '$newpos' WHERE artid = '$pos[artid]'");
 		}
 	$DB_site2->query("update art_nouveautes set position = '1' WHERE artid = '$artid'");
@@ -156,7 +156,7 @@ if (isset($action) and $action == "last")
 	$position=$DB_site2->query_first("SELECT position FROM art_nouveautes WHERE artid = '$artid'");						
 	$poss=$DB_site2->query("select * from art_nouveautes WHERE position > '$position[position]'");
 	while ($pos=$DB_site2->fetch_array($poss)) {
-		$newpos = $pos[position]-1 ;
+		$newpos = $pos['position']-1 ;
 		$DB_site2->query("update art_nouveautes set position = '$newpos' WHERE artid = '$pos[artid]'");
 		}
 	$max=$DB_site2->query_first("select max(position) from art_nouveautes");
@@ -261,7 +261,7 @@ if (!isset($action) or $action == "")
 					<td align=\"center\">$position</td>
 					<td align=\"center\"><img src=\"/configurations/$host/images/produits/categorie/$art[artid].$art[image]\" height=\"100\"></td>
 					<td align=\"left\">$art[$libelle] $art[artcode]</td>
-					<td align=\"left\">".number_format($art[prix], 2, ",", " ")." €</td>
+					<td align=\"left\">".number_format($art['prix'], 2, ",", " ")." €</td>
 					<td align=\"center\"><a href=\"arts_nouv.php?action=del&artid=$art[artid]\"><img src=\"images/supprimer.gif\"></a></td>
 				</tr>
 					" ;

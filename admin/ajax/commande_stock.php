@@ -234,5 +234,5 @@ function mail_cancel($cmd){
   	$mail->sendmail();
 
   	$time = time()+1;
-  	$DB_site2->query("INSERT INTO mail_outbox SET date=".$time.", utilisateur='".$user_info[username]."', `to`='".$mail->destinataire."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', stock_cmd_id=".$cmd.", uniqueid='".$mail->uniqueid."', compta ='non'");
+  	$DB_site2->query("INSERT INTO mail_outbox SET date=".$time.", utilisateur='".$user_info['username']."', `to`='".$mail->destinataire."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', stock_cmd_id=".$cmd.", uniqueid='".$mail->uniqueid."', compta ='non'");
 }

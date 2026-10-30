@@ -58,7 +58,7 @@ $req = $DB_site->query($sql);
 while($result = $DB_site->fetch_array($req)){
 	//var_dump($result[artid]);
 	$artmec = $DB_site->query_first("SELECT * FROM article_mec WHERE artid = ".$result[artid]);
-	$tablespec = $DB_site->query_first("SELECT bdd_table FROM typearticle WHERE typearticleid = ".$result[typearticleid]);
+	$tablespec = $DB_site->query_first("SELECT bdd_table FROM typearticle WHERE typearticleid = ".$result['typearticleid']);
 	$champs = "hauteur = '".$artmec['hauteur']."', largeur='".$artmec['largeur']."', profondeur='".$artmec['profondeur']."', poids = '".$artmec['poid']."', matiere = '".$artmec['matiere']."', couleur = '".$artmec['coloris']."'";
 	$puissance = ", puissance_totale='".$artmec['puissance_totale']."', intensite_electrique='".$artmec['intensite_electrique']."', tension_electrique='".$artmec['tension_electrique']."', frequence='".$artmec['frequence']."'";
 	$sql_update = "UPDATE ".$tablespec[0]." SET ".$champs.$puissance." WHERE artid=".$result[artid].";" ;

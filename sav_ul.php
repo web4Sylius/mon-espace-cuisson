@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . "/global.php");
+require_once(__DIR__.'/global.php');
 
 ini_set("max_input_time",300);
 ini_set("max_upload_size","4M");

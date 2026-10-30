@@ -125,7 +125,7 @@ if(isset($_GET['user']) && isset($_GET['date'])){
            $account=$DB_site2->query_first("SELECT * FROM accounts a INNER JOIN crm_accounts_contacts ac ON (a.id=ac.account_id) WHERE ac.contact_id='$parent[id]'");
            $name=$account['name']." ".$parent['first_name']." ".$parent['last_name'];
        }
-       print "<rappel from=\"crm\" crmid=\"".$account[id]."\" date=\"".$r['reminder_time']."\" hide=\"".$rappel['hide']."\">".xml_convert($name)."</rappel>";
+       print "<rappel from=\"crm\" crmid=\"".$account['id']."\" date=\"".$r['reminder_time']."\" hide=\"".$rappel['hide']."\">".xml_convert($name)."</rappel>";
      }
 }
 

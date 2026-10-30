@@ -198,7 +198,7 @@ class stock {
     function lieudetail($lieuid){
     	$return="";
     	$lieu=$this->DB->query_first("SELECT societe, ville FROM fournisseur WHERE id='".$lieuid."' ");
-		$return=$lieu[societe]." ".$lieu[ville];
+		$return=$lieu['societe']." ".$lieu['ville'];
     	return $return;
     }
 

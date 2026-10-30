@@ -1,4 +1,4 @@
-<?
+<?php 
 
 /** Decrementer le stock pour un article et ses caractéristique
 * $dbLink : Objet Mysql

@@ -1,11 +1,11 @@
 <?php
 
 
-$ecopart = $article[ecopart] ;
-$ecopartht = $article[ecopartht] ;
-$tauxtva = $article[tauxchoisi] ;
-$delailivraison=$article[delailivraison];
-$date_appro=($article[date_appro]>0?date("d/m/Y",$article[date_appro]):"");
+$ecopart = $article['ecopart'] ;
+$ecopartht = $article['ecopartht'] ;
+$tauxtva = $article['tauxchoisi'] ;
+$delailivraison=$article['delailivraison'];
+$date_appro=($article['date_appro']>0?date("d/m/Y",$article['date_appro']):"");
 $pattc=0;
 $prixconseille=0;
 $prixconseilleht = 0 ;
@@ -39,7 +39,7 @@ if($DB_site2->num_rows($requete)>0){
       WHERE af.principal LIKE '%base%' AND a_s.site_code='base' AND a.artid=".$lart['artid']);
       
       $tvapc=$txfrance[$larticle['tauxchoisi']];
-      $date_approArt=($larticle[date_appro]>0?date("d/m/Y",$larticle[date_appro]):"");
+      $date_approArt=($larticle['date_appro']>0?date("d/m/Y",$larticle['date_appro']):"");
       $totalprix+=($lart['qte']*$larticle['prix']);
       $totalachat+=($lart['qte']*$larticle['paht']);
       $totalecopartht+=($lart['qte']*$larticle['ecopartht']);

@@ -113,7 +113,7 @@ function formatmail_facture($mail,$sens){
             </div>  
         </td>";
     }else{
-        $suivi_assoc = "<td style=\"font-weight: bold;\"><div style=\"text-align:center;\">SAV : <a href=\"/facture.php?action=editer&facturid=".$mail[savid]."\" target=\"_blank\">".$mail[savid]."</a><br><a id=\"suivi_sav_".$mail['id']."\" class=\"delier_btn\" onclick=\"delierMail(".intval($mail['userid']).",'".$mail['savid']."', ".$mail['id'].", '".$sens."', 'sav');\">Délier de ce sav</a></div></td>";
+        $suivi_assoc = "<td style=\"font-weight: bold;\"><div style=\"text-align:center;\">SAV : <a href=\"/facture.php?action=editer&facturid=".$mail['savid']."\" target=\"_blank\">".$mail['savid']."</a><br><a id=\"suivi_sav_".$mail['id']."\" class=\"delier_btn\" onclick=\"delierMail(".intval($mail['userid']).",'".$mail['savid']."', ".$mail['id'].", '".$sens."', 'sav');\">Délier de ce sav</a></div></td>";
     }
           
 $pjlist = ""; 
@@ -193,7 +193,7 @@ function formatsuivi_facture($s){
         $liersuivi = "<br><input type=\"button\" style=\"background-color: #AA1147; border: medium none; border-radius: 10px; color: white; font-size: 10px; font-weight: bold; padding: 1px 10px 3px; cursor: pointer; margin: 5px 1px;\" value=\"lier à un sav\" onclick=\"CheckListTransferts2('sav', ".$s['facturid'].", ".$s['id'].",'suiviint','suiviint');\">";
         $liersuivi .="<div id=\"lier_sav_suiviint_".$s['id']."\" style=\"display:none;\"> <select id=\"select_lier_sav_suiviint_".$s['id']."\" onchange=\"lierSuivi('sav',this.value,".intval($s['id']).",'suiviint')\"></select></div>";
     }elseif($s['savid'] != 0){
-        $liersuivi ="<br><div style=\"text-align:center;\">SAV : <a href=\"/facture.php?action=editer&facturid=".$s[savid]."\" target=\"_blank\">".$s[savid]."</a><br><a id=\"suivi_sav_".$s['id']."\" class=\"delier_btn\" onclick=\"delierSuivi('sav',".intval($s['savid']).",'".$s['id']."','suiviint');\">Délier de ce sav</a></div>";
+        $liersuivi ="<br><div style=\"text-align:center;\">SAV : <a href=\"/facture.php?action=editer&facturid=".$s['savid']."\" target=\"_blank\">".$s['savid']."</a><br><a id=\"suivi_sav_".$s['id']."\" class=\"delier_btn\" onclick=\"delierSuivi('sav',".intval($s['savid']).",'".$s['id']."','suiviint');\">Délier de ce sav</a></div>";
     }else{
         $liersuivi="";
     }

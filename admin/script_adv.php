@@ -94,7 +94,7 @@ function suivi_fourn($ts,$typedate,$order="facturid",$late=null,$days=1,$a_venir
     <td onmouseover=\"toggletool(this,'visible');\" onmouseout=\"toggletool(this,'hidden');\">$envoi[facturid] $vip<div class=\"popup\">Commande n°$envoi[facturid]".history("commande",$envoi['facturid'])."</div></td>
     <td>$envoi[qte]</td>
     <td title=\"".$article['libelleFR']."\">$article[artcode_eurocave]</td>
-    <td".($envoi['indate']<$tomorrow?" style=\"color:red;\"":"")." $action>".$cmenu.($envoi[indate]>0?date("d/m/Y",$envoi[indate]):"")."</td>
+    <td".($envoi['indate']<$tomorrow?" style=\"color:red;\"":"")." $action>".$cmenu.($envoi['indate']>0?date("d/m/Y",$envoi['indate']):"")."</td>
     <td".($envoi['outdate']<$tomorrow?" style=\"color:red;\"":"")." $action>".$cmenu2.($envoi['outdate']>0?date("d/m/Y",$envoi['outdate']):"-").$imperatif."</td>
     <td>$envoi[trspt]</td>
     <td><a href=\"facture.php?action=editer&facturid=$envoi[facturid]#adv\" target=\"_blank\">Cde</a></td>
@@ -244,7 +244,7 @@ function suivi_trspt($ts,$typedate,$order="facturid",$late=null,$days=1,$a_venir
    <td>".$efldata['qte']."</td>
    <td>".$efldata['poids']."</td>
    <td>".$efldata['enl']."</td>
-   <td".($efldata['indate']<$tomorrow?" style=\"color:red;\"":"")." $action>".$cmenu.($envoi[indate]>0?date("d/m/Y",$efldata['indate']):"")."</td>
+   <td".($efldata['indate']<$tomorrow?" style=\"color:red;\"":"")." $action>".$cmenu.($envoi['indate']>0?date("d/m/Y",$efldata['indate']):"")."</td>
    <td>".$efldata['dest']."</td>
    <td".($efldata['outdate']<$tomorrow?" style=\"color:red;\"":"")." $action>".$cmenu2.($efldata['outdate']!=0?date("d/m/Y",$efldata['outdate']):"").$imperatif."</td>
    <td>".$efldata['cp']."</td>
@@ -400,7 +400,7 @@ function suivi_sls($ts,$typedate,$order="facturid",$late=null,$days=1,$a_venir=n
      <td>".$efldata['qte']."</td>
      <td>".$efldata['poids']."</td>
      <td>".$efldata['enl']."</td>
-     <td".($efldata['indate']<$tomorrow?" style=\"color:red;\"":"")." $action>".$cmenu.($envoi[indate]>0?date("d/m/Y",$efldata['indate']):"")."</td>
+     <td".($efldata['indate']<$tomorrow?" style=\"color:red;\"":"")." $action>".$cmenu.($envoi['indate']>0?date("d/m/Y",$efldata['indate']):"")."</td>
      <td>".$facture['prenom']." ".$facture['nom']."</td>
      <td".($efldata['outdate']<$tomorrow?" style=\"color:red;\"":"")." $action>".$cmenu2.($efldata['outdate']!=0?date("d/m/Y",$efldata['outdate']):"").$imperatif."</td>
      <td>$cp</td>
@@ -555,7 +555,7 @@ function nocmd($ts,$order){
        <td>".$nocmd['artcode']."</td>
         <td title=\"".$nocmd['libelleFR']."\">".$nocmd['artcode_eurocave']."</td>
         <td>".$nocmd['marque']."</td>  
-        <td title=\"".$nocmd['libelleFR']."\" align=\"center\"><input type=\"checkbox\" onclick=\"todispo(this.checked,$nocmd[factureid],$nocmd[lignefactureid],'$nocmd[artcode_eurocave]','$nocmd[qte]','$nocmd[paht]".($nocmd['ecopartht']>0?"+".$nocmd['ecopartht']:"")."','".$calendrier['enlevement']."','".$calendrier['livraison']."','".$dateappro."','".str_replace("'","&#8217;",$nocmd[libelleFR])."',new Array('".implode("','",$artfourn)."'));\"></td>
+        <td title=\"".$nocmd['libelleFR']."\" align=\"center\"><input type=\"checkbox\" onclick=\"todispo(this.checked,$nocmd[factureid],$nocmd[lignefactureid],'$nocmd[artcode_eurocave]','$nocmd[qte]','$nocmd[paht]".($nocmd['ecopartht']>0?"+".$nocmd['ecopartht']:"")."','".$calendrier['enlevement']."','".$calendrier['livraison']."','".$dateappro."','".str_replace("'","&#8217;",$nocmd['libelleFR'])."',new Array('".implode("','",$artfourn)."'));\"></td>
         <td>".count($items)." / ".count($cdeitems).$stocklivr.$coche."</td>
         <td $action style=\"".(substr($dateappro,0,10)==date("d/m/Y")?"color:red;":"")."\" nowrap>".$cmenu.$dateappro."</td>
         <td>".$nocmd['delailivraison']."</td>

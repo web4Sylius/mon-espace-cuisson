@@ -73,7 +73,7 @@ $cde_annee_1_both=auto_cde("annee", $jour, $mois, $annee_1, "tous");
 $commerciaux=array("direct");
 $commercials=$DB_site2->query("SELECT username FROM parametresgeneraux WHERE commissions ='1' ORDER BY username ASC ");
 while($commercial=$DB_site2->fetch_array($commercials)){
-	$commerciaux[]=$commercial[username];
+	$commerciaux[]=$commercial['username'];
 }
 
 
@@ -116,21 +116,21 @@ echo "<input type='submit' value='valider'></form>
         <td nowrap>CA HT</td>
         <td nowrap>% CA HT / N-1</td>
     </tr>";
-if($cde_mois_total[ca]>0){
+if($cde_mois_total['ca']>0){
 	echo "<tr>
 			<td><b>Total cdes site</b></td>
-			<td>".$cde_mois_both[nb]."</td>
-			<td>".number_format($cde_mois_both[nb]*100/$cde_mois_total[nb], 1, ',', ' ') ." %</td>
-			<td nowrap>".number_format($cde_mois_both[ca], 0, ',', ' ')." &euro;</td>
-			<td>".number_format($cde_mois_both[ca]*100/$cde_mois_total[ca], 1, ',', ' ') ." %</td>
-			<td>".$cde_annee_both[nb]."</td>
-			<td>".number_format($cde_annee_both[nb]*100/$cde_annee_total[nb], 1, ',', ' ') ." %</td>
-			<td nowrap>".number_format($cde_annee_both[ca], 0, ',', ' ')." &euro;</td>
-			<td>".number_format($cde_annee_both[ca]*100/$cde_annee_total[ca], 1, ',', ' ') ." %</td>
-			<td>".$cde_annee_1_both[nb]."</td>
-			".tdvalue(($cde_annee_both[nb]*100/$cde_annee_1_both[nb])-100,"%",1)."
-			<td nowrap>".number_format($cde_annee_1_both[ca], 0, ',', ' ')." &euro;</td>
-			".tdvalue(($cde_annee_both[ca]*100/$cde_annee_1_both[ca])-100,"%",1)."
+			<td>".$cde_mois_both['nb']."</td>
+			<td>".number_format($cde_mois_both['nb']*100/$cde_mois_total['nb'], 1, ',', ' ') ." %</td>
+			<td nowrap>".number_format($cde_mois_both['ca'], 0, ',', ' ')." &euro;</td>
+			<td>".number_format($cde_mois_both['ca']*100/$cde_mois_total['ca'], 1, ',', ' ') ." %</td>
+			<td>".$cde_annee_both['nb']."</td>
+			<td>".number_format($cde_annee_both['nb']*100/$cde_annee_total['nb'], 1, ',', ' ') ." %</td>
+			<td nowrap>".number_format($cde_annee_both['ca'], 0, ',', ' ')." &euro;</td>
+			<td>".number_format($cde_annee_both['ca']*100/$cde_annee_total['ca'], 1, ',', ' ') ." %</td>
+			<td>".$cde_annee_1_both['nb']."</td>
+			".tdvalue(($cde_annee_both['nb']*100/$cde_annee_1_both['nb'])-100,"%",1)."
+			<td nowrap>".number_format($cde_annee_1_both['ca'], 0, ',', ' ')." &euro;</td>
+			".tdvalue(($cde_annee_both['ca']*100/$cde_annee_1_both['ca'])-100,"%",1)."
 		</tr>";
 } else {
 	echo "<tr><td colspan=\"13\">Pas assez de commandes pour faire des statistiques</td></tr>";
@@ -142,23 +142,23 @@ foreach ($commerciaux as $key => $value){
 	$cde_annee=auto_cde("annee", $jour, $mois, $annee, $value);
 	$cde_annee_1=auto_cde("annee", $jour, $mois, $annee_1, $value);
 	
-	if($cde_mois_total[ca]>0){
+	if($cde_mois_total['ca']>0){
 		echo "	<tr>
 				<td><b>".UCfirst($value)."</b></td>
-				<td>".$cde_mois[nb]."</td>
-				<td>".number_format($cde_mois[nb]*100/$cde_mois_total[nb], 1, ',', ' ') ." %</td>
-				<td class=\"showpopup\">".number_format($cde_mois[ca], 0, ',', ' ')." &euro;
-				<div class=\"popup\"><table>".$cde_mois[idfac]."</table></div></td>
-				<td>".number_format($cde_mois[ca]*100/$cde_mois_total[ca], 1, ',', ' ') ." %</td>
-				<td>".$cde_annee[nb]."</td>
-				<td>".number_format($cde_annee[nb]*100/$cde_annee_total[nb], 1, ',', ' ') ." %</td>
-				<td>".number_format($cde_annee[ca], 0, ',', ' ')." &euro;</td>
-				<td>".number_format($cde_annee[ca]*100/$cde_annee_total[ca], 1, ',', ' ') ." %</td>
-				<td>".$cde_annee_1[nb]."</td>";
-		if($cde_annee_1[ca]>0){
-			echo tdvalue(($cde_annee[nb]*100/$cde_annee_1[nb])-100,"%",1)."
-				<td>".number_format($cde_annee_1[ca], 0, ',', ' ')." &euro;</td>
-				".tdvalue(($cde_annee[ca]*100/$cde_annee_1[ca])-100,"%",1);
+				<td>".$cde_mois['nb']."</td>
+				<td>".number_format($cde_mois['nb']*100/$cde_mois_total['nb'], 1, ',', ' ') ." %</td>
+				<td class=\"showpopup\">".number_format($cde_mois['ca'], 0, ',', ' ')." &euro;
+				<div class=\"popup\"><table>".$cde_mois['idfac']."</table></div></td>
+				<td>".number_format($cde_mois['ca']*100/$cde_mois_total['ca'], 1, ',', ' ') ." %</td>
+				<td>".$cde_annee['nb']."</td>
+				<td>".number_format($cde_annee['nb']*100/$cde_annee_total['nb'], 1, ',', ' ') ." %</td>
+				<td>".number_format($cde_annee['ca'], 0, ',', ' ')." &euro;</td>
+				<td>".number_format($cde_annee['ca']*100/$cde_annee_total['ca'], 1, ',', ' ') ." %</td>
+				<td>".$cde_annee_1['nb']."</td>";
+		if($cde_annee_1['ca']>0){
+			echo tdvalue(($cde_annee['nb']*100/$cde_annee_1['nb'])-100,"%",1)."
+				<td>".number_format($cde_annee_1['ca'], 0, ',', ' ')." &euro;</td>
+				".tdvalue(($cde_annee['ca']*100/$cde_annee_1['ca'])-100,"%",1);
 		} else {
 			echo "<td>--</td>";
 			echo "<td>0 &euro;</td>";
@@ -173,22 +173,22 @@ foreach ($commerciaux as $key => $value){
 $cde_mois=auto_cde("mois", $jour, $mois, $annee, "");
 $cde_annee=auto_cde("annee", $jour, $mois, $annee, "");
 $cde_annee_1=auto_cde("annee", $jour, $mois, $annee_1, "");
-if($cde_mois_total[ca]>0){
+if($cde_mois_total['ca']>0){
 	echo "	<tr>
 			<td><b>non attribués</b></td>
-			<td>".$cde_mois[nb]."</td>
-			<td>".number_format($cde_mois[nb]*100/$cde_mois_total[nb], 1, ',', ' ') ." %</td>
-			<td>".number_format($cde_mois[ca], 0, ',', ' ')." &euro;</td>
-			<td>".number_format($cde_mois[ca]*100/$cde_mois_total[ca], 1, ',', ' ') ." %</td>
-			<td>".$cde_annee[nb]."</td>
-			<td>".number_format($cde_annee[nb]*100/$cde_annee_total[nb], 1, ',', ' ') ." %</td>
-			<td>".number_format($cde_annee[ca], 0, ',', ' ')." &euro;</td>
-			<td>".number_format($cde_annee[ca]*100/$cde_annee_total[ca], 1, ',', ' ') ." %</td>
-			<td>".$cde_annee_1[nb]."</td>";
-	if($cde_annee_1[ca]>0){
-		echo tdvalue(($cde_annee[nb]*100/$cde_annee_1[nb])-100,"%",1)."
-			<td>".number_format($cde_annee_1[ca], 0, ',', ' ')." &euro;</td>
-			".tdvalue(($cde_annee[ca]*100/$cde_annee_1[ca])-100,"%",1);
+			<td>".$cde_mois['nb']."</td>
+			<td>".number_format($cde_mois['nb']*100/$cde_mois_total['nb'], 1, ',', ' ') ." %</td>
+			<td>".number_format($cde_mois['ca'], 0, ',', ' ')." &euro;</td>
+			<td>".number_format($cde_mois['ca']*100/$cde_mois_total['ca'], 1, ',', ' ') ." %</td>
+			<td>".$cde_annee['nb']."</td>
+			<td>".number_format($cde_annee['nb']*100/$cde_annee_total['nb'], 1, ',', ' ') ." %</td>
+			<td>".number_format($cde_annee['ca'], 0, ',', ' ')." &euro;</td>
+			<td>".number_format($cde_annee['ca']*100/$cde_annee_total['ca'], 1, ',', ' ') ." %</td>
+			<td>".$cde_annee_1['nb']."</td>";
+	if($cde_annee_1['ca']>0){
+		echo tdvalue(($cde_annee['nb']*100/$cde_annee_1['nb'])-100,"%",1)."
+			<td>".number_format($cde_annee_1['ca'], 0, ',', ' ')." &euro;</td>
+			".tdvalue(($cde_annee['ca']*100/$cde_annee_1['ca'])-100,"%",1);
 	} else {
 		echo "<td>--</td>";
 		echo "<td>0 &euro;</td>";
@@ -231,21 +231,21 @@ foreach ($commerciaux as $key => $value){
 	$cde_mois=auto_cde("mois", $jour, $mois, $annee, $value, "0");
 	$cde_annee=auto_cde("annee", $jour, $mois, $annee, $value, "0");
 	$cde_annee_1=auto_cde("annee", $jour, $mois, $annee_1, $value, "0");
-	if($cde_mois_total[ca]>0){
+	if($cde_mois_total['ca']>0){
 		echo "	<tr>
 				<td><b>".UCfirst($value)."</b></td>
-				<td>".$cde_mois[nb]."</td>
-				<td>".number_format($cde_mois[nb]*100/$cde_mois_total[nb], 1, ',', ' ') ." %</td>
-				<td><a id=\"comm_non_valide_mois_".$value."\">".number_format($cde_mois[ca], 0, ',', ' ')." &euro;</a>
-					<div id=\"div_non_valide_mois_".$value."\" style=\"display:none;\">".$cde_mois[cdes]."</div>
+				<td>".$cde_mois['nb']."</td>
+				<td>".number_format($cde_mois['nb']*100/$cde_mois_total['nb'], 1, ',', ' ') ." %</td>
+				<td><a id=\"comm_non_valide_mois_".$value."\">".number_format($cde_mois['ca'], 0, ',', ' ')." &euro;</a>
+					<div id=\"div_non_valide_mois_".$value."\" style=\"display:none;\">".$cde_mois['cdes']."</div>
 				</td>
-				<td>".number_format($cde_mois[ca]*100/$cde_mois_total[ca], 1, ',', ' ') ." %</td>
-				<td>".$cde_annee[nb]."</td>
-				<td>".number_format($cde_annee[nb]*100/$cde_annee_total[nb], 1, ',', ' ') ." %</td>
-				<td><a id=\"comm_non_valide_annee_".$value."\">".number_format($cde_annee[ca], 0, ',', ' ')." &euro;</a>
-					<div id=\"div_non_valide_annee_".$value."\" style=\"display:none;\">".$cde_annee[cdes]."</div>
+				<td>".number_format($cde_mois['ca']*100/$cde_mois_total['ca'], 1, ',', ' ') ." %</td>
+				<td>".$cde_annee['nb']."</td>
+				<td>".number_format($cde_annee['nb']*100/$cde_annee_total['nb'], 1, ',', ' ') ." %</td>
+				<td><a id=\"comm_non_valide_annee_".$value."\">".number_format($cde_annee['ca'], 0, ',', ' ')." &euro;</a>
+					<div id=\"div_non_valide_annee_".$value."\" style=\"display:none;\">".$cde_annee['cdes']."</div>
 				</td>
-				<td>".number_format($cde_annee[ca]*100/$cde_annee_total[ca], 1, ',', ' ') ." %</td>
+				<td>".number_format($cde_annee['ca']*100/$cde_annee_total['ca'], 1, ',', ' ') ." %</td>
 			</tr>";
 		$javascript_hover.="
 			\$jQuery(\"#comm_non_valide_annee_".$value."\").click(function() {
@@ -262,21 +262,21 @@ foreach ($commerciaux as $key => $value){
 $cde_mois=auto_cde("mois", $jour, $mois, $annee, "", "0");
 $cde_annee=auto_cde("annee", $jour, $mois, $annee, "", "0");
 $cde_annee_1=auto_cde("annee", $jour, $mois, $annee_1, "", "0");
-if($cde_mois_total[ca]>0){
+if($cde_mois_total['ca']>0){
 	echo "	<tr>
 			<td><b>non attribués</b></td>
-			<td>".$cde_mois[nb]."</td>
-			<td>".number_format($cde_mois[nb]*100/$cde_mois_total[nb], 1, ',', ' ') ." %</td>
-			<td><a id=\"comm_non_att_non_valide_mois_".$value."\">".number_format($cde_mois[ca], 0, ',', ' ')." &euro;</a>
-				<div id=\"div_non_att_non_valide_mois_".$value."\" style=\"display:none;\">".$cde_mois[cdes]."</div>
+			<td>".$cde_mois['nb']."</td>
+			<td>".number_format($cde_mois['nb']*100/$cde_mois_total['nb'], 1, ',', ' ') ." %</td>
+			<td><a id=\"comm_non_att_non_valide_mois_".$value."\">".number_format($cde_mois['ca'], 0, ',', ' ')." &euro;</a>
+				<div id=\"div_non_att_non_valide_mois_".$value."\" style=\"display:none;\">".$cde_mois['cdes']."</div>
 			</td>
-			<td>".number_format($cde_mois[ca]*100/$cde_mois_total[ca], 1, ',', ' ') ." %</td>
-			<td>".$cde_annee[nb]."</td>
-			<td>".number_format($cde_annee[nb]*100/$cde_annee_total[nb], 1, ',', ' ') ." %</td>
-			<td><a id=\"comm_non_att_non_valide_annee_".$value."\">".number_format($cde_annee[ca], 0, ',', ' ')." &euro;</a>
-				<div id=\"div_non_att_non_valide_annee_".$value."\" style=\"display:none;\">".$cde_annee[cdes]."</div>
+			<td>".number_format($cde_mois['ca']*100/$cde_mois_total['ca'], 1, ',', ' ') ." %</td>
+			<td>".$cde_annee['nb']."</td>
+			<td>".number_format($cde_annee['nb']*100/$cde_annee_total['nb'], 1, ',', ' ') ." %</td>
+			<td><a id=\"comm_non_att_non_valide_annee_".$value."\">".number_format($cde_annee['ca'], 0, ',', ' ')." &euro;</a>
+				<div id=\"div_non_att_non_valide_annee_".$value."\" style=\"display:none;\">".$cde_annee['cdes']."</div>
 			</td>
-			<td>".number_format($cde_annee[ca]*100/$cde_annee_total[ca], 1, ',', ' ') ." %</td>
+			<td>".number_format($cde_annee['ca']*100/$cde_annee_total['ca'], 1, ',', ' ') ." %</td>
 		</tr>";
 	$javascript_hover.="
 		\$jQuery(\"#comm_non_att_non_valide_annee_".$value."\").click(function() {
@@ -382,7 +382,7 @@ function auto_cde($periode, $j, $m, $a, $commercial="", $etatfacture="1,5,7,8", 
 		//if($type=="all"){
 			// echo "facture N° ".$row[facturid]." : ".$totalfacture."<br>";
 		//}
-		$cdes.="F N° <a href=\"facture.php?action=editer&facturid=".$row[facturid]."\" target=\"_blank\">".$row[facturid]."</a> : ".number_format($totalfacture, 2, ',', ' ')." &euro;<br>";
+		$cdes.="F N° <a href=\"facture.php?action=editer&facturid=".$row['facturid']."\" target=\"_blank\">".$row['facturid']."</a> : ".number_format($totalfacture, 2, ',', ' ')." &euro;<br>";
 		$nombre++;
     }
 	

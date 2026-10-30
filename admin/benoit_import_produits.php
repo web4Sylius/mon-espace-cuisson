@@ -243,7 +243,7 @@ if ($action == "maj_photos") {
 									INNER JOIN article_marque ON (article.artid=article_marque.artid)
 									WHERE article_marque.marqueid=".$marqueid." ");
 	while($article=$DB_site2->fetch_array($articles)){
-		$artcode=$article[artcode_eurocave];
+		$artcode=$article['artcode_eurocave'];
 		$artid=$article[artid];
 		$type_fichier="jpg";
 		$dossier_import = "./csv/img/";

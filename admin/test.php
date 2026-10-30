@@ -45,10 +45,10 @@ echo "return [	";
 $virgule="";
 $sites=$DB_site2->query("	SELECT DISTINCT(site) FROM history_pdf WHERE artid='".$artid."' ");
 while($site=$DB_site2->fetch_array($sites)){
-	$pdfs=$DB_site2->query("	SELECT * FROM history_pdf WHERE artid='".$artid."' AND site='".$site[site]."' ORDER BY dateline ASC ");
+	$pdfs=$DB_site2->query("	SELECT * FROM history_pdf WHERE artid='".$artid."' AND site='".$site['site']."' ORDER BY dateline ASC ");
 	while($pdf=$DB_site2->fetch_array($pdfs)){
-		$month=date("n", $pdf[dateline])-1;
-		echo $virgule."{site: '".$site[site]."', date: new Date(".date("Y", $pdf[dateline]).", ".$month.", ".date("j", $pdf[dateline]).", 0, 0, 0, 0),   price: ".$pdf[price]." }";
+		$month=date("n", $pdf['dateline'])-1;
+		echo $virgule."{site: '".$site['site']."', date: new Date(".date("Y", $pdf['dateline']).", ".$month.", ".date("j", $pdf['dateline']).", 0, 0, 0, 0),   price: ".$pdf['price']." }";
 		$virgule=",";
 	}
 }
@@ -84,20 +84,20 @@ $liste_site="";
 $div_site="";
 $sites=$DB_site2->query("	SELECT DISTINCT(site) FROM history_pdf WHERE artid='".$artid."' ");
 while($site=$DB_site2->fetch_array($sites)){
-	echo "<option value=\"".str_replace(" ","_",strtolower($site[site]))."\">".$site[site]."</option>".
-	$liste_site.="\$jQuery(\"#".str_replace(" ","_",strtolower($site[site]))."\").hide();";
-	$div_site.="<div id=\"".str_replace(" ","_",strtolower($site[site]))."\" style=\"display:none;\">Screenshots de ".$site[site]." :<br><table border=\"1\" width=\"50%\">";
+	echo "<option value=\"".str_replace(" ","_",strtolower($site['site']))."\">".$site['site']."</option>".
+	$liste_site.="\$jQuery(\"#".str_replace(" ","_",strtolower($site['site']))."\").hide();";
+	$div_site.="<div id=\"".str_replace(" ","_",strtolower($site['site']))."\" style=\"display:none;\">Screenshots de ".$site['site']." :<br><table border=\"1\" width=\"50%\">";
 	$div_site.="<tr><td align=\"center\">Date</td><td align=\"center\">Prix</td><td align=\"center\">PDF</td></tr>";
 	
-	$pdfs=$DB_site2->query("	SELECT * FROM history_pdf WHERE artid='".$artid."' AND site='".$site[site]."' ORDER BY dateline ASC ");
+	$pdfs=$DB_site2->query("	SELECT * FROM history_pdf WHERE artid='".$artid."' AND site='".$site['site']."' ORDER BY dateline ASC ");
 	while($pdf=$DB_site2->fetch_array($pdfs)){
-		if($pdf[generated]=='1'){
+		if($pdf['generated']=='1'){
 			$out_file="/configurations/".$host."/pdf/".$pdf[artid]."/".date("Ymd-His", $pdf['dateline'])."-".str_replace(" ","-", strtolower($pdf['site'])).".pdf";
 			$lien="<a href=\"".$out_file."\" target=\"_blank\">PDF</a>";
 		} else {
 			$lien="-- en cours --";
 		}
-		$div_site.="<tr><td align=\"center\">".date("d/m/Y", $pdf[dateline])."</td><td align=\"right\">".$pdf[price]." &euro;</td><td align=\"center\">".$lien."</td></tr>";
+		$div_site.="<tr><td align=\"center\">".date("d/m/Y", $pdf['dateline'])."</td><td align=\"right\">".$pdf['price']." &euro;</td><td align=\"center\">".$lien."</td></tr>";
 	}
 	$div_site.="</table></div>";
 }
@@ -116,14 +116,14 @@ $jQuery(document).ready(function() {
 </script>
 <?php
 $pdf_max=$DB_site2->query_first("	SELECT * FROM history_pdf WHERE artid='".$artid."' ORDER BY price DESC LIMIT 1 ");
-$pdf_max_date=date("d/m/Y", $pdf_max[dateline]);
-if($pdf_max[generated]=='1'){
+$pdf_max_date=date("d/m/Y", $pdf_max['dateline']);
+if($pdf_max['generated']=='1'){
 	$out_file="/configurations/".$host."/pdf/".$pdf_max[artid]."/".date("Ymd-His", $pdf_max['dateline'])."-".str_replace(" ","-", strtolower($pdf_max['site'])).".pdf";
 	$lien="<a href=\"".$out_file."\" target=\"_blank\">Télécharger le PDF</a>";
 } else {
 	$lien=" Téléchargement du PDF en cours !";
 }
-echo "Prix le plus haut : ".$pdf_max[price]." € sur le site ".$pdf_max[site]." le ".$pdf_max_date.". ".$lien."<br>";
+echo "Prix le plus haut : ".$pdf_max['price']." € sur le site ".$pdf_max['site']." le ".$pdf_max_date.". ".$lien."<br>";
 
 
 

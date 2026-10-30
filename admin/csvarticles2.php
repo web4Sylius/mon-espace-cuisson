@@ -7,11 +7,11 @@ function recur($catid)
 	global $DB_site2,$select, $i;
 	$arbo=$DB_site2->query_first("select parentid, libelleFR from categorie where catid = '$catid'");
 	//$select .= " > $arbo[libelleFR]";
-	$select[$i] = trim($arbo[libelleFR]) ;
+	$select[$i] = trim($arbo['libelleFR']) ;
 	$i++ ;
-	if ($arbo[parentid] != 0)
+	if ($arbo['parentid'] != 0)
 		{
-		recur($arbo[parentid]);
+		recur($arbo['parentid']);
 		}
 	return ($select);
 	}
@@ -45,7 +45,7 @@ while($article=$DB_site2->fetch_array($articles))
 	where cc.caractid = c.caractid and catid = '$article[catid]' and visible = '1'");
 	while($caracteristique=$DB_site2->fetch_array($caracteristiques)) 
 		{
-		$caracts .= strtoupper($caracteristique[libelleFR]) . " : " ;
+		$caracts .= strtoupper($caracteristique['libelleFR']) . " : " ;
 		$caracteristique_valeurs=$DB_site2->query("SELECT * FROM caracteristiquevaleur where caractid = '$caracteristique[caractid]'");
 		while($caracteristique_valeur=$DB_site2->fetch_array($caracteristique_valeurs)) 
 			{
@@ -54,9 +54,9 @@ while($article=$DB_site2->fetch_array($articles))
 			$modif = "" ;
 			if ($caracteristique_article[0] != "")
 				{
-				if ($caracteristique_article[differenceprix] != 0)
+				if ($caracteristique_article['differenceprix'] != 0)
 					{
-					if (substr($caracteristique_article[differenceprix], 0, 1) == "-")
+					if (substr($caracteristique_article['differenceprix'], 0, 1) == "-")
 						{
 						$modif = "($caracteristique_article[differenceprix] €)" ;
 						}
@@ -73,7 +73,7 @@ while($article=$DB_site2->fetch_array($articles))
 		}
 	$select = array() ;
 	$i = 0 ;
-	recur($article[catid]) ;
+	recur($article['catid']) ;
 	$j = count($select) ;
 	$select2 = "" ;
 	while ($j > 0)
@@ -89,9 +89,9 @@ while($article=$DB_site2->fetch_array($articles))
 	$contenu.="$article[artcode];";
 	$contenu.="$article[libelleFR];";
 	$contenu.="$article[Titre2FR];";
-	$article[descriptionFR]=str_replace(chr(10), "", $article[descriptionFR]);
-	$article[descriptionFR]=str_replace(chr(13), "", $article[descriptionFR]);
-	$article[descriptionFR] = str_replace(";", "", $article[descriptionFR]) ;
+	$article['descriptionFR']=str_replace(chr(10), "", $article['descriptionFR']);
+	$article['descriptionFR']=str_replace(chr(13), "", $article['descriptionFR']);
+	$article['descriptionFR'] = str_replace(";", "", $article['descriptionFR']) ;
 	$contenu.="$article[descriptionFR];";
 	$contenu.="$article[prix];";
 	$promo=$DB_site2->query_first("SELECT * FROM promotion where artid = '$article[artid]' and datedebut <= '".date('Y-m-d')."' and datefin > '".date('Y-m-d')."'");
@@ -118,13 +118,13 @@ while($article=$DB_site2->fetch_array($articles))
 		$contenu.=";";
 		$contenu.=";";
 		}
-	if ($article[tauxchoisi] == 0)
+	if ($article['tauxchoisi'] == 0)
 		{
 		$contenu.="0;";
 		}
 	else
 		{
-		switch ($article[tauxchoisi])
+		switch ($article['tauxchoisi'])
 			{
 			case 1:
 				$tvataux = "TVAtauxnormal" ;
@@ -137,7 +137,7 @@ while($article=$DB_site2->fetch_array($articles))
 		$contenu.="$tauxtva[$tvataux];";
 		}
 	$contenu.="$article[poid];";
-	if ($article[image] != NULL)
+	if ($article['image'] != NULL)
 		{
 		$contenu.="http://$host/configurations/$host/images/produits/$article[artid].$article[image];";
 		}
@@ -146,7 +146,7 @@ while($article=$DB_site2->fetch_array($articles))
 		$contenu.=";";
 		}
 	$imgsup=$DB_site2->query_first("SELECT articlephotoid, image FROM articlephoto where artid = '$article[artid]' limit 1");
-	if ($imgsup[articlephotoid] != 0)
+	if ($imgsup['articlephotoid'] != 0)
 		{
 		$contenu .= "http://$host/configurations/$host/images/produits/$article[artid]_$imgsup[articlephotoid].$imgsup[image];" ;
 		}
@@ -155,27 +155,27 @@ while($article=$DB_site2->fetch_array($articles))
 		$contenu.=";";
 		}
 	$contenu.="$article[libelleDE];";
-	$article[descriptionDE]=str_replace(chr(10), "", $article[descriptionDE]);
-	$article[descriptionDE]=str_replace(chr(13), "", $article[descriptionDE]);
-	$article[descriptionDE] = str_replace(";", "", $article[descriptionDE]) ;
+	$article['descriptionDE']=str_replace(chr(10), "", $article['descriptionDE']);
+	$article['descriptionDE']=str_replace(chr(13), "", $article['descriptionDE']);
+	$article['descriptionDE'] = str_replace(";", "", $article['descriptionDE']) ;
 	$contenu.="$article[descriptionDE];";
 	$contenu.="$article[Titre2DE];";
 	$contenu.="$article[libelleEN];";
-	$article[descriptionEN]=str_replace(chr(10), "", $article[descriptionEN]);
-	$article[descriptionEN]=str_replace(chr(13), "", $article[descriptionEN]);
-	$article[descriptionEN] = str_replace(";", "", $article[descriptionEN]) ;
+	$article['descriptionEN']=str_replace(chr(10), "", $article['descriptionEN']);
+	$article['descriptionEN']=str_replace(chr(13), "", $article['descriptionEN']);
+	$article['descriptionEN'] = str_replace(";", "", $article['descriptionEN']) ;
 	$contenu.="$article[descriptionEN];";
 	$contenu.="$article[Titre2EN];";
 	$contenu.="$article[libelleIT];";
-	$article[descriptionIT]=str_replace(chr(10), "", $article[descriptionIT]);
-	$article[descriptionIT]=str_replace(chr(13), "", $article[descriptionIT]);
-	$article[descriptionIT] = str_replace(";", "", $article[descriptionIT]) ;
+	$article['descriptionIT']=str_replace(chr(10), "", $article['descriptionIT']);
+	$article['descriptionIT']=str_replace(chr(13), "", $article['descriptionIT']);
+	$article['descriptionIT'] = str_replace(";", "", $article['descriptionIT']) ;
 	$contenu.="$article[descriptionIT];";
 	$contenu.="$article[Titre2IT];";
 	$contenu.="$article[libelleSP];";
-	$article[descriptionSP]=str_replace(chr(10), "", $article[descriptionSP]);
-	$article[descriptionSP]=str_replace(chr(13), "", $article[descriptionSP]);
-	$article[descriptionSP] = str_replace(";", "", $article[descriptionSP]) ;
+	$article['descriptionSP']=str_replace(chr(10), "", $article['descriptionSP']);
+	$article['descriptionSP']=str_replace(chr(13), "", $article['descriptionSP']);
+	$article['descriptionSP'] = str_replace(";", "", $article['descriptionSP']) ;
 	$contenu.="$article[descriptionSP];";
 	$contenu.="$article[Titre2SP];";
 	$stock=$DB_site2->query_first("SELECT * FROM stock where artid = '$article[artid]'");

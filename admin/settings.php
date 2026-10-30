@@ -46,7 +46,7 @@ $userinfo=$DB_site2->query_first("SELECT * FROM parametresgeneraux");
 if ($action=="dopasswordchange") {
 	if (isset($pass) and $pass!="" and isset($newpass) and $newpass!="" and isset($newpassconfirm) and $newpassconfirm!="") {
 		if ($newpassconfirm==$newpass) {
-			if (MD5($pass)==$user_info[password]) {
+			if (MD5($pass)==$user_info['password']) {
 				$DB_site2->query("UPDATE parametresgeneraux SET password = MD5('$newpass')");
 				echo "Votre nouveau mot de passe est actuellement actif.<br>Vous allez devoir vous reloguer à present...";
 				$action="";

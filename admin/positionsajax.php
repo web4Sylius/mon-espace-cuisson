@@ -101,9 +101,9 @@ function navigation($catidfunc , $isarticle=0)
 		{
 		$navigationbit="<a href=\"catalogue.php?catid=$navigation_categorie[catid]\">$navigation_categorie[$libelle]</a>" . $separateur_navigation . $navigationbit;
 		}
-	if ($navigation_categorie[parentid]!=0) 
+	if ($navigation_categorie['parentid']!=0) 
 		{
-		navigation($navigation_categorie[parentid]);
+		navigation($navigation_categorie['parentid']);
 		}
 	}
 
@@ -135,7 +135,7 @@ else
 						<tr>
 							<td class=\"td_modules_boutiques\"><a href=\"catalogue.php\">".${"title$langue"}."</a> >";
 	}
-navigation($categ[parentid]);
+navigation($categ['parentid']);
 echo ($navigationdebut.$navigationbit." <a href=\"catalogue.php?catid=$categ[catid]\">$categ[$libelle]</a> > Ordre d'affichage des articles</td>");
 
 echo " </tr>
@@ -181,7 +181,7 @@ $o = 0 ;
 $articles=$DB_site2->query("select * from article where catid = '$parentid' order by page, pageposition");
 while ($article=$DB_site2->fetch_array($articles))
 	{
-	if ($article[image] != "")
+	if ($article['image'] != "")
 		{
 		$largeur = 128;
 		$hauteur = 100;

@@ -75,7 +75,7 @@ if (isset($action) and $action == "supprok")
 	$rq_positions_suivantes = $DB_site2->query("SELECT supportid, position FROM support WHERE position > $position_page" );
 	while ($rs_positions_suivantes=$DB_site2->fetch_array($rq_positions_suivantes)) 
 		{
-		$position_temp = $rs_positions_suivantes[position] - 1;
+		$position_temp = $rs_positions_suivantes['position'] - 1;
 		$DB_site2->query("UPDATE support SET position = '$position_temp' WHERE supportid = '$rs_positions_suivantes[supportid]'");
 		}
 	$del=$DB_site2->query("update support set suppr = '1' where supportid = '$question'");
@@ -189,7 +189,7 @@ if (!isset($action) or $action == "")
 										<img src=\"images/descendre.gif\" alt=\"Descendre\" title=\"Descendre\" height=\"7\" border=\"0\"></a>";
 					}
 				}
-			$question[sujet] = substr($question[sujet], 0, 50) ;
+			$question['sujet'] = substr($question['sujet'], 0, 50) ;
 			echo "<tr class=\"td_promos\">
 					<td class=\"$rowalt\">$images_position</td>
 					<td class=\"$rowalt\">$question[mail]</td>

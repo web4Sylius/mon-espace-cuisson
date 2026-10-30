@@ -9,7 +9,7 @@ include("facture.class.php");
 $optcomm="<option value=\"\">Tous</option>";
 $commercials=$DB_site2->query(" SELECT username FROM parametresgeneraux WHERE commissions ='1' ORDER BY username ASC ");
 while($commercial=$DB_site2->fetch_array($commercials)){
-    $optcomm.="<option value=\"".$commercial[username]."\"".(isset($_POST['commercial']) && $_POST['commercial']==$commercial[username]?" selected":"").">".UCfirst($commercial[username])."</option>";
+    $optcomm.="<option value=\"".$commercial['username']."\"".(isset($_POST['commercial']) && $_POST['commercial']==$commercial['username']?" selected":"").">".UCfirst($commercial['username'])."</option>";
 }
 
 if(!isset($_POST['avis'])) $_POST['avis']=0;

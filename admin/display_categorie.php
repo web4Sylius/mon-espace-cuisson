@@ -67,7 +67,7 @@ echo "
 
 $list=array();
 $dcatlist=$DB_site2->query("SELECT catid,display FROM display_categorie");
-while($dcat=$DB_site2->fetch_array($dcatlist)) $list[$dcat['display']][]=$dcat[catid];
+while($dcat=$DB_site2->fetch_array($dcatlist)) $list[$dcat['display']][]=$dcat['catid'];
 
 print "Modifier l'affichage pour : <select onchange=\"document.location='display_categorie.php?display='+this.value;\">";
 foreach($list as $d=>$l) print "<option value=\"$d\"".($d==$_GET['display']?" selected":"").">$d</option>";
@@ -79,16 +79,16 @@ print "<div align=\"left\">
 $cats=$DB_site2->query("SELECT catid,libelleFR FROM categorie WHERE parentid=0 ORDER BY position");
 while($cat=$DB_site2->fetch_array($cats)){
     $checked="";
-    if(isset($list[$_GET['display']]) && in_array($cat[catid],$list[$_GET['display']])) $checked="checked";
+    if(isset($list[$_GET['display']]) && in_array($cat['catid'],$list[$_GET['display']])) $checked="checked";
     print "<br><input type=\"checkbox\" name=\"dcat[]\" value=\"$cat[catid]\" $checked> ".$cat['libelleFR']."<div style=\"padding-left:20px;\">";
 
     $sschklist=array();
     $sscats=$DB_site2->query("SELECT catid,libelleFR FROM categorie WHERE parentid='$cat[catid]' ORDER BY position");
     while($sscat=$DB_site2->fetch_array($sscats)){
       $checked="";
-      if(isset($list[$_GET['display']]) && in_array($sscat[catid],$list[$_GET['display']])) $checked="checked";
+      if(isset($list[$_GET['display']]) && in_array($sscat['catid'],$list[$_GET['display']])) $checked="checked";
       print "<input type=\"checkbox\" name=\"dcat[]\" id=\"chk_$sscat[catid]\" value=\"$sscat[catid]\" $checked> ".$sscat['libelleFR']."<br>";
-      $sschklist[]=$sscat[catid];
+      $sschklist[]=$sscat['catid'];
     }
     if(count($sschklist)>0) print "<a href=\"javascript:checkall(new Array(".implode(",",$sschklist)."),true);\">Tout sélectionner</a> <a href=\"javascript:checkall(new Array(".implode(",",$sschklist)."),false);\">Tout désélectionner</a>";
     print "</div>";

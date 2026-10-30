@@ -242,7 +242,7 @@ if (in_array("109", $modules))
 						{
 						echo "<tr>" ;
 						}
-					$num = $numero[userid] ;
+					$num = $numero['userid'] ;
 					echo "<td align=\"center\"><input type=\"checkbox\" name=\"rcpt[$num]\" checked></td>
 							<td align=\"left\">$numero[nom] $numero[prenom]</td>" ;
 					if ($passage == 3 or $nbtot == $tot)

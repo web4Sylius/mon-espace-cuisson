@@ -426,7 +426,7 @@ function product($article,$coloris){
           . "<subjectivedenomination><![CDATA[".  html_entity_decode(mpfields($article,$mp_field['subjectivedenomination']))."]]></subjectivedenomination>"
           . "<description><![CDATA[".html_entity_decode(mpfields($article,$mp_field['description'],'','255'))."]]></description>"
           . "<fulldescription><![CDATA[".html_entity_decode(mpfields($article,$mp_field['fulldescription'],'<br><br /><br/>'))."]]></fulldescription>"
-          . "<url>http://".$host."/art,".$article['artid'].",".url_rewrite($article[libelleFR]).".htm</url>"
+          . "<url>http://".$host."/art,".$article['artid'].",".url_rewrite($article['libelleFR']).".htm</url>"
           . "<warranty>".$garantie['libelleFR']."</warranty>"
           . "<brand>".html_entity_decode($marque['libelle'],ENT_QUOTES)."</brand>"
           . "<partnumber>".$article['artcode']."</partnumber>";
@@ -457,7 +457,7 @@ function product($article,$coloris){
      . "<references>";
 
      if($coloris['imagecaractvalid'] == "jpg"){
-          $imageprincipale = "http://$host/configurations/$host/images/produits/article_caractval/$article[artid]_".$coloris[caractvalid].".$coloris[imagecaractvalid]";
+          $imageprincipale = "http://$host/configurations/$host/images/produits/article_caractval/$article[artid]_".$coloris['caractvalid'].".$coloris[imagecaractvalid]";
      } elseif($article['image'] != ""){
           $imageprincipale = "http://$host/configurations/$host/images/produits/article/$article[artid].$article[image]";
      }
@@ -529,9 +529,9 @@ function product($article,$coloris){
           case "mc-2000":
                $xml .= ""
                . "<characteristics>"
-                    . "<characteristic name=\"wine_cellar_capacity\">".html_entity_decode($article[capacite_bouteilles],ENT_QUOTES)."</characteristic>"
+                    . "<characteristic name=\"wine_cellar_capacity\">".html_entity_decode($article['capacite_bouteilles'],ENT_QUOTES)."</characteristic>"
                     . "<characteristic name=\"color\">".html_entity_decode($colortxt,ENT_QUOTES)."</characteristic>"
-                    . "<characteristic name=\"wine_cellar_door\">".html_entity_decode($recherche_typeporte[nom], ENT_QUOTES)."</characteristic>"
+                    . "<characteristic name=\"wine_cellar_door\">".html_entity_decode($recherche_typeporte['nom'], ENT_QUOTES)."</characteristic>"
                     . "<characteristic name=\"installation\">".mpfields($article,$mp_field['installation'])."</characteristic>"
                     . "<characteristic name=\"wine_cellar_type\">".mpfields($article,$mp_field['wine_cellar_type'])."</characteristic>"
                . "</characteristics>";

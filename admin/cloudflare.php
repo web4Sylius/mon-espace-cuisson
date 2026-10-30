@@ -143,12 +143,12 @@ if(isset($_GET['action'])){
 		echo "<b>Execution de la purge d'un article ....</b><br>";
 		$cloud = new cloudflare_api($DB_site2,$rootpath);
 		$results = $cloud->purgeArticle($artid);
-		if($results[success] === true) {
+		if($results['success'] === true) {
 			echo "<br><b>..... Execution r&eacute;alis&eacute;e avec succ&egrave;s.</b><br>";
 			// echo "URLs : <br>".implode("<br>", $results[url1])."<br>".implode("<br>", $results[url2]);
-			echo "URLs : <br>".implode("<br>", $results[url1]);
+			echo "URLs : <br>".implode("<br>", $results['url1']);
 		}
-		if($results[success] === false) {
+		if($results['success'] === false) {
 			echo "<br><b>ERREUR D'EXECUTION !!!!</b>";
 		}
 		/* refaire pour la deuxième zone ....

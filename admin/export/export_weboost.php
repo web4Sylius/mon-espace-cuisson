@@ -227,7 +227,7 @@ while($facture=$DB_site->fetch_array($factures)){
     
     $totalcadeau=0;
     $codepartenaire="";
-    if ($facture[cadeauid] != ""){
+    if ($facture['cadeauid'] != ""){
             $infoscadeau=$DB_site->query_first("SELECT * FROM cadeau WHERE cadeauid = '$facture[cadeauid]'");
 	    if($infoscadeau['code']!=""){
 	      $totalcadeau=$facture['montantcadeau'];
@@ -261,7 +261,7 @@ while($facture=$DB_site->fetch_array($factures)){
 	    $cadeauht=0;
 	    if($totalcadeau>0){
 	      foreach($totalreduc as $tx=>$totaltx)
-		   $cadeauht+=($facture[montantcadeau]*$totaltx/array_sum($totalreduc))/(1+$tx/100);
+		   $cadeauht+=($facture['montantcadeau']*$totaltx/array_sum($totalreduc))/(1+$tx/100);
 
             }
     }
@@ -410,7 +410,7 @@ while($facture=$DB_site->fetch_array($factures)){
     }
 
     $totalcadeau=0;
-    if ($facture[cadeauid] != ""){
+    if ($facture['cadeauid'] != ""){
             $infoscadeau=$DB_site->query_first("SELECT * FROM cadeau WHERE cadeauid = '$facture[cadeauid]'");
 	    if($infoscadeau['code']!=""){
 	      $totalcadeau=$facture['montantcadeau'];
@@ -443,7 +443,7 @@ while($facture=$DB_site->fetch_array($factures)){
 	    $cadeauht=0;
 	    if($totalcadeau>0){
 	      foreach($totalreduc as $tx=>$totaltx)
-		   $cadeauht+=($facture[montantcadeau]*$totaltx/array_sum($totalreduc))/(1+$tx/100);
+		   $cadeauht+=($facture['montantcadeau']*$totaltx/array_sum($totalreduc))/(1+$tx/100);
 
             }
     }

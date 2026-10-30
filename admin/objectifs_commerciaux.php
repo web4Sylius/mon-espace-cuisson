@@ -18,7 +18,7 @@ if($_POST['action']=="modify"){
 			$username=$explode[1];
 			$mois=$explode[2];
 			if($mois!=""){
-				$DB_site2->query("REPLACE INTO objectif_commercial (username, annee, mois, objectif_ca) VALUES ('".$username."', '".$_POST[annee]."', '".$mois."', '".$value."') ");
+				$DB_site2->query("REPLACE INTO objectif_commercial (username, annee, mois, objectif_ca) VALUES ('".$username."', '".$_POST['annee']."', '".$mois."', '".$value."') ");
 			}
 		}
 	}
@@ -60,7 +60,7 @@ if($_POST['action']=="modify"){
 		$liste_commerciaux[]=array('username' => 'direct', 'jours' => 'francs');
 		$commercials=$DB_site2->query(" SELECT username FROM parametresgeneraux WHERE commissions ='1' AND actif='1' ORDER BY username ASC ");
 		while($commercial=$DB_site2->fetch_array($commercials)){
-			$liste_commerciaux[]=array('username' => $commercial[username], 'jours' => 'ouvres');
+			$liste_commerciaux[]=array('username' => $commercial['username'], 'jours' => 'ouvres');
         }
         
         $optannee="";
@@ -129,7 +129,7 @@ if($_POST['action']=="modify"){
 					<table align=\"center\" width=\"100%\" style=\"\">
 						<tr class=\"fixedheight\">
 							<td align=\"center\" colspan=\"3\">
-								".UCfirst($value[username])."
+								".UCfirst($value['username'])."
 							</td>
 						</tr>
 						<tr class=\"fixedheight2\">
@@ -145,26 +145,26 @@ if($_POST['action']=="modify"){
 				} else{
 					$datedebut=$annee."-".$i."-01";
 					$datefin=$annee."-".$i."-".date("t", mktime(0,0,0,$i,1,$annee));
-					$nb_jour=getJours($datedebut, $datefin, $value[username]);
+					$nb_jour=getJours($datedebut, $datefin, $value['username']);
 				}
-				$objectif=$DB_site2->query_first(" SELECT objectif_ca FROM objectif_commercial WHERE annee ='".$annee."' AND mois='".$i."' AND username='".$value[username]."' ");
-				if($objectif[objectif_ca]==""){
-					$objectif[objectif_ca]=0;
+				$objectif=$DB_site2->query_first(" SELECT objectif_ca FROM objectif_commercial WHERE annee ='".$annee."' AND mois='".$i."' AND username='".$value['username']."' ");
+				if($objectif['objectif_ca']==""){
+					$objectif['objectif_ca']=0;
 				}
 				
 				if($nb_jour>0){
 					// $objectif_jour=$objectif[objectif_ca]/$nb_jour;
-					$objectif_jour[objectif_ca]=$objectif[objectif_ca];
-					$objectif_mois[objectif_ca]=$objectif[objectif_ca]*$nb_jour;
+					$objectif_jour['objectif_ca']=$objectif['objectif_ca'];
+					$objectif_mois['objectif_ca']=$objectif['objectif_ca']*$nb_jour;
 				} else {
-					$objectif_jour[objectif_ca]=0;
-					$objectif_mois[objectif_ca]=0;
+					$objectif_jour['objectif_ca']=0;
+					$objectif_mois['objectif_ca']=0;
 				}
-				$objectif_total+=$objectif_mois[objectif_ca];
+				$objectif_total+=$objectif_mois['objectif_ca'];
 				echo "	<tr class=\"fixedheight\">
-							<td>".$nb_jour."<input type=\"hidden\" id=\"nb_".$value[username]."_".$i."\" value=\"".$nb_jour."\"></td>
-							<td><input type=\"text\" id=\"obj_".$value[username]."_".$i."\" value=\"".round($objectif_mois[objectif_ca])."\" readonly></td>
-							<td><input type=\"text\" class=\"input_obj\" name=\"obj_".$value[username]."_".$i."\" id=\"input_".$value[username]."_".$i."\" value=\"".$objectif_jour[objectif_ca]."\"></td>
+							<td>".$nb_jour."<input type=\"hidden\" id=\"nb_".$value['username']."_".$i."\" value=\"".$nb_jour."\"></td>
+							<td><input type=\"text\" id=\"obj_".$value['username']."_".$i."\" value=\"".round($objectif_mois['objectif_ca'])."\" readonly></td>
+							<td><input type=\"text\" class=\"input_obj\" name=\"obj_".$value['username']."_".$i."\" id=\"input_".$value['username']."_".$i."\" value=\"".$objectif_jour['objectif_ca']."\"></td>
 						</tr>";
 				$total_nb_jour+=$nb_jour;
 			}
@@ -174,9 +174,9 @@ if($_POST['action']=="modify"){
 				$objectif_mois_total=0;
 			}
 			echo "	<tr class=\"fixedheight\">
-							<td>".$total_nb_jour."<input type=\"hidden\" id=\"nb_".$value[username]."\" value=\"".$total_nb_jour."\"></td>
-							<td><input type=\"text\" id=\"obj_".$value[username]."\" value=\"".round($objectif_mois_total)."\" readonly></td>
-							<td><input type=\"text\" class=\"input_obj\" name=\"obj_".$value[username]."\" id=\"input_".$value[username]."\" value=\"".$objectif_jour_total."\" readonly style=\"display:none\"></td>
+							<td>".$total_nb_jour."<input type=\"hidden\" id=\"nb_".$value['username']."\" value=\"".$total_nb_jour."\"></td>
+							<td><input type=\"text\" id=\"obj_".$value['username']."\" value=\"".round($objectif_mois_total)."\" readonly></td>
+							<td><input type=\"text\" class=\"input_obj\" name=\"obj_".$value['username']."\" id=\"input_".$value['username']."\" value=\"".$objectif_jour_total."\" readonly style=\"display:none\"></td>
 						</tr>";
 			
 			echo "	</table>
@@ -249,13 +249,13 @@ function getJours($datedeb,$datefin,$utilisateur=""){ // format "Y-m-d"
 	$absence_array=array();
 	$jour_feries=$DB_site2->query("SELECT * FROM jour_ferie ORDER BY dateline ASC ");
 	while($jour_ferie=$DB_site2->fetch_array($jour_feries)){
-		$jour_ferie_array[]=$jour_ferie[dateline]; // ici les jours fériés
+		$jour_ferie_array[]=$jour_ferie['dateline']; // ici les jours fériés
 	}
 	if($utilisateur!=""){
 		$absences=$DB_site2->query("SELECT * FROM absence WHERE username='".$utilisateur."' ");
 		while($absence=$DB_site2->fetch_array($absences)){
-			$abs_dated=explode('-',$absence[datedebut]);
-			$abs_datef=explode('-',$absence[datefin]);
+			$abs_dated=explode('-',$absence['datedebut']);
+			$abs_datef=explode('-',$absence['datefin']);
 			$abs_timestampcurr=mktime(0,0,0,$abs_dated[1],$abs_dated[2],$abs_dated[0]);
 			$abs_timestampf=mktime(0,0,0,$abs_datef[1],$abs_datef[2],$abs_datef[0]);
 			while($abs_timestampcurr<=$abs_timestampf){

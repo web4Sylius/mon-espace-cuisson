@@ -155,7 +155,7 @@ if($action=="" or !isset($action)) {
 						$libelle_array = array();
 						$caractvalid_array = array();
 						foreach($cv as $lk => $lv) {
-							if($lk{0}.$lk{1} == 'lb') {
+							if($lk[0].$lk[1] == 'lb') {
 								$libelle_array[] = $lv;
 					//			$caractid_array[] = substr($lk,2);
 	
@@ -230,10 +230,10 @@ else
 		{
 		global $DB_site2,$caractval_array;
 		$aajouter=$DB_site2->query_first("SELECT caractvalid,parentid FROM stocks WHERE stockid='$stockid' ");
-		$caractval_array[]=$aajouter[caractvalid];
-		if($aajouter[parentid]!=0) 
+		$caractval_array[]=$aajouter['caractvalid'];
+		if($aajouter['parentid']!=0) 
 			{
-			caractval_retrieve($aajouter[parentid]);
+			caractval_retrieve($aajouter['parentid']);
 			}
 		}
 	foreach ($_POST as $key => $val) 

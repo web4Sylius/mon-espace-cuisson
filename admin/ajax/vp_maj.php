@@ -36,7 +36,7 @@ if(isset($_GET['action'])){
 			$vp = $DB_site2->query_first("SELECT * FROM vente_privee WHERE id='".$_GET['id']."'");
 			if($vp){
   				// Delete liste article vente privee
-  				$DB_site2->query("DELETE FROM vente_privee_article WHERE vfid = ".$vp[id]);
+  				$DB_site2->query("DELETE FROM vente_privee_article WHERE vfid = ".$vp['id']);
 			}
 
 			echo "Vente Privée ".$_GET['name']." liste effacée !";

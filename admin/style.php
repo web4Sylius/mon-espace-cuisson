@@ -30,12 +30,12 @@ if(isset($_GET['edit']) && ($msgButtValid!= "Ajouter"))
 		$lien = $req["lien"];
 		$couleur = $req["fond_color"];
 		$nom = $req["nom"];
-		if (isset($_POST[dbt]))
-			$datedbt = $_POST[dbt];
+		if (isset($_POST['dbt']))
+			$datedbt = $_POST['dbt'];
 		else // the date = date ( req["date_dbt"]) ??
 			$datedbt = date("d/m/Y",$req["date_dbt"]);
-		if (isset($_POST[fin]))
-			$datefin = $_POST[fin];
+		if (isset($_POST['fin']))
+			$datefin = $_POST['fin'];
 		else $datefin = date("d/m/Y",$req["date_fin"]);
 		
 	} 

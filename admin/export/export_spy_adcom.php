@@ -58,7 +58,7 @@ if (isset($admin_username) && $admin_username != "") {
          exit;
       }else{
         $user_info=$DB_site->query_first("SELECT * FROM parametresgeneraux WHERE username = '$admin_username'");
-        if ($user_info[username] != $admin_username){
+        if ($user_info['username'] != $admin_username){
 			echo "erreur d'autenfication";
 			exit;
 		}
@@ -320,27 +320,27 @@ function affiche_ligne($artid) { // $res = array(artid, somme /* nombre de vues 
 	$echoligne="";
 	$echolignespy="";
 	$article_fournisseur=$DB_site->query_first("SELECT ecopartht, trspt, prix FROM article_fournisseur WHERE artid=".$artid." AND principal LIKE '%base%' AND devise='EUR' ");
-	if($article_fournisseur[ecopartht]==""){
-		$article_fournisseur[ecopartht]=0;
+	if($article_fournisseur['ecopartht']==""){
+		$article_fournisseur['ecopartht']=0;
 	}
-	if($article_fournisseur[trspt]==""){
-		$article_fournisseur[trspt]=0;
+	if($article_fournisseur['trspt']==""){
+		$article_fournisseur['trspt']=0;
 	}
 
 	$sql="SELECT prix, paht FROM temp_price WHERE artid=".$artid." AND du < '".time()."' AND au > '".time()."' LIMIT 1";
 	$temp_price=$DB_site->query_first($sql);
 
 	
-	if($temp_price[prix]!=""){
-		$article_pvttc=$temp_price[prix];
-		$article_paht=$temp_price[paht];
+	if($temp_price['prix']!=""){
+		$article_pvttc=$temp_price['prix'];
+		$article_paht=$temp_price['paht'];
 	} else {
-		$article_pvttc=$res[prix];
+		$article_pvttc=$res['prix'];
 		// MODIFIER PAR ARIEL TACHE SI#4399 
-		if($article_fournisseur[prix] != ''){
-			$article_paht = $article_fournisseur[prix];
+		if($article_fournisseur['prix'] != ''){
+			$article_paht = $article_fournisseur['prix'];
 		}else{
-			$article_paht=$res[paht];
+			$article_paht=$res['paht'];
 		}
 	}
 	
@@ -350,34 +350,34 @@ function affiche_ligne($artid) { // $res = array(artid, somme /* nombre de vues 
 	$nb_conccurents=0;
 	$prixleplusbas=0;
 	while (list($key, $val) = each($aSiteSpy)) {
-		$sql="SELECT price FROM history WHERE timestamp>".$spytime." AND artcode='".$res[artcode]."' AND LOWER(site)='".$val."' ORDER BY timestamp DESC LIMIT 1 ";
+		$sql="SELECT price FROM history WHERE timestamp>".$spytime." AND artcode='".$res['artcode']."' AND LOWER(site)='".$val."' ORDER BY timestamp DESC LIMIT 1 ";
 		// echo $sql;
 		$spy=$DB_site->query_first($sql);
 		if($spy['price']!=""){
 			$spylist[$artcode][$val]=$spy['price'];
-			if($article_pvttc>$spy[price]){
+			if($article_pvttc>$spy['price']){
 				// ce site est mieux placé
 				$bolddeb="<b><font color=\"red\">";
 				$boldfin="</font></b>";
 				if($pricemin==""){
 					// première fois
-					$pricemin=$spy[price];
+					$pricemin=$spy['price'];
 					$sitemin=$val;
 				} elseif($pricemin>$spy['price']){
 					// nouveau meilleur prix
-					$pricemin=$spy[price];
+					$pricemin=$spy['price'];
 					$sitemin=$val;
 				}
 			} else {
 				$bolddeb="";
 				$boldfin="";
 				if($prixleplusbas>$spy['price'] || $prixleplusbas==0){
-					$prixleplusbas=$spy[price];
+					$prixleplusbas=$spy['price'];
 				}
 			}
 			$nb_conccurents++;
 			
-			$echolignespy.= "<td align=\"right\" nowrap>".$bolddeb.number_format($spy[price], 0, ',', ' ').$boldfin."  &euro; <a href=\"".$spydata[$res[artcode]][$val][2]."\" target=\"_blank\">X</a></td>";
+			$echolignespy.= "<td align=\"right\" nowrap>".$bolddeb.number_format($spy['price'], 0, ',', ' ').$boldfin."  &euro; <a href=\"".$spydata[$res['artcode']][$val][2]."\" target=\"_blank\">X</a></td>";
 		} else {
 			$echolignespy.= "<td align=\"center\">-</td>";
 		}
@@ -403,7 +403,7 @@ function affiche_ligne($artid) { // $res = array(artid, somme /* nombre de vues 
     $ventes=$DB_site->query_first($sql);
 	if($ventes[qte]==""){
 		$ventes[qte]=0;
-		$ventes[caht]=0;
+		$ventes['caht']=0;
 	}
 	$sql="SELECT sum(lf.qte) AS qte
 		FROM lignefacture lf INNER JOIN facture AS f ON(factureid=facturid)
@@ -418,8 +418,8 @@ function affiche_ligne($artid) { // $res = array(artid, somme /* nombre de vues 
 	
 	
 	
-	if($res[somme]==""){
-		$res[somme]=0;
+	if($res['somme']==""){
+		$res['somme']=0;
 	}
 	
 	$lesGaranties=DAOgarantie::loadMaxGarantieArtByPays($DB_site,'base','FR','57',$artid,'',$article_pvttc);
@@ -441,16 +441,16 @@ function affiche_ligne($artid) { // $res = array(artid, somme /* nombre de vues 
 	// $jsachatport.="\nachatport['$site_code']=".round($frais_port->paht,2).";";
 	// $jsprixport.="\nprixport['$site_code']=".round($frais_port->prixht,2).";";
   
-	$article_paht_total=$article_paht+$res[prixtrspt]+$article_fournisseur[ecopartht]+$article_fournisseur[trspt]+$garantie+$frais_port->paht-$frais_port->prixht;
+	$article_paht_total=$article_paht+$res['prixtrspt']+$article_fournisseur['ecopartht']+$article_fournisseur['trspt']+$garantie+$frais_port->paht-$frais_port->prixht;
 	$marge_ht=($article_pvttc/$tauxtva)-$article_paht_total;
 	
 	
-	$ppi_ttc = $res[prixconseilleht] * $tauxtva;
+	$ppi_ttc = $res['prixconseilleht'] * $tauxtva;
 	
 	$marge_pct=$marge_ht*100/($article_pvttc/$tauxtva);
 	
 	// explication de la marge ....
-	$marge_expli="(".$article_pvttc."/".$tauxtva.")-(".$article_paht."+".$res[prixtrspt]."+".$article_fournisseur[ecopartht]."+".$article_fournisseur[trspt]."+".$garantie."+".$frais_port->paht."-".$frais_port->prixht.")";
+	$marge_expli="(".$article_pvttc."/".$tauxtva.")-(".$article_paht."+".$res['prixtrspt']."+".$article_fournisseur['ecopartht']."+".$article_fournisseur['trspt']."+".$garantie."+".$frais_port->paht."-".$frais_port->prixht.")";
 	if($pricemin!="-"){
 		$marge_aligne=number_format( (($pricemin/$tauxtva)-$article_paht_total)*100/($pricemin/$tauxtva), 1, ',', ' ')." %";
 	} else {
@@ -459,27 +459,27 @@ function affiche_ligne($artid) { // $res = array(artid, somme /* nombre de vues 
 	$rowalt=$rowalt%2;
 	
 	$status="";
-	if($res[active]=="0"){
+	if($res['active']=="0"){
 		$status="inactif";
 	}
-	if($res[active]=="1"){
+	if($res['active']=="1"){
 		$status="actif";
 	}
-	if($res[active]=="2"){
+	if($res['active']=="2"){
 		$status="<b>supprim&eacute;</b>";
 	}
-	if($res[active]=="3"){
+	if($res['active']=="3"){
 		$status="<b>archiv&eacute;</b>";
 	}
 	
 	$echoligne= "<tr class=\"row".$rowalt."\">
-					<td nowrap><a href=\"https://www.ma-cave-a-vin.fr/a-art".$artid.".htm\" targe=\"_blank\">".$res[artcode]."</a></td>
-					<td><a href=\"https://www.ma-cave-a-vin.fr/admin/ajout_produit.php?artid=".$artid."&prec=modif\" target=\"_blank\">".$res[artcode_eurocave]."</a></td>
-					<td>".$res[codebarre]."</td>
+					<td nowrap><a href=\"https://www.ma-cave-a-vin.fr/a-art".$artid.".htm\" targe=\"_blank\">".$res['artcode']."</a></td>
+					<td><a href=\"https://www.ma-cave-a-vin.fr/admin/ajout_produit.php?artid=".$artid."&prec=modif\" target=\"_blank\">".$res['artcode_eurocave']."</a></td>
+					<td>".$res['codebarre']."</td>
 					<td align=\"center\">".$status."</td>
-					<td align=\"right\">".$res[somme]."</td>
+					<td align=\"right\">".$res['somme']."</td>
 					<td align=\"right\">".$ventes[qte]."</td>
-					<td align=\"right\" nowrap>".number_format($ventes[caht], 0, ',', ' ')." &euro;</td>
+					<td align=\"right\" nowrap>".number_format($ventes['caht'], 0, ',', ' ')." &euro;</td>
 					<td align=\"right\">".$ventes2[qte]."</td>
 					<td align=\"right\" nowrap><b>".number_format($article_pvttc, 0, ',', ' ')." &euro;</b></td>
 					<td align=\"right\" nowrap>".number_format($ppi_ttc, 0, ',', ' ')." &euro;</td>

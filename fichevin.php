@@ -36,7 +36,7 @@ function fichevin($pdf,$article,$finitionid){
 	$pdf->textColor("black");
 
 	$pdf->rect($lx,$ly,44,71,'D');
-	$img=$rootpath."configurations/".$host."/images/produits/article/".$vin[artid].".".$vin[image];
+	$img=$rootpath."configurations/".$host."/images/produits/article/".$vin[artid].".".$vin['image'];
 	if(file_exists($img)){
 		$size=getimagesize($img);
 		$w=intval(54*$size[0]/$size[1]);
@@ -78,7 +78,7 @@ function fichevin($pdf,$article,$finitionid){
 	$pdf->drawColor($autocolor);
 	$pdf->textColor("black");
 	$pdf->rect($lx,$ly,44,70,'D');
-	$img=$rootpath."configurations/".$host."/images/produits/".$vin[artid].".".$vin[image];
+	$img=$rootpath."configurations/".$host."/images/produits/".$vin[artid].".".$vin['image'];
 	if(file_exists($img)){
 		$size=getimagesize($img);
 		$w=intval(47*$size[0]/$size[1]);

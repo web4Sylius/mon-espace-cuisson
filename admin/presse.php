@@ -231,11 +231,11 @@ if( !isset( $action ) || $action == "" ){
 				<td align=\"center\" width=\"25%\"><b>Action</b></td>
 	      	</tr>
 	      	<tr>
-				<td><b>".$parent[revue]." ".$parent[libelleFR]."</b></td>
+				<td><b>".$parent['revue']." ".$parent['libelleFR']."</b></td>
 				<td align=\"center\" width=\"20%\">
 					<a href=\"presse.php?action=ajouter&parent_id=".$parent['id']."\" target=\"_self\">Ajouter un article</a>
-				  	| <a href=\"presse.php?action=editer&id=".$parent[id]."\" target=\"_self\">Editer</a>
-				  	| <a href=\"presse.php?action=supprimer&id=".$parent[id]."\" target=\"_self\">Supprimer</a>
+				  	| <a href=\"presse.php?action=editer&id=".$parent['id']."\" target=\"_self\">Editer</a>
+				  	| <a href=\"presse.php?action=supprimer&id=".$parent['id']."\" target=\"_self\">Supprimer</a>
 				</td>
 	      	</tr>";
 
@@ -246,30 +246,30 @@ if( !isset( $action ) || $action == "" ){
 
 			if($nb_pages > 1){
 				if($i_conseil == 1){ // Première page
-					$images_position = "<a href=\"presse.php?action=down&id=".$rs_conseil[id]."&parent_id=".$rs_conseil[parent_id]."\">
+					$images_position = "<a href=\"presse.php?action=down&id=".$rs_conseil['id']."&parent_id=".$rs_conseil['parent_id']."\">
 										<img src=\"images/descendre.gif\" alt=\"Descendre\" height=\"7\" border=\"0\"></a>";
 				}elseif( $i_conseil == $nb_pages ) { // Dernière page
-					$images_position = "<a href=\"presse.php?action=up&id=".$rs_conseil[id]."&parent_id=".$rs_conseil[parent_id]."\">
+					$images_position = "<a href=\"presse.php?action=up&id=".$rs_conseil['id']."&parent_id=".$rs_conseil['parent_id']."\">
 										<img src=\"images/monter.gif\" alt=\"Monter\" height=\"7\" border=\"0\"></a>";
 				}else{
-					$images_position = "<a href=\"presse.php?action=up&id=".$rs_conseil[id]."&parent_id=".$rs_conseil[parent_id]."\">
+					$images_position = "<a href=\"presse.php?action=up&id=".$rs_conseil['id']."&parent_id=".$rs_conseil['parent_id']."\">
 										<img src=\"images/monter.gif\" alt=\"Monter\" height=\"7\" border=\"0\"></a>
-										<a href=\"presse.php?action=down&id=".$rs_conseil[id]."&parent_id=".$rs_conseil[parent_id]."\">
+										<a href=\"presse.php?action=down&id=".$rs_conseil['id']."&parent_id=".$rs_conseil['parent_id']."\">
 										<img src=\"images/descendre.gif\" alt=\"Descendre\" height=\"7\" border=\"0\"></a>";
 				}
 			}
 
 			if($rs_conseil['active']==1)
-		    	$active="<a href=\"javascript:active_article(".$rs_conseil[id].",0)\" style=\"color:red;\">Désactiver</a>";
+		    	$active="<a href=\"javascript:active_article(".$rs_conseil['id'].",0)\" style=\"color:red;\">Désactiver</a>";
 			else
-		    	$active="<a href=\"javascript:active_article(".$rs_conseil[id].",1)\">Activer</a>";
+		    	$active="<a href=\"javascript:active_article(".$rs_conseil['id'].",1)\">Activer</a>";
 
 			echo "<tr>
-				<td>&nbsp;- ".$rs_conseil[revue]." ".$rs_conseil[libelleFR]."</td>
+				<td>&nbsp;- ".$rs_conseil['revue']." ".$rs_conseil['libelleFR']."</td>
 				<td  align=\"center\" width=\"20%\">
 					".$active."
-				  	| <a href=\"presse.php?action=editer&id=".$rs_conseil[id]."&i_langue=0\" target=\"_self\">Editer</a>
-				  	| <a href=\"presse.php?action=supprimer&id=".$rs_conseil[id]."\" target=\"_self\">Supprimer</a>
+				  	| <a href=\"presse.php?action=editer&id=".$rs_conseil['id']."&i_langue=0\" target=\"_self\">Editer</a>
+				  	| <a href=\"presse.php?action=supprimer&id=".$rs_conseil['id']."\" target=\"_self\">Supprimer</a>
 				</td>
 	      	</tr>";
 		}
@@ -303,11 +303,11 @@ elseif( $action == "editer" && isset( $id ) ){
 
 	$rs = $DB_site2->query_first("SELECT * FROM presse WHERE id = ".$id);
 
-	if ($rs[parent_id] == "0") $liste_parents = "<option value=\"0\" selected>Aucun parent</>";
+	if ($rs['parent_id'] == "0") $liste_parents = "<option value=\"0\" selected>Aucun parent</>";
 	else $liste_parents = "<option value=\"0\">Aucun parent</>";
 	$parents = $DB_site2->query("SELECT * FROM presse WHERE parent_id = '0'");
 	while( $parent = $DB_site2->fetch_array( $parents ) ){
-		if ($parent[id] == $rs[parent_id])
+		if ($parent['id'] == $rs['parent_id'])
 			$liste_parents .= "<option value=\"$parent[id]\" selected>$parent[$libelle]</>";
 		elseif($parent['id']!=$rs['id'])
 			$liste_parents .= "<option value=\"$parent[id]\">$parent[$libelle]</>";
@@ -442,12 +442,12 @@ elseif( $action == "editer" && isset( $id ) ){
 // AJOUTER un conseil INSTITUTIONNELLE (action=ajouter)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////	
 elseif( $action == "ajouter" ){
-	if ($rs_conseil[parent_id] == "0") $liste_parents = "<option value=\"0\" selected>Aucun parent</>";
+	if ($rs_conseil['parent_id'] == "0") $liste_parents = "<option value=\"0\" selected>Aucun parent</>";
 	else $liste_parents = "<option value=\"0\">Aucun parent</>";
 	$parents = $DB_site2->query("SELECT * FROM presse WHERE parent_id = '0'");
 	while( $parent = $DB_site2->fetch_array( $parents ) ){
-		if ($parent[id] == $rs_conseil[parent_id]) $liste_parents .= "<option value=\"".$parent[id]."\" selected>".$parent[$libelle]."</>";
-		elseif($parent['id']!=$rs_conseil['id']) $liste_parents .= "<option value=\"".$parent[id]."\">".$parent[$libelle]."</>";
+		if ($parent['id'] == $rs_conseil['parent_id']) $liste_parents .= "<option value=\"".$parent['id']."\" selected>".$parent[$libelle]."</>";
+		elseif($parent['id']!=$rs_conseil['id']) $liste_parents .= "<option value=\"".$parent['id']."\">".$parent[$libelle]."</>";
 	}
 
 	$contenu_onglet = "<div align=\"center\"><h3>Ajouter un article</h3></div>
@@ -578,7 +578,7 @@ elseif( $action == "supprimer2" ){
 	$rq_positions_suivantes = $DB_site2->query( "SELECT id, position FROM presse WHERE position > $position_page" );
 	
 	while( $rs_positions_suivantes = $DB_site2->fetch_array( $rq_positions_suivantes ) ){
-		$position_temp = $rs_positions_suivantes[position] - 1;
+		$position_temp = $rs_positions_suivantes['position'] - 1;
 		$rq_modifier_position = "UPDATE presse SET position = '$position_temp' WHERE id = '$rs_positions_suivantes[id]'";
 		$DB_site2->query( $rq_modifier_position );
 	}

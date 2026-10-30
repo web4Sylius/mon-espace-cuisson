@@ -66,25 +66,25 @@ if (isset($_GET['action'])){
 
 		$DB_site2->query("UPDATE caracteristique SET position = '$newposition' WHERE caractid='$caractid'");//on donne la place au nouveau
 		if(!is_null($caract_to_change)){
-			if($newposition > $old_position[position]){
+			if($newposition > $old_position['position']){
 
 				$les_positions = $DB_site2->query("SELECT caractid, position FROM caracteristique WHERE position < ".$newposition." AND marqueid = ".$old_position['marqueid']." ORDER BY position");
 				while ($la_caract = $DB_site2->fetch_array($les_positions)) {
-					if($la_caract[position] > $old_position[position]){
-						$position = $la_caract[position]-1;
+					if($la_caract['position'] > $old_position['position']){
+						$position = $la_caract['position']-1;
 						$DB_site2->query("UPDATE caracteristique SET position ='$position' WHERE caractid='$la_caract[caractid]'");
 					}
 				}
-				$DB_site2->query("UPDATE caracteristique SET position =".($caract_to_change[position]-1)." WHERE caractid = $caract_to_change[caractid]");//on decale celui qui perd sa place
+				$DB_site2->query("UPDATE caracteristique SET position =".($caract_to_change['position']-1)." WHERE caractid = $caract_to_change[caractid]");//on decale celui qui perd sa place
 			}else{
 				$les_positions = $DB_site2->query("SELECT caractid, position FROM caracteristique WHERE position > ".$newposition." AND marqueid = ".$old_position['marqueid']." ORDER BY position");
 				while ($la_caract = $DB_site2->fetch_array($les_positions)) {
-					if($la_caract[position] < $old_position[position]){
-						$position = $la_caract[position]+1;
+					if($la_caract['position'] < $old_position['position']){
+						$position = $la_caract['position']+1;
 						$DB_site2->query("UPDATE caracteristique SET position ='$position' WHERE caractid='$la_caract[caractid]'");
 					}
 				}
-				$DB_site2->query("UPDATE caracteristique SET position =".($caract_to_change[position]+1)." WHERE caractid = $caract_to_change[caractid]");//on decale celui qui perd sa place
+				$DB_site2->query("UPDATE caracteristique SET position =".($caract_to_change['position']+1)." WHERE caractid = $caract_to_change[caractid]");//on decale celui qui perd sa place
 			}
 		}
 		echo "<script>document.location=\"caracteristique.php?marque_id=".$old_position['marqueid']."\"</script>";
@@ -152,11 +152,11 @@ while ($caracteristique=$DB_site2->fetch_array($caracteristiques))
 		</form>";
 		
 	$up=$down="";
-	if($caractnb>0) $up='<a href="caracteristique.php?action=edit&action2=up&caractid='.$caracteristique[caractid].'"><img src="images/monter.gif" alt="Monter" height="7" border="0"></a>';
-	if($caractnb<$DB_site2->num_rows($caracteristiques)) $down='<a href="caracteristique.php?action=edit&action2=down&caractid='.$caracteristique[caractid].'"><img src="images/descendre.gif" alt="Descendre" height="7" border="0"></a>';
+	if($caractnb>0) $up='<a href="caracteristique.php?action=edit&action2=up&caractid='.$caracteristique['caractid'].'"><img src="images/monter.gif" alt="Monter" height="7" border="0"></a>';
+	if($caractnb<$DB_site2->num_rows($caracteristiques)) $down='<a href="caracteristique.php?action=edit&action2=down&caractid='.$caracteristique['caractid'].'"><img src="images/descendre.gif" alt="Descendre" height="7" border="0"></a>';
 	$select="<select name=\"position_".$caracteristique['caractid']."\" onchange=\"changeorder(this.value,".intval($caracteristique['caractid']).")\">";
 	for ($i=1; $i < $total+1 ; $i++) { 
-		if($caracteristique[position] == $i){
+		if($caracteristique['position'] == $i){
 			$select.="<option value=\"$i\" selected>$i</option>";
 		}else{
 			$select.="<option value=\"$i\">$i</option>";

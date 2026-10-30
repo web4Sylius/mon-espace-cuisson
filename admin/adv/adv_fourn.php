@@ -617,7 +617,7 @@ while($lignefacture = $DB_site2->fetch_array($lignefactures)){
                   $articleimages=$DB_site2->query("select * from articlephoto where artid = '".$lignefacturediss['artid']."' ORDER BY position") ;
                   while ($articleimage=$DB_site2->fetch_array($articleimages)){
                     $artimg .="<div style=\"display:inline-block;\"><img src=\"https://dedie.mon-espace-cuisson.com/configurations/$host/images/produits/article/$articleimage[artid]_$articleimage[articlephotoid].$articleimage[image]?t=".time()."\" width=\"100\" style=\"margin-right:15px;\">";
-                    $artimg.="<p style=\"text-align:center;\">".$adv->checkbox("articlephotosup_".$i,"adv_save(%name,4)",$articleimage[articlephotoid])."</p></div>"; 
+                    $artimg.="<p style=\"text-align:center;\">".$adv->checkbox("articlephotosup_".$i,"adv_save(%name,4)",$articleimage['articlephotoid'])."</p></div>"; 
                     $i++;
                     }
                     $item.="<div>Lot ".$artimg_base['artcode']."</div>".$artimg;
@@ -631,7 +631,7 @@ while($lignefacture = $DB_site2->fetch_array($lignefactures)){
                        $articleimages=$DB_site2->query("select * from articlephoto where artid = '$artid' ORDER BY position") ;
                        while ($articleimage=$DB_site2->fetch_array($articleimages)){
                           $artimg .="<div style=\"display:inline-block;\"><img src=\"https://dedie.mon-espace-cuisson.com/configurations/$host/images/produits/article/$articleimage[artid]_$articleimage[articlephotoid].$articleimage[image]?t=".time()."\" width=\"100\" style=\"margin-right:15px;\">";
-                          $artimg.="<p style=\"text-align:center;\">".$adv->checkbox("articlephotosup_".$i,"adv_save(%name,4)",$articleimage[articlephotoid])."</p></div>"; 
+                          $artimg.="<p style=\"text-align:center;\">".$adv->checkbox("articlephotosup_".$i,"adv_save(%name,4)",$articleimage['articlephotoid'])."</p></div>"; 
                           $i++;
                      }
                      $item.="<div>".$artimg_base['artcode']."</div>".$artimg;

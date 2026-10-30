@@ -62,7 +62,7 @@ while($facture=$DB_site->fetch_array($requete)){
         <li>Le client ne pourra pas recevoir de facture de votre part pour cet achat réalisé pour le montant du Bon d'achat. Toutefois si le client le désire ou si son achat est d'un montant supérieur, vous devrez déduire le montant total du bon de sa facture.</p>
         <p>A très bientôt.</p>
         <p>L'Equipe de Ma Cave à Vin </p>
-        <div style=\"display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;\">#CDE".$facture[facturid]."#</div>";
+        <div style=\"display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;\">#CDE".$facture['facturid']."#</div>";
         $facturid=$facture['facturid'];
         $data="";
         //$f=fopen("https://www.ma-cave-a-vin.fr/admin/bondachat.php?facturid=".$facturid,"r");
@@ -97,7 +97,7 @@ while($facture=$DB_site->fetch_array($requete)){
            <p>Nous vous remercions de votre confiance et de nous avoir envoyé votre client $facture[nom] $facture[prenom]. En effet celui-ci nous a passé commande dernièrement.</p>
            <p>Suite à nos accords, vous trouverez en pièce jointe, le montant de votre commission, d'une valeur de ".number_format($facture['montantcadeau'],2,',','')." euros, que notre service comptabilité, vous réglera dès réception de votre facture avec TVA, correspondant à la valeur de la commission (envoie possible par mail ou courrier). Le règlement sera effectué sous 24H par virement sur votre compte bancaire.</p>
            <p>A très bientôt.</p>
-           <p>L'Equipe de Ma Cave à Vin</p><div style=\"display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;\">#CDE".$facture[facturid]."#</div>";
+           <p>L'Equipe de Ma Cave à Vin</p><div style=\"display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;\">#CDE".$facture['facturid']."#</div>";
            $facturid=$facture['facturid'];
      $data="";
      $f=fopen("https://www.ma-cave-a-vin.fr/admin/commission.php?facturid=".$facturid,"r",false,stream_context_create($arrContextOptions));

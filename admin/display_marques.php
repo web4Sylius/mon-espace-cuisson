@@ -55,7 +55,7 @@ echo "
 
 $list=array();
 $dcatlist=$DB_site2->query("SELECT marqueid,display FROM display_marque");
-while($dcat=$DB_site2->fetch_array($dcatlist)) $list[$dcat['display']][]=$dcat[marqueid];
+while($dcat=$DB_site2->fetch_array($dcatlist)) $list[$dcat['display']][]=$dcat['marqueid'];
 
 print "<div align=\"left\">
 <form method=\"post\">
@@ -63,7 +63,7 @@ print "<div align=\"left\">
 $cats=$DB_site2->query("SELECT marqueid,libelle FROM marque ORDER BY position");
 while($cat=$DB_site2->fetch_array($cats)){
     $checked="";
-    if(isset($list['rechercheexpert']) && in_array($cat[marqueid],$list['rechercheexpert'])) $checked="checked";
+    if(isset($list['rechercheexpert']) && in_array($cat['marqueid'],$list['rechercheexpert'])) $checked="checked";
     print "<br><input type=\"checkbox\" name=\"dcat[]\" value=\"$cat[marqueid]\" $checked> ".$cat['libelle']."<div style=\"padding-left:20px;\">";
    
     print "</div>";

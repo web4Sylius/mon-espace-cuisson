@@ -131,7 +131,7 @@ $pdf->SetAutoPageBreak(false,10);
 newpage();
 
 $ly=30;
-$logoimg=$rootpath."configurations/www.ma-cave-a-vin.fr/images/marques/".$marque[marqueid].".".$marque[image];
+$logoimg=$rootpath."configurations/www.ma-cave-a-vin.fr/images/marques/".$marque['marqueid'].".".$marque['image'];
 if(file_exists($logoimg)){
     $size=getimagesize($logoimg);
     $logo_w=27;
@@ -145,7 +145,7 @@ $pdf->multicell(45,3,html_entity_decode($article['libelle'.$template->langue],EN
 $ly+=$lblheight;
 $pdf->setXY(9,$ly);
 $pdf->textcolor($autocolor);
-$lbl=$marque[libelle]." ".$article['gamme'.$template->langue]." ".$article[artcode];
+$lbl=$marque['libelle']." ".$article['gamme'.$template->langue]." ".$article['artcode'];
 $lblheight=$pdf->nblines(45,3,$lbl)*3;
 $pdf->multicell(45,3,$lbl,0,'L');
 $ly+=$lblheight;
@@ -153,7 +153,7 @@ $ly+=$lblheight;
 $autreimg=$DB_site->query_first("SELECT * FROM articlephoto WHERE artid=".$article[artid]." AND visible=1 AND (langue='' OR langue='".$template->langue."')");
 $autreid="";
 if($autreimg!="") $autreid="_".$autreimg['articlephotoid'];
-$image=$rootpath."/configurations/www.ma-cave-a-vin.fr/images/produits/br/".$article[artid].$autreid.".".$article[image];
+$image=$rootpath."/configurations/www.ma-cave-a-vin.fr/images/produits/br/".$article[artid].$autreid.".".$article['image'];
 $w=46;
 if(file_exists($image)){
     $size=getimagesize($image);
@@ -201,7 +201,7 @@ foreach(array("conseil_installation","conseil_utilisation","conseil_entretien") 
         
         $req=$DB_site->query("SELECT * FROM articlephoto WHERE artid=".$article['artid']." AND langue IN ('','".$template->langue."') AND conseil='".preg_replace("/conseil_/","",$typeconseil)."'");
         while($articleimage=$DB_site->fetch_array($req)){
-            $file="../configurations/$host/images/produits/".$articleimage[artid]."_".$articleimage[articlephotoid].".".$articleimage[image];
+            $file="../configurations/$host/images/produits/".$articleimage[artid]."_".$articleimage['articlephotoid'].".".$articleimage['image'];
             $size=getimagesize($file);
             $w=140;
             $h=$size[1]/$size[0]*140;

@@ -59,9 +59,9 @@ $civint=array(0=>"choisissez_mr",1=>"choisissez_mme",2=>"choisissez_mlle");
 $allowemail = $newsletter= 1;
 $allowsms = 1;
 $allowconseils = 'non';
-if (isset($_POST[news_mail])) $allowemail=$_POST[news_mail];
-if (isset($_POST[news_sms])) $allowsms= $_POST[news_mail];
-if (isset($_POST[conseils])) $allowconseils = $_POST[conseils];
+if (isset($_POST['news_mail'])) $allowemail=$_POST['news_mail'];
+if (isset($_POST['news_sms'])) $allowsms= $_POST['news_mail'];
+if (isset($_POST['conseils'])) $allowconseils = $_POST['conseils'];
 
 $site_code=$template->site_code();
 if($site_code=="") $site_code="base";
@@ -77,7 +77,7 @@ if(isset($_POST['action0']) && $_POST['action0'] != ""){
 	$template->parts["zonedeliste_pays"]="";
 	$payss=$DB_site->query("SELECT * FROM pays INNER JOIN fraisport USING(paysid) WHERE sites='".$site_code."' GROUP BY paysid ORDER BY libelle ASC");
 	while($pays=$DB_site->fetch_array($payss)){
-		$template->parts["zonedeliste_pays"] .= "<option value=$pays[paysid] ".($pays[paysid]==57?"selected":"").">$pays[libelle]</option>";
+		$template->parts["zonedeliste_pays"] .= "<option value=$pays[paysid] ".($pays['paysid']==57?"selected":"").">$pays[libelle]</option>";
 	}
 	$template->parts["mail"]=(isset($_POST['mail_log'])?$_POST['mail_log']:"");
 	$template->evaltemplate($affiche,"pagecommande");
@@ -98,7 +98,7 @@ if (isset($action2) and $action2 != ""){
             $zonedeliste_pays = "";
             $payss=$DB_site->query("SELECT * FROM pays WHERE paysid IN (select DISTINCT(paysid) FROM fraisport WHERE sites='$site_code' ORDER BY libelle ASC");
             while($pays=$DB_site->fetch_array($payss)){
-                if($pays[paysid]==57) 
+                if($pays['paysid']==57) 
                     $selected="selected"; 
                 else 
                     $selected="";
@@ -167,7 +167,7 @@ if (isset($action2) and $action2 != ""){
 				else
 					$txt = "[infos_client] Modification infos client : Aucune modification";
 
-				$DB_site->query("INSERT INTO suivi_client SET userid='".$user_info[userid]."', date=".time().", commercial='".$commercial."', suivi='".mysqli_real_escape_string($DB_site->link_id,$txt)."', etat=1");
+				$DB_site->query("INSERT INTO suivi_client SET userid='".$user_info['userid']."', date=".time().", commercial='".$commercial."', suivi='".mysqli_real_escape_string($DB_site->link_id,$txt)."', etat=1");
 		
                 $DB_site->query("UPDATE utilisateur SET civilite = '$civilite', nom = '".mysqli_real_escape_string($DB_site->link_id,mb_strtoupper($nom))."', prenom = '".mysqli_real_escape_string($DB_site->link_id,$prenom)."', codepostal = '$codepostal',
                 adresse = '".mysqli_real_escape_string($DB_site->link_id,$adresse)."', ville = '".mysqli_real_escape_string($DB_site->link_id,mb_strtoupper($ville))."', telephone = '".str_replace(array(" ",".","-"),"", $telephone)."', raisonsociale = '".mysqli_real_escape_string($DB_site->link_id,$raisonsociale)."', paysid = '".$_POST['paysid']."', tvaintracom='$tvaintracom',
@@ -191,7 +191,7 @@ if (isset($action2) and $action2 != ""){
             if ($passwordinscr!=$passwordinscrconfirm) 
                 $errormessage.=$template->translate("/client/erreur_confirm_mdp")." <br> ";
                 
-            if (MD5($ancienpass)!=$user_info[password] and $ancienpass != "" ) 
+            if (MD5($ancienpass)!=$user_info['password'] and $ancienpass != "" ) 
                 $errormessage.=$template->translate("/client/erreur_ancien_mdp")." <br> ";
 			
 			$template->parts["error"]=$errormessage;
@@ -204,7 +204,7 @@ if (isset($action2) and $action2 != ""){
 
 				if(isset($_COOKIE['admin_username']) && $_COOKIE['admin_username']!="") $commercial=$_COOKIE['admin_username'];
 				$txt="Modification mot de passe : ".$nouveaupass;
-				$DB_site->query("INSERT INTO suivi_client SET userid='".$user_info[userid]."', date=".time().", commercial='".$commercial."', suivi='".mysqli_real_escape_string($DB_site->link_id,$txt)."', etat=1");
+				$DB_site->query("INSERT INTO suivi_client SET userid='".$user_info['userid']."', date=".time().", commercial='".$commercial."', suivi='".mysqli_real_escape_string($DB_site->link_id,$txt)."', etat=1");
                 $action="";
                 $template->parts["hideinfo3"]="";
             }else{
@@ -221,7 +221,7 @@ if (isset($action2) and $action2 != ""){
             }
 
             $validemail=$DB_site->query_first("SELECT * FROM utilisateur WHERE mail = '$mail'");
-            if ($validemail[userid] != "") {
+            if ($validemail['userid'] != "") {
                 $action="modifymail"; $errormessage.=$template->translate("/client/email_deja_prise")."<br>";
                 $template->parts["errormessage"]=$errormessage;
             }
@@ -275,7 +275,7 @@ if (isset($action2) and $action2 != ""){
     }
 }
 if(is_array($user_info)){
-    switch($user_info[civilite]){
+    switch($user_info['civilite']){
 		case '0': 
 		  $template->parts["selectmr"]="checked"; 
 		  break;
@@ -287,7 +287,7 @@ if(is_array($user_info)){
 		  break;
     }
 	
-	switch($user_info[allowemail]){
+	switch($user_info['allowemail']){
 		case '0': 
 			$template->parts["selectnewsmail0"]="checked"; 
 			break;
@@ -299,7 +299,7 @@ if(is_array($user_info)){
 			break; 
     }
 	
-	switch($user_info[allowsms]){
+	switch($user_info['allowsms']){
 		case '0': 
 			$template->parts["selectnewssms0"]="checked"; 
 			break;
@@ -311,7 +311,7 @@ if(is_array($user_info)){
 			break; 
     }
 
-    switch ($user_info[conseils]) {
+    switch ($user_info['conseils']) {
     	case 'oui':
     		$template->parts["selectconseils1"] = "checked";
     		break;
@@ -322,7 +322,7 @@ if(is_array($user_info)){
     		$template->parts["selectconseils0"]	= "checked";
     		break;
     }
-    if($user_info[raisonsociale] != '') $template->parts['displayconseils'] = "style=\"display:none;\"";
+    if($user_info['raisonsociale'] != '') $template->parts['displayconseils'] = "style=\"display:none;\"";
 
     $template->parts["nom"]=$user_info['nom'];
     $template->parts["prenom"]=$user_info['prenom'];
@@ -339,8 +339,8 @@ $template->parts["nobg"]="clientbg";
 
 
 if ((!isset($action) or $action == "") && !isset($_POST['action0'])){
-    if (is_array($user_info) && $user_info[userid] != ""){ // connexion réussie dans global.php
-        $civ=$civint[$user_info[civilite]];
+    if (is_array($user_info) && $user_info['userid'] != ""){ // connexion réussie dans global.php
+        $civ=$civint[$user_info['civilite']];
 
 		$commandes=$DB_site->query_first("SELECT COUNT(facturid) FROM facture WHERE userid=".$user_info['userid']." AND valide IN (1,5,7,8)");
 		if($commandes[0]>0){
@@ -354,7 +354,7 @@ if ((!isset($action) or $action == "") && !isset($_POST['action0'])){
 		$template->parts["zonedeliste_pays"]="";
 		$payss=$DB_site->query("SELECT * FROM pays INNER JOIN fraisport USING(paysid) WHERE sites='".$site_code."' GROUP BY paysid ORDER BY libelle ASC");
 		while($pays=$DB_site->fetch_array($payss)){
-			$template->parts["zonedeliste_pays"] .= "<option value=$pays[paysid] ".($pays[paysid]==57?"selected":"").">$pays[libelle]</option>";
+			$template->parts["zonedeliste_pays"] .= "<option value=$pays[paysid] ".($pays['paysid']==57?"selected":"").">$pays[libelle]</option>";
 		}
 		
 		if($_GET['email'] == "Votre e-mail" || $_GET['email'] == "Your e-mail"){
@@ -420,7 +420,7 @@ if ((!isset($action) or $action == "") && !isset($_POST['action0'])){
             $zonedeliste_pays = "";
             $payss=$DB_site->query("SELECT * FROM pays INNER JOIN fraisport USING(paysid) WHERE sites='".$site_code."' GROUP BY paysid ORDER BY libelle ASC");
             while($pays=$DB_site->fetch_array($payss)){
-                if($pays[paysid]==57) 
+                if($pays['paysid']==57) 
                     $selected="selected";
                 else 
                     $selected="";
@@ -441,7 +441,7 @@ if ((!isset($action) or $action == "") && !isset($_POST['action0'])){
             $liste_pays = "";
             $payss=$DB_site->query("SELECT * FROM pays INNER JOIN fraisport USING(paysid) WHERE sites='".$site_code."' GROUP BY paysid ORDER BY libelle ASC");
             while($pays=$DB_site->fetch_array($payss)){
-                if($pays[paysid]==$user_info[paysid]) 
+                if($pays['paysid']==$user_info['paysid']) 
                     $selected="selected";
                 else 
                     $selected="";

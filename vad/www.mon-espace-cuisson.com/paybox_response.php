@@ -188,8 +188,8 @@ if($_GET['error']=="00000"){
         $sql .= ", date        = ".time();
         $sql .= ", `to`        = '".$objUser->mail."'";
         $sql .= ", utilisateur = '".$_COOKIE['admin_username']."'";
-        $sql .= ", subject     = '".mysql_real_escape_string($mail->subject)."'";
-        $sql .= ", body        = '".mysql_real_escape_string($mail->body)."'";
+        $sql .= ", subject     = '".mysqli_real_escape_string($DB_site->link_id, $mail->subject)."'";
+        $sql .= ", body        = '".mysqli_real_escape_string($DB_site->link_id, $mail->body)."'";
         $DB_site->query($sql);
     }
 
@@ -201,7 +201,7 @@ if($_GET['error']=="00000"){
         <br>3D Secure : ".$infos3d[$_GET['auth3d']];
         $subject="Paiement par CB sans 3D secure";
 
-        $DB_site->query("INSERT INTO suivi_commande SET facturid=".intval($fcl->facturid).", date=".time().", suivi='".mysql_real_escape_string($htmlmess)."'");
+        $DB_site->query("INSERT INTO suivi_commande SET facturid=".intval($fcl->facturid).", date=".time().", suivi='".mysqli_real_escape_string($DB_site->link_id, $htmlmess)."'");
         
         $mail=new email();
         $mail->expediteur = MAIL_CONTACT;
@@ -229,7 +229,7 @@ if($_GET['error']=="00000"){
         $htmlmsg = "Paiement carte bancaire refusée : ".$errors[$errcode]." (".$_GET['error'].")
         <br>Montant : ".round($_GET['amount']/100);
 
-        $DB_site->query("INSERT INTO suivi_commande SET facturid=".intval($fcl->facturid).", date=".time().", suivi='".mysql_real_escape_string($htmlmsg)."'");
+        $DB_site->query("INSERT INTO suivi_commande SET facturid=".intval($fcl->facturid).", date=".time().", suivi='".mysqli_real_escape_string($DB_site->link_id, $htmlmsg)."'");
 
         $htmlmsg="Commande ".$fcl->facturid."
         <br>".$fcl->utilisateur->nom." ".$fcl->utilisateur->prenom."

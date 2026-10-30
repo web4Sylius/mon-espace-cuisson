@@ -1,6 +1,6 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/global.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/vad/macavavin/CallerService.php");
+require_once(__DIR__.'/global.php');
+require_once(__DIR__."/vad/macavavin/CallerService.php");
 
 if(isset($_GET['facturid']) && isset($_GET['reglement_id'])){ //Arrivée sur la page
      
@@ -234,7 +234,7 @@ HTML;
     	}
     	
     	//Insertion des informations dans fichier de log
-    	$f = fopen($_SERVER['DOCUMENT_ROOT']."/vad/macavavin/ppresponse.log","a");
+    	$f = fopen(__DIR__."/vad/macavavin/ppresponse.log","a");
     	fwrite($f,date("d/m/Y H:i")." ".$_REQUEST['order']." ".$paymentstatus." ".$valide." ".$TemplateCde3."\n");
     	fclose($f);
     	

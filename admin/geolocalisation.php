@@ -173,12 +173,12 @@ if(isset($_POST['geo_search'])){
 	while($facture = $DB_site2->fetch_array($result)){
 		$remboursement = 0 ;
         $rowalt = "td_factures_".getrowbg();
-        list ($annee, $mois, $jour) = explode("-", $facture[datefacture]);
+        list ($annee, $mois, $jour) = explode("-", $facture['datefacture']);
         $lignefactures=$DB_site2->query("SELECT * FROM lignefacture WHERE factureid = '$facture[facturid]'");
         $total_facture = 0 ;
         while ($lignefacture=$DB_site2->fetch_array($lignefactures)) {
-            $total_facture += ($lignefacture[prix] * $lignefacture[qte]) ;
-            if ($lignefacture[remboursement]) $remboursement += $lignefacture[prix] * $lignefacture[qte] ;
+            $total_facture += ($lignefacture['prix'] * $lignefacture[qte]) ;
+            if ($lignefacture['remboursement']) $remboursement += $lignefacture['prix'] * $lignefacture[qte] ;
         }
         $total_facture=$DB_site2->query_first("SELECT SUM(prix*qte) FROM lignefacture WHERE factureid='$facture[facturid]'");
         
@@ -188,9 +188,9 @@ if(isset($_POST['geo_search'])){
 		
         // Bon de réduction 
         $prixcadeau = 0;
-        if (in_array( "13", $modules ) && $facture[cadeauid] > 0 ) {
+        if (in_array( "13", $modules ) && $facture['cadeauid'] > 0 ) {
         	$cadeau=$DB_site2->query_first("SELECT cadeauid, montantcadeau FROM facture WHERE facturid = '$facture[facturid]'") ;
-          	if($cadeau[cadeauid] != "") $prixcadeau = $cadeau[montantcadeau] ;
+          	if($cadeau['cadeauid'] != "") $prixcadeau = $cadeau['montantcadeau'] ;
         }
 
         // remise
@@ -200,17 +200,17 @@ if(isset($_POST['geo_search'])){
                                                        FROM facture f inner join remise r on (f.remiseid = r.remiseid)
                                                        WHERE f.facturid = '$facture[facturid]'" );
           
-          	if ($remise_facture[remiseid] != "") $prixremise = $remise_facture[montantremise] ;
+          	if ($remise_facture['remiseid'] != "") $prixremise = $remise_facture['montantremise'] ;
         } // fin des remises
 
         // contre remboursement
-        if ($facture[moyenid] == '3')
-            $prix_contre_remb = $facture[prix_contre_remboursement] ;
+        if ($facture['moyenid'] == '3')
+            $prix_contre_remb = $facture['prix_contre_remboursement'] ;
         else
             $prix_contre_remb = 0 ;
                 
-        $total_facture = number_format($total_facture[0] + $facture[prixgestion] + $prix_contre_remb + $facture[prixport] - $prixcadeau -$prixremise, 2, ',', ' ')." ".$devises->symbole($facture['devise']);
-        list($annee, $mois, $jour) = explode( "-", $facture[datefacture] );
+        $total_facture = number_format($total_facture[0] + $facture['prixgestion'] + $prix_contre_remb + $facture['prixport'] - $prixcadeau -$prixremise, 2, ',', ' ')." ".$devises->symbole($facture['devise']);
+        list($annee, $mois, $jour) = explode( "-", $facture['datefacture'] );
 
 	    if ($remboursement > 0)
 	    	$remboursement = "<br><font color=\"#E5840F\">-".number_format($remboursement, 2, ',', ' ')." €</font>" ;
@@ -225,7 +225,7 @@ if(isset($_POST['geo_search'])){
 
         echo "<tr Height=\"25\">";
 
-		if ($facture[numerofacture] > 556500) {
+		if ($facture['numerofacture'] > 556500) {
             echo "<td class=\"$rowalt\" align=\"center\">$facture[codenumerofacture]$facture[numerofacture]</td>";
         }else{
             echo "<td class=\"$rowalt\" align=\"center\"> -- </td>";               
@@ -236,27 +236,27 @@ if(isset($_POST['geo_search'])){
         echo "<td class=\"$rowalt\" align=\"center\">".date("d/m/Y H:i",$facture['heurefacture'])."</td>";
         echo "<td class=\"$rowalt\" align=\"right\" nowrap>$total_facture $remboursement</td>";
 
-    if ($facture[valide] == 0) 
+    if ($facture['valide'] == 0) 
 	    { // non traité
 	      $couleurlien="#000000";
 	    }
-	  if ($facture[valide] == 1 || $facture[valide]==7) 
+	  if ($facture['valide'] == 1 || $facture['valide']==7) 
 	    { // Validée
 	      $couleurlien="#0000FF";
 	    }
-	  if ($facture[valide] == 2) 
+	  if ($facture['valide'] == 2) 
 	    { // refus commercant
 	      $couleurlien="#FF0000";
 	    }
-	  if ($facture[valide] == 3) 
+	  if ($facture['valide'] == 3) 
 	    { // refus carte bleue
 	      $couleurlien="#FF0000";
 	    }
-	  if ($facture[valide] == 4) 
+	  if ($facture['valide'] == 4) 
 	   { // abandon internaute
 	      $couleurlien="#FF0000";
 	    }
-	  if ($facture[valide] == 5 || $facture[valide]==8) 
+	  if ($facture['valide'] == 5 || $facture['valide']==8) 
 	    { // expédié
 	      $couleurlien="#00FF00";
 	   }
@@ -306,17 +306,17 @@ if(isset($_POST['geo_search'])){
 
     $passepar="Passé par ".($facture['commercial']==""?$rq_rappel['commercial']:$facture['commercial']);
 
-    if($facture['provenance']=="mp") $facture[moyenpaiement]=$marketplaces[$facture['provenanceid']];
+    if($facture['provenance']=="mp") $facture['moyenpaiement']=$marketplaces[$facture['provenanceid']];
 
     echo "<td class=\"$rowalt\" align=\"center\" nowrap width=\"10%\">$facture[moyenpaiement]<br><font color=\"$couleurlien\">$facture[$libelle]</font><br>$passepar</td>
         <td rowspan=\"2\" class=\"$rowalt\" align=\"center\" width=\"30%\"><div  align=\"center\">
         <a href=\"facture.php?action=editer&facturid=$facture[facturid]&oldaction=rechercher\" target=\"_blank\">Editer</a>";
-    if ($facture[numerofacture] > 556500)
+    if ($facture['numerofacture'] > 556500)
       echo "<br><br><a href=\"https://$host/facture2.php?passession=oui&facturid=$facture[facturid]&passe=$facture[passefacture]&langue=FR\" target=\"_blank\">Facture</a>" ;
     else{
-      if ($facture[valide] == 1) 
+      if ($facture['valide'] == 1) 
           echo "<br><br><a href=\"https://$host/facture2.php?passession=oui&facturid=$facture[facturid]&passe=$facture[passefacture]&cde=1&langue=FR\" target=\"_blank\">Commande</a>" ;
-      elseif ($facture[valide] ==0) 
+      elseif ($facture['valide'] ==0) 
           echo "<br><br><a href=\"facture.php?action=cacher&facturid=$facture[facturid]&oldaction=rechercher\" target=\"_self\">Supprimer</a>" ;
       else 
           echo "<br><br>" ;

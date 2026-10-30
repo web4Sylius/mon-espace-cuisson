@@ -176,10 +176,10 @@ if($_POST['action']=="clientnavig"){
     unset($_COOKIE['prenom']);
 
     setcookie("userid",$_POST['userid'],time()+3600,"/", $template->host);
-    $_COOKIE[userid]=$_POST['userid'];
-    setcookie("password",$_POST[password],time()+3600,"/", $template->host);
+    $_COOKIE['userid']=$_POST['userid'];
+    setcookie("password",$_POST['password'],time()+3600,"/", $template->host);
     $_COOKIE['password']=$_POST['password'];
-     setcookie("prenom",$_POST[prenom],time()+3600,"/", $template->host);
+     setcookie("prenom",$_POST['prenom'],time()+3600,"/", $template->host);
     $_COOKIE['prenom']=$_POST['prenom'];
     setcookie("admin_username",$_POST['admin'],time()+3600,"/", $template->host);
     $_COOKIE['admin_username']=$_POST['admin'];
@@ -513,7 +513,7 @@ if(isset($_POST['action']) && $_POST['action'] == "logging"){
             $DB_site->query("INSERT INTO suivi_client SET userid='".$iid."', date=".time().", commercial='".$commercial."', suivi='".mysqli_real_escape_string($DB_site->link_id,$cmail->subject."<br>".$cmail->body)."', etat=1");
           
                 if($cid!=0) $DB_site->query("UPDATE stat SET user=".intval($iid)." WHERE cid=".$cid);
-                $DB_site->query("UPDATE article_vu SET userid=".intval($iid)." WHERE s='".mysqli_real_escape_string($DB_site->link_id,$_COOKIE[s])."'");
+                $DB_site->query("UPDATE article_vu SET userid=".intval($iid)." WHERE s='".mysqli_real_escape_string($DB_site->link_id,$_COOKIE['s'])."'");
 
             if(isset($_COOKIE['s'])){
                 $s = $_COOKIE['s'];
@@ -556,7 +556,7 @@ if(isset($_POST['action']) && $_POST['action'] == "logging"){
 
     if($template->parts["errormessage"]==""){
         $user_info=$DB_site->query_first("SELECT * FROM  utilisateur WHERE mail = '". mysqli_real_escape_string($DB_site->link_id,htmlspecialchars($email))."'");
-        if ($user_info[password] == ""){
+        if ($user_info['password'] == ""){
             $raisons=$template->translate("/client/erreur_email_inconnu");
             $user_info=array();
             $action = "" ;
@@ -574,7 +574,7 @@ if(isset($_POST['action']) && $_POST['action'] == "logging"){
     </script>";
             //$user_info[userid] = "" ;
         }
-        elseif($user_info[password] != md5($pass)) {
+        elseif($user_info['password'] != md5($pass)) {
     $template->parts["raison"]=$template->translate("/client/erreur_mdp");
     $template->parts['js'] .= "<script type=\"text/javascript\"> $( document ).ready(function() {
         var align = false;
@@ -593,7 +593,7 @@ if(isset($_POST['action']) && $_POST['action'] == "logging"){
 
         }
 
-        elseif ($user_info[password]==md5($pass)){
+        elseif ($user_info['password']==md5($pass)){
             setcookie("userid","$user_info[userid]",time()+3600000,"/", $template->host);
             setcookie("password","$user_info[password]",time()+3600000,"/", $template->host);
             setcookie("prenom","$user_info[prenom]",time()+3600000,"/", $template->host);
@@ -620,8 +620,8 @@ if(isset($_POST['action']) && $_POST['action'] == "logging"){
             if($template->langue!=$user_info['langue'] || $template->site_code()!=$user_info['site_code']) $DB_site->query("UPDATE utilisateur SET langue='".$template->langue."', site_code='".$template->site_code()."' WHERE userid=".$user_info['userid']);
             
            
-                if($cid!=0) $DB_site->query("UPDATE stat SET user=".$user_info[userid]." WHERE cid=".$cid);
-                $DB_site->query("UPDATE article_vu SET userid=".intval($user_info[userid])." WHERE s='".mysqli_real_escape_string($DB_site->link_id,$_COOKIE[s])."'");
+                if($cid!=0) $DB_site->query("UPDATE stat SET user=".$user_info['userid']." WHERE cid=".$cid);
+                $DB_site->query("UPDATE article_vu SET userid=".intval($user_info['userid'])." WHERE s='".mysqli_real_escape_string($DB_site->link_id,$_COOKIE['s'])."'");
             
             $action = "" ;
             $action2 = "" ;
@@ -853,7 +853,7 @@ if ($_COOKIE['s']==""){
         if ($qte > "0"){
         $datepanier = date('Y-m-d') ;
         $panier=$DB_site->query_first("SELECT * FROM panier where sessionid=".$s);
-        $temppanierid = $panier[panierid] ;
+        $temppanierid = $panier['panierid'] ;
         $DB_site->query("INSERT IGNORE INTO panier (sessionid, datepanier, prixtva, prixgestion, affilieid,userid) VALUES ('$s', '$datepanier', 0, 0, 0,".$user_info['userid'].")");
         if ($temppanierid == "") $temppanierid = $DB_site->insert_id() ;
         
@@ -921,7 +921,8 @@ if ($_COOKIE['s']==""){
     $TemplateCde1Bit = "" ;
     if ($action != "delpanier"){
         if ($action2 == "changeqte"){
-        while (list($key, $val) = each($qte)){
+        foreach ((array)$qte as $key => $val){
+            $key = intval($key); $val = intval($val);
             if ($val > "0"){
             $artencours=$DB_site->query_first("select artid from lignepanier WHERE lignepanierid = '".$key."'");
             $DB_site->query("UPDATE lignepanier SET qte='".$val."' WHERE lignepanierid='".$key."'");
@@ -1067,7 +1068,7 @@ if(!$template->mobile){
     $template->savecache("menuresp",intval($sitepro));
     $template->savecache("sousmenusResp",intval($sitepro));
     }
-}else{var_dump('yghes');
+}else{
     include("menu_mobile.php");
     $template->evaltemplate("rr","recherche_rapide");
 }

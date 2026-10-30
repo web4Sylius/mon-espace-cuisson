@@ -44,15 +44,15 @@ while($article=$DB_site->fetch_array($requete))
 	     $discount=$article_prices['remise'];
     }
      
-    $article[libelleFR]=html_entity_decode($article[libelleFR],ENT_COMPAT,"ISO-8859-15");
-    $article[libelleFR]=str_replace("&","&amp;",$article[libelleFR]);
+    $article['libelleFR']=html_entity_decode($article['libelleFR'],ENT_COMPAT,"ISO-8859-15");
+    $article['libelleFR']=str_replace("&","&amp;",$article['libelleFR']);
    
     print (
       $article[artid].";"
-      .$mq['libelle']." ".$article[libelleFR]." ".$article['artcode'].";"
+      .$mq['libelle']." ".$article['libelleFR']." ".$article['artcode'].";"
       .$description.";"
-      ."http://www.mon-espace-cuisson.com/configurations/".$host."/images/produits/article/".$article[artid].".".$article[image].";"
-      ."http://www.mon-espace-cuisson.com/configurations/".$host."/images/produits/article/".$article[artid].".".$article[image].";"
+      ."http://www.mon-espace-cuisson.com/configurations/".$host."/images/produits/article/".$article[artid].".".$article['image'].";"
+      ."http://www.mon-espace-cuisson.com/configurations/".$host."/images/produits/article/".$article[artid].".".$article['image'].";"
       ."http://www.mon-espace-cuisson.com/art,".$article[artid].",".url_rewrite($article['libelleFR']).".htm?utm_source=EMATCH&utm_medium=Banner&utm_term=".$article[artid]."&utm_campaign=Product".";"
       .floatval($article_prices['prix'])."\r\n"
     );

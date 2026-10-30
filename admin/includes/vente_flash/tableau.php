@@ -350,7 +350,7 @@ switch($_GET['action']){
 		$req=$DB_site2->query($sql);
 		while($page=$DB_site2->fetch_array($req)){
 			if($i==100) break;
-			$art=article($page[artid],$page[somme]);
+			$art=article($page[artid],$page['somme']);
 			
 			$prix=$listeprix[$art['artid']];
 

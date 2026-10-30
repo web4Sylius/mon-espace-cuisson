@@ -27,25 +27,25 @@ while ($article=$DB_site2->fetch_array($articles)){
 		if ($DB_site2->num_rows($couleurs) > 0){
 			while ($couleur=$DB_site2->fetch_array($couleurs)){
 				$existe = $DB_site2->query_first("SELECT * FROM code_barre WHERE artid = '$article[artid]' AND caractvalid = '$couleur[caractvalid]'");
-				if ($existe[codebarreid] == ""){
+				if ($existe['codebarreid'] == ""){
 					if($max[0]+$nb+1>99999){
 						print "<p style=\"color:red;font-weight:bold;text-align:center;\">Plus aucun code barre disponible</p>";
 						break;
 					}
 					$DB_site2->query("INSERT INTO code_barre (artid, caractvalid) VALUES ('$article[artid]', '$couleur[caractvalid]')");
-					echo $article[artid]." ".$article[artcode]." : cet article a été mis a jour <br>";
+					echo $article[artid]." ".$article['artcode']." : cet article a été mis a jour <br>";
 					$nb++;
 				}
 			}
 		} else {
 			$existe = $DB_site2->query_first("SELECT * FROM code_barre WHERE artid = '$article[artid]' AND caractvalid = '0'");
-			if ($existe[codebarreid] == "")	{
+			if ($existe['codebarreid'] == "")	{
 				if($max[0]+$nb+1>99999){
 					print "<p style=\"color:red;font-weight:bold;text-align:center;\">Plus aucun code barre disponible</p>";
 					break;
 				}
 				$DB_site2->query("INSERT INTO code_barre (artid, caractvalid) VALUES ('$article[artid]', '0')");
-				echo $article[artid]." ".$article[artcode]." : cet article a été mis a jour <br>";
+				echo $article[artid]." ".$article['artcode']." : cet article a été mis a jour <br>";
 				$nb++;
 			}
 		}
@@ -56,11 +56,11 @@ while ($article=$DB_site2->fetch_array($articles)){
 $lignes = $DB_site2->query("SELECT * FROM code_barre WHERE codebarre = '' order by codebarreid");
 while ($ligne=$DB_site2->fetch_array($lignes))	{
 	$cnuf = "3665104"; // premier code : $cnuf = "37005402";
-	$cip = $ligne[codebarreid]-$offset;
+	$cip = $ligne['codebarreid']-$offset;
 	$calcul = $cnuf.str_pad($cip, 5, "0", STR_PAD_LEFT);
 	$key=calculcodebarre($calcul);
 	$codebarre = $calcul.$key;
-	$DB_site2->query("UPDATE code_barre SET codebarre = '$codebarre' WHERE codebarreid = '".$ligne[codebarreid]."' ");
+	$DB_site2->query("UPDATE code_barre SET codebarre = '$codebarre' WHERE codebarreid = '".$ligne['codebarreid']."' ");
 // 	echo "UPDATE code_barre SET codebarre = '$codebarre' WHERE codebarreid = '".$ligne[codebarreid]."' ";
 }
 

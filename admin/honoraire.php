@@ -37,7 +37,7 @@ $boutique=$DB_site->query_first("SELECT * FROM client WHERE username = '$aro_cli
 define ('FPDF_FONTPATH','./pdf/') ;
 include ('../../boutique/admin/./pdf/fpdf.php') ;
 
-if ($affilie[raisonsociale] != "")
+if ($affilie['raisonsociale'] != "")
 	{
 	class PDF extends FPDF 
 		{
@@ -76,10 +76,10 @@ else
 
 $ajd = date('d/m/Y') ;
 
-if ($affilie[raisonsociale] != "")
+if ($affilie['raisonsociale'] != "")
 	{
-	$affilie[siret] = "Siret : $affilie[siret]" ;
-	$affilie[raisonsociale] = "($affilie[raisonsociale])" ;
+	$affilie['siret'] = "Siret : $affilie[siret]" ;
+	$affilie['raisonsociale'] = "($affilie[raisonsociale])" ;
 	}
 
 $pdf=new PDF();
@@ -150,8 +150,8 @@ $lots=$DB_site2->query("SELECT * FROM affilie_lot WHERE honoraireid = '$honorair
 while ($lot=$DB_site2->fetch_array($lots)) 
 	{
 	$lot[date] = substr ($lot[date], 8, 2) . "/" . substr ($lot[date], 5, 2) . "/" . substr ($lot[date], 0, 4) ;
-	$mtt = number_format ($lot[pourcentage] * $lot[montant] / 100, 2, ",", " ") ;
-	$lot[montant] = number_format ($lot[montant], 2, ",", " ") ;
+	$mtt = number_format ($lot['pourcentage'] * $lot['montant'] / 100, 2, ",", " ") ;
+	$lot['montant'] = number_format ($lot['montant'], 2, ",", " ") ;
 	$pdf->SetFillColor(255,255,255);
 	$pdf->Cell(5,5,"",0,0,'',1);
 	$pdf->Cell(150,5," - Facture n° $lot[factureid] du $lot[date] : $lot[pourcentage] % sur $lot[montant] €" ,1,0,'',1);
@@ -186,10 +186,10 @@ $pdf->Cell(150,5,"Total T.T.C. :",1,0,'R',1);
 $pdf->SetFillColor(250,150,100);
 $pdf->Cell(30,5,"$honoraire[montant] €",1,0,'R',1);
 
-if ($affilie[raisonsociale] != "")
+if ($affilie['raisonsociale'] != "")
 	{
 	$pdf->Ln(5);
-	$tva = $honoraire[montant] / 1.196 ;
+	$tva = $honoraire['montant'] / 1.196 ;
 	$tva = number_format ($tva, 2, ",", " ") ;
 	$pdf->SetFillColor(255,255,255);
 	$pdf->Cell(5,5,"",0,0,'',1);
@@ -201,7 +201,7 @@ if ($affilie[raisonsociale] != "")
 $pdf->Ln(15);
 
 
-if ($affilie[raisonsociale] == "")
+if ($affilie['raisonsociale'] == "")
 	{
 	$txt_bas = "TVA non applicable selon article 293b du CGI." ;
 	}

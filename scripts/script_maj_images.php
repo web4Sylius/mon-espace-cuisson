@@ -214,7 +214,7 @@ if ($autopromo[autopromoid]) {
 $marques=$DB_site2->query("select * from marque order by marqueid") ;
 while ($marque=$DB_site2->fetch_array($marques)){
 	$nom_fic="/home/macavavin/www2/configurations/www2.ma-cave-a-vin.fr/images/marques/$marque[marqueid].$marque[image]";
-	if ($marque[image] != "" and file_exists($nom_fic)){
+	if ($marque['image'] != "" and file_exists($nom_fic)){
 		
 		$destination00="/home/macavavin/www2/configurations/www2.ma-cave-a-vin.fr/images/marques/br/$marque[marqueid].$marque[image]";
 		if (file_exists($destination00))

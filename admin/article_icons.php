@@ -12,8 +12,8 @@ $caract_valeurs=$DB_site2->query("SELECT ac.caractvalid, libelleFR, ac.differenc
                                  AND artid = '$artid'
                                  ORDER BY cv.position ASC ");
 while ($caract_valeur=$DB_site2->fetch_array($caract_valeurs)){
-    if ($caract_valeur[differenceprix] != "0"){
-	$icon="../images/templates/FR/icon_".$caract_valeur[caractvalid].".png";
+    if ($caract_valeur['differenceprix'] != "0"){
+	$icon="../images/templates/FR/icon_".$caract_valeur['caractvalid'].".png";
 	if(file_exists($icon)) $list.="<br><img src=\"$icon\" align=\"absmiddle\"> ".$caract_valeur['libelleFR'];
     }
 }

@@ -263,13 +263,13 @@ if ($passe==$facture['passefacture'])
         $caracts=$DB_site->query("SELECT * FROM mp_lignefacturecaracteristique WHERE lignefactureid = '$lignefacture[id]' ORDER BY libelle_caract");
         while ($caract=$DB_site->fetch_array($caracts))
             {
-            $des_caracts["$caract[libelle_caract] : $caract[libelle_caractval]"] = $caract[differenceprix] ;
-            $diffprix+=$caract[differenceprix];
+            $des_caracts["$caract[libelle_caract] : $caract[libelle_caractval]"] = $caract['differenceprix'] ;
+            $diffprix+=$caract['differenceprix'];
             }
         ksort($des_caracts);
         $diffprixht=round($diffprix/$dectva,2);
 
-        $designation = html_entity_decode($lignefacture[product_name]." ".$libmarque[libelle].($libmodele[gamme]!=""?" ".$libmodele[gamme]:"")." Ref. ".$libmodele[modele]." (".$libmodele[artcode_eurocave].")");
+        $designation = html_entity_decode($lignefacture['product_name']." ".$libmarque['libelle'].($libmodele['gamme']!=""?" ".$libmodele['gamme']:"")." Ref. ".$libmodele['modele']." (".$libmodele['artcode_eurocave'].")");
         $heightlibele=$pdf->nblines($wcol[0],$designation)*4;
 
         $heighteco=0;
@@ -278,33 +278,33 @@ if ($passe==$facture['passefacture'])
         $ecoparthttotal=0;
         //$qte = $lignefacture[qte] ;
         $qte=1;
-        if($libmodele[ecopart]>0 && $cde<>1){
-            $ecopart=$libmodele[ecopart];
+        if($libmodele['ecopart']>0 && $cde<>1){
+            $ecopart=$libmodele['ecopart'];
             $ecopartht=$ecopart/$dectva;
             $ecoparthttotal=$ecopartht*$qte;
         }
 
         $designation2="";
-        if($libmodele[rangements_txt]!="") $designation2.="\n- Rangements inclus : ".str_replace("<br>","\n",$libmodele[rangements_txt]);
-        if($libmodele[garantie_incluse]!="" && $cde!=1) $designation2.="\n- Garantie incluse : ".$libmodele[garantie_incluse];
-        $designation2.="\n\n- Dim. (mm) / poids (kg) Brut : H".$libmodele[emballage_hauteur]."*L".$libmodele[emballage_largeur]."*P".$libmodele[emballage_profondeur]." / ".$libmodele[emballage_poids]."\n- Dim. (mm) / poids (kg) Net : H".$libmodele[hauteur]."*L".$libmodele[largeur]."*P".$libmodele[profondeur]." / ".round($libmodele[poid]/1000,1) ;
+        if($libmodele['rangements_txt']!="") $designation2.="\n- Rangements inclus : ".str_replace("<br>","\n",$libmodele['rangements_txt']);
+        if($libmodele['garantie_incluse']!="" && $cde!=1) $designation2.="\n- Garantie incluse : ".$libmodele['garantie_incluse'];
+        $designation2.="\n\n- Dim. (mm) / poids (kg) Brut : H".$libmodele['emballage_hauteur']."*L".$libmodele['emballage_largeur']."*P".$libmodele['emballage_profondeur']." / ".$libmodele['emballage_poids']."\n- Dim. (mm) / poids (kg) Net : H".$libmodele['hauteur']."*L".$libmodele['largeur']."*P".$libmodele['profondeur']." / ".round($libmodele['poid']/1000,1) ;
 
-        $puht = floatval($lignefacture[strikeout_price])-$ecopartht ;
-        $pvente=$lignefacture[price]-$ecopartht-$diffprixht;
+        $puht = floatval($lignefacture['strikeout_price'])-$ecopartht ;
+        $pvente=$lignefacture['price']-$ecopartht-$diffprixht;
         if($puht>0)
             $remise=-round(($puht-$pvente)/$puht*100);
 
         $montant_ht=number_format(($pvente*$qte),2,',',' ');
         $pvente=number_format($pvente,2,',',' ')." €";
-        $puttc=number_format(floatval($lignefacture[strikeout_price])*($dectva)-$ecopart,2,',',' ');
+        $puttc=number_format(floatval($lignefacture['strikeout_price'])*($dectva)-$ecopart,2,',',' ');
         $puht = number_format($puht, 2, ',', ' ') ;
-        $txtva = $facture[vat_100] ;
-        $tva += ($lignefacture[price] * $qte*($dectva-1)) ;
-        $montant_ttc = $lignefacture[price] * $qte * $dectva ;
-        $total += ($qte*$lignefacture[price]) ;
+        $txtva = $facture['vat_100'] ;
+        $tva += ($lignefacture['price'] * $qte*($dectva-1)) ;
+        $montant_ttc = $lignefacture['price'] * $qte * $dectva ;
+        $total += ($qte*$lignefacture['price']) ;
 
         $montant_ttc = number_format($montant_ttc, 2, ',', ' ') ;
-        $poidstotal+=(floatval(str_replace(",",".",$libmodele[emballage_poids]))*$qte);
+        $poidstotal+=(floatval(str_replace(",",".",$libmodele['emballage_poids']))*$qte);
 
         $pdf->SetFillColor(255,255,255);
         $i++ ;
@@ -478,9 +478,9 @@ if ($passe==$facture['passefacture'])
             }
 
         
-        if ($lignefacture[remboursement] == '1')
+        if ($lignefacture['remboursement'] == '1')
             {
-            $dateremb = explode("-", $lignefacture[date_remboursement]) ;
+            $dateremb = explode("-", $lignefacture['date_remboursement']) ;
             $pdf->SetFont('Arial','',8);
             if ($nbre > 1)
                 {
@@ -539,7 +539,7 @@ if ($passe==$facture['passefacture'])
     // remise
     if (in_array ("3", $modules))
         {
-        if ($facture[remiseid] != 0)
+        if ($facture['remiseid'] != 0)
             {
             $infosremise=$DB_site->query_first("SELECT * from remise where remiseid = '$facture[remiseid]'");
             $article=$DB_site->query_first("SELECT $libelle from article a, remisearticle ra where a.artid = ra.artid and remiseid = '$facture[remiseid]'");
@@ -559,7 +559,7 @@ if ($passe==$facture['passefacture'])
                     $fin = "." ;
                     }
                 }
-            switch ($infosremise[typeremise])
+            switch ($infosremise['typeremise'])
                 {
                 case '0': // remise sur le poids
                     $libremise = "$multilangue[remise] $infosremise[pctremise] % : $multilangue[poids] > $infosremise[valeur] $multilangue[grammes] $fin" ;
@@ -572,7 +572,7 @@ if ($passe==$facture['passefacture'])
                     break;
                 } // fin du switch
             $i++ ;
-            $total -= $facture[montantremise] ;
+            $total -= $facture['montantremise'] ;
             $pdf->SetFillColor(255,255,255);
             $pdf->SetFont('Arial','',8);
             $pdf->Cell(110,5, "$libremise",1,0,'',1);
@@ -580,7 +580,7 @@ if ($passe==$facture['passefacture'])
             $pdf->Cell(20,5,"" ,1,0,'R',1);
             $pdf->Cell(20,5,"" ,1,0,'C',1);
             $pdf->Cell(15,5,"" ,1,0,'C',1);
-            $pdf->Cell(25,5,"-".number_format($facture[montantremise], 2, ',', ' ')." €",1,0,'R',1);
+            $pdf->Cell(25,5,"-".number_format($facture['montantremise'], 2, ',', ' ')." €",1,0,'R',1);
             $pdf->Ln(5);
             }
         }
@@ -589,7 +589,7 @@ if ($passe==$facture['passefacture'])
     // Bons de réduction 
     if (in_array("13", $modules) && $cde<>1)
         {
-        if ($facture[cadeauid] != 0)
+        if ($facture['cadeauid'] != 0)
             {
             $infoscadeau=$DB_site->query_first("SELECT * FROM cadeau WHERE cadeauid = '$facture[cadeauid]'");
             $article=$DB_site->query_first("SELECT $libelle from article a, article_cadeau ac where a.artid = ac.artid and cadeauid = '$facture[cadeauid]'");
@@ -609,7 +609,7 @@ if ($passe==$facture['passefacture'])
                     $fin = "." ;
                     }
                 }
-            switch ($infoscadeau[typecadeauid])
+            switch ($infoscadeau['typecadeauid'])
                 {
                 case '0': // remise sur le poids
                     $libcadeau = "$multilangue[bonreduction] $multilangue[de] $infoscadeau[valeurcadeau] € $fin" ;
@@ -621,11 +621,11 @@ if ($passe==$facture['passefacture'])
             $i++ ;
             //$total -= ($facture[montantcadeau]/1.196) ;
             
-            $tvaremise = $facture[montantcadeau]-($facture[montantcadeau]/1.196);
+            $tvaremise = $facture['montantcadeau']-($facture['montantcadeau']/1.196);
             
             $nbre = ceil(strlen($libcadeau)/60)*5 ;
-            $cadeauttc="-".number_format($facture[montantcadeau],2,","," ")." €";
-            $cadeauht="-".number_format($facture[montantcadeau]/$dectva,2,","," ")." €";
+            $cadeauttc="-".number_format($facture['montantcadeau'],2,","," ")." €";
+            $cadeauht="-".number_format($facture['montantcadeau']/$dectva,2,","," ")." €";
             $pdf->SetFillColor(255,255,255);
             $pdf->SetFont('Arial','',8);
             $hautcadeau=$pdf->getY();
@@ -657,9 +657,9 @@ if ($passe==$facture['passefacture'])
     // frais de port
     if($cde<>1){
 	$ly=$pdf->getY();
-        $total += ($facture[shipping_price]);
-        $tva += $facture[shipping_price]*($dectva-1) ;
-        $prixport_ht=$facture[shipping_price] ;
+        $total += ($facture['shipping_price']);
+        $tva += $facture['shipping_price']*($dectva-1) ;
+        $prixport_ht=$facture['shipping_price'] ;
         $pdf->SetFillColor(255,255,255);
         $pdf->SetFont('Arial','',8);
 
@@ -672,7 +672,7 @@ if ($passe==$facture['passefacture'])
         $pdf->multiCell($wcol[1],5, number_format($prixport_ht,2,',',' ')." €",1,'R',1);
         $lx+=$wcol[1];
         $pdf->setXY($lx,$ly);
-        $pdf->multiCell($wcol[2],5,number_format($facture[shipping_price]*$dectva, 2, ',', ' ')." €" ,1,'R',1);
+        $pdf->multiCell($wcol[2],5,number_format($facture['shipping_price']*$dectva, 2, ',', ' ')." €" ,1,'R',1);
         $lx+=$wcol[2];
         $pdf->setXY($lx,$ly);
         $pdf->multicell($wcol[3],5,"",1,'C',1);
@@ -763,7 +763,7 @@ if($cde==1){
         $pdf->Cell($totalwidth-$wcol[0],5,"T.V.A. 19,6%",0,0,'R',1);
         $pdf->Cell($wcol[6],5,number_format($tva-$tvaremise, 2, ',', ' ')." €",1,0,'R',1);
         $pdf->Ln(5);
-        $dateexp=explode("-",substr($facture[billing_date],0,10));
+        $dateexp=explode("-",substr($facture['billing_date'],0,10));
         $pdf->Cell($wcol[0],5,"Date expédition : $dateexp[2]/$dateexp[1]/$dateexp[0]",0,0,'',1);
 
         $pdf->Cell($totalwidth-$wcol[0],5,"Montant Total T.T.C.",0,0,'R',1);
@@ -825,23 +825,23 @@ function toptable($pdf){
             $pdf->SetFillColor(255,255,255);
             if ($cde == "1") 
             {
-            $pdf->Cell(50,5,$facture[id],1,0,'C',1);
+            $pdf->Cell(50,5,$facture['id'],1,0,'C',1);
             } 
             else 
             {
-            $pdf->Cell(50,5,$facture[billing_number],1,0,'C',1);
+            $pdf->Cell(50,5,$facture['billing_number'],1,0,'C',1);
             $pdf->Ln(5);
             $pdf->SetFillColor(250,200,150);
             $pdf->Cell(30,5,"Bon de livraison N°",1,0,'R',1);
             $pdf->SetFillColor(255,255,255);
-            $pdf->Cell(50,5,$facture[id],1,0,'C',1);
+            $pdf->Cell(50,5,$facture['id'],1,0,'C',1);
             }
             $pdf->Ln(5);
 
             $pdf->SetFillColor(250,200,150);
             $pdf->Cell(30,5,"$multilangue[dateeedition]",1,0,'R',1);
             $pdf->SetFillColor(255,255,255);
-            $dateafftmp=split("-",substr($facture[order_date],0,10));
+            $dateafftmp=explode("-",substr($facture['order_date'],0,10));
             $dateaff="$dateafftmp[2]/$dateafftmp[1]/$dateafftmp[0]";
             $pdf->Cell(50,5,"$dateaff",1,0,'C',1);
             $pdf->Ln(5);

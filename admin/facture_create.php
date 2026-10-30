@@ -21,7 +21,7 @@ if(isset($_POST['modif'])){
 	if(empty($origin['site_code'])) $origin['site_code']="base";
 	
 	$taux=$DB_site2->query_first("SELECT port, gestion, TVAtauxnormal FROM pays WHERE paysid = '$utilisateur[paysid]'");
-        if ($taux[port] == '0')
+        if ($taux['port'] == '0')
 		$tauxport = 0 ;
         else
                 $tauxport = $taux['TVAtauxnormal'] ;
@@ -35,7 +35,7 @@ if(isset($_POST['modif'])){
 	<br>".$_POST['shipping_phone']."
 	<br>".$_POST['shipping_mail']."
 	<br>Info : ".$_POST['infotranspo'];
-	$DB_site2->query("INSERT INTO suivi_commande SET facturid=".$facturid.", date=".time().", commercial='".$user_info[username]."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
+	$DB_site2->query("INSERT INTO suivi_commande SET facturid=".$facturid.", date=".time().", commercial='".$user_info['username']."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
     
      }else{
 	$sql="UPDATE facture SET nom='".mysqli_real_escape_string($DB_site2->link_id,mb_strtoupper($_POST['shipping_last_name']))."', prenom='".mysqli_real_escape_string($DB_site2->link_id,$_POST['shipping_first_name'])."', codepostal='".$_POST['shipping_zip']."', adresse='".mysqli_real_escape_string($DB_site2->link_id,$_POST['shipping_address_1'])."', ville='".mysqli_real_escape_string($DB_site2->link_id,mb_strtoupper($_POST['shipping_city']))."', telephone='".$_POST['shipping_phone']."', raisonsociale='".mysqli_real_escape_string($DB_site2->link_id,$_POST['shipping_company'])."', paysid=".intval($_POST['shipping_country']).", mail='".$_POST['shipping_mail']."', infotranspo='".mysqli_real_escape_string($DB_site2->link_id,$_POST['infotranspo'])."' WHERE facturid=".$_POST['modif'];
@@ -46,7 +46,7 @@ if(isset($_POST['modif'])){
 	<br>".$_POST['shipping_phone']."
 	<br>".$_POST['shipping_mail']."
 	<br>Info : ".$_POST['infotranspo'];
-	$DB_site2->query("INSERT INTO suivi_commande SET facturid=".intval($_POST['modif']).", date=".time().", commercial='".$user_info[username]."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
+	$DB_site2->query("INSERT INTO suivi_commande SET facturid=".intval($_POST['modif']).", date=".time().", commercial='".$user_info['username']."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
 	
 	if($_POST['useraction']==1){ // modification info facturation
 	    $utilisateur=$DB_site2->query_first("SELECT * FROM utilisateur WHERE mail='".$_POST['billing_mail']."'");
@@ -71,7 +71,7 @@ if(isset($_POST['modif'])){
 		<br>".$_POST['billing_phone']."
 		<br>".$_POST['billing_mail']."
 		<br>mdp : ".$pass;
-		$DB_site2->query("INSERT INTO suivi_commande SET facturid=".$_POST['modif'].", date=".time().", commercial='".$user_info[username]."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
+		$DB_site2->query("INSERT INTO suivi_commande SET facturid=".$_POST['modif'].", date=".time().", commercial='".$user_info['username']."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
 		
 		$DB_site2->query("UPDATE facture SET userid=$userid WHERE facturid=".$_POST['modif']);
 	    }else{  // modification utilisateur
@@ -88,7 +88,7 @@ if(isset($_POST['modif'])){
 		<br>".$_POST['billing_zip']." ".$_POST['billing_city']."
 		<br>".$_POST['billing_phone']."
 		<br>".$_POST['billing_mail'];
-		$DB_site2->query("INSERT INTO suivi_commande SET facturid=".$_POST['modif'].", date=".time().", commercial='".$user_info[username]."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
+		$DB_site2->query("INSERT INTO suivi_commande SET facturid=".$_POST['modif'].", date=".time().", commercial='".$user_info['username']."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
 		
 		$sql="UPDATE utilisateur SET mail='".$_POST['billing_mail']."', nom='".mb_strtoupper($_POST['billing_last_name'])."', prenom='".$_POST['billing_first_name']."', codepostal='".$_POST['billing_zip']."', adresse='".$_POST['billing_address_1']."', ville='".mb_strtoupper($_POST['billing_city'])."', telephone='".$_POST['billing_phone']."', raisonsociale='".$_POST['billing_company']."', paysid=".intval($_POST['billing_country']).", tvaintracom='".$_POST['tvaintracom']."' WHERE userid=".$userid[0];
 		$DB_site2->query($sql);
@@ -98,7 +98,7 @@ if(isset($_POST['modif'])){
 	    $facture=$DB_site2->query_first("SELECT userid FROM facture WHERE facturid=".$_POST['modif']);
 	    $DB_site2->query("UPDATE facture SET userid=".$_POST['selectuserid']." WHERE facturid=".$_POST['modif']);
 	    $suivitxt="Changement compte facturation : ".$facture['userid']." => ".$_POST['selectuserid'];
-	    $DB_site2->query("INSERT INTO suivi_commande SET facturid=".$_POST['modif'].", date=".time().", commercial='".$user_info[username]."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
+	    $DB_site2->query("INSERT INTO suivi_commande SET facturid=".$_POST['modif'].", date=".time().", commercial='".$user_info['username']."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
 	}
 	$facturid=$_POST['modif'];
     }
@@ -153,14 +153,14 @@ if(isset($_POST['prod'])){
 	    $lfid=$DB_site2->insert_id();
 	    
 	    $suivitxt="Ajout  ".$libelle." ".floatval($_POST['price'])."&euro;TTC";
-	    $DB_site2->query("INSERT INTO suivi_commande SET facturid=".$_POST['facturid'].", date=".time().", commercial='".$user_info[username]."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
+	    $DB_site2->query("INSERT INTO suivi_commande SET facturid=".$_POST['facturid'].", date=".time().", commercial='".$user_info['username']."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
 
      }else{
      	$DB_site2->query("INSERT INTO lignefacture SET factureid=".$_POST['facturid'].", artid=".intval($_POST['artid']).", qte=".$_POST['qtt'].", artcode='".$_POST['prod']."', libelle='".mysqli_real_escape_string($DB_site2->link_id,$_POST['description'])."', prix=".floatval($_POST['price']).", tva=".floatval($tva).", paht=".floatval($article['paht']).", ecopart=".round($article['ecopartht']*(1+$tva/100),2));
 	    $lfid=$DB_site2->insert_id();
 	    
 	    $suivitxt="Ajout ".$_POST['qtt']." ".$_POST['prod']." ".$_POST['description']." ".floatval($_POST['price'])."&euro;TTC";
-	    $DB_site2->query("INSERT INTO suivi_commande SET facturid=".$_POST['facturid'].", date=".time().", commercial='".$user_info[username]."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
+	    $DB_site2->query("INSERT INTO suivi_commande SET facturid=".$_POST['facturid'].", date=".time().", commercial='".$user_info['username']."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
      } 
     
     
@@ -386,7 +386,7 @@ if(isset($_GET['del'])){
     $lf=$DB_site2->query_first("SELECT * FROM lignefacture WHERE lignefactureid=".intval($_GET['del']));
     if($lf!=""){
 	$suivitxt="Suppression ".$lf['qte']." ".$lf['artcode'];
-	$DB_site2->query("INSERT INTO suivi_commande SET facturid=".$lf['factureid'].", date=".time().", commercial='".$user_info[username]."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
+	$DB_site2->query("INSERT INTO suivi_commande SET facturid=".$lf['factureid'].", date=".time().", commercial='".$user_info['username']."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
     }
     $DB_site2->query("DELETE FROM lignefacture WHERE lignefactureid=".$_GET['del']);
     if(intval($lf['lignefacturedissid']) != 0) $DB_site2->query("DELETE FROM lignefacturediss WHERE lignefactureid=".$lf['lignefacturedissid']);
@@ -911,8 +911,8 @@ if(isset($_GET['modif1']) || isset($_GET['createfrom']) || isset($_GET['createfr
 
         $requete=$DB_site2->query("SELECT paysid,libelle FROM pays");
         while($pays=$DB_site2->fetch_array($requete)){
-                $optbcountries.="<option value=\"$pays[paysid]\"".($utilisateur[paysid]==$pays[paysid]?" selected":"").">$pays[libelle]</option>";
-                $optscountries.="<option value=\"$pays[paysid]\"".($facture[paysid]==$pays[paysid]?" selected":"").">$pays[libelle]</option>";
+                $optbcountries.="<option value=\"$pays[paysid]\"".($utilisateur['paysid']==$pays['paysid']?" selected":"").">$pays[libelle]</option>";
+                $optscountries.="<option value=\"$pays[paysid]\"".($facture['paysid']==$pays['paysid']?" selected":"").">$pays[libelle]</option>";
         }
 
         $futilisateurs=$DB_site2->query("SELECT userid,nom,raisonsociale FROM utilisateur WHERE code411<>''");

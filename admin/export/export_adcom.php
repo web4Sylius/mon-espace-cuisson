@@ -52,7 +52,7 @@ if (isset($admin_username) && $admin_username != "") {
          exit;
       }else{
         $user_info=$DB_site->query_first("SELECT * FROM parametresgeneraux WHERE username = '$admin_username'");
-        if ($user_info[username] != $admin_username) exit;
+        if ($user_info['username'] != $admin_username) exit;
       }
     }
 }else
@@ -86,59 +86,59 @@ if (isset($admin_username) && $admin_username != "") {
 					$return->mrprovenance="direct";
 				}
 				$my_array_of_vars=array();
-				if(strpos($statpage[page],"?")===false && strpos($statpage[page],"&")!==false){
-					$statpage[page]=str_replace("&","?",$statpage[page]);
+				if(strpos($statpage['page'],"?")===false && strpos($statpage['page'],"&")!==false){
+					$statpage['page']=str_replace("&","?",$statpage['page']);
 				}
 				if(strpos($row['referant'],"/aclk?sa=")!==false){
 					$return->mrprovenance="adwords";
 				}
-				parse_str( parse_url( $statpage[page], PHP_URL_QUERY ), $my_array_of_vars );
+				parse_str( parse_url( $statpage['page'], PHP_URL_QUERY ), $my_array_of_vars );
 				if($my_array_of_vars['gclid']!=""){
 					$return->mrprovenance="adwords";
 				}
-				if($my_array_of_vars[utm_source]!=""){
+				if($my_array_of_vars['utm_source']!=""){
 					$provenance_connue=0;
-					if($my_array_of_vars[utm_source]=="Google"){
+					if($my_array_of_vars['utm_source']=="Google"){
 						$return->mrprovenance="adwords";
 						$provenance_connue=1;
 					}
-					if($my_array_of_vars[utm_source]=="adwords"){
+					if($my_array_of_vars['utm_source']=="adwords"){
 						$return->mrprovenance="adwords";
 						$provenance_connue=1;
 					}
-					if($my_array_of_vars[utm_source]=="Bing"){
+					if($my_array_of_vars['utm_source']=="Bing"){
 						$return->mrprovenance="bingads";
 						$provenance_connue=1;
 					}
-					if($my_array_of_vars[utm_source]=="Facebook"){
+					if($my_array_of_vars['utm_source']=="Facebook"){
 						$return->mrprovenance="facebookads";
 						$provenance_connue=1;
 					}
-					if($my_array_of_vars[utm_source]=="facebook"){
+					if($my_array_of_vars['utm_source']=="facebook"){
 						$return->mrprovenance="facebookads";
 						$provenance_connue=1;
 					}
-					if($my_array_of_vars[utm_source]=="Nextperf"){
+					if($my_array_of_vars['utm_source']=="Nextperf"){
 						$return->mrprovenance="nextperf";
 						$provenance_connue=1;
 					}
-					if($my_array_of_vars[utm_source]=="Idealo"){
+					if($my_array_of_vars['utm_source']=="Idealo"){
 						$return->mrprovenance="idealo";
 						$provenance_connue=1;
 					}
 					if($provenance_connue==0){
-						$return->mrprovenance=$my_array_of_vars[utm_source];
+						$return->mrprovenance=$my_array_of_vars['utm_source'];
 					}
 				}
-				if($my_array_of_vars[utm_campaign]!=""){
-					$return->mrprovenance.=$my_array_of_vars[utm_campaign];
+				if($my_array_of_vars['utm_campaign']!=""){
+					$return->mrprovenance.=$my_array_of_vars['utm_campaign'];
 				}
 				if($return->mrprovenance=="naturel"){
 					if(strpos($return->provenance,"https://www.facebook.com/")>-1){
 						$return->mrprovenance="referral";
 					}
 				}
-				$return->entrance=$statpage[page];
+				$return->entrance=$statpage['page'];
 			}
 			//$return->mrprovenance=$this->mrech($row->referant);
 			$return->os=$this->os_name($row['agent']);

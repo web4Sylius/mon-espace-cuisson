@@ -39,7 +39,6 @@ class template{
       if($langue == "") $langue = "FR";
       $this->langue=$langue;
       $this->parts['langue']=$this->langue;
-      var_dump($_SERVER['DOCUMENT_ROOT']);
 
       $this->cacheroot=$_SERVER['DOCUMENT_ROOT']."/mec/configurations/".$this->host_conf->path."/cache";
       $this->path=$_SERVER['DOCUMENT_ROOT']."/mec/configurations/".$this->host_conf->path."/template/".$this->langue;
@@ -48,7 +47,6 @@ class template{
   function site(){
       $this->host_conf->initialise($this->DB);
       $sp_host=explode(".",$_SERVER['HTTP_HOST']);
-      var_dump($sp_host[0]);
       $this->pro="localhost" ;
       //$this->pro=($sp_host[1]=="pro" || $sp_host[0]=="pro" || $sp_host[0]=="testpro" || $sp_host[0]=="localhost" || $sp_host[0]=="dediepro");
 

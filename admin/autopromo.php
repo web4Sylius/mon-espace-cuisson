@@ -53,7 +53,7 @@ if (!isset($action) || $action == "" ) {
 		</form>";
 	
 	$rs_promo=$DB_site2->query_first( "SELECT autopromo_fichier FROM parametresgeneraux");
-	if (isset($rs_promo[autopromo_fichier]) && $rs_promo[autopromo_fichier]!=""){
+	if (isset($rs_promo['autopromo_fichier']) && $rs_promo['autopromo_fichier']!=""){
 		echo "<h3>Fichier</h3>
 			<table class=\"table_modules_boutiques\">";
 			
@@ -166,7 +166,7 @@ elseif( $action == "supprimer" )
 elseif( $action == "supprimer2" )
 	{
 	$extension = $DB_site2->query_first("SELECT autopromo_fichier FROM parametresgeneraux");
-	$cheminfic = $rootpath."configurations/$host/images/autopromo/caveavin.".$extension[autopromo_fichier];
+	$cheminfic = $rootpath."configurations/$host/images/autopromo/caveavin.".$extension['autopromo_fichier'];
 	unlink($cheminfic);
 	
 	$rq_supprimer = "UPDATE parametresgeneraux SET autopromo_fichier=''";

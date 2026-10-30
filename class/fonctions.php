@@ -80,11 +80,11 @@ function recur_categories($parentid,$niveau){
     $cats=$DB_site->query("select * from categorie where parentid = '$parentid' order by $libelle");
     while ($cat=$DB_site->fetch_array($cats))
         {
-        if (compter_produits($cat[catid]) > 0)
+        if (compter_produits($cat['catid']) > 0)
             {
             $url_rewriting_catname=url_rewrite($cat[$libelle]);
             $categories.="<div style=\"margin-left:".($niveau*10)."px;\"><a class=\"liensinternautes\" href=\"cat,$cat[catid],$url_rewriting_catname.htm\">$cat[$libelle]</a></div>";
-            recur_categories($cat[catid],$niveau+1);
+            recur_categories($cat['catid'],$niveau+1);
             }
         }
     return($categories);
@@ -96,7 +96,7 @@ function categories_filles($catid)
     $filles=$DB_site->query("select catid from categorie where parentid = '$catid'");
     while ($fille=$DB_site->fetch_array($filles))
         {
-        $cat_fille = $fille[catid] ;
+        $cat_fille = $fille['catid'] ;
         $cats_cde[$cat_fille] = $cat_fille ;
         categories_filles($cat_fille);
         }
@@ -1537,13 +1537,13 @@ function tableau_stock_marque_type($id, $lieu){
 	$type_array=array();
 	$typess=$DB_site->query("SELECT typearticleid, libelle FROM typearticle ORDER BY typearticleid ASC ");
 	while($types=$DB_site->fetch_array($typess)){
-		$type_array[]=$types[libelle];
+		$type_array[]=$types['libelle'];
 	}
 	$r=$stock->stockbyqte(array(1,2),$id);
 	$tr=array();
 	foreach($r as $item){
 		$type_article=$DB_site->query_first("SELECT article.typearticleid, typearticle.libelle FROM article INNER JOIN typearticle ON(article.typearticleid=typearticle.typearticleid) WHERE artid='".$item->artid."' ");
-		$libelle=$type_article[libelle];
+		$libelle=$type_article['libelle'];
 		
 		$tr[$item->marque][$libelle][$item->artid]=$item->qte;
 	}

@@ -1,4 +1,4 @@
-<?
+<?php 
 include "/home/arobases/www/config.php";
 include_once "/home/arobases/www/mysql.php";
 $DB_site=new DB_Sql;

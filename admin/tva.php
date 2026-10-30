@@ -42,7 +42,7 @@ if (isset($action) and $action == "enregistrer")
 	$payss=$DB_site2->query("SELECT diminutif, libelle, p.paysid from fraisport fp, pays p where fp.paysid = p.paysid");
 	while ($pays=$DB_site2->fetch_array($payss)) 
 		{
-		$id = $pays[paysid] ;
+		$id = $pays['paysid'] ;
 		//echo "$fraisport[$id], $fraisgestion[$id]<br>";
 		if ($txnormal[$id] == "" or $txreduit[$id] == "")
 			{
@@ -84,7 +84,7 @@ if (!isset($action) or $action=="")
 	$payss=$DB_site2->query("SELECT DISTINCT (p.paysid), libelle, diminutif, TVAtauxnormal, TVAtauxreduit, port, gestion FROM pays p, fraisport fp WHERE p.paysid = fp.paysid");
 	while ($pays=$DB_site2->fetch_array($payss)) 
 		{
-		switch ($pays[port])
+		switch ($pays['port'])
 			{
 			case '0':
 				$checkedport = "" ;
@@ -93,7 +93,7 @@ if (!isset($action) or $action=="")
 				$checkedport = "checked" ;
 				break ;
 			}
-		switch ($pays[gestion])
+		switch ($pays['gestion'])
 			{
 			case '0':
 				$checkedgestion = "" ;
@@ -102,7 +102,7 @@ if (!isset($action) or $action=="")
 				$checkedgestion = "checked" ;
 				break ;
 			}
-		$num = $pays[paysid] ;
+		$num = $pays['paysid'] ;
 		echo "<tr>
 				<td><img border=\"0\" src=\"./images/drapeaux/br/$pays[diminutif].gif\"></td>
 				<td>$pays[libelle]</td>

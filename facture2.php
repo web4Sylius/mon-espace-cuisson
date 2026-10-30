@@ -52,7 +52,7 @@ $optionsoffert=array(4,6,7,8);
 
 $facture=$DB_site->query_first("SELECT * FROM facture f, pays p WHERE facturid = '$facturid' and f.paysid = p.paysid");
 $user=$DB_site->query_first("SELECT *,u.tvaintracom AS tvaintracom FROM utilisateur u, pays p WHERE userid = '$facture[userid]' and u.paysid = p.paysid");
-$numerofacture = $facture[codenumerofacture].$facture[numerofacture];
+$numerofacture = $facture['codenumerofacture'].$facture['numerofacture'];
 $moyenpaiement=$DB_site->query_first("SELECT * FROM moyenpaiement WHERE moyenid = '$facture[moyenid]'");
 $coord_commercant=$DB_site->query_first("SELECT mail_contact mail, raison_sociale, nom_contact, adresse, cp codepostal, ville, siret, tva, telephone, fax FROM parametresgeneraux");
 $pays=$DB_site->query_first("SELECT * FROM pays WHERE paysid=".intval($user['paysid']));
@@ -82,7 +82,7 @@ $ht=($user['raisonsociale']!="");
 
 $nomboutique = ${$title} ;
 
-if ($passe==$facture[passefacture]) 
+if ($passe==$facture['passefacture']) 
     {
     if(file_exists("admin/factures/$facturid.pdf") && $cde!=1 && !$proforma){
       header('Content-type: application/pdf');
@@ -108,7 +108,7 @@ if ($passe==$facture[passefacture])
     $newaddress=$DB_site->query_first("SELECT f.societe AS raisonsociale,f.nom,f.prenom,f.adresse1 AS adresse,f.cp AS codepostal,f.ville,f.telephone,p.libelle,f.portable FROM fournisseur f NATURAL JOIN pays p WHERE f.id=".intval($_GET['livr']));
     if($newaddress!=false){
       $adresse=$newaddress;
-      $facture[infotranspo]=$template->translate("/facture/a_livrer_par")." $facture[raisonsociale] $facture[nom] $facture[prenom], $facture[adresse], $facture[codepostal] $facture[ville], $facture[telephone]";
+      $facture['infotranspo']=$template->translate("/facture/a_livrer_par")." $facture[raisonsociale] $facture[nom] $facture[prenom], $facture[adresse], $facture[codepostal] $facture[ville], $facture[telephone]";
     }
   }
       // $pdf->Cell(60,5,"Adresse de livraison :");
@@ -131,8 +131,8 @@ if ($passe==$facture[passefacture])
     $pdf->multicell(100,5,$vendeur);
     
 
-    if($cde!=1 && $adresse[tvaintracom]!=""){
-      $client.="\n".$template->translate("/facture/n_tva","U")." : ".$adresse[tvaintracom];
+    if($cde!=1 && $adresse['tvaintracom']!=""){
+      $client.="\n".$template->translate("/facture/n_tva","U")." : ".$adresse['tvaintracom'];
     }
     
     if($cde==1){
@@ -165,10 +165,10 @@ if ($passe==$facture[passefacture])
     $pdf->setfont('arial','B',8);
     $pdf->multiCell(100,5,$client);
     
-    $client=trim($adresse[adresse])."\n"
-    .$adresse[codepostal]." ".trim($adresse[ville])."\n"
-    .$adresse[libelle]."\n"
-    .$template->translate("/facture/tel")." : ".trim($adresse[telephone])." / Gsm : ".trim($adresse[portable]);
+    $client=trim($adresse['adresse'])."\n"
+    .$adresse['codepostal']." ".trim($adresse['ville'])."\n"
+    .$adresse['libelle']."\n"
+    .$template->translate("/facture/tel")." : ".trim($adresse['telephone'])." / Gsm : ".trim($adresse['portable']);
     
     if($adresse['tvaintracom']!="" && $cde<>1) {
         $client.="\n".$template->translate("/facture/n_tva")." ".$adresse['tvaintracom'];
@@ -188,7 +188,7 @@ if ($passe==$facture[passefacture])
         $pdf->setXY(10,$ly);
   $pdf->setfont('arial','B',8);
   $height=$pdf->nblines(90,$template->translate("/facture/informations","F")." : $facture[infotranspo]")*4;
-        $pdf->multiCell(90,4,$template->translate("/facture/informations","F")." : ".stripslashes(utf8_decode($facture[infotranspo])));
+        $pdf->multiCell(90,4,$template->translate("/facture/informations","F")." : ".stripslashes(utf8_decode($facture['infotranspo'])));
         $pdf->rect(10,$ly,92,16);
   $pdf->setfont('arial','',8);
   $wpic=32;
@@ -292,10 +292,10 @@ if ($passe==$facture[passefacture])
 
         while ($caract=$DB_site->fetch_array($caracts))
             {
-            $des_caracts["$caract[libelle_caract] : $caract[libelle_caractval]"] = $caract[differenceprix] ;
-            $des_caracts_type["$caract[libelle_caract] : $caract[libelle_caractval]"] = $caract[caractid] ;
+            $des_caracts["$caract[libelle_caract] : $caract[libelle_caractval]"] = $caract['differenceprix'] ;
+            $des_caracts_type["$caract[libelle_caract] : $caract[libelle_caractval]"] = $caract['caractid'] ;
             $calcdesign.="\n$caract[libelle_caract] : $caract[libelle_caractval]";
-            $diffprix+=($caract[differenceprix]);
+            $diffprix+=($caract['differenceprix']);
             }
         ksort($des_caracts);
     while ($garantie=$DB_site->fetch_array($garanties))
@@ -306,7 +306,7 @@ if ($passe==$facture[passefacture])
         if($garantie['type'] == '6'){ //gestion de l'affichage du tarif platinehome
             $count ="";
             if(intval($lignefacture['qte']) > 1) $count = $lignefacture['qte']. " x ";
-            $tarifph = $DB_site->query_first("SELECT offre_prix FROM platinehome WHERE lignefactureid ='".$lignefacture[lignefactureid]."'");
+            $tarifph = $DB_site->query_first("SELECT offre_prix FROM platinehome WHERE lignefactureid ='".$lignefacture['lignefactureid']."'");
             $tarifph = " (" .$count.$template->price_format($tarifph[0],0,false)." /".$template->translate("/garantie/platine_home/mois").")"; 
             $anneeGarantie =":";
 
@@ -343,18 +343,18 @@ if ($passe==$facture[passefacture])
         if(intval($garantie[type]) == 6) 
             $des_garanties[$libGarantie] = null;
         else
-            $des_garanties[$libGarantie] = $garantie[differenceprix] ;
+            $des_garanties[$libGarantie] = $garantie['differenceprix'] ;
         $calcdesign.="\n$libGarantie";
-        $diffprix+=$garantie[differenceprix];
+        $diffprix+=$garantie['differenceprix'];
     }
-        $diffprixht=round($diffprix/(1+$lignefacture[tva]/100),2);
+        $diffprixht=round($diffprix/(1+$lignefacture['tva']/100),2);
 
         // début de la désignation
         $designation = html_entity_decode($lignefacture['libelle'],ENT_COMPAT,"UTF-8")." ".$libmarque['libelle'].($libmodele['gamme'.$template->langue] != "" ? " ".$libmodele['gamme'.$template->langue] : "");
         if($proforma){
-          if($libmodele[artcode]!="") $designation.=" Ref. $libmodele[artcode]";
+          if($libmodele['artcode']!="") $designation.=" Ref. $libmodele[artcode]";
         }else{
-          if($libmodele[artcode]!="") $designation.=" Ref. $libmodele[artcode] ($libmodele[artcode_eurocave])";
+          if($libmodele['artcode']!="") $designation.=" Ref. $libmodele[artcode] ($libmodele[artcode_eurocave])";
         }
         if($libmodele['gaz']!="")
             $designation.="\n - ".$template->translate("/facture/type_gaz","F")." : ".$template->translate($libmodele['gaz']);
@@ -366,7 +366,7 @@ if ($passe==$facture[passefacture])
         $ecopart=0;
         $ecopartht=0;
         $ecoparthttotal=0;
-        if($site_code=="base" && $lignefacture[ecopart]>0 && $lignefacture[prix]>0){
+        if($site_code=="base" && $lignefacture['ecopart']>0 && $lignefacture['prix']>0){
             $ecopart=$lignefacture['ecopart'];
       $ecopartht=round($ecopart/(1+$lignefacture['tva']/100),2);
             $ecoparthttotal=$ecopartht*$lignefacture[qte];
@@ -386,8 +386,8 @@ if ($passe==$facture[passefacture])
       }
   }
 
-  if($libmodele[emballage_hauteur]!="" || $libmodele[emballage_largeur]!="" || $libmodele[emballage_profondeur]!="" || $libmodele[emballage_poids]!="" || $libmodele[hauteur]!="" || $libmodele[largeur]!="" || $libmodele[profondeur]!="" || $libmodele[poids]!=0)
-               $designation2.="\n - ".$template->translate("/facture/dim_poids_brut")." : ".$libmodele[emballage_hauteur]."*".$libmodele[emballage_largeur]."*".$libmodele[emballage_profondeur]." / ".$libmodele[emballage_poids]."\n - ".$template->translate("/facture/dim_poids_net")." : ".$libmodele[hauteur]."*".$libmodele[largeur]."*".$libmodele[profondeur]." / ".round($libmodele[poids]/1000,1) ;
+  if($libmodele['emballage_hauteur']!="" || $libmodele['emballage_largeur']!="" || $libmodele['emballage_profondeur']!="" || $libmodele['emballage_poids']!="" || $libmodele['hauteur']!="" || $libmodele['largeur']!="" || $libmodele['profondeur']!="" || $libmodele['poids']!=0)
+               $designation2.="\n - ".$template->translate("/facture/dim_poids_brut")." : ".$libmodele['emballage_hauteur']."*".$libmodele['emballage_largeur']."*".$libmodele['emballage_profondeur']." / ".$libmodele['emballage_poids']."\n - ".$template->translate("/facture/dim_poids_net")." : ".$libmodele['hauteur']."*".$libmodele['largeur']."*".$libmodele['profondeur']." / ".round($libmodele['poids']/1000,1) ;
         if($cde!=1 && $libmodele['artcode']!="" && (!in_array($facture['paysid'],array(57,181,111)) || !in_array($user['paysid'],array(57,181,111)))){
       $designation2.="\n - ".$template->translate("/facture/pays_fabrication")." : ".$paysfabrication['libelle'];
       $designation2.="\n - ".$template->translate("/facture/code_douanier")." : ".$libmodele['douanier'];
@@ -397,25 +397,25 @@ if ($passe==$facture[passefacture])
   $article_prices=article_prices($lignefacture['artid'],$template->tva_ref(),$template->site_code(),true,false);
         $puht = floatval($article_prices['prixconseille'])-$ecopartht ;
         $qte = isset($qteprod[$lignefacture['lignefactureid']]) ? $qteprod[$lignefacture['lignefactureid']] : $lignefacture[qte] ;
-        $pvente=$lignefacture[prix] / (1 + $lignefacture[tva] / 100)-$ecopartht-$diffprixht;
-  if($pvente<0) $totalcadeau-=($qte*$lignefacture[prix]);
-  $pventettc=$template->price_format($lignefacture[prix]-$ecopart-$diffprix,2,false);
+        $pvente=$lignefacture['prix'] / (1 + $lignefacture['tva'] / 100)-$ecopartht-$diffprixht;
+  if($pvente<0) $totalcadeau-=($qte*$lignefacture['prix']);
+  $pventettc=$template->price_format($lignefacture['prix']-$ecopart-$diffprix,2,false);
         $remise=0;
         if($puht>0) $remise=-round(($puht-$pvente)/$puht*100);
         $montant_ht=$template->price_format(($pvente*$qte),2,false);
         $pvente=$template->price_format($pvente,2,false);
-        $puttc=$template->price_format(floatval($article_prices['prixconseille'])*(1 + $lignefacture[tva] / 100)-$ecopart,2,false);
+        $puttc=$template->price_format(floatval($article_prices['prixconseille'])*(1 + $lignefacture['tva'] / 100)-$ecopart,2,false);
         $puht = $template->price_format($puht, 2, false) ;
-        $txtva = $lignefacture[tva] ;
-        $tva[$lignefacture[tva]] += ($lignefacture[prix] * $qte) - (($lignefacture[prix] * $qte) / (1 + $lignefacture[tva] / 100)) ;
-        $montant_ttc = ($lignefacture[prix]-$diffprix-$ecopart) * $qte ;
+        $txtva = $lignefacture['tva'] ;
+        $tva[$lignefacture['tva']] += ($lignefacture['prix'] * $qte) - (($lignefacture['prix'] * $qte) / (1 + $lignefacture['tva'] / 100)) ;
+        $montant_ttc = ($lignefacture['prix']-$diffprix-$ecopart) * $qte ;
           
-  $totalttc[$txtva]+=($qte*$lignefacture[prix]) ;
+  $totalttc[$txtva]+=($qte*$lignefacture['prix']) ;
         
         $montant_ttc = $template->price_format($montant_ttc, 2, false) ;
-        $poidstotal+=(floatval(str_replace(",",".",$libmodele[emballage_poids]))*$qte);
-        if($libmodele['typearticleid']==1) $poidscaves[$libmodele[emballage_poids]]+=$qte;
-        install_type($libmodele[emballage_poids]);
+        $poidstotal+=(floatval(str_replace(",",".",$libmodele['emballage_poids']))*$qte);
+        if($libmodele['typearticleid']==1) $poidscaves[$libmodele['emballage_poids']]+=$qte;
+        install_type($libmodele['emballage_poids']);
     
   $i++ ;
       
@@ -683,7 +683,7 @@ if ($passe==$facture[passefacture])
 
     // Bons de réduction 
     if (in_array("13", $modules) && $cde<>1) {
-        if ($facture[cadeauid] != "") {
+        if ($facture['cadeauid'] != "") {
             $libcadeau="";
             $rayons=array();
             $infoscadeau=$DB_site->query_first("SELECT * FROM cadeau WHERE cadeauid = '$facture[cadeauid]'");
@@ -723,10 +723,10 @@ if ($passe==$facture[passefacture])
                 }
 
                 $libcadeau=$template->translate("/facture/bon_reduction","F")." $infoscadeau[code]";
-                if($infoscadeau[valeurcadeau]>0){
-                switch ($infoscadeau[typecadeauid]){
+                if($infoscadeau['valeurcadeau']>0){
+                switch ($infoscadeau['typecadeauid']){
                     case '0': // remise sur le poids
-                      $libcadeau .= "\n".$template->translate("/facture/remise_de","F")." ".$template->price_format($infoscadeau[valeurcadeau],2,false) ;
+                      $libcadeau .= "\n".$template->translate("/facture/remise_de","F")." ".$template->price_format($infoscadeau['valeurcadeau'],2,false) ;
                       break;
                     case '1': // remise sur le prix
                       $libcadeau .= "\n".$template->translate("/facture/remise_de","F")." $infoscadeau[valeurcadeau] %" ;
@@ -734,7 +734,7 @@ if ($passe==$facture[passefacture])
                     }
                 }
                 $i++ ;
-                if($infoscadeau[datefin]!=0) $libcadeau.="\n".$template->translate("/facture/date_validite","F")." : ".date("d/m/Y",$infoscadeau[datefin]);
+                if($infoscadeau['datefin']!=0) $libcadeau.="\n".$template->translate("/facture/date_validite","F")." : ".date("d/m/Y",$infoscadeau['datefin']);
                 $libcadeau.="\n$fin";
                 $totalcadeau+=$facture['montantcadeau'];
             }
@@ -759,7 +759,7 @@ if ($passe==$facture[passefacture])
             if($libcadeau!=""){
                 $partcadeau=array();
                 foreach($totalreduc as $tx=>$totaltx){
-                    $partcadeau[$tx]=$facture[montantcadeau]*$totaltx/array_sum($totalreduc);
+                    $partcadeau[$tx]=$facture['montantcadeau']*$totaltx/array_sum($totalreduc);
                     $tvaremise[$tx] = $partcadeau[$tx]-$partcadeau[$tx]/(1+$tx/100);
                     $nbre = $pdf->nblines($wcol[1],$libcadeau)*4 ;
                     if($partcadeau[$tx]>0){
@@ -795,10 +795,10 @@ if ($passe==$facture[passefacture])
      
      // frais de port
     if($cde<>1){
-        $totalttc[$facture[tvaport]]+=$facture[prixport];
-        $tva[$facture[tvaport]] += $facture[prixport] - ($facture[prixport] / (1 + $facture[tvaport]/100)) ;
-        $prixport_ht=($facture[prixport] / (1 + $facture[tvaport]/100)) ;
-        $prixport_origin=$facture[prixport];
+        $totalttc[$facture['tvaport']]+=$facture['prixport'];
+        $tva[$facture['tvaport']] += $facture['prixport'] - ($facture['prixport'] / (1 + $facture['tvaport']/100)) ;
+        $prixport_ht=($facture['prixport'] / (1 + $facture['tvaport']/100)) ;
+        $prixport_origin=$facture['prixport'];
 
         $pdf->SetFont('Arial','',8);
         $pdf->drawColor("white");
@@ -811,27 +811,27 @@ if ($passe==$facture[passefacture])
         if($facture['incoterms']==""){
           $frais_port=new frais_port($DB_site,$facture['facturid']);
           if($facture['modelivraison'] == 5){
-            $livr = $template->translate("/facture/mode_livraison_".$facture[modelivraison])." - ".$facture['txtlivr'];
-            $prixport_origin=$facture[prixport];
+            $livr = $template->translate("/facture/mode_livraison_".$facture['modelivraison'])." - ".$facture['txtlivr'];
+            $prixport_origin=$facture['prixport'];
           }else{
-            $livr=sprintf($template->translate("/facture/mode_livraison_".$facture[modelivraison]),$poidstotal);
-            $prixport_origin=calcport($poidstotal,0,$facture[modelivraison],$prixtypeinstall,$poidscaves); //total à 0 pour avoir pas avoir les fdp offerts
+            $livr=sprintf($template->translate("/facture/mode_livraison_".$facture['modelivraison']),$poidstotal);
+            $prixport_origin=calcport($poidstotal,0,$facture['modelivraison'],$prixtypeinstall,$poidscaves); //total à 0 pour avoir pas avoir les fdp offerts
           }
         }else{
             $livr="Incoterms ".$facture['incoterms'];
-            $prixport_origin=$facture[prixport];
+            $prixport_origin=$facture['prixport'];
         }
         
         
         $prixorigin=$prixport_origin;
-        $prix=$facture[prixport];
-        $prixport_origin_ht=$prixport_origin/(1 + $facture[tvaport]/100);
+        $prix=$facture['prixport'];
+        $prixport_origin_ht=$prixport_origin/(1 + $facture['tvaport']/100);
         if($ht){
             $prixorigin=$prixport_origin_ht;
             $prix=$prixport_ht;
         }
 
-        if($facture[prixport]==0){
+        if($facture['prixport']==0){
             $livr=$template->translate("/devis/livraison_offerte","F")." : ".$livr;
             $totalcadeau+=$prixport_origin;
         }
@@ -852,7 +852,7 @@ if ($passe==$facture[passefacture])
         $lx+=$wcol[0];
         $pdf->setXY($lx,$ly);
         $pdf->multiCell($wcol[1],4,"$livr" ,0,'',0);
-        $pdf->link($lx,$ly,$wcol[1],$nbre,$livrlink[$facture[modelivraison]]);
+        $pdf->link($lx,$ly,$wcol[1],$nbre,$livrlink[$facture['modelivraison']]);
         $lx+=$wcol[1];
         $pdf->setXY($lx,$ly);
         $pdf->multiCell($wcol[2],$nbre, $template->price_format($prixorigin,2,false),0,'R',0);
@@ -922,10 +922,10 @@ if($cde!=1){
   
   if($facture['provenance']=="mp") $moyenpaiement[$libelle]=$marketplaces[$facture['provenanceid']];
   $pdf->setXY(5,$ly);
-  $dateexp=explode("-",$facture[dateexpedition]);
+  $dateexp=explode("-",$facture['dateexpedition']);
   $txtpaiement=$moyenpaiement[$libelle];
   $nbmoyens=1;
-  if($facture[moyenid]==99){
+  if($facture['moyenid']==99){
       $sql = "SELECT r.reglement_id, r.reglement_date, rd.reglement_delais_libelle, r.reglement_montant, m.libelle".$template->langue." AS libelle, r.reglement_moyen";
       $sql .= " FROM reglement r";
       $sql .= " INNER JOIN moyenpaiement m ON (m.moyenid = r.reglement_moyen)";
@@ -948,7 +948,7 @@ if($cde!=1){
   
   //numero EORI
   $tabPays = array(57,181,111); //FRANCE, CORSE, MONACO
-  if(!in_array($user[paysid], $tabPays)){
+  if(!in_array($user['paysid'], $tabPays)){
     $pdf->setXY(61+$pdf->GetStringWidth($regllabel),$ly);
     $pdf->Cell(60,5,"EORI FR : ".EORI_FR);
     $pdf->setXY(61+$pdf->GetStringWidth($regllabel),$ly+5);
@@ -1050,8 +1050,8 @@ function toptable($pdf){
   global $autocolor;
 
   if(isset($_GET['annule'])){
-      $facture[numerofacture]=$_GET['annule'];
-      $facture[codenumerofacture]="CaVin";
+      $facture['numerofacture']=$_GET['annule'];
+      $facture['codenumerofacture']="CaVin";
   }
 
   if($ht)
@@ -1068,9 +1068,9 @@ function toptable($pdf){
   $hline=8;
   $calign = 'C';
   $csize=65;
-  $num=$template->translate("/facture/commande_n","F").$facture[facturid];
-  if($facture[mp_facturid]!=""){
-      $num.=" / ".$facture[mp_facturid];
+  $num=$template->translate("/facture/commande_n","F").$facture['facturid'];
+  if($facture['mp_facturid']!=""){
+      $num.=" / ".$facture['mp_facturid'];
   }
   
   if($facture['provenance']=="sav" || $facture['provenance']=="avoir"){
@@ -1094,7 +1094,7 @@ function toptable($pdf){
   {
   
   $pdf->cell(55,8,$template->translate("/facture/date_bon_livraison","F")." : ".date("d/m/Y"),0,0,'C',1);
-  $dateafftmp=explode("-",$facture[datefacture]);
+  $dateafftmp=explode("-",$facture['datefacture']);
   $dateaff="$dateafftmp[2]/$dateafftmp[1]/$dateafftmp[0]";
   $pdf->Cell(57,8,$template->translate("/facture/date_commande")." : $dateaff",0,0,'C',1);
   $pdf->multiCell($csize,$hline,$num.$cdeclient,0,$calign,1);
@@ -1109,11 +1109,11 @@ function toptable($pdf){
   else 
   {
 
-  if($facture[dateexpedition]=="0000-00-00") $facture[dateexpedition]=$facture[datefacture];
-  $dateafftmp=explode("-",$facture[dateexpedition]);
+  if($facture['dateexpedition']=="0000-00-00") $facture['dateexpedition']=$facture['datefacture'];
+  $dateafftmp=explode("-",$facture['dateexpedition']);
   $dateaff="$dateafftmp[2]/$dateafftmp[1]/$dateafftmp[0]";
   $pdf->cell(55,8,$template->translate("/facture/date_facture","F")." : ".$dateaff,0,0,'C',1);
-  $dateafftmp=explode("-",$facture[datefacture]);
+  $dateafftmp=explode("-",$facture['datefacture']);
   $dateaff="$dateafftmp[2]/$dateafftmp[1]/$dateafftmp[0]";
   $pdf->Cell(57,8,$template->translate("/facture/date_commande","F")." : $dateaff",0,0,'C',1);
   $pdf->multiCell($csize,$hline,$num.$cdeclient,0,$calign,1);
@@ -1221,11 +1221,11 @@ function calcport($poidstotal,$prixtotal,$livrmode,$prixtypeinstall,$poidscaves=
   else
       $return=$frais_port->prixttc($facture['tvaport']);
   
-  $install=pays_install($facture[paysid]);
+  $install=pays_install($facture['paysid']);
   if(($livrmode=='1' || $livrmode=='4') && $install!=false){
     if($facture['codepostal']=="") return false;
     
-    if($install=="sls") $tarif=prixsls($facture[codepostal],$poidstotal*1000,$facture[paysid],$prixtypeinstall);
+    if($install=="sls") $tarif=prixsls($facture['codepostal'],$poidstotal*1000,$facture['paysid'],$prixtypeinstall);
     if($install=="enigma" && $poidscaves!=array()) $tarif=prix_enigma($poidscaves,$facture['site_code']);
     if($tarif==0) return false;
     $return+=$tarif;

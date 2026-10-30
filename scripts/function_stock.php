@@ -1,4 +1,4 @@
-<?
+<?php 
 
 /********** STOCK MANAGING FUNCTIONS **********/
 

@@ -49,17 +49,17 @@ $articles=$DB_site->query("	SELECT a.artcode, a.artcode_eurocave, a.artid, a.pri
 while($article=$DB_site->fetch_array($articles)){
 	$ligne="";
 	$historys=$DB_site->query("	SELECT artcode, timestamp, price, site FROM history
-								WHERE artcode='".$article[artcode]."'
+								WHERE artcode='".$article['artcode']."'
 								AND site IN('climadiff','lasommeliere','vinokado')
 								AND timestamp>".$timestamp_mini." ");
 	while($history=$DB_site->fetch_array($historys)){
-		if($history[price]<=$article[prix]){
-			if($history[price]<$article[prix]){
+		if($history['price']<=$article['prix']){
+			if($history['price']<$article['prix']){
 				$color="color:red;font-weight:bold";
 			} else {
 				$color="font-style:italic";
 			}
-			$ligne="<tr style=\"".$color."\"><td>".$article[artcode]."</td><td>".$article[artcode_eurocave]."</td><td align=\"right\">".number_format($article[prix], 2, ',', ' ')." &euro;</td><td>".$history[site]."</td><td align=\"right\">".number_format($history[price], 2, ',', ' ')." &euro;</td></tr>";
+			$ligne="<tr style=\"".$color."\"><td>".$article['artcode']."</td><td>".$article['artcode_eurocave']."</td><td align=\"right\">".number_format($article['prix'], 2, ',', ' ')." &euro;</td><td>".$history['site']."</td><td align=\"right\">".number_format($history['price'], 2, ',', ' ')." &euro;</td></tr>";
 		}
 	}
 	$echo.=$ligne;
@@ -85,13 +85,13 @@ $articles=$DB_site->query("	SELECT a.artcode, a.artcode_eurocave, a.artid, a.pri
 while($article=$DB_site->fetch_array($articles)){
 	$ligne="";
 	$historys=$DB_site->query("	SELECT artcode, timestamp, price, site FROM history
-								WHERE artcode='".$article[artcode]."'
+								WHERE artcode='".$article['artcode']."'
 								AND site IN('climadiff','lasommeliere','vinokado')
 								AND timestamp>".$timestamp_mini." ");
 	while($history=$DB_site->fetch_array($historys)){
-		if($history[price]<=$article[prix]*1.1 && $history[price]>$article[prix]){
+		if($history['price']<=$article['prix']*1.1 && $history['price']>$article['prix']){
 			$color="";
-			$ligne="<tr style=\"".$color."\"><td>".$article[artcode]."</td><td>".$article[artcode_eurocave]."</td><td align=\"right\">".number_format($article[prix], 2, ',', ' ')." &euro;</td><td>".$history[site]."</td><td align=\"right\">".number_format($history[price], 2, ',', ' ')." &euro;</td></tr>";
+			$ligne="<tr style=\"".$color."\"><td>".$article['artcode']."</td><td>".$article['artcode_eurocave']."</td><td align=\"right\">".number_format($article['prix'], 2, ',', ' ')." &euro;</td><td>".$history['site']."</td><td align=\"right\">".number_format($history['price'], 2, ',', ' ')." &euro;</td></tr>";
 		}
 	}
 	$echo.=$ligne;
@@ -134,17 +134,17 @@ $articles=$DB_site->query("	SELECT a.artcode, a.artcode_eurocave, a.artid, a.pri
 while($article=$DB_site->fetch_array($articles)){
 	$ligne="";
 	$historys=$DB_site->query("	SELECT artcode, timestamp, price, site FROM history
-								WHERE artcode='".$article[artcode]."'
+								WHERE artcode='".$article['artcode']."'
 								AND site IN('liebherr-electromenager')
 								AND timestamp>".$timestamp_mini." ");
 	while($history=$DB_site->fetch_array($historys)){
-		if($history[price]<=$article[prix]){
-			if($history[price]<$article[prix]){
+		if($history['price']<=$article['prix']){
+			if($history['price']<$article['prix']){
 				$color="color:red;font-weight:bold";
 			} else {
 				$color="font-style:italic";
 			}
-			$ligne="<tr style=\"".$color."\"><td>".$article[artcode]."</td><td>".$article[artcode_eurocave]."</td><td align=\"right\">".number_format($article[prix], 2, ',', ' ')." &euro;</td><td>".$history[site]."</td><td align=\"right\">".number_format($history[price], 2, ',', ' ')." &euro;</td></tr>";
+			$ligne="<tr style=\"".$color."\"><td>".$article['artcode']."</td><td>".$article['artcode_eurocave']."</td><td align=\"right\">".number_format($article['prix'], 2, ',', ' ')." &euro;</td><td>".$history['site']."</td><td align=\"right\">".number_format($history['price'], 2, ',', ' ')." &euro;</td></tr>";
 		}
 	}
 	$echo.=$ligne;
@@ -170,13 +170,13 @@ $articles=$DB_site->query("	SELECT a.artcode, a.artcode_eurocave, a.artid, a.pri
 while($article=$DB_site->fetch_array($articles)){
 	$ligne="";
 	$historys=$DB_site->query("	SELECT artcode, timestamp, price, site FROM history
-								WHERE artcode='".$article[artcode]."'
+								WHERE artcode='".$article['artcode']."'
 								AND site IN('liebherr-electromenager')
 								AND timestamp>".$timestamp_mini." ");
 	while($history=$DB_site->fetch_array($historys)){
-		if($history[price]<=$article[prix]*1.1 && $history[price]>$article[prix]){
+		if($history['price']<=$article['prix']*1.1 && $history['price']>$article['prix']){
 			$color="";
-			$ligne="<tr style=\"".$color."\"><td>".$article[artcode]."</td><td>".$article[artcode_eurocave]."</td><td align=\"right\">".number_format($article[prix], 2, ',', ' ')." &euro;</td><td>".$history[site]."</td><td align=\"right\">".number_format($history[price], 2, ',', ' ')." &euro;</td></tr>";
+			$ligne="<tr style=\"".$color."\"><td>".$article['artcode']."</td><td>".$article['artcode_eurocave']."</td><td align=\"right\">".number_format($article['prix'], 2, ',', ' ')." &euro;</td><td>".$history['site']."</td><td align=\"right\">".number_format($history['price'], 2, ',', ' ')." &euro;</td></tr>";
 		}
 	}
 	$echo.=$ligne;
@@ -219,17 +219,17 @@ $articles=$DB_site->query("	SELECT a.artcode, a.artcode_eurocave, a.artid, a.pri
 while($article=$DB_site->fetch_array($articles)){
 	$ligne="";
 	$historys=$DB_site->query("	SELECT artcode, timestamp, price, site FROM history
-								WHERE artcode='".$article[artcode]."'
+								WHERE artcode='".$article['artcode']."'
 								AND site IN('dometic')
 								AND timestamp>".$timestamp_mini." ");
 	while($history=$DB_site->fetch_array($historys)){
-		if($history[price]<=$article[prix]){
-			if($history[price]<$article[prix]){
+		if($history['price']<=$article['prix']){
+			if($history['price']<$article['prix']){
 				$color="color:red;font-weight:bold";
 			} else {
 				$color="font-style:italic";
 			}
-			$ligne="<tr style=\"".$color."\"><td>".$article[artcode]."</td><td>".$article[artcode_eurocave]."</td><td align=\"right\">".number_format($article[prix], 2, ',', ' ')." &euro;</td><td>".$history[site]."</td><td align=\"right\">".number_format($history[price], 2, ',', ' ')." &euro;</td></tr>";
+			$ligne="<tr style=\"".$color."\"><td>".$article['artcode']."</td><td>".$article['artcode_eurocave']."</td><td align=\"right\">".number_format($article['prix'], 2, ',', ' ')." &euro;</td><td>".$history['site']."</td><td align=\"right\">".number_format($history['price'], 2, ',', ' ')." &euro;</td></tr>";
 		}
 	}
 	$echo.=$ligne;
@@ -255,13 +255,13 @@ $articles=$DB_site->query("	SELECT a.artcode, a.artcode_eurocave, a.artid, a.pri
 while($article=$DB_site->fetch_array($articles)){
 	$ligne="";
 	$historys=$DB_site->query("	SELECT artcode, timestamp, price, site FROM history
-								WHERE artcode='".$article[artcode]."'
+								WHERE artcode='".$article['artcode']."'
 								AND site IN('dometic')
 								AND timestamp>".$timestamp_mini." ");
 	while($history=$DB_site->fetch_array($historys)){
-		if($history[price]<=$article[prix]*1.1 && $history[price]>$article[prix]){
+		if($history['price']<=$article['prix']*1.1 && $history['price']>$article['prix']){
 			$color="";
-			$ligne="<tr style=\"".$color."\"><td>".$article[artcode]."</td><td>".$article[artcode_eurocave]."</td><td align=\"right\">".number_format($article[prix], 2, ',', ' ')." &euro;</td><td>".$history[site]."</td><td align=\"right\">".number_format($history[price], 2, ',', ' ')." &euro;</td></tr>";
+			$ligne="<tr style=\"".$color."\"><td>".$article['artcode']."</td><td>".$article['artcode_eurocave']."</td><td align=\"right\">".number_format($article['prix'], 2, ',', ' ')." &euro;</td><td>".$history['site']."</td><td align=\"right\">".number_format($history['price'], 2, ',', ' ')." &euro;</td></tr>";
 		}
 	}
 	$echo.=$ligne;

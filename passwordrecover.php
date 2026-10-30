@@ -17,7 +17,7 @@ if ($action == "envoimail"){
 	}
 	
 	//$utilisateur = $DB_site->query_first( "SELECT userid,nom,prenom,mail FROM utilisateur WHERE mail='$txt_mail'" );
-	if( $utilisateur[userid] != "" && trim($txt_mail)!="" && $emailValid){
+	if( $utilisateur['userid'] != "" && trim($txt_mail)!="" && $emailValid){
 	//if( $utilisateur[userid] != "" && trim($txt_mail)!=""){
 			// Si utilisateur valide on cr�� un nouveau mot de passe et on le mail
 		$adresse_utilisateur = $txt_mail;
@@ -43,7 +43,7 @@ if ($action == "envoimail"){
 
 		$adminmsg="[infos_client]<br> Utilisateur : $utilisateur[prenom] $utilisateur[nom]<br>Mail : $utilisateur[mail]<br>Nouveau mdp : $code";
 
-		$template->parts["mail"]=$utilisateur[mail];
+		$template->parts["mail"]=$utilisateur['mail'];
 		$template->evaltemplate("PasswordRecover2","pagecommande");
 
 		$commercial="client";

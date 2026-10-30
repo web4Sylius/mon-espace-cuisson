@@ -46,7 +46,6 @@ function mailconfirmation($moyen,$facture,$user_info=null,$template=null){
         $mail->subject      = "Attention : Commande livraison France et facturation ".$facture->utilisateur->pays.". ";
         $mail->body         = $body;
 
-        var_dump()
 
         $mail->sendmail();
 

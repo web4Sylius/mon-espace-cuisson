@@ -1,7 +1,7 @@
 <?php
 
 require "admin_global.php";
-if(ESPACE =!'prod'){
+if(ESPACE != 'prod'){
 	include("/var/www/vhosts/ma-cave-a-vin.fr/fusion.ma-cave-a-vin.fr/fonctions.php");
 }else{
 	include("/var/www/vhosts/mon-espace-cuisson.com/httpdocs/fonctions.php");
@@ -66,26 +66,26 @@ if($_GET['moyen']==8 || $_GET['moyen']==9){
 	$xml = "<?xml version='1.0' encoding='ISO-8859-1'?>" ;
 	$xml .= "<control>" ;
 	$xml .= "<utilisateur type='facturation' qualite='2'>" ;
-	switch ($infosxml[ucivilite]){
+	switch ($infosxml['ucivilite']){
 		case 0:
-		$infosxml[ucivilite] = "monsieur" ;
+		$infosxml['ucivilite'] = "monsieur" ;
 		break;
 		case 1:
-		$infosxml[ucivilite] = "madame" ;
+		$infosxml['ucivilite'] = "madame" ;
 		break;
 		case 2:
-		$infosxml[ucivilite] = "mademoiselle" ;
+		$infosxml['ucivilite'] = "mademoiselle" ;
 		break;
 	}		
 
-	if ($infosxml[upays]=="France métropolitaine (hors Corse)")
-		$infosxml[upays]="France métropolitaine";
+	if ($infosxml['upays']=="France métropolitaine (hors Corse)")
+		$infosxml['upays']="France métropolitaine";
 		
-	if ($infosxml[libelle]=="France métropolitaine (hors Corse)")
-		$infosxml[libelle]="France métropolitaine";	
+	if ($infosxml['libelle']=="France métropolitaine (hors Corse)")
+		$infosxml['libelle']="France métropolitaine";	
 		
 		
-	$xml .= "<nom titre='".$infosxml[ucivilite]."'>$infosxml[unom]</nom>" ;
+	$xml .= "<nom titre='".$infosxml['ucivilite']."'>$infosxml[unom]</nom>" ;
 	$xml .= "<prenom>$infosxml[uprenom]</prenom>" ;
 	$xml .= "<societe>$infosxml[uraisonsociale]</societe>" ;
 	$xml .= "<telhome>$infosxml[utelephone]</telhome>" ;
@@ -110,20 +110,20 @@ if($_GET['moyen']==8 || $_GET['moyen']==9){
 	$xml .= "</appartement>" ;
 	$xml .= "</adresse>" ;
 	$xml .= "<utilisateur type='livraison' qualite='2'>" ;
-	switch ($infosxml[civilite]){
+	switch ($infosxml['civilite']){
 		case 0:
-		$infosxml[civilite] = "monsieur" ;
+		$infosxml['civilite'] = "monsieur" ;
 		break;
 		case 1:
-		$infosxml[civilite] = "madame" ;
+		$infosxml['civilite'] = "madame" ;
 		break;
 		case 2:
-		$infosxml[civilite] = "mademoiselle" ;
+		$infosxml['civilite'] = "mademoiselle" ;
 		break;
 	}
 		
 	
-	$xml .= "<nom titre='".$infosxml[civilite]."'>$infosxml[nom]</nom>" ;
+	$xml .= "<nom titre='".$infosxml['civilite']."'>$infosxml[nom]</nom>" ;
 	$xml .= "<prenom>$infosxml[prenom]</prenom>" ;
 	$xml .= "<societe>$infosxml[raisonsociale]</societe>" ;
 	$xml .= "<telhome>$infosxml[telephone]</telhome>" ;
@@ -165,7 +165,7 @@ if($_GET['moyen']==8 || $_GET['moyen']==9){
 	if ($nb == 1)
 		{
 		$article = $DB_site2->query_first("SELECT sowine FROM article a INNER JOIN lignefacture lf ON (lf.artid = a.artid) WHERE lf.factureid = '$facturid'");
-		if ($article[sowine] == '1')
+		if ($article['sowine'] == '1')
 			$transporteur = "FEDEX Express";
 		}
 	$xml .= "<nom>$transporteur</nom>" ;
@@ -174,9 +174,9 @@ if($_GET['moyen']==8 || $_GET['moyen']==9){
 	$lstartid=array();
 	while ($lignefacture=$DB_site2->fetch_array($lignesfactures))
 		{
-		$lignefacture[libelle] = str_replace("\"", " ", $lignefacture[libelle]) ;
-		$lignefacture[libelle] = str_replace("'", " ", $lignefacture[libelle]) ;
-		$xml .= "<produit type='5' ref='".$lignefacture[artcode]."' nb='".$lignefacture[qte]."'>".$lignefacture[libelle]."</produit>" ;
+		$lignefacture['libelle'] = str_replace("\"", " ", $lignefacture['libelle']) ;
+		$lignefacture['libelle'] = str_replace("'", " ", $lignefacture['libelle']) ;
+		$xml .= "<produit type='5' ref='".$lignefacture['artcode']."' nb='".$lignefacture[qte]."'>".$lignefacture['libelle']."</produit>" ;
 		$lstartid[]=$lignefacture['artid'];
 		}
 	$xml .= "</list>" ;

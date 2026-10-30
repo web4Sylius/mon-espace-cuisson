@@ -292,7 +292,7 @@ if(isset($action)){
 					$totalfacture=0;
 					$garanties=$DB_site2->query("SELECT ffa.prix,ffa.description,ff.numero,ff.date_facture,ff.fournisseur FROM facture_fournisseur_autre ffa INNER JOIN facture_fournisseur ff ON (ff.numero=ffa.facture) WHERE ffa.facturid=".$_POST['sitefacture']." AND ffa.type='gar'");
 					while($g=$DB_site2->fetch_array($garanties)){
-						$totalfacture+=$g[prix];
+						$totalfacture+=$g['prix'];
 						$listefacture.="<br><a href=\"https://".$host."/admin/fournisseur.php?action=editer&facturid=".$g['numero']."\">Facture ".$g['numero']." ".$g['fournisseur']."</a> du ".date("d/m/Y",$g['date_facture'])." : ".$g['description']." ".number_format($g['prix'],2,',','')." &euro;";
 					}
 				}

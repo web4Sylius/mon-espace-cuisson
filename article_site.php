@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/global.php');
+include_once(__DIR__.'/global.php');
 
 $libelle = "libelle".$template->langue;
 
@@ -548,9 +548,9 @@ if($nextpcat['catid']!="" && $article['commandable']=="1"){
 // Utile pour le template "ArticlePage"
 $article[$description] = stripslashes($article[$description]);
 $article[$description2] = stripslashes($article[$description2]);
-if ($article[poid] > 0){
-    if ($article[poid] > 1000){
-        $article[poid] = $article[poid] / 1000 ;
+if ($article['poid'] > 0){
+    if ($article['poid'] > 1000){
+        $article['poid'] = $article['poid'] / 1000 ;
         $poidsunit="kg";
     }else{
         $poidsunit="g";
@@ -559,44 +559,44 @@ if ($article[poid] > 0){
 
 $nbcrit=0;
 
-$article[finition]="";
+$article['finition']="";
 if($finition[1]!=""){
     $template->parts["finition"]="<li><b>".$template->translate("/article/champs/niveau_gamme","F")." : </b>$finition[1]</li>";
-    $article[finition]="<tr class=\"%class%\">
+    $article['finition']="<tr class=\"%class%\">
                            <td width=\"40%\" align=\"left\"><b>".$template->translate("/article/champs/niveau_gamme","F")." : </b></td>
                            <td align=\"left\">".$finition[1]."</td>
                        </tr>";
 }
 
-if ($article[nbr_temperature] != ""){
-    $template->parts["nbtemperature"]="<li><b>".$template->translate("/article/champs/nombre_temperature","F")."&nbsp;: </b>".$template->translate($article[nbr_temperature])."</li>";
-    $article[nbr_temperature] = "<tr class=\"%class%\">
+if ($article['nbr_temperature'] != ""){
+    $template->parts["nbtemperature"]="<li><b>".$template->translate("/article/champs/nombre_temperature","F")."&nbsp;: </b>".$template->translate($article['nbr_temperature'])."</li>";
+    $article['nbr_temperature'] = "<tr class=\"%class%\">
                                     <td width=\"40%\" align=\"left\"><b>".$template->translate("/article/champs/nombre_temperature","F")."&nbsp;: </b></td>
-                                    <td align=\"left\">".$template->translate($article[nbr_temperature])."</td>
+                                    <td align=\"left\">".$template->translate($article['nbr_temperature'])."</td>
                                 </tr>";
 
    $nbcrit++;
 }
 
-if($article[plage_temperature]!=""){
-    $template->parts["plagereglage"]="<li><b>".$template->translate("/article/champs/plage_reglage","F")." : </b>".$template->translate($article[plage_temperature])."</li>";
-    $article[plage_reglage] = "<tr class=\"%class%\">
+if($article['plage_temperature']!=""){
+    $template->parts["plagereglage"]="<li><b>".$template->translate("/article/champs/plage_reglage","F")." : </b>".$template->translate($article['plage_temperature'])."</li>";
+    $article['plage_reglage'] = "<tr class=\"%class%\">
                                     <td width=\"40%\" align=\"left\"><b>".$template->translate("/article/champs/plage_reglage","F")." : </b></td>
-                                    <td align=\"left\">".$template->translate($article[plage_temperature],"F")."</td>
+                                    <td align=\"left\">".$template->translate($article['plage_temperature'],"F")."</td>
                                 </tr>";
 }
 
 
-if ($article[capacite_bouteilles] != ""){
+if ($article['capacite_bouteilles'] != ""){
     $template->parts["capacity"]="<li><b>".$template->translate("/article/champs/capacite_modele","F")." : </b>$article[capacite_bouteilles] ".$template->translate($article['capacite_unite'])."</li>";
-    $article[capacite_bouteilles]="<tr class=\"%class%\">
+    $article['capacite_bouteilles']="<tr class=\"%class%\">
                                     <td width=\"40%\" align=\"left\"><b>".$template->translate("/article/champs/capacite_modele","F")." : </b></td>
                                     <td align=\"left\">$article[capacite_bouteilles] ".$template->translate($article['capacite_unite'])."</td>
                                 </tr>";
     $nbcrit++;
 }
 
-if($article[capacite_mini]!="" && $article[capacite_maxi]!=""){
+if($article['capacite_mini']!="" && $article['capacite_maxi']!=""){
     $template->parts["capaciteminimaxi"]="<li><b>".$template->translate("/article/champs/capacite_mini_maxi","F")." : </b>$article[capacite_mini] / $article[capacite_maxi] ".$template->translate($article['capacite_unite'])."</li>";
     $article['capaciteminimaxi']="<tr class=\"%class%\">
                                     <td width=\"40%\" align=\"left\"><b>".$template->translate("/article/champs/capacite_mini_maxi","F")." : </b></td>
@@ -604,46 +604,46 @@ if($article[capacite_mini]!="" && $article[capacite_maxi]!=""){
                                 </tr>";
 }
 
-if ($article[capacite_l] != 0){
+if ($article['capacite_l'] != 0){
     $template->parts["capacity"]="<li><b>".$template->translate("/article/champs/capacite_modele","F")." : </b>$article[capacite_l] L</li>";
-    $article[capacite_totale] = "<tr class=\"%class%\">
+    $article['capacite_totale'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/capacite_modele","F")." : </td>
                                 <td>$article[capacite_l] L</td>
                             </tr>";
     $nbcrit++;
 }
 
-if ($article[version_porte] != ""){
-    $template->parts["version_porte"]="<li><b>".$template->translate("/article/champs/version_porte","F")." : </b>".$template->translate($article[version_porte])."</li>";
-    $article[version_porte] = "<tr class=\"%class%\">
+if ($article['version_porte'] != ""){
+    $template->parts["version_porte"]="<li><b>".$template->translate("/article/champs/version_porte","F")." : </b>".$template->translate($article['version_porte'])."</li>";
+    $article['version_porte'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/version_porte","F")." : </td>
-                                <td>".$template->translate($article[version_porte])."</td>
+                                <td>".$template->translate($article['version_porte'])."</td>
                             </tr>";
     $nbcrit++;
 }
 
-if ($article[coloris] != ""){
-    $template->parts["coloris"]="<li><b>".$template->translate("/article/champs/coloris_modele","F")." : </b>".$template->translate($article[coloris])."</li>";
-    $article[coloris] = "<tr class=\"%class%\">
+if ($article['coloris'] != ""){
+    $template->parts["coloris"]="<li><b>".$template->translate("/article/champs/coloris_modele","F")." : </b>".$template->translate($article['coloris'])."</li>";
+    $article['coloris'] = "<tr class=\"%class%\">
                             <td class=\"techcaract\">".$template->translate("/article/champs/coloris_modele","F")." : </td>
-                            <td>".$template->translate($article[coloris])."</td>
+                            <td>".$template->translate($article['coloris'])."</td>
                         </tr>";
     $nbcrit++;
 }
 
-if ($article[coloris_porte] != ""){
-    $template->parts["coloris_porte"]="<li><b>".$template->translate("/article/champs/coloris_cadre","F")." : </b>".$template->translate($article[coloris_porte])."</li>";
-    $article[coloris_porte] = "<tr class=\"%class%\">
+if ($article['coloris_porte'] != ""){
+    $template->parts["coloris_porte"]="<li><b>".$template->translate("/article/champs/coloris_cadre","F")." : </b>".$template->translate($article['coloris_porte'])."</li>";
+    $article['coloris_porte'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/coloris_cadre","F")." : </td>
-                                <td>".$template->translate($article[coloris_porte])."</td>
+                                <td>".$template->translate($article['coloris_porte'])."</td>
                             </tr>";
     $nbcrit++;
 }
 
-if ($article[matiere] != ""){
-    $article[matiere] = "<tr class=\"%class%\">
+if ($article['matiere'] != ""){
+    $article['matiere'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/matiere","F")." : </td>
-                                <td>".$template->translate($article[matiere])."</td>
+                                <td>".$template->translate($article['matiere'])."</td>
                             </tr>";
     $nbcrit++;
 }
@@ -667,44 +667,44 @@ if ($article[rangements_txt] != ""){
     $nbcrit++;
 }*/
 
-if ($article[temperature_cave] != ""){
-    $template->parts["temperature_cave"]="<li><b>".$template->translate("/article/champs/temperature_installation","F")." : </b>".$template->translate($article[temperature_cave])."</li>";
-    $article[temperature_cave] = "<tr class=\"%class%\">
+if ($article['temperature_cave'] != ""){
+    $template->parts["temperature_cave"]="<li><b>".$template->translate("/article/champs/temperature_installation","F")." : </b>".$template->translate($article['temperature_cave'])."</li>";
+    $article['temperature_cave'] = "<tr class=\"%class%\">
                                      <td class=\"techcaract\">".$template->translate("/article/champs/temperature_installation","F")." : </td>
-                                    <td>".$template->translate($article[temperature_cave])."</td>
+                                    <td>".$template->translate($article['temperature_cave'])."</td>
                                 </tr>";
     $nbcrit++;
 }
 
-if ($article[fonction_hiver] != ""){
-    $template->parts["hiver"]="<li><b>".$template->translate("/article/champs/fonction_hiver","F")." : </b>".$template->translate($article[fonction_hiver])."</li>";
-    $article[fonction_hiver] = "<tr class=\"%class%\">
+if ($article['fonction_hiver'] != ""){
+    $template->parts["hiver"]="<li><b>".$template->translate("/article/champs/fonction_hiver","F")." : </b>".$template->translate($article['fonction_hiver'])."</li>";
+    $article['fonction_hiver'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/fonction_hiver","F")." : </td>
-                                <td>".$template->translate($article[fonction_hiver])."</td>
+                                <td>".$template->translate($article['fonction_hiver'])."</td>
                             </tr>";
     $nbcrit++;
 }
 
-if ($article[regulation] != ""){
-    $article[regulation] = "<tr class=\"%class%\">
+if ($article['regulation'] != ""){
+    $article['regulation'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/regulation","F")." : </td>
-                                <td>".$template->translate($article[regulation])."</td>
+                                <td>".$template->translate($article['regulation'])."</td>
                             </tr>";
     $nbcrit++;
 }
 
-if ($article[position_regulateur] != ""){
-    $article[position_regulateur] = "<tr class=\"%class%\">
+if ($article['position_regulateur'] != ""){
+    $article['position_regulateur'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/position_regulateur","F")." : </td>
-                                <td>".$template->translate($article[position_regulateur])."</td>
+                                <td>".$template->translate($article['position_regulateur'])."</td>
                             </tr>";
     $nbcrit++;
 }
 
-if ($article[temperature] != ""){
-    $article[temperature] = "<tr class=\"%class%\">
+if ($article['temperature'] != ""){
+    $article['temperature'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/temperature","F")." : </td>
-                                <td>".$template->translate($article[temperature])."</td>
+                                <td>".$template->translate($article['temperature'])."</td>
                             </tr>";
     $nbcrit++;
 }
@@ -717,122 +717,122 @@ if ($article[temperature] != ""){
     $nbcrit++;
 }*/
 
-if ($article[reglage] != ""){
-    $article[reglage] = "<tr class=\"%class%\">
+if ($article['reglage'] != ""){
+    $article['reglage'] = "<tr class=\"%class%\">
                             <td class=\"techcaract\">".$template->translate("/article/champs/reglage","F")." : </td>
-                            <td>".$template->translate($article[reglage])."</td>
+                            <td>".$template->translate($article['reglage'])."</td>
                         </tr>";
     $nbcrit++;
 }
 
-if ($article[affichage] != ""){
-    $article[affichage] = "<tr class=\"%class%\">
+if ($article['affichage'] != ""){
+    $article['affichage'] = "<tr class=\"%class%\">
                             <td class=\"techcaract\">".$template->translate("/article/champs/affichage","F")." : </td>
-                            <td>".$template->translate($article[affichage])."</td>
+                            <td>".$template->translate($article['affichage'])."</td>
                         </tr>";
     $nbcrit++;
 }
 
-if ($article[hygrometrie] != ""){
-    $article[hygrometrie] = "<tr class=\"%class%\">
+if ($article['hygrometrie'] != ""){
+    $article['hygrometrie'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/hygrometrie","F")." : </td>
-                                <td>".$template->translate($article[hygrometrie])."</td>
+                                <td>".$template->translate($article['hygrometrie'])."</td>
                             </tr>";
     $nbcrit++;
 }
 
-if ($article[hygrometre] != ""){
-    $article[hygrometre] = "<tr class=\"%class%\">
+if ($article['hygrometre'] != ""){
+    $article['hygrometre'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/hygrometre","F")." : </td>
-                                <td>".$template->translate($article[hygrometre])."</td>
+                                <td>".$template->translate($article['hygrometre'])."</td>
                             </tr>";
     $nbcrit++;
 }
 
-if ($article[pieds_reglables] != ""){
-    $article[pieds_reglables] = "<tr class=\"%class%\">
+if ($article['pieds_reglables'] != ""){
+    $article['pieds_reglables'] = "<tr class=\"%class%\">
                                     <td class=\"techcaract\">".$template->translate("/article/champs/pied_sur_verin","F")." : </td>
-                                    <td>".$template->translate($article[pieds_reglables])."</td>
+                                    <td>".$template->translate($article['pieds_reglables'])."</td>
                                 </tr>";
     $nbcrit++;
 }
 
-if ($article[serrure] != ""){
-    $article[serrure] = "<tr class=\"%class%\">
+if ($article['serrure'] != ""){
+    $article['serrure'] = "<tr class=\"%class%\">
                             <td class=\"techcaract\">".$template->translate("/article/champs/serrure","F")." : </td>
-                            <td>".$template->translate($article[serrure])."</td>
+                            <td>".$template->translate($article['serrure'])."</td>
                         </tr>";
     $nbcrit++;
 }
 
-if ($article[poignee] != ""){
-    $article[poignee] = "<tr class=\"%class%\">
+if ($article['poignee'] != ""){
+    $article['poignee'] = "<tr class=\"%class%\">
                             <td class=\"techcaract\">".$template->translate("/article/champs/poignee","F")." : </td>
-                            <td>".$template->translate($article[poignee])."</td>
+                            <td>".$template->translate($article['poignee'])."</td>
                         </tr>";
     $nbcrit++;
 }
 
-if ($article[modularite_interieure] != ""){
-    $article[modularite_interieure] = "<tr class=\"%class%\">
+if ($article['modularite_interieure'] != ""){
+    $article['modularite_interieure'] = "<tr class=\"%class%\">
                                         <td class=\"techcaract\">".$template->translate("/article/champs/modularite_interieur","F")." : </td>
-                                        <td>".$template->translate($article[modularite_interieure])."</td>
+                                        <td>".$template->translate($article['modularite_interieure'])."</td>
                                     </tr>";
     $nbcrit++;
 }
 
-if ($article[roulettes] != ""){
-    $article[roulettes] = "<tr class=\"%class%\">
+if ($article['roulettes'] != ""){
+    $article['roulettes'] = "<tr class=\"%class%\">
                             <td class=\"techcaract\">".$template->translate("/article/champs/roulettes","F")." : </td>
-                            <td>".$template->translate($article[roulettes])."</td>
+                            <td>".$template->translate($article['roulettes'])."</td>
                         </tr>";
     $nbcrit++;
 }
 
-if ($article[alarme] != ""){
-    $article[alarme] = "<tr class=\"%class%\">
+if ($article['alarme'] != ""){
+    $article['alarme'] = "<tr class=\"%class%\">
                             <td class=\"techcaract\">".$template->translate("/article/champs/alarme","F")." : </td>
-                            <td>".$template->translate($article[alarme],"F")."</td>
+                            <td>".$template->translate($article['alarme'],"F")."</td>
                         </tr>";
     $nbcrit++;
 }
 
-if ($article[eclairage] != ""){
-    $article[eclairage] = "<tr class=\"%class%\">
+if ($article['eclairage'] != ""){
+    $article['eclairage'] = "<tr class=\"%class%\">
                             <td class=\"techcaract\">".$template->translate("/article/champs/eclairage","F")." : </td>
-                            <td>".$template->translate($article[eclairage])."</td>
+                            <td>".$template->translate($article['eclairage'])."</td>
                         </tr>";
     $nbcrit++;
 }
 
-if ($article[interrupteur] != ""){
-    $article[interrupteur] = "<tr class=\"%class%\">
+if ($article['interrupteur'] != ""){
+    $article['interrupteur'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/interrupteur_marche_arret","F")." : </td>
-                                <td>".$template->translate($article[interrupteur])."</td>
+                                <td>".$template->translate($article['interrupteur'])."</td>
                             </tr>";
     $nbcrit++;
 }
 
-if ($article[bouton_test] != ""){
-    $article[bouton_test] = "<tr class=\"%class%\">
+if ($article['bouton_test'] != ""){
+    $article['bouton_test'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/bouton_test","F")." : </td>
-                                <td>".$template->translate($article[bouton_test])."</td>
+                                <td>".$template->translate($article['bouton_test'])."</td>
                             </tr>";
     $nbcrit++;
 }
 
-if ($article[vide_poche] != ""){
-    $article[vide_poche] = "<tr class=\"%class%\">
+if ($article['vide_poche'] != ""){
+    $article['vide_poche'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/vide_poche","F")." : </td>
-                                <td>".$template->translate($article[vide_poche])."</td>
+                                <td>".$template->translate($article['vide_poche'])."</td>
                             </tr>";
     $nbcrit++;
 }
 
-if ($article[clayette_fil] != ""){
-    $article[clayette_fil] = "<tr class=\"%class%\">
+if ($article['clayette_fil'] != ""){
+    $article['clayette_fil'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/clayette_fil","F")." : </td>
-                                <td>".$template->translate($article[clayette_fil])."</td>
+                                <td>".$template->translate($article['clayette_fil'])."</td>
                             </tr>";
     $nbcrit++;
 }
@@ -877,131 +877,131 @@ if ($article[clayette_fil] != ""){
     $nbcrit++;
 }*/
 
-if ($article[production_froid] != ""){
-    $article[production_froid] = "<tr class=\"%class%\">
+if ($article['production_froid'] != ""){
+    $article['production_froid'] = "<tr class=\"%class%\">
                                     <td class=\"techcaract\">".$template->translate("/article/champs/production_froid","F")." : </td>
-                                    <td>".$template->translate($article[production_froid])."</td>
+                                    <td>".$template->translate($article['production_froid'])."</td>
                                 </tr>";
     $nbcrit++;
 }
 
-if ($article[production_chaud] != ""){
-    $article[production_chaud] = "<tr class=\"%class%\">
+if ($article['production_chaud'] != ""){
+    $article['production_chaud'] = "<tr class=\"%class%\">
                                     <td class=\"techcaract\">".$template->translate("/article/champs/production_chaud","F")." : </td>
-                                    <td>".$template->translate($article[production_chaud])."</td>
+                                    <td>".$template->translate($article['production_chaud'])."</td>
                                 </tr>";
     $nbcrit++;
 }
 
-if ($article[declenchement_chaud] != ""){
-    $article[declenchement_chaud] = "<tr class=\"%class%\">
+if ($article['declenchement_chaud'] != ""){
+    $article['declenchement_chaud'] = "<tr class=\"%class%\">
                                         <td class=\"techcaract\">".$template->translate("/article/champs/declenchement_chaud","F")."&nbsp;: </td>
-                                        <td>".$template->translate($article[declenchement_chaud])."</td>
+                                        <td>".$template->translate($article['declenchement_chaud'])."</td>
                                     </tr>";
     $nbcrit++;
 }
 
 
 
-if ($article[fonction_hiver_techno] != ""){
+if ($article['fonction_hiver_techno'] != ""){
     $fonction_hiver_techno = "<tr class=\"%class%\">
                                         <td class=\"techcaract\">".$template->translate("/article/champs/fonction_hiver","F")." : </td>
-                                        <td>".$template->translate($article[fonction_hiver_techno])."</td>
+                                        <td>".$template->translate($article['fonction_hiver_techno'])."</td>
                                     </tr>";
 
-    $article[fonction_hiver_techno] = "<tr class=\"%class%\">
+    $article['fonction_hiver_techno'] = "<tr class=\"%class%\">
                                         <td class=\"techcaract\">".$template->translate("/article/champs/fonction_hiver","F")." : </td>
-                                        <td>".$template->translate($article[fonction_hiver_techno])."</td>
+                                        <td>".$template->translate($article['fonction_hiver_techno'])."</td>
                                     </tr>";
     $nbcrit++;
 }
 
-if ($article[parois_laterales] != ""){
-    $article[parois_laterales] = "<tr class=\"%class%\">
+if ($article['parois_laterales'] != ""){
+    $article['parois_laterales'] = "<tr class=\"%class%\">
                                     <td class=\"techcaract\">".$template->translate("/article/champs/nature_parois_laterales","F")."&nbsp;: </td>
-                                    <td>".$template->translate($article[parois_laterales])."</td>
+                                    <td>".$template->translate($article['parois_laterales'])."</td>
                                 </tr>";
     $nbcrit++;
 }
 
-if ($article[parois_fond] != ""){
-    $article[parois_fond] = "<tr class=\"%class%\">
+if ($article['parois_fond'] != ""){
+    $article['parois_fond'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/nature_paroi_fond","F")."&nbsp;: </td>
-                                <td>".$template->translate($article[parois_fond])."</td>
+                                <td>".$template->translate($article['parois_fond'])."</td>
                             </tr>";
     $nbcrit++;
 }
 
-if ($article[revetement_exterieur] != ""){
-    $article[revetement_exterieur] = "<tr class=\"%class%\">
+if ($article['revetement_exterieur'] != ""){
+    $article['revetement_exterieur'] = "<tr class=\"%class%\">
                                         <td class=\"techcaract\">".$template->translate("/article/champs/nature_revetement_exterieur","F")." : </td>
-                                        <td>".$template->translate($article[revetement_exterieur])."</td>
+                                        <td>".$template->translate($article['revetement_exterieur'])."</td>
                                     </tr>";
     $nbcrit++;
 }
 
-if ($article[isolation] != "")
-    $article[isolation] = "<tr class=\"%class%\">
+if ($article['isolation'] != "")
+    $article['isolation'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/nature_isolation","F")." : </td>
-                                <td>".$template->translate($article[isolation])."</td>
+                                <td>".$template->translate($article['isolation'])."</td>
                             </tr>";
-if ($article[gaz] != "")
-    $article[gaz] = "<tr class=\"%class%\">
+if ($article['gaz'] != "")
+    $article['gaz'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/type_gaz","F")." : </td>
-                                <td>".$template->translate($article[gaz])."</td>
+                                <td>".$template->translate($article['gaz'])."</td>
                             </tr>";
                             
-if ($article[puissance] != 0)
-    $article[puissance] = "<tr class=\"%class%\">
+if ($article['puissance'] != 0)
+    $article['puissance'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/puissance_absorbee","F")." : </td>
-                                <td>".$article[puissance]." W</td>
+                                <td>".$article['puissance']." W</td>
                             </tr>";
 else
-    $article[puissance]="";
+    $article['puissance']="";
 
-if ($article[puissance_electrique] != "")
-    $article[puissance_electrique] = "<tr class=\"%class%\">
+if ($article['puissance_electrique'] != "")
+    $article['puissance_electrique'] = "<tr class=\"%class%\">
                                         <td class=\"techcaract\">".$template->translate("/article/champs/puissance_electrique","F")." : </td>
                                         <td>$article[puissance_electrique]</td>
                                     </tr>";
 
-if ($article[intensite_electrique] != "")
-    $article[intensite_electrique] = "<tr class=\"%class%\">
+if ($article['intensite_electrique'] != "")
+    $article['intensite_electrique'] = "<tr class=\"%class%\">
                                         <td class=\"techcaract\">".$template->translate("/article/champs/intensite_electrique","F")." : </td>
                                         <td>$article[intensite_electrique]</td>
                                     </tr>";
                                     
-if ($article[tension_electrique] != "")
-    $article[tension_electrique] = "<tr class=\"%class%\">
+if ($article['tension_electrique'] != "")
+    $article['tension_electrique'] = "<tr class=\"%class%\">
                                         <td class=\"techcaract\">".$template->translate("/article/champs/tension_electrique","F")." : </td>
-                                        <td>".$template->translate($article[tension_electrique],"F")."</td>
+                                        <td>".$template->translate($article['tension_electrique'],"F")."</td>
                                     </tr>";
                                     
-$article[consommation_h]="";
-$article[consommation_an]="";
-if ($article['conso_kw']!="" && $article[conso_kw]!="0"){
-    $article[consommation_h] = "<tr class=\"%class%\">
+$article['consommation_h']="";
+$article['consommation_an']="";
+if ($article['conso_kw']!="" && $article['conso_kw']!="0"){
+    $article['consommation_h'] = "<tr class=\"%class%\">
                                     <td class=\"techcaract\">".$template->translate("/article/champs/consommation_24h","F")." : </td>
-                                    <td>".round($article[conso_kw],1)."</td>
+                                    <td>".round($article['conso_kw'],1)."</td>
                                 </tr>";
 
-    $article[consommation_an] = "<tr class=\"%class%\">
+    $article['consommation_an'] = "<tr class=\"%class%\">
                                     <td class=\"techcaract\">".$template->translate("/article/champs/consommation_an","F")." : </td>
                                     <td>".round(floatval($article['conso_kw'])*365)."</td>
                                 </tr>";
 }
 
-if ($article[niveau_bruit] != "")
-    $article[niveau_bruit] = "<tr class=\"%class%\">
+if ($article['niveau_bruit'] != "")
+    $article['niveau_bruit'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/niveau_bruit","F")." : </td>
                                 <td>$article[niveau_bruit]</td>
                             </tr>";
 
-$v=floatval($article[emballage_hauteur])*floatval($article[emballage_largeur])*floatval($article[emballage_profondeur]);
-if ($article[emballage_hauteur] != "" && $article[emballage_largeur] != "" && $article[emballage_profondeur] != "")
-    $article[emballage] = "<tr class=\"%class%\">
+$v=floatval($article['emballage_hauteur'])*floatval($article['emballage_largeur'])*floatval($article['emballage_profondeur']);
+if ($article['emballage_hauteur'] != "" && $article['emballage_largeur'] != "" && $article['emballage_profondeur'] != "")
+    $article['emballage'] = "<tr class=\"%class%\">
         <td class=\"techcaract\">".$template->translate("/article/champs/dimensions_emballe","F")." : </td>
-        <td>".sprintf($template->translate("/article/champs/dimensions_format"),$article[emballage_hauteur],$article[emballage_largeur],$article[emballage_profondeur])."</td>
+        <td>".sprintf($template->translate("/article/champs/dimensions_format"),$article['emballage_hauteur'],$article['emballage_largeur'],$article['emballage_profondeur'])."</td>
                            </tr>
                            <tr class=\"%class2%\">
         <td class=\"techcaract\">".$template->translate("/article/champs/poids_brut","F")." : </td>
@@ -1061,29 +1061,29 @@ if($article['infos_encastrement']!="")
         </tr>";
 
         
-if ($article[thermometre] != "")
-    $article[thermometre] = "<tr class=\"%class%\">
+if ($article['thermometre'] != "")
+    $article['thermometre'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/thermometre","F")." : </td>
-                                <td>".$template->translate($article[thermometre])."</td>
+                                <td>".$template->translate($article['thermometre'])."</td>
                             </tr>";
 
-if ($article[filtre_charbon] != "")
-    $article[filtre_charbon] = "<tr class=\"%class%\">
+if ($article['filtre_charbon'] != "")
+    $article['filtre_charbon'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/filtre_charbon","F")." : </td>
-                                <td>".$template->translate($article[filtre_charbon])."</td>
+                                <td>".$template->translate($article['filtre_charbon'])."</td>
                             </tr>";
 
-if ($article[absence_vibration] != "")
-    $article[absence_vibration] = "<tr class=\"%class%\">
+if ($article['absence_vibration'] != "")
+    $article['absence_vibration'] = "<tr class=\"%class%\">
                                         <td class=\"techcaract\">".$template->translate("/article/champs/absence_vibration","F")." : </td>
-                                        <td>".$template->translate($article[absence_vibration],"F")."</td>
+                                        <td>".$template->translate($article['absence_vibration'],"F")."</td>
                                     </tr>";
 
-if ($article[dimensions] != ""){
-    $template->parts["dimensions"]="<li><b>".$template->translate("/article/champs/dimensions","F")." : </b>".sprintf($template->translate("/article/champs/dimensions_format"),$article[hauteur],$article[largeur],$article[profondeur])."</li>";
-    $article[dimensions] = "<tr class=\"%class%\">
+if ($article['dimensions'] != ""){
+    $template->parts["dimensions"]="<li><b>".$template->translate("/article/champs/dimensions","F")." : </b>".sprintf($template->translate("/article/champs/dimensions_format"),$article['hauteur'],$article['largeur'],$article['profondeur'])."</li>";
+    $article['dimensions'] = "<tr class=\"%class%\">
                                 <td class=\"techcaract\">".$template->translate("/article/champs/dim_produit","F")." : </td>
-                                <td>".sprintf($template->translate("/article/champs/dimensions_format"),$article[hauteur],$article[largeur],$article[profondeur])."</td>
+                                <td>".sprintf($template->translate("/article/champs/dimensions_format"),$article['hauteur'],$article['largeur'],$article['profondeur'])."</td>
                             </tr>
                             <tr class=\"%class2%\">
         <td class=\"techcaract\">".$template->translate("/article/champs/poids_net","F")." :</td>
@@ -1091,22 +1091,22 @@ if ($article[dimensions] != ""){
           </tr>";
 }
 
-if ($article[volume_interieur] != 0)
-    $article[volume_interieur] = "<tr class=\"%class%\">
+if ($article['volume_interieur'] != 0)
+    $article['volume_interieur'] = "<tr class=\"%class%\">
                                         <td class=\"techcaract\">".$template->translate("/article/champs/volume_interieur","F")." : </td>
-                                        <td>".$template->translate($article[volume_interieur])." cm<sup>3</sup></td>
+                                        <td>".$template->translate($article['volume_interieur'])." cm<sup>3</sup></td>
                                     </tr>";
 else
-    $article[volume_interieur]="";
+    $article['volume_interieur']="";
                                     
-if ($article[conso_kw] != "" && $article[conso_euro]!=""){
-    $template->parts["conso_kw"]="<li><b>".$template->translate("/article/champs/consommation","F")." : </b>".round($article[conso_kw],1)." kW/24h ".$template->translate("/article/champs/soit_env")." $article[conso_euro] &euro; ".$template->translate("/site/ttc").$template->translate("/article/champs/par_an")."</li>";
-    $article[conso_kw] = "<tr class=\"%class%\">
+if ($article['conso_kw'] != "" && $article['conso_euro']!=""){
+    $template->parts["conso_kw"]="<li><b>".$template->translate("/article/champs/consommation","F")." : </b>".round($article['conso_kw'],1)." kW/24h ".$template->translate("/article/champs/soit_env")." $article[conso_euro] &euro; ".$template->translate("/site/ttc").$template->translate("/article/champs/par_an")."</li>";
+    $article['conso_kw'] = "<tr class=\"%class%\">
                             <td class=\"techcaract\">".$template->translate("/article/champs/consommation","F")." : </td>
-                            <td>".round($article[conso_kw],1)." kW/24h ".$template->translate("/article/champs/soit_env")." $article[conso_euro] &euro; ".$template->translate("/site/ttc").$template->translate("/article/champs/par_an")."</td>
+                            <td>".round($article['conso_kw'],1)." kW/24h ".$template->translate("/article/champs/soit_env")." $article[conso_euro] &euro; ".$template->translate("/site/ttc").$template->translate("/article/champs/par_an")."</td>
                         </tr>";
 }else
-    $article[conso_kw]="";
+    $article['conso_kw']="";
 
 //Caractéristique "label energétique"
 if($article['energy_label'] != ""){
@@ -1489,7 +1489,7 @@ if($article['puissance_electrique']!="" || $article['intensite_electrique']!="" 
 // FIN PERFORMANCES //
 //******************//
 
-$imgfabrication="<img src=\"/images/templates/fabrication_".$article[paysfabrication].".jpg\" alt=\"".$template->translate("/article/origines/".$article[paysfabrication],"F")."\" align=\"absmiddle\"> ".$template->translate("/article/origines/".$article[paysfabrication],"F");
+$imgfabrication="<img src=\"/images/templates/fabrication_".$article['paysfabrication'].".jpg\" alt=\"".$template->translate("/article/origines/".$article['paysfabrication'],"F")."\" align=\"absmiddle\"> ".$template->translate("/article/origines/".$article['paysfabrication'],"F");
 $origine="<tr><td><b>".$template->translate("/article/champs/origine_fabrication","F")." :</b></td><td>".$imgfabrication."</td></tr>";
 
 //********************//
@@ -1528,7 +1528,7 @@ $template->parts["techdimensions"] .= "</table>";
 // FIN DIMENSIONS //
 //****************//
 
-if($article['puissance_frigo'].$article[niveau_sonore_1m].$article[niveau_sonore_3m].$article[niveau_sonore_5m].$article[kit_sonore].$article[debit_air_ext].$article[coloris_groupe].$article[puissance]!="")
+if($article['puissance_frigo'].$article['niveau_sonore_1m'].$article['niveau_sonore_3m'].$article['niveau_sonore_5m'].$article['kit_sonore'].$article['debit_air_ext'].$article['coloris_groupe'].$article['puissance']!="")
     $template->parts["unite_exterieure"]="<div class=\"hsep\"></div>
     <div class=\"techtitle\">".$template->translate("/article/champs/groupe_condensation","F")." :</div>
     <table>
@@ -1544,7 +1544,7 @@ if($article['puissance_frigo'].$article[niveau_sonore_1m].$article[niveau_sonore
     </table>";
     
     
-if($article[nb_ventilateur].$article[debit_air_int].$article[puissance_chauffage].$article[kit_humidificateur].$article[evacuation_eau].$article[coloris_evaporateur]!="")
+if($article['nb_ventilateur'].$article['debit_air_int'].$article['puissance_chauffage'].$article['kit_humidificateur'].$article['evacuation_eau'].$article['coloris_evaporateur']!="")
     $template->parts["evaporateur"]="<div class=\"hsep\"></div>
     <div class=\"techtitle\">".$template->translate("/article/champs/evaporateur","F")." :</div>
     <table>
@@ -2046,7 +2046,7 @@ if($nb_articles > 0){
             $src = "images/".$article['artid']."_$article_image[articlephotoid]_60_60.jpg";
             
             if ($photonb < 6) $TemplatePhotosArticleBit .= ""
-            . "<div class=\"smallimg\" onclick=\"tb_show('','photo.php?artid=".$article['artid']."&imgid=".$article_image['articlephotoid']."',false)\" onmouseover=\"change_artpic('/images/".$article['artid']."_".$article_image[articlephotoid]."_280_420.jpg');\" onmouseout=\"change_artpic('".$imgart."')\">"
+            . "<div class=\"smallimg\" onclick=\"tb_show('','photo.php?artid=".$article['artid']."&imgid=".$article_image['articlephotoid']."',false)\" onmouseover=\"change_artpic('/images/".$article['artid']."_".$article_image['articlephotoid']."_280_420.jpg');\" onmouseout=\"change_artpic('".$imgart."')\">"
                 . "<img src=\"".$src."\" alt=\"".$article[$libelle]."\">"
             . "</div>";
             
@@ -2193,9 +2193,9 @@ if($secondchoix[0]>0){
 }
 
 $article[$titre2] = html_entity_decode($article[$titre2],ENT_COMPAT,"ISO-8859-15") ;
-$article[ecopart]= number_format($article[ecopart], 2, ',', '');
-$article[ecopartht]= number_format(floatval($article[ecopartht]), 2, ',', '');
-$article[poid] = $article[poid] / 1000;
+$article['ecopart']= number_format($article['ecopart'], 2, ',', '');
+$article['ecopartht']= number_format(floatval($article['ecopartht']), 2, ',', '');
+$article['poid'] = $article['poid'] / 1000;
 
 $template->parts["libelle"]=$article[$libelle];
 $template->parts["marque"]=$marq['libelle'];
@@ -2287,12 +2287,12 @@ function article_base($artid){
     global $DB_site, $artid_base;
     $artid_base = $artid;
     $article = $DB_site->query_first("SELECT * FROM liens_articles WHERE article_lie = '$artid'");
-    if ($article[liensarticlesid] != ""){
+    if ($article['liensarticlesid'] != ""){
         $actif = $DB_site->query_first("SELECT * FROM article WHERE artid = $article[article_base]");
-        if ($actif[active] == '0' or $actif[artid] == ""){
-            $artid_base = $article[article_lie];
+        if ($actif['active'] == '0' or $actif[artid] == ""){
+            $artid_base = $article['article_lie'];
         }else{
-            article_base($article[article_base]);
+            article_base($article['article_base']);
         }
     }
     return $artid_base;

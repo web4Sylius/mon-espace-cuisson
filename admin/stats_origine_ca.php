@@ -90,21 +90,21 @@ foreach ($typesfacture as $key => $value){
 	$cde_annee_1=auto_cde("a-1", $jour, $mois, $annee_1, $key);
 	echo "<tr>
 			<td>Commandes ".$value."</td>
-			<td>".$cde_mois[nb]."</td>
-			".tdvalue($cde_mois[nb]*100/$cde_mois_total[nb],"%",0)."
-			<td>".number_format($cde_mois[ca], 0, ',', ' ')." &euro;</td>
-			".tdvalue($cde_mois[ca]*100/$cde_mois_total[ca],"%",0)."
+			<td>".$cde_mois['nb']."</td>
+			".tdvalue($cde_mois['nb']*100/$cde_mois_total['nb'],"%",0)."
+			<td>".number_format($cde_mois['ca'], 0, ',', ' ')." &euro;</td>
+			".tdvalue($cde_mois['ca']*100/$cde_mois_total['ca'],"%",0)."
 			
-			<td>".$cde_annee[nb]."</td>
-			".tdvalue($cde_annee[nb]*100/$cde_annee_total[nb],"%",0)."
-			<td>".number_format($cde_annee[ca], 0, ',', ' ')." &euro;</td>
-			".tdvalue($cde_annee[ca]*100/$cde_annee_total[ca],"%",0)."
+			<td>".$cde_annee['nb']."</td>
+			".tdvalue($cde_annee['nb']*100/$cde_annee_total['nb'],"%",0)."
+			<td>".number_format($cde_annee['ca'], 0, ',', ' ')." &euro;</td>
+			".tdvalue($cde_annee['ca']*100/$cde_annee_total['ca'],"%",0)."
 			
-			<td>".$cde_annee_1[nb]."</td>
-			".tdvalue($cde_annee_1[nb]*100/$cde_annee_1_total[nb],"%",0)."
-			<td>".number_format($cde_annee_1[ca], 0, ',', ' ')." &euro;</td>";
-	if($cde_annee_1[ca]>0){
-		echo tdvalue(($cde_annee[ca]*100/$cde_annee_1[ca])-100,"%",1);
+			<td>".$cde_annee_1['nb']."</td>
+			".tdvalue($cde_annee_1['nb']*100/$cde_annee_1_total['nb'],"%",0)."
+			<td>".number_format($cde_annee_1['ca'], 0, ',', ' ')." &euro;</td>";
+	if($cde_annee_1['ca']>0){
+		echo tdvalue(($cde_annee['ca']*100/$cde_annee_1['ca'])-100,"%",1);
 	} else {
 		echo "<td>--</td>";
 	}
@@ -112,18 +112,18 @@ foreach ($typesfacture as $key => $value){
 }
 echo "	<tr>
 		<td align=\"right\"><b>Total</b></td>
-        <td>".$cde_mois_total[nb]."</td>
+        <td>".$cde_mois_total['nb']."</td>
 		<td>100%</td>
-		<td>".number_format($cde_mois_total[ca], 0, ',', ' ')." &euro;</td>
+		<td>".number_format($cde_mois_total['ca'], 0, ',', ' ')." &euro;</td>
 		<td>100%</td>
-		<td>".$cde_annee_total[nb]."</td>
+		<td>".$cde_annee_total['nb']."</td>
 		<td>100%</td>
-		<td>".number_format($cde_annee_total[ca], 0, ',', ' ')." &euro;</td>
+		<td>".number_format($cde_annee_total['ca'], 0, ',', ' ')." &euro;</td>
 		<td>100%</td>
-		<td>".$cde_annee_1_total[nb]."</td>
+		<td>".$cde_annee_1_total['nb']."</td>
 		<td>100%</td>
-		<td>".number_format($cde_annee_1_total[ca], 0, ',', ' ')." &euro;</td>
-		".tdvalue(($cde_annee_total[ca]*100/$cde_annee_1_total[ca])-100,"%",1)."
+		<td>".number_format($cde_annee_1_total['ca'], 0, ',', ' ')." &euro;</td>
+		".tdvalue(($cde_annee_total['ca']*100/$cde_annee_1_total['ca'])-100,"%",1)."
 	</tr>";
 
 	

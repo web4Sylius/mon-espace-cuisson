@@ -55,10 +55,10 @@ $factures = $DB_site->query( "select factureid, etatfacture, datefacture, passef
 							  order by datefacture desc" );
 while ($facture=$DB_site->fetch_array($factures)) 
 {
-	$factureid = $facture[factureid] ; 
-	$datefacture = $facture[datefacture] ;
-	$passefacture = $facture[passefacture] ; 
-	$etatfacture = $facture[etatfacture] ; 
+	$factureid = $facture['factureid'] ; 
+	$datefacture = $facture['datefacture'] ;
+	$passefacture = $facture['passefacture'] ; 
+	$etatfacture = $facture['etatfacture'] ; 
 
 $a = substr ($datefacture, 0, 4) ;
 $m = substr ($datefacture, 5, 2) ;
@@ -104,7 +104,7 @@ case '12':
 ?>
 <tr>
 <td class="td_location" align="left">
-<?
+<?php 
 echo "$m_lettre $a" ; 
 ?>
 </td>

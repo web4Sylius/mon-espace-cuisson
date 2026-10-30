@@ -7,62 +7,62 @@ $users=$DB_site2->query("SELECT userid, mail, password, civilite, nom, prenom, c
 						 langue from utilisateur u, pays p where u.paysid = p.paysid");
 while($user=$DB_site2->fetch_array($users)) 
 	{
-	switch ($user[civilite])
+	switch ($user['civilite'])
 		{
 		case '0':
-			$user[civilite] = "Monsieur" ;
+			$user['civilite'] = "Monsieur" ;
 			break ;
 		case '1':
-			$user[civilite] = "Madame" ;
+			$user['civilite'] = "Madame" ;
 			break ;
 		case '2':
-			$user[civilite] = "Mademoiselle" ;
+			$user['civilite'] = "Mademoiselle" ;
 			break ;
 		}
-	switch ($user[langue])
+	switch ($user['langue'])
 		{
 		case 'FR':
-			$user[langue] = "Français" ;
+			$user['langue'] = "Français" ;
 			break ;
 		case 'DE':
-			$user[langue] = "Allemand" ;
+			$user['langue'] = "Allemand" ;
 			break ;
 		case 'EN':
-			$user[langue] = "Anglais" ;
+			$user['langue'] = "Anglais" ;
 			break ;
 		case 'IT':
-			$user[langue] = "Italien" ;
+			$user['langue'] = "Italien" ;
 			break ;
 		case 'SP':
-			$user[langue] = "Espagnol" ;
+			$user['langue'] = "Espagnol" ;
 			break ;
 		}
 	$contenu.="\n";	
-	$contenu.=$user[userid]; 
+	$contenu.=$user['userid']; 
 	$contenu.=";";
-	$contenu.=$user[mail];
+	$contenu.=$user['mail'];
 	$contenu.=";";
-	$contenu.=$user[password]; 
+	$contenu.=$user['password']; 
 	$contenu.=";";
-	$contenu.=$user[civilite]; 
+	$contenu.=$user['civilite']; 
 	$contenu.=";";
-	$contenu.=$user[nom]; 
+	$contenu.=$user['nom']; 
 	$contenu.=";";
-	$contenu.=$user[prenom]; 
+	$contenu.=$user['prenom']; 
 	$contenu.=";";
-	$contenu.=$user[adresse]; 
+	$contenu.=$user['adresse']; 
 	$contenu.=";";
-	$contenu.=$user[codepostal]; 
+	$contenu.=$user['codepostal']; 
 	$contenu.=";";
-	$contenu.=$user[ville]; 
+	$contenu.=$user['ville']; 
 	$contenu.=";";
-	$contenu.=$user[telephone]; 
+	$contenu.=$user['telephone']; 
 	$contenu.=";";
-	$contenu.=$user[raisonsociale]; 
+	$contenu.=$user['raisonsociale']; 
 	$contenu.=";";
-	$contenu.=$user[libelle]; 
+	$contenu.=$user['libelle']; 
 	$contenu.=";";
-	$contenu.=$user[langue]; 
+	$contenu.=$user['langue']; 
 	}
 
 

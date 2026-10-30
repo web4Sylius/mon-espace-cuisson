@@ -227,7 +227,7 @@ if ($this->errdesc=="Too many connections") {
 	exit;
     } else {
       echo "<html><head><title>$GLOBALS[bbtitle] ERREUR DE BASE DE DONNEE</title><style>P,BODY{FONT-FAMILY:tahoma,arial,sans-serif;FONT-SIZE:11px;}</style><body>\n\n";
-      echo "</table></td></tr></table></form>\n<blockquote><p>&nbsp;</p><p><b>il y a un problème avec la base de données de ".$GLOBALS[bbtitle].".</b><br>\n";
+      echo "</table></td></tr></table></form>\n<blockquote><p>&nbsp;</p><p><b>il y a un problème avec la base de données de ".$GLOBALS['bbtitle'].".</b><br>\n";
       echo "Un e-mail a été envoyé au responsable technique qui résoudra ce problème dans les plus brefs délais.</p>";
       echo "<p>Nous sommes désolés du dérangement.</p><!-- $message --!>";
       echo "</blockquote></body></head></html>";

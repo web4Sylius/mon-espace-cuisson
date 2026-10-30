@@ -77,7 +77,7 @@ if (isset($action) and $action == "supprok")
 	$rq_positions_suivantes = $DB_site2->query("SELECT faqid, position FROM faq WHERE position > '$position_page'" );
 	while ($rs_positions_suivantes=$DB_site2->fetch_array($rq_positions_suivantes)) 
 		{
-		$position_temp = $rs_positions_suivantes[position] - 1;
+		$position_temp = $rs_positions_suivantes['position'] - 1;
 		$DB_site2->query("UPDATE faq SET position = '$position_temp' WHERE faqid = '$rs_positions_suivantes[faqid]'");
 		}
 	$del=$DB_site2->query("delete from faq where faqid = '$quest'");

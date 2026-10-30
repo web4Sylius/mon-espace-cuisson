@@ -137,7 +137,7 @@ if($action=="advfournisseur" || $action=="advfournisseur2"){
         $DB_site2->query("INSERT INTO mp_envoi_fournisseur SET facturid='$mporder->id', date=".time().", destinataire='".$_POST['fournisseurname']."', tarif=".$total.", type='fourn'");
 
         $mail=new email();
-        $mail->destinataire=$_POST[fournisseur];
+        $mail->destinataire=$_POST['fournisseur'];
 	$mail->copymode="bcc";
 	$mail->to=array("pr@mon-espace-cuisson.com","adv@ma-cave-a-vin.fr");
 	$mail->expediteur=$user_info['mail_contact'];

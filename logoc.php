@@ -27,7 +27,7 @@ $DB_site->database     = $DBname;
 $DB_site->server       = $db_server;
 $DB_site->user         = $DBusername;
 $DB_site->password     = $DBpassword;
-$DB_site->logpath      = SITE_PATH."/log";
+$DB_site->logpath      = rtrim(ROOT_PATH, "/")."/log";
 $DB_site->connect();
 
 

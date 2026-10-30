@@ -103,7 +103,7 @@ while($s = $DB_site2->fetch_array($requete)){
 	 .$datetxt."<a href=\"utilisateur.php?action=editer&userid=$r[userid]\" onmouseover=\"document.getElementById('rappel2$r[id]').style.visibility='visible';\" onmouseout=\"document.getElementById('rappel2$r[id]').style.visibility='hidden';\">".$nom."</a>
 	 ".($r['rappeltype']!=""?sprintf("(%s)",substr(rappeltype_txt($r['rappeltype']),0,1)):"")."
 	</p>
-	<div id=\"rappel2$r[id]\" class=\"popup\">".stripslashes($r[suivi])."</div>";
+	<div id=\"rappel2$r[id]\" class=\"popup\">".stripslashes($r['suivi'])."</div>";
 
 	if($r['hide']==0 && $r['rappel']==$alertts){
 	 $alert=date("H:i",$r['rappel'])." : <a href=\"utilisateur.php?userid=".$r['userid']."&action=editer\" onclick=\"rappelhide($r[id],2)\" target=\"_blank\">Client ".$r['nom']." ".$r['prenom']."</a><br>";
@@ -121,7 +121,7 @@ while($r=$DB_site2->fetch_array($requete)){
       $account=$DB_site2->query_first("SELECT * FROM accounts a INNER JOIN crm_accounts_contacts ac ON (a.id=ac.account_id) WHERE ac.contact_id='$parent[id]'");
       $name=$account['name']." ".$parent['first_name']." ".$parent['last_name'];
     }
-    $rappels[$r['reminder_time']].="<p class=\"type0\"><span class=\"rappelhide\" onclick=\"rappelhide('$r[id]',3)\">X</span>".date("H:i",$r['reminder_time']).":<a href=\"crm.php?action=detail&id=$account[id]\" onmouseover=\"document.getElementById('rappel3$r[id]').style.visibility='visible';\" onmouseout=\"document.getElementById('rappel3$r[id]').style.visibility='hidden';\">".substr("CRM ".$name,0,20)."</a></p><div id=\"rappel3$r[id]\" class=\"popup\">".stripslashes($r[description])."</div>";
+    $rappels[$r['reminder_time']].="<p class=\"type0\"><span class=\"rappelhide\" onclick=\"rappelhide('$r[id]',3)\">X</span>".date("H:i",$r['reminder_time']).":<a href=\"crm.php?action=detail&id=$account[id]\" onmouseover=\"document.getElementById('rappel3$r[id]').style.visibility='visible';\" onmouseout=\"document.getElementById('rappel3$r[id]').style.visibility='hidden';\">".substr("CRM ".$name,0,20)."</a></p><div id=\"rappel3$r[id]\" class=\"popup\">".stripslashes($r['description'])."</div>";
 }
 
 $requete=$DB_site2->query("SELECT * FROM suivi_interne_log WHERE pour='$user_rappel' AND rappel>0 AND rappel<$to AND (hide=0 OR rappel BETWEEN $from AND $to)");
@@ -130,8 +130,8 @@ while($r=$DB_site2->fetch_array($requete))
     "<p class=\"type".$r['hide']."\">"
       .($r['hide']==0?"<span class=\"rappelhide\" onclick=\"rappelhide($r[id],6)\">X</span>":"")
       .date("H:i",$r['rappel'])
-      .":<a href=\"task.php?a=showTask&amp;task=$r[task_id]\" onmouseover=\"document.getElementById('rappel$r[id]').style.visibility='visible';\" onmouseout=\"document.getElementById('rappel$r[id]').style.visibility='hidden';\">".substr("SI# ".$r[task_id],0,20)."</a>
-    </p><div id=\"rappel$r[id]\" class=\"popup\">".stripslashes($r[message])."</div>";
+      .":<a href=\"task.php?a=showTask&amp;task=$r[task_id]\" onmouseover=\"document.getElementById('rappel$r[id]').style.visibility='visible';\" onmouseout=\"document.getElementById('rappel$r[id]').style.visibility='hidden';\">".substr("SI# ".$r['task_id'],0,20)."</a>
+    </p><div id=\"rappel$r[id]\" class=\"popup\">".stripslashes($r['message'])."</div>";
   
     
 $contacts=$contacts2=array();

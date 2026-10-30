@@ -32,7 +32,7 @@ while ($lignefacture=$DB_site2->fetch_array($lignefactures)){
   $img="";
   $path="../configurations/".$host."/images/produits/br/".$lignefacture['artid'].".jpg";
   if(file_exists($path)) $img="<img src=\"$path\" style=\"width:30px;\" onmouseover=\"this.style.position='absolute';this.style.width='200px';\" onmouseout=\"this.style.position='relative';this.style.width='30px';\">";
-  $checkbox="<input type=\"checkbox\" name=\"produits3[]\" value=\"$lignefacture[lignefactureid]\" onclick=\"assurancesls();showstep('sls2');updligne($lignefacture[lignefactureid],(this.checked?".$lignefacture[qte].":0),2)\" ".($adv->lignes[$lignefacture[lignefactureid]]>0?"checked":"").($adv->locked?" disabled":"").">";
+  $checkbox="<input type=\"checkbox\" name=\"produits3[]\" value=\"$lignefacture[lignefactureid]\" onclick=\"assurancesls();showstep('sls2');updligne($lignefacture[lignefactureid],(this.checked?".$lignefacture[qte].":0),2)\" ".($adv->lignes[$lignefacture['lignefactureid']]>0?"checked":"").($adv->locked?" disabled":"").">";
   $oadv=$adv->listadv($facturid,"sls",$lignefacture['lignefactureid']);
 
   if(count($oadv)>0 && $oadv[0]->id!=$adv->id && $envoi['ligne_facture_id']==$lignefacture['lignefactureid']){
@@ -48,8 +48,8 @@ while ($lignefacture=$DB_site2->fetch_array($lignefactures)){
       <input type=\"hidden\" name=\"poids_$lignefacture[lignefactureid]\" value=\"".($article['artid']==0?'0':$article['emballage_poids'])."\">
       <input type=\"hidden\" name=\"ecopart3_$lignefacture[lignefactureid]\" value=\"".($article['artid']==0?'0':$article['ecopartht'])."\">$checkbox</td>
     <td>$img</td>
-    <td>$lignefacture[qte]</td><td id=\"libelle_$lignefacture[lignefactureid]\">".($article['artid']==0?$lignefacture['libelle']:$article[libelleFR])."</td>
-    <td><input type=\"hidden\" name=\"poids3_$lignefacture[lignefactureid]\" value=\"".($article['artid']==0?'0':$article[emballage_poids])."\"><input type=\"hidden\" name=\"typearticle_$lignefacture[lignefactureid]\" value=\"$article[typearticleid]\">".($article['artid']==0?'0':$article['emballage_poids'])."</td>
+    <td>$lignefacture[qte]</td><td id=\"libelle_$lignefacture[lignefactureid]\">".($article['artid']==0?$lignefacture['libelle']:$article['libelleFR'])."</td>
+    <td><input type=\"hidden\" name=\"poids3_$lignefacture[lignefactureid]\" value=\"".($article['artid']==0?'0':$article['emballage_poids'])."\"><input type=\"hidden\" name=\"typearticle_$lignefacture[lignefactureid]\" value=\"$article[typearticleid]\">".($article['artid']==0?'0':$article['emballage_poids'])."</td>
   </tr>";
   if($article['artid']==0) {
     $recup='recup_cave';
@@ -148,7 +148,7 @@ $rq_lignefacturediss=$DB_site2->query("SELECT a.artid,a.artcode,lf.libelle,lf.pr
             $articleimages=$DB_site2->query("select * from articlephoto where artid = '".$lignefacturediss['artid']."' ORDER BY position") ;
             while ($articleimage=$DB_site2->fetch_array($articleimages)){
                     $artimg .="<div style=\"display:inline-block;\"><img src=\"http://dedie.ma-cave-a-vin.fr/configurations/$host/images/produits/article/$articleimage[artid]_$articleimage[articlephotoid].$articleimage[image]?t=".time()."\" width=\"100\" style=\"margin-right:15px;\">";
-                    $artimg.="<p style=\"text-align:center;\">".$adv->checkbox("articlephotosup_".$i,"adv_save(%name,4)",$articleimage[articlephotoid])."</p></div>"; 
+                    $artimg.="<p style=\"text-align:center;\">".$adv->checkbox("articlephotosup_".$i,"adv_save(%name,4)",$articleimage['articlephotoid'])."</p></div>"; 
                 $i++;
             }
             $item.="<div>Lot ".$artimg_base['artcode']."</div>".$artimg;
@@ -163,7 +163,7 @@ foreach($artids as $artid => $typeArticleid){
         $articleimages=$DB_site2->query("select * from articlephoto where artid = '$artid' ORDER BY position") ;
         while ($articleimage=$DB_site2->fetch_array($articleimages)){
                 $artimg .="<div style=\"display:inline-block;\"><img src=\"http://dedie.ma-cave-a-vin.fr/configurations/$host/images/produits/article/$articleimage[artid]_$articleimage[articlephotoid].$articleimage[image]?t=".time()."\" width=\"100\" style=\"margin-right:15px;\">";
-                $artimg.="<p style=\"text-align:center;\">".$adv->checkbox("articlephotosup_".$i,"adv_save(%name,4)",$articleimage[articlephotoid])."</p></div>"; 
+                $artimg.="<p style=\"text-align:center;\">".$adv->checkbox("articlephotosup_".$i,"adv_save(%name,4)",$articleimage['articlephotoid'])."</p></div>"; 
             $i++;
         }
         $item.="<div>".$artimg_base['artcode']."</div>".$artimg;
@@ -199,12 +199,12 @@ print "<div class=\"advgroup\">
 $opttrspt=array(""=>"Choisir...");
 $requete=$DB_site2->query("SELECT * FROM fournisseur WHERE type='trspt' GROUP BY societe ORDER BY societe");
 while($trspt=$DB_site2->fetch_array($requete)){
-    $opttrspt[$trspt[id]]=$trspt[societe];
+    $opttrspt[$trspt['id']]=$trspt['societe'];
 }
 $optfourn=array(""=>"Choisir...");
 $requete=$DB_site2->query("SELECT * FROM fournisseur WHERE type='fourn' GROUP BY societe ORDER BY societe");
 while($trspt=$DB_site2->fetch_array($requete)){
-    $optfourn[$trspt[id]]=$trspt[societe];
+    $optfourn[$trspt['id']]=$trspt['societe'];
 }
 $stock=new stock($DB_site2);
 $lieux=$stock->lieux();

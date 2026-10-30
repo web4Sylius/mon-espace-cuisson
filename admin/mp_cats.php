@@ -283,7 +283,7 @@ if(!isset($action)){
   $cats=$DB_site2->query("SELECT catid,libelleFR FROM categorie WHERE parentid=0 ORDER BY position");
   while($cat=$DB_site2->fetch_array($cats)){
     $mpconfig="";
-    $req=$DB_site2->query("SELECT DISTINCT market_place FROM market_place_catid WHERE catid=".$cat[catid]);
+    $req=$DB_site2->query("SELECT DISTINCT market_place FROM market_place_catid WHERE catid=".$cat['catid']);
     while($mp=$DB_site2->fetch_array($req)) $mpconfig.=" ".$mp[0];
  
     print "<br>".displaysscat($cat['catid']);

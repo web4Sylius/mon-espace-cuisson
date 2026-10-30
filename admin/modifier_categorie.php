@@ -31,7 +31,7 @@ function compter_produits($catid){
 	$sscats=$DB_site2->query($requete_ss_cat);
 	$ssnombre=0;
 	while ($sscat=$DB_site2->fetch_array($sscats)) {
-		$ssnombre+=compter_produits($sscat[catid]);
+		$ssnombre+=compter_produits($sscat['catid']);
 	}
 	$total=$stringbre+$ssnombre;
 	return ($total);
@@ -47,8 +47,8 @@ function navigation($catidfunc , $isarticle=0){
 	} else {
 		$navigationbit="<a href=\"catalogue.php?catid=$navigation_categorie[catid]\">$navigation_categorie[$libelle]</a>" . $separateur_navigation . $navigationbit;
 	}
-	if ($navigation_categorie[parentid]!=0) {
-		navigation($navigation_categorie[parentid]);
+	if ($navigation_categorie['parentid']!=0) {
+		navigation($navigation_categorie['parentid']);
 	}
 }
 

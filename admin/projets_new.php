@@ -1108,7 +1108,7 @@ elseif(isset($_GET['commercial']) && $_GET['commercial'] !== '' && empty($_GET['
 			<td class=\"ca_nb showpopup\">".number_format($list['attente'][$mois],0,',',' ')." &euro;
 			<div class=\"popup\"><table>".$list['factid_attente'][$mois]."</table></div></td>
 			<td class=\"ca_nb\">".number_format($total+$list['attente'][$mois],0,',',' ')." &euro;</td>
-			".tdvalue(($objencours == 0 ? 0 : $objectif_commercial[$year][$mois]?100*$total/($mois==date("n")&&$year==date("Y")?$objencours:($objectif_commercial[$year][$mois]*$nb_jour)):0),"%",false,100)
+			".tdvalue(($objencours == 0 ? 0 : ($objectif_commercial[$year][$mois]?100*$total/($mois==date("n")&&$year==date("Y")?$objencours:($objectif_commercial[$year][$mois]*$nb_jour)):0)),"%",false,100)
 			.($mois<=date('n')||$year!=date("Y")?tdvalue($encours,"&euro;",true):"<td class=\"ca_nb\"></td>")  
 			.($mois<=date('n')||$year!=date("Y")?tdvalue($pcencours,"%",true):"<td class=\"ca_nb\"></td>")
 			.tdvalue($total-($list1['ca'][$mois]),"&euro;",true)
@@ -1392,7 +1392,7 @@ function ca($annee,$to=null,$username=""){
 		$remise[$month] += $facture['remiseHT'];
         $nb[$month]++;
 		// echo "Cde NÂ° ".$facture[facturid]." : ".$totalvente."<br>";
-		$totalachat=calcul_prix_achat_facture($facture[facturid]);
+		$totalachat=calcul_prix_achat_facture($facture['facturid']);
 		$marge[$month]+=$totalvente-$totalachat;
 		//affiche la marge en % dans les lignes popup
     	if($facture['marge']!='' && $facture['marge'] != 0.00 && number_format($totalvente,0,',',' ') != 0) {

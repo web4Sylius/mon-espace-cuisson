@@ -784,7 +784,7 @@ if($is_superuser && $laFacture['provenance'] != ''){
     $nb_sav=count($aSAV);
     foreach($aSAV as $sav_id => $sav_infos){
      $sql_typelitige = $DB_site2->query_first("SELECT * FROM sav_typelitige WHERE typelitigeid='".$sav_infos['type_litige']."' ");
-     $sav_type=$sql_typelitige[libelle];
+     $sav_type=$sql_typelitige['libelle'];
      switch($sav_infos['type_litige']){
       case 0:
       $sav_responsable = $sav_infos['sav_responsable'];
@@ -897,7 +897,7 @@ if($is_superuser && $laFacture['provenance'] != ''){
       $i=0;
       while ($menu = $DB_site2->fetch_array($menus)) {
         $i++;
-        echo "<strong>".$i."/ ".$menu[libelle]." : </strong>\n";
+        echo "<strong>".$i."/ ".$menu['libelle']." : </strong>\n";
         $etapes = $DB_site2->query("SELECT r.resumeid, r.dateline, r.datecreation, e.libelle FROM sav_resume AS r
          INNER JOIN sav_etape AS e USING(etapeid)
          WHERE r.savid='".$sav_infos['sav_id']."'
@@ -952,11 +952,11 @@ if($is_superuser && $laFacture['provenance'] != ''){
      <div class="titre" style="float:left; width:250px; text-align:right; font-size:12px;"><strong><?php echo $sav_type; ?></strong></div>
      <img style="float:left; width=20px; margin-left:20px; margin-top:2px; position:relative;" onclick="location.href='facture.php?action=editer&facturid=<?php echo $facturid; ?>&savid=<?php echo $sav_infos['sav_id']; ?>#sav'" src="<?php echo BACK_URL; ?>/images/icon/edit.png">
      <div class="clear"></div>
-     <strong>Détail précis</strong> : <?php echo $details_sav[value] != '' ? $details_sav[value] : 'N/A'; ?><br>
+     <strong>Détail précis</strong> : <?php echo $details_sav['value'] != '' ? $details_sav['value'] : 'N/A'; ?><br>
      <p><strong>Responsable</strong> : <?php echo $sav_responsable != '' ? $sav_responsable : 'N/A'; ?></p>
      <p><strong>Référence(s)</strong> : <?php echo $sav_reference != '' ? $sav_reference : 'N/A'; ?></p>
-     <p><strong>N° série</strong> : <?php echo $nbserie_sav[value] != '' ? $nbserie_sav[value] : 'N/A'; ?></p>
-     <p><strong>N° dossier SAV</strong> : <?php echo $ndossier_sav[value] != '' ? $ndossier_sav[value] : 'N/A'; ?></p>
+     <p><strong>N° série</strong> : <?php echo $nbserie_sav['value'] != '' ? $nbserie_sav['value'] : 'N/A'; ?></p>
+     <p><strong>N° dossier SAV</strong> : <?php echo $ndossier_sav['value'] != '' ? $ndossier_sav['value'] : 'N/A'; ?></p>
      <p class="note">
       <textarea id="statut_sav<?php echo $sav_infos['sav_id']; ?>" placeholder="Etat actuel du SAV" style="width:400px; height:60px;"><?php echo $sav_infos['sav_etat']; ?></textarea>
       <input type="button" value="Enreg." style="margin-top:15px;" onclick="save_etat(<?php echo $sav_infos['sav_id']; ?>)">

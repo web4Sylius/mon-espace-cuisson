@@ -19,13 +19,13 @@ if (isset($_GET['token']) && $_GET['token']!="" && isset ($_GET['PayerID']) && $
 	$token=$_GET['token'];
 	$payerid=$_GET['PayerID'];
 	$paypal=$DB_site->query_first("SELECT * FROM paypal p, facture f WHERE p.token='$token' AND p.factureid=f.facturid ");
-	$lien="https://api-3t.paypal.com/nvp?METHOD=DoExpressCheckoutPayment&TOKEN=".$token."&VERSION=".$versionpaypal."&PWD=".$passpaypal."&USER=".$userpaypal."&SIGNATURE=".$signaturepaypal."&PAYMENTACTION=Sale&PAYERID=".$payerid."&AMT=".$paypal[amt]."&CURRENCYCODE=EUR&INVNUM=".$paypal[factureid];
+	$lien="https://api-3t.paypal.com/nvp?METHOD=DoExpressCheckoutPayment&TOKEN=".$token."&VERSION=".$versionpaypal."&PWD=".$passpaypal."&USER=".$userpaypal."&SIGNATURE=".$signaturepaypal."&PAYMENTACTION=Sale&PAYERID=".$payerid."&AMT=".$paypal['amt']."&CURRENCYCODE=EUR&INVNUM=".$paypal['factureid'];
 	$lien=file($lien);
 	$tableau=explode("&",$lien[0]);
 	$tableau[0]=urldecode($tableau[0]);
 	$montoken=explode("=",$tableau[0]);
 	//fin boucherie
-	$transaction_id=$paypal[factureid];
+	$transaction_id=$paypal['factureid'];
 	if ($montoken[1]==$token){ //paiement reussi et validé par paypal, on realise toutes les opérations nécessaires
 		$DB_site->query(" UPDATE facture SET valide='1' WHERE facturid='".$transaction_id."' ");
 		$htmlmess = "Bonjour,<br>";

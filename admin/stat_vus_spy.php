@@ -76,7 +76,7 @@ while($spy=$DB_site2->fetch_array($req)){
 $tr=array();
 $req=$DB_site2->query($sql);
 while($page=$DB_site2->fetch_array($req)){
-    $art=article($page[artid],$page[somme],$dfrom->gettimestamp(),$dto->gettimestamp());
+    $art=article($page[artid],$page['somme'],$dfrom->gettimestamp(),$dto->gettimestamp());
     if($_POST['marque']=="" || $_POST['marque']==$art['marqueid'] && !is_null($art)){
 	$code=$art['artcode'];
     

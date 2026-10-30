@@ -128,8 +128,8 @@ if (!function_exists("chemin")) {
 			$chemin = " $separateur_navigation <a href=\"\" title=\"\">$categorie[$libelle]</a> $chemin" ;
 		else
 			$chemin = " $separateur_navigation $categorie[$libelle] $chemin" ;
-		if ($categorie[parentid] != 0)
-			chemin($categorie[parentid], $DB) ;
+		if ($categorie['parentid'] != 0)
+			chemin($categorie['parentid'], $DB) ;
 		else
 			$chemin = "<a href=\"http://$host\" title=\"$titleFR\">$titleFR</a> $chemin" ;
 		return $chemin ;
@@ -340,7 +340,7 @@ function amazon_arbo($dbLink, $artid, $libelle = "libelleFR") {
 	$caract_req=$dbLink->query("SELECT caractid, COUNT(caractvalid) nb FROM article_caractval INNER JOIN caracteristiquevaleur USING(caractvalid) WHERE artid = '$artid' and caractid = '1' GROUP BY artid, caractid ORDER BY nb ASC"); //HAVING(nb > 1) 
 	while ($caract=$dbLink->fetch_array($caract_req)) {
 		$caract_array[] = $caract['caractid'];
-		$amatabcaracts[$caract[caractid]] = $caract[nb] ;
+		$amatabcaracts[$caract['caractid']] = $caract['nb'] ;
 		}
 		
 	//creer le tableau de combinaisons
@@ -371,14 +371,14 @@ function amazon_arbo($dbLink, $artid, $libelle = "libelleFR") {
 	$amacount = count($amatabcaracts) ;
 	if ($amacount == 0) {// pas de caracteristiques
 		$codebarre=$dbLink->query_first("SELECT codebarre FROM code_barre WHERE artid = '$artid'");
-		$amatab[0][SKU] = $artid ;
-		$amatab[0][parentage] = "child" ;
-		$amatab[0][ParentSKU] = "" ;
-		$amatab[0][RelationshipType] = "" ;
-		$amatab[0][K_Color] = "" ;
-		$amatab[0][K_Size] = "" ;
-		$amatab[0][K_VariationTheme] = "" ;
-		$amatab[0][codebarre] = $codebarre[codebarre] ;
+		$amatab[0]['SKU'] = $artid ;
+		$amatab[0]['parentage'] = "child" ;
+		$amatab[0]['ParentSKU'] = "" ;
+		$amatab[0]['RelationshipType'] = "" ;
+		$amatab[0]['K_Color'] = "" ;
+		$amatab[0]['K_Size'] = "" ;
+		$amatab[0]['K_VariationTheme'] = "" ;
+		$amatab[0]['codebarre'] = $codebarre['codebarre'] ;
 		}
 	elseif ($amacount == 1) {// une seule caracteristique à plusieurs valeurs
 		$VariationTheme = "" ;
@@ -387,27 +387,27 @@ function amazon_arbo($dbLink, $artid, $libelle = "libelleFR") {
 			$val=$dbLink->query_first("SELECT $libelle FROM caracteristiquevaleur WHERE caractvalid = '".substr($cle, 1)."'");
 			$codebarre=$dbLink->query_first("SELECT codebarre FROM code_barre WHERE artid = '$artid' and caractvalid = '".substr($cle, 1)."'");
 			$amacpt++ ;
-			$amatab[$amacpt][SKU] = $artid.$cle ;
-			$amatab[$amacpt][parentage] = "child" ;
-			$amatab[$amacpt][ParentSKU] = $artid ;
-			$amatab[$amacpt][RelationshipType] = "Variation" ;
-			$amatab[$amacpt][FD_Color] = stripslashes($val[$libelle]) ;
-			$amatab[$amacpt][FD_Size] = "" ;
-			$amatab[$amacpt][FD_VariationTheme] = "Color" ;
-			$amatab[$amacpt][codebarre] = $codebarre[codebarre] ;
-			$amatab[$amacpt][FD_image] = "http://$host/configurations/$host/images/caracteristiquevaleur/zoom/".substr($cle, 1).".jpg" ;
+			$amatab[$amacpt]['SKU'] = $artid.$cle ;
+			$amatab[$amacpt]['parentage'] = "child" ;
+			$amatab[$amacpt]['ParentSKU'] = $artid ;
+			$amatab[$amacpt]['RelationshipType'] = "Variation" ;
+			$amatab[$amacpt]['FD_Color'] = stripslashes($val[$libelle]) ;
+			$amatab[$amacpt]['FD_Size'] = "" ;
+			$amatab[$amacpt]['FD_VariationTheme'] = "Color" ;
+			$amatab[$amacpt]['codebarre'] = $codebarre['codebarre'] ;
+			$amatab[$amacpt]['FD_image'] = "http://$host/configurations/$host/images/caracteristiquevaleur/zoom/".substr($cle, 1).".jpg" ;
 			$VariationTheme = "Color" ;
 			}
 		$amacpt = 0 ;
 		$codebarre=$dbLink->query_first("SELECT codebarre FROM code_barre WHERE artid = '$artid'");
-		$amatab[$amacpt][SKU] = $artid ;
-		$amatab[$amacpt][parentage] = "parent" ;
-		$amatab[$amacpt][ParentSKU] = "" ;
-		$amatab[$amacpt][RelationshipType] = "" ;
-		$amatab[$amacpt][FD_Color] = "" ;
-		$amatab[$amacpt][FD_Size] = "" ;
-		$amatab[$amacpt][FD_VariationTheme] = "Color" ;
-		$amatab[$amacpt][codebarre] = $codebarre[codebarre] ;
+		$amatab[$amacpt]['SKU'] = $artid ;
+		$amatab[$amacpt]['parentage'] = "parent" ;
+		$amatab[$amacpt]['ParentSKU'] = "" ;
+		$amatab[$amacpt]['RelationshipType'] = "" ;
+		$amatab[$amacpt]['FD_Color'] = "" ;
+		$amatab[$amacpt]['FD_Size'] = "" ;
+		$amatab[$amacpt]['FD_VariationTheme'] = "Color" ;
+		$amatab[$amacpt]['codebarre'] = $codebarre['codebarre'] ;
 		sort($amatab);
 		}
 	return $amatab ;
@@ -426,7 +426,7 @@ function pixplace_arbo($dbLink, $artid, $libelle = "libelleFR") {
 	$caract_req=$dbLink->query("SELECT caractid, COUNT(caractvalid) nb FROM article_caractval INNER JOIN caracteristiquevaleur USING(caractvalid) WHERE artid = '$artid' and caractid = '1' GROUP BY artid, caractid ORDER BY nb ASC"); //HAVING(nb > 1) 
 	while ($caract=$dbLink->fetch_array($caract_req)) {
 		$caract_array[] = $caract['caractid'];
-		$amatabcaracts[$caract[caractid]] = $caract[nb] ;
+		$amatabcaracts[$caract['caractid']] = $caract['nb'] ;
 		}
 		
 	//creer le tableau de combinaisons
@@ -457,8 +457,8 @@ function pixplace_arbo($dbLink, $artid, $libelle = "libelleFR") {
 	$amacount = count($amatabcaracts) ;
 	if ($amacount == 0) {// pas de caracteristiques
 		$codebarre=$dbLink->query_first("SELECT codebarre FROM code_barre WHERE artid = '$artid'");
-		$amatab[0][id] = $artid ;
-		$amatab[0][codebarre] = $codebarre[codebarre] ;
+		$amatab[0]['id'] = $artid ;
+		$amatab[0]['codebarre'] = $codebarre['codebarre'] ;
 		}
 	elseif ($amacount == 1) {// une seule caracteristique à plusieurs valeurs
 		$VariationTheme = "" ;
@@ -467,10 +467,10 @@ function pixplace_arbo($dbLink, $artid, $libelle = "libelleFR") {
 			$val=$dbLink->query_first("SELECT $libelle FROM caracteristiquevaleur WHERE caractvalid = '".substr($cle, 1)."'");
 			$codebarre=$dbLink->query_first("SELECT codebarre FROM code_barre WHERE artid = '$artid' and caractvalid = '".substr($cle, 1)."'");
 			$amacpt++ ;
-			$amatab[$amacpt][id] = $artid.$cle ;
-			$amatab[$amacpt][couleur] = stripslashes($val[$libelle]) ;
-			$amatab[$amacpt][codebarre] = $codebarre[codebarre] ;
-			$amatab[$amacpt][image] = "http://$host/configurations/$host/images/caracteristiquevaleur/zoom/".substr($cle, 1).".jpg" ;
+			$amatab[$amacpt]['id'] = $artid.$cle ;
+			$amatab[$amacpt]['couleur'] = stripslashes($val[$libelle]) ;
+			$amatab[$amacpt]['codebarre'] = $codebarre['codebarre'] ;
+			$amatab[$amacpt]['image'] = "http://$host/configurations/$host/images/caracteristiquevaleur/zoom/".substr($cle, 1).".jpg" ;
 			}
 		sort($amatab);
 		}
@@ -485,7 +485,7 @@ if (!function_exists("categories_filles")) {
 		$filles=$DB_site2->query("SELECT catid FROM categorie WHERE parentid = '$cat'");
 		while ($fille=$DB_site2->fetch_array($filles)) {
 			$lstcatids .= ",$fille[catid]" ;
-			categories_filles($fille[catid]) ;
+			categories_filles($fille['catid']) ;
 			}
 		return $lstcatids ;
 		}
@@ -509,13 +509,13 @@ function getJours($datedeb,$datefin,$utilisateur=""){ // format "Y-m-d"
 	$absence_array=array();
 	$jour_feries=$DB_site2->query("SELECT * FROM jour_ferie ORDER BY dateline ASC ");
 	while($jour_ferie=$DB_site2->fetch_array($jour_feries)){
-		$jour_ferie_array[]=$jour_ferie[dateline]; // ici les jours fériés
+		$jour_ferie_array[]=$jour_ferie['dateline']; // ici les jours fériés
 	}
 	if($utilisateur!=""){
 		$absences=$DB_site2->query("SELECT * FROM absence WHERE username='".$utilisateur."' AND absence_raisonid IN (1,3) "); // on ne décompte pas les jours d'absence injustifiées.
 		while($absence=$DB_site2->fetch_array($absences)){
-			$abs_dated=explode('-',$absence[datedebut]);
-			$abs_datef=explode('-',$absence[datefin]);
+			$abs_dated=explode('-',$absence['datedebut']);
+			$abs_datef=explode('-',$absence['datefin']);
 			$abs_timestampcurr=mktime(0,0,0,$abs_dated[1],$abs_dated[2],$abs_dated[0]);
 			$abs_timestampf=mktime(0,0,0,$abs_datef[1],$abs_datef[2],$abs_datef[0]);
 			while($abs_timestampcurr<=$abs_timestampf){

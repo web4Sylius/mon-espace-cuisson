@@ -1,4 +1,4 @@
-<?
+<?php 
 set_time_limit(1200) ; 
 ini_set (memory_limit, -1) ;
 require "../admin_global.php";

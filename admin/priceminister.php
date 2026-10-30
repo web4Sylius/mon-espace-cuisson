@@ -33,14 +33,14 @@ while ($article=$DB_site2->fetch_array($articles))
 		$couleurs = $DB_site2->query("SELECT * FROM article_caractval ac INNER JOIN caracteristiquevaleur c USING(caractvalid) WHERE ac.artid = '$article[artid]' AND c.caractid = '1'");
 		while ($couleur=$DB_site2->fetch_array($couleurs))
 			{
-			$couleur[libelleFR] = stripslashes($couleur[libelleFR]);
-			$contenu = generationligne($article[artid],$couleur[libelleFR]) ;
+			$couleur['libelleFR'] = stripslashes($couleur['libelleFR']);
+			$contenu = generationligne($article[artid],$couleur['libelleFR']) ;
 			if($contenu!=false) fwrite($handle, stripslashes(html_entity_decode($contenu)));
 			}
 		}
 	else
 		{// on a une ligne
-		$contenu = generationligne($article[artid],$article[coloris]) ;
+		$contenu = generationligne($article[artid],$article['coloris']) ;
 		if($contenu!=false) fwrite($handle, stripslashes(html_entity_decode($contenu)));
 		}
 	
@@ -58,35 +58,35 @@ function generationligne ($artid,$couleur)
 	$article = $DB_site2->query_first("select * from article WHERE artid = '$artid'");
 	
 	$ligne = "";
-	$article[libelleFR] = html_entity_decode($article[libelleFR]);
-	$article[libelleFR] = str_replace("Températures","T°",$article[libelleFR]);	
-	$article[libelleFR] = str_replace("Température","T°",$article[libelleFR]);		
-	$article[libelleFR] = str_replace("températures","T°",$article[libelleFR]);	
-	$article[libelleFR] = str_replace("température","T°",$article[libelleFR]);			
-	$article[libelleFR]=str_replace(";"," ",$article[libelleFR]);
+	$article['libelleFR'] = html_entity_decode($article['libelleFR']);
+	$article['libelleFR'] = str_replace("Températures","T°",$article['libelleFR']);	
+	$article['libelleFR'] = str_replace("Température","T°",$article['libelleFR']);		
+	$article['libelleFR'] = str_replace("températures","T°",$article['libelleFR']);	
+	$article['libelleFR'] = str_replace("température","T°",$article['libelleFR']);			
+	$article['libelleFR']=str_replace(";"," ",$article['libelleFR']);
 	//image
-	$imagecoloris[caractvalid]=0;
-	$article[urlimage] = "" ;
+	$imagecoloris['caractvalid']=0;
+	$article['urlimage'] = "" ;
 	if ($couleur != "")
 		{
 		$coloris = explode("'",$couleur);
 		$infocaractvalid = $DB_site2->query_first("SELECT caractvalid FROM caracteristiquevaleur WHERE caractid = '1' AND libelleFR like '%$coloris[0]%'");
 		$existeimg = $DB_site2->query_first("SELECT image FROM article_caractval WHERE caractvalid = '$infocaractvalid[caractvalid]' AND artid = '$artid'");
-		if ($existeimg[image] == "jpg")
-			$article[urlimage] = "http://$host/configurations/$host/images/produits/article_caractval/$article[artid]_".$infocaractvalid[caractvalid].".$article[image]" ;
-		elseif ($article[image] != "")
-			$article[urlimage] = "http://$host/configurations/$host/images/produits/$article[artid].$article[image]" ;
+		if ($existeimg['image'] == "jpg")
+			$article['urlimage'] = "http://$host/configurations/$host/images/produits/article_caractval/$article[artid]_".$infocaractvalid['caractvalid'].".$article[image]" ;
+		elseif ($article['image'] != "")
+			$article['urlimage'] = "http://$host/configurations/$host/images/produits/$article[artid].$article[image]" ;
 		}
-	elseif ($article[image] != "")
-		$article[urlimage] = "http://$host/configurations/$host/images/produits/$article[artid].$article[image]" ;
+	elseif ($article['image'] != "")
+		$article['urlimage'] = "http://$host/configurations/$host/images/produits/$article[artid].$article[image]" ;
 	//image2
-	$article[urlimage2] = "" ;
+	$article['urlimage2'] = "" ;
 	if ($couleur != "")
 		{
 		$coloris = explode("'",$couleur);
 		$imagecoloris = $DB_site2->query_first("SELECT image, caractvalid FROM caracteristiquevaleur WHERE caractid = '1' AND libelleFR like '%$coloris[0]%'");
-		if ($imagecoloris[image] == "1")
-			$article[urlimage2] = "http://$host/configurations/$host/images/caracteristiquevaleur/zoom/$imagecoloris[caractvalid].jpg" ;
+		if ($imagecoloris['image'] == "1")
+			$article['urlimage2'] = "http://$host/configurations/$host/images/caracteristiquevaleur/zoom/$imagecoloris[caractvalid].jpg" ;
 		}
 	
 	//commentaire et titre
@@ -101,16 +101,16 @@ function generationligne ($artid,$couleur)
 	else
 		$liste_coloris = "$article[coloris]";
 		
-	$commentaire_annonce .= "$liste_coloris".($article[garantie_incluse]!=""?" - Garantie : $article[garantie_incluse]":"")." - Délai de livraison : $article[delailivraison_txt]";	
+	$commentaire_annonce .= "$liste_coloris".($article['garantie_incluse']!=""?" - Garantie : $article[garantie_incluse]":"")." - Délai de livraison : $article[delailivraison_txt]";	
 	
 	//description
-	$article[rangements_txt] = str_replace("<br>"," - ",$article[rangements_txt]);
-	$article[rangements_txt] = str_replace("\n","",$article[rangements_txt]);
-	$article[rangements_txt] = substr($article[rangements_txt], 0, -3);
-	$descarticle = ($article[version_porte]!=""?"Porte : $article[version_porte]":"").($article[rangements_txt]!=""?" - Rangement inclus : $article[rangements_txt]":"");
+	$article['rangements_txt'] = str_replace("<br>"," - ",$article['rangements_txt']);
+	$article['rangements_txt'] = str_replace("\n","",$article['rangements_txt']);
+	$article['rangements_txt'] = substr($article['rangements_txt'], 0, -3);
+	$descarticle = ($article['version_porte']!=""?"Porte : $article[version_porte]":"").($article['rangements_txt']!=""?" - Rangement inclus : $article[rangements_txt]":"");
 	// references
-	$artcode = $article[artcode];
-	if(trim($imagecoloris[caractvalid])!="") $artcode .= "-$imagecoloris[caractvalid]";
+	$artcode = $article['artcode'];
+	if(trim($imagecoloris['caractvalid'])!="") $artcode .= "-$imagecoloris[caractvalid]";
 	//$artcode .= abbreviation_codecouleur($couleur,$article[version_porte]);
 	//$artcode .= "-".abbreviation_versionporte($article[version_porte]);
 	/*if (eregi("combiné",$article[libelleFR]))
@@ -118,7 +118,7 @@ function generationligne ($artid,$couleur)
 	else
 		$artcode .= "D";*/
 			
-	if (eregi("vitrée",$article[version_porte]) and !eregi("pleine",$article[version_porte]))	
+	if (eregi("vitrée",$article['version_porte']) and !eregi("pleine",$article['version_porte']))	
 		{
 		$noir = $DB_site2->query_first("select count(*) from article_caractval inner join caracteristiquevaleur using(caractvalid) where artid = '$article[artid]'  and caractid = '2' and caractvalid = '7'");
 		$inox = $DB_site2->query_first("select count(*) from article_caractval inner join caracteristiquevaleur using(caractvalid) where artid = '$article[artid]'  and caractid = '2' and caractvalid = '8'");
@@ -148,10 +148,10 @@ function generationligne ($artid,$couleur)
 				}	
 			}	
 		}
-	$titrearticle = "$article[libelleFR] $article[gamme] $artcode".($article[nbr_temperature]!=""?" - Nbre T° : $article[nbr_temperature]":"").($article[capacite_bouteilles]!=""?" - Bouteilles : $article[capacite_bouteilles]":"")." - Coloris : ";
+	$titrearticle = "$article[libelleFR] $article[gamme] $artcode".($article['nbr_temperature']!=""?" - Nbre T° : $article[nbr_temperature]":"").($article['capacite_bouteilles']!=""?" - Bouteilles : $article[capacite_bouteilles]":"")." - Coloris : ";
 	$titrearticle .= "$couleur";
 	
-	$req=$DB_site2->query("SELECT * FROM market_place_champs WHERE market_place='Priceminister' AND artcode='$article[artcode]' AND champ='Titre' AND caractvalid=".intval($imagecoloris[caractvalid]));
+	$req=$DB_site2->query("SELECT * FROM market_place_champs WHERE market_place='Priceminister' AND artcode='$article[artcode]' AND champ='Titre' AND caractvalid=".intval($imagecoloris['caractvalid']));
 	$mpc=$DB_site2->fetch_array($req);
 	//if($mpc['enabled']==0) return false;
 	//$titrearticle=$mpc['valeur'];
@@ -159,14 +159,14 @@ function generationligne ($artid,$couleur)
 	$optionporte = $DB_site2->query_first("SELECT COUNT(*) FROM article_caractval WHERE artid = '$article[artid]' AND caractvalid = '13'");	
 	if ($optionporte[0] > 0)
 		$descarticle .= " - Charnières Porte : à droite ( à Gauche sur simple demande)";
-	$descarticle .= ($article[temperature_cave]!=""?" - T° installation cave : $article[temperature_cave]":"").($article[conso_euro]!=""?" - Consommation €/an : $article[conso_euro] TTC":"");
-	$descarticle .= ($article[regulation]!=""?" - Régulation : $article[regulation]":"").($article[affichage]!=""?" - Affichage : $article[affichage]":"").($article[hygrometrie]!=""?" - Hygrométrie : ".stripslashes($article[hygrometrie]):"").($article[serrure]!=""?" - Serrures : $article[serrure]":"").($article[eclairage]!=""?" - Eclairage : $article[eclairage]":"").($article[interrupteur]!=""?" - Interrupteur Marche/Arrêt : $article[interrupteur]":"");
+	$descarticle .= ($article['temperature_cave']!=""?" - T° installation cave : $article[temperature_cave]":"").($article['conso_euro']!=""?" - Consommation €/an : $article[conso_euro] TTC":"");
+	$descarticle .= ($article['regulation']!=""?" - Régulation : $article[regulation]":"").($article['affichage']!=""?" - Affichage : $article[affichage]":"").($article['hygrometrie']!=""?" - Hygrométrie : ".stripslashes($article['hygrometrie']):"").($article['serrure']!=""?" - Serrures : $article[serrure]":"").($article['eclairage']!=""?" - Eclairage : $article[eclairage]":"").($article['interrupteur']!=""?" - Interrupteur Marche/Arrêt : $article[interrupteur]":"");
 	//prix de vente TTC
 	$port = $DB_site2->query_first("SELECT p.prix as prixport, a.poid FROM fraisport p, article a WHERE p.paysid = '57' AND a.poid between p.poiddebut and p.poidfin AND a.artid = '$article[artid]'");
-	$prixvente = $article[prix] + $port[prixport] - 36;	
+	$prixvente = $article['prix'] + $port['prixport'] - 36;	
 	$prixvente = number_format($prixvente, 2, ',', '');
 	//prix de vente TTC
-	$prixpublic = ($article[prixconseilleht]*1.196) + $port[prixport];	
+	$prixpublic = ($article['prixconseilleht']*1.196) + $port['prixport'];	
 	$prixpublic = number_format($prixpublic, 2, ',', '');	
 		
 	//debut de la ligne
@@ -234,7 +234,7 @@ function generationligne ($artid,$couleur)
 
 	global $_GET;
 	if(isset($_GET['tr'])){
-	      $DB_site2->query("INSERT INTO market_place_champs SET market_place='Priceminister', artcode='$article[artcode]', champ='Titre', valeur='$titrearticle', limite=255, enabled=1, caractvalid=".intval($imagecoloris[caractvalid]));
+	      $DB_site2->query("INSERT INTO market_place_champs SET market_place='Priceminister', artcode='$article[artcode]', champ='Titre', valeur='$titrearticle', limite=255, enabled=1, caractvalid=".intval($imagecoloris['caractvalid']));
 	      $DB_site2->query("INSERT INTO market_place_champs SET market_place='Priceminister', artcode='$article[artcode]', champ='Type de Produit', valeur='Cave à vin', limite=50, enabled=1, caractvalid=0");
 	}
 	return $ligne;

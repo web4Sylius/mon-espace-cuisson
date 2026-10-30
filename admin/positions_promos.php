@@ -111,8 +111,8 @@ if (!isset($action) or $action == "")
 				}
 			}
 		$art=$DB_site2->query_first("SELECT $libelle, prix FROM article WHERE artid = '$rs_promo[artid]'");
-		$art[prix] = number_format($art[prix], 2, ",", " ") ;
-		$rs_promo[prix] = number_format($rs_promo[prix], 2, ",", " ") ;
+		$art['prix'] = number_format($art['prix'], 2, ",", " ") ;
+		$rs_promo['prix'] = number_format($rs_promo['prix'], 2, ",", " ") ;
 		$rowalt = "td_".getrowbg();
 		echo "<tr><td></td>
 				<td class=\"$rowalt\" align=\"center\">$images_position</td>

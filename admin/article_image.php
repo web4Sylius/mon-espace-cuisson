@@ -64,7 +64,7 @@ else
 					
 $article=$DB_site2->query_first("select * from article where artid = '$artid'") ;
 
-if ($article[image] != "" or $article[image] != NULL)
+if ($article['image'] != "" or $article['image'] != NULL)
     {
     $imagedebase = "<table>
                         <tr>
@@ -102,7 +102,7 @@ while ($articleimage=$DB_site2->fetch_array($articleimages)){
     $ratio = "";
     if($articleimage['ambiance']==1){ // check le ratio de l'image d'ambiance
         $ratio = "<p>Le ratio largeur / hauteur doit être de 1.71</p>";
-        $ambImg = getimagesize($imghost."configurations/$host/images/produits/".$articleimage[artid]."_".$articleimage[articlephotoid].".".$articleimage[image]);
+        $ambImg = getimagesize($imghost."configurations/$host/images/produits/".$articleimage[artid]."_".$articleimage['articlephotoid'].".".$articleimage['image']);
         if(round($ambImg[0]/$ambImg[1], 2) != 1.71 && round($ambImg[0]/$ambImg[1], 2) != floatval(1.72) )
             $ratio = "<p style=\"color:red;\">Le ratio largeur / hauteur doit être de 1.71.<br>Veuillez changer la photo.</p>";
     }

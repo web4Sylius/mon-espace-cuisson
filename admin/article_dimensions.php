@@ -100,7 +100,7 @@ $contenu_onglet .= "
 . "</fieldset>";
 	$article=$DB_site2->query_first("select a.*, spec.* from article AS a INNER JOIN ".$table_type[0]." AS spec USING(artid)  where artid = '$artid'");
     $checkedfab0=$checkedfab1=$checkedfab2=$checkedfab3="";
-    ${"checkedfab".$article[paysfabrication]}="selected";
+    ${"checkedfab".$article['paysfabrication']}="selected";
 
     $paysidfabopt="<option value=\"0\"></option>";
     $reqpays=$DB_site2->query("SELECT libelle, paysid FROM pays ORDER BY libelle");

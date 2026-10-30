@@ -167,7 +167,7 @@ if ($action == "import")
 							// usages
 							$rechercheusages=$DB_site2->query("SELECT * FROM recherche_usage");
 							while ($rechercheusage=$DB_site2->fetch_array($rechercheusages)) {
-								$currentvalue = "rechercheusage".$rechercheusage[rechercheusageid] ;
+								$currentvalue = "rechercheusage".$rechercheusage['rechercheusageid'] ;
 								$artrechercheusage=$DB_site2->query_first("SELECT * FROM articlerecherche_usage WHERE artid = '$article[artid]' and rechercheusageid = '$rechercheusage[rechercheusageid]'");
 								if ($artrechercheusage[artid] == $article[artid]) {
 									echo "UPDATE articlerecherche_usage SET selectionne = '${$currentvalue}' WHERE artid = '$article[artid]' and rechercheusageid = '$rechercheusage[rechercheusageid]'<br>" ;
@@ -181,7 +181,7 @@ if ($action == "import")
 							// capacité bouteilles
 							$recherchecapacitebouteilles=$DB_site2->query("SELECT * FROM recherche_capacitebouteilles");
 							while ($recherchecapacitebouteille=$DB_site2->fetch_array($recherchecapacitebouteilles)) {
-								$currentvalue = "recherchecapacitebouteilles".$recherchecapacitebouteille[recherchecapacitebouteillesid] ;
+								$currentvalue = "recherchecapacitebouteilles".$recherchecapacitebouteille['recherchecapacitebouteillesid'] ;
 								$artrecherchecapacitebouteille=$DB_site2->query_first("SELECT * FROM articlerecherche_capacitebouteilles WHERE artid = '$article[artid]' and recherchecapacitebouteillesid = '$recherchecapacitebouteille[recherchecapacitebouteillesid]'");
 								if ($artrecherchecapacitebouteille[artid] == $article[artid]) {
 									echo "UPDATE articlerecherche_capacitebouteilles SET selectionne = '${$currentvalue}' WHERE artid = '$article[artid]' and recherchecapacitebouteillesid = '$recherchecapacitebouteille[recherchecapacitebouteillesid]'<br>" ;
@@ -195,7 +195,7 @@ if ($action == "import")
 							// emplacement
 							$rechercheemplacements=$DB_site2->query("SELECT * FROM recherche_emplacement");
 							while ($rechercheemplacement=$DB_site2->fetch_array($rechercheemplacements)) {
-								$currentvalue = "rechercheemplacement".$rechercheemplacement[rechercheemplacementid] ;
+								$currentvalue = "rechercheemplacement".$rechercheemplacement['rechercheemplacementid'] ;
 								$artrechercheemplacement=$DB_site2->query_first("SELECT * FROM articlerecherche_emplacement WHERE artid = '$article[artid]' and rechercheemplacementid = '$rechercheemplacement[rechercheemplacementid]'");
 								if ($artrechercheemplacement[artid] == $article[artid]) {
 									echo "UPDATE articlerecherche_emplacement SET selectionne = '${$currentvalue}' WHERE artid = '$article[artid]' and rechercheemplacementid = '$rechercheemplacement[rechercheemplacementid]'<br>" ;
@@ -209,7 +209,7 @@ if ($action == "import")
 							// mode rangement
 							$recherchemoderangements=$DB_site2->query("SELECT * FROM recherche_moderangement");
 							while ($recherchemoderangement=$DB_site2->fetch_array($recherchemoderangements)) {
-								$currentvalue = "recherchemoderangement".$recherchemoderangement[recherchemoderangementid] ;
+								$currentvalue = "recherchemoderangement".$recherchemoderangement['recherchemoderangementid'] ;
 								$artrecherchemoderangement=$DB_site2->query_first("SELECT * FROM articlerecherche_moderangement WHERE artid = '$article[artid]' and recherchemoderangementid = '$recherchemoderangement[recherchemoderangementid]'");
 								if ($artrecherchemoderangement[artid] == $article[artid]) {
 									echo "UPDATE articlerecherche_moderangement SET selectionne = '${$currentvalue}' WHERE artid = '$article[artid]' and recherchemoderangementid = '$recherchemoderangement[recherchemoderangementid]'<br>" ;
@@ -223,7 +223,7 @@ if ($action == "import")
 							 // type porte
 							$recherchetypeportes=$DB_site2->query("SELECT * FROM recherche_typeporte");
 							while ($recherchetypeporte=$DB_site2->fetch_array($recherchetypeportes)) {
-								$currentvalue = "recherchetypeporte".$recherchetypeporte[recherchetypeporteid] ;
+								$currentvalue = "recherchetypeporte".$recherchetypeporte['recherchetypeporteid'] ;
 								$artrecherchetypeporte=$DB_site2->query_first("SELECT * FROM articlerecherche_typeporte WHERE artid = '$article[artid]' and recherchetypeporteid = '$recherchetypeporte[recherchetypeporteid]'");
 								if ($artrecherchetypeporte[artid] == $article[artid]) {
 									echo "UPDATE articlerecherche_typeporte SET selectionne = '${$currentvalue}' WHERE artid = '$article[artid]' and recherchetypeporteid = '$recherchetypeporte[recherchetypeporteid]'<br>" ;
@@ -237,7 +237,7 @@ if ($action == "import")
 							// coloris
 							$recherchecoloriss=$DB_site2->query("SELECT * FROM recherche_coloris");
 							while ($recherchecoloris=$DB_site2->fetch_array($recherchecoloriss)) {
-								$currentvalue = "recherchecoloris".$recherchecoloris[recherchecolorisid] ;
+								$currentvalue = "recherchecoloris".$recherchecoloris['recherchecolorisid'] ;
 								$artrecherchecoloris=$DB_site2->query_first("SELECT * FROM articlerecherche_coloris WHERE artid = '$article[artid]' and recherchecolorisid = '$recherchecoloris[recherchecolorisid]'");
 								if ($artrecherchecoloris[artid] == $article[artid]) {
 									echo "UPDATE articlerecherche_coloris SET selectionne = '${$currentvalue}' WHERE artid = '$article[artid]' and recherchecolorisid = '$recherchecoloris[recherchecolorisid]'<br>" ;

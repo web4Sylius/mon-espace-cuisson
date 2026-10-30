@@ -499,7 +499,7 @@ $lignefactures=$DB_site2->query("SELECT * FROM lignefacture WHERE factureid = '$
 while ($lignefacture=$DB_site2->fetch_array($lignefactures)){
       $article=$DB_site2->query_first("SELECT * FROM article a, article_marque am, marque m WHERE am.artid=a.artid AND am.marqueid=m.marqueid AND a.artid=".$lignefacture['artid']);
       $envoi=$DB_site2->query_first("SELECT * FROM envoi_fournisseur_ligne WHERE type='fourn' AND ligne_facture_id=$lignefacture[lignefactureid]");
-      $caracts=$DB_site2->query("SELECT * FROM lignefacturecaracteristique WHERE paht<>0 AND lignefactureid=".$lignefacture[lignefactureid]);
+      $caracts=$DB_site2->query("SELECT * FROM lignefacturecaracteristique WHERE paht<>0 AND lignefactureid=".$lignefacture['lignefactureid']);
       $lignestate=1;
       $style="";
       if($envoi['date']!=""){
@@ -516,7 +516,7 @@ while ($lignefacture=$DB_site2->fetch_array($lignefactures)){
       foreach($lieustock as $lieu=>$qtedispo) 
 	if($qtedispo>=$lignefacture[qte]){
 	  $paramstock[]=intval($lieu);
-	  $chkstock[$lieu][$article[artcode]." (".$article[artcode_eurocave].")"]=$qtedispo;
+	  $chkstock[$lieu][$article['artcode']." (".$article['artcode_eurocave'].")"]=$qtedispo;
 	}
       $paramstock=array_unique($paramstock);
       $jsstock="selstock(this,'".implode(",",$paramstock)."');";
@@ -525,7 +525,7 @@ while ($lignefacture=$DB_site2->fetch_array($lignefactures)){
       $img="";
       $path="../configurations/".$host."/images/produits/br/".$lignefacture['artid'].".jpg";
       if(file_exists($path)) $img="<img src=\"$path\" style=\"width:30px;\" onmouseover=\"this.style.position='absolute';this.style.width='200px';\" onmouseout=\"this.style.position='relative';this.style.width='30px';\">";
-      if($article[libelleFR]=="") $article[libelleFR]=$lignefacture['libelle'];
+      if($article['libelleFR']=="") $article['libelleFR']=$lignefacture['libelle'];
       if($lot[0]==0){
 	print "<tr>
 	  <td rowspan=\"$rowspan\" style=\"$style\"><input type=\"checkbox\" name=\"produits[]\" value=\"$lignefacture[lignefactureid]\" onclick=\"sumprod();showstep('fourn2');setcmdtype();$jsstock showlink(this,new Array('".implode("','",$fournlink[$article['marqueid']])."'));\"><input type=\"hidden\" name=\"envoi_$lignefacture[lignefactureid]\" value=\"$lignestate\"></td>
@@ -540,7 +540,7 @@ while ($lignefacture=$DB_site2->fetch_array($lignefactures)){
 
 	while($caract=$DB_site2->fetch_array($caracts)){
 	  print "<tr class=\"caracts\">
-		     <td align=\"right\"><input type=\"checkbox\" name=\"caract_".$lignefacture[lignefactureid]."[]\" value=\"$caract[caractvalid]\" onclick=\"sumprod()\"></td>
+		     <td align=\"right\"><input type=\"checkbox\" name=\"caract_".$lignefacture['lignefactureid']."[]\" value=\"$caract[caractvalid]\" onclick=\"sumprod()\"></td>
 		     <td>".$caract['libelle_caract']."<br>".stripslashes($caract['libelle_caractval'])."</td>
 		     <td><input type=\"text\" name=\"caractval[$caract[caractvalid]]\" value=\"".$caract['paht']."\" size=\"5\"></td>
 		  </tr>";
@@ -874,7 +874,7 @@ while($lieu=$DB_site2->fetch_array($requete)){
     $fournmids=explode(',',$lieu['marques']);
     foreach($marqueids as $mid){
       if(in_array($mid,$fournmids)){
-	print "<tr><td><input type=\"radio\" name=\"lieutrspt\" value=\"fourn".$lieu[id]."\" onclick=\"showstep('trspt6');\"></td><td colspan=\"2\" title=\"".$lieu['nom']." ".$lieu['prenom']." - ".$lieu['adresse1']." - ".$lieu['cp']." ".$lieu['ville']."\">".ucfirst($lieu['societe'])." ".$lieu['fonction']." (".$lieu['ville'].")</td></tr>";
+	print "<tr><td><input type=\"radio\" name=\"lieutrspt\" value=\"fourn".$lieu['id']."\" onclick=\"showstep('trspt6');\"></td><td colspan=\"2\" title=\"".$lieu['nom']." ".$lieu['prenom']." - ".$lieu['adresse1']." - ".$lieu['cp']." ".$lieu['ville']."\">".ucfirst($lieu['societe'])." ".$lieu['fonction']." (".$lieu['ville'].")</td></tr>";
 // 	break;
       }
     }
@@ -882,7 +882,7 @@ while($lieu=$DB_site2->fetch_array($requete)){
 
 $r=$DB_site2->query("SELECT f.* FROM envoi_fournisseur ef INNER JOIN fournisseur f ON(f.id=ef.enlev) WHERE facturid=$facturid AND ef.type='fourn'");
 while($lieu=$DB_site2->fetch_array($r)){
-    print "<tr><td><input type=\"radio\" name=\"lieutrspt\" value=\"fourn".$lieu[id]."\" onclick=\"showstep('trspt6');\"></td><td colspan=\"2\" title=\"".$lieu['nom']." ".$lieu['prenom']." - ".$lieu['adresse1']." - ".$lieu['cp']." ".$lieu['ville']."\">STOCK ".ucfirst($lieu['societe'])." ".$lieu['fonction']." (".$lieu['ville'].")</td></tr>";
+    print "<tr><td><input type=\"radio\" name=\"lieutrspt\" value=\"fourn".$lieu['id']."\" onclick=\"showstep('trspt6');\"></td><td colspan=\"2\" title=\"".$lieu['nom']." ".$lieu['prenom']." - ".$lieu['adresse1']." - ".$lieu['cp']." ".$lieu['ville']."\">STOCK ".ucfirst($lieu['societe'])." ".$lieu['fonction']." (".$lieu['ville'].")</td></tr>";
 }
 
 /*<tr><td><input type=\"radio\" name=\"lieutrspt\" value=\"eurocave\"></td><td>Eurocave</td><td></td></tr>

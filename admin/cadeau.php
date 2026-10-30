@@ -19,7 +19,7 @@ function arborescence($parentid)
     $arbos=$DB_site2->query($requete_arbo);
     while ($arbo=$DB_site2->fetch_array($arbos)) 
         {
-        if($arbo[catid]==$sel_catid) 
+        if($arbo['catid']==$sel_catid) 
             {
             $selected="selected";
             $libellecat=$arbo[$libelle];
@@ -29,7 +29,7 @@ function arborescence($parentid)
             {
             $selected="";
             $select.="<option value=\"$arbo[catid]\" style=\"background:".$arbo['color'].";\">$niveau $arbo[$libelle]</option>";
-            arborescence($arbo[catid]);
+            arborescence($arbo['catid']);
             }
         }
     $niveau=substr($niveau , 0 , strlen($niveau)-4 );
@@ -450,7 +450,7 @@ if ( !isset($action) or $action == "" )
             echo "  <td class=\"$rowalt\" align=\"right\">$rs_cadeaux[valeurcadeau] $unite_valeur $appliquer</td>";
 	    if($rs_cadeaux['cadeau_artid']!=0){
 	      $artoffert=$DB_site2->query_first("SELECT artcode FROM article WHERE artid=".$rs_cadeaux['cadeau_artid']);
-	      echo "  <td class=\"$rowalt\">".substr($artoffert[artcode],4)."</td>";
+	      echo "  <td class=\"$rowalt\">".substr($artoffert['artcode'],4)."</td>";
 	    }else{
 	      echo "  <td class=\"$rowalt\">Aucun</td>";
 	    }
@@ -477,10 +477,10 @@ if ( !isset($action) or $action == "" )
 	    echo "  <td class=\"$rowalt\">$txt</td>";
 
             echo "  <td class=\"$rowalt\" align=\"right\">"
-                     .($rs_cadeaux[nbrfois]==0?"<font color=red>Illimité</font>":$rs_cadeaux[nbrfois])."</td>";
+                     .($rs_cadeaux['nbrfois']==0?"<font color=red>Illimité</font>":$rs_cadeaux['nbrfois'])."</td>";
             echo "  <td class=\"$rowalt\" align=\"right\">"
                      .$nb_fois_utilise[0]."/"
-                     .($rs_cadeaux[nbrmaxi]==0?"Illimité":$rs_cadeaux[nbrmaxi])."</td>";
+                     .($rs_cadeaux['nbrmaxi']==0?"Illimité":$rs_cadeaux['nbrmaxi'])."</td>";
 
 	    echo "<td class=\"$rowalt\" align=\"right\">".$rs_cadeaux['minimum']."</td>";
 
@@ -492,7 +492,7 @@ if ( !isset($action) or $action == "" )
 	    echo "<td class=\"$rowalt\">$nomutilisateur</td>";
 
             echo "  <td class=\"$rowalt\" align=\"center\">"
-                     .($rs_cadeaux[datefin]!=0?date("d/m/Y", $rs_cadeaux[datefin]):"Aucune")."</td>";
+                     .($rs_cadeaux['datefin']!=0?date("d/m/Y", $rs_cadeaux['datefin']):"Aucune")."</td>";
 
         $rayons = $DB_site2->query( "SELECT * 
                                     FROM categorie_cadeau cc, categorie c 
@@ -522,7 +522,7 @@ if ( !isset($action) or $action == "" )
             echo "  <td class=\"$rowalt\" align=\"center\">" ;
             while ($article=$DB_site2->fetch_array($articles))
                 {
-                $artic = $article[artcode] ;
+                $artic = $article['artcode'] ;
                 if (strlen($artic) > 20)
                     {
                     $artic = substr($artic, 0, 20) ;
@@ -648,7 +648,7 @@ elseif ( $action == "ajouter2" )
             // On teste que ce code n'existe pas déja
             $code_doublon = $DB_site2->query_first( "SELECT cadeauid FROM cadeau
                                                      WHERE code='$code' " );
-        } while( $code_doublon[cadeauid] != "" );
+        } while( $code_doublon['cadeauid'] != "" );
 
         $txt_code = $code;  
     }
@@ -669,7 +669,7 @@ elseif ( $action == "ajouter2" )
         {   // On teste que ce code n'existe pas déja
             $code_doublon = $DB_site2->query_first( "SELECT cadeauid FROM cadeau
                                                      WHERE code='$txt_code' AND site_code='".$_GET['site_code']."'" );
-            if( $code_doublon[cadeauid] != "" )
+            if( $code_doublon['cadeauid'] != "" )
             {
                 echo "<tr><td align=\"center\">Ce <b>code</b> existe déja !</td></tr>";     
                 $erreur_saisie = 1;
@@ -1086,8 +1086,8 @@ JS;
 			    $req=$DB_site2->query("SELECT cv.libelleFR AS caractvalname,c.libelleFR AS caractname,cv.caractvalid FROM caracteristiquevaleur cv INNER JOIN caracteristique c ON(c.caractid=cv.caractid) ORDER BY c.caractid, cv.caractvalid");
 			    $lastcaract="";
 			    while($opt=$DB_site2->fetch_array($req)){
-					if($lastcaract!=$opt['caractname']) $divopt.="<p><b>".stripslashes($opt[caractname])."</b></p>";
-					$divopt.="&nbsp; <a href=\"javascript:addcaract($opt[caractvalid],'$opt[caractname] : $opt[caractvalname]')\" title=\"Ajouter\">".stripslashes($opt[caractvalname])."</a><br>";
+					if($lastcaract!=$opt['caractname']) $divopt.="<p><b>".stripslashes($opt['caractname'])."</b></p>";
+					$divopt.="&nbsp; <a href=\"javascript:addcaract($opt[caractvalid],'$opt[caractname] : $opt[caractvalname]')\" title=\"Ajouter\">".stripslashes($opt['caractvalname'])."</a><br>";
 					$lastcaract=$opt['caractname'];
 			    }
 
@@ -1349,14 +1349,14 @@ if ( $action == "editer" )
     else
     {   // Premier affichage du formulaire
     
-        $txt_nbrfois = $cadeau[nbrfois];
-        $txt_nbrmaxi = $cadeau[nbrmaxi];
+        $txt_nbrfois = $cadeau['nbrfois'];
+        $txt_nbrmaxi = $cadeau['nbrmaxi'];
 
-        if( $cadeau[nbrfois] == 0 ) {
+        if( $cadeau['nbrfois'] == 0 ) {
             $checked_opt_nbrfois_1 = "checked";
             $txt_nbrfois = "";
         }
-        if( $cadeau[nbrmaxi] == 0 ) {
+        if( $cadeau['nbrmaxi'] == 0 ) {
             $checked_opt_nbrmaxi_1 = "checked";
             $txt_nbrmaxi = "";
         }
@@ -1372,13 +1372,13 @@ if ( $action == "editer" )
 	      </tr>
               <tr><td align=\"right\">Type de bon de réduction : </td> 
                   <td>";
-                  if( $cadeau[typecadeauid] == 0 )
+                  if( $cadeau['typecadeauid'] == 0 )
                   {
                       echo "en Euros";
                       $tmp_valeur = "Valeur (Euros) : ";
-                      $tmp_unite_valeur = "&euro; TTC &nbsp;".round($cadeau[valeurcadeau]/(1+$txtva[0]/100),2)."&euro; HT";
+                      $tmp_unite_valeur = "&euro; TTC &nbsp;".round($cadeau['valeurcadeau']/(1+$txtva[0]/100),2)."&euro; HT";
                   }
-                  if( $cadeau[typecadeauid] == 1 )
+                  if( $cadeau['typecadeauid'] == 1 )
                   {
                       echo "en Pourcents";
                       $tmp_valeur = "Valeur (Pourcents) : ";
@@ -1392,7 +1392,7 @@ if ( $action == "editer" )
             $req_categorie = $DB_site2->query_first( "SELECT libelleFR
                                                   FROM categorie_cadeau cc, categorie c 
                                                   WHERE cc.catid = c.catid and cc.cadeauid = '$cadeauid'" );
-            if ($req_categorie[libelleFR] != '')
+            if ($req_categorie['libelleFR'] != '')
                 {
                 echo "
                   <tr>
@@ -1405,7 +1405,7 @@ if ( $action == "editer" )
             $req_article = $DB_site2->query_first("SELECT artcode
                                                FROM article_cadeau ac, article a 
                                                WHERE ac.artid = a.artid and ac.cadeauid = '$cadeauid'");
-            if ($req_article[libelleFR] != '')
+            if ($req_article['libelleFR'] != '')
                 {
                 echo "
                   <tr>
@@ -1430,16 +1430,16 @@ if ( $action == "editer" )
                   <td><input type=\"radio\" name=\"opt_nbrmaxi\" value=\"1\" $checked_opt_nbrmaxi_1>Illimité</td>
               </tr>";
     
-    if( $cadeau[datefin] == 0 )
+    if( $cadeau['datefin'] == 0 )
         $tmp_datefin = "";
     else
-        $tmp_datefin = date( "d/m/Y", $cadeau[datefin] );
+        $tmp_datefin = date( "d/m/Y", $cadeau['datefin'] );
     echo "    <tr><td align=\"right\">Date de fin incluse : </td>
                   <td><input type=\"text\" id=\"datefin\" name=\"datefin\" value=\"$tmp_datefin\" size=\"10\" onclick=\"calendrier_show(this.id,this.value)\" readonly> </td>
                   <td><input type=\"button\" value=\"Illimité\" onclick=\"document.getElementsByName('datefin')[0].value='';\"></td>
               </tr>
               <tr><td></td></tr>";
-    if($cadeau[appliquer]=="PPC"){
+    if($cadeau['appliquer']=="PPC"){
         $checkedappliqueroui="checked";
         $checkedappliquernon="";
     } else {
@@ -1454,14 +1454,14 @@ if ( $action == "editer" )
               </tr>";
 
     $offert=array();
-    if($cadeau[cadeau_artid]!=0) $offert=$DB_site2->query_first("SELECT * FROM article WHERE artid=".$cadeau['cadeau_artid']);
+    if($cadeau['cadeau_artid']!=0) $offert=$DB_site2->query_first("SELECT * FROM article WHERE artid=".$cadeau['cadeau_artid']);
 
     $divopt="<div id=\"caractlist\" style=\"position:absolute;background-color:#CCCCCC;text-align:left;display:none;z-index:999;\"><img src=\"images/moins.gif\" align=\"left\" style=\"cursor:pointer;\" onclick=\"document.getElementById('caractlist').style.display='none';\">";
     $req=$DB_site2->query("SELECT cv.libelleFR AS caractvalname,c.libelleFR AS caractname,cv.caractvalid FROM caracteristiquevaleur cv INNER JOIN caracteristique c ON(c.caractid=cv.caractid) ORDER BY c.caractid, cv.caractvalid");
     $lastcaract="";
     while($opt=$DB_site2->fetch_array($req)){
-	if($lastcaract!=$opt['caractname']) $divopt.="<p><b>".stripslashes($opt[caractname])."</b></p>";
-	$divopt.="&nbsp; <a href=\"javascript:addcaract($opt[caractvalid],'$opt[caractname] : $opt[caractvalname]')\" title=\"Ajouter\">".stripslashes($opt[caractvalname])."</a><br>";
+	if($lastcaract!=$opt['caractname']) $divopt.="<p><b>".stripslashes($opt['caractname'])."</b></p>";
+	$divopt.="&nbsp; <a href=\"javascript:addcaract($opt[caractvalid],'$opt[caractname] : $opt[caractvalname]')\" title=\"Ajouter\">".stripslashes($opt['caractvalname'])."</a><br>";
 	$lastcaract=$opt['caractname'];
     }
     $divopt.="</div>";

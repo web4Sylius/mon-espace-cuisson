@@ -904,8 +904,8 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
 
     $curlOptions = $this->configureCurlOptions($action, $converted, $dataHandle, $contentMd5);
 
-    if (is_null($curlOptions[CURLOPT_RETURNTRANSFER]) || !$curlOptions[CURLOPT_RETURNTRANSFER]) {
-      $curlOptions[CURLOPT_RETURNTRANSFER] = true;
+    if (is_null($curlOptions['CURLOPT_RETURNTRANSFER']) || !$curlOptions['CURLOPT_RETURNTRANSFER']) {
+      $curlOptions['CURLOPT_RETURNTRANSFER'] = true;
     }
 
     $this->curlClient = curl_init();
@@ -1072,7 +1072,7 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
       $proxy = $this->config['ProxyHost'];
       $proxy .= ':' . ($this->config['ProxyPort'] == -1 ? '80' : $this->config['ProxyPort']);
 
-      $curlOptions[CURLOPT_PROXY] = $proxy;
+      $curlOptions['CURLOPT_PROXY'] = $proxy;
     }
 
     $serviceUrl = $this->config['ServiceURL'];
@@ -1094,29 +1094,29 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
 
       $serviceUrl .= '?' . $this->getParametersAsString($converted[CONVERTED_PARAMETERS_KEY]);
 
-      $curlOptions[CURLOPT_URL] = $serviceUrl;
+      $curlOptions['CURLOPT_URL'] = $serviceUrl;
       
       $header[] = 'Expect: ';
       $header[] = 'Accept: ';
       $header[] = 'Transfer-Encoding: chunked';
       $header[] = 'Content-MD5: ' . $contentMd5;
       
-      $curlOptions[CURLOPT_HTTPHEADER] = array_merge($header, $converted[CONVERTED_HEADERS_KEY]);
+      $curlOptions['CURLOPT_HTTPHEADER'] = array_merge($header, $converted[CONVERTED_HEADERS_KEY]);
 
       rewind($streamHandle);
-      $curlOptions[CURLOPT_INFILE] = $streamHandle;
+      $curlOptions['CURLOPT_INFILE'] = $streamHandle;
 
-      $curlOptions[CURLOPT_UPLOAD] = true;
+      $curlOptions['CURLOPT_UPLOAD'] = true;
 
-      $curlOptions[CURLOPT_CUSTOMREQUEST] = self::REQUEST_TYPE;
+      $curlOptions['CURLOPT_CUSTOMREQUEST'] = self::REQUEST_TYPE;
 
     } else if (!($requestType === RequestType::UNKNOWN)) {
-      $curlOptions[CURLOPT_URL] = $this->config['ServiceURL'];
-      $curlOptions[CURLOPT_POSTFIELDS] = $this->getParametersAsString($converted[CONVERTED_PARAMETERS_KEY]);
+      $curlOptions['CURLOPT_URL'] = $this->config['ServiceURL'];
+      $curlOptions['CURLOPT_POSTFIELDS'] = $this->getParametersAsString($converted[CONVERTED_PARAMETERS_KEY]);
 
       if ($requestType == RequestType::POST_DOWNLOAD) {
         $this->responseBodyContents = $streamHandle;
-        $curlOptions[CURLOPT_WRITEFUNCTION] = array ($this, 'responseCallback');
+        $curlOptions['CURLOPT_WRITEFUNCTION'] = array ($this, 'responseCallback');
       }
     } else {
       throw new InvalidArgumentException("$action is not a valid request type.");

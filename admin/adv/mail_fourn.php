@@ -73,7 +73,7 @@ function mail_fourn($adv, $preview = false){
           $file = $DB_site2->query_first("SELECT id FROM user_files WHERE facturid='$facturid' AND name ='".mysqli_real_escape_string($DB_site2->link_id,$adv->destinataire)."' AND parent=0");
           $files = $DB_site2->query("SELECT * FROM user_files WHERE facturid='$facturid' AND parent='".$file[0]."'");
           while($the_file = $DB_site2->fetch_array($files)){
-              $name = $the_file[id].".".$the_file[ext];
+              $name = $the_file['id'].".".$the_file['ext'];
               unlink(__DIR__."/../userfiles/".$name);
           }
           $DB_site2->query("DELETE FROM user_files WHERE facturid='$facturid' AND  parent='".$file[0]."'");
@@ -1057,7 +1057,7 @@ function mail_fourn($adv, $preview = false){
 	if($adv->fields['fournisseur']!="0"){
 	    $result=$mail->sendmail();
 	    
-      $DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info[username]."', `to`='".$mail->destinataire."', `from` = '".$user_info['mail_contactFR']."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', facturid=".$facturid.", userid='".$userid[0]."', fournisseur='".mysqli_real_escape_string($DB_site2->link_id,$adv->destinataire)."', uniqueid='".$mail->uniqueid."', compta ='non'");
+      $DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info['username']."', `to`='".$mail->destinataire."', `from` = '".$user_info['mail_contactFR']."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', facturid=".$facturid.", userid='".$userid[0]."', fournisseur='".mysqli_real_escape_string($DB_site2->link_id,$adv->destinataire)."', uniqueid='".$mail->uniqueid."', compta ='non'");
 
       /// enregistre les pièces jointes :
           $mailid = $DB_site2->insert_id();
@@ -1072,7 +1072,7 @@ function mail_fourn($adv, $preview = false){
                $i++;
           }
 
-       $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='".addslashes("Passage de commande à ".$adv->destinataire."<br>".$mail->body)."'");
+       $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info['username']."', suivi='".addslashes("Passage de commande à ".$adv->destinataire."<br>".$mail->body)."'");
 
 	}
 	

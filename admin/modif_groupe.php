@@ -184,8 +184,8 @@ print "<div class=\"table_factures\" style=\"text-align:left;\">
   <tr><td colspan=\"5\"><a href=\"javascript:checkall('marque',true);\">Tout cocher</a> <a href=\"javascript:checkall('marque',false);\">Tout décocher</a></td></tr>
   <tr>";
 while($m=$DB_site2->fetch_array($requete)){
-    print "<td><input type=\"hidden\" id=\"marquename_$m[marqueid]\" value=\"$m[libelle]\"><input type=\"checkbox\" name=\"marque[]\" onclick=\"updmarque()\" value=\"$m[marqueid]\"".(in_array($m[marqueid],$_POST['marque'])?" checked":"")."> $m[libelle]</td>";
-    if(in_array($m[marqueid],$_POST['marque'])) $list.=", ".$m['libelle'];
+    print "<td><input type=\"hidden\" id=\"marquename_$m[marqueid]\" value=\"$m[libelle]\"><input type=\"checkbox\" name=\"marque[]\" onclick=\"updmarque()\" value=\"$m[marqueid]\"".(in_array($m['marqueid'],$_POST['marque'])?" checked":"")."> $m[libelle]</td>";
+    if(in_array($m['marqueid'],$_POST['marque'])) $list.=", ".$m['libelle'];
     $c++;
     if($c==5){
 	$c=0;
@@ -205,7 +205,7 @@ $list="";
 $cats=$DB_site2->query("SELECT catid,libelleFR FROM categorie WHERE parentid=0 ORDER BY position");
 while($cat=$DB_site2->fetch_array($cats)){
   $sscattxt="";
-  if(in_array($cat[catid],$_POST['cat'])) $list.=", ".$cat['libelleFR'];
+  if(in_array($cat['catid'],$_POST['cat'])) $list.=", ".$cat['libelleFR'];
   $clickall=array();
   $clickall[]=$cat['catid'];
 
@@ -369,7 +369,7 @@ if(isset($_POST['action']) && $_POST['action']=="list"){
     $colors=array(0=>"#888",1=>"green",2=>"red");
     while($article=$DB_site2->fetch_array($requete)){
 	if($_POST['sfield']!="") $editfield=$article[$_POST['sfield']];
-	$variantes[$editfield][$article[artcode]]++;
+	$variantes[$editfield][$article['artcode']]++;
 	$artcode=$article['artcode'];
 	$ref=$article['artcode_eurocave'];
 	$prixport=prixport($article['emballage_poids'],$article['prix']);
@@ -484,13 +484,13 @@ function displaysscat($catid){
       while($ss2cat=$DB_site2->fetch_array($ss2cats)){
 	  $sscatlist.="__".displaysscat($ss2cat['catid']);
 	  $clickall[]=$ss2cat['catid'];
-	  if(in_array($ss2cat[catid],$_POST['cat'])) $list.=", ".$ss2cat['libelleFR'];
+	  if(in_array($ss2cat['catid'],$_POST['cat'])) $list.=", ".$ss2cat['libelleFR'];
       }
       $sscatlist.="</div>";
     }
 
     
-    $return.="<input type=\"hidden\" id=\"catname_$cat[catid]\" value=\"$cat[libelleFR]\"><input type=\"checkbox\" name=\"cat[]\" onclick=\"updcat();\" value=\"$cat[catid]\"".(in_array($cat[catid],$_POST['cat'])?" checked":"").">".$cat['libelleFR'];
+    $return.="<input type=\"hidden\" id=\"catname_$cat[catid]\" value=\"$cat[libelleFR]\"><input type=\"checkbox\" name=\"cat[]\" onclick=\"updcat();\" value=\"$cat[catid]\"".(in_array($cat['catid'],$_POST['cat'])?" checked":"").">".$cat['libelleFR'];
     if(count($clickall)>1) $return.=" <a href=\"javascript:checkall('cat',true,'".implode(',',$clickall)."')\">Cocher la catégorie</a> <a href=\"javascript:checkall('cat',false,'".implode(',',$clickall)."')\">Décocher la catégorie</a>";
     $return.="<br>".$sscatlist;
 
@@ -503,14 +503,14 @@ function arborescence($parentid){
 	$requete_arbo=" select $libelle,catid from categorie where parentid='$parentid' ORDER BY $libelle ";
 	$arbos=$DB_site2->query($requete_arbo);
 	while ($arbo=$DB_site2->fetch_array($arbos)) {
-		if($catid==$arbo[catid]) {
+		if($catid==$arbo['catid']) {
 			$selected="selected";
 			$libellecat=$arbo[$libelle];
 		} else {
 			$selected="";
 		}
 		$select.="<option value=\"$arbo[catid]\" $selected>$niveau $arbo[$libelle]</option>";
-		arborescence($arbo[catid]);
+		arborescence($arbo['catid']);
 	}
 	$niveau=substr($niveau , 0 , strlen($niveau)-4 );
 	return ($select);

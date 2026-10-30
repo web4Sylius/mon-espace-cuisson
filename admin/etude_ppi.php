@@ -151,7 +151,7 @@ if(isset($action) && $action!=""){
 	$typetxt="(type : ";
 	if($typearticleid!=""){
 		$type_article=$DB_site2->query_first("SELECT * FROM typearticle WHERE typearticleid='".$typearticleid."' ");
-		$typetxt.=$type_article[libelle];
+		$typetxt.=$type_article['libelle'];
 		$typesql=" AND a.typearticleid='".$typearticleid."' ";
 	} else {
 		$typetxt.="tous";
@@ -166,7 +166,7 @@ if(isset($action) && $action!=""){
 		$marquesql="";
 	} else {
 		$lib_marque=$DB_site2->query_first("SELECT * FROM marque WHERE marqueid='".$marqueid."' ");
-		$lib_marque_txt=$lib_marque[libelle];
+		$lib_marque_txt=$lib_marque['libelle'];
 		$marquesql=" AND am.marqueid = ".$marqueid;
 	}
 	

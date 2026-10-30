@@ -99,21 +99,21 @@ function calc($from,$to,$month=null){
             $total_facture = 0 ;
             while ($lignefacture=$DB_site->fetch_array($lignefactures))
                 {
-                $total_facture += ($lignefacture[prix] * $lignefacture[qte])/(1+$lignefacture[tva]/100) ;
-                if ($lignefacture[remboursement])
+                $total_facture += ($lignefacture['prix'] * $lignefacture[qte])/(1+$lignefacture['tva']/100) ;
+                if ($lignefacture['remboursement'])
                     {
-                    $remboursement += ($lignefacture[prix] * $lignefacture[qte])/(1+$lignefacture[tva]/100) ;
+                    $remboursement += ($lignefacture['prix'] * $lignefacture[qte])/(1+$lignefacture['tva']/100) ;
                     }
                 }
         
             // Bon de réduction 
             $prixcadeau = 0;
             $cadeau = $DB_site->query_first("select cadeauid, montantcadeau from facture where facturid = '$rs_facture[facturid]'");
-                if ($cadeau[cadeauid] != "") $prixcadeau = $cadeau[montantcadeau];
+                if ($cadeau['cadeauid'] != "") $prixcadeau = $cadeau['montantcadeau'];
                  
            
 
-        $float_total_facture=$total_facture + $rs_facture[prixgestion] + $prix_contre_remb + ($rs_facture[prixport]/(1+$rs_facture[tvaport]/100)) - ($prixcadeau/$txtva) - $prixremise;
+        $float_total_facture=$total_facture + $rs_facture['prixgestion'] + $prix_contre_remb + ($rs_facture['prixport']/(1+$rs_facture['tvaport']/100)) - ($prixcadeau/$txtva) - $prixremise;
 	$total_factures+=$float_total_facture;
 
 	$ca[$rs_facture['tsdate']]+=$float_total_facture;

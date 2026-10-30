@@ -38,14 +38,14 @@ if(isset($_GET['ef']) && isset($_GET['ts'])){
     $envoi=$DB_site2->query_first("SELECT efl.indate,efl.outdate,efl.type,lf.artcode,ef.destinataire FROM envoi_fournisseur_ligne efl INNER JOIN lignefacture lf ON (lf.lignefactureid=efl.ligne_facture_id) INNER JOIN envoi_fournisseur ef ON (ef.id=efl.efid) WHERE ef.id=".$_GET['ef']);
     $DB_site2->query("UPDATE envoi_fournisseur SET enlevement=".intval($_GET['ts'])." WHERE id=".intval($_GET['ef']));
     $suivitxt="Changement date ".($_GET['upddatetype']=="enlevement"?"enlèvement":"livraison")." commande ".$envoi['destinataire']." : ".date("d/m/Y",$envoi[$_GET['upddatetype']])." remplacé par ".date("d/m/Y",$_GET['ts']);
-    $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
+    $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info['username']."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
 
 }
 if(isset($_GET['efl']) && isset($_GET['ts'])){
     $envoi=$DB_site2->query_first("SELECT efl.indate,efl.outdate,efl.type,lf.artcode,ef.destinataire FROM envoi_fournisseur_ligne efl INNER JOIN lignefacture lf ON (lf.lignefactureid=efl.ligne_facture_id) INNER JOIN envoi_fournisseur ef ON (ef.id=efl.efid) WHERE efl.id=".$_GET['efl']);
     $DB_site2->query("UPDATE envoi_fournisseur_ligne SET ".$_GET['upddatetype']."date=".intval($_GET['ts'])." WHERE id=".intval($_GET['efl']));
     $suivitxt="Changement date ".($_GET['upddatetype']=="in"?"enlèvement":"livraison")." commande ".$envoi['destinataire']." ".$envoi['artcode']." : ".date("d/m/Y",$envoi[$_GET['upddatetype']."date"])." remplacé par ".date("d/m/Y",$_GET['ts']);
-    $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
+    $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info['username']."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
 }
 if(isset($_GET['eflall']) && isset($_GET['ts'])){
     $envois=explode(",",$_GET['eflall']);
@@ -53,7 +53,7 @@ if(isset($_GET['eflall']) && isset($_GET['ts'])){
         $elf=$DB_site2->query_first("SELECT efl.indate,efl.outdate,efl.type,lf.artcode,ef.destinataire FROM envoi_fournisseur_ligne efl INNER JOIN lignefacture lf ON (lf.lignefactureid=efl.ligne_facture_id) INNER JOIN envoi_fournisseur ef ON (ef.id=efl.efid) WHERE efl.id=".$envoi);
     $DB_site2->query("UPDATE envoi_fournisseur_ligne SET ".$_GET['upddatetype']."date=".intval($_GET['ts'])." WHERE id=".intval($envoi));
     $suivitxt="Changement date ".($_GET['upddatetype']=="in"?"enlèvement":"livraison")." commande ".$elf['destinataire']." ".$elf['artcode']." : ".date("d/m/Y",$elf[$_GET['upddatetype']."date"])." remplacé par ".date("d/m/Y",$_GET['ts']);
-    $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info[username]."', suivi='$suivitxt'");
+    $DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().", commercial='".$user_info['username']."', suivi='$suivitxt'");
     }
 }
 if(isset($_GET['comment']) && isset($_GET['efid'])){

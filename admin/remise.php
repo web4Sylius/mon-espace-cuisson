@@ -12,7 +12,7 @@ function arborescence($parentid)
 	$arbos=$DB_site2->query($requete_arbo);
 	while ($arbo=$DB_site2->fetch_array($arbos)) 
 		{
-		if($arbo[catid]==$catid) 
+		if($arbo['catid']==$catid) 
 			{
 			$selected="selected";
 			$libellecat=$arbo[$libelle];
@@ -22,7 +22,7 @@ function arborescence($parentid)
 			{
 			$selected="";
 			$select.="<option value=\"$arbo[catid]\">$niveau $arbo[$libelle]</option>";
-			arborescence($arbo[catid]);
+			arborescence($arbo['catid']);
 			}
 		}
 	$niveau=substr($niveau , 0 , strlen($niveau)-4 );
@@ -128,7 +128,7 @@ if ( !isset($action) or $action == "" )
 					echo "  <td class=\"$rowalt\" align=\"center\">" ;
 					while ($article=$DB_site2->fetch_array($articles))
 						{
-						$artic = $article[libelleFR] ;
+						$artic = $article['libelleFR'] ;
 						if (strlen($artic) > 20)
 							{
 							$artic = substr($artic, 0, 20) ;
@@ -228,7 +228,7 @@ elseif ( $action == "ajouter" )
 							{
 							$selected_art = "selected" ;
 							}
-						$lib = $article[libelleFR] ;
+						$lib = $article['libelleFR'] ;
 						$lib = substr($lib, 0, 50) ;
 					echo "<option value=\"$article[artid]\" $selected_art>$lib</option>" ;
 					}
@@ -295,7 +295,7 @@ elseif ( $action == "ajouter" )
 																WHERE rc.remiseid = r.remiseid
 																AND   typeremise = '". $opt_type ."' AND   valeur = '". $txt_valeur ."'
 																AND   pctremise = '" .$lst_pourcentage ."' and actif = 1" );
-			if (($remise_doublon[remiseid] != "") or ($remise_article_doublon[remiseid] != "") or ($remise_article_doublon[remiseid] != ""))
+			if (($remise_doublon['remiseid'] != "") or ($remise_article_doublon['remiseid'] != "") or ($remise_article_doublon['remiseid'] != ""))
 			{
 				echo "<tr><td class=\"td_erreur_saisie\"><b>Cette remise existe déja !</b></td></tr>";		
 				$erreur_saisie = 1;
@@ -386,7 +386,7 @@ elseif ( $action == "ajouter" )
 							{
 							$selected_art = "selected" ;
 							}
-						$lib = $article[libelleFR] ;
+						$lib = $article['libelleFR'] ;
 						$lib = substr($lib, 0, 50) ;
 					echo "<option value=\"$article[artid]\" $selected_art>$lib</option>" ;
 					}
@@ -454,28 +454,28 @@ elseif ( $action == "editer" )
 				<table class=\"table_remises\" border=\"0\">
 				  <tr><td class=\"td_remises1\">Type de remise : </td> 
 					  <td class=\"td_remises2\"><input type=\"radio\" name=\"opt_type\" value=\"0\"";
-							if($rs_remise[typeremise]=="0") {
+							if($rs_remise['typeremise']=="0") {
 								echo " checked";
 								$tmp_valeur = "Valeur (poids) : ";
 								$tmp_unite_valeur = "grammes";
 							}
 							echo " onClick=\"javascript:visualiser(this.value);\"> Sur le poids<br>";
 						  echo "<input type=\"radio\" name=\"opt_type\" value=\"1\"";
-							if($rs_remise[typeremise]=="1") {
+							if($rs_remise['typeremise']=="1") {
 								echo " checked";
 								$tmp_valeur = "Valeur (prix) : ";
 								$tmp_unite_valeur = "€";
 							}
 							echo " onClick=\"javascript:visualiser(this.value);\"> Sur le prix<br>";
 						  echo "<input type=\"radio\" name=\"opt_type\" value=\"2\"";
-							if($rs_remise[typeremise]=="2") {
+							if($rs_remise['typeremise']=="2") {
 								echo " checked";
 								$tmp_valeur = "Valeur (quantité) : ";
 								$tmp_unite_valeur = "articles";
 							}
 							echo " onClick=\"javascript:visualiser(this.value);\"> Sur la quantité<br>";
 			$rq_remise_cat = $DB_site2->query_first("select c.catid, c.libelleFR from remisecategorie rc, categorie c where c.catid = rc.catid and remiseid = '$remiseid'");
-			if ($rq_remise_cat[catid] != "")
+			if ($rq_remise_cat['catid'] != "")
 				{
 				echo "<tr><td  class=\"td_remises1\">Rayon / ss-rayon concerné</td>" ;
 				echo "<td class=\"td_remises2\">&nbsp;&nbsp;$rq_remise_cat[libelleFR]</td></tr>" ;
@@ -493,7 +493,7 @@ elseif ( $action == "editer" )
 				  <tr><td  class=\"td_remises1\">Pourcentage :</td>";
 					for ( $i=1; $i<=100; $i++ )
 					{
-						if( $i == $rs_remise[pctremise] )
+						if( $i == $rs_remise['pctremise'] )
 							$selected = "selected";
 						else
 							$selected = "";	
@@ -535,7 +535,7 @@ elseif ( $action == "editer" )
 														and   valeur = '". $txt_valeur ."'
 														and   pctremise = '" .$lst_pourcentage ."'" );
 
-			if( $remise_doublon[remiseid] != "" )
+			if( $remise_doublon['remiseid'] != "" )
 			{
 				echo "<tr><td class=\"td_erreur_saisie\"><b>Cette remise existe déja !</b></td></tr>";		
 				$erreur_saisie = 1;

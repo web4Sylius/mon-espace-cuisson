@@ -1,4 +1,4 @@
-<?
+<?php 
 
 function email($destinataire, $sujet ,$messhtml, $mailcontact) {
 	global $host, $fichierjoint, $fichierjoint2 ;

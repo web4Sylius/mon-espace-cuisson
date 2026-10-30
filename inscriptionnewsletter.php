@@ -15,7 +15,7 @@ eval( "\$TemplateMenuBas = \"$templatecache[MenuBas]\";" );
 
 if (isset($action) and $action == "mail")
 	{
-	if ($adresse == "" or !ereg("@", $adresse))
+	if ($adresse == "" or strpos($adresse, "@") === false)
 		{
 		$error = "$multilangue[adresseinexistanteouincorrecte]" ;
 		}
@@ -26,12 +26,12 @@ if (isset($action) and $action == "mail")
 			case '0':
 				$ad_newsletters=$DB_site->query_first("select adresse_mail from mails_newsletter where adresse_mail = '$adresse'");
 				$ad_users=$DB_site->query_first("select mail as adresse_mail from utilisateur where mail = '$adresse'");
-				if ($ad_newsletters[adresse_mail] != "")
+				if ($ad_newsletters['adresse_mail'] != "")
 					{
 					$DB_site->query("update mails_newsletter set allow_email = '0' where  adresse_mail = '$adresse'");
 					$error = "$multilangue[adressesupprimeerecoitplusnewsletter]" ;
 					}	
-				elseif ($ad_users[adresse_mail] != "") 
+				elseif ($ad_users['adresse_mail'] != "") 
 					{ 
 					$DB_site->query("update utilisateur set allowemail = '0' where mail = '$adresse'");
 					$error = "$multilangue[adressesupprimeerecoitplusnewsletter]" ;
@@ -44,11 +44,11 @@ if (isset($action) and $action == "mail")
 			case '1':
 				$ad_newsletters=$DB_site->query_first("select adresse_mail from mails_newsletter where adresse_mail = '$adresse'");
 				$ad_users=$DB_site->query_first("select mail as adresse_mail from utilisateur where mail = '$adresse'");
-				if ($ad_newsletters[adresse_mail] != "")
+				if ($ad_newsletters['adresse_mail'] != "")
 					{
 					$DB_site->query("update mails_newsletter set allow_email = '1' where  adresse_mail = '$adresse'");
 					}	
-				elseif ($ad_users[adresse_mail] != "") 
+				elseif ($ad_users['adresse_mail'] != "") 
 					{ 
 					$DB_site->query("update utilisateur set allowemail = '1' where mail = '$adresse'");
 					}
@@ -65,13 +65,13 @@ if (isset($action) and $action == "mail")
 
 
 
-if (substr($_SERVER[PHP_SELF], 0, 3) == "/V2") 
+if (substr($_SERVER['PHP_SELF'], 0, 3) == "/V2") 
 	{
-	$scriptname=substr($_SERVER[PHP_SELF], 3);
+	$scriptname=substr($_SERVER['PHP_SELF'], 3);
 	} 
 else 
 	{
-	$scriptname=$_SERVER[PHP_SELF];
+	$scriptname=$_SERVER['PHP_SELF'];
 	}
 	
 $pagetitles=$DB_site->query_first(" SELECT $title FROM pagetitle WHERE scriptname='$scriptname' LIMIT 1");

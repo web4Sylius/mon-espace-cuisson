@@ -43,7 +43,7 @@ if(!isset($_GET['nocmd'])){
         $envoi=$DB_site2->query_first("SELECT efl.indate,efl.outdate,efl.type,lf.artcode,ef.destinataire,lf.factureid FROM envoi_fournisseur_ligne efl INNER JOIN lignefacture lf ON (lf.lignefactureid=efl.ligne_facture_id) INNER JOIN envoi_fournisseur ef ON (ef.id=efl.efid) WHERE efl.id=".$_GET['eflid']);
         $DB_site2->query("UPDATE envoi_fournisseur_ligne SET ".$_GET['modifdate']."date=".$_GET['updefldate']." WHERE id=".$_GET['eflid']);
         $suivitxt="Changement date ".($_GET['modifdate']=="in"?"enlèvement":"livraison")." commande ".$envoi['destinataire']." ".$envoi['artcode']." : ".date("d/m/Y",$envoi[$_GET['modifdate']."date"])." remplacé par ".date("d/m/Y",$_GET['updefldate']);
-        $DB_site2->query("INSERT INTO suivi_commande SET facturid=".$envoi['factureid'].", date=".time().", commercial='".$user_info[username]."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
+        $DB_site2->query("INSERT INTO suivi_commande SET facturid=".$envoi['factureid'].", date=".time().", commercial='".$user_info['username']."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
         $scrolltop="window.addEventListener(\"load\", scrolltop, false);";
     }
     if(isset($_GET['updefldate']) && isset($_GET['efid'])){
@@ -53,7 +53,7 @@ if(!isset($_GET['nocmd'])){
         $suivitxt="Changement date ".($_GET['modifdate']=="in"?"enlèvement":"livraison")." commande ".$envoi['destinataire'];
         $suivitxt.="<br> ".$envoi['artcode']." : ".date("d/m/Y",$envoi[$_GET['modifdate']."date"])." remplacé par ".date("d/m/Y",$_GET['updefldate']);
         while($envoi2=$DB_site2->fetch_array($envois)) $suivitxt.="<br> ".$envoi2['artcode']." : ".date("d/m/Y",$envoi2[$_GET['modifdate']."date"])." remplacé par ".date("d/m/Y",$_GET['updefldate']);
-        $DB_site2->query("INSERT INTO suivi_commande SET facturid=".$envoi['factureid'].", date=".time().", commercial='".$user_info[username]."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
+        $DB_site2->query("INSERT INTO suivi_commande SET facturid=".$envoi['factureid'].", date=".time().", commercial='".$user_info['username']."', suivi='".mysqli_real_escape_string($DB_site2->link_id,$suivitxt)."'");
         $scrolltop="window.addEventListener(\"load\", scrolltop, false);";
     }
     if(isset($_GET['validadvdate']) && isset($_GET['efid'])){

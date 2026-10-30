@@ -1447,17 +1447,17 @@ if (isset($action) and ($action == "rechercher" || $action=="article" || $action
         {
             $remboursement = 0 ;
             $rowalt = "td_factures_".getrowbg();
-            list ($annee, $mois, $jour) = explode("-", $rs_facture[datefacture]);
+            list ($annee, $mois, $jour) = explode("-", $rs_facture['datefacture']);
             $lignefactures=$DB_site2->query("SELECT * FROM lignefacture WHERE factureid = '$facture[facturid]'");
             $total_facture = 0 ;
 
 
             while ($lignefacture=$DB_site2->fetch_array($lignefactures))
             {
-                $total_facture += ($lignefacture[prix] * $lignefacture[qte]) ;
-                if ($lignefacture[remboursement])
+                $total_facture += ($lignefacture['prix'] * $lignefacture[qte]) ;
+                if ($lignefacture['remboursement'])
                 {
-                    $remboursement += $lignefacture[prix] * $lignefacture[qte] ;
+                    $remboursement += $lignefacture['prix'] * $lignefacture[qte] ;
                 }
             }
 
@@ -1486,15 +1486,15 @@ if (isset($action) and ($action == "rechercher" || $action=="article" || $action
 
             // Bon de réduction
             $prixcadeau = 0;
-            if (in_array( "13", $modules ) && $facture[cadeauid] > 0 )
+            if (in_array( "13", $modules ) && $facture['cadeauid'] > 0 )
             {
                 $cadeau=$DB_site2->query_first("SELECT cadeauid, montantcadeau FROM facture WHERE facturid = '$facture[facturid]'") ;
-                if ($cadeau[cadeauid] != "")
+                if ($cadeau['cadeauid'] != "")
                 {
-                    $prixcadeau = $cadeau[montantcadeau] ;
+                    $prixcadeau = $cadeau['montantcadeau'] ;
                 }
             }
-            if(is_string($rs_facture[cadeauid]) && $rs_facture[cadeauid]!="")
+            if(is_string($rs_facture['cadeauid']) && $rs_facture['cadeauid']!="")
             {}
 
             // remise
@@ -1504,16 +1504,16 @@ if (isset($action) and ($action == "rechercher" || $action=="article" || $action
                 $remise_facture = $DB_site2 -> query_first ("SELECT r.remiseid, r.typeremise, r.valeur, r.pctremise, f.montantremise 
        FROM facture f inner join remise r on (f.remiseid = r.remiseid)
        WHERE f.facturid = '$facture[facturid]'" );
-                if ($remise_facture[remiseid] != "")
+                if ($remise_facture['remiseid'] != "")
                 {
-                    $prixremise = $remise_facture[montantremise] ;
+                    $prixremise = $remise_facture['montantremise'] ;
                 } // fin du if remise
             } // fin des remises
 
             // contre remboursement
-            if ($rs_facture[moyenid] == '3')
+            if ($rs_facture['moyenid'] == '3')
             {
-                $prix_contre_remb = $facture[prix_contre_remboursement] ;
+                $prix_contre_remb = $facture['prix_contre_remboursement'] ;
             }
             else
             {
@@ -1531,8 +1531,8 @@ if (isset($action) and ($action == "rechercher" || $action=="article" || $action
                     $prix_installation_ttc += $row['lignefactureinstallation_differenceprix'];
                 }
             }
-            $total_facture = number_format($total_facture[0] + $facture[prixgestion] + $prix_contre_remb + $facture[prixport] - $prixcadeau -$prixremise + $prix_installation_ttc, 2, ',', ' ')." ".$devises->symbole($facture['devise']);
-            list($annee, $mois, $jour) = explode( "-", $facture[datefacture] );
+            $total_facture = number_format($total_facture[0] + $facture['prixgestion'] + $prix_contre_remb + $facture['prixport'] - $prixcadeau -$prixremise + $prix_installation_ttc, 2, ',', ' ')." ".$devises->symbole($facture['devise']);
+            list($annee, $mois, $jour) = explode( "-", $facture['datefacture'] );
 
             if ($remboursement > 0)
             {
@@ -1544,14 +1544,14 @@ if (isset($action) and ($action == "rechercher" || $action=="article" || $action
             }
 
             echo "<tr Height=\"25\">";
-            if ($facture[numerofacture] > 556500)
+            if ($facture['numerofacture'] > 556500)
             {
                 echo "<td class=\"$rowalt\" align=\"center\">$facture[codenumerofacture]$facture[numerofacture]</td>";
                 $lientelecharger = "<br><br><a href=\"https://$host/facture2.php?passession=oui&facturid=$facture[facturid]&passe=$facture[passefacture]&langue=FR\" target=\"_blank\">Facture</a>" ;
             }
             else
             {
-                if ($facture[valide] == 1)
+                if ($facture['valide'] == 1)
                 {
                     echo "<td class=\"$rowalt\" align=\"center\"> -- </td>" ;
                     $lientelecharger = "<br><br><a href=\"https://$host/facture2.php?passession=oui&facturid=$facture[facturid]&passe=$facture[passefacture]&cde=1&langue=FR\" target=\"_blank\">Commande</a>" ;
@@ -1584,27 +1584,27 @@ if (isset($action) and ($action == "rechercher" || $action=="article" || $action
             echo "<td class=\"$rowalt\" align=\"center\">".date("d/m/Y H:i",$facture['heurefacture'])."</td>";
             echo "<td class=\"$rowalt\" align=\"right\" nowrap>$total_facture $remboursement</td>";
 
-            if ($facture[valide] == 0)
+            if ($facture['valide'] == 0)
             { // non traité
                 $couleurlien="#000000";
             }
-            if ($facture[valide] == 1 || $facture[valide]==7)
+            if ($facture['valide'] == 1 || $facture['valide']==7)
             { // Validée
                 $couleurlien="#0000FF";
             }
-            if ($facture[valide] == 2)
+            if ($facture['valide'] == 2)
             { // refus commercant
                 $couleurlien="#FF0000";
             }
-            if ($facture[valide] == 3)
+            if ($facture['valide'] == 3)
             { // refus carte bleue
                 $couleurlien="#FF0000";
             }
-            if ($facture[valide] == 4)
+            if ($facture['valide'] == 4)
             { // abandon internaute
                 $couleurlien="#FF0000";
             }
-            if ($facture[valide] == 5 || $facture[valide]==8)
+            if ($facture['valide'] == 5 || $facture['valide']==8)
             { // expédié
                 $couleurlien="#00FF00";
             }
@@ -1662,20 +1662,20 @@ if (isset($action) and ($action == "rechercher" || $action=="article" || $action
 
             $passepar="Passé par ".($facture['commercial']==""?$rq_rappel['commercial']:$facture['commercial']);
 
-            if($facture['provenance']=="mp") $facture[moyenpaiement]=$marketplaces[$facture['provenanceid']];
+            if($facture['provenance']=="mp") $facture['moyenpaiement']=$marketplaces[$facture['provenanceid']];
 
             echo "<td class=\"$rowalt\" align=\"center\" nowrap width=\"10%\">$facture[moyenpaiement]<br><font color=\"$couleurlien\">$facture[$libelle]</font><br>$passepar</td>
             <td rowspan=\"2\" class=\"$rowalt\" align=\"center\" width=\"30%\"><div  align=\"center\">
             <a href=\"facture.php?action=editer&facturid=$facture[facturid]&oldaction=rechercher&ref=$ref&nom=$nom&mail=$mail&date=$date&lst_trietat=$lst_trietat\" target=\"_self\">Editer</a>";
-            if ($facture[numerofacture] > 556500)
+            if ($facture['numerofacture'] > 556500)
             {
                 echo "<br><br><a href=\"https://$host/facture2.php?passession=oui&facturid=$facture[facturid]&passe=$facture[passefacture]&langue=FR\" target=\"_blank\">Facture</a>" ;
             }
             else
             {
-                if ($facture[valide] == 1)
+                if ($facture['valide'] == 1)
                     echo "<br><br><a href=\"https://$host/facture2.php?passession=oui&facturid=$facture[facturid]&passe=$facture[passefacture]&cde=1&langue=FR\" target=\"_blank\">Commande</a>" ;
-                elseif ($facture[valide] ==0)
+                elseif ($facture['valide'] ==0)
                     echo "<br><br><a href=\"facture.php?action=cacher&facturid=$facture[facturid]&oldaction=rechercher&ref=$ref&nom=$nom&mail=$mail&date=$date&lst_trietat=$lst_trietat\" target=\"_self\">Supprimer</a>" ;
                 else
                     echo "<br><br>" ;
@@ -2301,8 +2301,8 @@ if ($action == "rembourser"){
             if ($value == 'on'){
                 $lignesfactures[]= $key ;
                 $ligne_remboursee=$DB_site2->query_first("SELECT * FROM lignefacture WHERE lignefactureid = '$key'");
-                echo "<li>$ligne_remboursee[libelle] : ".number_format($ligne_remboursee[prix], 2, ",", " ")." € (x$ligne_remboursee[qte])</li>" ;
-                $remboursement += $ligne_remboursee[prix] * $ligne_remboursee[qte] ;
+                echo "<li>$ligne_remboursee[libelle] : ".number_format($ligne_remboursee['prix'], 2, ",", " ")." € (x$ligne_remboursee[qte])</li>" ;
+                $remboursement += $ligne_remboursee['prix'] * $ligne_remboursee[qte] ;
             }
         }
 
@@ -2315,7 +2315,7 @@ if ($action == "rembourser"){
                 echo "<li>Frais de port : ".number_format($facture_remboursee['prixport'],2,',','')." €</li>";
                 $fdp="checked";
             }
-            if ($facture_remboursee[cadeauid] != ""){
+            if ($facture_remboursee['cadeauid'] != ""){
                 $infoscadeau=$DB_site2->query_first("SELECT * FROM cadeau WHERE cadeauid = '$facture_remboursee[cadeauid]'");
                 if($infoscadeau['code']!=""){
                     $cadeau="checked";
@@ -2367,7 +2367,7 @@ if ($action == "dorembourser")
         $lf=$DB_site2->query_first("SELECT * FROM lignefacture WHERE lignefactureid=".$lfid);
         $txtsuivi.="<br>".$lf['artcode'];
     }
-    $DB_site2->query("INSERT INTO suivi_commande SET facturid=$factureid, date=".time().", commercial='".$user_info[username]."', suivi='Remboursement$txtsuivi'");
+    $DB_site2->query("INSERT INTO suivi_commande SET facturid=$factureid, date=".time().", commercial='".$user_info['username']."', suivi='Remboursement$txtsuivi'");
     $facturid = $factureid ;
     $action = "editer" ;
     if(isset($_POST['avoir'])){
@@ -2655,21 +2655,21 @@ if ($action == "editer" || $_GET['action'] == 'editer')
                 $rq_caracteristiques_inner .= 'INNER JOIN lignefacturecaracteristique lc' . $i . ' ON (' . $rq_caracteristiques_on . '.lignefactureid = lc' . $i . '.lignefactureid) ';
                 $rq_caracteristiques_on = 'lc' . $i;
                 //Creation de la ligne AND
-                $rq_caracteristiques_and .= 'AND lc' . $i . '.libelle_caract = \'' . $rs_caract_lib[libellecaract] . '\' ';
-                $rq_caracteristiques_and .= 'AND lc' . $i . '.libelle_caractval = \'' . $rs_caract_lib[libellecaractval] . '\' ';
+                $rq_caracteristiques_and .= 'AND lc' . $i . '.libelle_caract = \'' . $rs_caract_lib['libellecaract'] . '\' ';
+                $rq_caracteristiques_and .= 'AND lc' . $i . '.libelle_caractval = \'' . $rs_caract_lib['libellecaractval'] . '\' ';
             }
             //Construction de notre requête
             $rq_present = $rq_caracteristiques_select . $rq_caracteristiques_from . $rq_caracteristiques_inner . $rq_caracteristiques_where . $rq_caracteristiques_and;
             $rs_present = $DB_site2->query_first($rq_present);
 
-            if ($rs_present[lignefactureid] != '')
+            if ($rs_present['lignefactureid'] != '')
             {
                 //Un article similaire est déjà présent, on le met à jour avec les nouvelles valeurs
                 //On supprime dans un premier temps l'article mis à jour
                 $rs_dellignefacturechamp = $DB_site2->query("DELETE FROM lignefacture WHERE lignefactureid=$lignefactureid");
                 $rs_dellignefacturecaract = $DB_site2->query("DELETE FROM lignefacturecaracteristique WHERE lignefactureid=$lignefactureid");
                 //on met à jour lignefactureid qui prends la valeur de l'autre article identique
-                $lignefactureid = $rs_present[lignefactureid];
+                $lignefactureid = $rs_present['lignefactureid'];
                 //Seul la quantité à besoin d'être modifiée
                 $rq_maj_qte_prix = 'qte = (qte+\'' . $qte . '\') ';
             }
@@ -2686,15 +2686,15 @@ if ($action == "editer" || $_GET['action'] == 'editer')
                     $rs_diffprix = $DB_site2->query_first("SELECT ac.differenceprix FROM caracteristiquevaleur cv INNER JOIN article_caractval ac ON 
                     (cv.caractvalid = ac.caractvalid) WHERE cv.caractvalid = '$caracteristiques[$i]'");
 
-                    if ($rs_diffprix[differenceprix] != '')
-                        $diffprix += $rs_diffprix[differenceprix];
+                    if ($rs_diffprix['differenceprix'] != '')
+                        $diffprix += $rs_diffprix['differenceprix'];
 
                     $rs_updatelignefacturecaract = $DB_site2->query("UPDATE lignefacturecaracteristique SET libelle_caract = '$rs_caract[libellecaract]',
                     libelle_caractval = '$rs_caract[libellecaractval]' WHERE lignefacturecaracteristiqueid = '$lignefacturecaracteristiqueid[$i]'");
                 }
                 //On ajoute la différence au prix de l'article
                 $rs_prixarticle = $DB_site2->query_first("SELECT prix FROM article WHERE artid = $artid");
-                $prixfinal = $rs_prixarticle[prix] + $diffprix;
+                $prixfinal = $rs_prixarticle['prix'] + $diffprix;
                 $rq_maj_qte_prix = 'qte = \'' . $qte . '\', prix = \'' . $prixfinal . '\' ';
             } //end if($rs_present[lignefactureid] != '')
         }
@@ -2718,7 +2718,7 @@ if ($action == "editer" || $_GET['action'] == 'editer')
         $gratuitfrais = $DB_site2->query_first("SELECT distinct gratuit FROM fraisport fp INNER JOIN facture f ON (fp.paysid = f.paysid) 
                 WHERE f.facturid = '$facturid'");
 
-        if (($gratuitfrais[gratuit] != 0) and ($prixtotal[prixtotal] >= $gratuitfrais[gratuit]))
+        if (($gratuitfrais['gratuit'] != 0) and ($prixtotal['prixtotal'] >= $gratuitfrais['gratuit']))
             // si on paie pas de frais de port !!
             $DB_site2->query("UPDATE facture SET prixport = '0' WHERE facturid = '$facturid'");
         else
@@ -2729,15 +2729,15 @@ if ($action == "editer" || $_GET['action'] == 'editer')
             $fraisport = $DB_site2->query_first("SELECT * FROM fraisport WHERE poiddebut <= '$poidstotal[poidstotal]' AND poidfin >= '$poidstotal[poidstotal]' 
                     and paysid = '$paysid[paysid]'");
 
-            if ($fraisport[fraisportid] == "")
+            if ($fraisport['fraisportid'] == "")
             {
                 // On prend le frais de port par défaut
                 $rs_fraisportpays = $DB_site2->query_first("SELECT prixfraisport FROM pays WHERE paysid = '$paysid[paysid]'");
-                $prixfraisport = $rs_fraisportpays[prixfraisport];
+                $prixfraisport = $rs_fraisportpays['prixfraisport'];
             }
             else
                 //On prend le frais de port correspondant
-                $prixfraisport = $fraisport[prix];
+                $prixfraisport = $fraisport['prix'];
 
             //MAJ des frais de port
             $DB_site2->query("UPDATE facture SET prixport = '$prixfraisport' WHERE facturid = '$facturid'");
@@ -2757,18 +2757,18 @@ if ($action == "editer" || $_GET['action'] == 'editer')
                 INNER JOIN utilisateur u ON (f.userid = u.userid)
                 INNER JOIN moyenpaiement mp ON (f.moyenid = mp.moyenid)
                 WHERE f.facturid = '$facturid'");
-        $rs_facture[mail_facture] = $mail_facture;
-        $rs_facture[raisonsociale] = $raisonsociale;
-        $rs_facture[civilite] = $civilite;
-        $rs_facture[nom] = $nom;
-        $rs_facture[prenom] = $prenom;
-        $rs_facture[adresse] = $adresse;
-        $rs_facture[codepostal] = $codepostal;
-        $rs_facture[ville] = $ville;
-        $rs_facture[telephone] = $telephone;
-        $rs_facture[facturid] = $facturid;
-        $rs_facture[userid] = $userid;
-        $rs_facture[paysid] = $paysid;
+        $rs_facture['mail_facture'] = $mail_facture;
+        $rs_facture['raisonsociale'] = $raisonsociale;
+        $rs_facture['civilite'] = $civilite;
+        $rs_facture['nom'] = $nom;
+        $rs_facture['prenom'] = $prenom;
+        $rs_facture['adresse'] = $adresse;
+        $rs_facture['codepostal'] = $codepostal;
+        $rs_facture['ville'] = $ville;
+        $rs_facture['telephone'] = $telephone;
+        $rs_facture['facturid'] = $facturid;
+        $rs_facture['userid'] = $userid;
+        $rs_facture['paysid'] = $paysid;
     }
     else
     {
@@ -3035,7 +3035,7 @@ if ($action == "editer" || $_GET['action'] == 'editer')
         $prixremise = 0;
         $remise_facture = $DB_site2->query_first("SELECT r.remiseid, r.typeremise, r.valeur, r.pctremise, f.montantremise FROM facture f inner join remise r 
         on (f.remiseid = r.remiseid) WHERE f.facturid = '".$facturid."'");
-        switch ($remise_facture[typeremise]) {
+        switch ($remise_facture['typeremise']) {
             case 0 : // remise sur le poids
                 $poids = $DB_site2->query_first("SELECT SUM(poid) as poids_tot FROM lignefacture lf, article a WHERE lf.artid = a.artid and lf.factureid = '".$facturid."'");
                 if ($poids['poids_tot'] > $remise_facture['valeur'])
@@ -3330,7 +3330,7 @@ if ($action == "editer" || $_GET['action'] == 'editer')
             while ($rs_caracteristique = $DB_site2->fetch_array($rq_caracteristiques)){
                 $ref="";
                 if($rs_caracteristique['ref']!="") $ref="(".$rs_caracteristique['ref'].")";
-                $select_caracteristique .= '<p>' . $rs_caracteristique[libelle_caract]." $rs_caracteristique[libelle_caractval] $ref</p>";
+                $select_caracteristique .= '<p>' . $rs_caracteristique['libelle_caract']." $rs_caracteristique[libelle_caractval] $ref</p>";
                 $carac_dispo .= '<br>' . $rs_lignefacturecaracteristique['libelle_caractval'];
             }
             $datefin_garantie="";
@@ -3395,7 +3395,7 @@ if ($action == "editer" || $_GET['action'] == 'editer')
                     $artfourn[]=addslashes($fourn['fournisseur']);
                 }
 
-                if ($rs_facture[valide] != 5 && $rs_facture[valide] != 6 && $rs_facture[valide] != 8){
+                if ($rs_facture['valide'] != 5 && $rs_facture['valide'] != 6 && $rs_facture['valide'] != 8){
                     $js_checkbox = "todispo(this.checked,".$rs_facture['facturid'].",".$artdiss['lignefactureid'].",'".$artdiss['artcode_eurocave']."','".$artdiss['qte']."','".$artdiss['paht'].($artdiss['ecopartht'] > 0 ? "+".$artdiss['ecopartht'] : "")."','".$calendrier['enlevement']."','".$calendrier['livraison']."','".$dateappro."','".htmlentities($artdiss['libelle']) . $carac_dispo."',new Array('".implode("','",$artfourn)."'));";
                     $checkbox_dispo = "<input type=\"checkbox\" class=\"checkbox_dispo\" name=\"demande_dispo\" value=\"".$rs_lignefacture['artid']."\" onclick=\"".$js_checkbox."\">";
                     $js_checkall .= $js_checkbox;
@@ -3412,7 +3412,7 @@ if ($action == "editer" || $_GET['action'] == 'editer')
 <input type=\"hidden\" id=\"lignefacturecaractid_$artdiss[lignefactureid]\" name=\"lignefacturecaractid\" value=\"$lignefacturecaractid\">
 <input type=\"hidden\" id=\"prix_base_article_$artdiss[lignefactureid]\" value=\"$artdiss[prix]\">
 </td>
-<td nowrap>$fbart <a href=\"clientnavig.php?userid=$rs_facture[userid]&goto=art,$artdiss[artid],-.htm\" target=\"_blank\">$artdiss[artcode]</a><br><a href=\"ajout_produit.php?artid=$artdiss[artid]&prec=modif\" target=\"_blank\">".wordwrap($artdiss[artcode_eurocave],50,"<br>")."</a>".$chequekdo."</td>
+<td nowrap>$fbart <a href=\"clientnavig.php?userid=$rs_facture[userid]&goto=art,$artdiss[artid],-.htm\" target=\"_blank\">$artdiss[artcode]</a><br><a href=\"ajout_produit.php?artid=$artdiss[artid]&prec=modif\" target=\"_blank\">".wordwrap($artdiss['artcode_eurocave'],50,"<br>")."</a>".$chequekdo."</td>
 <td>".$artdiss['libelle']."<br>&nbsp;".$artdiss['qte']*$artdiss['emballage_poids']." kg".$infoappro."</td>
 <td>$liste_garantie</td>
 <td>$select_caracteristique</td>
@@ -3458,23 +3458,23 @@ if ($action == "editer" || $_GET['action'] == 'editer')
                 //Pour chaque caracteristique, on liste les valeurs possibles
                 //On récupère la valeur sélectionnée pour l'article
                 $rq_lignefacturecaracteristique = $DB_site2->query("SELECT lignefacturecaracteristiqueid, libelle_caractval FROM lignefacturecaracteristique 
-                    WHERE lignefactureid = '$rs_lignefacture[lignefactureid]' AND caractvalid = '".addslashes($rs_caracteristique[caractvalid])."'");
+                    WHERE lignefactureid = '$rs_lignefacture[lignefactureid]' AND caractvalid = '".addslashes($rs_caracteristique['caractvalid'])."'");
 
                 if ($rs_lignefacturecaracteristique = $DB_site2->fetch_array($rq_lignefacturecaracteristique))
                 {
-                    $lignefacturecaractid .= $rs_lignefacturecaracteristique[lignefacturecaracteristiqueid] . "|";
-                    $libelle_caractval_select = trim(stripslashes($rs_lignefacturecaracteristique[libelle_caractval]));
+                    $lignefacturecaractid .= $rs_lignefacturecaracteristique['lignefacturecaracteristiqueid'] . "|";
+                    $libelle_caractval_select = trim(stripslashes($rs_lignefacturecaracteristique['libelle_caractval']));
                 }
                 else
                 {
-                    $lignefacturecaractid .= $rs_lignefacturecaracteristique[lignefacturecaracteristiqueid] . "|";
+                    $lignefacturecaractid .= $rs_lignefacturecaracteristique['lignefacturecaracteristiqueid'] . "|";
                     $libelle_caractval_select = "";
                 }
 
                 $ref="";
                 if($rs_caracteristique['ref']!="") $ref=" (".$rs_caracteristique['ref'].")";
 
-                $select_caracteristique .= "<p>" . $rs_caracteristique[libelle]." : ".$libelle_caractval_select.$ref."</p>";
+                $select_caracteristique .= "<p>" . $rs_caracteristique['libelle']." : ".$libelle_caractval_select.$ref."</p>";
 
             }
             $liste_caracteristiques .= $select_caracteristique;
@@ -3524,7 +3524,7 @@ if ($action == "editer" || $_GET['action'] == 'editer')
         $rowalt = "td_2_" . getrowbg();
         if ($fact[0] != 0)
         {
-            $rs_lignefacture[prix] = $rs_lignefacture[prix] * (1 - $fact[0] / 100);
+            $rs_lignefacture['prix'] = $rs_lignefacture['prix'] * (1 - $fact[0] / 100);
         }
         echo '<tr id="article_' . $rs_lignefacture['lignefactureid'] . '" class="ligne">';
         $chequekdo="";
@@ -3616,7 +3616,7 @@ if ($action == "editer" || $_GET['action'] == 'editer')
         else
         {
             //Mode visualisation
-            $remb_id = $rs_lignefacture[lignefactureid] ;
+            $remb_id = $rs_lignefacture['lignefactureid'] ;
             $prixbasearticle=$DB_site2->query_first("SELECT prix,artcode_eurocave,emballage_poids1+emballage_poids2+emballage_poids3 AS emballage_poids ,date_appro, emballage_hauteur1+emballage_hauteur2+emballage_hauteur3 AS emballage_hauteur, emballage_largeur1+emballage_largeur2+emballage_largeur3 AS emballage_largeur,emballage_profondeur1+emballage_profondeur2+emballage_profondeur3 AS emballage_profondeur FROM article WHERE artid='$rs_lignefacture[artid]'");
             if($prixbasearticle["gaz"] != ''){
                 $strgaz = str_replace('/article/gaz/', '', $prixbasearticle["gaz"]);
@@ -3629,16 +3629,16 @@ if ($action == "editer" || $_GET['action'] == 'editer')
             $infoappro="";
             if($prixbasearticle['date_appro']>0) $infoappro="<p style=\"blue\">Date de réappro : ".date("d/m/Y",$prixbasearticle['date_appro'])."</p>";
 
-            if ($rs_lignefacture[remboursement] == '1')
+            if ($rs_lignefacture['remboursement'] == '1')
             {
-                $tabdate = explode("-", $rs_lignefacture[date_remboursement]) ;
+                $tabdate = explode("-", $rs_lignefacture['date_remboursement']) ;
                 echo "
             <td class=\"$rowalt\"><font color=\"#E5840F\">Remb. le<br>$tabdate[2]/$tabdate[1]/$tabdate[0] par $rs_lignefacture[modifby]</font></td>
             <td class=\"$rowalt\">$rs_lignefacture[artcode]<br>$prixbasearticle[artcode_eurocave]</td>
             <td class=\"$rowalt\">$rs_lignefacture[libelle]</td>
             <td class=\"$rowalt\">$liste_caracteristiques</td>
             <td class=\"$rowalt\" align=\"center\">$rs_lignefacture[qte]</td>
-            <td class=\"$rowalt\" align=\"right\"><font color=\"#E5840F\">" . $ftemplate->price_format($rs_lignefacture[prix] * $rs_lignefacture[qte]) . "</font></td>";
+            <td class=\"$rowalt\" align=\"right\"><font color=\"#E5840F\">" . $ftemplate->price_format($rs_lignefacture['prix'] * $rs_lignefacture[qte]) . "</font></td>";
             }
             else
             {
@@ -3648,7 +3648,7 @@ if ($action == "editer" || $_GET['action'] == 'editer')
             <td class=\"$rowalt\">$rs_lignefacture[libelle]<br>".($rs_lignefacture['qte']*$prixbasearticle['emballage_poids'])." kg".($rs_lignefacture['qte']>1?" ($rs_lignefacture[qte] x $prixbasearticle[emballage_poids] kg)":"").$infoappro." - Dimensions Brutes: H".$prixbasearticle['emballage_hauteur']."*L".$prixbasearticle['emballage_largeur']."*P".$prixbasearticle['emballage_profondeur'] .$gaz."</td>
             <td class=\"$rowalt\">$liste_caracteristiques $liste_garantie</td>
             <td class=\"$rowalt\" align=\"center\">$rs_lignefacture[qte]</td>
-            <td class=\"$rowalt\" align=\"right\">" . $ftemplate->price_format($rs_lignefacture[prix] * $rs_lignefacture[qte]) . "</td>
+            <td class=\"$rowalt\" align=\"right\">" . $ftemplate->price_format($rs_lignefacture['prix'] * $rs_lignefacture[qte]) . "</td>
             <td class=\"$rowalt\"><input type=\"checkbox\" name=\"rembourser[$remb_id]\"></td>";
             }
         }
@@ -3715,9 +3715,9 @@ if ($action == "editer" || $_GET['action'] == 'editer')
                     case "7" : // Insertion de fichier
                         $saisie = $DB_site2->query_first("select valeur, lignefacturechampid from lignefacturechamp where articlechampid = '$champ[articlechampid]'
                         and lignefactureid = '$rs_lignefacture[lignefactureid]'");
-                        if ($saisie[lignefacturechampid] != "")
+                        if ($saisie['lignefacturechampid'] != "")
                         {
-                            $url_image = "<a href=\"https://$host/configurations/$host/images/uploads/facture/" . $saisie[lignefacturechampid] . "." . $saisie[valeur] . "\" target=\"_blank\">Voir</a>";
+                            $url_image = "<a href=\"https://$host/configurations/$host/images/uploads/facture/" . $saisie['lignefacturechampid'] . "." . $saisie['valeur'] . "\" target=\"_blank\">Voir</a>";
                         }
                         else
                         {
@@ -3896,7 +3896,7 @@ if(!is_null($aPrixInstallation['prixtotal'])){
         echo "".
             "<tr id=\"ligne_frais_port\">"
             . $demande_dispo
-            . "<td colspan=\"".($colspan-3)."\" align=\"right\">Frais de port ($poidstotal[poidstotal] kg) : $modelivraison $incoterms <div id=\"fraisdeport\" style=\"display:inline\">" . $ftemplate->price_format($rs_facture[prixport]) . "</div></td>".
+            . "<td colspan=\"".($colspan-3)."\" align=\"right\">Frais de port ($poidstotal[poidstotal] kg) : $modelivraison $incoterms <div id=\"fraisdeport\" style=\"display:inline\">" . $ftemplate->price_format($rs_facture['prixport']) . "</div></td>".
             "</tr>";
     else
         echo ""
@@ -3906,7 +3906,7 @@ if(!is_null($aPrixInstallation['prixtotal'])){
             . "</tr>";
 
     if ($rs_facture['prix_contre_remboursement'] != 0)
-        echo "<tr><td colspan=\"$colspan\" align=\"right\">Supplément contre remboursement : <div id=\"contreremboursement\" style=\"display:inline\">" . $ftemplate->price_format($rs_facture[prix_contre_remboursement]) . "</div></td></tr>";
+        echo "<tr><td colspan=\"$colspan\" align=\"right\">Supplément contre remboursement : <div id=\"contreremboursement\" style=\"display:inline\">" . $ftemplate->price_format($rs_facture['prix_contre_remboursement']) . "</div></td></tr>";
 
     echo "<tr><td colspan=\"$colspan\" style=\"text-align:right;color:red;font-weight:bold;\">Total TTC : <div id=\"prix_total_facture\" style=\"display:inline\">$total_facture</div></td></tr>";
 
@@ -5105,11 +5105,11 @@ if(!is_null(json_decode($cocktel->AppelsEnCours(true)))){
     <span class=\"close\" onclick=\"close_choix_suivi(this)\">X</span>
     <span class=\"suivilink\" onclick=\"suiviauto('tel_out','facture',$rs_facture[facturid],'Appel téléphone livraison',".($usertel?"'$rs_facture[telephone]'":"undefined").");epigy_call('".$rs_facture['telephone']."','".$user_info['telFR']."');\">Click to call</span>
     <span class=\"suivilink\" onclick=\"copy(this)\">Copier</span></span>";
-    if($rs_facture[portable]!=""){
-        print "<span class=\"suivilink\" onclick=\"show_choix_suivi(this,'ficheinfo')\" style=\"color:blue;\"><img src=\"images/ring_phone_2.gif\"/>".$rs_facture[portable]."</span>
+    if($rs_facture['portable']!=""){
+        print "<span class=\"suivilink\" onclick=\"show_choix_suivi(this,'ficheinfo')\" style=\"color:blue;\"><img src=\"images/ring_phone_2.gif\"/>".$rs_facture['portable']."</span>
         <span class=\"addsuivi\">
         <span class=\"close\" onclick=\"close_choix_suivi(this)\">X</span>
-        <span class=\"suivilink\" onclick=\"suiviauto('tel_out','facture',$rs_facture[facturid],'Appel téléphone livraison',".($usertel?"'$rs_facture[portable]'":"undefined").");epigy_call('".$rs_facture[portable]."','".$user_info['telFR']."');\">Click to call</span>
+        <span class=\"suivilink\" onclick=\"suiviauto('tel_out','facture',$rs_facture[facturid],'Appel téléphone livraison',".($usertel?"'$rs_facture[portable]'":"undefined").");epigy_call('".$rs_facture['portable']."','".$user_info['telFR']."');\">Click to call</span>
         <span class=\"suivilink\" onclick=\"copy(this)\">Copier</span></span>";}
     print "</td>
         <td class=\"suiviclient\" rowspan=\"3\"><input type=\"text\" onkeyup=\"srcfournisseur(this.value,'srcclient');\"></td>

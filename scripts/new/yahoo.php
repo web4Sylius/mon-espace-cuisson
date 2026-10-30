@@ -315,7 +315,7 @@ else
     <td align="center"><a href="javascript:getclass('ajax','?step=edite&id=<?php echo $id?>&rand=<?php echo rand();?>');">Edit</a></td>
     <td align="center"><a href="?step=del&id=<?php echo $id?>&rand=<?php echo rand();?>" onclick="return(confirm('Together with the right to delete pictures,To confirm the deletion?'))">Del</a></td>
   </tr>
-  <?
+  <?php 
 				if ($number == $num-1)
 				{
 					break;

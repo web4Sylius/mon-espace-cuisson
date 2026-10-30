@@ -1437,7 +1437,7 @@ class Graph {
 	    $r = rand(0,100000);
 	    $aCSIMName='__mapname'.$r.'__';
 	}
-	if( empty($_GET[_CSIM_DISPLAY]) ) {
+	if( empty($_GET['_CSIM_DISPLAY']) ) {
 	    // First determine if we need to check for a cached version
 	    // This differs from the standard cache in the sense that the
 	    // image and CSIM map HTML file is written relative to the directory
@@ -2923,7 +2923,7 @@ class TTF {
 	$f = @$fam[$style];
 
 	if( $f==='' )
-	    JpGraphError::Raise('Style "'.$this->style_names[$style].'" is not available for font family '.$this->font_files[$family][FS_NORMAL].'.');
+	    JpGraphError::Raise('Style "'.$this->style_names[$style].'" is not available for font family '.$this->font_files[$family]['FS_NORMAL'].'.');
 	if( !$f ) {
 	    JpGraphError::Raise("Unknown font style specification [$fam].");
 	}

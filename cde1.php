@@ -526,7 +526,7 @@ if ($lignepaniercount[0] != 0) {
 
 
 
-if(count($criteoitems)>0){
+if(!empty($criteoitems)){
     $jsoncriteoitems=json_encode($criteoitems);
     $template->parts["criteo"]=<<<JS
     <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>

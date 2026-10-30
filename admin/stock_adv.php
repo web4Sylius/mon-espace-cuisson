@@ -645,7 +645,7 @@ if(isset($_GET['type']) && $_GET['type']=="fourn"){
     $requete=$DB_site2->query("SELECT * FROM fournisseur WHERE type='trspt' ORDER BY societe,ville");
     $optlieutrspt=array(""=>"Choisir...");
     while($lieutrspt=$DB_site2->fetch_array($requete)){
-        $optlieutrspt[$lieutrspt[id]]="$lieutrspt[societe] $lieutrspt[ville] (".substr($lieutrspt['cp'],0,2).")";
+        $optlieutrspt[$lieutrspt['id']]="$lieutrspt[societe] $lieutrspt[ville] (".substr($lieutrspt['cp'],0,2).")";
     }
     
     $stock_cmd->items(-1);
@@ -743,7 +743,7 @@ HTML;
         }
         $radiobtn="<input type=\"radio\" name=\"fournisseur\" value=\"".implode(";",$fourn[$fournname])."\" ".($fournname==$adv->destinataire?"checked":"").">";
         print <<<HTML
-            <td style="$style; font-weight:bold; cursor:pointer;" align="center" onclick="document.location='stock.php?action=cmd&amp;stock_cmd_id={$stock_cmd->id}&amp;type=fourn&amp;advid={$_GET[advid]}$link#adv'">
+            <td style="$style; font-weight:bold; cursor:pointer;" align="center" onclick="document.location='stock.php?action=cmd&amp;stock_cmd_id={$stock_cmd->id}&amp;type=fourn&amp;advid={$_GET['advid']}$link#adv'">
                 $radiobtn
                 $fournname
                 $iconoffre

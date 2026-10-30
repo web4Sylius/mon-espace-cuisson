@@ -39,7 +39,7 @@ $chiffrejour = 0 ;
 $cajs=$DB_site2->query("select factureid, SUM((prix/(1+tva/100))*qte) montant, prixport, montantremise, montantcadeau from lignefacture lf inner join facture f 
                         on (f.facturid = lf.factureid) where remboursement = '0' and valide in (5, 8) and dateexpedition = '".date('Y-m-d')."' group by factureid");
 while ($caj=$DB_site2->fetch_array($cajs)) {
-    $chiffrejour += $caj[montant] + $caj[prixport] - $caj[montantremise] - $caj[montantcadeau] ;
+    $chiffrejour += $caj['montant'] + $caj['prixport'] - $caj['montantremise'] - $caj['montantcadeau'] ;
     }
 $chiffrejour = number_format($chiffrejour, 2, ",", " ") ;
 
@@ -47,7 +47,7 @@ $chiffremois = 0 ;
 $cams=$DB_site2->query("select factureid, SUM((prix/(1+tva/100))*qte) montant, prixport, montantremise, montantcadeau from lignefacture lf inner join facture f 
                         on (f.facturid = lf.factureid) where remboursement = '0' and valide in (5, 8) and dateexpedition LIKE '".date('Y-m-%')."' group by factureid");
 while ($cam=$DB_site2->fetch_array($cams)) {
-    $chiffremois += $cam[montant] + $cam[prixport] - $cam[montantremise] - $cam[montantcadeau] ;
+    $chiffremois += $cam['montant'] + $cam['prixport'] - $cam['montantremise'] - $cam['montantcadeau'] ;
     }
 $chiffremois = number_format($chiffremois, 2, ",", " ") ;
 
@@ -55,7 +55,7 @@ $chiffreannee = 0 ;
 $caas=$DB_site2->query("select factureid, SUM((prix/(1+tva/100))*qte) montant, prixport, montantremise, montantcadeau from lignefacture lf inner join facture f 
                         on (f.facturid = lf.factureid) where remboursement = '0' and valide in (5, 8) and dateexpedition BETWEEN '".$Y."-07-01' AND '".($Y+1)."-06-30' group by factureid");
 while ($caa=$DB_site2->fetch_array($caas)) {
-    $chiffreannee += $caa[montant] + $caa[prixport] - $caa[montantremise] - $caa[montantcadeau] ;
+    $chiffreannee += $caa['montant'] + $caa['prixport'] - $caa['montantremise'] - $caa['montantcadeau'] ;
     }
 $chiffreannee = number_format($chiffreannee, 2, ",", " ") ;
 
@@ -63,7 +63,7 @@ $chiffretotal = 0 ;
 $cats=$DB_site2->query("select factureid, SUM((prix/(1+tva/100))*qte) montant, prixport, montantremise, montantcadeau from lignefacture lf inner join facture f 
                         on (f.facturid = lf.factureid) where remboursement = '0' and valide in (5, 8) group by factureid");
 while ($cat=$DB_site2->fetch_array($cats)) {
-    $chiffretotal += $cat[montant] + $cat[prixport] - $cat[montantremise] - $cat[montantcadeau] ;
+    $chiffretotal += $cat['montant'] + $cat['prixport'] - $cat['montantremise'] - $cat['montantcadeau'] ;
     }
 $chiffretotal = number_format($chiffretotal, 2, ",", " ") ; 
 

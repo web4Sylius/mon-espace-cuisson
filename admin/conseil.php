@@ -443,14 +443,14 @@ if( (!isset( $action ) || $action == "") && isset($_GET['site_code']) && isset($
 	echo "<form method=\"post\" name=\"form_institutionnel\" action=\"conseil.php?action=editer&conseilid=".$conseilid."&site_code=".$_GET['site_code']."&version=".$_GET['version']."\">";
 
 	
-	if ($rs_conseil[conseilparent] == "0")
+	if ($rs_conseil['conseilparent'] == "0")
 		$liste_parents = "<option value=\"0\" selected>Aucun parent</>";
 	else
 		$liste_parents = "<option value=\"0\">Aucun parent</>";
 	$parents = $DB_site2->query("SELECT * FROM $table_conseil WHERE conseilparent = '0' AND site_code='".$_GET['site_code']."'");
 	while( $parent = $DB_site2->fetch_array( $parents ) )
 		{
-		if ($parent[conseilid] == $rs_conseil[conseilparent])
+		if ($parent['conseilid'] == $rs_conseil['conseilparent'])
 			$liste_parents .= "<option value=\"$parent[conseilid]\" selected>$parent[$libelle]</>";
 		else
 			$liste_parents .= "<option value=\"$parent[conseilid]\">$parent[$libelle]</>";
@@ -771,7 +771,7 @@ elseif( $action == "supprimer2" )
 	
 	while( $rs_positions_suivantes = $DB_site2->fetch_array( $rq_positions_suivantes ) ) 
 	{
-		$position_temp = $rs_positions_suivantes[position] - 1;
+		$position_temp = $rs_positions_suivantes['position'] - 1;
 		$rq_modifier_position = "UPDATE $table_conseil SET position = '$position_temp' 
 								 WHERE conseilid = '$rs_positions_suivantes[conseilid]'";
 		$DB_site2->query( $rq_modifier_position );

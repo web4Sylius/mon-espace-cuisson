@@ -15,7 +15,7 @@ print "<a name=\"sav\"></a>
 <input type=\"hidden\" name=\"sav_adresselivraison\" value=\"".$rs_facture['adresse']."\">
 <input type=\"hidden\" name=\"sav_cplivraison\" value=\"".$rs_facture['codepostal']."\">
 <input type=\"hidden\" name=\"sav_villelivraison\" value=\"".$rs_facture['ville']."\">
-<input type=\"hidden\" name=\"sav_payslivraison\" value=\"".$rq_pays[libelle]."\">
+<input type=\"hidden\" name=\"sav_payslivraison\" value=\"".$rq_pays['libelle']."\">
 <p>Fraude<span class=\"modifstep\">".$sav->steps[1]['utilisateur']." ".($sav->steps[1]['date']>0?date("d/m/Y",$sav->steps[1]['date']):"")."</span></p>
 
 Informations sur le dossier :

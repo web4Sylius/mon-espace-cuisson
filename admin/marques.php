@@ -62,7 +62,7 @@ if (isset($action) and $action == "parametres"){
 if (isset($action) and $action == "modifier"){
 	if ($action2 == "supprimage"){
 		$mq=$DB_site2->query_first("SELECT * from marque where marqueid = '$marqueid'");
-		$fichier = $mq[marqueid].".".$mq[image] ;
+		$fichier = $mq['marqueid'].".".$mq['image'] ;
 		$folder = $rootpath."configurations/$host/images/marques";
 		$folder2 = $rootpath."configurations/$host/images/marques/br";
 		if (file_exists($folder."/".$fichier)){
@@ -77,8 +77,8 @@ if (isset($action) and $action == "modifier"){
 	$mq_titreh1FR = $mq['titreh1FR'] ;
 	$mq_titreh1EN = $mq['titreh1EN'] ;
 	
-	if ($mq[image] != ""){
-		$fichier = $mq[marqueid].".".$mq[image] ;
+	if ($mq['image'] != ""){
+		$fichier = $mq['marqueid'].".".$mq['image'] ;
 		$folder = $rootpath."configurations/$host/images/marques";
 		if (file_exists($folder."/".$fichier)){
 			$image = "<a href=\"http://$host/configurations/$host/images/marques/$fichier\" target=\"_blank\">Voir</a> <a href=\"marques.php?action=modifier&action2=supprimage&marqueid=$marqueid\">Supprimer</a>" ;
@@ -646,8 +646,8 @@ if (!isset($action) or $action == "" or $action == "config_err"){
 				<td class=\"td_location\" align=\"center\" nowrap><a href=\"marques.php?action=archive&marqueid=$marque[marqueid]&order=$order\" style=\"color:".($archiveFR[0]!=""?"green":"red")."\">Archive FR</a></td>
 				<td class=\"td_location\" align=\"center\" nowrap><a href=\"marques.php?action=archive&marqueid=$marque[marqueid]&order=$order\" style=\"color:".($archiveEN[0]!=""?"green":"red")."\">Archive EN</a></td>
 				<td class=\"td_location\" align=\"center\" nowrap><a href=\"marques.php?action=gamme&marqueid=$marque[marqueid]&order=$order&gamme=access\" style=\"color:".($access[0]>0?"green":"red")."\">Access</a><br><a href=\"marques.php?action=gamme&marqueid=$marque[marqueid]&order=$order&gamme=premium\" style=\"color:".($premium[0]>0?"green":"red")."\">Premium</a></td>
-				<td class=\"td_location\" align=\"center\" nowrap><a href=\"marques.php?action=menu_footer&marqueid=$marque[marqueid]&order=$order\"><img src=\"images/".($marque[menu_footer]==1?"visible.png":"invisible.png")."\" width=\"30\"></a></td> 
-				<td class=\"td_location\" align=\"center\" nowrap><a href=\"marques.php?action=menu_home&marqueid=$marque[marqueid]&order=$order\"><img src=\"images/".($marque[menu_home]==1?"visible.png":"invisible.png")."\" width=\"30\"></a></td> 
+				<td class=\"td_location\" align=\"center\" nowrap><a href=\"marques.php?action=menu_footer&marqueid=$marque[marqueid]&order=$order\"><img src=\"images/".($marque['menu_footer']==1?"visible.png":"invisible.png")."\" width=\"30\"></a></td> 
+				<td class=\"td_location\" align=\"center\" nowrap><a href=\"marques.php?action=menu_home&marqueid=$marque[marqueid]&order=$order\"><img src=\"images/".($marque['menu_home']==1?"visible.png":"invisible.png")."\" width=\"30\"></a></td> 
 			</tr>" ;
 		$rowalt++;
 	}

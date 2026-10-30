@@ -58,23 +58,23 @@ while($facture=$DB_site2->fetch_array($r)){
    
 
     while($ligne=$DB_site2->fetch_array($lignes)){
-	 $artprix=$ligne[prix]*$ligne[qte];
+	 $artprix=$ligne['prix']*$ligne[qte];
 	  $qte+=$ligne[qte];
 	  $caracts=$DB_site2->query("SELECT * FROM lignefacturecaracteristique WHERE lignefactureid='$ligne[lignefactureid]'",$DB_site2->link_id);
 	  while($caract=$DB_site2->fetch_array($caracts)){
-		$artprix+=$caract[differenceprix];
-		if($caract[caractvalid]==10 || $caract[caractvalid]==11) $gar="oui";
+		$artprix+=$caract['differenceprix'];
+		if($caract['caractvalid']==10 || $caract['caractvalid']==11) $gar="oui";
 	  }
 
 	  $art=$DB_site2->query("SELECT * FROM article NATURAL JOIN article_marque WHERE artid='$ligne[artid]'",$DB_site2->link_id);
 	  $article=$DB_site2->fetch_array($art);
  
 	  $promo="non";
-	  if($article[prixht]!=$article[prixconseilleht]) $promo="oui";
-	  $marque1=$marque[$article[marqueid]];
-	  $libelle1=$article[libelleFR];
-	  $artcode1=$article[artcode];
-	  $capacite1=$article[capacite_bouteilles];
+	  if($article['prixht']!=$article['prixconseilleht']) $promo="oui";
+	  $marque1=$marque[$article['marqueid']];
+	  $libelle1=$article['libelleFR'];
+	  $artcode1=$article['artcode'];
+	  $capacite1=$article['capacite_bouteilles'];
 
 	  $total+=$artprix;
     }
@@ -87,7 +87,7 @@ while($facture=$DB_site2->fetch_array($r)){
     $total-=$facture['montantcadeau'];
     $total=$total/(1+$user['TVAtauxnormal']/100);
 
-    $r2=$DB_site2->query("SELECT * FROM stat WHERE user=".intval($user[userid]),$sdb);
+    $r2=$DB_site2->query("SELECT * FROM stat WHERE user=".intval($user['userid']),$sdb);
     $stat=$DB_site2->fetch_array($r2);
     $referant=$stat['referant'];
     $query="";
@@ -104,7 +104,7 @@ while($facture=$DB_site2->fetch_array($r)){
     $maxp=0;
     $pagecount="";
     $visittime="";
-    $r2=$DB_site2->query(" SELECT * FROM stat_page WHERE statid='".$stat[id]."' UNION SELECT * FROM stat_page_arch2 WHERE statid='".$stat[id]."' order by timestamp ASC ",$sdb);
+    $r2=$DB_site2->query(" SELECT * FROM stat_page WHERE statid='".$stat['id']."' UNION SELECT * FROM stat_page_arch2 WHERE statid='".$stat['id']."' order by timestamp ASC ",$sdb);
 	
 	
     $pageentree="";

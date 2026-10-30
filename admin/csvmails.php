@@ -23,25 +23,25 @@ $i = 0 ;
 $users=$DB_site2->query("SELECT mail, allowemail from utilisateur");
 while ($user=$DB_site2->fetch_array($users))
 	{
-	$tabusers[$i]['mail'] = $user[mail] ;
+	$tabusers[$i]['mail'] = $user['mail'] ;
 	$tabusers[$i]['type'] = "client" ;
-	if ($user[allowemail] == 0)
-		$user[allowemail] = "non" ;
+	if ($user['allowemail'] == 0)
+		$user['allowemail'] = "non" ;
 	else
-		$user[allowemail] = "oui" ;
-	$tabusers[$i]['allow'] = $user[allowemail] ;
+		$user['allowemail'] = "oui" ;
+	$tabusers[$i]['allow'] = $user['allowemail'] ;
 	$i++ ;
 	}
 $users=$DB_site2->query("SELECT adresse_mail, allow_email from mails_newsletter");
 while ($user=$DB_site2->fetch_array($users))
 	{
-	$tabusers[$i]['mail'] = $user[adresse_mail] ;
+	$tabusers[$i]['mail'] = $user['adresse_mail'] ;
 	$tabusers[$i]['type'] = "newsletter" ;
-	if ($user[allow_email] == 0)
-		$user[allow_email] = "non" ;
+	if ($user['allow_email'] == 0)
+		$user['allow_email'] = "non" ;
 	else
-		$user[allow_email] = "oui" ;
-	$tabusers[$i]['allow'] = $user[allow_email] ;
+		$user['allow_email'] = "oui" ;
+	$tabusers[$i]['allow'] = $user['allow_email'] ;
 	$i++ ;
 	}
 

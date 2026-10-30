@@ -37,10 +37,10 @@ while($article=$DB_site->fetch_array($requete)){
 	$retail=$article_prices['prixconseille'];
 	$discount=$article_prices['remise'];
      }
-     $article[libelleFR]=html_entity_decode($article[libelleFR],ENT_COMPAT,"ISO-8859-15");
-     $article[libelleFR]=str_replace("&","&amp;",$article[libelleFR]);
+     $article['libelleFR']=html_entity_decode($article['libelleFR'],ENT_COMPAT,"ISO-8859-15");
+     $article['libelleFR']=str_replace("&","&amp;",$article['libelleFR']);
      print "<product id=\"$article[artid]\">
-      <name>".utf8_encode($mq['libelle']." ".$article[libelleFR]." ".$article['artcode'])."</name>
+      <name>".utf8_encode($mq['libelle']." ".$article['libelleFR']." ".$article['artcode'])."</name>
       <smallimage>http://www.mon-espace-cuisson.com/configurations/$host/images/produits/article/$article[artid].$article[image]</smallimage>
       <bigimage>http://www.mon-espace-cuisson.com/configurations/$host/images/produits/article/$article[artid].$article[image]</bigimage>
       <producturl>http://www.mon-espace-cuisson.com/art,$article[artid],".url_rewrite($article['libelleFR']).".htm?utm_source=CRITEO&amp;utm_medium=Banner&amp;utm_term=$article[artid]&amp;utm_campaign=Product</producturl>
@@ -50,7 +50,7 @@ while($article=$DB_site->fetch_array($requete)){
       <discount>$discount</discount>
       <recommendable>1</recommendable>
       <instock>1</instock>
-      <categoryid1>".utf8_encode($article[categorie])."</categoryid1>
+      <categoryid1>".utf8_encode($article['categorie'])."</categoryid1>
       </product>\n";
 }
 

@@ -238,7 +238,7 @@ HTML;
       }
     }
     
-    if (isset($form[fourn_principal])) {
+    if (isset($form['fourn_principal'])) {
 
       $db->query("
 	UPDATE `article_fournisseur`
@@ -246,9 +246,9 @@ HTML;
 	WHERE `artid` = '$artid'
       ");
       
-      if(is_array($form[fourn_principal])){
+      if(is_array($form['fourn_principal'])){
 	$principaux=array();
-	foreach($form[fourn_principal] as $site_code=>$fourn_id) $principaux[$_POST['fourn_name_'.$fourn_id]][]=$site_code;
+	foreach($form['fourn_principal'] as $site_code=>$fourn_id) $principaux[$_POST['fourn_name_'.$fourn_id]][]=$site_code;
 	foreach($principaux as $fourn=>$site_codes)
 	  $db->query("
 	    UPDATE `article_fournisseur`

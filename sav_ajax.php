@@ -1,5 +1,5 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'] . "/global.php");
+require(__DIR__.'/global.php');
 
 //Si l'utilisateur n'est pas connecté, stoppe le traitement
 if(!isset($user_info)) exit;

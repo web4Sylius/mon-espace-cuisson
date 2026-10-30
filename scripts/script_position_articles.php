@@ -34,7 +34,7 @@ while ($boutique=$DB_site->fetch_array($boutiques)) {
 	$DBpassword="";
 	
 	
-	echo $boutique[domaine]."<br>";
+	echo $boutique['domaine']."<br>";
 	$categories=$DB_site2->query("SELECT * FROM categorie") ;
 	while ($categorie=$DB_site2->fetch_array($categories))
 		{

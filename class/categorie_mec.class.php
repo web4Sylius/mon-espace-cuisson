@@ -1439,14 +1439,14 @@ function mkurl($params,$newparam=array(),$multi=false, $urldefaut='/categorie.ph
     }
     $r = $this->DB->query($sql);
     while($ru = $this->DB->fetch_array($r)){
-        $tabTableID[] = $ru[typearticleid];
+        $tabTableID[] = $ru['typearticleid'];
     }
     if(!empty($tabTableID)){
         $sql = "SELECT bdd_table FROM typearticle WHERE typearticleid IN ('".implode("','",$tabTableID)."') GROUP BY bdd_table";
         $r = $this->DB->query($sql);
         while($ru = $this->DB->fetch_array($r)){
-            $this->typearticleID[] = $ru[bdd_table];
-            $tabTable[] = $ru[bdd_table];
+            $this->typearticleID[] = $ru['bdd_table'];
+            $tabTable[] = $ru['bdd_table'];
         }
         return $tabTable;
     }else{

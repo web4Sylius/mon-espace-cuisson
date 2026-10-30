@@ -475,7 +475,7 @@ if(!empty($_POST)){
         if($aConditions['devise'] != $_POST['devise']) $suivitxt .= "<br>Devise : ".$aConditions['devise']." => ".$_POST['devise'];
         if($aConditions['compte_client'] != $_POST['compte_client']) $suivitxt .= "<br>Compte client : ".$aConditions['compte_client']." => ".$_POST['compte_client'];
         if($aConditions['langue'] != $_POST['flangue']) $suivitxt .= "<br>Langue : ".$aConditions['langue']." => ".$_POST['flangue'];
-        if($aConditions['activite'] != $_POST['activite']) $suivitxt .= "<br>Activite : ".($aConditions['activite'] == 1 ? 'Oui' : $aConditions['activite'] == 2 ? 'Non' : '')." => ".($_POST['activite'] == 1 ? 'Oui' : $_POST['activite'] == 2 ? 'Non' : '');
+        if($aConditions['activite'] != $_POST['activite']) $suivitxt .= "<br>Activite : ".($aConditions['activite'] == 1 ? 'Oui' : ($aConditions['activite'] == 2 ? 'Non' : ''))." => ".($_POST['activite'] == 1 ? 'Oui' : ($_POST['activite'] == 2 ? 'Non' : ''));
         if($aConditions['pdts_vendus'] != $_POST['pdts_vendus']) $suivitxt .= "<br>Pdts vendus : ".$aConditions['pdts_vendus']." => ".$_POST['pdts_vendus'];
         if($aConditions['ar'] != intval($_POST['ar'])) $suivitxt .= "<br>AR ADV : ".($aConditions['ar'] == 1 ? 'Oui' : 'Non')." => ".(intval($_POST['ar']) == 1 ? 'Oui' : 'Non');
         if($aConditions['tvaintra'] != mysqli_real_escape_string($DB_site2->link_id,$_POST['tvaintra'])) $suivitxt .= "<br>tva intra : ".$aConditions['tvaintra']." => ".mysqli_real_escape_string($DB_site2->link_id,$_POST['tvaintra']);
@@ -1679,18 +1679,18 @@ function tableau_relation($genre=1, $sens=1){
 		$userid=$contact['user'.$autresens.'id'];
 		$sql_contact="SELECT userid, raisonsociale, prenom, nom FROM utilisateur WHERE userid='".$userid."' ";
 		$coordonnees=$DB_site2->query_first($sql_contact);
-		if($coordonnees[userid]==$userid){
+		if($coordonnees['userid']==$userid){
 			$libelle="";
-			if($coordonnees[raisonsociale]!=""){
-				$libelle=$coordonnees[raisonsociale]." - ";
+			if($coordonnees['raisonsociale']!=""){
+				$libelle=$coordonnees['raisonsociale']." - ";
 			}
-			$libelle.=$coordonnees[prenom]." ".$coordonnees[nom];
+			$libelle.=$coordonnees['prenom']." ".$coordonnees['nom'];
 			$lien="utilisateur.php?action=editer&userid=".$userid;
 			$type="client";
 		} else {
 			$libelle="<strong>erreur : client introuvable</strong>";
 		}
-		$return.="<a href=\"".$lien."\" target=\"_blank\">".$libelle."</a><br>".$contact[relation_description];
+		$return.="<a href=\"".$lien."\" target=\"_blank\">".$libelle."</a><br>".$contact['relation_description'];
 	}
 	return $return;
 }
@@ -2063,7 +2063,7 @@ function tableau_relation($genre=1, $sens=1){
         foreach($mlist as $mid){
         $attrmid[]=$mid;
         $randid=rand(1000,10000);
-        if($mid!="") print "<p id=\"drag_$randid\"><a href=javascript:removefromlist(".$fourn[id].",".$mid.",'drag_$randid');><img src='images/supprimer.gif' align='absmiddle'></a>".$marques[$mid]."</p>";
+        if($mid!="") print "<p id=\"drag_$randid\"><a href=javascript:removefromlist(".$fourn['id'].",".$mid.",'drag_$randid');><img src='images/supprimer.gif' align='absmiddle'></a>".$marques[$mid]."</p>";
         }
         print "</div>";
     }

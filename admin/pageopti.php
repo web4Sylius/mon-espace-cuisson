@@ -350,7 +350,7 @@ switch ($action) {
 							$articles=$DB_site2->query("SELECT * FROM article WHERE catid = '$cat[catid]'");
 							while ($article=$DB_site2->fetch_array($articles))
 								{
-								$article[libelleFR] = substr($article[libelleFR], 0, 50) ;
+								$article['libelleFR'] = substr($article['libelleFR'], 0, 50) ;
 								if ($article[artid] == $artid)
 									{
 									$treeview .= "<li class=\"art\">&nbsp;<font color=\"#000044\"><strong>$article[libelleFR]</strong></font></li>" ;
@@ -368,7 +368,7 @@ switch ($action) {
 									}
 								}
 							$treeview.="</ul>" ;
-							construire_cat($cat[catid]);
+							construire_cat($cat['catid']);
 							$treeview.="</ul>\n";
 							}
 						else
@@ -378,7 +378,7 @@ switch ($action) {
 							$articles=$DB_site2->query("SELECT * FROM article WHERE catid = '$cat[catid]'");
 							while ($article=$DB_site2->fetch_array($articles))
 								{
-								$article[libelleFR] = substr($article[libelleFR], 0, 50) ;
+								$article['libelleFR'] = substr($article['libelleFR'], 0, 50) ;
 								if ($article[artid] == $artid)
 									{
 									$treeview .= "<li class=\"art\">&nbsp;<font color=\"#000044\"><strong>$article[libelleFR]</strong></font></li>" ;
@@ -396,7 +396,7 @@ switch ($action) {
 									}
 								}
 							$treeview.="</ul>" ;
-							construire_cat($cat[catid]);
+							construire_cat($cat['catid']);
 							$treeview.="</ul>\n";
 							}
 						}
@@ -414,7 +414,7 @@ switch ($action) {
 						$articles=$DB_site2->query("SELECT * FROM article WHERE catid = '$cat[catid]'");
 						while ($article=$DB_site2->fetch_array($articles))
 							{
-							$article[libelleFR] = substr($article[libelleFR], 0, 50) ;
+							$article['libelleFR'] = substr($article['libelleFR'], 0, 50) ;
 							if ($article[artid] == $artid)
 								{
 								$treeview .= "<li class=\"art\">&nbsp;<font color=\"#000044\"><strong>$article[libelleFR]</strong></font></li>" ;

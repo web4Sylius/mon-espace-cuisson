@@ -29,7 +29,7 @@ if( !isset($action) || $action == "" )
 	{
 		while( $rs_votes_commentaires = $DB_site2->fetch_array( $rq_votes_commentaires ) )
 		{
-			list($annee, $mois, $jour) = explode( "-", $rs_votes_commentaires[datevote] );
+			list($annee, $mois, $jour) = explode( "-", $rs_votes_commentaires['datevote'] );
 			$rowalt = "td_".getrowbg();
 			
 			echo "<tr>";
@@ -83,7 +83,7 @@ if( !isset($action) || $action == "" )
 			// Réaffichage du formulaire en cas d'erreur
 			$rs_vote_commentaire = $DB_site2->query_first( "select * from articlevote where articlevoteid = '$commid'
 													  ORDER BY datevote" );
-			list($annee, $mois, $jour) = explode( "-", $rs_vote_commentaire[datevote] );
+			list($annee, $mois, $jour) = explode( "-", $rs_vote_commentaire['datevote'] );
 
 			echo "<form method=\"post\" action=\"votes_commentaires.php\" name=\"formu\">
 					<table border=\"0\">
@@ -123,7 +123,7 @@ if( !isset($action) || $action == "" )
 		// Affichage du commentaire
 		$rs_vote_commentaire = $DB_site2->query_first( "select * from articlevote where articlevoteid = '$commid'
 												  ORDER BY datevote" );
-		list($annee, $mois, $jour) = explode( "-", $rs_vote_commentaire[datevote] );
+		list($annee, $mois, $jour) = explode( "-", $rs_vote_commentaire['datevote'] );
 		
 		echo "<form method=\"post\" action=\"votes_commentaires.php\" name=\"formu\">
 				<table border=\"0\">

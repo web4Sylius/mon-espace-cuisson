@@ -150,7 +150,7 @@ class DAOarticle {
           return $tab;
      }
      
-     public function isLot($DB, $artid){
+     public static function isLot($DB, $artid){
           
           $sql = "SELECT id";
           $sql .= " FROM article_lot";

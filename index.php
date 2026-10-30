@@ -121,7 +121,7 @@ if ($DB_site->num_rows($liens)) {
 	if($lien['script']!="")
 	    $encarttexte.=$lien['script']." | ";
 	else
-	    $encarttexte.="<a target=\"_blank\" href=\"".htmlentities($lien[lien],ENT_COMPAT,"ISO-8859-15")."\" title=\"$lien[libelle]\">$lien[libelle]</a> | ";
+	    $encarttexte.="<a target=\"_blank\" href=\"".htmlentities($lien['lien'],ENT_COMPAT,"ISO-8859-15")."\" title=\"$lien[libelle]\">$lien[libelle]</a> | ";
     }
     $template->parts["encarttexte"]=substr($encarttexte,0,strlen($encarttexte)-3);
 }
@@ -133,7 +133,7 @@ if ($DB_site->num_rows($liens)) {
     $TemplatePartenairesIndexBit="";
     while($lien=$DB_site->fetch_array($liens)) {
 	$i++;
-	$encartimage.="<td onmouseover=\"mouseoverscroll=true;\" onmouseout=\"mouseoverscroll=false;\"><a target=\"_blank\" href=\"".htmlentities($lien[lien],ENT_COMPAT,"ISO-8859-15")."\" title=\"$lien[libelle]\"><img src=\"/images/liens/$lien[lienid].$lien[logo]\" alt=\"$lien[libelle]\"></a></td>";
+	$encartimage.="<td onmouseover=\"mouseoverscroll=true;\" onmouseout=\"mouseoverscroll=false;\"><a target=\"_blank\" href=\"".htmlentities($lien['lien'],ENT_COMPAT,"ISO-8859-15")."\" title=\"$lien[libelle]\"><img src=\"/images/liens/$lien[lienid].$lien[logo]\" alt=\"$lien[libelle]\"></a></td>";
     }
     $scrolllen=$i*150;
 }

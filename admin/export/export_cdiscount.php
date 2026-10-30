@@ -65,7 +65,7 @@ if (isset($admin_username) && $admin_username != "") {
          exit;
       }else{
         $user_info=$DB_site->query_first("SELECT * FROM parametresgeneraux WHERE username = '$admin_username'");
-        if ($user_info[username] != $admin_username) exit;
+        if ($user_info['username'] != $admin_username) exit;
       }
     }
 }else
@@ -245,11 +245,11 @@ class bmstat extends ccstat {
 			if($row->referant==""){
 				$return->mrprovenance="direct";
 			}
-			if(strpos($statpage[page],"gclid")>-1){
+			if(strpos($statpage['page'],"gclid")>-1){
 				// adwords
 				$return->mrprovenance="adwords";
 			}
-			$return->entrance=$statpage[page];
+			$return->entrance=$statpage['page'];
 		}
 		//$return->mrprovenance=$this->mrech($row->referant);
 		$return->os=$this->os_name($row->agent);

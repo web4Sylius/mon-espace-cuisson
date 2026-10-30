@@ -17,7 +17,7 @@ function mail_trspt($adv,$preview=false){
     $subject="";
     $text="";
     $livrtype="client";
-    $rdv_tel=$adv_facture[telephone];
+    $rdv_tel=$adv_facture['telephone'];
     $edi = false;
     $parent = 0;
     
@@ -157,7 +157,7 @@ function mail_trspt($adv,$preview=false){
 	    	$file = $DB_site2->query_first("SELECT id FROM user_files WHERE facturid='$facturid' AND name ='".mysqli_real_escape_string($DB_site2->link_id,$adv->destinataire)."' AND parent=0");
 	        $files = $DB_site2->query("SELECT * FROM user_files WHERE facturid='$facturid' AND parent='".$file[0]."'");
 	        while($the_file = $DB_site2->fetch_array($files)){
-	            $name = $the_file[id].".".$the_file[ext];
+	            $name = $the_file['id'].".".$the_file['ext'];
 	            unlink(__DIR__."/../userfiles/".$name);
 	        }
 	        $DB_site2->query("DELETE FROM user_files WHERE facturid='$facturid' AND  parent='".$file[0]."'");
@@ -229,7 +229,7 @@ function mail_trspt($adv,$preview=false){
 	    	$fournid=substr($adv->fields['lieutrspt'],5);
 	    	$fourn=$DB_site2->query_first("SELECT * FROM fournisseur WHERE id='$fournid'");
 	    	$enlev=$fournid;
-	    	$text.="$fourn[societe]<br>$fourn[prenom] $fourn[nom]<br>$fourn[adresse1]".($fourn[adresse2]!=""?"<br>$fourn[adresse2]":"")."<br>$fourn[cp] $fourn[ville]<br>Tel $fourn[telephone] / fax $fourn[fax]<br>$fourn[horaires]";
+	    	$text.="$fourn[societe]<br>$fourn[prenom] $fourn[nom]<br>$fourn[adresse1]".($fourn['adresse2']!=""?"<br>$fourn[adresse2]":"")."<br>$fourn[cp] $fourn[ville]<br>Tel $fourn[telephone] / fax $fourn[fax]<br>$fourn[horaires]";
 		}
 		if($adv->fields['lieutrspt']=="liebherr"){
 	    	$lieutrspt=$DB_site2->query_first("SELECT * FROM fournisseur WHERE id='".$adv->fields['livraisoneb']."'");
@@ -290,7 +290,7 @@ function mail_trspt($adv,$preview=false){
 		    case "sls":
 		    case "stock":
 		    case "fourn":
-		    	$text.="$sls[societe] $sls[ville]<br>$sls[adresse1]".($sls[adresse2]!=""?"<br>$sls[adresse2]":"")."<br>$sls[cp] $sls[ville]<br>tél: $sls[telephone] fax: $sls[fax]<br>$sls[mail]<br>$sls[horaires]";
+		    	$text.="$sls[societe] $sls[ville]<br>$sls[adresse1]".($sls['adresse2']!=""?"<br>$sls[adresse2]":"")."<br>$sls[cp] $sls[ville]<br>tél: $sls[telephone] fax: $sls[fax]<br>$sls[mail]<br>$sls[horaires]";
 		    	$blsls=$slsid;
 		    	$livrid=$slsid;
 		    break;
@@ -816,12 +816,12 @@ function mail_trspt($adv,$preview=false){
         if($edi){ // envoi par edi
         	$dest = $DB_site2->query_first("SELECT id FROM fournisseur WHERE societe ='".$adv->destinataire."' AND type='trsptadv'");
         	
-        	$DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().",destinataire ='".$dest[0]."',type='pro', commercial='".$user_info[username]."', suivi='".addslashes("Passage de commande à ".$_POST['trsptname']."<br>".$mail->body)."'");
+        	$DB_site2->query("INSERT INTO suivi_commande SET facturid=$facturid, date=".time().",destinataire ='".$dest[0]."',type='pro', commercial='".$user_info['username']."', suivi='".addslashes("Passage de commande à ".$_POST['trsptname']."<br>".$mail->body)."'");
 
         }elseif($adv->fields['typetrspt'] != "0" && $adv->fields['envoiedi']=='0'){
             $mail->sendmail();  // on envoie pas de mail s'il n'y a pas de transport
 
-        	$DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info[username]."', `to`='".$txt_mail_to."', `from` = '".$user_info['mail_contactFR']."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', facturid=".$facturid.",userid='".$facture->userid."',fournisseur='".mysqli_real_escape_string($DB_site2->link_id,$adv->destinataire)."', uniqueid='".$mail->uniqueid."', compta ='non'");
+        	$DB_site2->query("INSERT INTO mail_outbox SET date=".time().", utilisateur='".$user_info['username']."', `to`='".$txt_mail_to."', `from` = '".$user_info['mail_contactFR']."', subject='".$mail->subject."', body='".mysqli_real_escape_string($DB_site2->link_id,$mail->body)."', pj='".mysqli_real_escape_string($DB_site2->link_id,implode(',',$pj))."', facturid=".$facturid.",userid='".$facture->userid."',fournisseur='".mysqli_real_escape_string($DB_site2->link_id,$adv->destinataire)."', uniqueid='".$mail->uniqueid."', compta ='non'");
        		/// enregistre les pièces jointes :
         	$mailid = $DB_site2->insert_id();
         	$i=0;

@@ -44,8 +44,8 @@ echo "
 // MODIFIER UN RANGEMENT
 if (isset($action) and $action == "modifier"){
 	$mq=$DB_site2->query_first("SELECT * from rangement where rangementid = '$rangementid'");
-	$singulier = $mq[lib_singulier] ;
-	$pluriel = $mq[lib_pluriel] ;
+	$singulier = $mq['lib_singulier'] ;
+	$pluriel = $mq['lib_pluriel'] ;
 	echo "<h3>Modifier un rangement</h3>
 	<form method=\"post\">
 	<input type=\"hidden\" name=\"action\" value=\"modifier2\">
